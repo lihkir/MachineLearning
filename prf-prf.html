@@ -1,0 +1,1079 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Proof Index &#8212; Machine Learning</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'prf-prf';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+
+    <script>
+      DOCUMENTATION_OPTIONS.COLLAPSE_INDEX = true;
+    </script>
+
+
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo-uninorte.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo-uninorte.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Machine Learning
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="supervised_intro.html">Aprendizaje supervisado</a></li>
+<li class="toctree-l1"><a class="reference internal" href="knn_model.html"><span class="math notranslate nohighlight">\(k\)</span>-Vecinos más cercanos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linear_model.html">Modelos lineales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bayes_model.html">Clasificadores Naive Bayes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="decisiontree_model.html">Árboles de decisión</a></li>
+<li class="toctree-l1"><a class="reference internal" href="svm_model.html">Máquinas de vectores de soporte</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ann_model.html">Redes Neuronales y Deep Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="practical_pca.html">Análisis de Componentes Principales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_evaluation.html">Evaluación de modelos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chains_pipelines.html">Cadenas de Algoritmos y Pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix.html">Apéndice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="biblio.html">Bibliografía</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fprf-prf.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+
+   <h1>Proof Index</h1>
+
+   <div class="modindex-jumpbox">
+   <a href="#cap-adaboost_algo"><strong>adaboost_algo</strong></a> | 
+   <a href="#cap-attention_example_grayscale"><strong>attention_example_grayscale</strong></a> | 
+   <a href="#cap-bayes_theorem"><strong>bayes_theorem</strong></a> | 
+   <a href="#cap-bottleneck_example_1x1conv_prfref"><strong>bottleneck_example_1x1conv_prfref</strong></a> | 
+   <a href="#cap-de_l2_space"><strong>de_l2_space</strong></a> | 
+   <a href="#cap-def_L2_space"><strong>def_L2_space</strong></a> | 
+   <a href="#cap-def_bases"><strong>def_bases</strong></a> | 
+   <a href="#cap-def_clasificador_general"><strong>def_clasificador_general</strong></a> | 
+   <a href="#cap-def_closed_subspace"><strong>def_closed_subspace</strong></a> | 
+   <a href="#cap-def_complete_spaces"><strong>def_complete_spaces</strong></a> | 
+   <a href="#cap-def_convex_function"><strong>def_convex_function</strong></a> | 
+   <a href="#cap-def_convex_subset"><strong>def_convex_subset</strong></a> | 
+   <a href="#cap-def_emp_error"><strong>def_emp_error</strong></a> | 
+   <a href="#cap-def_features_map"><strong>def_features_map</strong></a> | 
+   <a href="#cap-def_generado"><strong>def_generado</strong></a> | 
+   <a href="#cap-def_hilbert_rep"><strong>def_hilbert_rep</strong></a> | 
+   <a href="#cap-def_hilbert_space"><strong>def_hilbert_space</strong></a> | 
+   <a href="#cap-def_kernel_trick"><strong>def_kernel_trick</strong></a> | 
+   <a href="#cap-def_knn"><strong>def_knn</strong></a> | 
+   <a href="#cap-def_knn_reg"><strong>def_knn_reg</strong></a> | 
+   <a href="#cap-def_linear_ind"><strong>def_linear_ind</strong></a> | 
+   <a href="#cap-def_linear_spaces"><strong>def_linear_spaces</strong></a> | 
+   <a href="#cap-def_norm_spaces"><strong>def_norm_spaces</strong></a> | 
+   <a href="#cap-def_prod_interno"><strong>def_prod_interno</strong></a> | 
+   <a href="#cap-def_subspace"><strong>def_subspace</strong></a> | 
+   <a href="#cap-definition-6"><strong>definition-6</strong></a> | 
+   <a href="#cap-des_bernoulli"><strong>des_bernoulli</strong></a> | 
+   <a href="#cap-ej_feature_map"><strong>ej_feature_map</strong></a> | 
+   <a href="#cap-ej_inner_prod"><strong>ej_inner_prod</strong></a> | 
+   <a href="#cap-ej_kernel_functions"><strong>ej_kernel_functions</strong></a> | 
+   <a href="#cap-ej_real_functions"><strong>ej_real_functions</strong></a> | 
+   <a href="#cap-ej_vector_space"><strong>ej_vector_space</strong></a> | 
+   <a href="#cap-gen_loss_fun"><strong>gen_loss_fun</strong></a> | 
+   <a href="#cap-knn_analysis"><strong>knn_analysis</strong></a> | 
+   <a href="#cap-knn_lemma1"><strong>knn_lemma1</strong></a> | 
+   <a href="#cap-knn_lemma2"><strong>knn_lemma2</strong></a> | 
+   <a href="#cap-knn_theorem1"><strong>knn_theorem1</strong></a> | 
+   <a href="#cap-my_algorithm_backpropagation"><strong>my_algorithm_backpropagation</strong></a> | 
+   <a href="#cap-my_algorithm_pattern_by_pattern"><strong>my_algorithm_pattern_by_pattern</strong></a> | 
+   <a href="#cap-observation-0"><strong>observation-0</strong></a> | 
+   <a href="#cap-observation-1"><strong>observation-1</strong></a> | 
+   <a href="#cap-observation-10"><strong>observation-10</strong></a> | 
+   <a href="#cap-observation-8"><strong>observation-8</strong></a> | 
+   <a href="#cap-observation-9"><strong>observation-9</strong></a> | 
+   <a href="#cap-observation1_ols"><strong>observation1_ols</strong></a> | 
+   <a href="#cap-observation_ann1"><strong>observation_ann1</strong></a> | 
+   <a href="#cap-observation_ann10"><strong>observation_ann10</strong></a> | 
+   <a href="#cap-observation_ann11"><strong>observation_ann11</strong></a> | 
+   <a href="#cap-observation_ann12"><strong>observation_ann12</strong></a> | 
+   <a href="#cap-observation_ann13"><strong>observation_ann13</strong></a> | 
+   <a href="#cap-observation_ann14"><strong>observation_ann14</strong></a> | 
+   <a href="#cap-observation_ann2"><strong>observation_ann2</strong></a> | 
+   <a href="#cap-observation_ann3"><strong>observation_ann3</strong></a> | 
+   <a href="#cap-observation_ann4"><strong>observation_ann4</strong></a> | 
+   <a href="#cap-observation_ann5"><strong>observation_ann5</strong></a> | 
+   <a href="#cap-observation_ann6"><strong>observation_ann6</strong></a> | 
+   <a href="#cap-observation_ann7"><strong>observation_ann7</strong></a> | 
+   <a href="#cap-observation_ann8"><strong>observation_ann8</strong></a> | 
+   <a href="#cap-observation_ann9"><strong>observation_ann9</strong></a> | 
+   <a href="#cap-observation_dt1"><strong>observation_dt1</strong></a> | 
+   <a href="#cap-observation_dt2"><strong>observation_dt2</strong></a> | 
+   <a href="#cap-observation_dt3"><strong>observation_dt3</strong></a> | 
+   <a href="#cap-observation_lm1"><strong>observation_lm1</strong></a> | 
+   <a href="#cap-orthogonal_complement"><strong>orthogonal_complement</strong></a> | 
+   <a href="#cap-prop_kcompacto"><strong>prop_kcompacto</strong></a> | 
+   <a href="#cap-prop_ridge_estimador"><strong>prop_ridge_estimador</strong></a> | 
+   <a href="#cap-props_features_map"><strong>props_features_map</strong></a> | 
+   <a href="#cap-th_afin_convex"><strong>th_afin_convex</strong></a> | 
+   <a href="#cap-th_closed_span"><strong>th_closed_span</strong></a> | 
+   <a href="#cap-th_proy_ort"><strong>th_proy_ort</strong></a> | 
+   <a href="#cap-th_rep_semipar"><strong>th_rep_semipar</strong></a> | 
+   <a href="#cap-th_representation"><strong>th_representation</strong></a> | 
+   <a href="#cap-th_strict_convex"><strong>th_strict_convex</strong></a> | 
+   <a href="#cap-theorem-10"><strong>theorem-10</strong></a> | 
+   <a href="#cap-walfe_prop"><strong>walfe_prop</strong></a>
+   </div>
+
+   <table class="indextable modindextable">
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-adaboost_algo"><td></td><td>
+       <strong>adaboost_algo</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="decisiontree_model.html#adaboost_algo"><code class="xref">adaboost_algo</code></a> <em>(decisiontree_model)</em></td><td>
+       <em>algorithm</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-attention_example_grayscale"><td></td><td>
+       <strong>attention_example_grayscale</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="ann_model.html#attention_example_grayscale"><code class="xref">attention_example_grayscale</code></a> <em>(ann_model)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-bayes_theorem"><td></td><td>
+       <strong>bayes_theorem</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="bayes_model.html#bayes_theorem"><code class="xref">bayes_theorem</code></a> <em>(bayes_model)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-bottleneck_example_1x1conv_prfref"><td></td><td>
+       <strong>bottleneck_example_1x1conv_prfref</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="ann_model.html#bottleneck_example_1x1conv_prfref"><code class="xref">bottleneck_example_1x1conv_prfref</code></a> <em>(ann_model)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-de_l2_space"><td></td><td>
+       <strong>de_l2_space</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="appendix.html#de_l2_space"><code class="xref">de_l2_space</code></a> <em>(appendix)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def_L2_space"><td></td><td>
+       <strong>def_L2_space</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="appendix.html#def_L2_space"><code class="xref">def_L2_space</code></a> <em>(appendix)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def_bases"><td></td><td>
+       <strong>def_bases</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="appendix.html#def_bases"><code class="xref">def_bases</code></a> <em>(appendix)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def_clasificador_general"><td></td><td>
+       <strong>def_clasificador_general</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="svm_model.html#def_clasificador_general"><code class="xref">def_clasificador_general</code></a> <em>(svm_model)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def_closed_subspace"><td></td><td>
+       <strong>def_closed_subspace</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="appendix.html#def_closed_subspace"><code class="xref">def_closed_subspace</code></a> <em>(appendix)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def_complete_spaces"><td></td><td>
+       <strong>def_complete_spaces</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="appendix.html#def_complete_spaces"><code class="xref">def_complete_spaces</code></a> <em>(appendix)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def_convex_function"><td></td><td>
+       <strong>def_convex_function</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="appendix.html#def_convex_function"><code class="xref">def_convex_function</code></a> <em>(appendix)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def_convex_subset"><td></td><td>
+       <strong>def_convex_subset</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="appendix.html#def_convex_subset"><code class="xref">def_convex_subset</code></a> <em>(appendix)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def_emp_error"><td></td><td>
+       <strong>def_emp_error</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="knn_model.html#def_emp_error"><code class="xref">def_emp_error</code></a> <em>(knn_model)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def_features_map"><td></td><td>
+       <strong>def_features_map</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="svm_model.html#def_features_map"><code class="xref">def_features_map</code></a> <em>(svm_model)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def_generado"><td></td><td>
+       <strong>def_generado</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="appendix.html#def_generado"><code class="xref">def_generado</code></a> <em>(appendix)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def_hilbert_rep"><td></td><td>
+       <strong>def_hilbert_rep</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="svm_model.html#def_hilbert_rep"><code class="xref">def_hilbert_rep</code></a> <em>(svm_model)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def_hilbert_space"><td></td><td>
+       <strong>def_hilbert_space</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="appendix.html#def_hilbert_space"><code class="xref">def_hilbert_space</code></a> <em>(appendix)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def_kernel_trick"><td></td><td>
+       <strong>def_kernel_trick</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="svm_model.html#def_kernel_trick"><code class="xref">def_kernel_trick</code></a> <em>(svm_model)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def_knn"><td></td><td>
+       <strong>def_knn</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="knn_model.html#def_knn"><code class="xref">def_knn</code></a> <em>(knn_model)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def_knn_reg"><td></td><td>
+       <strong>def_knn_reg</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="knn_model.html#def_knn_reg"><code class="xref">def_knn_reg</code></a> <em>(knn_model)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def_linear_ind"><td></td><td>
+       <strong>def_linear_ind</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="appendix.html#def_linear_ind"><code class="xref">def_linear_ind</code></a> <em>(appendix)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def_linear_spaces"><td></td><td>
+       <strong>def_linear_spaces</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="appendix.html#def_linear_spaces"><code class="xref">def_linear_spaces</code></a> <em>(appendix)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def_norm_spaces"><td></td><td>
+       <strong>def_norm_spaces</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="appendix.html#def_norm_spaces"><code class="xref">def_norm_spaces</code></a> <em>(appendix)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def_prod_interno"><td></td><td>
+       <strong>def_prod_interno</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="appendix.html#def_prod_interno"><code class="xref">def_prod_interno</code></a> <em>(appendix)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def_subspace"><td></td><td>
+       <strong>def_subspace</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="appendix.html#def_subspace"><code class="xref">def_subspace</code></a> <em>(appendix)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-definition-6"><td></td><td>
+       <strong>definition-6</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="ann_model.html#definition-6"><code class="xref">definition-6</code></a> <em>(ann_model)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-des_bernoulli"><td></td><td>
+       <strong>des_bernoulli</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="knn_model.html#des_bernoulli"><code class="xref">des_bernoulli</code></a> <em>(knn_model)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-ej_feature_map"><td></td><td>
+       <strong>ej_feature_map</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="svm_model.html#ej_feature_map"><code class="xref">ej_feature_map</code></a> <em>(svm_model)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-ej_inner_prod"><td></td><td>
+       <strong>ej_inner_prod</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="appendix.html#ej_inner_prod"><code class="xref">ej_inner_prod</code></a> <em>(appendix)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-ej_kernel_functions"><td></td><td>
+       <strong>ej_kernel_functions</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="svm_model.html#ej_kernel_functions"><code class="xref">ej_kernel_functions</code></a> <em>(svm_model)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-ej_real_functions"><td></td><td>
+       <strong>ej_real_functions</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="appendix.html#ej_real_functions"><code class="xref">ej_real_functions</code></a> <em>(appendix)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-ej_vector_space"><td></td><td>
+       <strong>ej_vector_space</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="appendix.html#ej_vector_space"><code class="xref">ej_vector_space</code></a> <em>(appendix)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-gen_loss_fun"><td></td><td>
+       <strong>gen_loss_fun</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="knn_model.html#gen_loss_fun"><code class="xref">gen_loss_fun</code></a> <em>(knn_model)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-knn_analysis"><td></td><td>
+       <strong>knn_analysis</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="knn_model.html#knn_analysis"><code class="xref">knn_analysis</code></a> <em>(knn_model)</em></td><td>
+       <em>observation</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-knn_lemma1"><td></td><td>
+       <strong>knn_lemma1</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="knn_model.html#knn_lemma1"><code class="xref">knn_lemma1</code></a> <em>(knn_model)</em></td><td>
+       <em>lemma</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-knn_lemma2"><td></td><td>
+       <strong>knn_lemma2</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="knn_model.html#knn_lemma2"><code class="xref">knn_lemma2</code></a> <em>(knn_model)</em></td><td>
+       <em>lemma</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-knn_theorem1"><td></td><td>
+       <strong>knn_theorem1</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="knn_model.html#knn_theorem1"><code class="xref">knn_theorem1</code></a> <em>(knn_model)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-my_algorithm_backpropagation"><td></td><td>
+       <strong>my_algorithm_backpropagation</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="ann_model.html#my_algorithm_backpropagation"><code class="xref">my_algorithm_backpropagation</code></a> <em>(ann_model)</em></td><td>
+       <em>algorithm</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-my_algorithm_pattern_by_pattern"><td></td><td>
+       <strong>my_algorithm_pattern_by_pattern</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="ann_model.html#my_algorithm_pattern_by_pattern"><code class="xref">my_algorithm_pattern_by_pattern</code></a> <em>(ann_model)</em></td><td>
+       <em>algorithm</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-observation-0"><td></td><td>
+       <strong>observation-0</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="practical_pca.html#observation-0"><code class="xref">observation-0</code></a> <em>(practical_pca)</em></td><td>
+       <em>observation</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-observation-1"><td></td><td>
+       <strong>observation-1</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="practical_pca.html#observation-1"><code class="xref">observation-1</code></a> <em>(practical_pca)</em></td><td>
+       <em>observation</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-observation-10"><td></td><td>
+       <strong>observation-10</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="svm_model.html#observation-10"><code class="xref">observation-10</code></a> <em>(svm_model)</em></td><td>
+       <em>observation</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-observation-8"><td></td><td>
+       <strong>observation-8</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="svm_model.html#observation-8"><code class="xref">observation-8</code></a> <em>(svm_model)</em></td><td>
+       <em>observation</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-observation-9"><td></td><td>
+       <strong>observation-9</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="knn_model.html#observation-9"><code class="xref">observation-9</code></a> <em>(knn_model)</em></td><td>
+       <em>observation</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-observation1_ols"><td></td><td>
+       <strong>observation1_ols</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="linear_model.html#observation1_ols"><code class="xref">observation1_ols</code></a> <em>(linear_model)</em></td><td>
+       <em>observation</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-observation_ann1"><td></td><td>
+       <strong>observation_ann1</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="ann_model.html#observation_ann1"><code class="xref">observation_ann1</code></a> <em>(ann_model)</em></td><td>
+       <em>observation</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-observation_ann10"><td></td><td>
+       <strong>observation_ann10</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="ann_model.html#observation_ann10"><code class="xref">observation_ann10</code></a> <em>(ann_model)</em></td><td>
+       <em>observation</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-observation_ann11"><td></td><td>
+       <strong>observation_ann11</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="ann_model.html#observation_ann11"><code class="xref">observation_ann11</code></a> <em>(ann_model)</em></td><td>
+       <em>observation</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-observation_ann12"><td></td><td>
+       <strong>observation_ann12</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="ann_model.html#observation_ann12"><code class="xref">observation_ann12</code></a> <em>(ann_model)</em></td><td>
+       <em>observation</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-observation_ann13"><td></td><td>
+       <strong>observation_ann13</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="ann_model.html#observation_ann13"><code class="xref">observation_ann13</code></a> <em>(ann_model)</em></td><td>
+       <em>observation</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-observation_ann14"><td></td><td>
+       <strong>observation_ann14</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="ann_model.html#observation_ann14"><code class="xref">observation_ann14</code></a> <em>(ann_model)</em></td><td>
+       <em>observation</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-observation_ann2"><td></td><td>
+       <strong>observation_ann2</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="ann_model.html#observation_ann2"><code class="xref">observation_ann2</code></a> <em>(ann_model)</em></td><td>
+       <em>observation</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-observation_ann3"><td></td><td>
+       <strong>observation_ann3</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="ann_model.html#observation_ann3"><code class="xref">observation_ann3</code></a> <em>(ann_model)</em></td><td>
+       <em>observation</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-observation_ann4"><td></td><td>
+       <strong>observation_ann4</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="ann_model.html#observation_ann4"><code class="xref">observation_ann4</code></a> <em>(ann_model)</em></td><td>
+       <em>observation</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-observation_ann5"><td></td><td>
+       <strong>observation_ann5</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="ann_model.html#observation_ann5"><code class="xref">observation_ann5</code></a> <em>(ann_model)</em></td><td>
+       <em>observation</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-observation_ann6"><td></td><td>
+       <strong>observation_ann6</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="ann_model.html#observation_ann6"><code class="xref">observation_ann6</code></a> <em>(ann_model)</em></td><td>
+       <em>observation</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-observation_ann7"><td></td><td>
+       <strong>observation_ann7</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="ann_model.html#observation_ann7"><code class="xref">observation_ann7</code></a> <em>(ann_model)</em></td><td>
+       <em>observation</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-observation_ann8"><td></td><td>
+       <strong>observation_ann8</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="ann_model.html#observation_ann8"><code class="xref">observation_ann8</code></a> <em>(ann_model)</em></td><td>
+       <em>observation</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-observation_ann9"><td></td><td>
+       <strong>observation_ann9</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="ann_model.html#observation_ann9"><code class="xref">observation_ann9</code></a> <em>(ann_model)</em></td><td>
+       <em>observation</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-observation_dt1"><td></td><td>
+       <strong>observation_dt1</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="decisiontree_model.html#observation_dt1"><code class="xref">observation_dt1</code></a> <em>(decisiontree_model)</em></td><td>
+       <em>observation</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-observation_dt2"><td></td><td>
+       <strong>observation_dt2</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="decisiontree_model.html#observation_dt2"><code class="xref">observation_dt2</code></a> <em>(decisiontree_model)</em></td><td>
+       <em>observation</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-observation_dt3"><td></td><td>
+       <strong>observation_dt3</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="decisiontree_model.html#observation_dt3"><code class="xref">observation_dt3</code></a> <em>(decisiontree_model)</em></td><td>
+       <em>observation</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-observation_lm1"><td></td><td>
+       <strong>observation_lm1</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="linear_model.html#observation_lm1"><code class="xref">observation_lm1</code></a> <em>(linear_model)</em></td><td>
+       <em>observation</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-orthogonal_complement"><td></td><td>
+       <strong>orthogonal_complement</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="appendix.html#orthogonal_complement"><code class="xref">orthogonal_complement</code></a> <em>(appendix)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-prop_kcompacto"><td></td><td>
+       <strong>prop_kcompacto</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="svm_model.html#prop_kcompacto"><code class="xref">prop_kcompacto</code></a> <em>(svm_model)</em></td><td>
+       <em>property</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-prop_ridge_estimador"><td></td><td>
+       <strong>prop_ridge_estimador</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="linear_model.html#prop_ridge_estimador"><code class="xref">prop_ridge_estimador</code></a> <em>(linear_model)</em></td><td>
+       <em>property</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-props_features_map"><td></td><td>
+       <strong>props_features_map</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="svm_model.html#props_features_map"><code class="xref">props_features_map</code></a> <em>(svm_model)</em></td><td>
+       <em>property</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-th_afin_convex"><td></td><td>
+       <strong>th_afin_convex</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="appendix.html#th_afin_convex"><code class="xref">th_afin_convex</code></a> <em>(appendix)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-th_closed_span"><td></td><td>
+       <strong>th_closed_span</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="appendix.html#th_closed_span"><code class="xref">th_closed_span</code></a> <em>(appendix)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-th_proy_ort"><td></td><td>
+       <strong>th_proy_ort</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="appendix.html#th_proy_ort"><code class="xref">th_proy_ort</code></a> <em>(appendix)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-th_rep_semipar"><td></td><td>
+       <strong>th_rep_semipar</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="svm_model.html#th_rep_semipar"><code class="xref">th_rep_semipar</code></a> <em>(svm_model)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-th_representation"><td></td><td>
+       <strong>th_representation</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="svm_model.html#th_representation"><code class="xref">th_representation</code></a> <em>(svm_model)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-th_strict_convex"><td></td><td>
+       <strong>th_strict_convex</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="appendix.html#th_strict_convex"><code class="xref">th_strict_convex</code></a> <em>(appendix)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-theorem-10"><td></td><td>
+       <strong>theorem-10</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="appendix.html#theorem-10"><code class="xref">theorem-10</code></a> <em>(appendix)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-walfe_prop"><td></td><td>
+       <strong>walfe_prop</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="svm_model.html#walfe_prop"><code class="xref">walfe_prop</code></a> <em>(svm_model)</em></td><td>
+       <em>property</em></td></tr>
+   </table>
+
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Lihki Rubio PhD in Mathematical Engineering
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright Department of Mathematics and Statistics.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

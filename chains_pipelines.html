@@ -1,0 +1,1562 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Cadenas de Algoritmos y Pipelines &#8212; Machine Learning</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chains_pipelines';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Apéndice" href="appendix.html" />
+    <link rel="prev" title="Evaluación de modelos" href="model_evaluation.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo-uninorte.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo-uninorte.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Machine Learning
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="supervised_intro.html">Aprendizaje supervisado</a></li>
+<li class="toctree-l1"><a class="reference internal" href="knn_model.html"><span class="math notranslate nohighlight">\(k\)</span>-Vecinos más cercanos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linear_model.html">Modelos lineales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bayes_model.html">Clasificadores Naive Bayes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="decisiontree_model.html">Árboles de decisión</a></li>
+<li class="toctree-l1"><a class="reference internal" href="svm_model.html">Máquinas de vectores de soporte</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ann_model.html">Redes Neuronales y Deep Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="practical_pca.html">Análisis de Componentes Principales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_evaluation.html">Evaluación de modelos</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Cadenas de Algoritmos y Pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix.html">Apéndice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="biblio.html">Bibliografía</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchains_pipelines.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/chains_pipelines.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Cadenas de Algoritmos y Pipelines</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-de-parametros-con-preprocesamiento">Selección de parámetros con preprocesamiento</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#construyendo-pipelines">Construyendo Pipelines</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#utilizando-pipeline-en-gridsearch">Utilizando Pipeline en GridSearch</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-leakage">Data Leakage</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ilustracion-de-la-fuga-de-datos">Ilustración de la fuga de datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-interfaz-general-del-pipeline">La interfaz general del Pipeline</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-comoda-de-pipelines-con-make-pipeline">Creación cómoda de pipelines con make_pipeline</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#acceso-a-los-atributos-de-los-pasos">Acceso a los atributos de los pasos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#acceso-a-los-atributos-en-un-pipeline-con-gridsearch">Acceso a los atributos en un Pipeline con GridSearch</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pasos-de-preprocesamiento-gridsearch-y-parametros-del-modelo">Pasos de preprocesamiento GridSearch y Parámetros del Modelo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grid-searching-que-modelo-usar">Grid-Searching Qué Modelo Usar</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen-y-conclusiones">Resumen y conclusiones</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="cadenas-de-algoritmos-y-pipelines">
+<h1>Cadenas de Algoritmos y Pipelines<a class="headerlink" href="#cadenas-de-algoritmos-y-pipelines" title="Permalink to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Para muchos algoritmos de aprendizaje automático, la representación particular de los datos que proporciona es muy importante, como ya comentamos anterioremente. Esto comienza con el escalado de los datos y la combinación de características a mano y llega hasta el aprendizaje de características utilizando el aprendizaje automático no supervisado. En consecuencia, <code class="docutils literal notranslate"><span class="pre">la</span> <span class="pre">mayoría</span> <span class="pre">de</span> <span class="pre">las</span> <span class="pre">aplicaciones</span> <span class="pre">de</span> <span class="pre">aprendizaje</span> <span class="pre">automático</span> <span class="pre">requieren</span> <span class="pre">no</span> <span class="pre">sólo</span> <span class="pre">la</span> <span class="pre">aplicación</span> <span class="pre">de</span> <span class="pre">un</span> <span class="pre">único</span> <span class="pre">algoritmo</span> <span class="pre">sino</span> <span class="pre">el</span> <span class="pre">encadenamiento</span> <span class="pre">de</span> <span class="pre">muchos</span> <span class="pre">pasos</span> <span class="pre">de</span> <span class="pre">procesamiento</span> <span class="pre">y</span> <span class="pre">modelos</span> <span class="pre">de</span> <span class="pre">aprendizaje</span> <span class="pre">automático</span> <span class="pre">diferentes</span></code>. En este capítulo, veremos cómo utilizar la clase <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code> para simplificar el proceso de construcción de cadenas de transformaciones y modelos. En particular, veremos cómo podemos <code class="docutils literal notranslate"><span class="pre">combinar</span> <span class="pre">Pipeline</span> <span class="pre">y</span> <span class="pre">GridSearchCV</span> <span class="pre">para</span> <span class="pre">buscar</span> <span class="pre">sobre</span> <span class="pre">los</span> <span class="pre">parámetros</span> <span class="pre">de</span> <span class="pre">todos</span> <span class="pre">los</span> <span class="pre">pasos</span> <span class="pre">de</span> <span class="pre">procesamiento</span> <span class="pre">a</span> <span class="pre">la</span> <span class="pre">vez</span></code>. Como ejemplo de la importancia de encadenar modelos, observamos que podemos mejorar en gran medida el rendimiento de un kernel <code class="docutils literal notranslate"><span class="pre">SVM</span></code> en el conjunto de datos <code class="docutils literal notranslate"><span class="pre">cancer</span></code> utilizando el <code class="docutils literal notranslate"><span class="pre">MinMaxScaler</span></code> para el preprocesamiento.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_breast_cancer</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">MinMaxScaler</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cancer</span> <span class="o">=</span> <span class="n">load_breast_cancer</span><span class="p">()</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">cancer</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">cancer</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scaler</span> <span class="o">=</span> <span class="n">MinMaxScaler</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="n">svm</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">()</span>
+<span class="n">svm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_scaled</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">X_test_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Test score: </span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">svm</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test_scaled</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test score: 0.97
+</pre></div>
+</div>
+</div>
+</div>
+<section id="seleccion-de-parametros-con-preprocesamiento">
+<h2>Selección de parámetros con preprocesamiento<a class="headerlink" href="#seleccion-de-parametros-con-preprocesamiento" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Ahora digamos que queremos encontrar mejores parámetros para el <code class="docutils literal notranslate"><span class="pre">SVC</span></code> usando <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code>, como se ha discutido en secciones anteriores. ¿Cómo podemos hacerlo? Un enfoque ingenuo podría ser el siguiente</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
+
+<span class="n">param_grid</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span>
+              <span class="s1">&#39;gamma&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">]}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">SVC</span><span class="p">(),</span> <span class="n">param_grid</span><span class="o">=</span><span class="n">param_grid</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">grid</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_scaled</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Best cross-validation accuracy: </span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">grid</span><span class="o">.</span><span class="n">best_score_</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Best set score: </span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">grid</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test_scaled</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Best parameters: &quot;</span><span class="p">,</span> <span class="n">grid</span><span class="o">.</span><span class="n">best_params_</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best cross-validation accuracy: 0.98
+Best set score: 0.97
+Best parameters:  {&#39;C&#39;: 1, &#39;gamma&#39;: 1}
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>En este caso, ejecutamos una búsqueda en red (<code class="docutils literal notranslate"><span class="pre">grid-search</span></code>) sobre los parámetros de <code class="docutils literal notranslate"><span class="pre">SVC</span></code> utilizando los <code class="docutils literal notranslate"><span class="pre">datos</span> <span class="pre">escalados</span></code>. Sin embargo, nótese que al escalar los datos, <code class="docutils literal notranslate"><span class="pre">utilizamos</span> <span class="pre">todos</span> <span class="pre">los</span> <span class="pre">datos</span> <span class="pre">del</span> <span class="pre">conjunto</span> <span class="pre">de</span> <span class="pre">entrenamiento</span></code>. Luego usamos los <code class="docutils literal notranslate"><span class="pre">datos</span> <span class="pre">de</span> <span class="pre">entrenamiento</span> <span class="pre">escalados</span> <span class="pre">para</span> <span class="pre">ejecutar</span> <span class="pre">nuestra</span> <span class="pre">búsqueda</span> <span class="pre">en</span> <span class="pre">red</span> <span class="pre">usando</span> <span class="pre">la</span> <span class="pre">validación</span> <span class="pre">cruzada</span></code>. Para cada división en la validación cruzada, recuerde que, dependiendo del número de folds, en este caso por defecto <code class="docutils literal notranslate"><span class="pre">cv=5</span></code>, alguna parte del conjunto de entrenamiento original, será declarada como la parte de entrenamiento de la división, y otra la parte de prueba. <code class="docutils literal notranslate"><span class="pre">La</span> <span class="pre">parte</span> <span class="pre">de</span> <span class="pre">prueba</span> <span class="pre">se</span> <span class="pre">utiliza</span> <span class="pre">para</span> <span class="pre">medir</span> <span class="pre">cómo</span> <span class="pre">el</span> <span class="pre">modelo</span> <span class="pre">clasificará</span> <span class="pre">nuevos</span> <span class="pre">datos</span> <span class="pre">cuando</span> <span class="pre">fué</span> <span class="pre">entrenado</span> <span class="pre">con</span> <span class="pre">datos</span> <span class="pre">de</span> <span class="pre">entrenamiento</span></code>.</p></li>
+<li><p>Recuerde que, la parte de prueba de cada división en la validación cruzada es parte del conjunto de entrenamiento, y utilizamos la información de todo el conjunto de entrenamiento para encontrar el escalado correcto de los datos. Esto es fundamentalmente diferente de cómo se ven los nuevos datos para el modelo. <code class="docutils literal notranslate"><span class="pre">Si</span> <span class="pre">observamos</span> <span class="pre">datos</span> <span class="pre">nuevos</span> <span class="pre">(por</span> <span class="pre">ejemplo,</span> <span class="pre">en</span> <span class="pre">forma</span> <span class="pre">de</span> <span class="pre">nuestro</span> <span class="pre">conjunto</span> <span class="pre">de</span> <span class="pre">prueba),</span> <span class="pre">estos</span> <span class="pre">datos</span> <span class="pre">no</span> <span class="pre">se</span> <span class="pre">habrán</span> <span class="pre">utilizado</span> <span class="pre">para</span> <span class="pre">escalar</span> <span class="pre">los</span> <span class="pre">datos</span> <span class="pre">de</span> <span class="pre">entrenamiento,</span> <span class="pre">y</span> <span class="pre">podrían</span> <span class="pre">tener</span> <span class="pre">un</span> <span class="pre">mínimo</span> <span class="pre">y</span> <span class="pre">un</span> <span class="pre">máximo</span> <span class="pre">diferente</span> <span class="pre">a</span> <span class="pre">los</span> <span class="pre">de</span> <span class="pre">los</span> <span class="pre">datos</span> <span class="pre">de</span> <span class="pre">entrenamiento</span></code>. El siguiente ejemplo muestra cómo se procesan los datos durante la la validación cruzada y la evaluación final</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">mglearn</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mglearn</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">plot_improper_processing</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/6098c80b00aabe97a57bdc425e96d819d965d234c4703dcae2711f456367498b.png" src="_images/6098c80b00aabe97a57bdc425e96d819d965d234c4703dcae2711f456367498b.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p>Así, las divisiones en la validación cruzada ya no reflejan correctamente cómo se verán los nuevos datos en el proceso de modelamiento, ya que hemos filtrado información de estas partes de los datos en este proceso. Esto conducirá a resultados excesivamente optimistas durante la validación cruzada, y posiblemente, a la selección de parámetros subóptimos. <code class="docutils literal notranslate"><span class="pre">Para</span> <span class="pre">evitar</span> <span class="pre">este</span> <span class="pre">problema,</span> <span class="pre">la</span> <span class="pre">división</span> <span class="pre">del</span> <span class="pre">conjunto</span> <span class="pre">de</span> <span class="pre">datos</span> <span class="pre">durante</span> <span class="pre">la</span> <span class="pre">validación</span> <span class="pre">cruzada</span> <span class="pre">debería</span> <span class="pre">hacerse</span> <span class="pre">antes</span> <span class="pre">de</span> <span class="pre">realizar</span> <span class="pre">cualquier</span> <span class="pre">preprocesamiento</span></code>. Cualquier proceso que extraiga conocimiento del conjunto de datos sólo debe aplicarse a la parte de entrenamiento, por lo que cualquier validación cruzada debe ser el <code class="docutils literal notranslate"><span class="pre">&quot;bucle</span> <span class="pre">más</span> <span class="pre">externo&quot;</span></code> de su procesamiento.</p></li>
+<li><p>Para lograr esto en <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> con la función <code class="docutils literal notranslate"><span class="pre">cross_val_score</span></code> y la función <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code>, podemos utilizar la clase <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code>. La clase <code class="docutils literal notranslate"><span class="pre">Pipeline</span> <span class="pre">es</span> <span class="pre">una</span> <span class="pre">clase</span> <span class="pre">que</span> <span class="pre">permite</span> <span class="pre">&quot;pegar&quot;</span> <span class="pre">múltiples</span> <span class="pre">pasos</span> <span class="pre">de</span> <span class="pre">procesamiento</span> <span class="pre">en</span> <span class="pre">un</span> <span class="pre">único</span> <span class="pre">estimador</span> <span class="pre">de</span> <span class="pre">scikit-learn</span></code>. La clase <code class="docutils literal notranslate"><span class="pre">Pipeline</span> <span class="pre">tiene</span> <span class="pre">métodos</span> <span class="pre">de</span> <span class="pre">ajuste,</span> <span class="pre">predicción</span> <span class="pre">y</span> <span class="pre">scoring,</span> <span class="pre">además</span> <span class="pre">se</span> <span class="pre">comporta</span> <span class="pre">como</span> <span class="pre">cualquier</span> <span class="pre">otro</span> <span class="pre">modelo</span> <span class="pre">en</span> <span class="pre">scikit-learn</span></code>. El caso de uso más común de la clase <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code> es encadenar pasos de preprocesamiento (como el escalado de los datos) junto con un modelo supervisado como un clasificador.</p></li>
+</ul>
+<div class="tip admonition">
+<p class="admonition-title">Observacion</p>
+<p>La <code class="docutils literal notranslate"><span class="pre">fuga</span> <span class="pre">de</span> <span class="pre">datos</span></code> es un problema para los modelos predictivos. Decimos que hay fuga de datos cuando se utilizan datos ajenos al conjunto de entrenamiento para desarrollar el modelo. <code class="docutils literal notranslate"><span class="pre">Hay</span> <span class="pre">fuga</span> <span class="pre">si</span> <span class="pre">se</span> <span class="pre">comparte</span> <span class="pre">información</span> <span class="pre">entre</span> <span class="pre">los</span> <span class="pre">conjuntos</span> <span class="pre">de</span> <span class="pre">entrenamiento</span> <span class="pre">y</span> <span class="pre">de</span> <span class="pre">prueba</span></code>. Si no detectamos esta forma de fuga, podemos tener resultados exagerados durante el entrenamiento. <code class="docutils literal notranslate"><span class="pre">Esto</span> <span class="pre">se</span> <span class="pre">debe</span> <span class="pre">a</span> <span class="pre">que</span> <span class="pre">el</span> <span class="pre">modelo</span> <span class="pre">ya</span> <span class="pre">está</span> <span class="pre">expuesto</span> <span class="pre">a</span> <span class="pre">los</span> <span class="pre">datos</span> <span class="pre">de</span> <span class="pre">prueba,</span> <span class="pre">ofreciendo</span> <span class="pre">así</span> <span class="pre">un</span> <span class="pre">rendimiento</span> <span class="pre">muy</span> <span class="pre">impresionante</span></code>.</p>
+</div>
+</section>
+<section id="construyendo-pipelines">
+<h2>Construyendo Pipelines<a class="headerlink" href="#construyendo-pipelines" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Veamos cómo podemos utilizar la clase <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code> para expresar el flujo de trabajo para entrenar una <code class="docutils literal notranslate"><span class="pre">SVM</span></code> después de escalar los datos con <code class="docutils literal notranslate"><span class="pre">MinMaxScaler</span></code> (por ahora sin grid-search). Primero, <code class="docutils literal notranslate"><span class="pre">construimos</span> <span class="pre">un</span> <span class="pre">objeto</span> <span class="pre">pipeline</span> <span class="pre">proporcionándole</span> <span class="pre">una</span> <span class="pre">lista</span> <span class="pre">de</span> <span class="pre">pasos.</span> <span class="pre">Cada</span> <span class="pre">paso</span> <span class="pre">es</span> <span class="pre">una</span> <span class="pre">tupla</span> <span class="pre">que</span> <span class="pre">contiene</span> <span class="pre">un</span> <span class="pre">nombre</span> <span class="pre">(cualquier</span> <span class="pre">cadena</span> <span class="pre">de</span> <span class="pre">su</span> <span class="pre">elección)</span> <span class="pre">y</span> <span class="pre">una</span> <span class="pre">instancia</span> <span class="pre">de</span> <span class="pre">un</span> <span class="pre">estimador</span></code></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s2">&quot;scaler&quot;</span><span class="p">,</span> <span class="n">MinMaxScaler</span><span class="p">()),</span> <span class="p">(</span><span class="s2">&quot;svm&quot;</span><span class="p">,</span> <span class="n">SVC</span><span class="p">())])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Aquí, creamos dos pasos: el primero, llamado <code class="docutils literal notranslate"><span class="pre">&quot;scaler&quot;,</span> <span class="pre">es</span> <span class="pre">una</span> <span class="pre">instancia</span> <span class="pre">de</span> <span class="pre">MinMaxScaler</span></code> y el segundo, llamado <code class="docutils literal notranslate"><span class="pre">&quot;svm&quot;,</span> <span class="pre">es</span> <span class="pre">una</span> <span class="pre">instancia</span> <span class="pre">de</span> <span class="pre">SVC</span></code>. Ahora, podemos ajustar nuestro pipeline, como cualquier otro estimador de <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>#sk-container-id-1 {color: black;}#sk-container-id-1 pre{padding: 0;}#sk-container-id-1 div.sk-toggleable {background-color: white;}#sk-container-id-1 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-1 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-1 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-1 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-1 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-1 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-1 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-1 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-1 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-1 div.sk-item {position: relative;z-index: 1;}#sk-container-id-1 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-1 div.sk-item::before, #sk-container-id-1 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-1 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-1 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-1 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-1 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-1 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-1 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-1 div.sk-label-container {text-align: center;}#sk-container-id-1 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-1 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>Pipeline(steps=[(&#x27;scaler&#x27;, MinMaxScaler()), (&#x27;svm&#x27;, SVC())])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" ><label for="sk-estimator-id-1" class="sk-toggleable__label sk-toggleable__label-arrow">Pipeline</label><div class="sk-toggleable__content"><pre>Pipeline(steps=[(&#x27;scaler&#x27;, MinMaxScaler()), (&#x27;svm&#x27;, SVC())])</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox" ><label for="sk-estimator-id-2" class="sk-toggleable__label sk-toggleable__label-arrow">MinMaxScaler</label><div class="sk-toggleable__content"><pre>MinMaxScaler()</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-3" type="checkbox" ><label for="sk-estimator-id-3" class="sk-toggleable__label sk-toggleable__label-arrow">SVC</label><div class="sk-toggleable__content"><pre>SVC()</pre></div></div></div></div></div></div></div></div></div>
+</div>
+<ul class="simple">
+<li><p>Aquí, <code class="docutils literal notranslate"><span class="pre">pipe.fit</span></code> primero llama a <code class="docutils literal notranslate"><span class="pre">fit</span></code> en el primer paso (el escalador), luego transforma los datos de entrenamiento usando el escalador, y finalmente ajusta la <code class="docutils literal notranslate"><span class="pre">SVM</span></code> con los datos escalados. <code class="docutils literal notranslate"><span class="pre">Para</span> <span class="pre">evaluar</span> <span class="pre">en</span> <span class="pre">los</span> <span class="pre">datos</span> <span class="pre">de</span> <span class="pre">prueba,</span> <span class="pre">simplemente</span> <span class="pre">llamamos</span> <span class="pre">a</span> <span class="pre">pipe.score</span></code></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Test score: </span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pipe</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test score: 0.97
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Al llamar al método de scoring en el pipeline, primero se transforman los datos de prueba utilizando el <code class="docutils literal notranslate"><span class="pre">scaler</span></code> y luego llama al método de scoring en la <code class="docutils literal notranslate"><span class="pre">SVM</span></code> utilizando los datos de prueba escalados. Como puede, el resultado es idéntico al que obtuvimos del código al principio del
+capítulo, al hacer las transformaciones a mano. <code class="docutils literal notranslate"><span class="pre">Usando</span> <span class="pre">el</span> <span class="pre">pipeline,</span> <span class="pre">hemos</span> <span class="pre">reducido</span> <span class="pre">el</span> <span class="pre">código</span> <span class="pre">necesario</span> <span class="pre">para</span> <span class="pre">nuestro</span> <span class="pre">proceso</span> <span class="pre">de</span> <span class="pre">&quot;preprocesamiento</span> <span class="pre">+</span> <span class="pre">clasificación&quot;</span></code>. Sin embargo, la principal ventaja de usar el <code class="docutils literal notranslate"><span class="pre">pipeline</span></code>, es que ahora podemos usar este único estimador en
+<code class="docutils literal notranslate"><span class="pre">cross_val_score</span></code> o <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code>.</p></li>
+</ul>
+</section>
+<section id="utilizando-pipeline-en-gridsearch">
+<h2>Utilizando Pipeline en GridSearch<a class="headerlink" href="#utilizando-pipeline-en-gridsearch" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>El uso de una tubería <code class="docutils literal notranslate"><span class="pre">(pipeline)</span></code> en una búsqueda de red <code class="docutils literal notranslate"><span class="pre">(grid-search)</span></code> funciona de la misma manera que el uso de cualquier otro estimador. <code class="docutils literal notranslate"><span class="pre">Definimos</span> <span class="pre">una</span> <span class="pre">red</span> <span class="pre">de</span> <span class="pre">parámetros</span> <span class="pre">en</span> <span class="pre">la</span> <span class="pre">que</span> <span class="pre">buscar,</span> <span class="pre">y</span> <span class="pre">construimos</span> <span class="pre">un</span> <span class="pre">GridSearchCV</span> <span class="pre">a</span> <span class="pre">partir</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">tubería</span> <span class="pre">y</span> <span class="pre">la</span> <span class="pre">red</span> <span class="pre">de</span> <span class="pre">parámetros</span></code>. Al especificar la red de parámetros, hay un ligero cambio, sin embargo. Tenemos que especificar para cada parámetro, a qué paso de la tubería pertenece. Los dos parámetros que queremos ajustar, <code class="docutils literal notranslate"><span class="pre">C</span></code> y <code class="docutils literal notranslate"><span class="pre">gamma</span></code>, son parámetros de <code class="docutils literal notranslate"><span class="pre">SVC</span></code>, el segundo paso. A este paso le hemos dado el nombre de <code class="docutils literal notranslate"><span class="pre">&quot;svm&quot;</span></code>. La sintaxis para definir una red de parámetros para una tubería es especificar, para cada parámetro, el nombre del paso, seguido de <code class="docutils literal notranslate"><span class="pre">__</span></code> (un doble guión bajo), seguido del nombre del parámetro. <code class="docutils literal notranslate"><span class="pre">Para</span> <span class="pre">buscar</span> <span class="pre">en</span> <span class="pre">los</span> <span class="pre">parámetros</span> <span class="pre">de</span> <span class="pre">C</span> <span class="pre">de</span> <span class="pre">SVC</span> <span class="pre">tenemos</span> <span class="pre">que</span> <span class="pre">usar</span> <span class="pre">&quot;svm__C&quot;</span> <span class="pre">como</span> <span class="pre">clave</span> <span class="pre">en</span> <span class="pre">el</span> <span class="pre">diccionario</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">red</span> <span class="pre">de</span> <span class="pre">parámetros,</span> <span class="pre">y</span> <span class="pre">lo</span> <span class="pre">mismo</span> <span class="pre">para</span> <span class="pre">gamma</span></code>.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">param_grid</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;svm__C&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span> 
+              <span class="s1">&#39;svm__gamma&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">]}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Con este parámetro <code class="docutils literal notranslate"><span class="pre">grid</span></code> podemos utilizar <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> como siempre</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">pipe</span><span class="p">,</span> <span class="n">param_grid</span><span class="o">=</span><span class="n">param_grid</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">grid</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Best cross-validation accuracy: </span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">grid</span><span class="o">.</span><span class="n">best_score_</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Test set score: </span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">grid</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Best parameters: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">grid</span><span class="o">.</span><span class="n">best_params_</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best cross-validation accuracy: 0.98
+Test set score: 0.97
+Best parameters: {&#39;svm__C&#39;: 1, &#39;svm__gamma&#39;: 1}
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>A diferencia de la búsqueda en red que hicimos antes, ahora <code class="docutils literal notranslate"><span class="pre">para</span> <span class="pre">cada</span> <span class="pre">división</span> <span class="pre">en</span> <span class="pre">la</span> <span class="pre">validación</span> <span class="pre">cruzada</span> <span class="pre">el</span> <span class="pre">MinMaxScaler</span> <span class="pre">se</span> <span class="pre">reajusta</span> <span class="pre">sólo</span> <span class="pre">con</span> <span class="pre">las</span> <span class="pre">divisiones</span> <span class="pre">de</span> <span class="pre">entrenamiento</span> <span class="pre">y</span> <span class="pre">no</span> <span class="pre">se</span> <span class="pre">filtra</span> <span class="pre">información</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">división</span> <span class="pre">de</span> <span class="pre">prueba</span> <span class="pre">en</span> <span class="pre">la</span> <span class="pre">búsqueda</span> <span class="pre">de</span> <span class="pre">parámetros</span></code></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mglearn</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">plot_proper_processing</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/6a4edc09c44ce4948619cf36e77d547b634392c5301219d31b15f290e977989a.png" src="_images/6a4edc09c44ce4948619cf36e77d547b634392c5301219d31b15f290e977989a.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p>El impacto de la fuga de información en la validación cruzada varía en función de la naturaleza del paso de preprocesamiento. <code class="docutils literal notranslate"><span class="pre">La</span> <span class="pre">estimación</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">escala</span> <span class="pre">de</span> <span class="pre">los</span> <span class="pre">datos</span> <span class="pre">mediante</span> <span class="pre">el</span> <span class="pre">pliegue</span> <span class="pre">de</span> <span class="pre">prueba</span> <span class="pre">no</span> <span class="pre">suele</span> <span class="pre">tener</span> <span class="pre">un</span> <span class="pre">impacto</span> <span class="pre">terrible,</span> <span class="pre">mientras</span> <span class="pre">que,</span> <span class="pre">el</span> <span class="pre">uso</span> <span class="pre">del</span> <span class="pre">pliegue</span> <span class="pre">de</span> <span class="pre">prueba</span> <span class="pre">en</span> <span class="pre">la</span> <span class="pre">extracción</span> <span class="pre">de</span> <span class="pre">características</span> <span class="pre">y</span> <span class="pre">la</span> <span class="pre">selección</span> <span class="pre">de</span> <span class="pre">características</span> <span class="pre">puede</span> <span class="pre">dar</span> <span class="pre">lugar</span> <span class="pre">a</span> <span class="pre">diferencias</span> <span class="pre">sustanciales</span> <span class="pre">en</span> <span class="pre">los</span> <span class="pre">resultados</span></code>.</p></li>
+</ul>
+</section>
+<section id="data-leakage">
+<h2>Data Leakage<a class="headerlink" href="#data-leakage" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>La fuga de datos (<strong><code class="docutils literal notranslate"><span class="pre">data</span> <span class="pre">leakage</span></code></strong>) <code class="docutils literal notranslate"><span class="pre">se</span> <span class="pre">produce</span> <span class="pre">cuando</span> <span class="pre">al</span> <span class="pre">construir</span> <span class="pre">el</span> <span class="pre">modelo</span> <span class="pre">se</span> <span class="pre">utiliza</span> <span class="pre">información</span> <span class="pre">que</span> <span class="pre">no</span> <span class="pre">estaría</span> <span class="pre">disponible</span> <span class="pre">en</span> <span class="pre">el</span> <span class="pre">momento</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">predicción</span></code>. Esto da lugar a estimaciones de rendimiento demasiado optimistas, por ejemplo, a partir de la validación cruzada, y, por tanto, a un peor rendimiento cuando el modelo se utiliza con datos realmente nuevo, por ejemplo, durante la producción.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Una</span> <span class="pre">causa</span> <span class="pre">común</span> <span class="pre">es</span> <span class="pre">no</span> <span class="pre">mantener</span> <span class="pre">separados</span> <span class="pre">los</span> <span class="pre">subconjuntos</span> <span class="pre">de</span> <span class="pre">datos</span> <span class="pre">de</span> <span class="pre">prueba</span> <span class="pre">y</span> <span class="pre">de</span> <span class="pre">entrenamiento.</span> <span class="pre">Los</span> <span class="pre">datos</span> <span class="pre">de</span> <span class="pre">prueba</span> <span class="pre">nunca</span> <span class="pre">deben</span> <span class="pre">utilizarse</span> <span class="pre">para</span> <span class="pre">tomar</span> <span class="pre">decisiones</span> <span class="pre">sobre</span> <span class="pre">el</span> <span class="pre">modelo</span></code>. La regla general es no llamar nunca al ajuste en los datos de prueba. Aunque esto puede parecer obvio, es fácil que se pase por alto en algunos casos, por ejemplo al aplicar ciertos pasos de preprocesamiento.</p></li>
+<li><p><em>Aunque tanto los subconjuntos de datos de entrenamiento como los de prueba deben recibir la misma transformación de preprocesamiento, es importante que estas transformaciones sólo se aprendan de los datos de entrenamiento</em>. <code class="docutils literal notranslate"><span class="pre">Por</span> <span class="pre">ejemplo,</span> <span class="pre">si</span> <span class="pre">tiene</span> <span class="pre">un</span> <span class="pre">paso</span> <span class="pre">de</span> <span class="pre">normalización</span> <span class="pre">en</span> <span class="pre">el</span> <span class="pre">que</span> <span class="pre">se</span> <span class="pre">divide</span> <span class="pre">por</span> <span class="pre">el</span> <span class="pre">valor</span> <span class="pre">medio,</span> <span class="pre">la</span> <span class="pre">media</span> <span class="pre">debe</span> <span class="pre">ser</span> <span class="pre">la</span> <span class="pre">media</span> <span class="pre">del</span> <span class="pre">subconjunto</span> <span class="pre">de</span> <span class="pre">entrenamiento,</span> <span class="pre">no</span> <span class="pre">la</span> <span class="pre">media</span> <span class="pre">de</span> <span class="pre">todos</span> <span class="pre">los</span> <span class="pre">datos.</span> <span class="pre">Si</span> <span class="pre">el</span> <span class="pre">subconjunto</span> <span class="pre">de</span> <span class="pre">prueba</span> <span class="pre">se</span> <span class="pre">incluye</span> <span class="pre">en</span> <span class="pre">el</span> <span class="pre">cálculo</span> <span class="pre">del</span> <span class="pre">promedio,</span> <span class="pre">la</span> <span class="pre">información</span> <span class="pre">del</span> <span class="pre">subconjunto</span> <span class="pre">de</span> <span class="pre">prueba</span> <span class="pre">está</span> <span class="pre">influyendo</span> <span class="pre">en</span> <span class="pre">el</span> <span class="pre">modelo.</span></code></p></li>
+<li><p>Hay una serie de funciones de selección de características disponibles en scikit-learn. Pueden ayudar a eliminar características irrelevantes, redundantes y ruidosas, así como a mejorar el tiempo de construcción y el rendimiento del modelo. <code class="docutils literal notranslate"><span class="pre">Al</span> <span class="pre">igual</span> <span class="pre">que</span> <span class="pre">con</span> <span class="pre">cualquier</span> <span class="pre">otro</span> <span class="pre">tipo</span> <span class="pre">de</span> <span class="pre">preprocesamiento,</span> <span class="pre">la</span> <span class="pre">selección</span> <span class="pre">de</span> <span class="pre">características</span> <span class="pre">sólo</span> <span class="pre">debe</span> <span class="pre">utilizar</span> <span class="pre">los</span> <span class="pre">datos</span> <span class="pre">de</span> <span class="pre">entrenamiento.</span> <span class="pre">Incluir</span> <span class="pre">los</span> <span class="pre">datos</span> <span class="pre">de</span> <span class="pre">prueba</span> <span class="pre">en</span> <span class="pre">la</span> <span class="pre">selección</span> <span class="pre">de</span> <span class="pre">características</span> <span class="pre">sesgará</span> <span class="pre">su</span> <span class="pre">modelo</span> <span class="pre">de</span> <span class="pre">forma</span> <span class="pre">optimista.</span></code> Para demostrarlo, crearemos este problema de clasificación binaria con 10.000 características generadas aleatoriamente.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">n_samples</span><span class="p">,</span> <span class="n">n_features</span><span class="p">,</span> <span class="n">n_classes</span> <span class="o">=</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">10000</span><span class="p">,</span> <span class="mi">2</span>
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">standard_normal</span><span class="p">((</span><span class="n">n_samples</span><span class="p">,</span> <span class="n">n_features</span><span class="p">))</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">n_classes</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong><code class="docutils literal notranslate"><span class="pre">Forma</span> <span class="pre">incorrecta</span></code></strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">El</span> <span class="pre">uso</span> <span class="pre">de</span> <span class="pre">todos</span> <span class="pre">los</span> <span class="pre">datos</span> <span class="pre">para</span> <span class="pre">realizar</span> <span class="pre">la</span> <span class="pre">selección</span> <span class="pre">de</span> <span class="pre">características</span> <span class="pre">da</span> <span class="pre">como</span> <span class="pre">resultado</span> <span class="pre">una</span> <span class="pre">puntuación</span> <span class="pre">de</span> <span class="pre">precisión</span> <span class="pre">muy</span> <span class="pre">superior</span> <span class="pre">a</span> <span class="pre">la</span> <span class="pre">del</span> <span class="pre">azar,</span> <span class="pre">a</span> <span class="pre">pesar</span> <span class="pre">de</span> <span class="pre">que</span> <span class="pre">nuestros</span> <span class="pre">objetivos</span> <span class="pre">son</span> <span class="pre">completamente</span> <span class="pre">aleatorios</span></code>. Esta aleatoriedad significa que nuestras <code class="docutils literal notranslate"><span class="pre">X</span></code> e <code class="docutils literal notranslate"><span class="pre">y</span></code> son independientes y, por tanto, esperamos que la precisión sea de alrededor de 0.5. <code class="docutils literal notranslate"><span class="pre">Sin</span> <span class="pre">embargo,</span> <span class="pre">como</span> <span class="pre">el</span> <span class="pre">paso</span> <span class="pre">de</span> <span class="pre">selección</span> <span class="pre">de</span> <span class="pre">características</span> <span class="pre">&quot;observa&quot;</span> <span class="pre">los</span> <span class="pre">datos</span> <span class="pre">de</span> <span class="pre">prueba,</span> <span class="pre">el</span> <span class="pre">modelo</span> <span class="pre">tiene</span> <span class="pre">una</span> <span class="pre">ventaja</span> <span class="pre">injusta</span></code>. En el ejemplo incorrecto que se muestra a continuación, primero utilizamos todos los datos para la selección de características y luego dividimos los datos en subconjuntos de entrenamiento y de prueba para el ajuste del modelo. El resultado es una puntuación de precisión mucho más alta de lo esperado.</p></li>
+<li><p>Aquí <code class="docutils literal notranslate"><span class="pre">SelectKBest</span></code> toma como parámetro una función de puntuación, que debe ser aplicable a un par <code class="docutils literal notranslate"><span class="pre">(X,</span> <span class="pre">y)</span></code>. La función de puntuación debe devolver una matriz de puntuaciones, una por cada característica <code class="docutils literal notranslate"><span class="pre">X[:,i]</span></code> de <code class="docutils literal notranslate"><span class="pre">X</span></code>. <code class="docutils literal notranslate"><span class="pre">SelectKBest</span></code> simplemente retiene las primeras <code class="docutils literal notranslate"><span class="pre">k</span></code> características de <code class="docutils literal notranslate"><span class="pre">X</span></code> con las puntuaciones más altas. Así, por ejemplo, si pasa <code class="docutils literal notranslate"><span class="pre">chi2</span></code> como función de puntuación, <code class="docutils literal notranslate"><span class="pre">SelectKBest</span> <span class="pre">calculará</span> <span class="pre">el</span> <span class="pre">estadístico</span> <span class="pre">chi2</span> <span class="pre">entre</span> <span class="pre">cada</span> <span class="pre">característica</span> <span class="pre">de</span> <span class="pre">X</span> <span class="pre">e</span> <span class="pre">y.</span> <span class="pre">Un</span> <span class="pre">valor</span> <span class="pre">pequeño</span> <span class="pre">significará</span> <span class="pre">que</span> <span class="pre">la</span> <span class="pre">característica</span> <span class="pre">es</span> <span class="pre">independiente</span> <span class="pre">de</span> <span class="pre">y.</span> <span class="pre">Un</span> <span class="pre">valor</span> <span class="pre">grande</span> <span class="pre">significará</span> <span class="pre">que</span> <span class="pre">la</span> <span class="pre">característica</span> <span class="pre">está</span> <span class="pre">relacionada</span> <span class="pre">de</span> <span class="pre">forma</span> <span class="pre">no</span> <span class="pre">aleatoria</span> <span class="pre">con</span> <span class="pre">y,</span> <span class="pre">por</span> <span class="pre">lo</span> <span class="pre">que</span> <span class="pre">es</span> <span class="pre">probable</span> <span class="pre">que</span> <span class="pre">proporcione</span> <span class="pre">información</span> <span class="pre">importante.</span> <span class="pre">Sólo</span> <span class="pre">se</span> <span class="pre">conservarán</span> <span class="pre">k</span> <span class="pre">características.</span></code> Por defecto <code class="docutils literal notranslate"><span class="pre">SelectKBest</span></code> usa <code class="docutils literal notranslate"><span class="pre">f_regression</span> <span class="pre">F-value</span></code> entre etiqueta/característica (label/feature).</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.feature_selection</span> <span class="kn">import</span> <span class="n">SelectKBest</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">GradientBoostingClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Preprocesamiento</span> <span class="pre">incorrecto:</span> <span class="pre">se</span> <span class="pre">transforman</span> <span class="pre">todos</span> <span class="pre">los</span> <span class="pre">datos</span></code></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_selected</span> <span class="o">=</span> <span class="n">SelectKBest</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_selected</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">gbc</span> <span class="o">=</span> <span class="n">GradientBoostingClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">gbc</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">gbc</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.76
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong><code class="docutils literal notranslate"><span class="pre">Forma</span> <span class="pre">correcta</span></code></strong></p>
+<ul class="simple">
+<li><p>Para evitar la fuga de datos, es una buena práctica dividir primero los datos en subconjuntos de entrenamiento y de prueba. <code class="docutils literal notranslate"><span class="pre">La</span> <span class="pre">selección</span> <span class="pre">de</span> <span class="pre">características</span> <span class="pre">puede</span> <span class="pre">entonces</span> <span class="pre">formarse</span> <span class="pre">usando</span> <span class="pre">sólo</span> <span class="pre">el</span> <span class="pre">conjunto</span> <span class="pre">de</span> <span class="pre">datos</span> <span class="pre">de</span> <span class="pre">entrenamiento</span></code>. Observe que siempre que usamos <code class="docutils literal notranslate"><span class="pre">fit</span></code> o <code class="docutils literal notranslate"><span class="pre">fit_transform</span></code>, <code class="docutils literal notranslate"><span class="pre">sólo</span> <span class="pre">usamos</span> <span class="pre">el</span> <span class="pre">conjunto</span> <span class="pre">de</span> <span class="pre">datos</span> <span class="pre">de</span> <span class="pre">entrenamiento</span></code>. La puntuación es ahora la que esperaríamos para los datos, cercana al azar</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">select</span> <span class="o">=</span> <span class="n">SelectKBest</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>
+<span class="n">X_train_selected</span> <span class="o">=</span> <span class="n">select</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="n">gbc</span> <span class="o">=</span> <span class="n">GradientBoostingClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">gbc</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_selected</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="n">X_test_selected</span> <span class="o">=</span> <span class="n">select</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">gbc</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_selected</span><span class="p">)</span>
+<span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.44
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>También en este caso, <code class="docutils literal notranslate"><span class="pre">recomendamos</span> <span class="pre">utilizar</span> <span class="pre">un</span> <span class="pre">pipeline</span> <span class="pre">para</span> <span class="pre">encadenar</span> <span class="pre">la</span> <span class="pre">selección</span> <span class="pre">de</span> <span class="pre">características</span> <span class="pre">y</span> <span class="pre">los</span> <span class="pre">estimadores</span> <span class="pre">del</span> <span class="pre">modelo</span></code>. El <code class="docutils literal notranslate"><span class="pre">pipeline</span> <span class="pre">garantiza</span> <span class="pre">que</span> <span class="pre">sólo</span> <span class="pre">se</span> <span class="pre">utilicen</span> <span class="pre">los</span> <span class="pre">datos</span> <span class="pre">de</span> <span class="pre">entrenamiento</span> <span class="pre">al</span> <span class="pre">realizar</span> <span class="pre">el</span> <span class="pre">ajuste</span> <span class="pre">y</span> <span class="pre">que</span> <span class="pre">los</span> <span class="pre">datos</span> <span class="pre">de</span> <span class="pre">prueba</span> <span class="pre">se</span> <span class="pre">utilicen</span> <span class="pre">únicamente</span> <span class="pre">para</span> <span class="pre">calcular</span> <span class="pre">la</span> <span class="pre">puntuación</span> <span class="pre">de</span> <span class="pre">precisión</span></code></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">make_pipeline</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">pipeline</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">SelectKBest</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="mi">25</span><span class="p">),</span> <span class="n">GradientBoostingClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">pipeline</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.44
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="ilustracion-de-la-fuga-de-datos">
+<h2>Ilustración de la fuga de datos<a class="headerlink" href="#ilustracion-de-la-fuga-de-datos" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Un gran ejemplo de fuga de información en la validación cruzada se da en el libro de <em><code class="docutils literal notranslate"><span class="pre">Hastie,</span> <span class="pre">Tibshirani</span> <span class="pre">y</span> <span class="pre">Friedman:</span> <span class="pre">The</span> <span class="pre">Elements</span> <span class="pre">of</span> <span class="pre">Statistical</span> <span class="pre">Learning</span></code></em>, y aquí reproducimos una versión adaptada. Consideremos una tarea de regresión sintética con 100 muestras y 1.000 características que se muestrean independientemente de una distribución gaussiana. También muestreamos la respuesta a partir de una distribución gaussiana</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rnd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">rnd</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">10000</span><span class="p">))</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">rnd</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">100</span><span class="p">,))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Dada la forma en que creamos el conjunto de datos, <code class="docutils literal notranslate"><span class="pre">no</span> <span class="pre">hay</span> <span class="pre">relación</span> <span class="pre">entre</span> <span class="pre">los</span> <span class="pre">datos,</span> <span class="pre">X,</span> <span class="pre">y</span> <span class="pre">el</span> <span class="pre">objetivo,</span> <span class="pre">y</span> <span class="pre">(son</span> <span class="pre">independientes),</span> <span class="pre">por</span> <span class="pre">lo</span> <span class="pre">que</span> <span class="pre">no</span> <span class="pre">debería</span> <span class="pre">ser</span> <span class="pre">posible</span> <span class="pre">aprender</span> <span class="pre">nada</span> <span class="pre">de</span> <span class="pre">este</span> <span class="pre">conjunto</span> <span class="pre">de</span> <span class="pre">datos</span></code>. Ahora haremos lo siguiente. En primer lugar, seleccionamos la más informativa de las 10 características utilizando la selección de características <code class="docutils literal notranslate"><span class="pre">SelectPercentile</span> <span class="pre">(selecciona</span> <span class="pre">variables</span> <span class="pre">independientes</span> <span class="pre">que</span> <span class="pre">están</span> <span class="pre">en</span> <span class="pre">el</span> <span class="pre">percentil</span> <span class="pre">de</span> <span class="pre">scores</span> <span class="pre">más</span> <span class="pre">altos)</span></code>, y luego evaluamos un regresor <code class="docutils literal notranslate"><span class="pre">Ridge</span></code> utilizando la validación cruzada</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.feature_selection</span> <span class="kn">import</span> <span class="n">SelectPercentile</span><span class="p">,</span> <span class="n">f_regression</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">select</span> <span class="o">=</span> <span class="n">SelectPercentile</span><span class="p">(</span><span class="n">score_func</span><span class="o">=</span><span class="n">f_regression</span><span class="p">,</span> <span class="n">percentile</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">X_selected</span> <span class="o">=</span> <span class="n">select</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;X_selected.shape: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">X_selected</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>X_selected.shape: (100, 500)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_score</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">Ridge</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cross_val_score</span><span class="p">(</span><span class="n">Ridge</span><span class="p">(),</span> <span class="n">X_selected</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.84834054, 0.94084243, 0.88541709, 0.94012139, 0.91425508])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cross-validation accuracy (cv only on ridge): </span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">cross_val_score</span><span class="p">(</span><span class="n">Ridge</span><span class="p">(),</span> <span class="n">X_selected</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">))))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Cross-validation accuracy (cv only on ridge): 0.91
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">El</span> <span class="pre">score</span> <span class="pre">calculado</span> <span class="pre">por</span> <span class="pre">validación</span> <span class="pre">cruzada</span> <span class="pre">es</span> <span class="pre">de</span> <span class="pre">0.91,</span> <span class="pre">lo</span> <span class="pre">que</span> <span class="pre">indica</span> <span class="pre">un</span> <span class="pre">modelo</span> <span class="pre">muy</span> <span class="pre">bueno.</span> <span class="pre">Está</span> <span class="pre">claro</span> <span class="pre">que</span> <span class="pre">esto</span> <span class="pre">no</span> <span class="pre">puede</span> <span class="pre">ser</span> <span class="pre">correcto,</span> <span class="pre">ya</span> <span class="pre">que</span> <span class="pre">nuestros</span> <span class="pre">datos</span> <span class="pre">son</span> <span class="pre">totalmente</span> <span class="pre">aleatorios</span></code>. Lo que ocurrió aquí es que nuestra selección de características escogió algunas características entre las 10.000 características aleatorias que están (por casualidad) muy bien correlacionadas con el objetivo. <code class="docutils literal notranslate"><span class="pre">Dado</span> <span class="pre">que</span> <span class="pre">ajustamos</span> <span class="pre">la</span> <span class="pre">selección</span> <span class="pre">de</span> <span class="pre">características</span> <span class="pre">fuera</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">validación</span> <span class="pre">cruzada,</span> <span class="pre">podría</span> <span class="pre">encontrar</span> <span class="pre">características</span> <span class="pre">que</span> <span class="pre">están</span> <span class="pre">correlacionadas</span> <span class="pre">tanto</span> <span class="pre">en</span> <span class="pre">los</span> <span class="pre">pliegues</span> <span class="pre">de</span> <span class="pre">entrenamiento</span> <span class="pre">y</span> <span class="pre">de</span> <span class="pre">prueba</span></code>. La información que filtramos de los pliegues de prueba fue muy informativa, conduciendo a resultados muy poco realistas. Comparemos esto con una adecuada validación cruzada usando una tubería</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s2">&quot;select&quot;</span><span class="p">,</span> <span class="n">SelectPercentile</span><span class="p">(</span><span class="n">score_func</span><span class="o">=</span><span class="n">f_regression</span><span class="p">,</span> <span class="n">percentile</span><span class="o">=</span><span class="mi">5</span><span class="p">)),</span> 
+                 <span class="p">(</span><span class="s2">&quot;ridge&quot;</span><span class="p">,</span> <span class="n">Ridge</span><span class="p">())])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cross_val_score</span><span class="p">(</span><span class="n">pipe</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-0.97502994, -0.03166358, -0.03989415,  0.03018385, -0.2163673 ])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cross-validation accuracy (pipeline): </span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">cross_val_score</span><span class="p">(</span><span class="n">pipe</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">))))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Cross-validation accuracy (pipeline): -0.25
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">El</span> <span class="pre">score</span> <span class="pre">real</span> <span class="pre">es</span> <span class="pre">simplemente</span> <span class="pre">la</span> <span class="pre">versión</span> <span class="pre">positiva</span> <span class="pre">del</span> <span class="pre">número</span> <span class="pre">que</span> <span class="pre">se</span> <span class="pre">obtiene</span></code>. La <code class="docutils literal notranslate"><span class="pre">API</span></code> de scoring unificada siempre maximiza la puntuación, por lo que las puntuaciones que deben minimizarse (MSE) se consideran negativas para que la API de puntuación unificada funcione correctamente. Por lo tanto, <code class="docutils literal notranslate"><span class="pre">la</span> <span class="pre">puntuación</span> <span class="pre">que</span> <span class="pre">se</span> <span class="pre">devuelve</span> <span class="pre">se</span> <span class="pre">coloca</span> <span class="pre">negativa,</span> <span class="pre">cuando</span> <span class="pre">es</span> <span class="pre">una</span> <span class="pre">puntuación</span> <span class="pre">que</span> <span class="pre">debe</span> <span class="pre">minimizarse</span> <span class="pre">y</span> <span class="pre">se</span> <span class="pre">deja</span> <span class="pre">en</span> <span class="pre">positivo</span> <span class="pre">si</span> <span class="pre">es</span> <span class="pre">una</span> <span class="pre">puntuación</span> <span class="pre">que</span> <span class="pre">debe</span> <span class="pre">maximizarse</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Utilizando</span> <span class="pre">Pipeline,</span> <span class="pre">la</span> <span class="pre">línea</span> <span class="pre">de</span> <span class="pre">selección</span> <span class="pre">de</span> <span class="pre">características</span> <span class="pre">está</span> <span class="pre">ahora</span> <span class="pre">dentro</span> <span class="pre">del</span> <span class="pre">bucle</span> <span class="pre">de</span> <span class="pre">validación</span> <span class="pre">cruzada.</span> <span class="pre">Esto</span> <span class="pre">significa</span> <span class="pre">que</span> <span class="pre">las</span> <span class="pre">características</span> <span class="pre">sólo</span> <span class="pre">pueden</span> <span class="pre">seleccionarse</span> <span class="pre">utilizando</span> <span class="pre">los</span> <span class="pre">pliegues</span> <span class="pre">de</span> <span class="pre">entrenamiento</span> <span class="pre">de</span> <span class="pre">los</span> <span class="pre">datos,</span> <span class="pre">no</span> <span class="pre">el</span> <span class="pre">pliegue</span> <span class="pre">de</span> <span class="pre">prueba</span></code>. La selección de características encuentra características que están correlacionadas con el objetivo en el conjunto de entrenamiento, pero como los datos son totalmente aleatorios, estas características no están correlacionadas con el objetivo en el conjunto de prueba. En este ejemplo, podemos rectificar que, el problema de fuga de datos en la selección de características, marca la diferencia entre concluir que un modelo funciona muy bien y concluir que un modelo no funciona en absoluto.</p></li>
+</ul>
+<ul class="simple">
+<li><p>Consideremos el siguiente ejemplo en el que aplicaremos la siguiente cadena al conjunto de datos <code class="docutils literal notranslate"><span class="pre">digits</span></code></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\textsf{StandardScaler}() \Longrightarrow \textsf{PCA}() \Longrightarrow \textsf{LogisticRegression}()
+\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">datasets</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Definimos un <code class="docutils literal notranslate"><span class="pre">pipeline</span></code> para buscar la mejor combinación de truncamiento <code class="docutils literal notranslate"><span class="pre">PCA</span></code> y la regularización del clasificador. Definir un escalador estándar para normalizar las entradas</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">()</span>
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Establecemos la tolerancia a un valor grande para que el ejemplo sea más rápido</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">logistic</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Definimos nuestro <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[(</span><span class="s2">&quot;scaler&quot;</span><span class="p">,</span> <span class="n">scaler</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;pca&quot;</span><span class="p">,</span> <span class="n">pca</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;logistic&quot;</span><span class="p">,</span> <span class="n">logistic</span><span class="p">)])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Cargamos el conjunto de datos <code class="docutils literal notranslate"><span class="pre">digits</span></code> a manera de ejemplo</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_digits</span><span class="p">,</span> <span class="n">y_digits</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_digits</span><span class="p">(</span><span class="n">return_X_y</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Recuerde que <code class="docutils literal notranslate"><span class="pre">los</span> <span class="pre">parámetros</span> <span class="pre">del</span> <span class="pre">pipeline</span> <span class="pre">se</span> <span class="pre">pueden</span> <span class="pre">establecer</span> <span class="pre">utilizando</span> <span class="pre">nombres</span> <span class="pre">de</span> <span class="pre">parámetros</span> <span class="pre">separados</span> <span class="pre">por</span> <span class="pre">'__'</span> <span class="pre">(doble</span> <span class="pre">guión</span> <span class="pre">bajo)</span></code></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">param_grid</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;pca__n_components&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">60</span><span class="p">],</span>
+    <span class="s2">&quot;logistic__C&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Aplicamos <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> para encontrar los mejores parámetros en nuestra cadena. Recuerde que <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code> automáticamente ajusta el modelo sin caer en <code class="docutils literal notranslate"><span class="pre">data</span> <span class="pre">leakage</span></code>. Asiganmos <code class="docutils literal notranslate"><span class="pre">n_jobs=-1</span></code> para utilizar todos los núcleos del procesador</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">search</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">pipe</span><span class="p">,</span> <span class="n">param_grid</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">search</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_digits</span><span class="p">,</span> <span class="n">y_digits</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Best parameter (CV score=</span><span class="si">%0.3f</span><span class="s2">):&quot;</span> <span class="o">%</span> <span class="n">search</span><span class="o">.</span><span class="n">best_score_</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">search</span><span class="o">.</span><span class="n">best_params_</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best parameter (CV score=0.924):
+{&#39;logistic__C&#39;: 0.046415888336127774, &#39;pca__n_components&#39;: 60}
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Nótese que los siguientes son los méjores parámetros para la clasificación utilizando regresión logística, basados en el análisis de componentes principales <code class="docutils literal notranslate"><span class="pre">{'logistic__C':</span> <span class="pre">0.046415888336127774,</span> <span class="pre">'pca__n_components':</span> <span class="pre">60}</span></code>. Dibujemos el espectro <code class="docutils literal notranslate"><span class="pre">PCA</span></code> para poder visualizar los parámetros encontrados:</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pca</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_digits</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">pca</span><span class="o">.</span><span class="n">n_components_</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">,</span> <span class="s2">&quot;+&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;PCA explained variance ratio&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;PCA n_components&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span>
+    <span class="n">search</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&quot;pca&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">n_components</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;n_components chosen&quot;</span><span class="p">,</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/07091d9942dcfc9bdce948b720c81a166ca7f6acee3a59d973bf5ec23cf8914f.png" src="_images/07091d9942dcfc9bdce948b720c81a166ca7f6acee3a59d973bf5ec23cf8914f.png" />
+</div>
+</div>
+</section>
+<section id="la-interfaz-general-del-pipeline">
+<h2>La interfaz general del Pipeline<a class="headerlink" href="#la-interfaz-general-del-pipeline" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>La clase <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code> no se limita al preprocesamiento y la clasificación, sino que puede unir cualquier número de estimadores. Por ejemplo, se puede construir una tubería que contenga la <code class="docutils literal notranslate"><span class="pre">extracción</span> <span class="pre">de</span> <span class="pre">características,</span> <span class="pre">la</span> <span class="pre">selección</span> <span class="pre">de</span> <span class="pre">características,</span> <span class="pre">el</span> <span class="pre">escalado</span> <span class="pre">y</span> <span class="pre">la</span> <span class="pre">clasificación</span></code>, para un total de cuatro pasos. Del mismo modo, el último paso podría ser la regresión o la agrupación en lugar de la clasificación. El único requisito para los estimadores en una línea de producción es que <code class="docutils literal notranslate"><span class="pre">todos</span> <span class="pre">los</span> <span class="pre">pasos,</span> <span class="pre">excepto</span> <span class="pre">el</span> <span class="pre">último,</span> <span class="pre">deben</span> <span class="pre">tener</span> <span class="pre">un</span> <span class="pre">método</span> <span class="pre">de</span> <span class="pre">transformación,</span> <span class="pre">de</span> <span class="pre">modo</span> <span class="pre">que</span> <span class="pre">puedan</span> <span class="pre">ser</span> <span class="pre">utilizados</span> <span class="pre">en</span> <span class="pre">el</span> <span class="pre">siguiente</span> <span class="pre">paso</span></code>.</p></li>
+<li><p>Internamente, durante la llamada a <code class="docutils literal notranslate"><span class="pre">Pipeline.fit</span></code>, la tubería llama a <code class="docutils literal notranslate"><span class="pre">fit</span></code> y luego a <code class="docutils literal notranslate"><span class="pre">transform</span></code> en cada paso, con la entrada dada por la salida del método de transformación del paso anterior. Para el último paso de la tubería, sólo se llama a fit. Repasando algunos detalles más finos, esto se implementa como sigue. Recuerde que la tubería <code class="docutils literal notranslate"><span class="pre">line.steps</span></code> es una lista de tuplas, por lo que <code class="docutils literal notranslate"><span class="pre">pipeline.steps[0][1]</span></code> es el primer estimador, <code class="docutils literal notranslate"><span class="pre">pipeline.steps[1][1]</span></code> es el segundo estimador, y así sucesivamente</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="n">X_transformed</span> <span class="o">=</span> <span class="n">X</span>
+    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">estimator</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">steps</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+        <span class="c1"># Iterar sobre todo excepto el último paso </span>
+        <span class="c1"># Ajustar y transformar los datos</span>
+        <span class="n">X_transformed</span> <span class="o">=</span> <span class="n">estimator</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_transformed</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="c1"># Ajuste en el último paso</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">steps</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_transformed</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="k">return</span> <span class="bp">self</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Cuando se predice utilizando <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code>, transformamos los datos de forma similar utilizando todos los pasos menos el último paso, y luego llamamos a <code class="docutils literal notranslate"><span class="pre">predict</span></code> en el último paso</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+    <span class="n">X_transformed</span> <span class="o">=</span> <span class="n">X</span>
+    <span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">steps</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+        <span class="c1"># Iterar sobre todo excepto el último paso </span>
+        <span class="c1"># Ajustar y transformar los datos</span>
+        <span class="n">X_transformed</span> <span class="o">=</span> <span class="n">step</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_transformed</span><span class="p">)</span>
+    <span class="c1"># Ajuste en el último paso</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">steps</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_transformed</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>El proceso se ilustra en la <a class="reference internal" href="#pipeline-predict"><span class="std std-numref">Fig. 64</span></a> para dos transformadores, <code class="docutils literal notranslate"><span class="pre">T1</span></code>, <code class="docutils literal notranslate"><span class="pre">T2</span></code>, y un <code class="docutils literal notranslate"><span class="pre">classifier</span></code> (llamado <code class="docutils literal notranslate"><span class="pre">Classifier</span></code>)</p></li>
+</ul>
+<figure class="align-center" id="pipeline-predict">
+<a class="reference internal image-reference" href="_images/pipeline_predict.png"><img alt="_images/pipeline_predict.png" src="_images/pipeline_predict.png" style="width: 625.1999999999999px; height: 445.8px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 64 </span><span class="caption-text">Visión general del proceso de entrenamiento y predicción de la tubería.</span><a class="headerlink" href="#pipeline-predict" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<ul class="simple">
+<li><p>En realidad, la tubería es aún más general que esto. No es necesario que el último paso de una tubería tenga una función de predicción, y <code class="docutils literal notranslate"><span class="pre">podríamos</span> <span class="pre">crear</span> <span class="pre">una</span> <span class="pre">tubería</span> <span class="pre">que</span> <span class="pre">sólo</span> <span class="pre">contenga,</span> <span class="pre">por</span> <span class="pre">ejemplo,</span> <span class="pre">un</span> <span class="pre">escalador</span> <span class="pre">y</span> <span class="pre">un</span> <span class="pre">PCA</span></code>. Entonces, como el último paso <code class="docutils literal notranslate"><span class="pre">(PCA)</span></code> tiene un método <code class="docutils literal notranslate"><span class="pre">transform</span></code>, podríamos llamar a <code class="docutils literal notranslate"><span class="pre">transform</span></code> en el <code class="docutils literal notranslate"><span class="pre">pipeline</span></code> para obtener el resultado de <code class="docutils literal notranslate"><span class="pre">PCA.transform</span></code> aplicado a los datos que fueron procesados por el paso anterior. Sólo se requiere que el último paso de un pipeline tenga un método de ajuste.</p></li>
+</ul>
+</section>
+<section id="creacion-comoda-de-pipelines-con-make-pipeline">
+<h2>Creación cómoda de pipelines con make_pipeline<a class="headerlink" href="#creacion-comoda-de-pipelines-con-make-pipeline" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>La creación de un <code class="docutils literal notranslate"><span class="pre">pipeline</span></code> utilizando la sintaxis descrita anteriormente es a veces un poco engorrosa, y a menudo no necesitamos nombres especificados por el usuario para cada paso. <code class="docutils literal notranslate"><span class="pre">Existe</span> <span class="pre">una</span> <span class="pre">función</span> <span class="pre">conveniente</span> <span class="pre">make_pipeline,</span> <span class="pre">que</span> <span class="pre">creará</span> <span class="pre">una</span> <span class="pre">tubería</span> <span class="pre">por</span> <span class="pre">nosotros</span> <span class="pre">y</span> <span class="pre">nombrará</span> <span class="pre">automáticamente</span> <span class="pre">cada</span> <span class="pre">paso</span> <span class="pre">basándose</span> <span class="pre">en</span> <span class="pre">su</span> <span class="pre">clase</span></code>. La sintaxis de <code class="docutils literal notranslate"><span class="pre">make_pipeline</span></code> es la siguiente</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">make_pipeline</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe_long</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s2">&quot;scaler&quot;</span><span class="p">,</span> <span class="n">MinMaxScaler</span><span class="p">()),</span> <span class="p">(</span><span class="s2">&quot;svm&quot;</span><span class="p">,</span> <span class="n">SVC</span><span class="p">(</span><span class="n">C</span><span class="o">=</span><span class="mi">100</span><span class="p">))])</span>
+<span class="n">pipe_short</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">MinMaxScaler</span><span class="p">(),</span> <span class="n">SVC</span><span class="p">(</span><span class="n">C</span><span class="o">=</span><span class="mi">100</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Los objetos pipeline <code class="docutils literal notranslate"><span class="pre">pipe_long</span></code> y <code class="docutils literal notranslate"><span class="pre">pipe_short</span></code> hacen exactamente lo mismo, pero <code class="docutils literal notranslate"><span class="pre">pipe_short</span></code> tiene pasos que fueron nombrados automáticamente. Podemos ver los nombres de los pasos mirando el atributo <code class="docutils literal notranslate"><span class="pre">steps</span></code></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Pipeline steps:</span><span class="se">\n</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pipe_short</span><span class="o">.</span><span class="n">steps</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pipeline steps:
+[(&#39;minmaxscaler&#39;, MinMaxScaler()), (&#39;svc&#39;, SVC(C=100))]
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Los pasos se denominan <code class="docutils literal notranslate"><span class="pre">minmaxscaler</span></code> y <code class="docutils literal notranslate"><span class="pre">svc</span></code>. En general, los nombres de los pasos son sólo versiones de los nombres de las clases. Si varios pasos tienen la misma clase, se añade un número</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">StandardScaler</span><span class="p">(),</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span> <span class="n">StandardScaler</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Pipeline steps:</span><span class="se">\n</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pipe</span><span class="o">.</span><span class="n">steps</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pipeline steps:
+[(&#39;standardscaler-1&#39;, StandardScaler()), (&#39;pca&#39;, PCA(n_components=2)), (&#39;standardscaler-2&#39;, StandardScaler())]
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Como puede ver, el primer paso de <code class="docutils literal notranslate"><span class="pre">StandardScaler</span></code> llamó <code class="docutils literal notranslate"><span class="pre">standardscaler-1</span></code> y el segundo <code class="docutils literal notranslate"><span class="pre">standardscaler-2</span></code>. Sin embargo, en este tipo de configuraciones podría ser mejor utilizar la construcción de tuberías con nombres explícitos, para dar nombres más semánticos a cada paso</p></li>
+</ul>
+</section>
+<section id="acceso-a-los-atributos-de-los-pasos">
+<h2>Acceso a los atributos de los pasos<a class="headerlink" href="#acceso-a-los-atributos-de-los-pasos" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>A menudo querrá inspeccionar los atributos de uno de los pasos de la tubería, por ejemplo, los coeficientes de un modelo lineal o los componentes extraídos por <code class="docutils literal notranslate"><span class="pre">PCA</span></code>. <code class="docutils literal notranslate"><span class="pre">La</span> <span class="pre">forma</span> <span class="pre">más</span> <span class="pre">fácil</span> <span class="pre">de</span> <span class="pre">acceder</span> <span class="pre">a</span> <span class="pre">los</span> <span class="pre">pasos</span> <span class="pre">de</span> <span class="pre">un</span> <span class="pre">pipeline</span> <span class="pre">es</span> <span class="pre">a</span> <span class="pre">través</span> <span class="pre">del</span> <span class="pre">atributo</span> <span class="pre">named_steps</span></code>, que es un diccionario de los nombres de los pasos a los estimadores. A continuación, se ajusta el <code class="docutils literal notranslate"><span class="pre">pipeline</span></code> definido anteriormente, al conjunto de datos <code class="docutils literal notranslate"><span class="pre">cancer</span></code> y extrae las dos primeros componentes principales del paso <code class="docutils literal notranslate"><span class="pre">pca</span></code>.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">cancer</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+<span class="n">components</span> <span class="o">=</span> <span class="n">pipe</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&quot;pca&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">components_</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;components.shape: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">components</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>components.shape: (2, 30)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="acceso-a-los-atributos-en-un-pipeline-con-gridsearch">
+<h2>Acceso a los atributos en un Pipeline con GridSearch<a class="headerlink" href="#acceso-a-los-atributos-en-un-pipeline-con-gridsearch" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Como hemos comentado anteriormente en este capítulo, una de las principales razones para utilizar <code class="docutils literal notranslate"><span class="pre">pipelines</span></code>, es para realizar búsquedas en la red. Una tarea común es acceder a algunos de los pasos de una tubería dentro de dentro de una búsqueda en red. Busquemos en la red un clasificador <code class="docutils literal notranslate"><span class="pre">LogisticRegression</span></code> en el conjunto de datos <code class="docutils literal notranslate"><span class="pre">cancer</span></code>, utilizando <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code>. Usamos <code class="docutils literal notranslate"><span class="pre">StandardScaler</span></code>, para escalar los datos antes de pasarlos al clasificador <code class="docutils literal notranslate"><span class="pre">LogisticRegresión</span></code>. Primero creamos una instancia de nuestro <code class="docutils literal notranslate"><span class="pre">pipeline</span></code> usando la función <code class="docutils literal notranslate"><span class="pre">make_pipeline</span></code>.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">StandardScaler</span><span class="p">(),</span> <span class="n">LogisticRegression</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>A continuación, creamos un grid de parámetros. Como se explica en la sección anterior, el parámetro de regularización para <code class="docutils literal notranslate"><span class="pre">LogisticRegression</span></code> es el parámetro <code class="docutils literal notranslate"><span class="pre">C</span></code>. Utilizamos una red logarítmica para este parámetro, buscando entre 0.01 y 100. Como utilizamos la función <code class="docutils literal notranslate"><span class="pre">make_pipeline</span></code>, el nombre del paso <code class="docutils literal notranslate"><span class="pre">LogisticRegression</span></code> en el <code class="docutils literal notranslate"><span class="pre">pipeline</span></code> es el nombre de la clase en minúsculas, <code class="docutils literal notranslate"><span class="pre">logisticregression</span></code>. Para afinar el parámetro <code class="docutils literal notranslate"><span class="pre">C</span></code>, tenemos que especificar una red de parámetros para <code class="docutils literal notranslate"><span class="pre">logisticregression__C</span></code></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">param_grid</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;logisticregression__C&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">]}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Como es habitual, dividimos el conjunto de datos <code class="docutils literal notranslate"><span class="pre">cancer</span></code> en conjuntos de entrenamiento y de prueba, y ajustamos una búsqueda en red</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">cancer</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">cancer</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">grid</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">pipe</span><span class="p">,</span> <span class="n">param_grid</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">grid</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>#sk-container-id-2 {color: black;}#sk-container-id-2 pre{padding: 0;}#sk-container-id-2 div.sk-toggleable {background-color: white;}#sk-container-id-2 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-2 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-2 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-2 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-2 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-2 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-2 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-2 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-2 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-2 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-2 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-2 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-2 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-2 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-2 div.sk-item {position: relative;z-index: 1;}#sk-container-id-2 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-2 div.sk-item::before, #sk-container-id-2 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-2 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-2 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-2 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-2 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-2 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-2 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-2 div.sk-label-container {text-align: center;}#sk-container-id-2 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-2 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-2" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>GridSearchCV(cv=5,
+             estimator=Pipeline(steps=[(&#x27;standardscaler&#x27;, StandardScaler()),
+                                       (&#x27;logisticregression&#x27;,
+                                        LogisticRegression())]),
+             param_grid={&#x27;logisticregression__C&#x27;: [0.01, 0.1, 1, 10, 100]})</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-4" type="checkbox" ><label for="sk-estimator-id-4" class="sk-toggleable__label sk-toggleable__label-arrow">GridSearchCV</label><div class="sk-toggleable__content"><pre>GridSearchCV(cv=5,
+             estimator=Pipeline(steps=[(&#x27;standardscaler&#x27;, StandardScaler()),
+                                       (&#x27;logisticregression&#x27;,
+                                        LogisticRegression())]),
+             param_grid={&#x27;logisticregression__C&#x27;: [0.01, 0.1, 1, 10, 100]})</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-5" type="checkbox" ><label for="sk-estimator-id-5" class="sk-toggleable__label sk-toggleable__label-arrow">estimator: Pipeline</label><div class="sk-toggleable__content"><pre>Pipeline(steps=[(&#x27;standardscaler&#x27;, StandardScaler()),
+                (&#x27;logisticregression&#x27;, LogisticRegression())])</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-6" type="checkbox" ><label for="sk-estimator-id-6" class="sk-toggleable__label sk-toggleable__label-arrow">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-7" type="checkbox" ><label for="sk-estimator-id-7" class="sk-toggleable__label sk-toggleable__label-arrow">LogisticRegression</label><div class="sk-toggleable__content"><pre>LogisticRegression()</pre></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
+</div>
+<ul class="simple">
+<li><p>Entonces, ¿cómo accedemos a los coeficientes del mejor modelo <code class="docutils literal notranslate"><span class="pre">LogisticRegression</span></code> que fue encontrado por <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code>? De los capítulos anteriores sabemos que el mejor modelo encontrado por <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code>, entrenado con todos los datos de entrenamiento, se almacena en <code class="docutils literal notranslate"><span class="pre">grid.best_estimator_</span></code></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Best estimator:</span><span class="se">\n</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">grid</span><span class="o">.</span><span class="n">best_estimator_</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best estimator:
+Pipeline(steps=[(&#39;standardscaler&#39;, StandardScaler()),
+                (&#39;logisticregression&#39;, LogisticRegression(C=1))])
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Este <code class="docutils literal notranslate"><span class="pre">best_estimator_</span></code> en nuestro caso es un <code class="docutils literal notranslate"><span class="pre">pipeline</span></code> con dos pasos, <code class="docutils literal notranslate"><span class="pre">standardcaler</span></code> y <code class="docutils literal notranslate"><span class="pre">logisticregression</span></code>. Para acceder al paso de <code class="docutils literal notranslate"><span class="pre">logisticregression</span></code>, podemos utilizar el atributo <code class="docutils literal notranslate"><span class="pre">named_steps</span></code> de la tubería, como se ha explicado anteriormente</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Logistic regression step:</span><span class="se">\n</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">grid</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&quot;logisticregression&quot;</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Logistic regression step:
+LogisticRegression(C=1)
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Ahora que tenemos la instancia de <code class="docutils literal notranslate"><span class="pre">LogisticRegression</span></code> entrenada, podemos acceder a los coeficientes (pesos) asociados a cada característica de entrada. Para mas información sobre los parámetros que podemos visualizar de este modelo clasificador (ver <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html">LogisticRegression</a>). En este caso visualizaremos sus coeficientes usando <code class="docutils literal notranslate"><span class="pre">.coef_</span></code>. Puede que sea una expresión algo larga, pero a menudo resulta útil para entender los modelos.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Logistic regression coefficients:</span><span class="se">\n</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">grid</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&quot;logisticregression&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">coef_</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Logistic regression coefficients:
+[[-0.43570655 -0.34266946 -0.40809443 -0.5344574  -0.14971847  0.61034122
+  -0.72634347 -0.78538827  0.03886087  0.27497198 -1.29780109  0.04926005
+  -0.67336941 -0.93447426 -0.13939555  0.45032641 -0.13009864 -0.10144273
+   0.43432027  0.71596578 -1.09068862 -1.09463976 -0.85183755 -1.06406198
+  -0.74316099  0.07252425 -0.82323903 -0.65321239 -0.64379499 -0.42026013]]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="pasos-de-preprocesamiento-gridsearch-y-parametros-del-modelo">
+<h2>Pasos de preprocesamiento GridSearch y Parámetros del Modelo<a class="headerlink" href="#pasos-de-preprocesamiento-gridsearch-y-parametros-del-modelo" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Usando <code class="docutils literal notranslate"><span class="pre">pipelines</span></code>, podemos encapsular todos los pasos de procesamiento en nuestro flujo de trabajo de aprendizaje automático en un único estimador de <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>. Otro beneficio de hacer esto es que ahora podemos <code class="docutils literal notranslate"><span class="pre">ajustar</span> <span class="pre">los</span> <span class="pre">parámetros</span> <span class="pre">de</span> <span class="pre">preprocesamiento</span></code> usando el output de una tarea supervisada, como la regresión o la clasificación. En los capítulos anteriores, utilizamos las funciones polinómicas en el dataset <code class="docutils literal notranslate"><span class="pre">boston</span></code> antes de aplicar el <code class="docutils literal notranslate"><span class="pre">regresor</span> <span class="pre">ridge</span></code>. Vamos a modelar esto usando un pipeline en su lugar. El proceso contiene tres pasos: <code class="docutils literal notranslate"><span class="pre">escalar</span> <span class="pre">los</span> <span class="pre">datos,</span> <span class="pre">calcular</span> <span class="pre">las</span> <span class="pre">características</span> <span class="pre">polinómicas</span> <span class="pre">y</span> <span class="pre">la</span> <span class="pre">regresión</span> <span class="pre">ridge</span></code></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_url</span> <span class="o">=</span> <span class="s2">&quot;http://lib.stat.cmu.edu/datasets/boston&quot;</span>
+<span class="n">raw_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">data_url</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;\s+&quot;</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="mi">22</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">raw_df</span><span class="o">.</span><span class="n">values</span><span class="p">[::</span><span class="mi">2</span><span class="p">,</span> <span class="p">:],</span> <span class="n">raw_df</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]])</span>
+<span class="n">target</span> <span class="o">=</span> <span class="n">raw_df</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">PolynomialFeatures</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">StandardScaler</span><span class="p">(),</span> <span class="n">PolynomialFeatures</span><span class="p">(),</span> <span class="n">Ridge</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>La clase <code class="docutils literal notranslate"><span class="pre">PolynomialFeatures</span></code>, se encarga de generar características polinómicas y de interacción. <code class="docutils literal notranslate"><span class="pre">Genera</span> <span class="pre">una</span> <span class="pre">nueva</span> <span class="pre">matriz</span> <span class="pre">de</span> <span class="pre">características</span> <span class="pre">que</span> <span class="pre">consiste</span> <span class="pre">en</span> <span class="pre">todas</span> <span class="pre">las</span> <span class="pre">combinaciones</span> <span class="pre">polinómicas</span> <span class="pre">de</span> <span class="pre">las</span> <span class="pre">características</span> <span class="pre">con</span> <span class="pre">grado</span> <span class="pre">menor</span> <span class="pre">o</span> <span class="pre">igual</span> <span class="pre">al</span> <span class="pre">grado</span> <span class="pre">especificado</span></code>. Por ejemplo, si una muestra de entrada es bidimensional y de la forma <code class="docutils literal notranslate"><span class="pre">[a,</span> <span class="pre">b]</span></code>, las características polinómicas de grado 2 son <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">a,</span> <span class="pre">b,</span> <span class="pre">a^2,</span> <span class="pre">ab,</span> <span class="pre">b^2]</span></code>. ¿Cómo sabemos qué grados de polinomios elegir, o si hay que elegir algún polinomio o interacciones? <code class="docutils literal notranslate"><span class="pre">Lo</span> <span class="pre">ideal</span> <span class="pre">es</span> <span class="pre">seleccionar</span> <span class="pre">el</span> <span class="pre">parámetro</span> <span class="pre">de</span> <span class="pre">grado</span> <span class="pre">basado</span> <span class="pre">en</span> <span class="pre">el</span> <span class="pre">resultado</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">clasificación</span></code>. Utilizando nuestro pipeline, podemos buscar sobre el parámetro <code class="docutils literal notranslate"><span class="pre">degree</span></code> junto con el parámetro <code class="docutils literal notranslate"><span class="pre">alpha</span></code> de <code class="docutils literal notranslate"><span class="pre">Ridge</span></code>. Para ello, definimos un <code class="docutils literal notranslate"><span class="pre">param_grid</span></code> que contenga ambos, debidamente prefijados por los nombres de los pasos</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">param_grid</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;polynomialfeatures__degree&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> 
+              <span class="s1">&#39;ridge__alpha&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">]}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Ahora podemos volver a ejecutar nuestra búsqueda en la red utilizando nuestro <code class="docutils literal notranslate"><span class="pre">param_grid</span></code></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">pipe</span><span class="p">,</span> <span class="n">param_grid</span><span class="o">=</span><span class="n">param_grid</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">grid</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>#sk-container-id-3 {color: black;}#sk-container-id-3 pre{padding: 0;}#sk-container-id-3 div.sk-toggleable {background-color: white;}#sk-container-id-3 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-3 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-3 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-3 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-3 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-3 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-3 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-3 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-3 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-3 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-3 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-3 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-3 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-3 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-3 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-3 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-3 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-3 div.sk-item {position: relative;z-index: 1;}#sk-container-id-3 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-3 div.sk-item::before, #sk-container-id-3 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-3 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-3 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-3 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-3 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-3 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-3 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-3 div.sk-label-container {text-align: center;}#sk-container-id-3 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-3 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-3" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>GridSearchCV(cv=5,
+             estimator=Pipeline(steps=[(&#x27;standardscaler&#x27;, StandardScaler()),
+                                       (&#x27;polynomialfeatures&#x27;,
+                                        PolynomialFeatures()),
+                                       (&#x27;ridge&#x27;, Ridge())]),
+             n_jobs=-1,
+             param_grid={&#x27;polynomialfeatures__degree&#x27;: [1, 2, 3],
+                         &#x27;ridge__alpha&#x27;: [0.001, 0.01, 0.1, 1, 10, 100]})</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-8" type="checkbox" ><label for="sk-estimator-id-8" class="sk-toggleable__label sk-toggleable__label-arrow">GridSearchCV</label><div class="sk-toggleable__content"><pre>GridSearchCV(cv=5,
+             estimator=Pipeline(steps=[(&#x27;standardscaler&#x27;, StandardScaler()),
+                                       (&#x27;polynomialfeatures&#x27;,
+                                        PolynomialFeatures()),
+                                       (&#x27;ridge&#x27;, Ridge())]),
+             n_jobs=-1,
+             param_grid={&#x27;polynomialfeatures__degree&#x27;: [1, 2, 3],
+                         &#x27;ridge__alpha&#x27;: [0.001, 0.01, 0.1, 1, 10, 100]})</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-9" type="checkbox" ><label for="sk-estimator-id-9" class="sk-toggleable__label sk-toggleable__label-arrow">estimator: Pipeline</label><div class="sk-toggleable__content"><pre>Pipeline(steps=[(&#x27;standardscaler&#x27;, StandardScaler()),
+                (&#x27;polynomialfeatures&#x27;, PolynomialFeatures()),
+                (&#x27;ridge&#x27;, Ridge())])</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-10" type="checkbox" ><label for="sk-estimator-id-10" class="sk-toggleable__label sk-toggleable__label-arrow">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-11" type="checkbox" ><label for="sk-estimator-id-11" class="sk-toggleable__label sk-toggleable__label-arrow">PolynomialFeatures</label><div class="sk-toggleable__content"><pre>PolynomialFeatures()</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-12" type="checkbox" ><label for="sk-estimator-id-12" class="sk-toggleable__label sk-toggleable__label-arrow">Ridge</label><div class="sk-toggleable__content"><pre>Ridge()</pre></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
+</div>
+<ul class="simple">
+<li><p>Podemos visualizar el resultado de la validación cruzada utilizando un mapa de calor (ver <a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.matshow.html">matshow</a>), como ya se hizo en anteriores secciones</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">matshow</span><span class="p">(</span><span class="n">grid</span><span class="o">.</span><span class="n">cv_results_</span><span class="p">[</span><span class="s1">&#39;mean_test_score&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;viridis&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;ridge__alpha&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;polynomialfeatures__degree&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">param_grid</span><span class="p">[</span><span class="s1">&#39;ridge__alpha&#39;</span><span class="p">])),</span> <span class="n">param_grid</span><span class="p">[</span><span class="s1">&#39;ridge__alpha&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">param_grid</span><span class="p">[</span><span class="s1">&#39;polynomialfeatures__degree&#39;</span><span class="p">])),</span>
+<span class="n">param_grid</span><span class="p">[</span><span class="s1">&#39;polynomialfeatures__degree&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/bd60a7fbecad7f5cc5b37d09a6cbdc84c934992728a512dffef131d10a4f2261.png" src="_images/bd60a7fbecad7f5cc5b37d09a6cbdc84c934992728a512dffef131d10a4f2261.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p>Observando los resultados producidos por la validación cruzada, <code class="docutils literal notranslate"><span class="pre">podemos</span> <span class="pre">ver</span> <span class="pre">que</span> <span class="pre">el</span> <span class="pre">uso</span> <span class="pre">de</span> <span class="pre">polinomios</span> <span class="pre">de</span> <span class="pre">grado</span> <span class="pre">dos</span> <span class="pre">ayuda,</span> <span class="pre">pero</span> <span class="pre">que</span> <span class="pre">los</span> <span class="pre">polinomios</span> <span class="pre">de</span> <span class="pre">grado</span> <span class="pre">tres</span> <span class="pre">son</span> <span class="pre">mucho</span> <span class="pre">peores</span> <span class="pre">que</span> <span class="pre">los</span> <span class="pre">de</span> <span class="pre">grado</span> <span class="pre">uno</span> <span class="pre">o</span> <span class="pre">dos</span></code>. Esto se refleja en los mejores parámetros encontrados</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Best parameters: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">grid</span><span class="o">.</span><span class="n">best_params_</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best parameters: {&#39;polynomialfeatures__degree&#39;: 2, &#39;ridge__alpha&#39;: 10}
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Lo que lleva al siguiente <code class="docutils literal notranslate"><span class="pre">score</span></code></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Test-set score: </span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">grid</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test-set score: 0.77
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Hagamos una búsqueda en red sin características polinómicas para comparar</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">param_grid</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;ridge__alpha&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">]}</span>
+<span class="n">pipe</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">StandardScaler</span><span class="p">(),</span> <span class="n">Ridge</span><span class="p">())</span>
+<span class="n">grid</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">pipe</span><span class="p">,</span> <span class="n">param_grid</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">grid</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Score without poly features: </span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">grid</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Score without poly features: 0.63
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Como era de esperar al ver los resultados de la búsqueda en red visualizados, <code class="docutils literal notranslate"><span class="pre">el</span> <span class="pre">no</span> <span class="pre">uso</span> <span class="pre">de</span> <span class="pre">características</span> <span class="pre">polinómicas</span> <span class="pre">conduce</span> <span class="pre">a</span> <span class="pre">resultados</span> <span class="pre">decididamente</span> <span class="pre">peores.</span> <span class="pre">La</span> <span class="pre">búsqueda</span> <span class="pre">sobre</span> <span class="pre">los</span> <span class="pre">parámetros</span> <span class="pre">de</span> <span class="pre">preprocesamiento</span> <span class="pre">junto</span> <span class="pre">con</span> <span class="pre">los</span> <span class="pre">parámetros</span> <span class="pre">del</span> <span class="pre">modelo</span> <span class="pre">es</span> <span class="pre">una</span> <span class="pre">estrategia</span> <span class="pre">muy</span> <span class="pre">poderosa</span></code>. Sin embargo, hay que tener en cuenta que <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> prueba todas las combinaciones posibles de los parámetros especificados. Por lo tanto, si se añaden más parámetros a la red aumenta exponencialmente el número de modelos que hay que construir</p></li>
+</ul>
+</section>
+<section id="grid-searching-que-modelo-usar">
+<h2>Grid-Searching Qué Modelo Usar<a class="headerlink" href="#grid-searching-que-modelo-usar" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Se puede ir más allá al combinar <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> y <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code>: también es posible buscar sobre los pasos reales que se están realizando en el <code class="docutils literal notranslate"><span class="pre">pipeline</span></code> (por ejemplo, si se debe utilizar <code class="docutils literal notranslate"><span class="pre">StandardScaler</span></code> o <code class="docutils literal notranslate"><span class="pre">MinMaxScaler</span></code>). Esto conduce a un espacio de búsqueda aún mayor y debe considerarse cuidadosamente. Probar todas las soluciones posibles no suele ser una estrategia viable de aprendizaje automático. Sin embargo, aquí hay un ejemplo que compara un clasificador <code class="docutils literal notranslate"><span class="pre">RandomForest</span></code> y un <code class="docutils literal notranslate"><span class="pre">SVC</span></code> en el conjunto de datos <code class="docutils literal notranslate"><span class="pre">iris</span></code>. Sabemos que <code class="docutils literal notranslate"><span class="pre">SVC</span></code> podría necesitar que los datos sean escalados, por lo que también buscamos si se utiliza <code class="docutils literal notranslate"><span class="pre">StandardScaler</span></code> o no preprocesamiento. Para el <code class="docutils literal notranslate"><span class="pre">RandomForestClassifier</span></code>, sabemos que no es necesario el preprocesamiento. Comenzamos definiendo el <code class="docutils literal notranslate"><span class="pre">pipeline</span></code>. Aquí, nombramos explícitamente los pasos. Queremos dos pasos, uno para el preprocesamiento y luego un clasificador. Podemos instanciar esto utilizando <code class="docutils literal notranslate"><span class="pre">SVC</span></code> y <code class="docutils literal notranslate"><span class="pre">StandardScaler</span></code></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;preprocessing&#39;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">()),</span> <span class="p">(</span><span class="s1">&#39;classifier&#39;</span><span class="p">,</span> <span class="n">SVC</span><span class="p">())])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Ahora podemos definir el <code class="docutils literal notranslate"><span class="pre">parameter_grid</span></code> para buscar sobre él. Queremos que el clasificador sea <code class="docutils literal notranslate"><span class="pre">RandomForestClassifier</span></code> o <code class="docutils literal notranslate"><span class="pre">SVC</span></code>. Debido a que tienen diferentes parámetros y necesitan un preprocesamiento diferente, podemos utilizar la lista de red de busqueda que discutimos en el capítulo anterior. Para asignar una estimación a un paso, utilizamos el nombre del paso como nombre del parámetro. Cuando queramos omitir un paso en la tubería (por ejemplo, porque no necesitamos el preprocesamiento para el <code class="docutils literal notranslate"><span class="pre">RandomForest</span></code>), podemos establecer ese paso como <code class="docutils literal notranslate"><span class="pre">None</span></code></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">param_grid</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;classifier&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">SVC</span><span class="p">()],</span> 
+               <span class="s1">&#39;preprocessing&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">StandardScaler</span><span class="p">(),</span> <span class="kc">None</span><span class="p">],</span>
+               <span class="s1">&#39;classifier__gamma&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span>
+               <span class="s1">&#39;classifier__C&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">]},</span>
+              <span class="p">{</span><span class="s1">&#39;classifier&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">)],</span>
+               <span class="s1">&#39;preprocessing&#39;</span><span class="p">:</span> <span class="p">[</span><span class="kc">None</span><span class="p">],</span> 
+               <span class="s1">&#39;classifier__max_features&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]}]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Ahora podemos instanciar y ejecutar <code class="docutils literal notranslate"><span class="pre">grid</span> <span class="pre">search</span></code> como de costumbre, aquí en el conjunto de datos <code class="docutils literal notranslate"><span class="pre">cancer</span></code>. Nótes que solo es necesario inicializar <code class="docutils literal notranslate"><span class="pre">pipe</span></code> con cualquiera de los dos estimadores, luego <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> se encargará de seleccionar el mejor modelo, basado en el <code class="docutils literal notranslate"><span class="pre">param_grid</span></code> suministrado.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">cancer</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">cancer</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">grid</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">pipe</span><span class="p">,</span> <span class="n">param_grid</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">grid</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Best params:</span><span class="se">\n</span><span class="si">{}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">grid</span><span class="o">.</span><span class="n">best_params_</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Best cross-validation score: </span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">grid</span><span class="o">.</span><span class="n">best_score_</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Test-set score: </span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">grid</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best params:
+{&#39;classifier&#39;: SVC(C=10, gamma=0.01), &#39;classifier__C&#39;: 10, &#39;classifier__gamma&#39;: 0.01, &#39;preprocessing&#39;: StandardScaler()}
+
+Best cross-validation score: 0.99
+Test-set score: 0.98
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>El resultado de la búsqueda en la red es que el <code class="docutils literal notranslate"><span class="pre">SVC</span></code> con el preprocesamiento <code class="docutils literal notranslate"><span class="pre">StandardScaler</span></code>, <code class="docutils literal notranslate"><span class="pre">C=10</span></code> y <code class="docutils literal notranslate"><span class="pre">gamma=0.01</span></code> dio el mejor resultado de clasificación, en comparación del el <code class="docutils literal notranslate"><span class="pre">RandomForestClassifier</span></code>.</p></li>
+</ul>
+</section>
+<section id="resumen-y-conclusiones">
+<h2>Resumen y conclusiones<a class="headerlink" href="#resumen-y-conclusiones" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>En este capítulo hemos introducido la clase <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code>, una herramienta de propósito general para <code class="docutils literal notranslate"><span class="pre">encadenar</span> <span class="pre">múltiples</span> <span class="pre">pasos</span> <span class="pre">de</span> <span class="pre">procesamiento</span> <span class="pre">en</span> <span class="pre">un</span> <span class="pre">flujo</span> <span class="pre">de</span> <span class="pre">trabajo</span> <span class="pre">de</span> <span class="pre">aprendizaje</span> <span class="pre">automático</span></code>. Las aplicaciones del mundo real del aprendizaje automático rara vez implican el uso aislado de un modelo, y en su lugar son una secuencia de pasos de procesamiento. El uso de <code class="docutils literal notranslate"><span class="pre">pipelines</span></code> nos permite encapsular múltiples pasos en un solo objeto de <code class="docutils literal notranslate"><span class="pre">Python</span></code> que se adhiere a la interfaz familiar de <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> de <code class="docutils literal notranslate"><span class="pre">ajustar,</span> <span class="pre">predecir</span> <span class="pre">y</span> <span class="pre">transformar</span></code>. En particular, cuando se realiza la evaluación del modelo mediante la validación cruzada y la selección de parámetros mediante la búsqueda en red, el uso de la clase <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code> para captar todos los pasos de procesamiento es esencial para una evaluación adecuada.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">La</span> <span class="pre">clase</span> <span class="pre">Pipeline</span> <span class="pre">también</span> <span class="pre">permite</span> <span class="pre">escribir</span> <span class="pre">un</span> <span class="pre">código</span> <span class="pre">más</span> <span class="pre">resumido,</span> <span class="pre">y</span> <span class="pre">reduce</span> <span class="pre">la</span> <span class="pre">probabilidad</span> <span class="pre">de</span> <span class="pre">errores</span> <span class="pre">que</span> <span class="pre">pueden</span> <span class="pre">ocurrir</span> <span class="pre">al</span> <span class="pre">construir</span> <span class="pre">cadenas</span> <span class="pre">de</span> <span class="pre">procesamiento</span> <span class="pre">sin</span> <span class="pre">la</span> <span class="pre">clase</span> <span class="pre">Pipeline</span></code> (como olvidar de aplicar todos los transformadores en el conjunto de prueba, o no aplicarlos en el orden correcto). La elección de la combinación correcta de extracción de características, preprocesamiento y modelos, es un arte, y a menudo requiere un poco de ensayo y error.  Sin embargo, utilizando <code class="docutils literal notranslate"><span class="pre">pipelines</span></code>, este “ensayo” de muchos pasos de procesamiento diferentes es bastante sencillo. <code class="docutils literal notranslate"><span class="pre">Cuando</span> <span class="pre">experimenta</span> <span class="pre">su</span> <span class="pre">uso,</span> <span class="pre">tenga</span> <span class="pre">cuidado</span> <span class="pre">de</span> <span class="pre">no</span> <span class="pre">complicar</span> <span class="pre">demasiado</span> <span class="pre">sus</span> <span class="pre">procesos</span> <span class="pre">y</span> <span class="pre">asegúrese</span> <span class="pre">de</span> <span class="pre">evaluar</span> <span class="pre">si</span> <span class="pre">todos</span> <span class="pre">los</span> <span class="pre">componentes</span> <span class="pre">que</span> <span class="pre">se</span> <span class="pre">incluyen</span> <span class="pre">en</span> <span class="pre">el</span> <span class="pre">modelo</span> <span class="pre">son</span> <span class="pre">necesarios</span></code>.</p></li>
+<li><p>Con este capítulo, hemos completado nuestro estudio de las herramientas de propósito general y los algoritmos proporcionados por <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>. <code class="docutils literal notranslate"><span class="pre">Ahora</span> <span class="pre">posee</span> <span class="pre">todas</span> <span class="pre">las</span> <span class="pre">habilidades</span> <span class="pre">requeridas</span> <span class="pre">y</span> <span class="pre">conoce</span> <span class="pre">los</span> <span class="pre">mecanismos</span> <span class="pre">necesarios</span> <span class="pre">para</span> <span class="pre">aplicar</span> <span class="pre">el</span> <span class="pre">aprendizaje</span> <span class="pre">automático</span> <span class="pre">en</span> <span class="pre">la</span> <span class="pre">práctica</span></code>. En la siguiente sección resolveremos un problema de aplicación, en el que pongamos en practica, algunas de las técnicas abordadas a traves del curso.</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="model_evaluation.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Evaluación de modelos</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="appendix.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Apéndice</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-de-parametros-con-preprocesamiento">Selección de parámetros con preprocesamiento</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#construyendo-pipelines">Construyendo Pipelines</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#utilizando-pipeline-en-gridsearch">Utilizando Pipeline en GridSearch</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-leakage">Data Leakage</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ilustracion-de-la-fuga-de-datos">Ilustración de la fuga de datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-interfaz-general-del-pipeline">La interfaz general del Pipeline</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-comoda-de-pipelines-con-make-pipeline">Creación cómoda de pipelines con make_pipeline</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#acceso-a-los-atributos-de-los-pasos">Acceso a los atributos de los pasos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#acceso-a-los-atributos-en-un-pipeline-con-gridsearch">Acceso a los atributos en un Pipeline con GridSearch</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pasos-de-preprocesamiento-gridsearch-y-parametros-del-modelo">Pasos de preprocesamiento GridSearch y Parámetros del Modelo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grid-searching-que-modelo-usar">Grid-Searching Qué Modelo Usar</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen-y-conclusiones">Resumen y conclusiones</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Lihki Rubio PhD in Mathematical Engineering
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright Department of Mathematics and Statistics.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
