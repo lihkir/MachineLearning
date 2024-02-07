@@ -368,10 +368,14 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis">Análisis</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion">Implementación</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-kneighborsclassifier">Análisis de <code class="docutils literal notranslate"><span class="pre">KNeighborsClassifier</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-breast-cancer-dataset">Aplicación: Breast Cancer Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-kneighborsclassifier">Análisis de <code class="docutils literal notranslate"><span class="pre">KNeighborsClassifier</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-breast-cancer-dataset">Aplicación: Breast Cancer Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-exploratorio-de-datos">Análisis Exploratorio de Datos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multicolinealidad">Multicolinealidad</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#factor-de-inflacion-de-la-varianza-vif">Factor de Inflación de la Varianza (VIF)</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-del-modelo-k-nn">Selección del modelo K-NN</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-por-k-vecinos">Regresión por <span class="math notranslate nohighlight">\(k\)</span>-vecinos</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-kneighborsregressor">Análisis de <code class="docutils literal notranslate"><span class="pre">KNeighborsRegressor</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-world-hydropower-generation">Aplicación: World Hydropower Generation</a></li>
@@ -426,6 +430,45 @@ document.write(`
 <a class="reference internal image-reference" href="_images/knn_classification.png"><img alt="_images/knn_classification.png" src="_images/knn_classification.png" style="width: 531.9px; height: 463.5px;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 4 </span><span class="caption-text">Clasificación usando <span class="math notranslate nohighlight">\(k\)</span>-NN para <span class="math notranslate nohighlight">\(k=3\)</span>. Source: <a class="reference external" href="http://kdnuggets.com">kdnuggets.com</a>.</span><a class="headerlink" href="#knn-classification-fig" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="tip admonition">
+<p class="admonition-title">Desempate en la clasificación <span class="math notranslate nohighlight">\(k\)</span>-NN</p>
+<p>En ocasiones ocurren empates a la hora de seleccionar la clase mayoritaria. Existen varias formas de abordar este problema, las siguientes son las tres mas frecuentes</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Elija</span> <span class="pre">un</span> </code><span class="math notranslate nohighlight">\(k\)</span><code class="docutils literal notranslate"> <span class="pre">diferente</span></code></p>
+<ul class="simple">
+<li><p>Aunque un método de clasificación de tres vecinos más cercanos soluciona el problema de la selección de vecinos en las Figuras i) y ii), no resuelve el problema de la Figura iii).</p></li>
+<li><p>De hecho, sigue existiendo la posibilidad de que se produzcan empates de selección en el conjunto de datos mayor independientemente del valor de <span class="math notranslate nohighlight">\(k\)</span>.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Elija</span> <span class="pre">al</span> <span class="pre">azar</span> <span class="pre">entre</span> <span class="pre">los</span> <span class="pre">valores</span> <span class="pre">empatados</span></code></p>
+<ul class="simple">
+<li><p>Aplicando este enfoque a la Figura ii), cada una de las tres observaciones tendría la misma probabilidad de ser seleccionada como uno de los dos vecinos.</p></li>
+<li><p>En la Figura iii), se seleccionaría el <span class="math notranslate nohighlight">\(A\)</span> más cercano a <span class="math notranslate nohighlight">\(N\)</span>, y uno de los tres puntos observados restantes se seleccionaría al azar.</p></li>
+<li><p>Dependiendo de cuáles de los valores empatados se permitan en el modelo, podría tener un efecto significativo en cómo se clasifica <span class="math notranslate nohighlight">\(N\)</span>.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Permitir</span> <span class="pre">observaciones</span> <span class="pre">hasta</span> <span class="pre">el</span> <span class="pre">punto</span> <span class="pre">de</span> <span class="pre">parada</span> <span class="pre">natural</span></code> La idea aquí es <em>elegir el número más pequeño tal que <span class="math notranslate nohighlight">\(k\)</span> sea mayor o igual que dos, y que no existan empates</em></p>
+<ul class="simple">
+<li><p>Para la Figura i), se seleccionarían las dos observaciones más cercanas (igual que en los dos métodos anteriores).</p></li>
+<li><p>Para la Figura ii), como hay un empate a tres, se consideran los tres vecinos. La restricción de sólo dos vecinos se elimina para esta observación en particular.</p></li>
+<li><p>Del mismo modo, en la Figura iii) se seleccionan las cuatro observaciones. Observe que este método elegiría tantos valores como fuera necesario para evitar el empate. Si en la Figura ii) hubiera ocho puntos equidistantes, se incluirían los ocho en el modelo.</p></li>
+</ul>
+</li>
+<li><p>Supongamos que nos hemos decidido por el tercer método y que ya tenemos nuestros vecinos seleccionados</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Elegir</span> <span class="pre">un</span> </code><span class="math notranslate nohighlight">\(k\)</span><code class="docutils literal notranslate"> <span class="pre">impar</span></code>: Algunos sugieren simplemente elegir un valor impar para <span class="math notranslate nohighlight">\(k\)</span>. Este método no siempre funciona, ya que los estados de clasificación también podrían ser impares <span class="math notranslate nohighlight">\((A, B, C)\)</span>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Elegir</span> <span class="pre">al</span> <span class="pre">azar</span> <span class="pre">entre</span> <span class="pre">vecinos</span> <span class="pre">empatados</span></code>. Con este método, <span class="math notranslate nohighlight">\(L\)</span> y <span class="math notranslate nohighlight">\(N\)</span> tienen la misma probabilidad de ser clasificados como <span class="math notranslate nohighlight">\(A\)</span> o <span class="math notranslate nohighlight">\(B\)</span>. Pero, ¿es justo el azar? ¿tiene sentido que <span class="math notranslate nohighlight">\(N\)</span>, que está muy cerca de <span class="math notranslate nohighlight">\(A\)</span>, tenga la misma probabilidad de ser <span class="math notranslate nohighlight">\(B\)</span>?</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Ponderación</span> <span class="pre">por</span> <span class="pre">distancia</span></code>. Para resolver el problema planteado por el método anterior, es posible ponderar los vecinos de modo que los más cercanos al punto no observado tengan un “mayor voto”. Este método daría lugar a que tanto <span class="math notranslate nohighlight">\(L\)</span> como <span class="math notranslate nohighlight">\(N\)</span> se clasificaran como <span class="math notranslate nohighlight">\(A\)</span>, ya que los vecinos <span class="math notranslate nohighlight">\(A\)</span> están más cerca que los demás en comparación.</p></li>
+</ul>
+</li>
+</ol>
+</div>
+<figure class="align-center" id="knn-ties">
+<a class="reference internal image-reference" href="_images/knn_ties.png"><img alt="_images/knn_ties.png" src="_images/knn_ties.png" style="width: 702.0px; height: 197.4px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 5 </span><span class="caption-text">k-NN: Empates en la selección de clase con mayor frecuencia.</span><a class="headerlink" href="#knn-ties" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <ul class="simple">
@@ -714,7 +757,7 @@ h^{\star}(\boldsymbol{x})=\mathbb{1}_{\left[\eta(\boldsymbol{x})&gt;1/2\right]}.
     \text{Si}~\varepsilon&gt;-1\Rightarrow e^{\varepsilon}&amp;=\lim_{n\rightarrow\infty}\left(1+\frac{\varepsilon}{n}\right)^{n}\underset{\text{Bernoulli}}{\geq}\lim_{n\rightarrow\infty}1+n\frac{\varepsilon}{n}=1+\varepsilon.
     \end{align*}
     \]</div>
-<p>Entonces <span class="math notranslate nohighlight">\(1+\varepsilon\leq e^{\varepsilon}\)</span>.</p>
+<p>Entonces <span class="math notranslate nohighlight">\(1+\varepsilon\leq e^{\varepsilon},~\forall\varepsilon\in\mathbb{R}\)</span>.</p>
 </li>
 </ul>
 <div class="proof definition admonition" id="des_bernoulli">
@@ -809,7 +852,7 @@ h^{\star}(\boldsymbol{x})=\mathbb{1}_{\left[\eta(\boldsymbol{x})&gt;1/2\right]}.
 \[\begin{split}
 \begin{align*}
 \frac{2^{d}\varepsilon^{-d}}{me}+\varepsilon&amp;=\frac{2^{d}2^{-d}m^{d/(d+1)}}{me}+2m^{-1/(d+1)}\\
-&amp;=m^{d/(d+1)-1}(1/e)+2m^{-1/(d+1)}\\
+&amp;=m^{[d/(d+1)]-1}(1/e)+2m^{-1/(d+1)}\\
 &amp;=m^{-1/(d+1)}(1/e+2)\\
 &amp;\leq4m^{-1/(d+1)}
 \end{align*}
@@ -832,7 +875,7 @@ h^{\star}(\boldsymbol{x})=\mathbb{1}_{\left[\eta(\boldsymbol{x})&gt;1/2\right]}.
 <section id="implementacion">
 <h2>Implementación<a class="headerlink" href="#implementacion" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
-<li><p><strong><code class="docutils literal notranslate"><span class="pre">Clasificación</span></code></strong> <span class="math notranslate nohighlight">\(\boldsymbol{k}\)</span><strong><code class="docutils literal notranslate"><span class="pre">-vecinos</span></code></strong>: En su versión más sencilla, el algoritmo <code class="docutils literal notranslate"><span class="pre">k-NN</span></code> sólo considera exactamente un vecino más cercano, que es el <code class="docutils literal notranslate"><span class="pre">dato</span> <span class="pre">de</span> <span class="pre">entrenamiento</span> <span class="pre">más</span> <span class="pre">cercano</span> <span class="pre">al</span> <span class="pre">punto</span> <span class="pre">para</span> <span class="pre">el</span> <span class="pre">que</span> <span class="pre">queremos</span> <span class="pre">hacer</span> <span class="pre">una</span> <span class="pre">predicción</span></code>. <code class="docutils literal notranslate"><span class="pre">La</span> <span class="pre">predicción</span> <span class="pre">es</span> <span class="pre">entonces</span> <span class="pre">simplemente</span> <span class="pre">la</span> <span class="pre">salida</span> <span class="pre">conocida</span> <span class="pre">para</span> <span class="pre">este</span> <span class="pre">punto</span> <span class="pre">de</span> <span class="pre">entrenamiento</span></code>.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">Clasificación</span> <span class="pre">k-vecinos</span></code></strong>. Como ya se estudió anteriormente, en su versión más sencilla, el algoritmo <code class="docutils literal notranslate"><span class="pre">k-NN</span></code> solo considera exactamente un vecino más cercano, que es el <code class="docutils literal notranslate"><span class="pre">dato</span> <span class="pre">de</span> <span class="pre">entrenamiento</span> <span class="pre">más</span> <span class="pre">cercano</span> <span class="pre">al</span> <span class="pre">punto</span> <span class="pre">para</span> <span class="pre">el</span> <span class="pre">que</span> <span class="pre">queremos</span> <span class="pre">hacer</span> <span class="pre">una</span> <span class="pre">predicción</span></code>. La predicción es entonces simplemente la etiqueta conocida para este punto de entrenamiento.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1015,14 +1058,20 @@ h^{\star}(\boldsymbol{x})=\mathbb{1}_{\left[\eta(\boldsymbol{x})&gt;1/2\right]}.
 <li><p>Como se puede ver en la figura de la izquierda, <code class="docutils literal notranslate"><span class="pre">el</span> <span class="pre">uso</span> <span class="pre">de</span> <span class="pre">un</span> <span class="pre">solo</span> <span class="pre">vecino</span> <span class="pre">da</span> <span class="pre">como</span> <span class="pre">resultado</span> <span class="pre">una</span> <span class="pre">decisión</span> <span class="pre">que</span> <span class="pre">sigue</span> <span class="pre">de</span> <span class="pre">cerca</span> <span class="pre">los</span> <span class="pre">datos</span> <span class="pre">de</span> <span class="pre">entrenamiento</span></code>. La consideración de <code class="docutils literal notranslate"><span class="pre">más</span> <span class="pre">vecinos</span> <span class="pre">conduce</span> <span class="pre">a</span> <span class="pre">un</span> <span class="pre">límite</span> <span class="pre">de</span> <span class="pre">decisión</span> <span class="pre">más</span> <span class="pre">suave</span></code>. Un límite más suave corresponde a un <code class="docutils literal notranslate"><span class="pre">modelo</span> <span class="pre">más</span> <span class="pre">sencillo</span></code>. En otras palabras, <code class="docutils literal notranslate"><span class="pre">el</span> <span class="pre">uso</span> <span class="pre">de</span> <span class="pre">pocos</span> <span class="pre">vecinos</span> <span class="pre">corresponde</span> <span class="pre">a</span> <span class="pre">una</span> <span class="pre">alta</span> <span class="pre">complejidad</span> <span class="pre">del</span> <span class="pre">modelo</span></code> (como se muestra en el lado derecho), y <code class="docutils literal notranslate"><span class="pre">el</span> <span class="pre">uso</span> <span class="pre">de</span> <span class="pre">muchos</span> <span class="pre">vecinos</span> <span class="pre">corresponde</span> <span class="pre">a</span> <span class="pre">una</span> <span class="pre">baja</span> <span class="pre">complejidad</span> <span class="pre">del</span> <span class="pre">modelo</span></code>.</p></li>
 <li><p>Si se considera el caso extremo en el que el <code class="docutils literal notranslate"><span class="pre">número</span> <span class="pre">de</span> <span class="pre">vecinos</span> <span class="pre">es</span> <span class="pre">el</span> <span class="pre">número</span> <span class="pre">de</span> <span class="pre">todos</span> <span class="pre">los</span> <span class="pre">puntos</span> <span class="pre">de</span> <span class="pre">datos</span> <span class="pre">del</span> <span class="pre">conjunto</span> <span class="pre">de</span> <span class="pre">entrenamiento</span></code>, cada punto de prueba tendría exactamente los mismos vecinos (todos puntos de entrenamiento) y todas las predicciones serían las mismas: <code class="docutils literal notranslate"><span class="pre">la</span> <span class="pre">clase</span> <span class="pre">más</span> <span class="pre">frecuente</span> <span class="pre">en</span> <span class="pre">el</span> <span class="pre">conjunto</span> <span class="pre">de</span> <span class="pre">entrenamiento</span></code>.</p></li>
 </ul>
+</section>
 <section id="aplicacion-breast-cancer-dataset">
-<h3>Aplicación: Breast Cancer Dataset<a class="headerlink" href="#aplicacion-breast-cancer-dataset" title="Permalink to this heading">#</a></h3>
+<h2>Aplicación: Breast Cancer Dataset<a class="headerlink" href="#aplicacion-breast-cancer-dataset" title="Permalink to this heading">#</a></h2>
 <figure class="align-center" id="breast-cancer-knn-fig">
 <a class="reference internal image-reference" href="_images/breast_cancer_knn.png"><img alt="_images/breast_cancer_knn.png" src="_images/breast_cancer_knn.png" style="width: 616.5px; height: 511.2px;" /></a>
 </figure>
 <ul class="simple">
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">Breast</span> <span class="pre">Cancer</span> <span class="pre">Dataset</span></code></strong>. Investiguemos si podemos confirmar la <code class="docutils literal notranslate"><span class="pre">conexión</span> <span class="pre">entre</span> <span class="pre">la</span> <span class="pre">complejidad</span> <span class="pre">del</span> <span class="pre">modelo</span> <span class="pre">y</span> <span class="pre">la</span> <span class="pre">generalización</span></code> que hemos discutido antes. Lo haremos con el conjunto de datos de cáncer de mama <code class="docutils literal notranslate"><span class="pre">(Breast</span> <span class="pre">Cancer)</span></code> del mundo real.</p></li>
-<li><p><strong><code class="docutils literal notranslate"><span class="pre">Análisis</span> <span class="pre">Exploratorio</span> <span class="pre">de</span> <span class="pre">Datos</span></code></strong>. Procedemos a realizar un <code class="docutils literal notranslate"><span class="pre">análisis</span> <span class="pre">exploratorio</span> <span class="pre">de</span> <span class="pre">datos</span></code> para investigar y resumir principales características de nuestros datos. Primero cargamos nuestro dataset usando la función <code class="docutils literal notranslate"><span class="pre">load_breast_cancer()</span></code> de <code class="docutils literal notranslate"><span class="pre">sklearn.datasets</span></code></p></li>
+</ul>
+</section>
+<section id="analisis-exploratorio-de-datos">
+<h2>Análisis Exploratorio de Datos<a class="headerlink" href="#analisis-exploratorio-de-datos" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Procedemos a realizar un <code class="docutils literal notranslate"><span class="pre">análisis</span> <span class="pre">exploratorio</span> <span class="pre">de</span> <span class="pre">datos</span></code> para investigar y resumir principales características de nuestros datos. Primero cargamos nuestro dataset usando la función <code class="docutils literal notranslate"><span class="pre">load_breast_cancer()</span></code> de <code class="docutils literal notranslate"><span class="pre">sklearn.datasets</span></code></p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1303,6 +1352,13 @@ h^{\star}(\boldsymbol{x})=\mathbb{1}_{\left[\eta(\boldsymbol{x})&gt;1/2\right]}.
 </table>
 <p>5 rows × 31 columns</p>
 </div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_copy</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
 </div>
 <ul class="simple">
 <li><p>Aquí <code class="docutils literal notranslate"><span class="pre">0=malignant,</span> <span class="pre">1=benign</span></code>. Verifiquemos que tipos de datos contiene el dataset. La función <code class="docutils literal notranslate"><span class="pre">info()</span></code> proporciona información sobre los <code class="docutils literal notranslate"><span class="pre">tipos</span> <span class="pre">de</span> <span class="pre">datos,</span> <span class="pre">columnas,</span> <span class="pre">recuento</span> <span class="pre">de</span> <span class="pre">valores</span> <span class="pre">nulos,</span> <span class="pre">uso</span> <span class="pre">de</span> <span class="pre">memoria</span></code>, etc.</p></li>
@@ -1646,7 +1702,7 @@ Name: count, dtype: int64
 </div>
 </div>
 <ul class="simple">
-<li><p>Nótese que nuestro dataset está <code class="docutils literal notranslate"><span class="pre">desbalanceado</span></code>. Existen técnicas como <code class="docutils literal notranslate"><span class="pre">SMOTE</span></code> y <code class="docutils literal notranslate"><span class="pre">Stratified</span> <span class="pre">sampling</span></code>, que pueden utilizarse para <code class="docutils literal notranslate"><span class="pre">mejorar</span> <span class="pre">el</span> <span class="pre">score</span> <span class="pre">de</span> <span class="pre">clasificación</span></code> de datos desbalanceados. Verifiquemos además si existen <code class="docutils literal notranslate"><span class="pre">datos</span> <span class="pre">faltantes</span></code> en nuestro <code class="docutils literal notranslate"><span class="pre">Dataframe</span></code></p></li>
+<li><p>Nótese que nuestro dataset está <code class="docutils literal notranslate"><span class="pre">desbalanceado</span></code>. Existen técnicas como <code class="docutils literal notranslate"><span class="pre">SMOTE</span></code> y <code class="docutils literal notranslate"><span class="pre">Stratified</span> <span class="pre">sampling</span></code>, que pueden utilizarse para <code class="docutils literal notranslate"><span class="pre">mejorar</span> <span class="pre">el</span> <span class="pre">score</span> <span class="pre">de</span> <span class="pre">clasificación</span></code> de datos desbalanceados. <code class="docutils literal notranslate"><span class="pre">Utilícela</span> <span class="pre">en</span> <span class="pre">su</span> <span class="pre">proyecto</span> <span class="pre">final</span> <span class="pre">de</span> <span class="pre">investigación</span></code>.  Verifiquemos además si existen <code class="docutils literal notranslate"><span class="pre">datos</span> <span class="pre">faltantes</span></code> en nuestro <code class="docutils literal notranslate"><span class="pre">Dataframe</span></code></p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1812,6 +1868,9 @@ dtype: int64
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/0ead738d899a78006068a418ea814c6aac705aa167bcbaf304e3e4b34a698097.png" src="_images/0ead738d899a78006068a418ea814c6aac705aa167bcbaf304e3e4b34a698097.png" />
+</div>
 </div>
 <ul class="simple">
 <li><p>Diagrama de <code class="docutils literal notranslate"><span class="pre">densidad</span> <span class="pre">de</span> <span class="pre">distribución</span> <span class="pre">KDE</span></code> y distribución mediante el diagrama de dispersión <code class="docutils literal notranslate"><span class="pre">stripplot()</span></code></p></li>
@@ -1841,15 +1900,17 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/d97210e17a2eda08f373b2797af5863e8384cb865e234ac64018ca894b5c3121.png" src="_images/d97210e17a2eda08f373b2797af5863e8384cb865e234ac64018ca894b5c3121.png" />
+<img alt="_images/9e575560b62f21fedc16beb963cb9f09308ffa02025730bc0fff2d6766d81381.png" src="_images/9e575560b62f21fedc16beb963cb9f09308ffa02025730bc0fff2d6766d81381.png" />
 </div>
 </div>
+<section id="multicolinealidad">
+<h3>Multicolinealidad<a class="headerlink" href="#multicolinealidad" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
-<li><p>La <code class="docutils literal notranslate"><span class="pre">multicolinealidad</span></code> es un problema ya que <code class="docutils literal notranslate"><span class="pre">reduce</span> <span class="pre">la</span> <span class="pre">importancia</span> <span class="pre">de</span> <span class="pre">las</span> <span class="pre">variables</span> <span class="pre">independientes</span></code>. A fin de solucionar este problem,  se <code class="docutils literal notranslate"><span class="pre">eliminan</span> <span class="pre">los</span> <span class="pre">predictores</span> <span class="pre">altamente</span> <span class="pre">correlacionados</span></code>. Podemos comprobar la presencia de multicolinealidad entre algunas de las variables. Por ejemplo, la columna <code class="docutils literal notranslate"><span class="pre">mean</span> <span class="pre">radius</span></code> tiene una <code class="docutils literal notranslate"><span class="pre">correlación</span> <span class="pre">de</span> <span class="pre">1.0</span></code> con las columnas <code class="docutils literal notranslate"><span class="pre">mean</span> <span class="pre">perimeter</span></code> y <code class="docutils literal notranslate"><span class="pre">mean</span> <span class="pre">area</span></code>, respectivamente. Esto se debe a que <code class="docutils literal notranslate"><span class="pre">las</span> <span class="pre">tres</span> <span class="pre">columnas</span> <span class="pre">contienen</span> <span class="pre">esencialmente</span> <span class="pre">la</span> <span class="pre">misma</span> <span class="pre">información,</span> <span class="pre">que</span> <span class="pre">es</span> <span class="pre">el</span> <span class="pre">tamaño</span> <span class="pre">físico</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">observación</span></code>.</p></li>
+<li><p>La <code class="docutils literal notranslate"><span class="pre">multicolinealidad</span></code> es un problema ya que, <code class="docutils literal notranslate"><span class="pre">reduce</span> <span class="pre">la</span> <span class="pre">importancia</span> <span class="pre">de</span> <span class="pre">las</span> <span class="pre">variables</span> <span class="pre">independientes</span></code>. A fin de solucionar este problema,  se <code class="docutils literal notranslate"><span class="pre">eliminan</span> <span class="pre">los</span> <span class="pre">predictores</span> <span class="pre">altamente</span> <span class="pre">correlacionados</span></code>. Podemos comprobar la presencia de multicolinealidad entre algunas de las variables. Por ejemplo, la columna <code class="docutils literal notranslate"><span class="pre">mean</span> <span class="pre">radius</span></code> tiene una <code class="docutils literal notranslate"><span class="pre">correlación</span> <span class="pre">de</span> <span class="pre">1.0</span></code> con las columnas <code class="docutils literal notranslate"><span class="pre">mean</span> <span class="pre">perimeter</span></code> y <code class="docutils literal notranslate"><span class="pre">mean</span> <span class="pre">area</span></code>, respectivamente. Esto se debe a que <code class="docutils literal notranslate"><span class="pre">las</span> <span class="pre">tres</span> <span class="pre">columnas</span> <span class="pre">contienen</span> <span class="pre">esencialmente</span> <span class="pre">la</span> <span class="pre">misma</span> <span class="pre">información</span></code>, que es el tamaño físico de la observación.</p></li>
 <li><p>Por lo tanto, <code class="docutils literal notranslate"><span class="pre">sólo</span> <span class="pre">debemos</span> <span class="pre">elegir</span> <span class="pre">una</span> <span class="pre">de</span> <span class="pre">las</span> <span class="pre">tres</span> <span class="pre">columnas</span> <span class="pre">cuando</span> <span class="pre">pasemos</span> <span class="pre">al</span> <span class="pre">análisis</span> <span class="pre">posterior</span></code>. Otro lugar donde la <code class="docutils literal notranslate"><span class="pre">multicolinealidad</span></code> es evidente, es entre las columnas <code class="docutils literal notranslate"><span class="pre">&quot;mean&quot;</span></code> y <code class="docutils literal notranslate"><span class="pre">&quot;worst&quot;</span></code>. Por ejemplo, la columna <code class="docutils literal notranslate"><span class="pre">mean</span> <span class="pre">radius</span></code> tiene una <code class="docutils literal notranslate"><span class="pre">correlación</span> <span class="pre">de</span> <span class="pre">1.0</span></code> con la columna <code class="docutils literal notranslate"><span class="pre">worst</span> <span class="pre">radius</span></code>. También hay multicolinealidad entre los atributos <code class="docutils literal notranslate"><span class="pre">compactness,</span> <span class="pre">concavity</span></code> y <code class="docutils literal notranslate"><span class="pre">concave</span> <span class="pre">points</span></code>. Así que podemos elegir sólo uno de estos, por ejemplo <code class="docutils literal notranslate"><span class="pre">compactness</span></code>. De la matriz de correlación sabemos que estas columnas están altamente correlacionadas con las columnas <code class="docutils literal notranslate"><span class="pre">mean</span> <span class="pre">radius</span></code>, <code class="docutils literal notranslate"><span class="pre">perimeter</span></code>, <code class="docutils literal notranslate"><span class="pre">area</span></code>. Por lo tanto, estas columnas serán eliminadas.</p></li>
 </ul>
 <ul class="simple">
-<li><p>Primero, eliminamos todas las columnas <code class="docutils literal notranslate"><span class="pre">worst</span></code></p></li>
+<li><p>Primero, eliminamos todas las columnas <code class="docutils literal notranslate"><span class="pre">worst</span></code>, por su evidente correlación con las columnas <code class="docutils literal notranslate"><span class="pre">mean</span></code></p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1939,6 +2000,251 @@ dtype: int64
 <img alt="_images/ce811481c99450c7010808cd4a012b61cb8f08ed161bba38d9dd6f9f6d02c3bd.png" src="_images/ce811481c99450c7010808cd4a012b61cb8f08ed161bba38d9dd6f9f6d02c3bd.png" />
 </div>
 </div>
+</section>
+<section id="factor-de-inflacion-de-la-varianza-vif">
+<h3>Factor de Inflación de la Varianza (VIF)<a class="headerlink" href="#factor-de-inflacion-de-la-varianza-vif" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Para abordar la multicolinealidad, se pueden aplicar técnicas como la regularización o la selección de características para, seleccionar un subconjunto de variables independientes que no estén altamente correlacionadas entre sí. En esta sección, nos centraremos en la más común: <code class="docutils literal notranslate"><span class="pre">VIF</span> <span class="pre">(Factores</span> <span class="pre">de</span> <span class="pre">Inflación</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">Varianza)</span></code>.</p></li>
+<li><p>El <code class="docutils literal notranslate"><span class="pre">VIF</span></code> determina la <code class="docutils literal notranslate"><span class="pre">fuerza</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">correlación</span> <span class="pre">entre</span> <span class="pre">las</span> <span class="pre">variables</span> <span class="pre">independientes</span></code>. Se pronostica tomando una variable y comparándola con todas las demás. La puntuación <code class="docutils literal notranslate"><span class="pre">VIF</span></code> de una variable independiente representa hasta qué punto la variable se explica por otras variables independientes.</p></li>
+<li><p>El valor <span class="math notranslate nohighlight">\(R^2\)</span> se determina para averiguar hasta qué punto una variable independiente es descrita por las demás variables independientes. Un valor alto de <span class="math notranslate nohighlight">\(R^{2}\)</span> significa que la variable está muy correlacionada con las demás variables. Esto se refleja en el <code class="docutils literal notranslate"><span class="pre">VIF</span></code>, que se indica a continuación:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\text{VIF}=\frac{1}{1-R^{2}}
+\]</div>
+<ul class="simple">
+<li><p>Así, cuanto más se acerque el valor de <span class="math notranslate nohighlight">\(R^2\)</span> a 1, mayor será el valor de <code class="docutils literal notranslate"><span class="pre">VIF</span></code> y mayor la multicolinealidad con la variable independiente concreta.</p></li>
+</ul>
+<div class="tip admonition">
+<p class="admonition-title">Observación</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Un</span> <span class="pre">valor</span> <span class="pre">VIF</span> <span class="pre">de</span> <span class="pre">1</span></code>: Sin multicolinealidad (variable perfectamente independiente).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Un</span> <span class="pre">valor</span> <span class="pre">VIF</span> <span class="pre">entre</span> <span class="pre">1</span> <span class="pre">y</span> <span class="pre">5</span></code>: Multicolinealidad baja a moderada (no se considera problemática).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Un</span> <span class="pre">valor</span> <span class="pre">VIF</span> <span class="pre">entre</span> <span class="pre">5</span> <span class="pre">y</span> <span class="pre">10</span></code>: Multicolinealidad moderada a alta (considerada problemática).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Un</span> <span class="pre">valor</span> <span class="pre">VIF</span> <span class="pre">superior</span> <span class="pre">a</span> <span class="pre">10</span></code>: Multicolinealidad alta (preocupación grave, requiere medidas).</p></li>
+</ul>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">statsmodels.stats.outliers_influence</span> <span class="kn">import</span> <span class="n">variance_inflation_factor</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">VIF_calculation</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+    <span class="n">VIF</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+    <span class="n">VIF</span><span class="p">[</span><span class="s2">&quot;variable&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">columns</span>
+    <span class="n">VIF</span><span class="p">[</span><span class="s2">&quot;VIF&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">variance_inflation_factor</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])]</span>
+    <span class="n">VIF</span> <span class="o">=</span> <span class="n">VIF</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;VIF&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">VIF</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">delete_multicollinearity</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">target_name</span><span class="p">,</span> <span class="n">VIF_threshold</span><span class="p">):</span>
+  <span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">target_name</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+  <span class="n">VIF_mat</span> <span class="o">=</span> <span class="n">VIF_calculation</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+  <span class="n">n_VIF</span> <span class="o">=</span> <span class="n">VIF_mat</span><span class="p">[</span><span class="s2">&quot;VIF&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">n_VIF</span> <span class="o">&lt;=</span> <span class="n">VIF_threshold</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;There is no multicollinearity!&quot;</span><span class="p">)</span>
+  <span class="k">else</span><span class="p">:</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">n_VIF</span> <span class="o">&gt;</span> <span class="n">VIF_threshold</span><span class="p">):</span>
+      <span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">VIF_mat</span><span class="p">[</span><span class="s2">&quot;variable&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+      <span class="n">VIF_mat</span> <span class="o">=</span> <span class="n">VIF_calculation</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+      <span class="n">n_VIF</span> <span class="o">=</span> <span class="n">VIF_mat</span><span class="p">[</span><span class="s2">&quot;VIF&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+  <span class="n">display</span><span class="p">(</span><span class="n">VIF_mat</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">X</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_copy</span> <span class="o">=</span> <span class="n">delete_multicollinearity</span><span class="p">(</span><span class="n">df_copy</span><span class="p">,</span> <span class="s2">&quot;diagnosis&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>variable</th>
+      <th>VIF</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>symmetry error</td>
+      <td>8.648328</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>smoothness error</td>
+      <td>8.347757</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>fractal dimension error</td>
+      <td>7.644681</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>texture error</td>
+      <td>7.103564</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>concavity error</td>
+      <td>6.666504</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>worst concavity</td>
+      <td>4.620458</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>area error</td>
+      <td>2.190762</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_copy</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>texture error</th>
+      <th>area error</th>
+      <th>smoothness error</th>
+      <th>concavity error</th>
+      <th>symmetry error</th>
+      <th>fractal dimension error</th>
+      <th>worst concavity</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.9053</td>
+      <td>153.40</td>
+      <td>0.006399</td>
+      <td>0.05373</td>
+      <td>0.03003</td>
+      <td>0.006193</td>
+      <td>0.7119</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.7339</td>
+      <td>74.08</td>
+      <td>0.005225</td>
+      <td>0.01860</td>
+      <td>0.01389</td>
+      <td>0.003532</td>
+      <td>0.2416</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.7869</td>
+      <td>94.03</td>
+      <td>0.006150</td>
+      <td>0.03832</td>
+      <td>0.02250</td>
+      <td>0.004571</td>
+      <td>0.4504</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1.1560</td>
+      <td>27.23</td>
+      <td>0.009110</td>
+      <td>0.05661</td>
+      <td>0.05963</td>
+      <td>0.009208</td>
+      <td>0.6869</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.7813</td>
+      <td>94.44</td>
+      <td>0.011490</td>
+      <td>0.05688</td>
+      <td>0.01756</td>
+      <td>0.005115</td>
+      <td>0.4000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">corr</span> <span class="o">=</span> <span class="n">df_copy</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">cmap</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">diverging_palette</span><span class="p">(</span><span class="mi">220</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">as_cmap</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">corr</span><span class="p">)</span>
+<span class="n">mask</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">triu_indices_from</span><span class="p">(</span><span class="n">mask</span><span class="p">)]</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">font_scale</span><span class="o">=</span><span class="mf">1.8</span><span class="p">)</span>
+<span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">corr</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">mask</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">square</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mf">.5</span><span class="p">,</span>
+            <span class="n">cbar_kws</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;shrink&quot;</span><span class="p">:</span> <span class="mf">.5</span><span class="p">},</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/c8ddec1d4b7b00182be84234823e3ef945a0536f848f832b54448e706418de6c.png" src="_images/c8ddec1d4b7b00182be84234823e3ef945a0536f848f832b54448e706418de6c.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="seleccion-del-modelo-k-nn">
+<h2>Selección del modelo K-NN<a class="headerlink" href="#seleccion-del-modelo-k-nn" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">División</span> <span class="pre">en</span> <span class="pre">entrenamiento</span> <span class="pre">(train)</span> <span class="pre">y</span> <span class="pre">prueba</span> <span class="pre">(test)</span></code>. Dividimos la variable objetivo y las variables independientes. A continuación, evaluamos el <code class="docutils literal notranslate"><span class="pre">rendimiento</span> <span class="pre">del</span> <span class="pre">conjunto</span> <span class="pre">de</span> <span class="pre">entrenamiento</span> <span class="pre">y</span> <span class="pre">de</span> <span class="pre">prueba</span> <span class="pre">con</span> <span class="pre">diferentes</span> <span class="pre">números</span> <span class="pre">de</span> <span class="pre">vecinos</span></code></p></li>
 </ul>
@@ -1949,9 +2255,12 @@ dtype: int64
 </div>
 </div>
 </div>
+<ul class="simple">
+<li><p>Utilizaremos en el presente problema las columnas obtenidas luego de aplicar el <code class="docutils literal notranslate"><span class="pre">Factor</span> <span class="pre">de</span> <span class="pre">Inflación</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">Varianza</span> <span class="pre">(VIF)</span></code>. Pude verificar que sucede cuando utiliza el dataset inicial, en el cual se retiraron de manera manual varias características, con base en la matriz de correlación</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;diagnosis&#39;</span><span class="p">],</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">df_copy</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;diagnosis&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -1992,7 +2301,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/5be173667b4496731497e16da54c604926a57f5af43e0546b82021f9408ae451.png" src="_images/5be173667b4496731497e16da54c604926a57f5af43e0546b82021f9408ae451.png" />
+<img alt="_images/2845374ceb2e8f10228f1797c7ddd93613bf276ddb03f292775916d4958de80b.png" src="_images/2845374ceb2e8f10228f1797c7ddd93613bf276ddb03f292775916d4958de80b.png" />
 </div>
 </div>
 <ul class="simple">
@@ -2009,12 +2318,14 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8990610328638498 0.9020979020979021
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8755868544600939 0.8881118881118881
 </pre></div>
 </div>
 </div>
 </div>
-</section>
+<ul class="simple">
+<li><p>Queda como ejercicio para el lector aplicar las técnicas de <code class="docutils literal notranslate"><span class="pre">validación</span> <span class="pre">cruzada</span> <span class="pre">y</span> <span class="pre">grid</span> <span class="pre">search</span></code> para obtener el mejor modelo <span class="math notranslate nohighlight">\(k\)</span>-NN para este problema de aplicación.</p></li>
+</ul>
 </section>
 <section id="regresion-por-k-vecinos">
 <h2>Regresión por <span class="math notranslate nohighlight">\(k\)</span>-vecinos<a class="headerlink" href="#regresion-por-k-vecinos" title="Permalink to this heading">#</a></h2>
@@ -2167,11 +2478,11 @@ dtype: int64
 <ul class="simple">
 <li><p>Para medir la eficacia de nuestros modelos generados, utilizamoslas siguientes métricas:</p>
 <ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">mean_absolute_error</span> <span class="pre">(MAE)</span></code>: medida de los errores entre observaciones emparejadas que expresan el mismo fenómeno;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">mean_squared_error</span> <span class="pre">(root</span> <span class="pre">-</span> <span class="pre">RMSE)</span></code>: la desviación estándar de los residuos (errores de predicción);</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">mean_squared_log_error</span> <span class="pre">(root</span> <span class="pre">-</span> <span class="pre">RMSLE)</span></code>: mide la relación entre lo real y lo predicho;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">r2_score</span> <span class="pre">(R2):</span></code>: coeficiente de determinación, la proporción de la varianza en la variable dependiente que es predecible a partir de la(s) variable(s) independiente(s); y</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">explained_variance_score</span> <span class="pre">(EVS)</span></code>: mide la discrepancia entre un modelo y los datos reales.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mean_absolute_error</span> <span class="pre">(MAE)</span></code>: medida de los errores entre observaciones emparejadas que expresan el mismo fenómeno; <span class="math notranslate nohighlight">\(\text{MAE}=\frac{1}{n}\sum_{j=1}^{n}|y_{j}-\hat{y}_{j}|\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mean_squared_error</span> <span class="pre">(root</span> <span class="pre">-</span> <span class="pre">RMSE)</span></code>: la desviación estándar de los residuos (errores de predicción); <span class="math notranslate nohighlight">\(\text{RMSE}=\sqrt{\frac{1}{n}\sum_{j=1}^{n}(y_{j}-\hat{y}_{j})^{2}}\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mean_squared_log_error</span> <span class="pre">(root</span> <span class="pre">-</span> <span class="pre">RMSLE)</span></code>: mide la relación entre lo real y lo predicho; <span class="math notranslate nohighlight">\(\text{RMSLE}=\sqrt{\frac{1}{n}\sum_{j=1}^{n}(\log(y_{j}+1)-\log(\hat{y}_{j}+1))^{2}}\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">r2_score</span> <span class="pre">(R2):</span></code>: coeficiente de determinación, la proporción de la varianza en la variable dependiente que es predecible a partir de la(s) variable(s) independiente(s); <span class="math notranslate nohighlight">\(R^{2}=1-\sum_{j=1}^{n}(y_{j}-\hat{y}_{j})^{2}/\sum_{j=1}^{n}(y_{j}-\overline{y}_{j})^{2}\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">explained_variance_score</span> <span class="pre">(EVS)</span></code>: mide la discrepancia entre un modelo y los datos reales <span class="math notranslate nohighlight">\(\text{EVS}=1-\text{Var}(y-\hat{y})/\text{Var}(y).\)</span></p></li>
 </ul>
 </li>
 </ul>
@@ -2680,7 +2991,6 @@ memory usage: 25.2+ KB
 <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
     <span class="n">k</span> <span class="o">=</span> <span class="n">k</span><span class="o">+</span><span class="mi">1</span>
     <span class="n">knn</span> <span class="o">=</span> <span class="n">neighbors</span><span class="o">.</span><span class="n">KNeighborsRegressor</span><span class="p">(</span><span class="n">n_neighbors</span> <span class="o">=</span> <span class="n">k</span><span class="p">)</span>
-
     <span class="n">knn</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span> 
     <span class="n">y_pred</span> <span class="o">=</span> <span class="n">knn</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
     <span class="n">rmsle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mean_squared_log_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="n">y_pred</span><span class="p">))</span>
@@ -2989,10 +3299,14 @@ RMSLE Valid: 0.03904370874530979
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis">Análisis</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion">Implementación</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-kneighborsclassifier">Análisis de <code class="docutils literal notranslate"><span class="pre">KNeighborsClassifier</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-breast-cancer-dataset">Aplicación: Breast Cancer Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-kneighborsclassifier">Análisis de <code class="docutils literal notranslate"><span class="pre">KNeighborsClassifier</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-breast-cancer-dataset">Aplicación: Breast Cancer Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-exploratorio-de-datos">Análisis Exploratorio de Datos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multicolinealidad">Multicolinealidad</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#factor-de-inflacion-de-la-varianza-vif">Factor de Inflación de la Varianza (VIF)</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-del-modelo-k-nn">Selección del modelo K-NN</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-por-k-vecinos">Regresión por <span class="math notranslate nohighlight">\(k\)</span>-vecinos</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-kneighborsregressor">Análisis de <code class="docutils literal notranslate"><span class="pre">KNeighborsRegressor</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-world-hydropower-generation">Aplicación: World Hydropower Generation</a></li>

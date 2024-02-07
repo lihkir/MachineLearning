@@ -682,7 +682,8 @@ un ejemplo de este proceso</p></li>
 </div>
 </div>
 <ul class="simple">
-<li><p>De este modo, podemos comprobar que, efectivamente, es una muy <code class="docutils literal notranslate"><span class="pre">mala</span> <span class="pre">idea</span> <span class="pre">utilizar</span> <span class="pre">la</span> <span class="pre">validación</span> <span class="pre">cruzada</span> <span class="pre">triple</span> <span class="pre">(no</span> <span class="pre">estratificada)</span></code> en el conjunto de datos <code class="docutils literal notranslate"><span class="pre">iris</span></code>. Recuerde que cada pliegue corresponde a una de las clases del conjunto de datos <code class="docutils literal notranslate"><span class="pre">iris</span></code>, por lo que no se puede aprender nada. Otra forma de resolver este problema es <code class="docutils literal notranslate"><span class="pre">aleatorizar</span> <span class="pre">los</span> <span class="pre">datos</span> <span class="pre">en</span> <span class="pre">lugar</span> <span class="pre">de</span> <span class="pre">estratificar</span> <span class="pre">los</span> <span class="pre">pliegues</span></code>, para eliminar la ordenación de las muestras por etiquetas. Podemos hacerlo estableciendo el parámetro <code class="docutils literal notranslate"><span class="pre">shuffle</span></code> de <code class="docutils literal notranslate"><span class="pre">KFold</span></code> en <code class="docutils literal notranslate"><span class="pre">True</span></code>. Si aleatorizamos los datos, tenemos también que fijar el <code class="docutils literal notranslate"><span class="pre">random_state</span></code> para conseguir una aleatoriedad reproducible. De lo contrario, cada ejecución de <code class="docutils literal notranslate"><span class="pre">cross_val_score</span></code> daría un resultado diferente, ya que cada vez se utilizaría una división distinta. Aleatorizar los datos antes de dividirlos produce un resultado mucho mejor</p></li>
+<li><p>De este modo, podemos comprobar que, efectivamente, es una muy <code class="docutils literal notranslate"><span class="pre">mala</span> <span class="pre">idea</span> <span class="pre">utilizar</span> <span class="pre">la</span> <span class="pre">validación</span> <span class="pre">cruzada</span> <span class="pre">triple</span> <span class="pre">(no</span> <span class="pre">estratificada)</span></code> en el conjunto de datos <code class="docutils literal notranslate"><span class="pre">iris</span></code>. Recuerde que cada pliegue corresponde a una de las clases del conjunto de datos <code class="docutils literal notranslate"><span class="pre">iris</span></code>, por lo que no se puede aprender nada. Otra forma de resolver este problema es <code class="docutils literal notranslate"><span class="pre">aleatorizar</span> <span class="pre">los</span> <span class="pre">datos</span> <span class="pre">en</span> <span class="pre">lugar</span> <span class="pre">de</span> <span class="pre">estratificar</span> <span class="pre">los</span> <span class="pre">pliegues</span></code>, para eliminar la ordenación de las muestras por etiquetas. Si <code class="docutils literal notranslate"><span class="pre">shuffle</span> <span class="pre">es</span> <span class="pre">True,</span> <span class="pre">primero</span> <span class="pre">se</span> <span class="pre">aleatorizan</span> <span class="pre">todos</span> <span class="pre">los</span> <span class="pre">datos</span> <span class="pre">y</span> <span class="pre">luego</span> <span class="pre">se</span> <span class="pre">dividen</span> <span class="pre">en</span> <span class="pre">los</span> <span class="pre">k-folds</span></code>.</p></li>
+<li><p>Podemos hacerlo estableciendo el parámetro <code class="docutils literal notranslate"><span class="pre">shuffle</span></code> de <code class="docutils literal notranslate"><span class="pre">KFold</span></code> en <code class="docutils literal notranslate"><span class="pre">True</span></code>. Si aleatorizamos los datos, tenemos también que fijar el <code class="docutils literal notranslate"><span class="pre">random_state</span></code> para conseguir una aleatoriedad reproducible. De lo contrario, cada ejecución de <code class="docutils literal notranslate"><span class="pre">cross_val_score</span></code> daría un resultado diferente, ya que cada vez se utilizaría una división distinta. Aleatorizar los datos antes de dividirlos produce un resultado mucho mejor</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -731,7 +732,8 @@ Mean accuracy: 0.97
 <section id="validacion-cruzada-aleatoria-y-dividida">
 <h3>Validación cruzada aleatoria y dividida<a class="headerlink" href="#validacion-cruzada-aleatoria-y-dividida" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Otra estrategia muy flexible para la validación cruzada es <code class="docutils literal notranslate"><span class="pre">la</span> <span class="pre">validación</span> <span class="pre">cruzada</span> <span class="pre">aleatoria</span> <span class="pre">(shuffle-split</span> <span class="pre">cross-validation</span></code>). En la validación cruzada de división aleatoria, cada división (split) está compuesta de tanto <code class="docutils literal notranslate"><span class="pre">train_size</span></code> puntos (disyuntos) para el conjunto de entrenamiento y tantos <code class="docutils literal notranslate"><span class="pre">test_size</span></code> puntos (disjuntos) para el conjunto de prueba, se fijen inicialmente. Esta división se repite <code class="docutils literal notranslate"><span class="pre">n_iter</span></code> veces, de forma aleatoria. <code class="docutils literal notranslate"><span class="pre">Para</span> <span class="pre">la</span> <span class="pre">ejecución</span> <span class="pre">de</span> <span class="pre">cuatro</span> <span class="pre">iteraciones</span> <span class="pre">de</span> <span class="pre">división</span> <span class="pre">de</span> <span class="pre">un</span> <span class="pre">conjunto</span> <span class="pre">de</span> <span class="pre">datos</span> <span class="pre">que</span> <span class="pre">consta</span> <span class="pre">de</span> <span class="pre">10</span> <span class="pre">puntos,</span> <span class="pre">con</span> <span class="pre">un</span> <span class="pre">conjunto</span> <span class="pre">de</span> <span class="pre">entrenamiento</span> <span class="pre">de</span> <span class="pre">5</span> <span class="pre">puntos</span> <span class="pre">y</span> <span class="pre">conjuntos</span> <span class="pre">de</span> <span class="pre">prueba</span> <span class="pre">de</span> <span class="pre">2</span> <span class="pre">puntos</span> <span class="pre">cada</span> <span class="pre">uno</span></code> (puede usar enteros para <code class="docutils literal notranslate"><span class="pre">train_size</span></code> y <code class="docutils literal notranslate"><span class="pre">test_size</span></code> para asignarles sus tamaños absolutos, o números de tipo flotante para usar fracciones del conjunto de datos)</p></li>
+<li><p>Otra estrategia muy flexible para la validación cruzada es <code class="docutils literal notranslate"><span class="pre">la</span> <span class="pre">validación</span> <span class="pre">cruzada</span> <span class="pre">aleatoria</span> <span class="pre">(shuffle-split</span> <span class="pre">cross-validation</span></code>). En la validación cruzada de división aleatoria, cada división (split) está compuesta de tanto <code class="docutils literal notranslate"><span class="pre">train_size</span> <span class="pre">puntos</span> <span class="pre">(disyuntos)</span></code> para el conjunto de entrenamiento y tantos <code class="docutils literal notranslate"><span class="pre">test_size</span> <span class="pre">puntos</span> <span class="pre">(disjuntos)</span></code> para el conjunto de prueba, se fijen inicialmente.</p></li>
+<li><p>Esta división se repite <code class="docutils literal notranslate"><span class="pre">n_iter</span></code> veces, de forma aleatoria. <code class="docutils literal notranslate"><span class="pre">Para</span> <span class="pre">la</span> <span class="pre">ejecución</span> <span class="pre">de</span> <span class="pre">cuatro</span> <span class="pre">iteraciones</span> <span class="pre">de</span> <span class="pre">división</span> <span class="pre">de</span> <span class="pre">un</span> <span class="pre">conjunto</span> <span class="pre">de</span> <span class="pre">datos</span> <span class="pre">que</span> <span class="pre">consta</span> <span class="pre">de</span> <span class="pre">10</span> <span class="pre">puntos,</span> <span class="pre">con</span> <span class="pre">un</span> <span class="pre">conjunto</span> <span class="pre">de</span> <span class="pre">entrenamiento</span> <span class="pre">de</span> <span class="pre">5</span> <span class="pre">puntos</span> <span class="pre">y</span> <span class="pre">conjuntos</span> <span class="pre">de</span> <span class="pre">prueba</span> <span class="pre">de</span> <span class="pre">2</span> <span class="pre">puntos</span> <span class="pre">cada</span> <span class="pre">uno</span></code> (puede usar enteros para <code class="docutils literal notranslate"><span class="pre">train_size</span></code> y <code class="docutils literal notranslate"><span class="pre">test_size</span></code> para asignarles sus tamaños absolutos, o números de tipo flotante para usar fracciones del conjunto de datos)</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -763,8 +765,8 @@ Mean accuracy: 0.97
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Cross-validation scores:
-[0.94666667 0.98666667 0.96       0.93333333 0.93333333 0.97333333
- 0.97333333 0.94666667 0.94666667 0.97333333]
+[0.96       0.97333333 0.96       0.93333333 0.96       0.93333333
+ 0.96       0.97333333 0.94666667 0.97333333]
 </pre></div>
 </div>
 </div>
@@ -775,10 +777,20 @@ Mean accuracy: 0.97
 </section>
 <section id="validacion-cruzada-con-grupos">
 <h3>Validación cruzada con grupos<a class="headerlink" href="#validacion-cruzada-con-grupos" title="Permalink to this heading">#</a></h3>
+<div class="admonition-groupkfold admonition">
+<p class="admonition-title">GroupKFold</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">Otro</span> <span class="pre">escenario</span> <span class="pre">muy</span> <span class="pre">común</span> <span class="pre">para</span> <span class="pre">la</span> <span class="pre">validación</span> <span class="pre">cruzada</span> <span class="pre">es</span> <span class="pre">cuando</span> <span class="pre">hay</span> <span class="pre">grupos</span> <span class="pre">en</span> <span class="pre">los</span> <span class="pre">datos</span> <span class="pre">que</span> <span class="pre">están</span> <span class="pre">muy</span> <span class="pre">relacionados</span></code>. Digamos que quieres construir un sistema para reconocer emociones a partir de imágenes de rostros, y se recopila un conjunto de datos con imágenes de 100 personas, donde cada persona es capturada varias veces, mostrando varias emociones. El objetivo es construir un clasificador que pueda identificar correctamente las emociones de las personas que no están en el conjunto de datos. <code class="docutils literal notranslate"><span class="pre">GroupKFold</span> <span class="pre">es</span> <span class="pre">una</span> <span class="pre">variación</span> <span class="pre">de</span> <span class="pre">k-fold</span> <span class="pre">que</span> <span class="pre">garantiza</span> <span class="pre">que</span> <span class="pre">el</span> <span class="pre">mismo</span> <span class="pre">grupo</span> <span class="pre">no</span> <span class="pre">esté</span> <span class="pre">representado</span> <span class="pre">en</span> <span class="pre">los</span> <span class="pre">conjuntos</span> <span class="pre">de</span> <span class="pre">prueba</span> <span class="pre">y</span> <span class="pre">de</span> <span class="pre">entrenamiento</span></code>.</p></li>
-<li><p>Se podría utilizar la validación cruzada estratificada por defecto para medir el rendimiento de un clasificador aquí. Sin embargo, <code class="docutils literal notranslate"><span class="pre">es</span> <span class="pre">probable</span> <span class="pre">que</span> <span class="pre">haya</span> <span class="pre">imágenes</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">misma</span> <span class="pre">persona</span> <span class="pre">tanto</span> <span class="pre">en</span> <span class="pre">el</span> <span class="pre">conjunto</span> <span class="pre">de</span> <span class="pre">entrenamiento</span> <span class="pre">como</span> <span class="pre">en</span> <span class="pre">el</span> <span class="pre">de</span> <span class="pre">prueba</span></code>. Será mucho más fácil para un clasificador detectar emociones en un rostro que forma parte del conjunto de entrenamiento, en comparación con una cara completamente nueva. <code class="docutils literal notranslate"><span class="pre">Para</span> <span class="pre">evaluar</span> <span class="pre">con</span> <span class="pre">precisión</span> <span class="pre">la</span> <span class="pre">generalización</span> <span class="pre">a</span> <span class="pre">nuevas</span> <span class="pre">caras,</span> <span class="pre">debemos</span> <span class="pre">asegurarnos</span> <span class="pre">de</span> <span class="pre">que</span> <span class="pre">los</span> <span class="pre">conjuntos</span> <span class="pre">de</span> <span class="pre">entrenamiento</span> <span class="pre">y</span> <span class="pre">de</span> <span class="pre">prueba</span> <span class="pre">contengan</span> <span class="pre">imágenes</span> <span class="pre">de</span> <span class="pre">personas</span> <span class="pre">diferentes</span></code>. Para ello, podemos utilizar <code class="docutils literal notranslate"><span class="pre">GroupKFold</span></code>, que toma como argumento una matriz de grupos que podemos utilizar para indicar qué persona aparece en la imagen.</p></li>
-<li><p>La matriz de grupos indica aquí grupos en los datos que no deben dividirse al crear los conjuntos de entrenamiento y de prueba, y no debe confundirse con la etiqueta de clase. <code class="docutils literal notranslate"><span class="pre">Este</span> <span class="pre">ejemplo</span> <span class="pre">de</span> <span class="pre">grupos</span> <span class="pre">en</span> <span class="pre">los</span> <span class="pre">datos</span> <span class="pre">es</span> <span class="pre">común</span> <span class="pre">en</span> <span class="pre">las</span> <span class="pre">aplicaciones</span> <span class="pre">médicas,</span> <span class="pre">en</span> <span class="pre">las</span> <span class="pre">que</span> <span class="pre">se</span> <span class="pre">pueden</span> <span class="pre">tener</span> <span class="pre">multiples</span> <span class="pre">muestras</span> <span class="pre">de</span> <span class="pre">un</span> <span class="pre">mismo</span> <span class="pre">paciente,</span> <span class="pre">pero</span> <span class="pre">se</span> <span class="pre">quiere</span> <span class="pre">generalizar</span> <span class="pre">a</span> <span class="pre">nuevos</span> <span class="pre">pacientes.</span> <span class="pre">Del</span> <span class="pre">mismo</span> <span class="pre">modo,</span> <span class="pre">en</span> <span class="pre">el</span> <span class="pre">reconocimiento</span> <span class="pre">del</span> <span class="pre">habla,</span> <span class="pre">se</span> <span class="pre">pueden</span> <span class="pre">tener</span> <span class="pre">varias</span> <span class="pre">grabaciones</span> <span class="pre">del</span> <span class="pre">mismo</span> <span class="pre">hablante</span> <span class="pre">en</span> <span class="pre">su</span> <span class="pre">conjunto</span> <span class="pre">de</span> <span class="pre">datos,</span> <span class="pre">pero</span> <span class="pre">se</span> <span class="pre">está</span> <span class="pre">interesado</span> <span class="pre">en</span> <span class="pre">reconocer</span> <span class="pre">el</span> <span class="pre">habla</span> <span class="pre">de</span> <span class="pre">nuevos</span> <span class="pre">hablantes</span></code>.</p></li>
+<li><p>Digamos que quieres construir un sistema para <code class="docutils literal notranslate"><span class="pre">reconocer</span> <span class="pre">emociones</span> <span class="pre">a</span> <span class="pre">partir</span> <span class="pre">de</span> <span class="pre">imágenes</span> <span class="pre">de</span> <span class="pre">rostros</span> <span class="pre">(o</span> <span class="pre">imágenes</span> <span class="pre">médicas)</span></code>, y se recopila un conjunto de datos con imágenes de 100 personas, donde cada persona es capturada varias veces, mostrando varias emociones. El objetivo es construir un clasificador que pueda <code class="docutils literal notranslate"><span class="pre">identificar</span> <span class="pre">correctamente</span> <span class="pre">las</span> <span class="pre">emociones</span> <span class="pre">de</span> <span class="pre">las</span> <span class="pre">personas</span> <span class="pre">que</span> <span class="pre">no</span> <span class="pre">están</span> <span class="pre">en</span> <span class="pre">el</span> <span class="pre">conjunto</span> <span class="pre">de</span> <span class="pre">datos</span></code>. <code class="docutils literal notranslate"><span class="pre">GroupKFold</span></code> es una variación de k-fold que <code class="docutils literal notranslate"><span class="pre">garantiza</span> <span class="pre">que</span> <span class="pre">el</span> <span class="pre">mismo</span> <span class="pre">grupo</span> <span class="pre">no</span> <span class="pre">esté</span> <span class="pre">representado</span> <span class="pre">en</span> <span class="pre">los</span> <span class="pre">conjuntos</span> <span class="pre">de</span> <span class="pre">prueba</span> <span class="pre">y</span> <span class="pre">de</span> <span class="pre">entrenamiento</span></code>.</p></li>
+</ul>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Observación</p>
+<ul class="simple">
+<li><p>Se podría utilizar la validación cruzada estratificada por defecto para medir el rendimiento de un clasificador aquí. Sin embargo, <code class="docutils literal notranslate"><span class="pre">es</span> <span class="pre">probable</span> <span class="pre">que</span> <span class="pre">haya</span> <span class="pre">imágenes</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">misma</span> <span class="pre">persona</span> <span class="pre">tanto</span> <span class="pre">en</span> <span class="pre">el</span> <span class="pre">conjunto</span> <span class="pre">de</span> <span class="pre">entrenamiento</span> <span class="pre">como</span> <span class="pre">en</span> <span class="pre">el</span> <span class="pre">de</span> <span class="pre">prueba</span></code>. Será mucho más fácil para un clasificador detectar emociones en un rostro que forma parte del conjunto de entrenamiento, en comparación con una cara completamente nueva.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Para</span> <span class="pre">evaluar</span> <span class="pre">con</span> <span class="pre">precisión</span> <span class="pre">la</span> <span class="pre">generalización</span> <span class="pre">a</span> <span class="pre">nuevas</span> <span class="pre">caras,</span> <span class="pre">debemos</span> <span class="pre">asegurarnos</span> <span class="pre">de</span> <span class="pre">que</span> <span class="pre">los</span> <span class="pre">conjuntos</span> <span class="pre">de</span> <span class="pre">entrenamiento</span> <span class="pre">y</span> <span class="pre">de</span> <span class="pre">prueba</span> <span class="pre">contengan</span> <span class="pre">imágenes</span> <span class="pre">de</span> <span class="pre">personas</span> <span class="pre">diferentes</span></code>. Para ello, podemos utilizar <code class="docutils literal notranslate"><span class="pre">GroupKFold</span></code>, que toma como argumento una matriz de grupos que podemos utilizar para indicar qué persona aparece en la imagen.</p></li>
+</ul>
+</div>
+<ul class="simple">
 <li><p>El siguiente es un ejemplo de uso para exponer el funcionamiento de esta validación cruzada, considerando un <code class="docutils literal notranslate"><span class="pre">conjunto</span> <span class="pre">de</span> <span class="pre">datos</span> <span class="pre">sintético</span></code> con una agrupación dada por la matriz <code class="docutils literal notranslate"><span class="pre">groups</span></code>. El conjunto de datos consta de <code class="docutils literal notranslate"><span class="pre">12</span> <span class="pre">puntos</span> <span class="pre">de</span> <span class="pre">datos</span></code>, y para cada uno de ellos, <code class="docutils literal notranslate"><span class="pre">groups</span></code> especifica a qué grupo pertenece el punto. Los grupos especifican que <code class="docutils literal notranslate"><span class="pre">hay</span> <span class="pre">cuatro</span> <span class="pre">grupos,</span> <span class="pre">y</span> <span class="pre">las</span> <span class="pre">tres</span> <span class="pre">primeras</span> <span class="pre">muestras</span> <span class="pre">pertenecen</span> <span class="pre">al</span> <span class="pre">primer</span> <span class="pre">grupo,</span> <span class="pre">las</span> <span class="pre">siguientes</span> <span class="pre">cuatro</span> <span class="pre">muestras</span> <span class="pre">pertenecen</span> <span class="pre">al</span> <span class="pre">segundo</span> <span class="pre">grupo</span></code>, y así sucesivamente</p></li>
 </ul>
 <div class="cell docutils container">
@@ -844,7 +856,8 @@ LogisticRegression Score:  0.6666666666666666
 </div>
 </div>
 <ul class="simple">
-<li><p>No es necesario que las muestras estén ordenadas por grupos; sólo lo hemos hecho con fines ilustrativos. <code class="docutils literal notranslate"><span class="pre">Como</span> <span class="pre">puede</span> <span class="pre">ver,</span> <span class="pre">para</span> <span class="pre">cada</span> <span class="pre">división,</span> <span class="pre">cada</span> <span class="pre">grupo</span> <span class="pre">está</span> <span class="pre">completamente</span> <span class="pre">en</span> <span class="pre">el</span> <span class="pre">conjunto</span> <span class="pre">de</span> <span class="pre">entrenamiento</span> <span class="pre">o</span> <span class="pre">completamente</span> <span class="pre">en</span> <span class="pre">el</span> <span class="pre">conjunto</span> <span class="pre">de</span> <span class="pre">prueba</span></code>. Ademas, <code class="docutils literal notranslate"><span class="pre">observe</span> <span class="pre">que</span> <span class="pre">los</span> <span class="pre">pliegues</span> <span class="pre">no</span> <span class="pre">tienen</span> <span class="pre">exactamente</span> <span class="pre">el</span> <span class="pre">mismo</span> <span class="pre">tamaño</span> <span class="pre">debido</span> <span class="pre">al</span> <span class="pre">desequilibrio</span> <span class="pre">de</span> <span class="pre">los</span> <span class="pre">datos</span></code>. Hay más estrategias de división para la validación cruzada en <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>, que pueden utilizarse para una variedad aún mayor de casos (ver <a class="reference external" href="https://scikit-learn.org/stable/modules/cross_validation.html">Cross-validation: evaluating estimator performance</a>). Sin embargo, el <code class="docutils literal notranslate"><span class="pre">KFold</span></code> estándar, el <code class="docutils literal notranslate"><span class="pre">StratifiedKFold</span></code> y el <code class="docutils literal notranslate"><span class="pre">GroupKFold</span></code> son, como mucho, los más utilizados. En el siguiente link puede encontrar la documentición relacionada con el uso de cada parámetro de la función <code class="docutils literal notranslate"><span class="pre">sklearn.model_selection.cross_val_score</span></code> (ver <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.cross_val_score.html">Evaluate a score by cross-validation</a>).</p></li>
+<li><p>No es necesario que las muestras estén ordenadas por grupos; sólo lo hemos hecho con fines ilustrativos. <code class="docutils literal notranslate"><span class="pre">Como</span> <span class="pre">puede</span> <span class="pre">ver,</span> <span class="pre">para</span> <span class="pre">cada</span> <span class="pre">división,</span> <span class="pre">cada</span> <span class="pre">grupo</span> <span class="pre">está</span> <span class="pre">completamente</span> <span class="pre">en</span> <span class="pre">el</span> <span class="pre">conjunto</span> <span class="pre">de</span> <span class="pre">entrenamiento</span> <span class="pre">o</span> <span class="pre">completamente</span> <span class="pre">en</span> <span class="pre">el</span> <span class="pre">conjunto</span> <span class="pre">de</span> <span class="pre">prueba</span></code>. Ademas, <code class="docutils literal notranslate"><span class="pre">observe</span> <span class="pre">que</span> <span class="pre">los</span> <span class="pre">pliegues</span> <span class="pre">no</span> <span class="pre">tienen</span> <span class="pre">exactamente</span> <span class="pre">el</span> <span class="pre">mismo</span> <span class="pre">tamaño</span> <span class="pre">debido</span> <span class="pre">al</span> <span class="pre">desequilibrio</span> <span class="pre">de</span> <span class="pre">los</span> <span class="pre">datos</span></code>.</p></li>
+<li><p>Hay más estrategias de división para la validación cruzada en <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>, que pueden utilizarse para una variedad aún mayor de casos (ver <a class="reference external" href="https://scikit-learn.org/stable/modules/cross_validation.html">Cross-validation: evaluating estimator performance</a>). Sin embargo, el <code class="docutils literal notranslate"><span class="pre">KFold</span></code> estándar, el <code class="docutils literal notranslate"><span class="pre">StratifiedKFold</span></code> y el <code class="docutils literal notranslate"><span class="pre">GroupKFold</span></code> son, como mucho, los más utilizados. En el siguiente link puede encontrar la documentición relacionada con el uso de cada parámetro de la función <code class="docutils literal notranslate"><span class="pre">sklearn.model_selection.cross_val_score</span></code> (ver <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.cross_val_score.html">Evaluate a score by cross-validation</a>).</p></li>
 </ul>
 </section>
 </section>
@@ -1069,7 +1082,7 @@ Test set score with best parameters: 0.92
 <figure class="align-center" id="kfold-validation">
 <img alt="_images/kfold_validation.png" src="_images/kfold_validation.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 63 </span><span class="caption-text">Resumen del proceso de selección de parámetros y evaluación de modelos con <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code>.</span><a class="headerlink" href="#kfold-validation" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 64 </span><span class="caption-text">Resumen del proceso de selección de parámetros y evaluación de modelos con <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code>.</span><a class="headerlink" href="#kfold-validation" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <ul class="simple">
@@ -1240,46 +1253,46 @@ SVC(C=10, gamma=0.1)
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.000801</td>
+      <td>0.001200</td>
       <td>0.000401</td>
-      <td>0.000057</td>
-      <td>0.000114</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
       <td>0.001</td>
       <td>0.001</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.000400</td>
-      <td>0.000490</td>
-      <td>0.000154</td>
-      <td>0.000307</td>
+      <td>0.001110</td>
+      <td>0.000219</td>
+      <td>0.000960</td>
+      <td>0.000079</td>
       <td>0.001</td>
       <td>0.01</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.000418</td>
-      <td>0.000420</td>
-      <td>0.000400</td>
-      <td>0.000490</td>
+      <td>0.001088</td>
+      <td>0.000175</td>
+      <td>0.001031</td>
+      <td>0.000062</td>
       <td>0.001</td>
       <td>0.1</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000199</td>
-      <td>0.000399</td>
+      <td>0.001001</td>
+      <td>0.000001</td>
+      <td>0.000200</td>
+      <td>0.000400</td>
       <td>0.001</td>
       <td>1</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.000200</td>
-      <td>0.000400</td>
-      <td>0.001022</td>
-      <td>0.001590</td>
+      <td>0.000928</td>
+      <td>0.000527</td>
+      <td>0.000600</td>
+      <td>0.000490</td>
       <td>0.001</td>
       <td>10</td>
     </tr>
@@ -1434,39 +1447,39 @@ Best cross-validation score: 0.97
   <tbody>
     <tr>
       <th>mean_fit_time</th>
+      <td>0.000913</td>
+      <td>0.001054</td>
       <td>0.001</td>
-      <td>0.0002</td>
-      <td>0.0006</td>
-      <td>0.0006</td>
-      <td>0.0002</td>
-      <td>0.001075</td>
+      <td>0.001099</td>
+      <td>0.001</td>
+      <td>0.001239</td>
     </tr>
     <tr>
       <th>std_fit_time</th>
-      <td>0.000002</td>
-      <td>0.0004</td>
-      <td>0.00049</td>
-      <td>0.00049</td>
-      <td>0.0004</td>
-      <td>0.000149</td>
+      <td>0.000174</td>
+      <td>0.000134</td>
+      <td>0.000633</td>
+      <td>0.000196</td>
+      <td>0.0</td>
+      <td>0.000388</td>
     </tr>
     <tr>
       <th>mean_score_time</th>
-      <td>0.0</td>
-      <td>0.0004</td>
-      <td>0.0004</td>
-      <td>0.0</td>
-      <td>0.0002</td>
-      <td>0.0</td>
+      <td>0.000801</td>
+      <td>0.000714</td>
+      <td>0.0006</td>
+      <td>0.000921</td>
+      <td>0.00049</td>
+      <td>0.000201</td>
     </tr>
     <tr>
       <th>std_score_time</th>
-      <td>0.0</td>
-      <td>0.00049</td>
-      <td>0.00049</td>
-      <td>0.0</td>
       <td>0.0004</td>
-      <td>0.0</td>
+      <td>0.000394</td>
+      <td>0.00049</td>
+      <td>0.000158</td>
+      <td>0.000618</td>
+      <td>0.000401</td>
     </tr>
     <tr>
       <th>param_C</th>
