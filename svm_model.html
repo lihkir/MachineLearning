@@ -463,7 +463,7 @@ f(\boldsymbol{x})=\langle f, \kappa(\cdot, \boldsymbol{x})\rangle,\quad\forall f
 <li><p>Empleando este tipo de mapeo a nuestro problema, calculamos <code class="docutils literal notranslate"><span class="pre">operaciones</span> <span class="pre">de</span> <span class="pre">producto</span> <span class="pre">interno</span> <span class="pre">en</span></code> <span class="math notranslate nohighlight">\(H\)</span> en una manera eficiente, vía <code class="docutils literal notranslate"><span class="pre">evaluación</span> <span class="pre">de</span> <span class="pre">funciones</span> <span class="pre">sobre</span> <span class="pre">el</span> <span class="pre">espacio</span> <span class="pre">de</span> <span class="pre">baja</span> <span class="pre">dimensión</span></code>.</p></li>
 </ul>
 <div class="proof property admonition" id="props_features_map">
-<p class="admonition-title"><span class="caption-number">Property 2 </span></p>
+<p class="admonition-title"><span class="caption-number">Property 1 </span></p>
 <section class="property-content" id="proof-content">
 <p>El mapeo <span class="math notranslate nohighlight">\(\Phi(\cdot)\)</span> satisface las siguientes propiedades</p>
 <ul class="simple">
@@ -511,7 +511,7 @@ f(\boldsymbol{x})=\langle f, \kappa(\cdot, \boldsymbol{x})\rangle,\quad\forall f
 <p>Es decir, el producto interior en el espacio tridimensional, después del mapeo, está dado en términos de una <code class="docutils literal notranslate"><span class="pre">función</span> <span class="pre">de</span> <span class="pre">las</span> <span class="pre">variables</span> <span class="pre">en</span> <span class="pre">el</span> <span class="pre">espacio</span> <span class="pre">original</span></code>.</p>
 </section>
 </div><div class="proof property admonition" id="prop_kcompacto">
-<p class="admonition-title"><span class="caption-number">Property 3 </span></p>
+<p class="admonition-title"><span class="caption-number">Property 2 </span></p>
 <section class="property-content" id="proof-content">
 <p>Sea <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> un conjunto de puntos. Típicamente <span class="math notranslate nohighlight">\(\mathcal{X}\subseteq\mathbb{R}^{l}\)</span> es compacto, esto es, cada sucesión en <span class="math notranslate nohighlight">\(X\)</span> tiene una subsucesión convergente. Sea <span class="math notranslate nohighlight">\(\kappa\)</span> la función</p>
 <div class="math notranslate nohighlight">
@@ -728,7 +728,7 @@ f(\boldsymbol{x})&amp;=\langle f, \kappa(\cdot, \boldsymbol{x}_{m})\rangle\\
 \end{split}\]</div>
 <p>Por lo tanto <code class="docutils literal notranslate"><span class="pre">para</span> <span class="pre">cualquier</span> <span class="pre">selección</span> <span class="pre">de</span></code> <span class="math notranslate nohighlight">\(\theta_{n},~n=1,2,\dots,N\)</span>, <code class="docutils literal notranslate"><span class="pre">la</span> <span class="pre">función</span> <span class="pre">de</span> <span class="pre">coste</span> <span class="pre">es</span> <span class="pre">minimizada</span> <span class="pre">por</span></code> <span class="math notranslate nohighlight">\(f_{\perp}=0\)</span>.</p>
 <div class="proof observation admonition" id="observation-8">
-<p class="admonition-title"><span class="caption-number">Observation 8 </span></p>
+<p class="admonition-title"><span class="caption-number">Observation 7 </span></p>
 <section class="observation-content" id="proof-content">
 <ul>
 <li><p>La importancia de este teorema radica en que, para optimizar <span class="math notranslate nohighlight">\(J(f)\)</span> en <a class="reference internal" href="#equation-eq-min-reg">(33)</a> con respecto a <span class="math notranslate nohighlight">\(f\)</span>, usamos la expresión <span class="math notranslate nohighlight">\(f(\cdot)\)</span> en <a class="reference internal" href="#equation-prop-reproductora">(32)</a> y la minimización es llevada a cabo con respecto a los parámetros <span class="math notranslate nohighlight">\(\theta_{n},~n=1,2,\dots,N\)</span>.</p></li>
@@ -766,7 +766,7 @@ f(\boldsymbol{x})&amp;=\langle f, \kappa(\cdot, \boldsymbol{x}_{m})\rangle\\
 \]</div>
 </section>
 </div><div class="proof observation admonition" id="observation-10">
-<p class="admonition-title"><span class="caption-number">Observation 9 </span></p>
+<p class="admonition-title"><span class="caption-number">Observation 8 </span></p>
 <section class="observation-content" id="proof-content">
 <p>Un ejemplo de <code class="docutils literal notranslate"><span class="pre">aplicación</span> <span class="pre">exitosa</span> <span class="pre">de</span> <span class="pre">este</span> <span class="pre">teorema</span> <span class="pre">fue</span> <span class="pre">demostrada</span> <span class="pre">en</span> <span class="pre">el</span> <span class="pre">contexto</span> <span class="pre">de</span> <span class="pre">procesamiento</span> <span class="pre">de</span> <span class="pre">imágenes</span></code> <span id="id2">[<a class="reference internal" href="biblio.html#id15" title="Pantelis Bouboulis, Konstantinos Slavakis, and Sergios Theodoridis. Adaptive kernel-based image denoising employing semi-parametric regularization. IEEE Transactions on Image Processing, 19(6):1465–1479, 2010.">Bouboulis <em>et al.</em>, 2010</a>]</span>. Un conjunto de funciones no lineales en lugar de <span class="math notranslate nohighlight">\(\psi_{m}\)</span> fueron usadas para <code class="docutils literal notranslate"><span class="pre">detección</span> <span class="pre">de</span> <span class="pre">bordes</span> <span class="pre">en</span> <span class="pre">una</span> <span class="pre">imagen</span> <span class="pre">con</span> <span class="pre">(saltos</span> <span class="pre">no</span> <span class="pre">suaves)</span></code>. La parte de <span class="math notranslate nohighlight">\(f\)</span> que pertenece al espacio <code class="docutils literal notranslate"><span class="pre">RKHS</span></code> es usada para las partes suaves en la imagen.</p>
 </section>
@@ -1072,7 +1072,7 @@ f(\boldsymbol{x})=\sum_{n=1}^{N}\theta_{n}\kappa(\boldsymbol{x}, \boldsymbol{x}_
 <li><p>Para proceder a <code class="docutils literal notranslate"><span class="pre">calcular</span> <span class="pre">los</span> <span class="pre">multiplicadores</span> <span class="pre">asociados</span> <span class="pre">a</span> <span class="pre">la</span> <span class="pre">tarea</span> <span class="pre">de</span> <span class="pre">optimización</span></code>, consideraremos la <strong><code class="docutils literal notranslate"><span class="pre">Representación</span> <span class="pre">dual</span> <span class="pre">de</span> <span class="pre">Walfe</span></code></strong>. En esta representación es considerado el <code class="docutils literal notranslate"><span class="pre">término</span> <span class="pre">de</span> <span class="pre">sesgo</span></code> <span class="math notranslate nohighlight">\(\theta_{0}=0\)</span>. Además, <code class="docutils literal notranslate"><span class="pre">consideraremos</span> <span class="pre">solo</span> <span class="pre">el</span> <span class="pre">uso</span> <span class="pre">de</span> <span class="pre">vectores</span> <span class="pre">de</span> <span class="pre">soportes</span></code>, esto es valores asociados a <span class="math notranslate nohighlight">\(\boldsymbol{\xi}_{n}=\tilde{\boldsymbol{\xi}}_{n}=0\)</span>, para proceder con la <code class="docutils literal notranslate"><span class="pre">representación</span> <span class="pre">dual</span> <span class="pre">respectiva</span></code>. Esta representación es obtenida a partir del Lagrangiano <span class="math notranslate nohighlight">\(L(\boldsymbol{\theta}, \theta_{0}, \tilde{\xi}, \xi, \lambda, \mu)\)</span>.</p></li>
 </ul>
 <div class="proof property admonition" id="walfe_prop">
-<p class="admonition-title"><span class="caption-number">Property 4 </span> (Representación dual de Walfe)</p>
+<p class="admonition-title"><span class="caption-number">Property 3 </span> (Representación dual de Walfe)</p>
 <section class="property-content" id="proof-content">
 <ul>
 <li><p>Un <code class="docutils literal notranslate"><span class="pre">problema</span> <span class="pre">de</span> <span class="pre">programación</span> <span class="pre">convexa</span></code> es equivalente a</p>
