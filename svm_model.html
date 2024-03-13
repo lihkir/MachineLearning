@@ -420,7 +420,7 @@ document.write(`
 <li><p><span class="math notranslate nohighlight">\(\kappa(\cdot, \cdot)\)</span> tiene la llamada <code class="docutils literal notranslate"><span class="pre">propiedad</span> <span class="pre">de</span> <span class="pre">reproducción</span></code>, esto es:</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-prop-reproductora">
-<span class="eqno">(32)<a class="headerlink" href="#equation-prop-reproductora" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(33)<a class="headerlink" href="#equation-prop-reproductora" title="Permalink to this equation">#</a></span>\[
 f(\boldsymbol{x})=\langle f, \kappa(\cdot, \boldsymbol{x})\rangle,\quad\forall f\in H,~\forall \boldsymbol{x}\in\mathcal{X}
 \]</div>
 </section>
@@ -681,7 +681,7 @@ k(x_{N}, x_{1}) &amp; \cdots &amp; k(x_{N}, x_{N})\\
 \]</div>
 <p>una <code class="docutils literal notranslate"><span class="pre">función</span> <span class="pre">de</span> <span class="pre">pérdida</span></code>. Entonces, cada minimizador <span class="math notranslate nohighlight">\(f\in H\)</span>, de una <code class="docutils literal notranslate"><span class="pre">tarea</span> <span class="pre">de</span> <span class="pre">minimización</span> <span class="pre">regularizada</span></code></p>
 <div class="math notranslate nohighlight" id="equation-eq-min-reg">
-<span class="eqno">(33)<a class="headerlink" href="#equation-eq-min-reg" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(34)<a class="headerlink" href="#equation-eq-min-reg" title="Permalink to this equation">#</a></span>\[
 \min_{f\in H} J(f)=\sum_{n=1}^{N}\mathcal{L}(y_{n}, f(\boldsymbol{x}_{n}))+\lambda\Omega(\|f\|^{2})
 \]</div>
 <p>admite una <code class="docutils literal notranslate"><span class="pre">representación</span></code> de la forma</p>
@@ -704,7 +704,7 @@ A=\text{span}\{\kappa(\cdot, \boldsymbol{x}_{1}), \kappa(\cdot, \boldsymbol{x}_{
 f(\cdot)=\sum_{n=1}^{N}\theta_{n}\kappa(\cdot, \boldsymbol{x}_{n})+f_{\perp}
 \]</div>
 <p>donde <span class="math notranslate nohighlight">\(f_{\perp}\)</span> es la parte de <span class="math notranslate nohighlight">\(f\)</span> que es ortogonal a <span class="math notranslate nohighlight">\(A\)</span>.</p>
-<p>Usando la <code class="docutils literal notranslate"><span class="pre">propiedad</span> <span class="pre">reproductora</span></code> <a class="reference internal" href="#equation-prop-reproductora">(32)</a> se tiene que <span class="math notranslate nohighlight">\(\forall f\in H\)</span></p>
+<p>Usando la <code class="docutils literal notranslate"><span class="pre">propiedad</span> <span class="pre">reproductora</span></code> <a class="reference internal" href="#equation-prop-reproductora">(33)</a> se tiene que <span class="math notranslate nohighlight">\(\forall f\in H\)</span></p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{align}
@@ -715,7 +715,7 @@ f(\boldsymbol{x})&amp;=\langle f, \kappa(\cdot, \boldsymbol{x}_{m})\rangle\\
 &amp;=\sum_{n=1}^{N}\theta_{n}\kappa(\boldsymbol{x}_{m}, \boldsymbol{x}_{n}).
 \end{align}
 \end{split}\]</div>
-<p>Nótese que <code class="docutils literal notranslate"><span class="pre">la</span> <span class="pre">propiedad</span> <span class="pre">de</span> <span class="pre">reproducción</span> <span class="pre">garantiza</span> <span class="pre">que</span> <span class="pre">en</span> <span class="pre">los</span> <span class="pre">puntos</span> <span class="pre">de</span> <span class="pre">entrenamiento</span> <span class="pre">el</span> <span class="pre">valor</span> <span class="pre">de</span></code> <span class="math notranslate nohighlight">\(f\)</span> <code class="docutils literal notranslate"><span class="pre">no</span> <span class="pre">depende</span> <span class="pre">de</span></code> <span class="math notranslate nohighlight">\(f_{\perp}\)</span>, y por lo tanto tampoco el primer término de <span class="math notranslate nohighlight">\(\min_{f\in H}J(f)\)</span> en <a class="reference internal" href="#equation-eq-min-reg">(33)</a>.</p>
+<p>Nótese que <code class="docutils literal notranslate"><span class="pre">la</span> <span class="pre">propiedad</span> <span class="pre">de</span> <span class="pre">reproducción</span> <span class="pre">garantiza</span> <span class="pre">que</span> <span class="pre">en</span> <span class="pre">los</span> <span class="pre">puntos</span> <span class="pre">de</span> <span class="pre">entrenamiento</span> <span class="pre">el</span> <span class="pre">valor</span> <span class="pre">de</span></code> <span class="math notranslate nohighlight">\(f\)</span> <code class="docutils literal notranslate"><span class="pre">no</span> <span class="pre">depende</span> <span class="pre">de</span></code> <span class="math notranslate nohighlight">\(f_{\perp}\)</span>, y por lo tanto tampoco el primer término de <span class="math notranslate nohighlight">\(\min_{f\in H}J(f)\)</span> en <a class="reference internal" href="#equation-eq-min-reg">(34)</a>.</p>
 <p>Además, para todo <span class="math notranslate nohighlight">\(f_{\perp}\)</span> tenemos que:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -731,7 +731,7 @@ f(\boldsymbol{x})&amp;=\langle f, \kappa(\cdot, \boldsymbol{x}_{m})\rangle\\
 <p class="admonition-title"><span class="caption-number">Observation 7 </span></p>
 <section class="observation-content" id="proof-content">
 <ul>
-<li><p>La importancia de este teorema radica en que, para optimizar <span class="math notranslate nohighlight">\(J(f)\)</span> en <a class="reference internal" href="#equation-eq-min-reg">(33)</a> con respecto a <span class="math notranslate nohighlight">\(f\)</span>, usamos la expresión <span class="math notranslate nohighlight">\(f(\cdot)\)</span> en <a class="reference internal" href="#equation-prop-reproductora">(32)</a> y la minimización es llevada a cabo con respecto a los parámetros <span class="math notranslate nohighlight">\(\theta_{n},~n=1,2,\dots,N\)</span>.</p></li>
+<li><p>La importancia de este teorema radica en que, para optimizar <span class="math notranslate nohighlight">\(J(f)\)</span> en <a class="reference internal" href="#equation-eq-min-reg">(34)</a> con respecto a <span class="math notranslate nohighlight">\(f\)</span>, usamos la expresión <span class="math notranslate nohighlight">\(f(\cdot)\)</span> en <a class="reference internal" href="#equation-prop-reproductora">(33)</a> y la minimización es llevada a cabo con respecto a los parámetros <span class="math notranslate nohighlight">\(\theta_{n},~n=1,2,\dots,N\)</span>.</p></li>
 <li><p>En casos que la regularización no es necesaria, usualmente un término de sesgo es agregado y se supone que la <code class="docutils literal notranslate"><span class="pre">función</span> <span class="pre">a</span> <span class="pre">minimizar</span> <span class="pre">admite</span> <span class="pre">la</span> <span class="pre">representación</span></code></p>
 <div class="math notranslate nohighlight">
 \[
@@ -798,10 +798,10 @@ f(\boldsymbol{x})=\sum_{n=1}^{N}\theta_{n}\kappa(\boldsymbol{x}, \boldsymbol{x}_
 <ul>
 <li><p>De acuerdo a la <code class="docutils literal notranslate"><span class="pre">regresión</span> <span class="pre">ridge</span> <span class="pre">con</span> <span class="pre">kernel</span></code>, los coeficientes desconocidos son estimados por medio de la siguiente tarea</p>
 <div class="math notranslate nohighlight" id="equation-eq-task-ridge-reg">
-<span class="eqno">(34)<a class="headerlink" href="#equation-eq-task-ridge-reg" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(35)<a class="headerlink" href="#equation-eq-task-ridge-reg" title="Permalink to this equation">#</a></span>\[
     \hat{\theta}=\text{argmin}_{\theta} J(\theta),\quad J(\theta)=\sum_{n=1}^{N}\left(y_{n}-\sum_{m=1}^{N}\theta_{m}\kappa(\boldsymbol{x}_{n}, \boldsymbol{x}_{m})\right)^{2}+C\langle f, f\rangle,
     \]</div>
-<p>donde <span class="math notranslate nohighlight">\(C\)</span> es el <code class="docutils literal notranslate"><span class="pre">parámetro</span> <span class="pre">de</span> <span class="pre">regularización</span></code>. La Ecuación <a class="reference internal" href="#equation-eq-task-ridge-reg">(34)</a> puede reescribirse como</p>
+<p>donde <span class="math notranslate nohighlight">\(C\)</span> es el <code class="docutils literal notranslate"><span class="pre">parámetro</span> <span class="pre">de</span> <span class="pre">regularización</span></code>. La Ecuación <a class="reference internal" href="#equation-eq-task-ridge-reg">(35)</a> puede reescribirse como</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
     \\[1mm]
@@ -866,7 +866,7 @@ f(\boldsymbol{x})=\sum_{n=1}^{N}\theta_{n}\kappa(\boldsymbol{x}, \boldsymbol{x}_
 <ul>
 <li><p>Una <code class="docutils literal notranslate"><span class="pre">función</span> <span class="pre">de</span> <span class="pre">pérdida</span> <span class="pre">que</span> <span class="pre">se</span> <span class="pre">aproxima</span> <span class="pre">a</span> <span class="pre">la</span> <span class="pre">de</span> <span class="pre">Huber</span></code> y tiene excelentes propiedades computacionales es llamada <code class="docutils literal notranslate"><span class="pre">función</span> <span class="pre">de</span> <span class="pre">pérdida</span> <span class="pre">lineal</span></code> <span class="math notranslate nohighlight">\(\varepsilon\)</span>-<code class="docutils literal notranslate"><span class="pre">insensible</span></code> y está dada por</p>
 <div class="math notranslate nohighlight" id="equation-eq-lin-ins">
-<span class="eqno">(35)<a class="headerlink" href="#equation-eq-lin-ins" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(36)<a class="headerlink" href="#equation-eq-lin-ins" title="Permalink to this equation">#</a></span>\[\begin{split}
     \\[1mm]
     \mathcal{L}(y, f(\boldsymbol{x}))=
     \begin{cases}
@@ -897,7 +897,7 @@ f(\boldsymbol{x})=\sum_{n=1}^{N}\theta_{n}\kappa(\boldsymbol{x}, \boldsymbol{x}_
 <section id="regresion-optima-lineal-varepsilon-insensible">
 <h2>Regresión óptima lineal <span class="math notranslate nohighlight">\(\varepsilon\)</span>-insensible<a class="headerlink" href="#regresion-optima-lineal-varepsilon-insensible" title="Permalink to this heading">#</a></h2>
 <ul>
-<li><p>Usaremos la <code class="docutils literal notranslate"><span class="pre">función</span> <span class="pre">de</span> <span class="pre">pérdida</span> <span class="pre">lineal</span></code> <span class="math notranslate nohighlight">\(\varepsilon\)</span>-insensible <a class="reference internal" href="#equation-eq-lin-ins">(35)</a> para <code class="docutils literal notranslate"><span class="pre">cuantificar</span> <span class="pre">el</span> <span class="pre">error</span> <span class="pre">de</span> <span class="pre">desajuste</span> <span class="pre">del</span> <span class="pre">modelo</span></code>.Trataremos la tarea de regresión en</p>
+<li><p>Usaremos la <code class="docutils literal notranslate"><span class="pre">función</span> <span class="pre">de</span> <span class="pre">pérdida</span> <span class="pre">lineal</span></code> <span class="math notranslate nohighlight">\(\varepsilon\)</span>-insensible <a class="reference internal" href="#equation-eq-lin-ins">(36)</a> para <code class="docutils literal notranslate"><span class="pre">cuantificar</span> <span class="pre">el</span> <span class="pre">error</span> <span class="pre">de</span> <span class="pre">desajuste</span> <span class="pre">del</span> <span class="pre">modelo</span></code>.Trataremos la tarea de regresión en</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
     \\[1mm]
@@ -912,13 +912,13 @@ f(\boldsymbol{x})=\sum_{n=1}^{N}\theta_{n}\kappa(\boldsymbol{x}, \boldsymbol{x}_
 </li>
 <li><p>Introducimos ahora <code class="docutils literal notranslate"><span class="pre">dos</span> <span class="pre">conjuntos</span> <span class="pre">de</span> <span class="pre">variables</span> <span class="pre">auxiliares</span></code></p>
 <div class="math notranslate nohighlight" id="equation-eq-restric-1">
-<span class="eqno">(36)<a class="headerlink" href="#equation-eq-restric-1" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(37)<a class="headerlink" href="#equation-eq-restric-1" title="Permalink to this equation">#</a></span>\[\begin{split}
     \\[1mm]
     \text{Si}~ y_{n}-\boldsymbol{\theta}^{T}\boldsymbol{x}_{n}-\theta_{0}\geq\varepsilon,~\text{definimos}~\tilde{\xi}_{n}~\text{tal que},\quad y_{n}-\boldsymbol{\theta}^{T}\boldsymbol{x}_{n}-\theta_{0}\leq\varepsilon+\tilde{\xi}_{n}.
     \end{split}\]</div>
 <p>Nótese que <code class="docutils literal notranslate"><span class="pre">idealmente,</span> <span class="pre">deseamos</span> <span class="pre">seleccionar</span></code> <span class="math notranslate nohighlight">\(\boldsymbol{\theta}, \theta_{0}\)</span> <code class="docutils literal notranslate"><span class="pre">tales</span> <span class="pre">que</span></code> <span class="math notranslate nohighlight">\(\tilde{\xi}_{n}=0\)</span>, dado que este valor entregaría la <code class="docutils literal notranslate"><span class="pre">contribución</span> <span class="pre">del</span> <span class="pre">respectivo</span> <span class="pre">término</span> <span class="pre">en</span> <span class="pre">la</span> <span class="pre">función</span> <span class="pre">de</span> <span class="pre">pérdida</span> <span class="pre">igual</span> <span class="pre">a</span> <span class="pre">cero</span></code>, pues <span class="math notranslate nohighlight">\(\mathcal{L}(y, f(\boldsymbol{x}))=0\)</span> si <span class="math notranslate nohighlight">\(|y-f(\boldsymbol{x})|\leq\varepsilon\)</span>. Análogamente,</p>
 <div class="math notranslate nohighlight" id="equation-eq-restric-2">
-<span class="eqno">(37)<a class="headerlink" href="#equation-eq-restric-2" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(38)<a class="headerlink" href="#equation-eq-restric-2" title="Permalink to this equation">#</a></span>\[\begin{split}
     \\[1mm]
     \text{Si}~ y_{n}-\boldsymbol{\theta}^{T}\boldsymbol{x}_{n}-\theta_{0}\leq-\varepsilon,~\text{definimos}~\xi_{n}~\text{tal que},\quad\boldsymbol{\theta}^{T}\boldsymbol{x}_{n}+\theta_{0}-y_{n}\leq\varepsilon+\xi_{n}.
     \end{split}\]</div>
@@ -980,7 +980,7 @@ f(\boldsymbol{x})=\sum_{n=1}^{N}\theta_{n}\kappa(\boldsymbol{x}, \boldsymbol{x}_
 <ul>
 <li><p>El término de sesgo <span class="math notranslate nohighlight">\(\hat{\theta}_{0}\)</span> <code class="docutils literal notranslate"><span class="pre">puede</span> <span class="pre">ser</span> <span class="pre">obtenido</span> <span class="pre">a</span> <span class="pre">partir</span> <span class="pre">de</span> <span class="pre">las</span> <span class="pre">ecuaciones</span></code></p>
 <div class="math notranslate nohighlight" id="equation-eq-sistem-bias">
-<span class="eqno">(38)<a class="headerlink" href="#equation-eq-sistem-bias" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(39)<a class="headerlink" href="#equation-eq-sistem-bias" title="Permalink to this equation">#</a></span>\[\begin{split}
     \begin{align}
     y_{n}-\boldsymbol{\theta}^{T}\boldsymbol{x}_{n}-\theta_{0}&amp;=\varepsilon,\\[2mm]
     \boldsymbol{\theta}^{T}\boldsymbol{x}_{n}+\theta_{0}-y_{n}&amp;=\varepsilon,
@@ -991,7 +991,7 @@ f(\boldsymbol{x})=\sum_{n=1}^{N}\theta_{n}\kappa(\boldsymbol{x}, \boldsymbol{x}_
 \[
     \tilde{\lambda}_{n}&gt;0,~(\lambda_{n}&gt;0)\quad\text{y}\quad\tilde{\xi}_{n}=0,~(\xi_{n}=0).
     \]</div>
-<p>En la practica, <span class="math notranslate nohighlight">\(\hat{\theta}_{0}\)</span> <code class="docutils literal notranslate"><span class="pre">es</span> <span class="pre">obtenido</span> <span class="pre">a</span> <span class="pre">partir</span> <span class="pre">del</span> <span class="pre">promedio</span> <span class="pre">de</span> <span class="pre">todas</span> <span class="pre">las</span> <span class="pre">ecuaciones</span> <span class="pre">en</span></code> <a class="reference internal" href="#equation-eq-sistem-bias">(38)</a>.</p>
+<p>En la practica, <span class="math notranslate nohighlight">\(\hat{\theta}_{0}\)</span> <code class="docutils literal notranslate"><span class="pre">es</span> <span class="pre">obtenido</span> <span class="pre">a</span> <span class="pre">partir</span> <span class="pre">del</span> <span class="pre">promedio</span> <span class="pre">de</span> <span class="pre">todas</span> <span class="pre">las</span> <span class="pre">ecuaciones</span> <span class="pre">en</span></code> <a class="reference internal" href="#equation-eq-sistem-bias">(39)</a>.</p>
 </li>
 </ul>
 <ul>
@@ -1025,7 +1025,7 @@ f(\boldsymbol{x})=\sum_{n=1}^{N}\theta_{n}\kappa(\boldsymbol{x}, \boldsymbol{x}_
     \end{split}\]</div>
 <p>con respecto al <code class="docutils literal notranslate"><span class="pre">Lagrangiano</span></code></p>
 <div class="math notranslate nohighlight" id="equation-eq-lagrangiano-general">
-<span class="eqno">(39)<a class="headerlink" href="#equation-eq-lagrangiano-general" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(40)<a class="headerlink" href="#equation-eq-lagrangiano-general" title="Permalink to this equation">#</a></span>\[\begin{split}
     \begin{align*}
     L(\boldsymbol{\theta}, \theta_{0}, \tilde{\xi}, \xi, \lambda, \mu)&amp;=\frac{1}{2}\|\boldsymbol{\theta}\|^{2}+C\left(\sum_{n=1}^{N}{\xi}_{n}+\sum_{n=1}^{N}\tilde{\xi}_{n}\right)\\
     &amp;+\sum_{n=1}^{N}\tilde{\lambda}_{n}(y_{n}-\boldsymbol{\theta}^{T}\boldsymbol{x}_{n}-\theta_{0}-\varepsilon-\tilde{\xi}_{n})\\
@@ -1056,7 +1056,7 @@ f(\boldsymbol{x})=\sum_{n=1}^{N}\theta_{n}\kappa(\boldsymbol{x}, \boldsymbol{x}_
 </li>
 </ul>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">Derivando</span> <span class="pre">el</span> <span class="pre">Lagrangiano</span></code> <a class="reference internal" href="#equation-eq-lagrangiano-general">(39)</a> tenemos los resultados</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Derivando</span> <span class="pre">el</span> <span class="pre">Lagrangiano</span></code> <a class="reference internal" href="#equation-eq-lagrangiano-general">(40)</a> tenemos los resultados</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -1114,7 +1114,7 @@ f(\boldsymbol{x})=\sum_{n=1}^{N}\theta_{n}\kappa(\boldsymbol{x}, \boldsymbol{x}_
 </ul>
 </section>
 </div><ul class="simple">
-<li><p>Nótese en la propiedad anterior que, <span class="math notranslate nohighlight">\(\partial_{\boldsymbol{\theta}}(\frac{1}{2}\boldsymbol{\theta}^{T}\boldsymbol{\theta}-\lambda^{T}(A\boldsymbol{\theta}-\boldsymbol{b}))=\boldsymbol{\theta}-A^{T}\lambda\)</span>. Consideremos ahora la <code class="docutils literal notranslate"><span class="pre">representación</span> <span class="pre">dual</span> <span class="pre">de</span> <span class="pre">Wolfe</span></code> asociada a la tarea de optimización <a class="reference internal" href="#equation-eq-lagrangiano-general">(39)</a>. <code class="docutils literal notranslate"><span class="pre">Con</span> <span class="pre">este</span> <span class="pre">fin,</span> <span class="pre">consideremos</span></code> <span class="math notranslate nohighlight">\(A\boldsymbol{\theta}=\boldsymbol{\theta}\boldsymbol{x_{n}}+\theta_{0}\)</span> y <span class="math notranslate nohighlight">\(b=y_{n}-\varepsilon\)</span>, con <span class="math notranslate nohighlight">\(\tilde{\xi}_{n}, \xi_{n}=0\)</span>, con base en el estimador obtenido para <span class="math notranslate nohighlight">\(\hat{\boldsymbol{\theta}}\)</span>, <code class="docutils literal notranslate"><span class="pre">la</span> <span class="pre">tarea</span> <span class="pre">de</span> <span class="pre">optimización</span> <span class="pre">se</span> <span class="pre">convierte</span> <span class="pre">en</span> <span class="pre">la</span> <span class="pre">siguiente</span> <span class="pre">representación</span> <span class="pre">dual</span> <span class="pre">de</span> <span class="pre">Walfe</span></code></p></li>
+<li><p>Nótese en la propiedad anterior que, <span class="math notranslate nohighlight">\(\partial_{\boldsymbol{\theta}}(\frac{1}{2}\boldsymbol{\theta}^{T}\boldsymbol{\theta}-\lambda^{T}(A\boldsymbol{\theta}-\boldsymbol{b}))=\boldsymbol{\theta}-A^{T}\lambda\)</span>. Consideremos ahora la <code class="docutils literal notranslate"><span class="pre">representación</span> <span class="pre">dual</span> <span class="pre">de</span> <span class="pre">Wolfe</span></code> asociada a la tarea de optimización <a class="reference internal" href="#equation-eq-lagrangiano-general">(40)</a>. <code class="docutils literal notranslate"><span class="pre">Con</span> <span class="pre">este</span> <span class="pre">fin,</span> <span class="pre">consideremos</span></code> <span class="math notranslate nohighlight">\(A\boldsymbol{\theta}=\boldsymbol{\theta}\boldsymbol{x_{n}}+\theta_{0}\)</span> y <span class="math notranslate nohighlight">\(b=y_{n}-\varepsilon\)</span>, con <span class="math notranslate nohighlight">\(\tilde{\xi}_{n}, \xi_{n}=0\)</span>, con base en el estimador obtenido para <span class="math notranslate nohighlight">\(\hat{\boldsymbol{\theta}}\)</span>, <code class="docutils literal notranslate"><span class="pre">la</span> <span class="pre">tarea</span> <span class="pre">de</span> <span class="pre">optimización</span> <span class="pre">se</span> <span class="pre">convierte</span> <span class="pre">en</span> <span class="pre">la</span> <span class="pre">siguiente</span> <span class="pre">representación</span> <span class="pre">dual</span> <span class="pre">de</span> <span class="pre">Walfe</span></code></p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -1147,7 +1147,7 @@ f(\boldsymbol{x})=\sum_{n=1}^{N}\theta_{n}\kappa(\boldsymbol{x}, \boldsymbol{x}_
 <ul>
 <li><p>En esta sección abordaremos la <code class="docutils literal notranslate"><span class="pre">regresión</span> <span class="pre">kernel</span> <span class="pre">ridge</span> <span class="pre">vía</span> <span class="pre">su</span> <span class="pre">representación</span> <span class="pre">dual</span></code>. La regresión ridge en su <code class="docutils literal notranslate"><span class="pre">representación</span> <span class="pre">primal</span></code> puede ser proyectada como:</p>
 <div class="math notranslate nohighlight" id="equation-eq-kernel-ridge-reg">
-<span class="eqno">(40)<a class="headerlink" href="#equation-eq-kernel-ridge-reg" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(41)<a class="headerlink" href="#equation-eq-kernel-ridge-reg" title="Permalink to this equation">#</a></span>\[\begin{split}
     \begin{align*}
     \text{minimizar con respecto a}\quad\boldsymbol{\theta}, \boldsymbol{\xi}:&amp;\quad J(\boldsymbol{\theta}, \boldsymbol{\xi})=\sum_{n=1}^{N}\xi_{n}^{2}+C\|\boldsymbol{\theta}\|^{2}\\
     \text{sujeto a}:&amp;\quad y_{n}-\boldsymbol{\theta}^{T}\boldsymbol{x}_{n}=\boldsymbol{\xi}_{n},\quad n=1,2,\dots,N,
@@ -1171,7 +1171,7 @@ f(\boldsymbol{x})=\sum_{n=1}^{N}\theta_{n}\kappa(\boldsymbol{x}, \boldsymbol{x}_
 \end{align*}
 \end{split}\]</div>
 <ul class="simple">
-<li><p>Para obtener los multiplicadores de Lagrange, consideramos la siguiente <code class="docutils literal notranslate"><span class="pre">formulación</span> <span class="pre">dual,</span> <span class="pre">obtenida</span> <span class="pre">al</span> <span class="pre">reemplazar</span> <span class="pre">los</span> <span class="pre">estimadores</span></code> <span class="math notranslate nohighlight">\(\hat{\boldsymbol{\theta}}\)</span> y <span class="math notranslate nohighlight">\(\xi_{n}\)</span> en la tarea de optimización <a class="reference internal" href="#equation-eq-kernel-ridge-reg">(40)</a></p></li>
+<li><p>Para obtener los multiplicadores de Lagrange, consideramos la siguiente <code class="docutils literal notranslate"><span class="pre">formulación</span> <span class="pre">dual,</span> <span class="pre">obtenida</span> <span class="pre">al</span> <span class="pre">reemplazar</span> <span class="pre">los</span> <span class="pre">estimadores</span></code> <span class="math notranslate nohighlight">\(\hat{\boldsymbol{\theta}}\)</span> y <span class="math notranslate nohighlight">\(\xi_{n}\)</span> en la tarea de optimización <a class="reference internal" href="#equation-eq-kernel-ridge-reg">(41)</a></p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -1260,7 +1260,7 @@ J(f)=\sum_{n=1}^{N}\mathcal{L}(y_{n}, f(\boldsymbol{x}_{n})),\quad\text{donde}\q
 <li><p>El principal problema de esta función de pérdida es que <code class="docutils literal notranslate"><span class="pre">su</span> <span class="pre">optimización</span> <span class="pre">resulta</span> <span class="pre">ser</span> <span class="pre">una</span> <span class="pre">tarea</span> <span class="pre">compleja,</span> <span class="pre">debido</span> <span class="pre">a</span> <span class="pre">que</span> <span class="pre">es</span> <span class="pre">discontinua</span></code>. Se han utilizado alternativas para esta función de pérdida, con el fin de solventar este problema. En esta sección centraremos nuestra atención en la <strong><code class="docutils literal notranslate"><span class="pre">función</span> <span class="pre">de</span> <span class="pre">pérdida</span> <span class="pre">hinge</span></code></strong> definida como</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-eq-loss-hinge">
-<span class="eqno">(41)<a class="headerlink" href="#equation-eq-loss-hinge" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(42)<a class="headerlink" href="#equation-eq-loss-hinge" title="Permalink to this equation">#</a></span>\[
 \mathcal{L}(y, f(x))=\max(0, \rho-yf(x))
 \]</div>
 <ul class="simple">
@@ -1284,11 +1284,11 @@ J(f)=\sum_{n=1}^{N}\mathcal{L}(y_{n}, f(\boldsymbol{x}_{n})),\quad\text{donde}\q
 <li><p>La tarea de diseñar un clasificador lineal, ahora es equivalente a minimizar la función de costo</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-eq-cost-linear-class">
-<span class="eqno">(42)<a class="headerlink" href="#equation-eq-cost-linear-class" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(43)<a class="headerlink" href="#equation-eq-cost-linear-class" title="Permalink to this equation">#</a></span>\[
 J(\boldsymbol{\theta}, \theta_{0})=\frac{1}{2}\|\boldsymbol{\theta}\|^{2}+C\sum_{n=1}^{N}\mathcal{L}_{p}(y_{n}, \boldsymbol{\theta}^{T}\boldsymbol{x}_{n}+\theta_{0})
 \]</div>
 <ul class="simple">
-<li><p>Alternativamente,  empleando <code class="docutils literal notranslate"><span class="pre">variables</span> <span class="pre">de</span> <span class="pre">relajación</span> <span class="pre">(slack)</span></code> y <code class="docutils literal notranslate"><span class="pre">siguiendo</span> <span class="pre">un</span> <span class="pre">razonamiento</span> <span class="pre">similar</span> <span class="pre">a</span> <span class="pre">la</span> <span class="pre">regresión</span> <span class="pre">de</span> <span class="pre">vectores</span> <span class="pre">de</span> <span class="pre">soporte</span> <span class="pre">(SVR)</span></code>, minimizar <a class="reference internal" href="#equation-eq-cost-linear-class">(42)</a> es equivalente a:</p></li>
+<li><p>Alternativamente,  empleando <code class="docutils literal notranslate"><span class="pre">variables</span> <span class="pre">de</span> <span class="pre">relajación</span> <span class="pre">(slack)</span></code> y <code class="docutils literal notranslate"><span class="pre">siguiendo</span> <span class="pre">un</span> <span class="pre">razonamiento</span> <span class="pre">similar</span> <span class="pre">a</span> <span class="pre">la</span> <span class="pre">regresión</span> <span class="pre">de</span> <span class="pre">vectores</span> <span class="pre">de</span> <span class="pre">soporte</span> <span class="pre">(SVR)</span></code>, minimizar <a class="reference internal" href="#equation-eq-cost-linear-class">(43)</a> es equivalente a:</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -1313,7 +1313,7 @@ J(\boldsymbol{\theta}, \theta_{0})=\frac{1}{2}\|\boldsymbol{\theta}\|^{2}+C\sum_
     \end{split}\]</div>
 <p>el cual garantiza que <span class="math notranslate nohighlight">\(\xi_{n}=0,~n=1,2,\dots,N\)</span>. Por lo tanto, para <code class="docutils literal notranslate"><span class="pre">clases</span> <span class="pre">linealmente</span> <span class="pre">separables,</span> <span class="pre">la</span> <span class="pre">tarea</span> <span class="pre">de</span> <span class="pre">optimización</span> <span class="pre">previa</span> <span class="pre">es</span> <span class="pre">equivalente</span> <span class="pre">a</span></code></p>
 <div class="math notranslate nohighlight" id="equation-eq-opt-task-linear-class-sep">
-<span class="eqno">(43)<a class="headerlink" href="#equation-eq-opt-task-linear-class-sep" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(44)<a class="headerlink" href="#equation-eq-opt-task-linear-class-sep" title="Permalink to this equation">#</a></span>\[\begin{split}
     \\[1mm]
     \begin{align*}
     \text{minimizar con respecto a}~\theta:&amp;\quad\frac{1}{2}\|\boldsymbol{\theta}\|^{2}\\
@@ -1369,7 +1369,7 @@ J(\boldsymbol{\theta}, \theta_{0})=\frac{1}{2}\|\boldsymbol{\theta}\|^{2}+C\sum_
 \[
     \boldsymbol{\theta}^{T}\boldsymbol{x}_{n}+\theta_{0}\geq 1,~\boldsymbol{x}_{n}\in\omega_{1}~\text{y}~\boldsymbol{\theta}^{T}\boldsymbol{x}_{n}+\theta_{0}\leq-1,~\boldsymbol{x}_{n}\in\omega_{2}
     \]</div>
-<p>Por lo tanto la tarea de optimización <a class="reference internal" href="#equation-eq-opt-task-linear-class-sep">(43)</a> <code class="docutils literal notranslate"><span class="pre">calcula</span> <span class="pre">el</span> <span class="pre">clasificador</span> <span class="pre">lineal</span> <span class="pre">que</span> <span class="pre">maximiza</span> <span class="pre">el</span> <span class="pre">margen</span> <span class="pre">sujeto</span> <span class="pre">a</span> <span class="pre">las</span> <span class="pre">respectivas</span> <span class="pre">restricciones</span></code>.</p>
+<p>Por lo tanto la tarea de optimización <a class="reference internal" href="#equation-eq-opt-task-linear-class-sep">(44)</a> <code class="docutils literal notranslate"><span class="pre">calcula</span> <span class="pre">el</span> <span class="pre">clasificador</span> <span class="pre">lineal</span> <span class="pre">que</span> <span class="pre">maximiza</span> <span class="pre">el</span> <span class="pre">margen</span> <span class="pre">sujeto</span> <span class="pre">a</span> <span class="pre">las</span> <span class="pre">respectivas</span> <span class="pre">restricciones</span></code>.</p>
 </li>
 </ul>
 <p><strong><code class="docutils literal notranslate"><span class="pre">Solución</span></code></strong></p>
@@ -1402,10 +1402,10 @@ J(\boldsymbol{\theta}, \theta_{0})=\frac{1}{2}\|\boldsymbol{\theta}\|^{2}+C\sum_
     \]</div>
 <p>la cual <code class="docutils literal notranslate"><span class="pre">para</span> <span class="pre">el</span> <span class="pre">caso</span> <span class="pre">RKHS</span> <span class="pre">se</span> <span class="pre">convierte</span></code> en:</p>
 <div class="math notranslate nohighlight" id="equation-mean-sol-fortheta0">
-<span class="eqno">(44)<a class="headerlink" href="#equation-mean-sol-fortheta0" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(45)<a class="headerlink" href="#equation-mean-sol-fortheta0" title="Permalink to this equation">#</a></span>\[
     y_{n}\left(\sum_{m=1}^{N_{s}}\lambda_{m}y_{m}\kappa(\boldsymbol{x}_{m}, \boldsymbol{x}_{n})+\hat{\theta}_{0}\right)-1=0,\quad n=1,2,\dots,N_{s},
     \]</div>
-<p>donde <span class="math notranslate nohighlight">\(\hat{\theta}_{0}\)</span> <code class="docutils literal notranslate"><span class="pre">es</span> <span class="pre">obtenido</span> <span class="pre">por</span> <span class="pre">medio</span> <span class="pre">del</span> <span class="pre">promedio</span> <span class="pre">entre</span> <span class="pre">las</span> <span class="pre">soluciones</span> <span class="pre">de</span></code> <a class="reference internal" href="#equation-mean-sol-fortheta0">(44)</a>. Aunque la solución es única, los correspondientes multiplicadores <span class="math notranslate nohighlight">\(\lambda_{m}\)</span> pueden no ser únicos. Finalmente <code class="docutils literal notranslate"><span class="pre">el</span> <span class="pre">número</span> <span class="pre">de</span> <span class="pre">vectores</span> <span class="pre">de</span> <span class="pre">soporte</span> <span class="pre">está</span> <span class="pre">relacionado</span> <span class="pre">con</span> <span class="pre">la</span> <span class="pre">capacidad</span> <span class="pre">de</span> <span class="pre">generalización</span> <span class="pre">del</span> <span class="pre">clasificador</span></code>. Entre mas pequeño es el número de vectores de soporte, mejor será la generalización esperada (ver <span id="id5">[<a class="reference internal" href="biblio.html#id19" title="Konstantinos Koutroumbas and Sergios Theodoridis. Pattern recognition. Academic Press, 2008.">Koutroumbas and Theodoridis, 2008</a>, <a class="reference internal" href="biblio.html#id18" title="佐土原健. N. cristianini and j. shawe-taylor: an introduction to support vector machines, cambridge university press (2000). 人工知能, 16(2):337–337, 2001.">佐土原健, 2001</a>]</span>).</p>
+<p>donde <span class="math notranslate nohighlight">\(\hat{\theta}_{0}\)</span> <code class="docutils literal notranslate"><span class="pre">es</span> <span class="pre">obtenido</span> <span class="pre">por</span> <span class="pre">medio</span> <span class="pre">del</span> <span class="pre">promedio</span> <span class="pre">entre</span> <span class="pre">las</span> <span class="pre">soluciones</span> <span class="pre">de</span></code> <a class="reference internal" href="#equation-mean-sol-fortheta0">(45)</a>. Aunque la solución es única, los correspondientes multiplicadores <span class="math notranslate nohighlight">\(\lambda_{m}\)</span> pueden no ser únicos. Finalmente <code class="docutils literal notranslate"><span class="pre">el</span> <span class="pre">número</span> <span class="pre">de</span> <span class="pre">vectores</span> <span class="pre">de</span> <span class="pre">soporte</span> <span class="pre">está</span> <span class="pre">relacionado</span> <span class="pre">con</span> <span class="pre">la</span> <span class="pre">capacidad</span> <span class="pre">de</span> <span class="pre">generalización</span> <span class="pre">del</span> <span class="pre">clasificador</span></code>. Entre mas pequeño es el número de vectores de soporte, mejor será la generalización esperada (ver <span id="id5">[<a class="reference internal" href="biblio.html#id19" title="Konstantinos Koutroumbas and Sergios Theodoridis. Pattern recognition. Academic Press, 2008.">Koutroumbas and Theodoridis, 2008</a>, <a class="reference internal" href="biblio.html#id18" title="佐土原健. N. cristianini and j. shawe-taylor: an introduction to support vector machines, cambridge university press (2000). 人工知能, 16(2):337–337, 2001.">佐土原健, 2001</a>]</span>).</p>
 </li>
 </ul>
 <p><strong><code class="docutils literal notranslate"><span class="pre">Tarea</span> <span class="pre">de</span> <span class="pre">optimización</span></code></strong></p>
@@ -1420,7 +1420,7 @@ L(\boldsymbol{\theta}, \theta_{0}, \lambda)=\frac{1}{2}\|\boldsymbol{\theta}\|^{
 <li><p>Calculando las <code class="docutils literal notranslate"><span class="pre">derivadas</span> <span class="pre">parciales</span></code> <span class="math notranslate nohighlight">\(\partial_{\boldsymbol{\theta}}=0\)</span> y <span class="math notranslate nohighlight">\(\partial_{\theta_{0}}=0\)</span>, se tienen las condiciones siguientes</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-opt-task-svm-class">
-<span class="eqno">(45)<a class="headerlink" href="#equation-opt-task-svm-class" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(46)<a class="headerlink" href="#equation-opt-task-svm-class" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{align*}
 \frac{\partial L}{\partial\boldsymbol{\theta}}&amp;=0\Leftrightarrow\boldsymbol{\theta}-\sum_{n=1}^{N}\lambda_{n}y_{n}\boldsymbol{x}_{n}=0\Rightarrow\hat{\boldsymbol{\theta}}=\sum_{n=1}^{N}\lambda_{n}y_{n}\boldsymbol{x}_{n}\\
 \frac{\partial L}{\partial\theta_{0}}&amp;=0\Leftrightarrow-\sum_{n=1}^{N}\lambda_{n}y_{n}=0\Rightarrow\sum_{n=1}^{N}\lambda_{n}y_{n}=0,\\
@@ -1429,7 +1429,7 @@ L(\boldsymbol{\theta}, \theta_{0}, \lambda)=\frac{1}{2}\|\boldsymbol{\theta}\|^{
 \end{align*}
 \end{split}\]</div>
 <ul class="simple">
-<li><p>Los <code class="docutils literal notranslate"><span class="pre">multiplicadores</span> <span class="pre">son</span> <span class="pre">obtenidos</span> <span class="pre">por</span> <span class="pre">medio</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">representación</span> <span class="pre">dual</span></code> de <a class="reference internal" href="#equation-opt-task-svm-class">(45)</a> en el Lagrangiano</p></li>
+<li><p>Los <code class="docutils literal notranslate"><span class="pre">multiplicadores</span> <span class="pre">son</span> <span class="pre">obtenidos</span> <span class="pre">por</span> <span class="pre">medio</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">representación</span> <span class="pre">dual</span></code> de <a class="reference internal" href="#equation-opt-task-svm-class">(46)</a> en el Lagrangiano</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -1519,7 +1519,7 @@ L(\boldsymbol{\theta}, \theta_{0}, \xi, \lambda)=\frac{1}{2}\|\boldsymbol{\theta
 <li><p>Entonces</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-eq-class-svm-nonsep">
-<span class="eqno">(46)<a class="headerlink" href="#equation-eq-class-svm-nonsep" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(47)<a class="headerlink" href="#equation-eq-class-svm-nonsep" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{align*}
 \frac{\partial L}{\partial\boldsymbol{\theta}}&amp;=0\Leftrightarrow\boldsymbol{\theta}-\sum_{n=1}^{N}\lambda_{n}y_{n}\boldsymbol{x}_{n}=0\Rightarrow\hat{\boldsymbol{\theta}}=\sum_{n=1}^{N}\lambda_{n}y_{n}\boldsymbol{x}_{n}\\
 \frac{\partial L}{\partial\theta_{0}}&amp;=0\Leftrightarrow-\sum_{n=1}^{N}\lambda_{n}y_{n}=0\Rightarrow\sum_{n=1}^{N}\lambda_{n}y_{n}=0\\
@@ -1550,16 +1550,16 @@ L(\boldsymbol{\theta}, \theta_{0}, \xi, \lambda)=\frac{1}{2}\|\boldsymbol{\theta
 </li>
 </ul>
 <ul>
-<li><p>A partir de <a class="reference internal" href="#equation-eq-class-svm-nonsep">(46)</a> concluimos que para todos los <code class="docutils literal notranslate"><span class="pre">puntos</span> <span class="pre">fuera</span> <span class="pre">del</span> <span class="pre">margen,</span> <span class="pre">y</span> <span class="pre">en</span> <span class="pre">el</span> <span class="pre">lado</span> <span class="pre">correcto</span> <span class="pre">del</span> <span class="pre">clasificador</span></code>, que corresponden a <span class="math notranslate nohighlight">\(\xi_{n} = 0\)</span>, tenemos</p>
+<li><p>A partir de <a class="reference internal" href="#equation-eq-class-svm-nonsep">(47)</a> concluimos que para todos los <code class="docutils literal notranslate"><span class="pre">puntos</span> <span class="pre">fuera</span> <span class="pre">del</span> <span class="pre">margen,</span> <span class="pre">y</span> <span class="pre">en</span> <span class="pre">el</span> <span class="pre">lado</span> <span class="pre">correcto</span> <span class="pre">del</span> <span class="pre">clasificador</span></code>, que corresponden a <span class="math notranslate nohighlight">\(\xi_{n} = 0\)</span>, tenemos</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
     \\[1mm]
     y_{n}(\boldsymbol{\theta}\boldsymbol{x}_{n}+\theta_{0})&gt;1,
     \end{split}\]</div>
-<p>por lo tanto, <span class="math notranslate nohighlight">\(\lambda_{n}=0\)</span>. Esto es, estos <code class="docutils literal notranslate"><span class="pre">puntos</span> <span class="pre">no</span> <span class="pre">participan</span> <span class="pre">en</span> <span class="pre">la</span> <span class="pre">formación</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">solución</span></code> <span class="math notranslate nohighlight">\(\hat{\boldsymbol{\theta}}\)</span> en <a class="reference internal" href="#equation-eq-class-svm-nonsep">(46)</a>.</p>
+<p>por lo tanto, <span class="math notranslate nohighlight">\(\lambda_{n}=0\)</span>. Esto es, estos <code class="docutils literal notranslate"><span class="pre">puntos</span> <span class="pre">no</span> <span class="pre">participan</span> <span class="pre">en</span> <span class="pre">la</span> <span class="pre">formación</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">solución</span></code> <span class="math notranslate nohighlight">\(\hat{\boldsymbol{\theta}}\)</span> en <a class="reference internal" href="#equation-eq-class-svm-nonsep">(47)</a>.</p>
 </li>
 <li><p>Tenemos <span class="math notranslate nohighlight">\(\lambda_{n}\neq0\)</span> sólo para los <code class="docutils literal notranslate"><span class="pre">puntos</span> <span class="pre">en</span> <span class="pre">los</span> <span class="pre">hiperplanos</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">frontera,</span> <span class="pre">dentro</span> <span class="pre">o</span> <span class="pre">fuera</span> <span class="pre">del</span> <span class="pre">margen</span></code>, pero en el lado equivocado del clasificador. Estos son los <code class="docutils literal notranslate"><span class="pre">vectores</span> <span class="pre">de</span> <span class="pre">soporte</span></code>.</p></li>
-<li><p>Para los <code class="docutils literal notranslate"><span class="pre">puntos</span> <span class="pre">que</span> <span class="pre">se</span> <span class="pre">encuentran</span> <span class="pre">dentro</span> <span class="pre">del</span> <span class="pre">margen</span> <span class="pre">o</span> <span class="pre">fuera</span> <span class="pre">pero</span> <span class="pre">en</span> <span class="pre">el</span> <span class="pre">lado</span> <span class="pre">equivocado</span></code>, <span class="math notranslate nohighlight">\(\xi_{n}&gt;0\)</span>; por lo tanto, a partir de <a class="reference internal" href="#equation-eq-class-svm-nonsep">(46)</a> se tiene que <span class="math notranslate nohighlight">\(\mu_{n} = 0\)</span> y además <span class="math notranslate nohighlight">\(\lambda_{n}=C\)</span>.</p></li>
+<li><p>Para los <code class="docutils literal notranslate"><span class="pre">puntos</span> <span class="pre">que</span> <span class="pre">se</span> <span class="pre">encuentran</span> <span class="pre">dentro</span> <span class="pre">del</span> <span class="pre">margen</span> <span class="pre">o</span> <span class="pre">fuera</span> <span class="pre">pero</span> <span class="pre">en</span> <span class="pre">el</span> <span class="pre">lado</span> <span class="pre">equivocado</span></code>, <span class="math notranslate nohighlight">\(\xi_{n}&gt;0\)</span>; por lo tanto, a partir de <a class="reference internal" href="#equation-eq-class-svm-nonsep">(47)</a> se tiene que <span class="math notranslate nohighlight">\(\mu_{n} = 0\)</span> y además <span class="math notranslate nohighlight">\(\lambda_{n}=C\)</span>.</p></li>
 <li><p>Los <code class="docutils literal notranslate"><span class="pre">vectores</span> <span class="pre">de</span> <span class="pre">soporte</span> <span class="pre">que</span> <span class="pre">se</span> <span class="pre">encuentran</span> <span class="pre">en</span> <span class="pre">los</span> <span class="pre">hiperplanos</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">frontera</span> <span class="pre">del</span> <span class="pre">margen</span></code> satisfacen <span class="math notranslate nohighlight">\(\xi_{n} = 0\)</span> y, por tanto, <span class="math notranslate nohighlight">\(\mu_{n}\)</span> puede ser distinto de cero, lo que lleva a <span class="math notranslate nohighlight">\(0\leq\lambda_{n}\leq C\)</span>.</p></li>
 </ul>
 </section>
