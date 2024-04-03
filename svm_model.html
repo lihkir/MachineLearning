@@ -375,7 +375,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-de-vectores-de-soporte">Regresión de vectores de soporte</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-optima-lineal-varepsilon-insensible">Regresión óptima lineal <span class="math notranslate nohighlight">\(\varepsilon\)</span>-insensible</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-kernel-ridge">Regresión Kernel Ridge</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Máquinas de vectores de soporte</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Máquinas de vectores de soporte</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clases-linealmente-separables-clasificador-de-maximo-margen">Clases linealmente separables: Clasificador de máximo margen</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clases-no-separables">Clases no separables</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion">Aplicación</a></li>
@@ -396,17 +396,19 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="maquinas-de-vectores-de-soporte">
 <h1>Máquinas de vectores de soporte<a class="headerlink" href="#maquinas-de-vectores-de-soporte" title="Permalink to this heading">#</a></h1>
-<p><strong><code class="docutils literal notranslate"><span class="pre">Introducción</span></code></strong></p>
+<div class="admonition-introduccion admonition">
+<p class="admonition-title">Introducción</p>
 <ul class="simple">
-<li><p>Las <code class="docutils literal notranslate"><span class="pre">máquinas</span> <span class="pre">de</span> <span class="pre">vectores</span> <span class="pre">de</span> <span class="pre">soporte</span> <span class="pre">(SVM)</span></code> propuestas por <code class="docutils literal notranslate"><span class="pre">Vapnik</span> <span class="pre">(1996,</span> <span class="pre">1998)</span></code>, se caracterizan por ser un proceso interno de <code class="docutils literal notranslate"><span class="pre">construcción</span> <span class="pre">de</span> <span class="pre">reglas</span> <span class="pre">de</span> <span class="pre">clasificación,</span> <span class="pre">bastante</span> <span class="pre">diferente</span> <span class="pre">al</span> <span class="pre">de</span> <span class="pre">las</span> <span class="pre">de</span> <span class="pre">los</span> <span class="pre">métodos</span> <span class="pre">estadísticos</span></code>. Las <code class="docutils literal notranslate"><span class="pre">SVM</span></code> suelen ser eficaces en casos en los que los métodos de clasificación tradicionales no lo son, como por ejemplo, los <code class="docutils literal notranslate"><span class="pre">problemas</span> <span class="pre">basados</span> <span class="pre">en</span> <span class="pre">datos</span> <span class="pre">con</span> <span class="pre">estructura</span> <span class="pre">no</span> <span class="pre">lineal</span></code>, además las <code class="docutils literal notranslate"><span class="pre">SVM</span></code> se han adaptado y aplicado en muchos campos de investigación. En esta sección, nos centramos en las <code class="docutils literal notranslate"><span class="pre">SVM</span></code> para la solución de <code class="docutils literal notranslate"><span class="pre">problemas</span> <span class="pre">de</span> <span class="pre">regresión</span> <span class="pre">y</span> <span class="pre">clasificación</span></code>, así como también el proceso de construcción, luego abordaremos los pasos de su extensión, de sistemas lineales a sistemas no lineales.</p></li>
-<li><p>El paradigma algorítmico de las <code class="docutils literal notranslate"><span class="pre">SVM</span></code> aborda el reto de la complejidad de la muestra mediante la <strong>búsqueda de separadores de “mayor margen”</strong>. A grandes rasgos, un semiespacio separa un conjunto de entrenamiento con un gran margen si <code class="docutils literal notranslate"><span class="pre">todos</span> <span class="pre">los</span> <span class="pre">ejemplos</span> <span class="pre">no</span> <span class="pre">sólo</span> <span class="pre">están</span> <span class="pre">en</span> <span class="pre">el</span> <span class="pre">lado</span> <span class="pre">correcto</span> <span class="pre">del</span> <span class="pre">hiperplano</span> <span class="pre">de</span> <span class="pre">separación,</span> <span class="pre">sino</span> <span class="pre">también</span> <span class="pre">lejos</span> <span class="pre">de</span> <span class="pre">él</span></code>. Restringir el algoritmo a la salida de un separador de gran margen puede producir una complejidad de muestra pequeña, incluso si la dimensionalidad del espacio de características es alta (e incluso infinita). Introduciremos el concepto de margen y lo relacionamos con el <code class="docutils literal notranslate"><span class="pre">paradigma</span> <span class="pre">de</span> <span class="pre">minimización</span> <span class="pre">de</span> <span class="pre">pérdidas</span> <span class="pre">regularizadas</span></code>.</p></li>
+<li><p>Las <em><strong>máquinas de vectores de soporte (SVM)</strong></em> propuestas por <em><strong>Vapnik (1996, 1998)</strong></em>, se caracterizan por ser un proceso interno de <em><strong>construcción de reglas de clasificación, bastante diferente al de las de los métodos estadísticos</strong></em>. Las <em><strong>SVM</strong></em> suelen ser eficaces en casos en los que los métodos de clasificación tradicionales no lo son, como por ejemplo, los <em><strong>problemas basados en datos con estructura no lineal</strong></em>, además las <em><strong>SVM</strong></em> se han adaptado y aplicado en muchos campos de investigación. En esta sección, nos centramos en las <em><strong>SVM</strong></em> para la solución de <em><strong>problemas de regresión y clasificación</strong></em>, así como también el proceso de construcción, luego abordaremos los pasos de su extensión, de sistemas lineales a sistemas no lineales.</p></li>
+<li><p>El paradigma algorítmico de las <em><strong>SVM</strong></em> aborda el reto de la complejidad de la muestra mediante la <strong>búsqueda de separadores de “mayor margen”</strong>. A grandes rasgos, un semiespacio separa un conjunto de entrenamiento con un gran margen si <em><strong>todos los ejemplos no sólo están en el lado correcto del hiperplano de separación, sino también lejos de él</strong></em>. Restringir el algoritmo a la salida de un separador de gran margen puede producir una complejidad de muestra pequeña, incluso si la dimensionalidad del espacio de características es alta (e incluso infinita). Introduciremos el concepto de margen y lo relacionamos con el <em><strong>paradigma de minimización de pérdidas regularizadas</strong></em>.</p></li>
 </ul>
+</div>
 <section id="analisis">
 <h2>Análisis<a class="headerlink" href="#analisis" title="Permalink to this heading">#</a></h2>
 </section>
 <section id="espacios-de-hilbert-con-kernel-reproductor">
 <h2>Espacios de Hilbert con Kernel reproductor<a class="headerlink" href="#espacios-de-hilbert-con-kernel-reproductor" title="Permalink to this heading">#</a></h2>
-<p>Sea <span class="math notranslate nohighlight">\(H\)</span> un <code class="docutils literal notranslate"><span class="pre">espacio</span> <span class="pre">lineal</span> <span class="pre">de</span> <span class="pre">funciones</span> <span class="pre">reales</span></code> definidas sobre <span class="math notranslate nohighlight">\(\mathcal{X}\subseteq\mathcal{R}^{l}\)</span>. Además, suponga que <span class="math notranslate nohighlight">\(H\)</span> es un <code class="docutils literal notranslate"><span class="pre">espacio</span> <span class="pre">de</span> <span class="pre">Hilbert</span></code>, con producto interno <span class="math notranslate nohighlight">\(\langle\cdot,\cdot\rangle_{H}\)</span> que induce la norma <span class="math notranslate nohighlight">\(\|\cdot\|_{H}\)</span>, con respecto a la cual <span class="math notranslate nohighlight">\(H\)</span> es completo.</p>
+<p>Sea <span class="math notranslate nohighlight">\(H\)</span> un <em><strong>espacio lineal de funciones reales</strong></em> definidas sobre <span class="math notranslate nohighlight">\(\mathcal{X}\subseteq\mathcal{R}^{l}\)</span>. Además, suponga que <span class="math notranslate nohighlight">\(H\)</span> es un <em><strong>espacio de Hilbert</strong></em>, con producto interno <span class="math notranslate nohighlight">\(\langle\cdot,\cdot\rangle_{H}\)</span> que induce la norma <span class="math notranslate nohighlight">\(\|\cdot\|_{H}\)</span>, con respecto a la cual <span class="math notranslate nohighlight">\(H\)</span> es completo.</p>
 <div class="proof definition admonition" id="def_hilbert_rep">
 <p class="admonition-title"><span class="caption-number">Definition 6 </span></p>
 <section class="definition-content" id="proof-content">
@@ -426,7 +428,7 @@ f(\boldsymbol{x})=\langle f, \kappa(\cdot, \boldsymbol{x})\rangle,\quad\forall f
 \]</div>
 </section>
 </div><ul class="simple">
-<li><p>Una consecuencia directa de la <code class="docutils literal notranslate"><span class="pre">propiedad</span> <span class="pre">reproductora</span></code> es, si definimos <span class="math notranslate nohighlight">\(f(\cdot)=\kappa(\cdot, \boldsymbol{y}),~\boldsymbol{y}\in\mathcal{X}\)</span> entonces</p></li>
+<li><p>Una consecuencia directa de la <em><strong>propiedad reproductora</strong></em> es, si definimos <span class="math notranslate nohighlight">\(f(\cdot)=\kappa(\cdot, \boldsymbol{y}),~\boldsymbol{y}\in\mathcal{X}\)</span> entonces</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[
@@ -789,51 +791,51 @@ f(\boldsymbol{x}_{m})&amp;=\langle f, \kappa(\cdot, \boldsymbol{x}_{m})\rangle\\
 <section id="regresion-ridge-con-kernel">
 <h2>Regresión ridge con Kernel<a class="headerlink" href="#regresion-ridge-con-kernel" title="Permalink to this heading">#</a></h2>
 <ul>
-<li><p>En esta sección abordaremos la tarea de <code class="docutils literal notranslate"><span class="pre">regresión</span> <span class="pre">ridge</span> <span class="pre">en</span> <span class="pre">un</span> <span class="pre">espacio</span> <span class="pre">general</span> <span class="pre">RKHS</span></code>. El camino a seguir es el usado típicamente para <code class="docutils literal notranslate"><span class="pre">extender</span> <span class="pre">técnicas,</span> <span class="pre">las</span> <span class="pre">cuales</span> <span class="pre">han</span> <span class="pre">sido</span> <span class="pre">desarrolladas</span> <span class="pre">para</span> <span class="pre">modelos</span> <span class="pre">lineales,</span> <span class="pre">a</span> <span class="pre">espacios</span> <span class="pre">más</span> <span class="pre">generales</span> <span class="pre">RKSH</span></code>.</p></li>
-<li><p>Sea <span class="math notranslate nohighlight">\((y_{n}, \boldsymbol{x}_{n})\in\mathbb{R}\times\mathbb{R}^{l}\)</span> la representación de un mecanismo de generación de datos, modelados vía tarea de <code class="docutils literal notranslate"><span class="pre">regresión</span> <span class="pre">no</span> <span class="pre">lineal</span></code></p>
+<li><p>En esta sección abordaremos la tarea de <em><strong>regresión ridge en un espacio general RKHS</strong></em>. El camino a seguir es el usado típicamente para <em><strong>extender técnicas, las cuales han sido desarrolladas para modelos lineales, a espacios más generales RKSH</strong></em>.</p></li>
+<li><p>Sea <span class="math notranslate nohighlight">\((y_{n}, \boldsymbol{x}_{n})\in\mathbb{R}\times\mathbb{R}^{l}\)</span> la representación de un mecanismo de generación de datos, modelados vía tarea de <em><strong>regresión no lineal</strong></em></p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
     \\[1mm]
     y_{n}=g(\boldsymbol{x}_{n})+\eta_{n},\quad n=1,2,\dots,N.
     \end{split}\]</div>
 </li>
-<li><p>Denotemos por <span class="math notranslate nohighlight">\(f\)</span> es el <code class="docutils literal notranslate"><span class="pre">estimador</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">función</span></code> <span class="math notranslate nohighlight">\(g\)</span> desconocida. <span class="math notranslate nohighlight">\(f\)</span> <code class="docutils literal notranslate"><span class="pre">es</span> <span class="pre">llamada</span> <span class="pre">la</span> <span class="pre">hipótesis</span></code> y <span class="math notranslate nohighlight">\(H\)</span> <code class="docutils literal notranslate"><span class="pre">el</span> <span class="pre">espacio</span> <span class="pre">de</span> <span class="pre">hipótesis</span></code>, donde <span class="math notranslate nohighlight">\(f\)</span> es buscada. Supongamos que <span class="math notranslate nohighlight">\(f\)</span> está en <code class="docutils literal notranslate"><span class="pre">RKHS</span></code> y está asociada con el kernel</p></li>
+<li><p>Denotemos por <span class="math notranslate nohighlight">\(f\)</span> es el <em><strong>estimador de la función</strong></em> <span class="math notranslate nohighlight">\(g\)</span> desconocida. <span class="math notranslate nohighlight">\(f\)</span> <em><strong>es llamada la hipótesis</strong></em> y <span class="math notranslate nohighlight">\(H\)</span> <em><strong>el espacio de hipótesis</strong></em>, donde <span class="math notranslate nohighlight">\(f\)</span> es buscada. Supongamos que <span class="math notranslate nohighlight">\(f\)</span> está en <em><strong>RKHS</strong></em> y está asociada con el kernel</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[
 \kappa:\mathbb{R}^{l}\times\mathbb{R}^{l}\longmapsto\mathbb{R}.
 \]</div>
 <ul class="simple">
-<li><p>Por el <code class="docutils literal notranslate"><span class="pre">teorema</span> <span class="pre">de</span> <span class="pre">representación</span></code> se tiene que</p></li>
+<li><p>Por el <em><strong>teorema de representación</strong></em> se tiene que</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[
 f(\boldsymbol{x})=\sum_{n=1}^{N}\theta_{n}\kappa(\boldsymbol{x}, \boldsymbol{x}_{n}).
 \]</div>
 <ul>
-<li><p>De acuerdo a la <code class="docutils literal notranslate"><span class="pre">regresión</span> <span class="pre">ridge</span> <span class="pre">con</span> <span class="pre">kernel</span></code>, los coeficientes desconocidos son estimados por medio de la siguiente tarea</p>
+<li><p>De acuerdo a la <em><strong>regresión ridge con kernel</strong></em>, los coeficientes desconocidos son estimados por medio de la siguiente tarea</p>
 <div class="math notranslate nohighlight" id="equation-eq-task-ridge-reg">
 <span class="eqno">(35)<a class="headerlink" href="#equation-eq-task-ridge-reg" title="Permalink to this equation">#</a></span>\[
     \hat{\theta}=\text{argmin}_{\theta} J(\theta),\quad J(\theta)=\sum_{n=1}^{N}\left(y_{n}-\sum_{m=1}^{N}\theta_{m}\kappa(\boldsymbol{x}_{n}, \boldsymbol{x}_{m})\right)^{2}+C\langle f, f\rangle,
     \]</div>
-<p>donde <span class="math notranslate nohighlight">\(C\)</span> es el <code class="docutils literal notranslate"><span class="pre">parámetro</span> <span class="pre">de</span> <span class="pre">regularización</span></code>. La Ecuación <a class="reference internal" href="#equation-eq-task-ridge-reg">(35)</a> puede reescribirse como</p>
+<p>donde <span class="math notranslate nohighlight">\(C\)</span> es el <em><strong>parámetro de regularización</strong></em>. La Ecuación <a class="reference internal" href="#equation-eq-task-ridge-reg">(35)</a> puede reescribirse como</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
     \\[1mm]
     J(\theta)=(\boldsymbol{y}-K\theta)^{T}(\boldsymbol{y}-K\theta)+C\theta^{T}K\theta,
     \end{split}\]</div>
-<p>donde <span class="math notranslate nohighlight">\(\boldsymbol{y}=(y_{1}, y_{2},\dots, y_{N})^{T}\)</span> y <span class="math notranslate nohighlight">\(\theta=(\theta_{1}, \theta_{2}, \dots,\theta_{M})^{T}\)</span>, <span class="math notranslate nohighlight">\(K\)</span> es la matriz kernel tal que <span class="math notranslate nohighlight">\(\langle\kappa(\cdot, \boldsymbol{x}_{m}), \kappa(\cdot, \boldsymbol{x}_{m})\rangle=\kappa(\boldsymbol{x}_{m}, \boldsymbol{x}_{n})\)</span>, y <span class="math notranslate nohighlight">\(y\)</span> es <code class="docutils literal notranslate"><span class="pre">determinada</span> <span class="pre">por</span> <span class="pre">la</span> <span class="pre">función</span> <span class="pre">kernel</span> <span class="pre">y</span> <span class="pre">los</span> <span class="pre">valores</span> <span class="pre">de</span> <span class="pre">entrenamiento</span></code>.</p>
+<p>donde <span class="math notranslate nohighlight">\(\boldsymbol{y}=(y_{1}, y_{2},\dots, y_{N})^{T}\)</span> y <span class="math notranslate nohighlight">\(\theta=(\theta_{1}, \theta_{2}, \dots,\theta_{M})^{T}\)</span>, <span class="math notranslate nohighlight">\(K\)</span> es la matriz kernel tal que <span class="math notranslate nohighlight">\(\langle\kappa(\cdot, \boldsymbol{x}_{m}), \kappa(\cdot, \boldsymbol{x}_{m})\rangle=\kappa(\boldsymbol{x}_{m}, \boldsymbol{x}_{n})\)</span>, y <span class="math notranslate nohighlight">\(y\)</span> es <em><strong>determinada por la función kernel y los valores de entrenamiento</strong></em>.</p>
 </li>
 </ul>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">Minimizando</span></code> <span class="math notranslate nohighlight">\(J(\theta)\)</span> con respecto a <span class="math notranslate nohighlight">\(\theta\)</span> y <code class="docutils literal notranslate"><span class="pre">suponiendo</span> <span class="pre">que</span></code> <span class="math notranslate nohighlight">\(K^{T}=K\)</span> <code class="docutils literal notranslate"><span class="pre">es</span> <span class="pre">invertible</span></code>, utilizando el <code class="docutils literal notranslate"><span class="pre">mismo</span> <span class="pre">procedimiento</span> <span class="pre">en</span> <span class="pre">la</span> <span class="pre">regresión</span> <span class="pre">ridge</span></code>, tenemos que</p></li>
+<li><p><em><strong>Minimizando</strong></em> <span class="math notranslate nohighlight">\(J(\theta)\)</span> con respecto a <span class="math notranslate nohighlight">\(\theta\)</span> y <em><strong>suponiendo que</strong></em> <span class="math notranslate nohighlight">\(K^{T}=K\)</span> <em><strong>es invertible</strong></em>, utilizando el <em><strong>mismo procedimiento en la regresión ridge</strong></em>, tenemos que</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[
 (K^{T}K+CK^{T})\hat{\theta}=K^{T}\boldsymbol{y}\quad\text{o}\quad\boldsymbol{y} = (K+CI)\hat{\theta}.
 \]</div>
 <ul>
-<li><p>Una vez <span class="math notranslate nohighlight">\(\hat{\theta}\)</span> es obtenido, dado un vector <span class="math notranslate nohighlight">\(\boldsymbol{x}\in\mathbb{R}^{l}\)</span> la correspondiente <code class="docutils literal notranslate"><span class="pre">predicción</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">variable</span> <span class="pre">dependiente</span></code> está dada por:</p>
+<li><p>Una vez <span class="math notranslate nohighlight">\(\hat{\theta}\)</span> es obtenido, dado un vector <span class="math notranslate nohighlight">\(\boldsymbol{x}\in\mathbb{R}^{l}\)</span> la correspondiente <em><strong>predicción de la variable dependiente</strong></em> está dada por:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
     \\[1mm]
@@ -848,21 +850,21 @@ f(\boldsymbol{x})=\sum_{n=1}^{N}\theta_{n}\kappa(\boldsymbol{x}, \boldsymbol{x}_
 <div class="admonition-metodo-de-minimos-modulos admonition">
 <p class="admonition-title">Método de mínimos módulos</p>
 <ul>
-<li><p>El método de <code class="docutils literal notranslate"><span class="pre">mínimos</span> <span class="pre">cuadrados</span> <span class="pre">no</span> <span class="pre">es</span> <span class="pre">siempre</span> <span class="pre">el</span> <span class="pre">mejor</span> <span class="pre">criterio</span> <span class="pre">de</span> <span class="pre">optimización</span></code>, debido a que, <code class="docutils literal notranslate"><span class="pre">en</span> <span class="pre">presencia</span> <span class="pre">de</span> <span class="pre">ruido</span> <span class="pre">no</span> <span class="pre">Gaussiano</span></code> con colas largas y por lo tanto número creciente de outliers, <code class="docutils literal notranslate"><span class="pre">la</span> <span class="pre">dependencia</span> <span class="pre">cuadrática</span> <span class="pre">de</span> <span class="pre">el</span> <span class="pre">método</span> <span class="pre">se</span> <span class="pre">sesga</span> <span class="pre">hacia</span> <span class="pre">valores</span> <span class="pre">asociados</span> <span class="pre">con</span> <span class="pre">presencia</span> <span class="pre">de</span> <span class="pre">outliers</span></code></p></li>
-<li><p>Una manera de darle solución a este problema es escoger una <code class="docutils literal notranslate"><span class="pre">función</span> <span class="pre">de</span> <span class="pre">pérdida</span> <span class="pre">que</span> <span class="pre">se</span> <span class="pre">ajuste</span> <span class="pre">mejor</span> <span class="pre">al</span> <span class="pre">modelo</span> <span class="pre">del</span> <span class="pre">ruido</span></code> (ver Huber 1992, <span id="id4">[<a class="reference internal" href="biblio.html#id16" title="Peter J Huber. Robust estimation of a location parameter. In Breakthroughs in statistics, pages 492–518. Springer, 1992.">Huber, 1992</a>]</span>). Bajo el <code class="docutils literal notranslate"><span class="pre">supuesto</span> <span class="pre">de</span> <span class="pre">que</span> <span class="pre">el</span> <span class="pre">ruido</span> <span class="pre">tiene</span> <span class="pre">función</span> <span class="pre">de</span> <span class="pre">densidad</span> <span class="pre">de</span> <span class="pre">probabilidad</span> <span class="pre">(fdp)</span> <span class="pre">simétrica</span></code>, la tarea optima de regresión es obtenida minimizando la función de pérdida</p>
+<li><p>El método de <em><strong>mínimos cuadrados no es siempre el mejor criterio de optimización</strong></em>, debido a que, <em><strong>en presencia de ruido no Gaussiano</strong></em> con colas largas y por lo tanto número creciente de outliers, <em><strong>la dependencia cuadrática de el método se sesga hacia valores asociados con presencia de outliers</strong></em></p></li>
+<li><p>Una manera de darle solución a este problema es escoger una <em><strong>función de pérdida que se ajuste mejor al modelo del ruido</strong></em> (ver Huber 1992, <span id="id4">[<a class="reference internal" href="biblio.html#id16" title="Peter J Huber. Robust estimation of a location parameter. In Breakthroughs in statistics, pages 492–518. Springer, 1992.">Huber, 1992</a>]</span>). Bajo el <em><strong>supuesto de que el ruido tiene función de densidad de probabilidad (fdp) simétrica</strong></em>, la tarea optima de regresión es obtenida minimizando la función de pérdida</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
     \\[2mm]
     \mathcal{L}(y, f(\boldsymbol{x}))=|y-f(\boldsymbol{x})|
     \end{split}\]</div>
-<p>la cual es conocida como el <strong><code class="docutils literal notranslate"><span class="pre">método</span> <span class="pre">de</span> <span class="pre">mínimos</span> <span class="pre">módulos</span></code></strong>.</p>
+<p>la cual es conocida como el <em><strong>método de mínimos módulos</strong></em>.</p>
 </li>
 </ul>
 </div>
 <div class="admonition-perdida-de-huber admonition">
 <p class="admonition-title">Pérdida de Huber</p>
 <ul>
-<li><p>Huber demostró que <code class="docutils literal notranslate"><span class="pre">si</span> <span class="pre">el</span> <span class="pre">ruido</span> <span class="pre">tiene</span> <span class="pre">dos</span> <span class="pre">componentes:</span> <span class="pre">Gaussiana</span> <span class="pre">y</span> <span class="pre">otra</span> <span class="pre">fdp</span> <span class="pre">arbitraria</span> <span class="pre">(simétrica)</span></code>, entonces la <code class="docutils literal notranslate"><span class="pre">mejor</span> <span class="pre">función</span> <span class="pre">de</span> <span class="pre">pérdida</span> <span class="pre">en</span> <span class="pre">el</span> <span class="pre">sentido</span> <span class="pre">minimax</span></code> está dada por:</p>
+<li><p>Huber demostró que <em><strong>si el ruido tiene dos componentes: Gaussiana y otra fdp arbitraria (simétrica)</strong></em>, entonces la <em><strong>mejor función de pérdida en el sentido minimax</strong></em> está dada por:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
     \\[1mm]
@@ -872,14 +874,14 @@ f(\boldsymbol{x})=\sum_{n=1}^{N}\theta_{n}\kappa(\boldsymbol{x}, \boldsymbol{x}_
     \displaystyle{|y-f(\boldsymbol{x})|/2-\varepsilon^{2}/2} &amp; \text{si}~|y-f(\boldsymbol{x})|\leq\varepsilon,
     \end{cases}
     \end{split}\]</div>
-<p>para algún parámetro <span class="math notranslate nohighlight">\(\varepsilon\)</span>. Esta es conocida como función de <strong><code class="docutils literal notranslate"><span class="pre">pérdida</span> <span class="pre">de</span> <span class="pre">Huber</span></code></strong>.</p>
+<p>para algún parámetro <span class="math notranslate nohighlight">\(\varepsilon\)</span>. Esta es conocida como función de <em><strong>pérdida de Huber</strong></em>.</p>
 </li>
 </ul>
 </div>
 <div class="admonition-perdida-varepsilon-insensible admonition">
 <p class="admonition-title">Pérdida <span class="math notranslate nohighlight">\(\varepsilon\)</span>-insensible</p>
 <ul>
-<li><p>Una <code class="docutils literal notranslate"><span class="pre">función</span> <span class="pre">de</span> <span class="pre">pérdida</span> <span class="pre">que</span> <span class="pre">se</span> <span class="pre">aproxima</span> <span class="pre">a</span> <span class="pre">la</span> <span class="pre">de</span> <span class="pre">Huber</span></code> y tiene excelentes propiedades computacionales es llamada <code class="docutils literal notranslate"><span class="pre">función</span> <span class="pre">de</span> <span class="pre">pérdida</span> <span class="pre">lineal</span></code> <span class="math notranslate nohighlight">\(\varepsilon\)</span>-<code class="docutils literal notranslate"><span class="pre">insensible</span></code> y está dada por</p>
+<li><p>Una <em><strong>función de pérdida que se aproxima a la de Huber</strong></em> y tiene excelentes propiedades computacionales es llamada <em><strong>función de pérdida lineal</strong></em> <span class="math notranslate nohighlight">\(\varepsilon\)</span>-<em><strong>insensible</strong></em> y está dada por</p>
 <div class="math notranslate nohighlight" id="equation-eq-lin-ins">
 <span class="eqno">(36)<a class="headerlink" href="#equation-eq-lin-ins" title="Permalink to this equation">#</a></span>\[\begin{split}
     \\[1mm]
@@ -889,7 +891,7 @@ f(\boldsymbol{x})=\sum_{n=1}^{N}\theta_{n}\kappa(\boldsymbol{x}, \boldsymbol{x}_
     0 &amp; \text{si}~|y-f(\boldsymbol{x})|\leq\varepsilon
     \end{cases}
     \end{split}\]</div>
-<p>y la función de pérdida <code class="docutils literal notranslate"><span class="pre">cuadrática</span></code> <span class="math notranslate nohighlight">\(\epsilon\)</span><code class="docutils literal notranslate"><span class="pre">-insensible</span></code></p>
+<p>y la función de pérdida <em><strong>cuadrática</strong></em> <span class="math notranslate nohighlight">\(\epsilon\)</span><em><strong>-insensible</strong></em></p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
     \mathcal{L}(y, f(\boldsymbol{x}))=
@@ -898,21 +900,29 @@ f(\boldsymbol{x})=\sum_{n=1}^{N}\theta_{n}\kappa(\boldsymbol{x}, \boldsymbol{x}_
     0 &amp; \text{si}~|y-f(\boldsymbol{x})|\leq\varepsilon
     \end{cases}
     \end{split}\]</div>
-<p>la cuales <code class="docutils literal notranslate"><span class="pre">coinciden</span> <span class="pre">con</span> <span class="pre">la</span> <span class="pre">función</span> <span class="pre">de</span> <span class="pre">pérdida</span> <span class="pre">de</span> <span class="pre">mínimos</span> <span class="pre">módulos</span> <span class="pre">para</span></code> <span class="math notranslate nohighlight">\(\varepsilon=0\)</span> y es <code class="docutils literal notranslate"><span class="pre">cercana</span> <span class="pre">a</span> <span class="pre">la</span> <span class="pre">función</span> <span class="pre">de</span> <span class="pre">pérdida</span> <span class="pre">de</span> <span class="pre">Huber</span> <span class="pre">para</span></code> <span class="math notranslate nohighlight">\(\varepsilon&lt;1\)</span>.</p>
+<p>la cuales <em><strong>coinciden con la función de pérdida de mínimos módulos para</strong></em> <span class="math notranslate nohighlight">\(\varepsilon=0\)</span> y es <em><strong>cercana a la función de pérdida de Huber para</strong></em> <span class="math notranslate nohighlight">\(\varepsilon&lt;1\)</span>.</p>
 </li>
 </ul>
 </div>
 <figure class="align-center" id="huber-loss-plot">
-<a class="reference internal image-reference" href="_images/huber_loss_plot.png"><img alt="_images/huber_loss_plot.png" src="_images/huber_loss_plot.png" style="width: 365.6px; height: 241.60000000000002px;" /></a>
+<a class="reference internal image-reference" href="_images/huber_loss_plot.png"><img alt="_images/huber_loss_plot.png" src="_images/huber_loss_plot.png" style="width: 411.3px; height: 271.8px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 17 </span><span class="caption-text">La función de pérdida de Huber (gris punteado), la función de pérdida lineal <span class="math notranslate nohighlight">\(\varepsilon\)</span>-insensible (gris completo) y la función de pérdida cuadrática <span class="math notranslate nohighlight">\(\varepsilon\)</span>-insensible (rojo) para <span class="math notranslate nohighlight">\(\varepsilon = 0.7\)</span>.</span><a class="headerlink" href="#huber-loss-plot" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 17 </span><span class="caption-text">Función de pérdida de Huber (gris punteado). Función de pérdida lineal <span class="math notranslate nohighlight">\(\varepsilon\)</span>-insensible (gris completo). Función de pérdida cuadrática <span class="math notranslate nohighlight">\(\varepsilon\)</span>-insensible (rojo) para <span class="math notranslate nohighlight">\(\varepsilon = 0.7\)</span>. Fuente <span id="id5">[<a class="reference internal" href="biblio.html#id17" title="S. Theodoridis. Machine Learning: A Bayesian and Optimization Perspective. Elsevier Science, 2020. ISBN 9780128188040. URL: https://books.google.com.co/books?id=l-nEDwAAQBAJ.">Theodoridis, 2020</a>]</span>.</span><a class="headerlink" href="#huber-loss-plot" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
+<div class="admonition-observacion admonition">
+<p class="admonition-title">Observación</p>
+<ul class="simple">
+<li><p>La función de pérdida <span class="math notranslate nohighlight">\(\epsilon\)</span>-insensible se utiliza en escenarios donde <em><strong>queremos que nuestro modelo tolere errores hasta cierto punto</strong></em>. La pérdida <span class="math notranslate nohighlight">\(\epsilon\)</span>-insensible permite que el modelo sea <em><strong>menos sensible a valores atípicos o puntos de datos ruidosos</strong></em></p></li>
+<li><p>La función de pérdida <span class="math notranslate nohighlight">\(\epsilon\)</span>-insensible proporciona una herramienta útil para <em><strong>construir modelos que sean robustos, flexibles y capaces de equilibrar la precisión con la generalización</strong></em>, especialmente en <em><strong>situaciones donde los datos pueden contener ruido o valores atípicos</strong></em>.</p></li>
+</ul>
+</div>
 </section>
 <section id="regresion-optima-lineal-varepsilon-insensible">
 <h2>Regresión óptima lineal <span class="math notranslate nohighlight">\(\varepsilon\)</span>-insensible<a class="headerlink" href="#regresion-optima-lineal-varepsilon-insensible" title="Permalink to this heading">#</a></h2>
 <ul>
-<li><p>Usaremos la <code class="docutils literal notranslate"><span class="pre">función</span> <span class="pre">de</span> <span class="pre">pérdida</span> <span class="pre">lineal</span></code> <span class="math notranslate nohighlight">\(\varepsilon\)</span>-insensible <a class="reference internal" href="#equation-eq-lin-ins">(36)</a> para <code class="docutils literal notranslate"><span class="pre">cuantificar</span> <span class="pre">el</span> <span class="pre">error</span> <span class="pre">de</span> <span class="pre">desajuste</span> <span class="pre">del</span> <span class="pre">modelo</span></code>.Trataremos la tarea de regresión en</p>
+<li><p>Usaremos la <em><strong>función de pérdida lineal</strong></em> <span class="math notranslate nohighlight">\(\varepsilon\)</span>-insensible <a class="reference internal" href="#equation-eq-lin-ins">(36)</a> para <em><strong>cuantificar el error de desajuste del modelo</strong></em>. El valor de <span class="math notranslate nohighlight">\(\epsilon\)</span> <em>determina la cantidad de “slack” (grado de error) que se permite</em>.</p></li>
+<li><p>Trataremos la tarea de regresión</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
     \\[1mm]
@@ -923,15 +933,15 @@ f(\boldsymbol{x})=\sum_{n=1}^{N}\theta_{n}\kappa(\boldsymbol{x}, \boldsymbol{x}_
 \[
     f(\boldsymbol{x})=\boldsymbol{\theta}^{T}\boldsymbol{x}+\theta_{0}.
     \]</div>
-<p>La solución mas general en la que <span class="math notranslate nohighlight">\(f\)</span> <code class="docutils literal notranslate"><span class="pre">es</span> <span class="pre">una</span> <span class="pre">función</span> <span class="pre">en</span> <span class="pre">RKHS</span> <span class="pre">será</span> <span class="pre">obtenida</span> <span class="pre">vía</span> <span class="pre">kernel</span> <span class="pre">trick</span></code> (producto interno reemplazado por <code class="docutils literal notranslate"><span class="pre">evaluación</span> <span class="pre">de</span> <span class="pre">kernel</span></code>).</p>
+<p>La solución más general en la que <span class="math notranslate nohighlight">\(f\)</span> <em><strong>es una función en RKHS será obtenida vía kernel trick</strong></em> (producto interno reemplazado por <em><strong>evaluación de kernel</strong></em>).</p>
 </li>
-<li><p>Introducimos ahora <code class="docutils literal notranslate"><span class="pre">dos</span> <span class="pre">conjuntos</span> <span class="pre">de</span> <span class="pre">variables</span> <span class="pre">auxiliares</span></code></p>
+<li><p>Introducimos ahora <em><strong>dos conjuntos de variables auxiliares</strong></em></p>
 <div class="math notranslate nohighlight" id="equation-eq-restric-1">
 <span class="eqno">(37)<a class="headerlink" href="#equation-eq-restric-1" title="Permalink to this equation">#</a></span>\[\begin{split}
     \\[1mm]
     \text{Si}~ y_{n}-\boldsymbol{\theta}^{T}\boldsymbol{x}_{n}-\theta_{0}\geq\varepsilon,~\text{definimos}~\tilde{\xi}_{n}~\text{tal que},\quad y_{n}-\boldsymbol{\theta}^{T}\boldsymbol{x}_{n}-\theta_{0}\leq\varepsilon+\tilde{\xi}_{n}.
     \end{split}\]</div>
-<p>Nótese que <code class="docutils literal notranslate"><span class="pre">idealmente,</span> <span class="pre">deseamos</span> <span class="pre">seleccionar</span></code> <span class="math notranslate nohighlight">\(\boldsymbol{\theta}, \theta_{0}\)</span> <code class="docutils literal notranslate"><span class="pre">tales</span> <span class="pre">que</span></code> <span class="math notranslate nohighlight">\(\tilde{\xi}_{n}=0\)</span>, dado que este valor entregaría la <code class="docutils literal notranslate"><span class="pre">contribución</span> <span class="pre">del</span> <span class="pre">respectivo</span> <span class="pre">término</span> <span class="pre">en</span> <span class="pre">la</span> <span class="pre">función</span> <span class="pre">de</span> <span class="pre">pérdida</span> <span class="pre">igual</span> <span class="pre">a</span> <span class="pre">cero</span></code>, pues <span class="math notranslate nohighlight">\(\mathcal{L}(y, f(\boldsymbol{x}))=0\)</span> si <span class="math notranslate nohighlight">\(|y-f(\boldsymbol{x})|\leq\varepsilon\)</span>. Análogamente,</p>
+<p>Nótese que <em><strong>idealmente, deseamos seleccionar</strong></em> <span class="math notranslate nohighlight">\(\boldsymbol{\theta}, \theta_{0}\)</span> <em><strong>tales que</strong></em> <span class="math notranslate nohighlight">\(\tilde{\xi}_{n}=0\)</span>, dado que este valor entregaría la <em><strong>contribución del respectivo término en la función de pérdida igual a cero</strong></em>, pues <span class="math notranslate nohighlight">\(\mathcal{L}(y, f(\boldsymbol{x}))=0\)</span> si <span class="math notranslate nohighlight">\(|y-f(\boldsymbol{x})|\leq\varepsilon\)</span>. Análogamente,</p>
 <div class="math notranslate nohighlight" id="equation-eq-restric-2">
 <span class="eqno">(38)<a class="headerlink" href="#equation-eq-restric-2" title="Permalink to this equation">#</a></span>\[\begin{split}
     \\[1mm]
@@ -940,7 +950,7 @@ f(\boldsymbol{x})=\sum_{n=1}^{N}\theta_{n}\kappa(\boldsymbol{x}, \boldsymbol{x}_
 </li>
 </ul>
 <ul class="simple">
-<li><p>Estamos ahora listos para formular la <code class="docutils literal notranslate"><span class="pre">tarea</span> <span class="pre">de</span> <span class="pre">minimización</span> <span class="pre">para</span> <span class="pre">el</span> <span class="pre">correspondiente</span> <span class="pre">costo</span> <span class="pre">empírico</span></code>, regularizado por la norma de <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span>, el cual es <code class="docutils literal notranslate"><span class="pre">proyectado</span> <span class="pre">en</span> <span class="pre">términos</span> <span class="pre">de</span> <span class="pre">las</span> <span class="pre">variables</span> <span class="pre">auxiliares</span></code> como:</p></li>
+<li><p>Estamos ahora listos para formular la <em><strong>tarea de minimización para el correspondiente coste empírico</strong></em>, regularizado por la norma de <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span>, el cual es <em><strong>proyectado en términos de las variables auxiliares</strong></em> como:</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -952,48 +962,57 @@ f(\boldsymbol{x})=\sum_{n=1}^{N}\theta_{n}\kappa(\boldsymbol{x}, \boldsymbol{x}_
 \end{cases}
 \end{split}\]</div>
 <ul class="simple">
-<li><p>El término <span class="math notranslate nohighlight">\(\frac{1}{2}\|\boldsymbol{\theta}\|^{2}\)</span>, surge de la necesidad de <code class="docutils literal notranslate"><span class="pre">maximizar</span> <span class="pre">el</span> <span class="pre">margen</span> <span class="pre">asociado</span> <span class="pre">al</span> <span class="pre">hiperplano</span> <span class="pre">que</span> <span class="pre">separa</span> <span class="pre">dos</span> <span class="pre">clases</span></code> (ver sección <code class="docutils literal notranslate"><span class="pre">máquinas</span> <span class="pre">de</span> <span class="pre">vectores</span> <span class="pre">de</span> <span class="pre">soporte</span></code> <em>Vapnik and Chervonenkis 1960s</em>). Dicho margen: <span class="math notranslate nohighlight">\(2/\|\boldsymbol{\theta}\|\)</span>, el cual en <code class="docutils literal notranslate"><span class="pre">problemas</span> <span class="pre">de</span> <span class="pre">clasificación,</span> <span class="pre">se</span> <span class="pre">desea</span> <span class="pre">maximizar,</span> <span class="pre">es</span> <span class="pre">equivalente</span> <span class="pre">a</span> <span class="pre">minimizar</span> <span class="pre">la</span> <span class="pre">norma</span></code> <span class="math notranslate nohighlight">\(\frac{1}{2}\|\boldsymbol{\theta}\|^2\)</span> para el caso de modelos regresivos. El factor <span class="math notranslate nohighlight">\(\frac{1}{2}\)</span> es incluido de forma numéricamente conveniente, y no altera la solución. A este tipo de problemas se les denomina de <code class="docutils literal notranslate"><span class="pre">programación</span> <span class="pre">cuadrática</span></code>.</p></li>
+<li><p>El término <span class="math notranslate nohighlight">\(\frac{1}{2}\|\boldsymbol{\theta}\|^{2}\)</span>, surge de la necesidad de <em><strong>maximizar el margen asociado al hiperplano que separa dos clases</strong></em> (ver sección <em><strong>máquinas de vectores de soporte</strong></em> <em>Vapnik and Chervonenkis 1960s</em>).</p></li>
+<li><p>Dicho margen: <span class="math notranslate nohighlight">\(2/\|\boldsymbol{\theta}\|\)</span>, el cual, en <em><strong>problemas de clasificación, se desea maximizar, es equivalente a minimizar la norma</strong></em> <span class="math notranslate nohighlight">\(\frac{1}{2}\|\boldsymbol{\theta}\|^2\)</span> para el caso de <em><strong>modelos regresivos</strong></em>. El factor <span class="math notranslate nohighlight">\(\frac{1}{2}\)</span> es incluido de forma numéricamente conveniente, y no altera la solución. A este tipo de problemas se les denomina de <em><strong>programación cuadrática</strong></em>.</p></li>
 </ul>
+<div class="tip dropdown admonition">
+<p class="admonition-title">¿Por qué maximizar el margen?</p>
+<ul class="simple">
+<li><p>Maximizar el margen permite <em><strong>lograr un buen rendimiento de generalización</strong></em>. El <em><strong>margen representa el nivel de confianza del clasificador, y maximizarlo ayuda a minimizar el error de generalización</strong></em>.</p></li>
+<li><p>Maximizar el margen corresponde a <em><strong>minimizar la</strong></em> <a class="reference external" href="https://es.wikipedia.org/wiki/Dimensi%C3%B3n_VC">Dimensión VC (Vapnik-Chervonenkis)</a>, que es una <em><strong>medida de la capacidad o complejidad del modelo</strong></em>. Al maximizar el margen, SVM busca <em><strong>encontrar el límite de decisión más simple que separa las clases de manera efectiva</strong></em>, lo que conduce a una <em><strong>mejor generalización a datos no vistos</strong></em>.</p></li>
+<li><p>Maximizar el margen ayuda a <em><strong>crear un límite de decisión que es robusto al ruido y a los valores atípicos en los datos de entrenamiento</strong></em>. Al enfocarse en los puntos de datos cerca del margen, <em><strong>SVM puede tolerar mejor el ruido y los valores atípicos, lo que lleva a un clasificador más confiable y preciso</strong></em>.</p></li>
+</ul>
+</div>
 <figure class="align-center" id="largest-margin-fig">
 <a class="reference internal image-reference" href="_images/largest_margin.png"><img alt="_images/largest_margin.png" src="_images/largest_margin.png" style="width: 541.8px; height: 253.79999999999998px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 18 </span><span class="caption-text">Dos <code class="docutils literal notranslate"><span class="pre">líneas</span> <span class="pre">de</span> <span class="pre">separación</span></code>: una buena con un <code class="docutils literal notranslate"><span class="pre">margen</span> <span class="pre">grande</span></code> (derecha) y una línea de separación menos aceptable con un <code class="docutils literal notranslate"><span class="pre">margen</span> <span class="pre">pequeño</span></code> (izquierda).</span><a class="headerlink" href="#largest-margin-fig" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 18 </span><span class="caption-text">Dos <em><strong>líneas de separación</strong></em>: una buena con un <em><strong>margen grande</strong></em> (derecha) y una línea de separación menos aceptable con un <em><strong>margen pequeño</strong></em> (izquierda).</span><a class="headerlink" href="#largest-margin-fig" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <ul>
-<li><p>Las variables auxiliares, <span class="math notranslate nohighlight">\(\tilde{\xi}_{n}\)</span> y <span class="math notranslate nohighlight">\(\xi_{n},~ n=1,2,\dots,N\)</span> que <code class="docutils literal notranslate"><span class="pre">miden</span> <span class="pre">el</span> <span class="pre">exceso</span> <span class="pre">de</span> <span class="pre">error</span> <span class="pre">con</span> <span class="pre">respecto</span> <span class="pre">a</span></code> <span class="math notranslate nohighlight">\(\varepsilon\)</span>, son conocidas como <code class="docutils literal notranslate"><span class="pre">variables</span> <span class="pre">de</span> <span class="pre">relajación</span></code>. Nótese que cualquier contribución de la función de costo, para un error obtenido con un valor absoluto menor o igual que <span class="math notranslate nohighlight">\(\varepsilon\)</span> es cero. La tarea de optimización previa, intenta <code class="docutils literal notranslate"><span class="pre">estimar</span></code> <span class="math notranslate nohighlight">\(\boldsymbol{\theta}, \theta_{0}\)</span> <code class="docutils literal notranslate"><span class="pre">tal</span> <span class="pre">que</span> <span class="pre">valores</span> <span class="pre">de</span> <span class="pre">error</span> <span class="pre">mayores</span> <span class="pre">que</span></code> <span class="math notranslate nohighlight">\(\epsilon\)</span> <code class="docutils literal notranslate"><span class="pre">y</span> <span class="pre">menores</span> <span class="pre">que</span></code> <span class="math notranslate nohighlight">\(-\epsilon\)</span> <code class="docutils literal notranslate"><span class="pre">sean</span> <span class="pre">minimizados</span></code>.</p></li>
-<li><p>Por lo tanto, la tarea de optimización es equivalente a <code class="docutils literal notranslate"><span class="pre">minimizar</span> <span class="pre">la</span> <span class="pre">función</span> <span class="pre">de</span> <span class="pre">pérdida</span> <span class="pre">empírica</span></code></p>
+<li><p>Las variables auxiliares, <span class="math notranslate nohighlight">\(\tilde{\xi}_{n}\)</span> y <span class="math notranslate nohighlight">\(\xi_{n},~ n=1,2,\dots,N\)</span> que <em><strong>miden el exceso de error con respecto a</strong></em> <span class="math notranslate nohighlight">\(\varepsilon\)</span>, son conocidas como <em><strong>variables de relajación</strong></em>. Nótese que cualquier contribución de la función de coste, para un error obtenido con un valor absoluto menor o igual que <span class="math notranslate nohighlight">\(\varepsilon\)</span> es cero. La tarea de optimización previa, intenta <em><strong>estimar</strong></em> <span class="math notranslate nohighlight">\(\boldsymbol{\theta}, \theta_{0}\)</span> <em><strong>tal que valores de error mayores que</strong></em> <span class="math notranslate nohighlight">\(\epsilon\)</span> <em><strong>y menores que</strong></em> <span class="math notranslate nohighlight">\(-\epsilon\)</span> <em><strong>sean minimizados</strong></em>.</p></li>
+<li><p>Por lo tanto, la tarea de optimización es equivalente a <em><strong>minimizar la función de pérdida empírica</strong></em></p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
     \\[1mm]
     \frac{1}{2}\|\boldsymbol{\theta}\|^{2}+C\sum_{n=1}^{N}\mathcal{L}(y_{n}, \boldsymbol{\theta}^{T}\boldsymbol{x}_{n}+\theta_{0}),
     \end{split}\]</div>
-<p>donde la función de pérdida es <span class="math notranslate nohighlight">\(\varepsilon\)</span>-insensible.</p>
+<p>donde la función de pérdida <span class="math notranslate nohighlight">\(\mathcal{L}\)</span> es <span class="math notranslate nohighlight">\(\varepsilon\)</span>-insensible.</p>
 </li>
-<li><p>Nótese que debido a que el problema de optimización con restricción <code class="docutils literal notranslate"><span class="pre">involucra</span> <span class="pre">las</span> <span class="pre">variables</span> <span class="pre">de</span> <span class="pre">relajación</span></code> con valores históricos, empleamos el <code class="docutils literal notranslate"><span class="pre">kernel</span> <span class="pre">trick</span></code>.</p></li>
+<li><p>Nótese que debido a que el problema de optimización con restricción <em><strong>involucra las variables de relajación</strong></em> con valores históricos, empleamos el <em><strong>kernel trick</strong></em>.</p></li>
 </ul>
 <p><strong><code class="docutils literal notranslate"><span class="pre">Solución</span></code></strong></p>
 <ul>
-<li><p>La solución de la tarea de optimización es obtenida introduciendo los <code class="docutils literal notranslate"><span class="pre">multiplicadores</span> <span class="pre">de</span> <span class="pre">Lagrange</span></code> y formando el correspondiente Lagrangiano. <code class="docutils literal notranslate"><span class="pre">Habiendo</span> <span class="pre">obtenido</span> <span class="pre">los</span> <span class="pre">multiplicadores,</span> <span class="pre">la</span> <span class="pre">solución</span> <span class="pre">estaría</span> <span class="pre">dada</span> <span class="pre">por</span></code></p>
+<li><p>La solución de la tarea de optimización es obtenida introduciendo los <em><strong>multiplicadores de Lagrange</strong></em> y formando el correspondiente <em><strong>Lagrangiano</strong></em>. <em><strong>Habiendo obtenido los multiplicadores, la solución estaría dada por</strong></em></p>
 <div class="math notranslate nohighlight">
 \[
     \hat{\boldsymbol{\theta}}=\sum_{n=1}^{N}(\tilde{\lambda}_{n}-\lambda_{n})\boldsymbol{x}_{n},
     \]</div>
-<p>donde <span class="math notranslate nohighlight">\(\tilde{\lambda}_{n},\lambda_{n},~ n=1,2,\dots,N\)</span>, son los <code class="docutils literal notranslate"><span class="pre">multiplicadores</span> <span class="pre">asociados</span> <span class="pre">con</span> <span class="pre">cada</span> <span class="pre">una</span> <span class="pre">de</span> <span class="pre">las</span> <span class="pre">restricciones</span></code>.</p>
+<p>donde <span class="math notranslate nohighlight">\(\tilde{\lambda}_{n},\lambda_{n},~ n=1,2,\dots,N\)</span>, son los <em><strong>multiplicadores asociados con cada una de las restricciones</strong></em>.</p>
 </li>
 </ul>
 <ul class="simple">
-<li><p>Los <code class="docutils literal notranslate"><span class="pre">multiplicadores</span> <span class="pre">de</span> <span class="pre">Lagrange</span> <span class="pre">son</span> <span class="pre">distintos</span> <span class="pre">de</span> <span class="pre">cero,</span> <span class="pre">solo</span> <span class="pre">para</span> <span class="pre">puntos</span></code> <span class="math notranslate nohighlight">\(\boldsymbol{x}_{n}\)</span>, que corresponden a <code class="docutils literal notranslate"><span class="pre">valores</span> <span class="pre">de</span> <span class="pre">error</span> <span class="pre">ya</span> <span class="pre">sean</span> <span class="pre">iguales</span> <span class="pre">o</span> <span class="pre">mayores</span> <span class="pre">que</span></code> <span class="math notranslate nohighlight">\(\varepsilon\)</span>. Estos son conocidos como <code class="docutils literal notranslate"><span class="pre">vectores</span> <span class="pre">de</span> <span class="pre">soporte</span></code>.</p></li>
-<li><p>Puntos para los que el valor del <code class="docutils literal notranslate"><span class="pre">puntaje</span> <span class="pre">de</span> <span class="pre">error</span> <span class="pre">es</span> <span class="pre">menor</span> <span class="pre">que</span></code> <span class="math notranslate nohighlight">\(\varepsilon\)</span>, <code class="docutils literal notranslate"><span class="pre">corresponden</span> <span class="pre">a</span> <span class="pre">multiplicadores</span> <span class="pre">de</span> <span class="pre">Lagrange</span> <span class="pre">ceros</span></code> y por lo tanto <code class="docutils literal notranslate"><span class="pre">no</span> <span class="pre">son</span> <span class="pre">vectores</span> <span class="pre">de</span> <span class="pre">soporte</span> <span class="pre">y</span> <span class="pre">no</span> <span class="pre">participan</span> <span class="pre">en</span> <span class="pre">la</span> <span class="pre">construcción</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">función</span> <span class="pre">de</span> <span class="pre">decisión</span></code></p></li>
+<li><p>Los <em><strong>multiplicadores de Lagrange son distintos de cero, solo para puntos</strong></em> <span class="math notranslate nohighlight">\(\boldsymbol{x}_{n}\)</span>, que corresponden a <em><strong>valores de error ya sean iguales o mayores que</strong></em> <span class="math notranslate nohighlight">\(\varepsilon\)</span>. Estos son conocidos como <em><strong>vectores de soporte</strong></em>.</p></li>
+<li><p>Puntos para los que el valor del <em><strong>puntaje de error es menor que</strong></em> <span class="math notranslate nohighlight">\(\varepsilon\)</span>, <em><strong>corresponden a multiplicadores de Lagrange ceros</strong></em> y por lo tanto <em><strong>no son vectores de soporte y no participan en la construcción de la función de decisión</strong></em></p></li>
 </ul>
 <figure class="align-center" id="epsilon-tube-fig">
 <a class="reference internal image-reference" href="_images/epsilon_tube.png"><img alt="_images/epsilon_tube.png" src="_images/epsilon_tube.png" style="width: 414.4px; height: 323.4px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 19 </span><span class="caption-text">Parámetros utilizados en la <code class="docutils literal notranslate"><span class="pre">regresión</span> <span class="pre">de</span> <span class="pre">vectores</span> <span class="pre">de</span> <span class="pre">soporte</span> <span class="pre">(unidimensional)</span></code>. Cuadrados rellenos son vectores de soporte, y los vacíos no lo son. Por lo tanto, los <code class="docutils literal notranslate"><span class="pre">SV</span> <span class="pre">sólo</span> <span class="pre">pueden</span> <span class="pre">aparecer</span> <span class="pre">en</span> <span class="pre">el</span> <span class="pre">límite</span> <span class="pre">del</span> <span class="pre">tubo</span> <span class="pre">o</span> <span class="pre">fuera</span> <span class="pre">del</span> <span class="pre">tubo</span></code></span><a class="headerlink" href="#epsilon-tube-fig" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 19 </span><span class="caption-text">Parámetros utilizados en la <em><strong>regresión de vectores de soporte (unidimensional)</strong></em>. Cuadrados rellenos son vectores de soporte, y los vacíos no lo son. Por lo tanto, los <em><strong>SV sólo pueden aparecer en el límite del tubo o fuera del tubo</strong></em></span><a class="headerlink" href="#epsilon-tube-fig" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <ul>
-<li><p>El término de sesgo <span class="math notranslate nohighlight">\(\hat{\theta}_{0}\)</span> <code class="docutils literal notranslate"><span class="pre">puede</span> <span class="pre">ser</span> <span class="pre">obtenido</span> <span class="pre">a</span> <span class="pre">partir</span> <span class="pre">de</span> <span class="pre">las</span> <span class="pre">ecuaciones</span></code></p>
+<li><p>El término de sesgo <span class="math notranslate nohighlight">\(\hat{\theta}_{0}\)</span> <em><strong>puede ser obtenido a partir de las ecuaciones</strong></em></p>
 <div class="math notranslate nohighlight" id="equation-eq-sistem-bias">
 <span class="eqno">(39)<a class="headerlink" href="#equation-eq-sistem-bias" title="Permalink to this equation">#</a></span>\[\begin{split}
     \begin{align}
@@ -1001,16 +1020,16 @@ f(\boldsymbol{x})=\sum_{n=1}^{N}\theta_{n}\kappa(\boldsymbol{x}, \boldsymbol{x}_
     \boldsymbol{\theta}^{T}\boldsymbol{x}_{n}+\theta_{0}-y_{n}&amp;=\varepsilon,
     \end{align} 
     \end{split}\]</div>
-<p>donde <span class="math notranslate nohighlight">\(n\)</span> recorre todos los puntos que forman un <code class="docutils literal notranslate"><span class="pre">subconjunto</span> <span class="pre">de</span> <span class="pre">vectores</span> <span class="pre">de</span> <span class="pre">soporte</span></code>, esto es, puntos asociados con:</p>
+<p>donde <span class="math notranslate nohighlight">\(n\)</span> recorre todos los puntos que forman un <em><strong>subconjunto de vectores de soporte</strong></em>, esto es, puntos asociados con:</p>
 <div class="math notranslate nohighlight">
 \[
     \tilde{\lambda}_{n}&gt;0,~(\lambda_{n}&gt;0)\quad\text{y}\quad\tilde{\xi}_{n}=0,~(\xi_{n}=0).
     \]</div>
-<p>En la practica, <span class="math notranslate nohighlight">\(\hat{\theta}_{0}\)</span> <code class="docutils literal notranslate"><span class="pre">es</span> <span class="pre">obtenido</span> <span class="pre">a</span> <span class="pre">partir</span> <span class="pre">del</span> <span class="pre">promedio</span> <span class="pre">de</span> <span class="pre">todas</span> <span class="pre">las</span> <span class="pre">ecuaciones</span> <span class="pre">en</span></code> <a class="reference internal" href="#equation-eq-sistem-bias">(39)</a>.</p>
+<p>En la práctica, <span class="math notranslate nohighlight">\(\hat{\theta}_{0}\)</span> <em><strong>es obtenido a partir del promedio de todas las ecuaciones en</strong></em> <a class="reference internal" href="#equation-eq-sistem-bias">(39)</a>.</p>
 </li>
 </ul>
 <ul>
-<li><p>Una vez <span class="math notranslate nohighlight">\(\hat{\boldsymbol{\theta}}, \hat{\theta}_{0}\)</span> han sido obtenidos, estamos listos para <code class="docutils literal notranslate"><span class="pre">realizar</span> <span class="pre">predicciones</span></code>. Dado un valor <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span>, primero desarrollamos el <code class="docutils literal notranslate"><span class="pre">mapeo</span> <span class="pre">(implícito)</span> <span class="pre">usando</span> <span class="pre">el</span> <span class="pre">mapeo</span> <span class="pre">de</span> <span class="pre">características</span></code> <span class="math notranslate nohighlight">\(\boldsymbol{x}\longmapsto\kappa(\cdot, \boldsymbol{x})\)</span> obtenemos</p>
+<li><p>Una vez <span class="math notranslate nohighlight">\(\hat{\boldsymbol{\theta}}, \hat{\theta}_{0}\)</span> han sido obtenidos, estamos listos para <em><strong>realizar predicciones</strong></em>. Dado un valor <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span>, primero desarrollamos el <em><strong>mapeo (implícito) usando el mapeo de características</strong></em> <span class="math notranslate nohighlight">\(\boldsymbol{x}\longmapsto\kappa(\cdot, \boldsymbol{x})\)</span> obtenemos</p>
 <div class="math notranslate nohighlight">
 \[
     \hat{y}(\boldsymbol{x})=\langle\hat{\boldsymbol{\theta}}, \kappa(\cdot, \boldsymbol{x})\rangle+\hat{\theta}_{0},
@@ -1020,12 +1039,12 @@ f(\boldsymbol{x})=\sum_{n=1}^{N}\theta_{n}\kappa(\boldsymbol{x}, \boldsymbol{x}_
 \[
     \hat{y}(\boldsymbol{x})=\sum_{n=1}^{N_{s}}(\tilde{\lambda}_{n}-\tilde{\lambda}_{n})\kappa(\boldsymbol{x}, \boldsymbol{x}_{n})+\hat{\theta}_{0},\quad\text{Predicción SVR},
     \]</div>
-<p>donde <span class="math notranslate nohighlight">\(N_{s}\leq N\)</span>, es el <code class="docutils literal notranslate"><span class="pre">número</span> <span class="pre">de</span> <span class="pre">multiplicadores</span> <span class="pre">de</span> <span class="pre">Lagrange</span> <span class="pre">distintos</span> <span class="pre">de</span> <span class="pre">cero</span></code>. Nótese que esta última es una expansión en términos de funciones kernel no lineales.</p>
+<p>donde <span class="math notranslate nohighlight">\(N_{s}\leq N\)</span>, es el <em><strong>número de multiplicadores de Lagrange distintos de cero</strong></em>. Nótese que esta última es una expansión en términos de funciones kernel no lineales.</p>
 </li>
 </ul>
 <p><strong><code class="docutils literal notranslate"><span class="pre">Solución</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">tarea</span> <span class="pre">de</span> <span class="pre">optimización</span></code></strong></p>
 <ul>
-<li><p>La tarea de <code class="docutils literal notranslate"><span class="pre">optimización</span> <span class="pre">con</span> <span class="pre">desigualdades</span> <span class="pre">de</span> <span class="pre">restricción</span></code>, satisface las siguientes condiciones</p>
+<li><p>La tarea de <em><strong>optimización con desigualdades de restricción</strong></em>, satisface las siguientes condiciones</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
     \\[1mm]
@@ -1038,7 +1057,7 @@ f(\boldsymbol{x})=\sum_{n=1}^{N}\theta_{n}\kappa(\boldsymbol{x}, \boldsymbol{x}_
     &amp;\tilde{\lambda}_{n}\geq0,~\lambda_{n}\geq0,~\tilde{\mu}_{n}\geq0,~\mu_{n}\geq0,\quad n=1,2,\dots,N,
     \end{align*}
     \end{split}\]</div>
-<p>con respecto al <code class="docutils literal notranslate"><span class="pre">Lagrangiano</span></code></p>
+<p>con respecto al <em><strong>Lagrangiano</strong></em></p>
 <div class="math notranslate nohighlight" id="equation-eq-lagrangiano-general">
 <span class="eqno">(40)<a class="headerlink" href="#equation-eq-lagrangiano-general" title="Permalink to this equation">#</a></span>\[\begin{split}
     \begin{align*}
@@ -1048,22 +1067,22 @@ f(\boldsymbol{x})=\sum_{n=1}^{N}\theta_{n}\kappa(\boldsymbol{x}, \boldsymbol{x}_
     &amp;-\sum_{n=1}^{N}\tilde{\mu}_{n}\tilde{\xi}_{n}-\sum_{n=1}^{N}\mu_{n}\xi_{n},
     \end{align*}
     \end{split}\]</div>
-<p>donde <span class="math notranslate nohighlight">\(\tilde{\lambda}_{n},~\lambda_{n},~\tilde{\mu}_{n},~\mu_{n}\)</span> son los <code class="docutils literal notranslate"><span class="pre">multiplicadores</span> <span class="pre">de</span> <span class="pre">Lagrange</span></code>.</p>
+<p>donde <span class="math notranslate nohighlight">\(\tilde{\lambda}_{n},~\lambda_{n},~\tilde{\mu}_{n},~\mu_{n}\)</span> son los <em><strong>multiplicadores de Lagrange</strong></em>.</p>
 </li>
 </ul>
 <ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">Sumando</span> <span class="pre">las</span> <span class="pre">restricciones</span></code> (multiplicando cada restricción por <span class="math notranslate nohighlight">\(\tilde{\lambda}_{n},\lambda_{n}, \tilde{\xi}_{n}, \xi_{n}\)</span>), se tiene que:</p>
+<li><p><em><strong>Sumando las restricciones</strong></em> (multiplicando cada restricción por <span class="math notranslate nohighlight">\(\tilde{\lambda}_{n},\lambda_{n}, \tilde{\xi}_{n}, \xi_{n}\)</span>), se tiene que:</p>
 <div class="math notranslate nohighlight">
 \[
     \tilde{\lambda}_{n}\lambda_{n}((y_{n}-\boldsymbol{\theta}^{T}\boldsymbol{x}_{n}-\theta_{0}-\varepsilon)(\xi_{n}-\tilde{\xi}_{n})-2\tilde{\xi}_{n}\xi_{n})=0,
     \]</div>
-<p>dado que los <code class="docutils literal notranslate"><span class="pre">multiplicadores</span> <span class="pre">de</span> <span class="pre">Lagrange</span> <span class="pre">que</span> <span class="pre">participan</span> <span class="pre">en</span> <span class="pre">la</span> <span class="pre">solución</span></code> <span class="math notranslate nohighlight">\(\hat{\theta}\)</span> son aquellos <code class="docutils literal notranslate"><span class="pre">distintos</span> <span class="pre">de</span> <span class="pre">cero</span></code>, para puntos <span class="math notranslate nohighlight">\(\boldsymbol{x}_{n}\)</span> correspondientes a valores de <code class="docutils literal notranslate"><span class="pre">errores</span> <span class="pre">que</span> <span class="pre">sean</span> <span class="pre">mayores</span> <span class="pre">o</span> <span class="pre">iguales</span> <span class="pre">que</span></code> <span class="math notranslate nohighlight">\(\varepsilon\)</span>, esto es, por ejemplo <span class="math notranslate nohighlight">\((y_{n}-\boldsymbol{\theta}^{T}\boldsymbol{x}_{n}-\theta_{0})\geq\varepsilon,~\lambda_{n}\neq0\)</span>.</p>
-<p>Si <span class="math notranslate nohighlight">\(y_{n}-\boldsymbol{\theta}^{T}-\theta_{0}=\varepsilon\)</span> (similar para <span class="math notranslate nohighlight">\(\boldsymbol{\theta}^{T}\boldsymbol{x}_{n}+\theta_{0}-y_{n}=\varepsilon\)</span>), entonces</p>
+<p>dado que los <em><strong>multiplicadores de Lagrange que participan en la solución</strong></em> <span class="math notranslate nohighlight">\(\hat{\theta}\)</span> son aquellos <em><strong>distintos de cero</strong></em>, para puntos <span class="math notranslate nohighlight">\(\boldsymbol{x}_{n}\)</span> correspondientes a valores de <em><strong>errores que sean mayores o iguales que</strong></em> <span class="math notranslate nohighlight">\(\varepsilon\)</span>, esto es, por ejemplo <span class="math notranslate nohighlight">\((y_{n}-\boldsymbol{\theta}^{T}\boldsymbol{x}_{n}-\theta_{0})\geq\varepsilon,~\lambda_{n}\neq0\)</span>.</p>
+<p>Si <span class="math notranslate nohighlight">\(y_{n}-\boldsymbol{\theta}^{T}\boldsymbol{x}_{n}-\theta_{0}=\varepsilon\)</span> (similar para <span class="math notranslate nohighlight">\(\boldsymbol{\theta}^{T}\boldsymbol{x}_{n}+\theta_{0}-y_{n}=\varepsilon\)</span>), entonces</p>
 <div class="math notranslate nohighlight">
 \[
     (i)~\tilde{\lambda}_{n}\lambda_{n}=0\quad\text{o}\quad(ii)~(y_{n}-\boldsymbol{\theta}^{T}\boldsymbol{x}_{n}-\theta_{0}-\varepsilon)(\xi_{n}-\tilde{\xi}_{n})-2\tilde{\xi}_{n}\xi_{n}=0
     \]</div>
-<p>Si <span class="math notranslate nohighlight">\(y_{n}-\boldsymbol{\theta}^{T}-\theta_{0}&gt;\varepsilon\)</span> (similar para <span class="math notranslate nohighlight">\(y_{n}-\boldsymbol{\theta}^{T}-\theta_{0}&lt;-\varepsilon\)</span>), entonces <span class="math notranslate nohighlight">\((i)~\tilde{\lambda}_{n}\lambda_{n}=0\)</span>. Además, <code class="docutils literal notranslate"><span class="pre">basados</span> <span class="pre">en</span> <span class="pre">la</span> <span class="pre">tarea</span> <span class="pre">de</span> <span class="pre">optimización</span></code>, seleccionando <span class="math notranslate nohighlight">\(\boldsymbol{\theta}^{T}, \theta_{0}\)</span> tales que <span class="math notranslate nohighlight">\(y_{n}-\boldsymbol{\theta}^{T}\boldsymbol{x}_{n}-\theta_{0}-\varepsilon\rightarrow0\)</span> se tiene que</p>
+<p>Si <span class="math notranslate nohighlight">\(y_{n}-\boldsymbol{\theta}^{T}\boldsymbol{x}_{n}-\theta_{0}&gt;\varepsilon\)</span> (similar para <span class="math notranslate nohighlight">\(y_{n}-\boldsymbol{\theta}^{T}\boldsymbol{x}_{n}-\theta_{0}&lt;-\varepsilon\)</span>), entonces <span class="math notranslate nohighlight">\((i)~\tilde{\lambda}_{n}\lambda_{n}=0\)</span>. Además, <em><strong>basados en la tarea de optimización</strong></em>, seleccionando <span class="math notranslate nohighlight">\(\boldsymbol{\theta}^{T}, \theta_{0}\)</span> tales que <span class="math notranslate nohighlight">\(y_{n}-\boldsymbol{\theta}^{T}\boldsymbol{x}_{n}-\theta_{0}-\varepsilon\rightarrow0\)</span> se tiene que</p>
 <div class="math notranslate nohighlight">
 \[
     (ii)~(y_{n}-\boldsymbol{\theta}^{T}\boldsymbol{x}_{n}-\theta_{0}-\varepsilon)(\xi_{n}-\tilde{\xi}_{n})-2\tilde{\xi}_{n}\xi_{n}=0\Rightarrow\tilde{\xi}_{n}\xi_{n}=0.
@@ -1071,7 +1090,14 @@ f(\boldsymbol{x})=\sum_{n=1}^{N}\theta_{n}\kappa(\boldsymbol{x}, \boldsymbol{x}_
 </li>
 </ul>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">Derivando</span> <span class="pre">el</span> <span class="pre">Lagrangiano</span></code> <a class="reference internal" href="#equation-eq-lagrangiano-general">(40)</a> tenemos los resultados</p></li>
+<li><p>Esto es</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\tilde{\xi}_{n}\xi_{n}=0,~\tilde{\lambda}_{n}\lambda_{n}=0,~n=1,2,\dots,N.
+\]</div>
+<ul class="simple">
+<li><p><em><strong>Derivando el Lagrangiano</strong></em> <a class="reference internal" href="#equation-eq-lagrangiano-general">(40)</a> tenemos los resultados</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -1084,22 +1110,22 @@ f(\boldsymbol{x})=\sum_{n=1}^{N}\theta_{n}\kappa(\boldsymbol{x}, \boldsymbol{x}_
 \end{align*}
 \end{split}\]</div>
 <ul class="simple">
-<li><p>Para proceder a <code class="docutils literal notranslate"><span class="pre">calcular</span> <span class="pre">los</span> <span class="pre">multiplicadores</span> <span class="pre">asociados</span> <span class="pre">a</span> <span class="pre">la</span> <span class="pre">tarea</span> <span class="pre">de</span> <span class="pre">optimización</span></code>, consideraremos la <strong><code class="docutils literal notranslate"><span class="pre">Representación</span> <span class="pre">dual</span> <span class="pre">de</span> <span class="pre">Walfe</span></code></strong>. En esta representación es considerado el <code class="docutils literal notranslate"><span class="pre">término</span> <span class="pre">de</span> <span class="pre">sesgo</span></code> <span class="math notranslate nohighlight">\(\theta_{0}=0\)</span>. Además, <code class="docutils literal notranslate"><span class="pre">consideraremos</span> <span class="pre">solo</span> <span class="pre">el</span> <span class="pre">uso</span> <span class="pre">de</span> <span class="pre">vectores</span> <span class="pre">de</span> <span class="pre">soportes</span></code>, esto es valores asociados a <span class="math notranslate nohighlight">\(\boldsymbol{\xi}_{n}=\tilde{\boldsymbol{\xi}}_{n}=0\)</span>, para proceder con la <code class="docutils literal notranslate"><span class="pre">representación</span> <span class="pre">dual</span> <span class="pre">respectiva</span></code>. Esta representación es obtenida a partir del Lagrangiano <span class="math notranslate nohighlight">\(L(\boldsymbol{\theta}, \theta_{0}, \tilde{\xi}, \xi, \lambda, \mu)\)</span>.</p></li>
+<li><p>Para proceder a <em><strong>calcular los multiplicadores asociados a la tarea de optimización</strong></em>, consideraremos la <em><strong><code class="docutils literal notranslate"><span class="pre">Representación</span> <span class="pre">dual</span> <span class="pre">de</span> <span class="pre">Walfe</span></code></strong></em>. En esta representación es considerado el <em><strong>término de sesgo</strong></em> <span class="math notranslate nohighlight">\(\theta_{0}=0\)</span>. Además, <em><strong>consideraremos solo el uso de vectores de soportes</strong></em>, esto es valores asociados a <span class="math notranslate nohighlight">\(\boldsymbol{\xi}_{n}=\tilde{\boldsymbol{\xi}}_{n}=0\)</span>, para proceder con la <em><strong>representación dual respectiva</strong></em>. Esta representación es obtenida a partir del Lagrangiano <span class="math notranslate nohighlight">\(L(\boldsymbol{\theta}, \theta_{0}, \tilde{\xi}, \xi, \lambda, \mu)\)</span>.</p></li>
 </ul>
 <div class="proof property admonition" id="walfe_prop">
 <p class="admonition-title"><span class="caption-number">Property 3 </span> (Representación dual de Walfe)</p>
 <section class="property-content" id="proof-content">
 <ul>
-<li><p>Un <code class="docutils literal notranslate"><span class="pre">problema</span> <span class="pre">de</span> <span class="pre">programación</span> <span class="pre">convexa</span></code> es equivalente a</p>
+<li><p>Un <em><strong>problema de programación convexa</strong></em> es equivalente a</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
     \\[1mm]
     \max_{\lambda\geq0}&amp;\quad L(\boldsymbol{\theta}, \boldsymbol{\lambda}),\\
     \text{sujeto a}&amp;\quad\frac{\partial}{\partial\boldsymbol{\theta}}L(\boldsymbol{\theta},\boldsymbol{\lambda})=\boldsymbol{0}.
     \end{split}\]</div>
-<p>La última ecuación garantiza que <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span> es un <code class="docutils literal notranslate"><span class="pre">mínimo</span> <span class="pre">del</span> <span class="pre">Lagrangiano</span></code>.</p>
+<p>La última ecuación garantiza que <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span> es un <em><strong>mínimo del Lagrangiano</strong></em>.</p>
 </li>
-<li><p>Considere el siguiente <code class="docutils literal notranslate"><span class="pre">problema</span> <span class="pre">cuadrático</span></code>:</p>
+<li><p>Considere el siguiente <em><strong>problema cuadrático</strong></em>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
     \begin{align*}
@@ -1107,7 +1133,7 @@ f(\boldsymbol{x})=\sum_{n=1}^{N}\theta_{n}\kappa(\boldsymbol{x}, \boldsymbol{x}_
     \text{sujeto a:}&amp;\quad A\boldsymbol{\theta}\geq b.
     \end{align*}
     \end{split}\]</div>
-<p>el cual admite la siguiente <code class="docutils literal notranslate"><span class="pre">representación</span> <span class="pre">de</span> <span class="pre">Wolfe</span></code></p>
+<p>el cual admite la siguiente <em><strong>representación de Wolfe</strong></em></p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
     \begin{align*}
@@ -1116,7 +1142,7 @@ f(\boldsymbol{x})=\sum_{n=1}^{N}\theta_{n}\kappa(\boldsymbol{x}, \boldsymbol{x}_
     \end{align*}
     \end{split}\]</div>
 </li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Solucionando</span> <span class="pre">la</span> <span class="pre">tarea</span> <span class="pre">de</span> <span class="pre">optimización</span> <span class="pre">de</span> <span class="pre">Wolfe</span></code> con respecto a <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span>, podemos <code class="docutils literal notranslate"><span class="pre">escribir</span> <span class="pre">el</span> <span class="pre">problema</span> <span class="pre">dual</span> <span class="pre">involucrando</span> <span class="pre">solo</span> <span class="pre">multiplicadores</span> <span class="pre">de</span> <span class="pre">Lagrange</span></code>. De esta forma obtenemos otro problema cuadrático, pero más simple</p>
+<li><p><em><strong>Solucionando la tarea de optimización de Wolfe</strong></em> con respecto a <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span>, podemos <em><strong>escribir el problema dual involucrando solo multiplicadores de Lagrange</strong></em>. De esta forma obtenemos otro problema cuadrático, pero más simple</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
     \\[1mm]
@@ -1129,19 +1155,19 @@ f(\boldsymbol{x})=\sum_{n=1}^{N}\theta_{n}\kappa(\boldsymbol{x}, \boldsymbol{x}_
 </ul>
 </section>
 </div><ul class="simple">
-<li><p>Nótese en la propiedad anterior que, <span class="math notranslate nohighlight">\(\partial_{\boldsymbol{\theta}}(\frac{1}{2}\boldsymbol{\theta}^{T}\boldsymbol{\theta}-\lambda^{T}(A\boldsymbol{\theta}-\boldsymbol{b}))=\boldsymbol{\theta}-A^{T}\lambda\)</span>. Consideremos ahora la <code class="docutils literal notranslate"><span class="pre">representación</span> <span class="pre">dual</span> <span class="pre">de</span> <span class="pre">Wolfe</span></code> asociada a la tarea de optimización <a class="reference internal" href="#equation-eq-lagrangiano-general">(40)</a>. <code class="docutils literal notranslate"><span class="pre">Con</span> <span class="pre">este</span> <span class="pre">fin,</span> <span class="pre">consideremos</span></code> <span class="math notranslate nohighlight">\(A\boldsymbol{\theta}=\boldsymbol{\theta}\boldsymbol{x_{n}}+\theta_{0}\)</span> y <span class="math notranslate nohighlight">\(b=y_{n}-\varepsilon\)</span>, con <span class="math notranslate nohighlight">\(\tilde{\xi}_{n}, \xi_{n}=0\)</span>, con base en el estimador obtenido para <span class="math notranslate nohighlight">\(\hat{\boldsymbol{\theta}}\)</span>, <code class="docutils literal notranslate"><span class="pre">la</span> <span class="pre">tarea</span> <span class="pre">de</span> <span class="pre">optimización</span> <span class="pre">se</span> <span class="pre">convierte</span> <span class="pre">en</span> <span class="pre">la</span> <span class="pre">siguiente</span> <span class="pre">representación</span> <span class="pre">dual</span> <span class="pre">de</span> <span class="pre">Walfe</span></code></p></li>
+<li><p>Nótese en la propiedad anterior que, <span class="math notranslate nohighlight">\(\partial_{\boldsymbol{\theta}}(\frac{1}{2}\boldsymbol{\theta}^{T}\boldsymbol{\theta}-\lambda^{T}(A\boldsymbol{\theta}-\boldsymbol{b}))=\boldsymbol{\theta}-A^{T}\lambda\)</span>. Consideremos ahora la <em><strong>representación dual de Wolfe</strong></em> asociada a la tarea de optimización <a class="reference internal" href="#equation-eq-lagrangiano-general">(40)</a>. <em><strong>Con este fin, consideremos</strong></em> <span class="math notranslate nohighlight">\(A\boldsymbol{\theta}=\boldsymbol{\theta}\boldsymbol{x_{n}}+\theta_{0}\)</span> y <span class="math notranslate nohighlight">\(b=y_{n}-\varepsilon\)</span>, con <span class="math notranslate nohighlight">\(\tilde{\xi}_{n}, \xi_{n}=0\)</span>, con base en el estimador obtenido para <span class="math notranslate nohighlight">\(\hat{\boldsymbol{\theta}}\)</span>, <em><strong>la tarea de optimización se convierte en la siguiente representación dual de Walfe</strong></em></p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{align*}
-\text{minimizar respecto a}~\lambda,\tilde{\lambda}:&amp;\quad-\frac{1}{2}\sum_{n=1}^{N}\sum_{m=1}^{N}(\tilde{\lambda}_{n}-\lambda_{n})(\tilde{\lambda}_{n}+\lambda_{n})\boldsymbol{x}_{n}^{T}\boldsymbol{x}_{m}\\
+\text{minimizar respecto a}~\lambda,\tilde{\lambda}:&amp;\quad-\frac{1}{2}\sum_{n=1}^{N}\sum_{m=1}^{N}(\tilde{\lambda}_{n}-\lambda_{n})(\tilde{\lambda}_{m}-\lambda_{m})\boldsymbol{x}_{n}^{T}\boldsymbol{x}_{m}\\
 &amp;\quad+\sum_{n=1}^{N}(\tilde{\lambda}_{n}-\lambda_{n})y_{n}-\varepsilon(\tilde{\lambda}_{n}+\lambda_{n})\\
 \text{sujeto a:}&amp;\quad 0\leq\tilde{\lambda}_{n}\leq C\quad\text{y}\quad 0\leq\lambda_{n}\leq C,\quad n=1,2,\dots,N.\\
 &amp;\quad~\sum_{n=1}^{N}\tilde{\lambda}_{n}=\sum_{n=1}^{N}\lambda_{n}.
 \end{align*}
 \end{split}\]</div>
 <ul>
-<li><p>Nótese que la <code class="docutils literal notranslate"><span class="pre">primera</span> <span class="pre">restricción</span> <span class="pre">proviene</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">igualdad</span></code> <span class="math notranslate nohighlight">\(C-\tilde{\lambda}-\tilde{\mu}_{n}=0\)</span>, con la cual se tiene que</p>
+<li><p>El primer producto interior es reemplazado por <span class="math notranslate nohighlight">\(\kappa(\boldsymbol{x}_{n}, \boldsymbol{x}_{m})\)</span> vía <em><strong>kernel trick</strong></em>. Nótese que la <em><strong>primera restricción proviene de la igualdad</strong></em> <span class="math notranslate nohighlight">\(C-\tilde{\lambda}-\tilde{\mu}_{n}=0\)</span>, con la cual se tiene que</p>
 <div class="math notranslate nohighlight">
 \[
     0\leq\tilde{\lambda}_{n}\leq\tilde{\lambda}_{n}+\tilde{\mu}_{n}\leq C\Rightarrow 0\leq\tilde{\lambda}_{n}\leq C,
@@ -1150,17 +1176,17 @@ f(\boldsymbol{x})=\sum_{n=1}^{N}\theta_{n}\kappa(\boldsymbol{x}, \boldsymbol{x}_
 </li>
 </ul>
 <ul class="simple">
-<li><p>El <code class="docutils literal notranslate"><span class="pre">primer</span> <span class="pre">termino</span> <span class="pre">proviene</span> <span class="pre">la</span> <span class="pre">siguiente</span> <span class="pre">igualdad</span> <span class="pre">obtenida</span> <span class="pre">a</span> <span class="pre">partir</span> <span class="pre">del</span> <span class="pre">Lagrangiano</span></code>, el <code class="docutils literal notranslate"><span class="pre">segundo</span> <span class="pre">resulta</span> <span class="pre">de</span> <span class="pre">factorizar</span></code> los términos que incluyen los autovalores, con <span class="math notranslate nohighlight">\(\xi_{n}=\tilde{\xi}_{n}=0\)</span>,</p></li>
+<li><p>El <em><strong>primer término proviene la siguiente igualdad obtenida a partir del Lagrangiano</strong></em>, el <em><strong>segundo resulta de factorizar</strong></em> los términos que incluyen los autovalores, con <span class="math notranslate nohighlight">\(\xi_{n}=\tilde{\xi}_{n}=0\)</span> (<code class="docutils literal notranslate"><span class="pre">verifíquelo</span></code>) (<em><strong>vectores de soporte</strong></em>)</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[
--\sum_{n=1}^{N}(\tilde{\lambda}_{n}-\lambda_{n})\boldsymbol{\theta}^{T}\boldsymbol{\theta}\boldsymbol{x}_{n}=-\sum_{m=1}^{N}\sum_{n=1}^{N}(\tilde{\lambda}_{m}-\lambda_{m})(\tilde{\lambda}_{n}-\lambda_{n})\boldsymbol{x}_{m}\boldsymbol{x}_{n}
+-\frac{1}{2}\|\boldsymbol{\theta}\|^{2}=-\frac{1}{2}\sum_{n=1}^{N}\sum_{m=1}^{N}(\tilde{\lambda}_{n}-\lambda_{n})(\tilde{\lambda}_{m}-\lambda_{m})\boldsymbol{x}_{n}^{T}\boldsymbol{x}_{m}
 \]</div>
 </section>
 <section id="regresion-kernel-ridge">
 <h2>Regresión Kernel Ridge<a class="headerlink" href="#regresion-kernel-ridge" title="Permalink to this heading">#</a></h2>
 <ul>
-<li><p>En esta sección abordaremos la <code class="docutils literal notranslate"><span class="pre">regresión</span> <span class="pre">kernel</span> <span class="pre">ridge</span> <span class="pre">vía</span> <span class="pre">su</span> <span class="pre">representación</span> <span class="pre">dual</span></code>. La regresión ridge en su <code class="docutils literal notranslate"><span class="pre">representación</span> <span class="pre">primal</span></code> puede ser proyectada como:</p>
+<li><p>En esta sección abordaremos la <em><strong>regresión kernel ridge vía su representación dual</strong></em>. La regresión ridge en su <em><strong>representación primal</strong></em> puede ser proyectada como:</p>
 <div class="math notranslate nohighlight" id="equation-eq-kernel-ridge-reg">
 <span class="eqno">(41)<a class="headerlink" href="#equation-eq-kernel-ridge-reg" title="Permalink to this equation">#</a></span>\[\begin{split}
     \begin{align*}
@@ -1168,7 +1194,7 @@ f(\boldsymbol{x})=\sum_{n=1}^{N}\theta_{n}\kappa(\boldsymbol{x}, \boldsymbol{x}_
     \text{sujeto a}:&amp;\quad y_{n}-\boldsymbol{\theta}^{T}\boldsymbol{x}_{n}=\boldsymbol{\xi}_{n},\quad n=1,2,\dots,N,
     \end{align*}
     \end{split}\]</div>
-<p>con el siguiente <code class="docutils literal notranslate"><span class="pre">Lagrangiano</span></code></p>
+<p>con el siguiente <em><strong>Lagrangiano</strong></em></p>
 <div class="math notranslate nohighlight">
 \[
     L(\boldsymbol{\theta}, \boldsymbol{\xi}, \lambda)=\sum_{n=1}^{N}\xi_{n}^{2}+C\|\boldsymbol{\theta}\|^{2}+\sum_{n=1}^{N}\lambda_{n}(y_{n}-\boldsymbol{\theta}^{T}\boldsymbol{x}_{n}-\xi_{n}),\quad n=1,2,\dots,N.
@@ -1176,7 +1202,7 @@ f(\boldsymbol{x})=\sum_{n=1}^{N}\theta_{n}\kappa(\boldsymbol{x}, \boldsymbol{x}_
 </li>
 </ul>
 <ul class="simple">
-<li><p>Calculando las <code class="docutils literal notranslate"><span class="pre">derivadas</span> <span class="pre">parciales</span></code> <span class="math notranslate nohighlight">\(\partial_{\boldsymbol{\theta},\xi_{n}}=0,\, n=1,2,\dots,N\)</span> se tiene que</p></li>
+<li><p>Calculando las <em><strong>derivadas parciales</strong></em> <span class="math notranslate nohighlight">\(\partial_{\boldsymbol{\theta},\xi_{n}}=0,\, n=1,2,\dots,N\)</span> se tiene que</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -1186,7 +1212,7 @@ f(\boldsymbol{x})=\sum_{n=1}^{N}\theta_{n}\kappa(\boldsymbol{x}, \boldsymbol{x}_
 \end{align*}
 \end{split}\]</div>
 <ul class="simple">
-<li><p>Para obtener los multiplicadores de Lagrange, consideramos la siguiente <code class="docutils literal notranslate"><span class="pre">formulación</span> <span class="pre">dual,</span> <span class="pre">obtenida</span> <span class="pre">al</span> <span class="pre">reemplazar</span> <span class="pre">los</span> <span class="pre">estimadores</span></code> <span class="math notranslate nohighlight">\(\hat{\boldsymbol{\theta}}\)</span> y <span class="math notranslate nohighlight">\(\xi_{n}\)</span> en la tarea de optimización <a class="reference internal" href="#equation-eq-kernel-ridge-reg">(41)</a></p></li>
+<li><p>Para obtener los multiplicadores de Lagrange, consideramos la siguiente <em><strong>formulación dual, obtenida al reemplazar los estimadores</strong></em> <span class="math notranslate nohighlight">\(\hat{\boldsymbol{\theta}}\)</span> y <span class="math notranslate nohighlight">\(\xi_{n}\)</span> en la tarea de optimización <a class="reference internal" href="#equation-eq-kernel-ridge-reg">(41)</a></p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -1198,7 +1224,7 @@ f(\boldsymbol{x})=\sum_{n=1}^{N}\theta_{n}\kappa(\boldsymbol{x}, \boldsymbol{x}_
 \end{align*}
 \end{split}\]</div>
 <ul>
-<li><p>La <code class="docutils literal notranslate"><span class="pre">representación</span> <span class="pre">dual</span></code> entrega la siguiente <code class="docutils literal notranslate"><span class="pre">formulación</span></code></p>
+<li><p>La <em><strong>representación dual</strong></em> entrega la siguiente <em><strong>formulación</strong></em></p>
 <div class="math notranslate nohighlight">
 \[
     \text{minimizar respecto a}~\lambda:\quad\sum_{n=1}^{N}\lambda_{n}y_{n}-\frac{1}{4C}\sum_{n=1}^{N}\sum_{m=1}^{N}\lambda_{n}\lambda_{m}\kappa(\boldsymbol{x}_{n}, \boldsymbol{x}_{m})-\frac{1}{4}\sum_{n=1}^{N}\lambda_{n}^{2},
@@ -1207,7 +1233,7 @@ f(\boldsymbol{x})=\sum_{n=1}^{N}\theta_{n}\kappa(\boldsymbol{x}, \boldsymbol{x}_
 </li>
 </ul>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">Diferenciando</span> <span class="pre">con</span> <span class="pre">respecto</span> <span class="pre">a</span></code> <span class="math notranslate nohighlight">\(\lambda\)</span> obtenemos:</p></li>
+<li><p><em><strong>Diferenciando con respecto a</strong></em> <span class="math notranslate nohighlight">\(\lambda\)</span> obtenemos:</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -1218,24 +1244,24 @@ f(\boldsymbol{x})=\sum_{n=1}^{N}\theta_{n}\kappa(\boldsymbol{x}, \boldsymbol{x}_
 \end{align*}
 \end{split}\]</div>
 <ul>
-<li><p>Dado que <span class="math notranslate nohighlight">\(\displaystyle{\boldsymbol{\hat{\theta}}=\frac{1}{2C}\sum_{n=1}^{N}\lambda_{n}\boldsymbol{x}_{n}}\)</span>, <code class="docutils literal notranslate"><span class="pre">usando</span> <span class="pre">kernel</span> <span class="pre">trick</span></code> se tiene que</p>
+<li><p>Dado que <span class="math notranslate nohighlight">\(\displaystyle{\boldsymbol{\hat{\theta}}=\frac{1}{2C}\sum_{n=1}^{N}\lambda_{n}\boldsymbol{x}_{n}}\)</span>, <em><strong>usando kernel trick</strong></em> se tiene que</p>
 <div class="math notranslate nohighlight">
 \[
     \hat{y}(\boldsymbol{x})=\langle\boldsymbol{\hat{\theta}}, \kappa(\cdot,\boldsymbol{x})\rangle=\left\langle\frac{1}{2C}\sum_{n=1}^{N}2C(\kappa(\cdot, \boldsymbol{x}_{n})+C)^{-1}y_{n}, \kappa(\cdot, \boldsymbol{x}_{n})\right\rangle=\boldsymbol{y}^{T}(K+CI)^{-1}\kappa(\boldsymbol{x}).
     \]</div>
-<p>Nótese que en este caso no <code class="docutils literal notranslate"><span class="pre">fue</span> <span class="pre">necesario</span> <span class="pre">el</span> <span class="pre">supuesto</span> <span class="pre">de</span> <span class="pre">invertibilidad</span></code> para la matriz <span class="math notranslate nohighlight">\(K\)</span>.</p>
+<p>Nótese que en este caso no <em><strong>fue necesario el supuesto de invertibilidad</strong></em> para la matriz <span class="math notranslate nohighlight">\(K\)</span>.</p>
 </li>
 </ul>
 <figure class="align-center" id="nonlinear-reg-curve">
 <img alt="_images/nonlinear_reg_curve.png" src="_images/nonlinear_reg_curve.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 20 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">Tubo</span> <span class="pre">alrededor</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">curva</span> <span class="pre">de</span> <span class="pre">regresión</span> <span class="pre">no</span> <span class="pre">lineal</span></code>. Los puntos fuera del tubo (denotados por estrellas) tienen o bien <span class="math notranslate nohighlight">\(\tilde{\xi} &gt; 0\)</span> y
-<span class="math notranslate nohighlight">\(\xi = 0\)</span> o <span class="math notranslate nohighlight">\(\xi &gt; 0\)</span> y <span class="math notranslate nohighlight">\(\tilde{\xi} = 0\)</span>. El resto de los puntos tienen <span class="math notranslate nohighlight">\(\tilde{\xi} = \xi = 0\)</span> (SV). Los <code class="docutils literal notranslate"><span class="pre">puntos</span> <span class="pre">que</span> <span class="pre">están</span> <span class="pre">dentro</span> <span class="pre">del</span> <span class="pre">tubo</span> <span class="pre">corresponden</span> <span class="pre">a</span> <span class="pre">multiplicadores</span> <span class="pre">de</span> <span class="pre">Lagrange</span> <span class="pre">iguales</span> <span class="pre">a</span> <span class="pre">cero</span></code>.</span><a class="headerlink" href="#nonlinear-reg-curve" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 20 </span><span class="caption-text"><em><strong>Tubo alrededor de la curva de regresión no lineal</strong></em>. Los puntos fuera del tubo (denotados por estrellas) tienen o bien <span class="math notranslate nohighlight">\(\tilde{\xi} &gt; 0\)</span> y
+<span class="math notranslate nohighlight">\(\xi = 0\)</span> o <span class="math notranslate nohighlight">\(\xi &gt; 0\)</span> y <span class="math notranslate nohighlight">\(\tilde{\xi} = 0\)</span>. El resto de los puntos tienen <span class="math notranslate nohighlight">\(\tilde{\xi} = \xi = 0\)</span> (SV). Los <em><strong>puntos que están dentro del tubo corresponden a multiplicadores de Lagrange iguales a cero</strong></em>.</span><a class="headerlink" href="#nonlinear-reg-curve" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
-<section id="id5">
-<h2>Máquinas de vectores de soporte<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h2>
+<section id="id6">
+<h2>Máquinas de vectores de soporte<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Antes de abordar el <code class="docutils literal notranslate"><span class="pre">modelo</span> <span class="pre">de</span> <span class="pre">clasificación</span></code>, <code class="docutils literal notranslate"><span class="pre">máquinas</span> <span class="pre">de</span> <span class="pre">vectores</span> <span class="pre">de</span> <span class="pre">soporte</span> <span class="pre">(SVM)</span></code> revisemos la definición de un clasificador</p></li>
 </ul>
@@ -1420,7 +1446,7 @@ J(\boldsymbol{\theta}, \theta_{0})=\frac{1}{2}\|\boldsymbol{\theta}\|^{2}+C\sum_
 <span class="eqno">(45)<a class="headerlink" href="#equation-mean-sol-fortheta0" title="Permalink to this equation">#</a></span>\[
     y_{n}\left(\sum_{m=1}^{N_{s}}\lambda_{m}y_{m}\kappa(\boldsymbol{x}_{m}, \boldsymbol{x}_{n})+\hat{\theta}_{0}\right)-1=0,\quad n=1,2,\dots,N_{s},
     \]</div>
-<p>donde <span class="math notranslate nohighlight">\(\hat{\theta}_{0}\)</span> <code class="docutils literal notranslate"><span class="pre">es</span> <span class="pre">obtenido</span> <span class="pre">por</span> <span class="pre">medio</span> <span class="pre">del</span> <span class="pre">promedio</span> <span class="pre">entre</span> <span class="pre">las</span> <span class="pre">soluciones</span> <span class="pre">de</span></code> <a class="reference internal" href="#equation-mean-sol-fortheta0">(45)</a>. Aunque la solución es única, los correspondientes multiplicadores <span class="math notranslate nohighlight">\(\lambda_{m}\)</span> pueden no ser únicos. Finalmente <code class="docutils literal notranslate"><span class="pre">el</span> <span class="pre">número</span> <span class="pre">de</span> <span class="pre">vectores</span> <span class="pre">de</span> <span class="pre">soporte</span> <span class="pre">está</span> <span class="pre">relacionado</span> <span class="pre">con</span> <span class="pre">la</span> <span class="pre">capacidad</span> <span class="pre">de</span> <span class="pre">generalización</span> <span class="pre">del</span> <span class="pre">clasificador</span></code>. Entre mas pequeño es el número de vectores de soporte, mejor será la generalización esperada (ver <span id="id6">[<a class="reference internal" href="biblio.html#id19" title="Konstantinos Koutroumbas and Sergios Theodoridis. Pattern recognition. Academic Press, 2008.">Koutroumbas and Theodoridis, 2008</a>, <a class="reference internal" href="biblio.html#id18" title="佐土原健. N. cristianini and j. shawe-taylor: an introduction to support vector machines, cambridge university press (2000). 人工知能, 16(2):337–337, 2001.">佐土原健, 2001</a>]</span>).</p>
+<p>donde <span class="math notranslate nohighlight">\(\hat{\theta}_{0}\)</span> <code class="docutils literal notranslate"><span class="pre">es</span> <span class="pre">obtenido</span> <span class="pre">por</span> <span class="pre">medio</span> <span class="pre">del</span> <span class="pre">promedio</span> <span class="pre">entre</span> <span class="pre">las</span> <span class="pre">soluciones</span> <span class="pre">de</span></code> <a class="reference internal" href="#equation-mean-sol-fortheta0">(45)</a>. Aunque la solución es única, los correspondientes multiplicadores <span class="math notranslate nohighlight">\(\lambda_{m}\)</span> pueden no ser únicos. Finalmente <code class="docutils literal notranslate"><span class="pre">el</span> <span class="pre">número</span> <span class="pre">de</span> <span class="pre">vectores</span> <span class="pre">de</span> <span class="pre">soporte</span> <span class="pre">está</span> <span class="pre">relacionado</span> <span class="pre">con</span> <span class="pre">la</span> <span class="pre">capacidad</span> <span class="pre">de</span> <span class="pre">generalización</span> <span class="pre">del</span> <span class="pre">clasificador</span></code>. Entre mas pequeño es el número de vectores de soporte, mejor será la generalización esperada (ver <span id="id7">[<a class="reference internal" href="biblio.html#id19" title="Konstantinos Koutroumbas and Sergios Theodoridis. Pattern recognition. Academic Press, 2008.">Koutroumbas and Theodoridis, 2008</a>, <a class="reference internal" href="biblio.html#id18" title="佐土原健. N. cristianini and j. shawe-taylor: an introduction to support vector machines, cambridge university press (2000). 人工知能, 16(2):337–337, 2001.">佐土原健, 2001</a>]</span>).</p>
 </li>
 </ul>
 <p><strong><code class="docutils literal notranslate"><span class="pre">Tarea</span> <span class="pre">de</span> <span class="pre">optimización</span></code></strong></p>
@@ -1642,7 +1668,7 @@ L(\boldsymbol{\theta}, \theta_{0}, \xi, \lambda)=\frac{1}{2}\|\boldsymbol{\theta
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/98017ed98e3e9a02ea2101d7d7591f614ff1815ee60bb8970a759f30d3bde7ce.png" src="_images/98017ed98e3e9a02ea2101d7d7591f614ff1815ee60bb8970a759f30d3bde7ce.png" />
+<img alt="_images/f38660138f9884914244b3c6c648fe410a43ba590bd36e98f1e37f0560ed9d88.png" src="_images/f38660138f9884914244b3c6c648fe410a43ba590bd36e98f1e37f0560ed9d88.png" />
 </div>
 </div>
 <ul class="simple">
@@ -1738,7 +1764,7 @@ L(\boldsymbol{\theta}, \theta_{0}, \xi, \lambda)=\frac{1}{2}\|\boldsymbol{\theta
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/e8425dccd7d4d251ee4aa6ff1befedfba4ec8146efd4d5311a748daaa52a2114.png" src="_images/e8425dccd7d4d251ee4aa6ff1befedfba4ec8146efd4d5311a748daaa52a2114.png" />
+<img alt="_images/186e32795923960199403eb8654c08ec808caef97369a1b7b31e0e9b48b27057.png" src="_images/186e32795923960199403eb8654c08ec808caef97369a1b7b31e0e9b48b27057.png" />
 </div>
 </div>
 <ul class="simple">
@@ -1756,7 +1782,7 @@ L(\boldsymbol{\theta}, \theta_{0}, \xi, \lambda)=\frac{1}{2}\|\boldsymbol{\theta
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/c8839b8142cf2eea87f472a1865bf62db41bcac660e97be0e19ada3f186b863d.png" src="_images/c8839b8142cf2eea87f472a1865bf62db41bcac660e97be0e19ada3f186b863d.png" />
+<img alt="_images/6ca602b02f5e084c9d0b8b71a2108b4b79578a010ac71cd599fdcf53f864d4a1.png" src="_images/6ca602b02f5e084c9d0b8b71a2108b4b79578a010ac71cd599fdcf53f864d4a1.png" />
 </div>
 </div>
 </section>
@@ -1846,6 +1872,9 @@ k_{\text{rbf}}=\exp(\gamma\|x_{1}-x_{2}\|^2).
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/898da292eefd7f095f83abb7555ad98f6bcc19937a1e1f027443d8ae1c0ba666.png" src="_images/898da292eefd7f095f83abb7555ad98f6bcc19937a1e1f027443d8ae1c0ba666.png" />
+</div>
 </div>
 <ul class="simple">
 <li><p>De izquierda a derecha, aumentamos el valor del <code class="docutils literal notranslate"><span class="pre">parámetro</span> <span class="pre">gamma</span> <span class="pre">de</span> <span class="pre">0.1</span> <span class="pre">a</span> <span class="pre">10</span></code>. Un <code class="docutils literal notranslate"><span class="pre">gamma</span> <span class="pre">pequeño</span> <span class="pre">significa</span> <span class="pre">un</span> <span class="pre">radio</span> <span class="pre">grande</span> <span class="pre">para</span> <span class="pre">el</span> <span class="pre">kernel</span> <span class="pre">gaussiano,</span> <span class="pre">lo</span> <span class="pre">que</span> <span class="pre">significa</span> <span class="pre">que</span> <span class="pre">muchos</span> <span class="pre">puntos</span> <span class="pre">se</span> <span class="pre">consideran</span> <span class="pre">cercanos</span></code>. Esto se refleja en unos <code class="docutils literal notranslate"><span class="pre">límites</span> <span class="pre">de</span> <span class="pre">decisión</span> <span class="pre">muy</span> <span class="pre">suaves</span> <span class="pre">a</span> <span class="pre">la</span> <span class="pre">izquierda,</span> <span class="pre">y</span> <span class="pre">límites</span> <span class="pre">que</span> <span class="pre">se</span> <span class="pre">centran</span> <span class="pre">más</span> <span class="pre">en</span> <span class="pre">puntos</span> <span class="pre">individuales</span> <span class="pre">más</span> <span class="pre">a</span> <span class="pre">la</span> <span class="pre">derecha</span></code>. Un valor bajo de <code class="docutils literal notranslate"><span class="pre">gamma</span></code> significa que el límite de decisión variará lentamente, lo que produce un modelo de baja complejidad, mientras que <code class="docutils literal notranslate"><span class="pre">un</span> <span class="pre">valor</span> <span class="pre">alto</span> <span class="pre">de</span> <span class="pre">gamma</span> <span class="pre">da</span> <span class="pre">lugar</span> <span class="pre">a</span> <span class="pre">un</span> <span class="pre">modelo</span> <span class="pre">más</span> <span class="pre">complejo</span></code>.</p></li>
@@ -1858,6 +1887,12 @@ k_{\text{rbf}}=\exp(\gamma\|x_{1}-x_{2}\|^2).
 <span class="n">svc</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Accuracy on training set: </span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">svc</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Accuracy on test set: </span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">svc</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy on training set: 0.90
+Accuracy on test set: 0.94
 </pre></div>
 </div>
 </div>
@@ -1875,6 +1910,9 @@ k_{\text{rbf}}=\exp(\gamma\|x_{1}-x_{2}\|^2).
 <span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s2">&quot;log&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/700ecae98132d85939512b9d8006e2b717c837a045a32d3fc605631492b0b8f1.png" src="_images/700ecae98132d85939512b9d8006e2b717c837a045a32d3fc605631492b0b8f1.png" />
 </div>
 </div>
 <ul class="simple">
@@ -1895,11 +1933,21 @@ k_{\text{rbf}}=\exp(\gamma\|x_{1}-x_{2}\|^2).
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(426, 30)
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">min_on_training</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">min_on_training</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(30,)
 </pre></div>
 </div>
 </div>
@@ -1911,6 +1959,11 @@ k_{\text{rbf}}=\exp(\gamma\|x_{1}-x_{2}\|^2).
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">range_on_training</span> <span class="o">=</span> <span class="p">(</span><span class="n">X_train</span> <span class="o">-</span> <span class="n">min_on_training</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">range_on_training</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(30,)
 </pre></div>
 </div>
 </div>
@@ -1931,10 +1984,24 @@ k_{\text{rbf}}=\exp(\gamma\|x_{1}-x_{2}\|^2).
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Minimum for each feature
+[0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+ 0. 0. 0. 0. 0. 0.]
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Maximum for each feature</span><span class="se">\n</span><span class="s2"> </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">X_train_scaled</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Maximum for each feature
+ [1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1.
+ 1. 1. 1. 1. 1. 1.]
 </pre></div>
 </div>
 </div>
@@ -1961,6 +2028,12 @@ k_{\text{rbf}}=\exp(\gamma\|x_{1}-x_{2}\|^2).
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy on training set: 0.984
+Accuracy on test set: 0.972
+</pre></div>
+</div>
+</div>
 </div>
 <ul class="simple">
 <li><p>Escalar los datos supuso una gran diferencia. Ahora estamos en un régimen de <code class="docutils literal notranslate"><span class="pre">overfitting</span> <span class="pre">donde</span> <span class="pre">el</span> <span class="pre">rendimiento</span> <span class="pre">del</span> <span class="pre">conjunto</span> <span class="pre">de</span> <span class="pre">entrenamiento</span> <span class="pre">es</span> <span class="pre">ligeramente</span> <span class="pre">mayor</span> <span class="pre">que</span> <span class="pre">el</span> <span class="pre">de</span> <span class="pre">prueba</span></code>, pero menos cercano al 100% de <code class="docutils literal notranslate"><span class="pre">accuracy</span></code>. A partir de aquí, podemos intentar aumentar <code class="docutils literal notranslate"><span class="pre">C</span></code> o <code class="docutils literal notranslate"><span class="pre">gamma</span></code> para ajustar un modelo regularizado. Por ejemplo:</p></li>
@@ -1971,6 +2044,12 @@ k_{\text{rbf}}=\exp(\gamma\|x_{1}-x_{2}\|^2).
 <span class="n">svc_C01</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_scaled</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Accuracy on training set: </span><span class="si">{:.3f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">svc_C01</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train_scaled</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Accuracy on test set: </span><span class="si">{:.3f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">svc_C01</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test_scaled</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy on training set: 0.948
+Accuracy on test set: 0.958
 </pre></div>
 </div>
 </div>
@@ -1987,6 +2066,12 @@ k_{\text{rbf}}=\exp(\gamma\|x_{1}-x_{2}\|^2).
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy on training set: 0.643
+Accuracy on test set: 0.636
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1994,6 +2079,12 @@ k_{\text{rbf}}=\exp(\gamma\|x_{1}-x_{2}\|^2).
 <span class="n">svc_C100</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_scaled</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Accuracy on training set: </span><span class="si">{:.3f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">svc_C100</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train_scaled</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Accuracy on test set: </span><span class="si">{:.3f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">svc_C100</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test_scaled</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy on training set: 1.000
+Accuracy on test set: 0.965
 </pre></div>
 </div>
 </div>
@@ -2084,7 +2175,7 @@ k_{\text{rbf}}=\exp(\gamma\|x_{1}-x_{2}\|^2).
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-de-vectores-de-soporte">Regresión de vectores de soporte</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-optima-lineal-varepsilon-insensible">Regresión óptima lineal <span class="math notranslate nohighlight">\(\varepsilon\)</span>-insensible</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-kernel-ridge">Regresión Kernel Ridge</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Máquinas de vectores de soporte</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Máquinas de vectores de soporte</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clases-linealmente-separables-clasificador-de-maximo-margen">Clases linealmente separables: Clasificador de máximo margen</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clases-no-separables">Clases no separables</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion">Aplicación</a></li>
