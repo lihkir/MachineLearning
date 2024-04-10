@@ -367,6 +367,9 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis">Análisis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concepto-basico">Concepto básico</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion">Implementación</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion-al-analisis-de-componentes-principales">Introducción al análisis de componentes principales</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-para-reduccion-de-dimension">PCA para reducción de dimensión</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-para-visualizacion-digitos-escritos-a-mano">PCA para visualización: Dígitos escritos a mano</a></li>
@@ -388,13 +391,139 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="analisis-de-componentes-principales">
 <h1>Análisis de Componentes Principales<a class="headerlink" href="#analisis-de-componentes-principales" title="Permalink to this heading">#</a></h1>
+<section id="analisis">
+<h2>Análisis<a class="headerlink" href="#analisis" title="Permalink to this heading">#</a></h2>
 <div class="admonition-introduccion admonition">
 <p class="admonition-title">Introducción</p>
 <ul class="simple">
-<li><p>Hasta este momento, hemos analizado en detalle <code class="docutils literal notranslate"><span class="pre">estimadores</span> <span class="pre">de</span> <span class="pre">aprendizaje</span> <span class="pre">supervisado</span></code>: aquellos estimadores que <code class="docutils literal notranslate"><span class="pre">predicen</span> <span class="pre">etiquetas</span> <span class="pre">basadas</span> <span class="pre">en</span> <span class="pre">datos</span> <span class="pre">de</span> <span class="pre">entrenamiento</span> <span class="pre">etiquetados</span></code>. Ahora, empezamos a examinar varios <code class="docutils literal notranslate"><span class="pre">estimadores</span> <span class="pre">no</span> <span class="pre">supervisados</span></code>, los cuales pueden resaltar aspectos interesantes de los datos sin hacer referencia a etiquetas conocidas.</p></li>
-<li><p>En esta sección, exploramos lo que posiblemente es uno de los <code class="docutils literal notranslate"><span class="pre">algoritmos</span> <span class="pre">no</span> <span class="pre">supervisados</span> <span class="pre">más</span> <span class="pre">ampliamente</span> <span class="pre">utilizados</span></code>: el <code class="docutils literal notranslate"><span class="pre">análisis</span> <span class="pre">de</span> <span class="pre">componentes</span> <span class="pre">principales</span> <span class="pre">(PCA)</span></code>. PCA es fundamentalmente un <code class="docutils literal notranslate"><span class="pre">algoritmo</span> <span class="pre">de</span> <span class="pre">reducción</span> <span class="pre">de</span> <span class="pre">dimensionalidad</span></code>, pero también puede ser útil como <code class="docutils literal notranslate"><span class="pre">herramienta</span> <span class="pre">de</span> <span class="pre">visualización,</span> <span class="pre">para</span> <span class="pre">filtrado</span> <span class="pre">de</span> <span class="pre">ruido,</span> <span class="pre">extracción</span> <span class="pre">y</span> <span class="pre">construcción</span> <span class="pre">de</span> <span class="pre">características,</span> <span class="pre">y</span> <span class="pre">mucho</span> <span class="pre">más</span></code>.</p></li>
+<li><p>El <em><strong>Análisis de Componentes Principales (PCA)</strong></em> es un método para consolidar las variables mutuamente correlacionadas de datos observados multidimensionales en nuevas variables mediante <em><strong>combinaciones lineales de las variables originales con una pérdida mínima de información en los datos observados</strong></em>.</p></li>
+<li><p><em><strong>PCA permite extraer información relevante de los datos</strong></em> al fusionar múltiples variables que caracterizan a los individuos. También se puede utilizar como técnica para <em><strong>comprender visualmente las estructuras de datos</strong></em> al consolidar datos de alta dimensión en un número menor de variables, <em><strong>realizando una reducción de dimensión y proyectando los resultados en una línea unidimensional, plano bidimensional o espacio tridimensional</strong></em>.</p></li>
+<li><p>En este capítulo se discuten los <em><strong>conceptos básicos y el propósito de PCA en el contexto de la linealidad, así como su aplicación en la descompresión de imágenes y la descomposición de valores singulares de matrices de datos</strong></em>. También se aborda el <em><strong>PCA no lineal utilizando el método del kernel</strong></em> para la extracción de información de datos multidimensionales con estructuras no lineales complejas.</p></li>
 </ul>
 </div>
+</section>
+<section id="concepto-basico">
+<h2>Concepto básico<a class="headerlink" href="#concepto-basico" title="Permalink to this heading">#</a></h2>
+<figure class="align-center" id="pca-3projections-fig">
+<a class="reference internal image-reference" href="_images/pca_3projections.png"><img alt="_images/pca_3projections.png" src="_images/pca_3projections.png" style="width: 420.0px; height: 297.59999999999997px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 68 </span><span class="caption-text">Proyección en tres ejes diferentes, (a), (b) y (c), y la dispersión de los datos. Fuente <span id="id1">[<a class="reference internal" href="biblio.html#id20" title="S. Konishi. Introduction to Multivariate Analysis: Linear and Nonlinear Modeling. Chapman &amp; Hall/CRC Texts in Statistical Science. Taylor &amp; Francis, 2014. ISBN 9781466567283. URL: https://books.google.com.co/books?id=fcuuAwAAQBAJ.">Konishi, 2014</a>]</span>.</span><a class="headerlink" href="#pca-3projections-fig" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<ul>
+<li><p>La <a class="reference internal" href="#pca-3projections-fig"><span class="std std-numref">Fig. 68</span></a> muestra un gráfico de las puntuaciones de los exámenes de matemáticas (<span class="math notranslate nohighlight">\(x_{1}\)</span>) e inglés (<span class="math notranslate nohighlight">\(x_{2}\)</span>) de 25 estudiantes. <em><strong>Proyectando estos datos bidimensionales en un solo eje mediante la sustitución de las puntuaciones de ambas materias en la siguiente ecuación, se transforman en datos unidimensionales</strong></em>.</p>
+<div class="math notranslate nohighlight">
+\[
+  y=w_{1}x_{1}+w_{2}x_{2}.
+  \]</div>
+</li>
+</ul>
+<ul class="simple">
+<li><p>La <a class="reference internal" href="#pca-3projections-fig"><span class="std std-numref">Fig. 68</span></a> muestra la <em><strong>proyección en tres ejes diferentes, (a), (b) y (c)</strong></em>. La <em><strong>dispersión de los datos</strong></em> (como medida de la varianza) para cada eje se indica mediante una <em><strong>flecha de doble cabeza</strong></em> (<span class="math notranslate nohighlight">\(\boldsymbol{\leftarrow-\rightarrow}\)</span>).</p></li>
+</ul>
+<div class="tip admonition">
+<p class="admonition-title">Observación</p>
+<ul class="simple">
+<li><p>Esta figura muestra que la varianza es mayor cuando se proyecta en el eje (b) que en el eje (a), y mayor en el eje (c) que en el eje (b). <em><strong>El eje con mayor varianza muestra con mayor claridad la separación entre los datos</strong></em>. Surge la pregunta inmediata de <em><strong>cómo encontrar mejor el eje de proyección que produce la máxima varianza</strong></em>.</p></li>
+<li><p>En <em><strong>PCA</strong></em>, utilizamos una <em><strong>secuencia de ejes de proyección con este propósito</strong></em>.</p>
+<ul>
+<li><p>Primero encontramos el <em><strong>eje de proyección, conocido como el primer componente principal, que maximiza la varianza global</strong></em>.</p></li>
+<li><p>Luego encontramos el <em><strong>eje de proyección que maximiza la varianza bajo la restricción de ortogonalidad al primer componente principal</strong></em>. Este eje se conoce como el <em><strong>segundo componente principal</strong></em>.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<ul class="simple">
+<li><p>Apliquemos lo mencionado en la anterior observación a datos bidimensionales. Denotamos los <span class="math notranslate nohighlight">\(n\)</span> <em><strong>datos observados bidimensionales</strong></em> <span class="math notranslate nohighlight">\(\boldsymbol{x}=(x_{1}, x_{2})^{T}\)</span> como</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\boldsymbol{x}_{1}=\begin{pmatrix}x_{11}\\x_{12}\end{pmatrix},~\boldsymbol{x}_{2}=\begin{pmatrix}x_{21}\\x_{22}\end{pmatrix},\dots,\boldsymbol{x}_{n}=\begin{pmatrix}x_{n1}\\x_{n2}\end{pmatrix}.
+\end{split}\]</div>
+<ul>
+<li><p>Estos <span class="math notranslate nohighlight">\(n\)</span> <em><strong>datos bidimensionales se proyectan sobre</strong></em> <span class="math notranslate nohighlight">\(y=w_{1}x_{1}+w_{2}x_{2}\)</span>, y luego se expresan como</p>
+<div class="math notranslate nohighlight">
+\[
+    y_{i}=w_{1}x_{i1}+w_{2}x_{i2}=\boldsymbol{w}^{T}\boldsymbol{x}_{i},~i=1,2,\dots,n,
+    \]</div>
+<p>donde <span class="math notranslate nohighlight">\(\boldsymbol{w}=(w_{1}, w_{2})^{T}\)</span> representa un vector de coeficientes.</p>
+</li>
+</ul>
+<ul>
+<li><p>La media de los datos <span class="math notranslate nohighlight">\(y_{1}, y_{2}, \dots, y_{n}\)</span> que se <em><strong>proyectan sobre el eje de proyección</strong></em> es</p>
+<div class="math notranslate nohighlight">
+\[
+    \overline{y}=\frac{1}{n}\sum_{i=1}^{n}y_{i}=\frac{1}{n}\sum_{i=1}^{n}(w_{1}x_{i1}+w_{2}x_{i2})=w_{1}\overline{x}_{1}+w_{2}\overline{x}_{2}=\boldsymbol{w}\overline{\boldsymbol{x}},
+    \]</div>
+<p>donde <span class="math notranslate nohighlight">\(\overline{\boldsymbol{x}}=(\overline{x}_{1}, \overline{x}_{2})^{T}\)</span> es el vector de medias muestrales que <em><strong>contiene como sus componentes principales la media muestral</strong></em> <span class="math notranslate nohighlight">\(\overline{x}_{j}=n^{-1}\sum_{i=1}^{n}x_{ij}~(j=1,2)\)</span> de cada variable.</p>
+</li>
+</ul>
+<ul>
+<li><p>La <em><strong>varianza</strong></em> puede ser expresada como</p>
+<div class="math notranslate nohighlight" id="equation-variance-quad-error">
+<span class="eqno">(68)<a class="headerlink" href="#equation-variance-quad-error" title="Permalink to this equation">#</a></span>\[\begin{split}
+    \begin{align*}
+    s_{y}^{2} &amp;= \frac{1}{n}\sum_{i=1}^{n}(y_{i}-\overline{y})^{2}\\
+    &amp;= \frac{1}{n}\sum_{i=1}^{n}\left\{w_{1}(x_{i1}-\overline{x}_{1})+w_{2}(x_{i2}-\overline{x}_{2})\right\}^{2}\\
+    &amp;= w_{1}^{2}\frac{1}{n}\sum_{i=1}^{n}(x_{i1}-\overline{x}_{1})^{2}+2w_{1}w_{2}\frac{1}{n}\sum_{i=1}^{n}(x_{i1}-\overline{x}_{1})(x_{i2}-\overline{x}_{2})+w_{2}^{2}\frac{1}{n}\sum_{i=1}^{n}(x_{i2}-\overline{x}_{2})^{2}\\[1mm]
+    &amp;= w_{1}^{2}s_{11}+2w_{1}w_{2}s_{12}+w_{2}^{2}s_{22}\\[4mm]
+    &amp;= \boldsymbol{w}^{T}S\boldsymbol{w},
+    \end{align*}
+    \end{split}\]</div>
+<p>donde <span class="math notranslate nohighlight">\(S\)</span> es la <em><strong>matriz de covarianza muestral</strong></em>, definida por</p>
+<div class="math notranslate nohighlight" id="equation-sample-covariance-matrix">
+<span class="eqno">(69)<a class="headerlink" href="#equation-sample-covariance-matrix" title="Permalink to this equation">#</a></span>\[\begin{split}
+    S=\begin{pmatrix}s_{11} &amp; s_{12}\\s_{21} &amp; s_{22}\end{pmatrix},~s_{jk}=\frac{1}{n}\sum_{i=1}^{n}(x_{ij}-\overline{x}_{j})(x_{ik}-\overline{x}_{k}),~j,k=1,2. 
+    \end{split}\]</div>
+</li>
+</ul>
+<div class="admonition-maximizacion-de-la-varianza admonition">
+<p class="admonition-title">Maximización de la varianza</p>
+<ul class="simple">
+<li><p>El problema de encontrar el vector de coeficientes <span class="math notranslate nohighlight">\(\boldsymbol{w}=(w_{1}, w_{2})^{T}\)</span>, que corresponde a la máxima varianza para los <span class="math notranslate nohighlight">\(n\)</span> datos bidimensionales proyectados sobre <span class="math notranslate nohighlight">\(y=w_{1}x_{1}+w_{2}x_{2}\)</span>, se convierte en el <em><strong>problema de maximización de la varianza</strong></em> <span class="math notranslate nohighlight">\(S_{y}=\boldsymbol{w}^{T}S\boldsymbol{w}\)</span> en la Ecuación <a class="reference internal" href="#equation-variance-quad-error">(68)</a> <em><strong>bajo la restricción</strong></em> <span class="math notranslate nohighlight">\(\boldsymbol{w}^{T}S\boldsymbol{w}=1\)</span>. Esta restricción se aplica porque <span class="math notranslate nohighlight">\(\|\boldsymbol{w}\|\)</span> <em><strong>sería infinitamente grande sin ella y la varianza divergiría</strong></em>.</p></li>
+</ul>
+</div>
+<ul class="simple">
+<li><p>El <em><strong>problema de maximización de la varianza bajo esta restricción se puede resolver mediante el método de los multiplicadores de Lagrange</strong></em>, encontrando el punto estacionario (donde la derivada se hace 0) de la función Lagrangiana.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+L(\boldsymbol{w}, \lambda)=\boldsymbol{w}^{T}S\boldsymbol{w}+\lambda(1-\boldsymbol{w}^{T}\boldsymbol{w})
+\]</div>
+<ul>
+<li><p>Dado que <span class="math notranslate nohighlight">\(\partial(\boldsymbol{w}^{T}S\boldsymbol{w})/\partial\boldsymbol{w}=2S\boldsymbol{w}\)</span> y <span class="math notranslate nohighlight">\(\partial(\boldsymbol{w}^{T}\boldsymbol{w})/\partial\boldsymbol{w}=2\boldsymbol{w}\)</span>, entonces <span class="math notranslate nohighlight">\(\partial L(\boldsymbol{w}, \lambda)/\partial\boldsymbol{w}=0\)</span> sii</p>
+<div class="math notranslate nohighlight" id="equation-eigen-valuesvector-problem">
+<span class="eqno">(70)<a class="headerlink" href="#equation-eigen-valuesvector-problem" title="Permalink to this equation">#</a></span>\[
+  S\boldsymbol{w}=\lambda\boldsymbol{w}.
+  \]</div>
+</li>
+</ul>
+<ul>
+<li><p>Esta solución es el <em><strong>vector propio</strong></em> <span class="math notranslate nohighlight">\(\boldsymbol{w}_{1}=(w_{11}, w_{12})^{T}\)</span> <em><strong>correspondiente al valor propio máximo</strong></em> <span class="math notranslate nohighlight">\(\lambda_{1}\)</span> obtenido al <em><strong>resolver la ecuación característica para la matriz de varianza-covarianza</strong></em> de la muestra <span class="math notranslate nohighlight">\(S\)</span>. Por consiguiente, <em><strong>el primer componente principal</strong></em> <span class="math notranslate nohighlight">\(y_{1}\)</span> está dado por</p>
+<div class="math notranslate nohighlight">
+\[
+  y_{1}=w_{11}x_{1}+w_{12}x_{2}=\boldsymbol{w}_{1}^{T}\boldsymbol{x}.
+  \]</div>
+</li>
+</ul>
+<ul>
+<li><p>La varianza del <em><strong>primer componente principal</strong></em> <span class="math notranslate nohighlight">\(y_{1}\)</span> se alcanza con <span class="math notranslate nohighlight">\(\boldsymbol{w}=\boldsymbol{w}_{1}\)</span>, el cual maximiza la varianza de <a class="reference internal" href="#equation-variance-quad-error">(68)</a>, y es, por lo tanto,</p>
+<div class="math notranslate nohighlight" id="equation-variance-firstpc">
+<span class="eqno">(71)<a class="headerlink" href="#equation-variance-firstpc" title="Permalink to this equation">#</a></span>\[
+  s_{y_{1}}^{2}=\boldsymbol{w}_{1}^{T}S\boldsymbol{w}_{1}=\lambda_{1}.
+  \]</div>
+</li>
+</ul>
+<ul class="simple">
+<li><p>Nótese que, la <a class="reference internal" href="#equation-variance-firstpc">(71)</a> es obtenida gracias a la relación entre autovalor-autovector <span class="math notranslate nohighlight">\(S\boldsymbol{w}_{1}=\lambda_{1}\boldsymbol{w}_{1}\)</span> de la matriz simétrica <span class="math notranslate nohighlight">\(S\)</span>, y que el vector <span class="math notranslate nohighlight">\(\boldsymbol{w}_{1}\)</span> es normalizado a longitud 1 (<code class="docutils literal notranslate"><span class="pre">verifíquelo</span></code>).</p></li>
+</ul>
+</section>
+<section id="implementacion">
+<h2>Implementación<a class="headerlink" href="#implementacion" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Hasta este momento, hemos analizado en detalle <em><strong>estimadores de aprendizaje supervisado</strong></em>: aquellos estimadores que <em><strong>predicen etiquetas basadas en datos de entrenamiento etiquetados</strong></em>. Ahora, empezamos a examinar varios <em><strong>estimadores no supervisados</strong></em>, los cuales pueden resaltar aspectos interesantes de los datos sin hacer referencia a etiquetas conocidas.</p></li>
+<li><p>En esta sección, exploramos lo que posiblemente es uno de los <em><strong>algoritmos no supervisados más ampliamente utilizados</strong></em>: el <em><strong>análisis de componentes principales (PCA)</strong></em>. PCA es fundamentalmente un <em><strong>algoritmo de reducción de dimensionalidad</strong></em>, pero también puede ser útil como <em><strong>herramienta de visualización, para filtrado de ruido, extracción y construcción de características, y mucho más</strong></em>.</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
@@ -413,6 +542,7 @@ document.write(`
 </div>
 </div>
 </div>
+</section>
 <section id="introduccion-al-analisis-de-componentes-principales">
 <h2>Introducción al análisis de componentes principales<a class="headerlink" href="#introduccion-al-analisis-de-componentes-principales" title="Permalink to this heading">#</a></h2>
 <p>El <code class="docutils literal notranslate"><span class="pre">análisis</span> <span class="pre">de</span> <span class="pre">componentes</span> <span class="pre">principales</span> <span class="pre">(PCA)</span></code> es una <code class="docutils literal notranslate"><span class="pre">técnica</span> <span class="pre">no</span> <span class="pre">supervisada,</span> <span class="pre">rápida</span> <span class="pre">y</span> <span class="pre">adaptable</span></code>, diseñada para <code class="docutils literal notranslate"><span class="pre">reducir</span> <span class="pre">la</span> <span class="pre">dimensionalidad</span> <span class="pre">de</span> <span class="pre">los</span> <span class="pre">datos</span></code>. La forma más sencilla de comprender su funcionamiento es a través del <code class="docutils literal notranslate"><span class="pre">examen</span> <span class="pre">de</span> <span class="pre">un</span> <span class="pre">conjunto</span> <span class="pre">de</span> <span class="pre">datos</span> <span class="pre">bidimensional</span></code>. Tomemos en consideración la <code class="docutils literal notranslate"><span class="pre">recopilación</span> <span class="pre">posterior</span> <span class="pre">de</span> <span class="pre">200</span> <span class="pre">puntos</span> <span class="pre">de</span> <span class="pre">datos</span></code></p>
@@ -447,7 +577,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><style>#sk-container-id-2 {color: black;}#sk-container-id-2 pre{padding: 0;}#sk-container-id-2 div.sk-toggleable {background-color: white;}#sk-container-id-2 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-2 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-2 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-2 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-2 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-2 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-2 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-2 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-2 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-2 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-2 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-2 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-2 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-2 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-2 div.sk-item {position: relative;z-index: 1;}#sk-container-id-2 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-2 div.sk-item::before, #sk-container-id-2 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-2 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-2 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-2 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-2 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-2 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-2 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-2 div.sk-label-container {text-align: center;}#sk-container-id-2 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-2 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-2" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>PCA(n_components=2)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox" checked><label for="sk-estimator-id-2" class="sk-toggleable__label sk-toggleable__label-arrow">PCA</label><div class="sk-toggleable__content"><pre>PCA(n_components=2)</pre></div></div></div></div></div></div></div>
+<div class="output text_html"><style>#sk-container-id-1 {color: black;}#sk-container-id-1 pre{padding: 0;}#sk-container-id-1 div.sk-toggleable {background-color: white;}#sk-container-id-1 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-1 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-1 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-1 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-1 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-1 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-1 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-1 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-1 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-1 div.sk-item {position: relative;z-index: 1;}#sk-container-id-1 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-1 div.sk-item::before, #sk-container-id-1 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-1 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-1 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-1 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-1 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-1 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-1 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-1 div.sk-label-container {text-align: center;}#sk-container-id-1 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-1 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>PCA(n_components=2)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked><label for="sk-estimator-id-1" class="sk-toggleable__label sk-toggleable__label-arrow">PCA</label><div class="sk-toggleable__content"><pre>PCA(n_components=2)</pre></div></div></div></div></div></div></div>
 </div>
 <ul class="simple">
 <li><p>El proceso de ajuste <code class="docutils literal notranslate"><span class="pre">extrae</span> <span class="pre">información</span> <span class="pre">crucial</span> <span class="pre">de</span> <span class="pre">los</span> <span class="pre">datos</span></code>, principalmente los <code class="docutils literal notranslate"><span class="pre">&quot;componentes&quot;</span></code> y la <code class="docutils literal notranslate"><span class="pre">&quot;varianza</span> <span class="pre">explicada&quot;</span></code>.</p></li>
@@ -1032,7 +1162,7 @@ transformed shape: (200, 1)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/9e0b184db83e976e408414c1c34937cc4706be3e37abc5bdaeb482e7bbb35b3d.png" src="_images/9e0b184db83e976e408414c1c34937cc4706be3e37abc5bdaeb482e7bbb35b3d.png" />
+<img alt="_images/f186a51ed962ef8547a800580a4c957c14cccb1f4b9c998525c1c8e261ee67d6.png" src="_images/f186a51ed962ef8547a800580a4c957c14cccb1f4b9c998525c1c8e261ee67d6.png" />
 </div>
 </div>
 <ul class="simple">
@@ -1069,7 +1199,7 @@ transformed shape: (200, 1)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/a4af48008905753b616acf8e085d0e41e5b798c2b18f4d6da5cb96249ad4ad63.png" src="_images/a4af48008905753b616acf8e085d0e41e5b798c2b18f4d6da5cb96249ad4ad63.png" />
+<img alt="_images/4d69525b1cc95901015e4ee9d4d29714c515ce68df9ffa3db86b6626032fb5d9.png" src="_images/4d69525b1cc95901015e4ee9d4d29714c515ce68df9ffa3db86b6626032fb5d9.png" />
 </div>
 </div>
 <div class="proof observation admonition" id="observation-1">
@@ -1224,7 +1354,7 @@ transformed shape: (200, 1)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><style>#sk-container-id-3 {color: black;}#sk-container-id-3 pre{padding: 0;}#sk-container-id-3 div.sk-toggleable {background-color: white;}#sk-container-id-3 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-3 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-3 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-3 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-3 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-3 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-3 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-3 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-3 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-3 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-3 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-3 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-3 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-3 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-3 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-3 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-3 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-3 div.sk-item {position: relative;z-index: 1;}#sk-container-id-3 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-3 div.sk-item::before, #sk-container-id-3 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-3 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-3 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-3 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-3 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-3 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-3 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-3 div.sk-label-container {text-align: center;}#sk-container-id-3 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-3 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-3" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>PCA(n_components=150, svd_solver=&#x27;randomized&#x27;)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-3" type="checkbox" checked><label for="sk-estimator-id-3" class="sk-toggleable__label sk-toggleable__label-arrow">PCA</label><div class="sk-toggleable__content"><pre>PCA(n_components=150, svd_solver=&#x27;randomized&#x27;)</pre></div></div></div></div></div></div></div>
+<div class="output text_html"><style>#sk-container-id-2 {color: black;}#sk-container-id-2 pre{padding: 0;}#sk-container-id-2 div.sk-toggleable {background-color: white;}#sk-container-id-2 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-2 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-2 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-2 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-2 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-2 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-2 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-2 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-2 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-2 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-2 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-2 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-2 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-2 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-2 div.sk-item {position: relative;z-index: 1;}#sk-container-id-2 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-2 div.sk-item::before, #sk-container-id-2 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-2 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-2 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-2 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-2 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-2 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-2 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-2 div.sk-label-container {text-align: center;}#sk-container-id-2 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-2 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-2" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>PCA(n_components=150, svd_solver=&#x27;randomized&#x27;)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox" checked><label for="sk-estimator-id-2" class="sk-toggleable__label sk-toggleable__label-arrow">PCA</label><div class="sk-toggleable__content"><pre>PCA(n_components=150, svd_solver=&#x27;randomized&#x27;)</pre></div></div></div></div></div></div></div>
 </div>
 <ul class="simple">
 <li><p>En este caso, resulta interesante <code class="docutils literal notranslate"><span class="pre">representar</span> <span class="pre">visualmente</span> <span class="pre">las</span> <span class="pre">imágenes</span> <span class="pre">correspondientes</span> <span class="pre">a</span> <span class="pre">los</span> <span class="pre">componentes</span> <span class="pre">principales</span> <span class="pre">iniciales</span></code>. Formalmente denominados <code class="docutils literal notranslate"><span class="pre">&quot;vectores</span> <span class="pre">propios&quot;</span></code>, estos componentes suelen denominarse <code class="docutils literal notranslate"><span class="pre">&quot;caras</span> <span class="pre">propias&quot;</span> <span class="pre">cuando</span> <span class="pre">se</span> <span class="pre">trata</span> <span class="pre">de</span> <span class="pre">imágenes</span></code>. Como se muestra en la figura, estas caras propias tienen un aspecto bastante inquietante</p></li>
@@ -1304,16 +1434,16 @@ transformed shape: (200, 1)
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "ml_tf"
         },
         kernelOptions: {
-            name: "python3",
+            name: "ml_tf",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'ml_tf'</script>
 
                 </article>
               
@@ -1362,6 +1492,9 @@ transformed shape: (200, 1)
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis">Análisis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concepto-basico">Concepto básico</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion">Implementación</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion-al-analisis-de-componentes-principales">Introducción al análisis de componentes principales</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-para-reduccion-de-dimension">PCA para reducción de dimensión</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-para-visualizacion-digitos-escritos-a-mano">PCA para visualización: Dígitos escritos a mano</a></li>

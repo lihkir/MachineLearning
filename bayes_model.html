@@ -512,7 +512,7 @@ h(\boldsymbol{x})=\log\frac{f(\boldsymbol{x}|\overline{\boldsymbol{x}}_{1}, S_{1
 &lt; 0 &amp;\Rightarrow~\boldsymbol{x}\in G_{2}
 \end{cases}
 \end{split}\]</div>
-<p>Dada la <code class="docutils literal notranslate"><span class="pre">distribución</span> <span class="pre">normal</span></code> <span class="math notranslate nohighlight">\(p\)</span><code class="docutils literal notranslate"><span class="pre">-dimensional</span> <span class="pre">estimada</span></code> <span class="math notranslate nohighlight">\(N_{p}(\overline{\boldsymbol{x}}_{i}, S_{i})~(i=1,2)\)</span>, se tiene que:</p>
+<p>Dada la <code class="docutils literal notranslate"><span class="pre">distribución</span> <span class="pre">normal</span></code> <span class="math notranslate nohighlight">\(p-\)</span>dimensional estimada <span class="math notranslate nohighlight">\(N_{p}(\overline{\boldsymbol{x}}_{i}, S_{i})~(i=1,2)\)</span>, se tiene que:</p>
 <div class="math notranslate nohighlight">
 \[
 f(\boldsymbol{x}|\boldsymbol{x}_{i}, S_{i})=\frac{1}{(2\pi)^{p/2}|S_{i}|^{1/2}}\exp\left[-\frac{1}{2}(\boldsymbol{x}-\overline{\boldsymbol{x}}_{i})^{T}S_{i}^{-1}(\boldsymbol{x}-\overline{\boldsymbol{x}}_{i})\right]
@@ -531,7 +531,7 @@ h(\boldsymbol{x})&amp;=\log f(\boldsymbol{x}|\overline{\boldsymbol{x}}_{1}, S_{1
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{align*}
-h(\boldsymbol{x})&amp;=(\boldsymbol{x}-\overline{\boldsymbol{x}}_{2})^{T}S^{-1}(\boldsymbol{x}-\overline{\boldsymbol{x}}_{2})-(\boldsymbol{x}-\overline{\boldsymbol{x}}_{1})^{T}S^{-1}(\boldsymbol{x}-\overline{\boldsymbol{x}}_{1})\\
+h(\boldsymbol{x})&amp;=\frac{1}{2}(\boldsymbol{x}-\overline{\boldsymbol{x}}_{2})^{T}S^{-1}(\boldsymbol{x}-\overline{\boldsymbol{x}}_{2})-\frac{1}{2}(\boldsymbol{x}-\overline{\boldsymbol{x}}_{1})^{T}S^{-1}(\boldsymbol{x}-\overline{\boldsymbol{x}}_{1})\\
 &amp;=(\boldsymbol{x}_{1}-\overline{\boldsymbol{x}}_{2})^{T}S^{-1}\boldsymbol{x}-\frac{1}{2}(\overline{\boldsymbol{x}}_{1}^{T}S^{-1}\overline{\boldsymbol{x}}_{1}-\overline{\boldsymbol{x}}_{2}^{T}S^{-1}\overline{\boldsymbol{x}}_{2})
 \end{align*}
 \end{split}\]</div>
@@ -1516,7 +1516,7 @@ Name: proportion, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/922e82fec8f5e26c4ff2ea7e603fb2e734efca135444fbf221085af427e167bb.png" src="_images/922e82fec8f5e26c4ff2ea7e603fb2e734efca135444fbf221085af427e167bb.png" />
+<img alt="_images/19b6c80d2024a8505b970a2702a6184ca03ca1c486c8e2d5fa4ee721c2c739ef.png" src="_images/19b6c80d2024a8505b970a2702a6184ca03ca1c486c8e2d5fa4ee721c2c739ef.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3210,16 +3210,16 @@ memory usage: 25.9 KB
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "ml_tf"
         },
         kernelOptions: {
-            name: "python3",
+            name: "ml_tf",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'ml_tf'</script>
 
                 </article>
               
