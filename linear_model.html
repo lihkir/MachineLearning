@@ -1790,8 +1790,8 @@ x_{p}
 \end{align*}
 \end{split}\]</div>
 <p>Por lo tanto, para <span class="math notranslate nohighlight">\(k=1,2,\dots,p\)</span>, <code class="docutils literal notranslate"><span class="pre">bajo</span> <span class="pre">el</span> <span class="pre">supuesto</span> <span class="pre">de</span> <span class="pre">simetría</span></code> para <span class="math notranslate nohighlight">\(A\)</span> se tiene que</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
+<div class="math notranslate nohighlight" id="equation-quadratic-form-dedrivate">
+<span class="eqno">(13)<a class="headerlink" href="#equation-quadratic-form-dedrivate" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{align*}
 \frac{\partial(\boldsymbol{x}^{T}A\boldsymbol{x})}{\partial\boldsymbol{x}}&amp;=
 \begin{pmatrix}
@@ -1807,12 +1807,12 @@ x_{p}
 \end{split}\]</div>
 <p><code class="docutils literal notranslate"><span class="pre">Nótese</span> <span class="pre">que</span></code> <span class="math notranslate nohighlight">\(A:=Z^{T}Z\)</span>, <code class="docutils literal notranslate"><span class="pre">es</span> <span class="pre">simétrica</span></code>, en efecto: <span class="math notranslate nohighlight">\(A^{T}=(Z^{T}Z)^{T}=Z^{T}(Z^{T})^{T}=Z^{T}Z=A\)</span>, entonces <span class="math notranslate nohighlight">\(\partial_{\boldsymbol{\beta}_{s}}(\boldsymbol{\beta}_{s}^{T}Z^{T}Z\boldsymbol{\beta}_{s})=2Z^{T}Z\boldsymbol{\beta}_{s}\)</span>, por lo tanto</p>
 <div class="math notranslate nohighlight" id="equation-eq-betas">
-<span class="eqno">(13)<a class="headerlink" href="#equation-eq-betas" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(14)<a class="headerlink" href="#equation-eq-betas" title="Permalink to this equation">#</a></span>\[
 \begin{align*}
 \frac{\partial S_{\lambda}(\beta_{0}^{\star},\boldsymbol{\beta}_{s})}{\partial\boldsymbol{\beta}_{s}}=-2Z^{T}\boldsymbol{y}+2Z^{T}Z\boldsymbol{\beta}_{s}+2\lambda\boldsymbol{\beta}_{s}=\boldsymbol{0}
 \end{align*}
 \]</div>
-<p><code class="docutils literal notranslate"><span class="pre">Resolviendo</span> <span class="pre">las</span> <span class="pre">ecuaciones</span></code> <a class="reference internal" href="#equation-eq-betaz">(12)</a> y <a class="reference internal" href="#equation-eq-betas">(13)</a> para <span class="math notranslate nohighlight">\(\beta_{0}^{\star}\)</span> y <span class="math notranslate nohighlight">\(\boldsymbol{\beta}_{s}\)</span>, se tienen <code class="docutils literal notranslate"><span class="pre">estimadores</span> <span class="pre">ridge</span></code> para el modelo de regresión <a class="reference internal" href="#equation-eq-reg-li-z">(9)</a></p>
+<p><code class="docutils literal notranslate"><span class="pre">Resolviendo</span> <span class="pre">las</span> <span class="pre">ecuaciones</span></code> <a class="reference internal" href="#equation-eq-betaz">(12)</a> y <a class="reference internal" href="#equation-eq-betas">(14)</a> para <span class="math notranslate nohighlight">\(\beta_{0}^{\star}\)</span> y <span class="math notranslate nohighlight">\(\boldsymbol{\beta}_{s}\)</span>, se tienen <code class="docutils literal notranslate"><span class="pre">estimadores</span> <span class="pre">ridge</span></code> para el modelo de regresión <a class="reference internal" href="#equation-eq-reg-li-z">(9)</a></p>
 <div class="math notranslate nohighlight">
 \[
 \hat{\beta}_{0}^{\star}=\overline{y}\quad\text{y}\quad\hat{\boldsymbol{\beta}}_{s}=(Z^{T}Z+\lambda I_{p})^{-1}Z^{T}\boldsymbol{y}
@@ -1830,7 +1830,7 @@ S_{\lambda}(\boldsymbol{\beta}_{s})=(\boldsymbol{y}-Z\boldsymbol{\beta}_{s})^{T}
 <p><code class="docutils literal notranslate"><span class="pre">En</span> <span class="pre">efecto</span></code>, para obtener <code class="docutils literal notranslate"><span class="pre">estimación</span> <span class="pre">ridge</span> <span class="pre">del</span> <span class="pre">vector</span> <span class="pre">de</span> <span class="pre">coeficientes</span></code> <span class="math notranslate nohighlight">\(\boldsymbol{\beta}_{s}=(\hat{\beta}_{1}, \hat{\beta}_{2},\dots, \hat{\beta}_{p})\)</span>, primero, nótese que al reemplazar <span class="math notranslate nohighlight">\(\hat{\beta}_{0}^{\star}=\overline{y}\)</span> en Eq. <a class="reference internal" href="#equation-reg-ridge-model">(10)</a> se tiene que <span class="math notranslate nohighlight">\(y=\overline{y}\boldsymbol{1}+Z\boldsymbol{\beta}_{s}+\varepsilon\)</span>, entonces <span class="math notranslate nohighlight">\(\boldsymbol{y}-\overline{y}\boldsymbol{1}\)</span> esta <code class="docutils literal notranslate"><span class="pre">centrando</span> <span class="pre">los</span> <span class="pre">datos</span> <span class="pre">en</span> <span class="pre">relación</span> <span class="pre">a</span> <span class="pre">la</span> <span class="pre">variable</span> <span class="pre">respuesta</span></code>.</p>
 <p><code class="docutils literal notranslate"><span class="pre">Estandarizando</span> <span class="pre">las</span> <span class="pre">variables</span> <span class="pre">predictoras</span> <span class="pre">y</span> <span class="pre">respuesta</span></code> en nuestro modelo inicial Ecuación <a class="reference internal" href="#equation-linear-model-comp">(7)</a>, mediante <span class="math notranslate nohighlight">\(y_{i}-\overline{y}\)</span> y <span class="math notranslate nohighlight">\((x_{ij}-\bar x_{j})/s_{j}\)</span> se tienen las siguientes igualdades, <code class="docutils literal notranslate"><span class="pre">verifiquelas</span></code></p>
 <div class="math notranslate nohighlight" id="equation-ridge-normalization">
-<span class="eqno">(14)<a class="headerlink" href="#equation-ridge-normalization" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(15)<a class="headerlink" href="#equation-ridge-normalization" title="Permalink to this equation">#</a></span>\[
 \sum_{i=1}^{n}y_{i}=0,\quad\sum_{i=1}^{n}x_{ij}=0,~j=1,2,\dots,p,\quad\sum_{i=1}^{n}x_{ij}^{2}=n
 \]</div>
 <p>Entonces,</p>
@@ -1853,7 +1853,7 @@ y=X\boldsymbol{\beta}+\boldsymbol{\varepsilon},
 <p class="admonition-title">Propiedades del estimador ridge</p>
 <p>El <code class="docutils literal notranslate"><span class="pre">estimador</span> <span class="pre">ridge</span></code> satisface las siguientes propiedades:</p>
 <div class="math notranslate nohighlight" id="equation-ridge-props">
-<span class="eqno">(15)<a class="headerlink" href="#equation-ridge-props" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(16)<a class="headerlink" href="#equation-ridge-props" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{align}
 \text{E}(\hat{\boldsymbol{\beta}}_{R})&amp;=(X^{T}X+\lambda\boldsymbol{I}_{p})^{-1}X^{T}X\boldsymbol{\beta}\\
 \text{Cov}(\boldsymbol{\beta}_{R})&amp;=\sigma^{2}(X^{T}X+\lambda\boldsymbol{I}_{p})^{-1}X^{T}X(X^{T}X+\lambda\boldsymbol{I}_{p})^{-1}\\
@@ -1861,11 +1861,11 @@ y=X\boldsymbol{\beta}+\boldsymbol{\varepsilon},
 \text{E}[(\hat{\boldsymbol{\beta}}_{R}-\boldsymbol{\beta})^{T}(\hat{\boldsymbol{\beta}}_{R}-\boldsymbol{\beta})]&amp;=\displaystyle{\sigma^{2}\sum_{j=1}^{p}\frac{l_{j}}{(l_{j}+\lambda)^{2}}+\lambda^{2}\boldsymbol{\beta}^{T}(X^{T}X+\lambda\boldsymbol{I}_{p})^{-2}\boldsymbol{\beta}},
 \end{align}
 \end{split}\]</div>
-<p>donde <span class="math notranslate nohighlight">\(l_{1}, l_{2},\dots, l_{p}\)</span> son los <code class="docutils literal notranslate"><span class="pre">autovalores</span> <span class="pre">ordenados</span></code> de <span class="math notranslate nohighlight">\(X^{T}X\)</span>. El primer término del lado derecho de la última ecuación en <a class="reference internal" href="#equation-ridge-props">(15)</a> representa la suma de las <code class="docutils literal notranslate"><span class="pre">varianzas</span> <span class="pre">de</span> <span class="pre">los</span> <span class="pre">componentes</span> <span class="pre">del</span> <span class="pre">estimador</span> <span class="pre">ridge</span></code>, y el segundo término es el <code class="docutils literal notranslate"><span class="pre">cuadrado</span> <span class="pre">del</span> <span class="pre">sesgo</span></code>.</p>
+<p>donde <span class="math notranslate nohighlight">\(l_{1}, l_{2},\dots, l_{p}\)</span> son los <code class="docutils literal notranslate"><span class="pre">autovalores</span> <span class="pre">ordenados</span></code> de <span class="math notranslate nohighlight">\(X^{T}X\)</span>. El primer término del lado derecho de la última ecuación en <a class="reference internal" href="#equation-ridge-props">(16)</a> representa la suma de las <code class="docutils literal notranslate"><span class="pre">varianzas</span> <span class="pre">de</span> <span class="pre">los</span> <span class="pre">componentes</span> <span class="pre">del</span> <span class="pre">estimador</span> <span class="pre">ridge</span></code>, y el segundo término es el <code class="docutils literal notranslate"><span class="pre">cuadrado</span> <span class="pre">del</span> <span class="pre">sesgo</span></code>.</p>
 </div>
 <div class="tip admonition">
 <p class="admonition-title">Ejercicio para el lector</p>
-<p>Queda como <code class="docutils literal notranslate"><span class="pre">ejercicio</span> <span class="pre">para</span> <span class="pre">el</span> <span class="pre">lector</span> <span class="pre">verificar</span> <span class="pre">las</span> <span class="pre">Propiedades</span></code> <a class="reference internal" href="#equation-ridge-props">(15)</a> del <code class="docutils literal notranslate"><span class="pre">estimador</span> <span class="pre">ridge</span></code>. <em>Sugerencia: Revisar el texto de Sadanori Konishi</em>, <code class="docutils literal notranslate"><span class="pre">Introduction</span> <span class="pre">to</span> <span class="pre">Multivariate</span> <span class="pre">Analysis:</span> <span class="pre">Linear</span> <span class="pre">and</span> <span class="pre">Nonlinear</span> <span class="pre">Modeling</span></code> <span id="id1">[<a class="reference internal" href="biblio.html#id20" title="S. Konishi. Introduction to Multivariate Analysis: Linear and Nonlinear Modeling. Chapman &amp; Hall/CRC Texts in Statistical Science. Taylor &amp; Francis, 2014. ISBN 9781466567283. URL: https://books.google.com.co/books?id=fcuuAwAAQBAJ.">Konishi, 2014</a>]</span>.</p>
+<p>Queda como <code class="docutils literal notranslate"><span class="pre">ejercicio</span> <span class="pre">para</span> <span class="pre">el</span> <span class="pre">lector</span> <span class="pre">verificar</span> <span class="pre">las</span> <span class="pre">Propiedades</span></code> <a class="reference internal" href="#equation-ridge-props">(16)</a> del <code class="docutils literal notranslate"><span class="pre">estimador</span> <span class="pre">ridge</span></code>. <em>Sugerencia: Revisar el texto de Sadanori Konishi</em>, <code class="docutils literal notranslate"><span class="pre">Introduction</span> <span class="pre">to</span> <span class="pre">Multivariate</span> <span class="pre">Analysis:</span> <span class="pre">Linear</span> <span class="pre">and</span> <span class="pre">Nonlinear</span> <span class="pre">Modeling</span></code> <span id="id1">[<a class="reference internal" href="biblio.html#id20" title="S. Konishi. Introduction to Multivariate Analysis: Linear and Nonlinear Modeling. Chapman &amp; Hall/CRC Texts in Statistical Science. Taylor &amp; Francis, 2014. ISBN 9781466567283. URL: https://books.google.com.co/books?id=fcuuAwAAQBAJ.">Konishi, 2014</a>]</span>.</p>
 </div>
 </section>
 <section id="implementacion">
@@ -2009,7 +2009,7 @@ Test set score: 0.77
 \[
 S_{\lambda}(\boldsymbol{\beta})=(y-X\boldsymbol{\beta})^{T}(y-X\boldsymbol{\beta})+\lambda\sum_{i=1}^{p}|\beta_{j}|,
 \]</div>
-<p>donde los datos observados están normalizados como en la Ecuación <a class="reference internal" href="#equation-ridge-normalization">(14)</a>. A diferencia de la contracción de los coeficientes de regresión hacia cero, que se produce en la regresión de ridge, <code class="docutils literal notranslate"><span class="pre">lasso</span> <span class="pre">da</span> <span class="pre">lugar</span> <span class="pre">a</span> <span class="pre">una</span> <span class="pre">estimación</span> <span class="pre">exactamente</span> <span class="pre">igual</span> <span class="pre">a</span> <span class="pre">cero</span> <span class="pre">para</span> <span class="pre">algunos</span> <span class="pre">de</span> <span class="pre">los</span> <span class="pre">coeficientes.</span></code></p>
+<p>donde los datos observados están normalizados como en la Ecuación <a class="reference internal" href="#equation-ridge-normalization">(15)</a>. A diferencia de la contracción de los coeficientes de regresión hacia cero, que se produce en la regresión de ridge, <code class="docutils literal notranslate"><span class="pre">lasso</span> <span class="pre">da</span> <span class="pre">lugar</span> <span class="pre">a</span> <span class="pre">una</span> <span class="pre">estimación</span> <span class="pre">exactamente</span> <span class="pre">igual</span> <span class="pre">a</span> <span class="pre">cero</span> <span class="pre">para</span> <span class="pre">algunos</span> <span class="pre">de</span> <span class="pre">los</span> <span class="pre">coeficientes.</span></code></p>
 <div class="tip admonition">
 <p class="admonition-title">Observación</p>
 <ul class="simple">
@@ -2153,7 +2153,7 @@ Number of features used: 96
 <li><p><code class="docutils literal notranslate"><span class="pre">Los</span> <span class="pre">modelos</span> <span class="pre">lineales</span> <span class="pre">también</span> <span class="pre">se</span> <span class="pre">utilizan</span> <span class="pre">ampliamente</span> <span class="pre">para</span> <span class="pre">la</span> <span class="pre">clasificación</span></code>. Veamos primero la <code class="docutils literal notranslate"><span class="pre">clasificación</span> <span class="pre">binaria</span></code>. En este caso, la predicción se realiza mediante la siguiente fórmula</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-linear-class">
-<span class="eqno">(16)<a class="headerlink" href="#equation-linear-class" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(17)<a class="headerlink" href="#equation-linear-class" title="Permalink to this equation">#</a></span>\[
 \hat{y}=\beta_{0}+\beta_{1}\cdot x_{1}+\beta_{2}\cdot x_{2}+\cdots+\beta_{p}\cdot x_{p}
 \]</div>
 <ul class="simple">

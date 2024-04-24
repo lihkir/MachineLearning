@@ -726,12 +726,12 @@ l_{c}=
 <p class="admonition-title">Algoritmo AdaBoost (Adaptive Boosting)</p>
 <p>Considere una <em>tarea de clasificación de dos clases</em> y supongamos que se nos da un conjunto de <span class="math notranslate nohighlight">\(N\)</span> <em>observaciones de entrenamiento</em>, <span class="math notranslate nohighlight">\((y_{n}, \boldsymbol{x}_{n}),~n=1,2,\dots,N\)</span>, con <span class="math notranslate nohighlight">\(y_{n}\in\{-1, 1\}\)</span>. Nuestro objetivo es <em>diseñar un clasificador binario</em>,</p>
 <div class="math notranslate nohighlight" id="equation-sign-fn-adaboost-eq">
-<span class="eqno">(23)<a class="headerlink" href="#equation-sign-fn-adaboost-eq" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(24)<a class="headerlink" href="#equation-sign-fn-adaboost-eq" title="Permalink to this equation">#</a></span>\[
 f(\boldsymbol{x})=\text{sgn}\{F(\boldsymbol{x})\}
 \]</div>
 <p>donde</p>
 <div class="math notranslate nohighlight" id="equation-adaboosting-model-eq">
-<span class="eqno">(24)<a class="headerlink" href="#equation-adaboosting-model-eq" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(25)<a class="headerlink" href="#equation-adaboosting-model-eq" title="Permalink to this equation">#</a></span>\[
 F(\boldsymbol{x}):=\sum_{k=1}^{K}a_{k}\phi(\boldsymbol{x};\boldsymbol{\theta}_{k}),
 \]</div>
 <p>y <span class="math notranslate nohighlight">\(\phi(\boldsymbol{x}; \boldsymbol{\theta}_{k})\in\{-1, 1\}\)</span>, es el <em>clasificador base en la iteración</em> <span class="math notranslate nohighlight">\(k\)</span>, definido en términos de un <em>conjunto de parámetros</em>, <span class="math notranslate nohighlight">\(\boldsymbol{\theta}_{k},~k=1,2,\dots, K\)</span> <em>a ser estimados</em>.</p>
@@ -776,7 +776,7 @@ F_{i}(\cdot)=\sum_{k=1}^{i}a_{k}\phi(\cdot; \boldsymbol{\theta}_{k}).
 <li><p>Observe que <strong>la pérdida exponencial coloca más peso sobre los errores de clasificación</strong> <span class="math notranslate nohighlight">\((yF(\boldsymbol{x}) &lt; 0)\)</span> <strong>en comparación con los correctamente identificados</strong> <span class="math notranslate nohighlight">\((yF(\boldsymbol{x}) &gt; 0)\)</span>. Empleando la función de <em>pérdida exponencial</em>, el conjunto <span class="math notranslate nohighlight">\(a_{i},\boldsymbol{\theta}_{i}\)</span> se obtiene mediante la respectiva <strong>función de coste empírica</strong>, de la siguiente manera:</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-costfn-adaboost-eq">
-<span class="eqno">(25)<a class="headerlink" href="#equation-costfn-adaboost-eq" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(26)<a class="headerlink" href="#equation-costfn-adaboost-eq" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{align*}
 (a_{i}, \boldsymbol{\theta}_{i})&amp;=\text{arg}\text{min}_{a,\boldsymbol{\theta}}\sum_{n=1}^{N}\mathcal{L}(y_{n}, F(\boldsymbol{x}_{n}))\\
 &amp;=\text{arg}\text{min}_{a,\boldsymbol{\theta}}\sum_{n=1}^{N}\exp\left(-y_{n}(F_{i-1}(\boldsymbol{x}_{n})+a\phi(\boldsymbol{x}_{n};\boldsymbol{\theta}))\right).
@@ -785,7 +785,7 @@ F_{i}(\cdot)=\sum_{k=1}^{i}a_{k}\phi(\cdot; \boldsymbol{\theta}_{k}).
 <ul>
 <li><p>Esta <em>tarea de optimización</em> también se realiza en dos pasos. En primer lugar, <span class="math notranslate nohighlight">\(a\)</span> <strong>se trata de forma fija y optimizamos con respecto a</strong> <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span>,</p>
 <div class="math notranslate nohighlight" id="equation-weights-omega-eq">
-<span class="eqno">(26)<a class="headerlink" href="#equation-weights-omega-eq" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(27)<a class="headerlink" href="#equation-weights-omega-eq" title="Permalink to this equation">#</a></span>\[\begin{split}
     \begin{align*}
     \boldsymbol{\theta}_{i}&amp;=\text{arg}\text{min}_{a,\boldsymbol{\theta}}\sum_{n=1}^{N}\exp\left(-y_{n}(F_{i-1}(\boldsymbol{x}_{n})+a\phi(\boldsymbol{x}_{n};\boldsymbol{\theta}))\right)\\
     &amp;=\text{argmin}_{\boldsymbol{\theta}}\sum_{n=1}^{N}\omega_{n}^{(i)}\exp(-y_{n}a\phi(\boldsymbol{x}_{n};\boldsymbol{\theta})),
@@ -796,31 +796,31 @@ F_{i}(\cdot)=\sum_{k=1}^{i}a_{k}\phi(\cdot; \boldsymbol{\theta}_{k}).
 <li><p>Observe que <span class="math notranslate nohighlight">\(\omega_{n}^{(i)}\)</span> <em>no depende ni de</em> <span class="math notranslate nohighlight">\(a\)</span> <em>ni de</em> <span class="math notranslate nohighlight">\(\phi(x_{n}; \boldsymbol{\theta})\)</span>, por lo que puede considerarse un <strong>peso asociado a la muestra</strong> <span class="math notranslate nohighlight">\(n\)</span>. Además, <em>su valor depende por completo de los resultados obtenidos en las pruebas anteriores</em>.</p></li>
 </ul>
 <ul>
-<li><p>Ahora nos centraremos en el coste de Ecuación <a class="reference internal" href="#equation-costfn-adaboost-eq">(25)</a>. La <strong>optimización depende de la forma específica del
+<li><p>Ahora nos centraremos en el coste de Ecuación <a class="reference internal" href="#equation-costfn-adaboost-eq">(26)</a>. La <strong>optimización depende de la forma específica del
 clasificador base</strong>. Nótese, sin embargo, que la <em>función de pérdida es de forma exponencial</em>. Además, el <em>clasificador
 es binario</em>, de modo que <span class="math notranslate nohighlight">\(\phi(\boldsymbol{x}, \boldsymbol{\theta})\in\{-1, 1\}\)</span>.</p></li>
-<li><p>Si <em>suponemos que</em> <span class="math notranslate nohighlight">\(a &gt; 0\)</span> (volveremos a ello pronto) la optimización de Ecuación <a class="reference internal" href="#equation-costfn-adaboost-eq">(25)</a> se ve fácilmente que es equivalente a <em>optimizar el siguiente coste</em>:</p>
+<li><p>Si <em>suponemos que</em> <span class="math notranslate nohighlight">\(a &gt; 0\)</span> (volveremos a ello pronto) la optimización de Ecuación <a class="reference internal" href="#equation-costfn-adaboost-eq">(26)</a> se ve fácilmente que es equivalente a <em>optimizar el siguiente coste</em>:</p>
 <div class="math notranslate nohighlight" id="equation-loss-funtion-01">
-<span class="eqno">(27)<a class="headerlink" href="#equation-loss-funtion-01" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(28)<a class="headerlink" href="#equation-loss-funtion-01" title="Permalink to this equation">#</a></span>\[
     \boldsymbol{\theta}_{i}=\text{argmin}_{\theta}P_{i},~\text{donde}~P_{i}:=\sum_{n=1}^{N}\omega_{n}^{(i)}\chi_{(-\infty, 0]}(y_{n}\phi(\boldsymbol{x}_{n}, \boldsymbol{\theta})),
     \]</div>
 <p>y <span class="math notranslate nohighlight">\(\chi_{(-\infty, 0]}\)</span> es la <em>función de pérdida 0-1</em>.</p>
 </li>
 </ul>
 <ul class="simple">
-<li><p>En otras palabras, <strong>solo contribuyen los puntos mal clasificados</strong> (<span class="math notranslate nohighlight">\(y_{n}\phi(\boldsymbol{x}_{n}; \boldsymbol{\theta}) &lt; 0\)</span>). Nótese que <span class="math notranslate nohighlight">\(P_{i}\)</span> es el <strong>error ponderado del clasificador empírico</strong>. Claramente, cuando se minimiza el error de clasificación en la Ecuación <a class="reference internal" href="#equation-loss-funtion-01">(27)</a>, el coste de Ecuación <a class="reference internal" href="#equation-costfn-adaboost-eq">(25)</a> <em>también se minimiza, porque la pérdida exponencial coloca mayor peso a los puntos mal clasificados</em> (cota superior para <span class="math notranslate nohighlight">\(\chi_{(-\infty, 0]}\)</span>).</p></li>
+<li><p>En otras palabras, <strong>solo contribuyen los puntos mal clasificados</strong> (<span class="math notranslate nohighlight">\(y_{n}\phi(\boldsymbol{x}_{n}; \boldsymbol{\theta}) &lt; 0\)</span>). Nótese que <span class="math notranslate nohighlight">\(P_{i}\)</span> es el <strong>error ponderado del clasificador empírico</strong>. Claramente, cuando se minimiza el error de clasificación en la Ecuación <a class="reference internal" href="#equation-loss-funtion-01">(28)</a>, el coste de Ecuación <a class="reference internal" href="#equation-costfn-adaboost-eq">(26)</a> <em>también se minimiza, porque la pérdida exponencial coloca mayor peso a los puntos mal clasificados</em> (cota superior para <span class="math notranslate nohighlight">\(\chi_{(-\infty, 0]}\)</span>).</p></li>
 <li><p>Para garantizar que <span class="math notranslate nohighlight">\(P_{i}\)</span> permanece en el intervalo <span class="math notranslate nohighlight">\([0, 1]\)</span>, <em>los pesos son normalizados a la unidad dividiendo por la suma respectiva</em>; nótese que esto no afecta al proceso de optimización. En otras palabras, <span class="math notranslate nohighlight">\(\boldsymbol{\theta}_{i}\)</span> <strong>puede calcularse para minimizar el error de clasificación empírico, cometido por el clasificador base</strong>. Para clasificadores base de estructura muy simple, <strong>dicha minimización es computacionalmente factible</strong>.</p></li>
 </ul>
 <ul>
 <li><p>Una vez calculado el <span class="math notranslate nohighlight">\(\boldsymbol{\theta}_{i}\)</span> óptimo, a partir de las respectivas definiciones,</p>
 <div class="math notranslate nohighlight" id="equation-pi-eq">
-<span class="eqno">(28)<a class="headerlink" href="#equation-pi-eq" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(29)<a class="headerlink" href="#equation-pi-eq" title="Permalink to this equation">#</a></span>\[
     \sum_{y_{n}\phi(\boldsymbol{x}_{n}; \boldsymbol{\theta}_{i})&lt;0}\omega_{n}^{(i)}=P_{i},~\text{y}~\sum_{y_{n}\phi(\boldsymbol{x}_{n}; \boldsymbol{\theta}_{i})&gt;0}\omega_{n}^{(i)}=1-P_{i}.
     \]</div>
 </li>
 </ul>
 <ul class="simple">
-<li><p><em>Combinando</em> las Ecuaciones <a class="reference internal" href="#equation-pi-eq">(28)</a>-<a class="reference internal" href="#equation-weights-omega-eq">(26)</a>, se demuestra fácilmente que</p></li>
+<li><p><em>Combinando</em> las Ecuaciones <a class="reference internal" href="#equation-pi-eq">(29)</a>-<a class="reference internal" href="#equation-weights-omega-eq">(27)</a>, se demuestra fácilmente que</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[
@@ -900,18 +900,18 @@ justificarse con el siguiente argumento. Consideremos el <code class="docutils l
 la <code class="docutils literal notranslate"><span class="pre">función</span> <span class="pre">de</span> <span class="pre">pérdida</span> <span class="pre">exponencial</span></code></p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-mean-exp-loss-fn-eq">
-<span class="eqno">(29)<a class="headerlink" href="#equation-mean-exp-loss-fn-eq" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(30)<a class="headerlink" href="#equation-mean-exp-loss-fn-eq" title="Permalink to this equation">#</a></span>\[
 \mathbb{E}(\exp(-yF(\boldsymbol{x})))=P(y=1)\exp(-F(\boldsymbol{x}))+P(y=-1)\exp(F(\boldsymbol{x}))
 \]</div>
 <ul class="simple">
-<li><p>Tomando <code class="docutils literal notranslate"><span class="pre">derivada</span> <span class="pre">con</span> <span class="pre">respecto</span> <span class="pre">a</span></code> <span class="math notranslate nohighlight">\(F(\boldsymbol{x})\)</span> <code class="docutils literal notranslate"><span class="pre">e</span> <span class="pre">igualando</span> <span class="pre">a</span> <span class="pre">cero</span></code>, fácilmente obtenemos el mínimo de <a class="reference internal" href="#equation-mean-exp-loss-fn-eq">(29)</a> el cual ocurre en</p></li>
+<li><p>Tomando <code class="docutils literal notranslate"><span class="pre">derivada</span> <span class="pre">con</span> <span class="pre">respecto</span> <span class="pre">a</span></code> <span class="math notranslate nohighlight">\(F(\boldsymbol{x})\)</span> <code class="docutils literal notranslate"><span class="pre">e</span> <span class="pre">igualando</span> <span class="pre">a</span> <span class="pre">cero</span></code>, fácilmente obtenemos el mínimo de <a class="reference internal" href="#equation-mean-exp-loss-fn-eq">(30)</a> el cual ocurre en</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-min-exp-loss-fn-eq">
-<span class="eqno">(30)<a class="headerlink" href="#equation-min-exp-loss-fn-eq" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(31)<a class="headerlink" href="#equation-min-exp-loss-fn-eq" title="Permalink to this equation">#</a></span>\[
 \frac{\partial}{\partial F(\boldsymbol{x})}(\mathbb{E}(\exp(-yF(\boldsymbol{x}))))=0\Leftrightarrow F_{\star}(\boldsymbol{x})=\text{argmin}_{f}\mathbb{E}[\exp(-yf)]=\frac{1}{2}\ln\frac{P(y=1|\boldsymbol{x})}{P(y=-1|\boldsymbol{x})}
 \]</div>
 <ul class="simple">
-<li><p>El logaritmo de la proporción del lado derecho se conoce como la <code class="docutils literal notranslate"><span class="pre">proporción</span> <span class="pre">log-odds</span></code>. Por lo tanto, si se considera la función de minimización en Ecuación <a class="reference internal" href="#equation-costfn-adaboost-eq">(25)</a> como la aproximación empírica del valor medio en Ecuación <a class="reference internal" href="#equation-mean-exp-loss-fn-eq">(29)</a>, <code class="docutils literal notranslate"><span class="pre">se</span> <span class="pre">justifica</span> <span class="pre">plenamente</span> <span class="pre">considerar</span> <span class="pre">el</span> <span class="pre">signo</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">función</span> <span class="pre">en</span></code> Ecuación <a class="reference internal" href="#equation-sign-fn-adaboost-eq">(23)</a> <code class="docutils literal notranslate"><span class="pre">como</span> <span class="pre">regla</span> <span class="pre">de</span> <span class="pre">clasificación</span></code>.</p></li>
+<li><p>El logaritmo de la proporción del lado derecho se conoce como la <code class="docutils literal notranslate"><span class="pre">proporción</span> <span class="pre">log-odds</span></code>. Por lo tanto, si se considera la función de minimización en Ecuación <a class="reference internal" href="#equation-costfn-adaboost-eq">(26)</a> como la aproximación empírica del valor medio en Ecuación <a class="reference internal" href="#equation-mean-exp-loss-fn-eq">(30)</a>, <code class="docutils literal notranslate"><span class="pre">se</span> <span class="pre">justifica</span> <span class="pre">plenamente</span> <span class="pre">considerar</span> <span class="pre">el</span> <span class="pre">signo</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">función</span> <span class="pre">en</span></code> Ecuación <a class="reference internal" href="#equation-sign-fn-adaboost-eq">(24)</a> <code class="docutils literal notranslate"><span class="pre">como</span> <span class="pre">regla</span> <span class="pre">de</span> <span class="pre">clasificación</span></code>.</p></li>
 </ul>
 <ul class="simple">
 <li><p>Un problema importante asociado a la <code class="docutils literal notranslate"><span class="pre">función</span> <span class="pre">de</span> <span class="pre">pérdida</span> <span class="pre">exponencial</span></code>, como se ve fácilmente en la <a class="reference internal" href="#loss-fn-adaboost-fig"><span class="std std-numref">Fig. 14</span></a>, es que <code class="docutils literal notranslate"><span class="pre">pondera</span> <span class="pre">en</span> <span class="pre">gran</span> <span class="pre">medida</span> <span class="pre">las</span> <span class="pre">muestras</span> <span class="pre">clasificadas</span> <span class="pre">erróneamente</span></code>, dependiendo del valor del margen respectivo, definido como</p></li>
@@ -931,7 +931,7 @@ m_{x}:=|yF(\boldsymbol{x})|.
 \mathcal{L}(y, F(\boldsymbol{x})):=\ln(1+\exp(-yF(\boldsymbol{x}))):\quad\text{log-loss function},
 \]</div>
 <ul class="simple">
-<li><p>Nótese que su <code class="docutils literal notranslate"><span class="pre">incremento</span> <span class="pre">es</span> <span class="pre">casi</span> <span class="pre">lineal</span> <span class="pre">para</span> <span class="pre">valores</span> <span class="pre">negativos</span> <span class="pre">grandes</span></code>. Tal función conduce a una <code class="docutils literal notranslate"><span class="pre">influencia</span> <span class="pre">más</span> <span class="pre">equilibrada</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">pérdida</span> <span class="pre">entre</span> <span class="pre">todos</span> <span class="pre">los</span> <span class="pre">puntos</span></code>. Observe además que la función que minimiza la media de la pérdida logarítmica, con respecto a <span class="math notranslate nohighlight">\(y\)</span>, es la misma que la dada en Ecuación <a class="reference internal" href="#equation-min-exp-loss-fn-eq">(30)</a> (<code class="docutils literal notranslate"><span class="pre">verifíquelo</span></code>). Sin embargo, si se emplea la pérdida logarítmica en lugar de la exponencial, la tarea de optimización es más compleja, y hay que recurrir a esquemas de optimización de tipo <code class="docutils literal notranslate"><span class="pre">gradiente</span> <span class="pre">descendiente</span></code> o esquemas de <code class="docutils literal notranslate"><span class="pre">optimización</span> <span class="pre">de</span> <span class="pre">tipo</span> <span class="pre">Newton</span></code> (ver <span id="id13">[<a class="reference internal" href="biblio.html#id25" title="Jerome H Friedman. Greedy function approximation: a gradient boosting machine. Annals of statistics, pages 1189–1232, 2001.">Friedman, 2001</a>]</span>).</p></li>
+<li><p>Nótese que su <code class="docutils literal notranslate"><span class="pre">incremento</span> <span class="pre">es</span> <span class="pre">casi</span> <span class="pre">lineal</span> <span class="pre">para</span> <span class="pre">valores</span> <span class="pre">negativos</span> <span class="pre">grandes</span></code>. Tal función conduce a una <code class="docutils literal notranslate"><span class="pre">influencia</span> <span class="pre">más</span> <span class="pre">equilibrada</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">pérdida</span> <span class="pre">entre</span> <span class="pre">todos</span> <span class="pre">los</span> <span class="pre">puntos</span></code>. Observe además que la función que minimiza la media de la pérdida logarítmica, con respecto a <span class="math notranslate nohighlight">\(y\)</span>, es la misma que la dada en Ecuación <a class="reference internal" href="#equation-min-exp-loss-fn-eq">(31)</a> (<code class="docutils literal notranslate"><span class="pre">verifíquelo</span></code>). Sin embargo, si se emplea la pérdida logarítmica en lugar de la exponencial, la tarea de optimización es más compleja, y hay que recurrir a esquemas de optimización de tipo <code class="docutils literal notranslate"><span class="pre">gradiente</span> <span class="pre">descendiente</span></code> o esquemas de <code class="docutils literal notranslate"><span class="pre">optimización</span> <span class="pre">de</span> <span class="pre">tipo</span> <span class="pre">Newton</span></code> (ver <span id="id13">[<a class="reference internal" href="biblio.html#id25" title="Jerome H Friedman. Greedy function approximation: a gradient boosting machine. Annals of statistics, pages 1189–1232, 2001.">Friedman, 2001</a>]</span>).</p></li>
 </ul>
 </section>
 <section id="arboles-boosting">
@@ -957,14 +957,14 @@ m_{x}:=|yF(\boldsymbol{x})|.
 <li><p>En un modelo de árbol boosting, el <strong>clasificador base está formado por un árbol</strong>. En la práctica, se pueden emplear <em>árboles cuyo tamaño (<strong>la profundidad máxima es la mayor longitud posible entre la raíz y una hoja</strong>) no debe ser muy grande, para acercarse más a un clasificador débil</em>. Normalmente, <strong>valores de</strong> <span class="math notranslate nohighlight">\(J\)</span> <strong>entre 4 y 8</strong> son aconsejables. El modelo de <strong>árbol boosting</strong> puede escribirse como</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-bost-tree-model-eq">
-<span class="eqno">(31)<a class="headerlink" href="#equation-bost-tree-model-eq" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(32)<a class="headerlink" href="#equation-bost-tree-model-eq" title="Permalink to this equation">#</a></span>\[
 F(\boldsymbol{x})=\sum_{k=1}^{K}T(\boldsymbol{x}; \boldsymbol{\Theta}_{k}),\quad\text{donde}\quad T(\boldsymbol{x}; \boldsymbol{\Theta}_{k})=\sum_{j=1}^{J}\hat{y}_{kj}\chi_{R_{kj}}(\boldsymbol{x}).
 \]</div>
 <ul class="simple">
-<li><p>La Ecuación <a class="reference internal" href="#equation-bost-tree-model-eq">(31)</a> es básicamente la misma que Ecuación <a class="reference internal" href="#equation-adaboosting-model-eq">(24)</a>, con el coeficiente <span class="math notranslate nohighlight">\(a_{k}\)</span> igual a uno. Hemos supuesto que el <em>tamaño de todos los árboles es el mismo</em>, aunque no tiene por qué ser así. Adoptando una <em>función de pérdida</em> <span class="math notranslate nohighlight">\(\mathcal{L}\)</span> y la <code class="docutils literal notranslate"><span class="pre">lógica</span> <span class="pre">greedy</span></code> utilizada para el enfoque boosting más general, llegamos al siguiente esquema recursivo de optimización:</p></li>
+<li><p>La Ecuación <a class="reference internal" href="#equation-bost-tree-model-eq">(32)</a> es básicamente la misma que Ecuación <a class="reference internal" href="#equation-adaboosting-model-eq">(25)</a>, con el coeficiente <span class="math notranslate nohighlight">\(a_{k}\)</span> igual a uno. Hemos supuesto que el <em>tamaño de todos los árboles es el mismo</em>, aunque no tiene por qué ser así. Adoptando una <em>función de pérdida</em> <span class="math notranslate nohighlight">\(\mathcal{L}\)</span> y la <code class="docutils literal notranslate"><span class="pre">lógica</span> <span class="pre">greedy</span></code> utilizada para el enfoque boosting más general, llegamos al siguiente esquema recursivo de optimización:</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-rec-optimization-eq">
-<span class="eqno">(32)<a class="headerlink" href="#equation-rec-optimization-eq" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(33)<a class="headerlink" href="#equation-rec-optimization-eq" title="Permalink to this equation">#</a></span>\[
 \boldsymbol{\Theta}_{i}=\text{argmin}_{\boldsymbol{\Theta}}\sum_{n=1}^{N}\mathcal{L}(y_{n}, F_{i-1}(\boldsymbol{x}_{n})+T(\boldsymbol{x}_{n}; \boldsymbol{\Theta})).
 \]</div>
 <ul class="simple">
@@ -976,7 +976,7 @@ F(\boldsymbol{x})=\sum_{k=1}^{K}T(\boldsymbol{x}; \boldsymbol{\Theta}_{k}),\quad
 <li><p>Hay dos factores críticos en relación con los árboles boosting. Uno es el tamaño de los árboles, <span class="math notranslate nohighlight">\(J\)</span>, y el otro es la elección de <span class="math notranslate nohighlight">\(K\)</span>. En cuanto al <strong>tamaño de los árboles</strong>, normalmente se prueban diferentes tamaños, <span class="math notranslate nohighlight">\(4\leq J \leq 8\)</span>, y se selecciona el mejor. Con respecto al <strong>número de iteraciones</strong>, para valores grandes, el error de entrenamiento puede llegar a ser cercano a cero, pero el error de prueba puede aumentar debido al sobreajuste. Por lo tanto, hay que <strong>parar lo suficientemente pronto, normalmente controlando el rendimiento</strong>.</p></li>
 </ul>
 <ul class="simple">
-<li><p>Otra forma de <strong>hacer frente al sobreajuste</strong> es emplear <strong>métodos de contracción (shrinkage)</strong>, que suelen ser <strong>equivalentes a la regularización</strong>. Por ejemplo, en la expansión por etapas de <span class="math notranslate nohighlight">\(F_{i}(x)\)</span> utilizada en el paso de optimización Eq <a class="reference internal" href="#equation-rec-optimization-eq">(32)</a>, se puede adoptar lo siguiente:</p></li>
+<li><p>Otra forma de <strong>hacer frente al sobreajuste</strong> es emplear <strong>métodos de contracción (shrinkage)</strong>, que suelen ser <strong>equivalentes a la regularización</strong>. Por ejemplo, en la expansión por etapas de <span class="math notranslate nohighlight">\(F_{i}(x)\)</span> utilizada en el paso de optimización Eq <a class="reference internal" href="#equation-rec-optimization-eq">(33)</a>, se puede adoptar lo siguiente:</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[

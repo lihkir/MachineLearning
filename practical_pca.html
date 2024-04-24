@@ -445,7 +445,7 @@ document.write(`
 <li><p>Apliquemos lo mencionado en la anterior observación a datos bidimensionales. Denotamos los <span class="math notranslate nohighlight">\(n\)</span> <em><strong>datos observados bidimensionales</strong></em> <span class="math notranslate nohighlight">\(\boldsymbol{x}=(x_{1}, x_{2})^{T}\)</span> como</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-bidimentional-data-pca">
-<span class="eqno">(68)<a class="headerlink" href="#equation-bidimentional-data-pca" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(69)<a class="headerlink" href="#equation-bidimentional-data-pca" title="Permalink to this equation">#</a></span>\[\begin{split}
 \boldsymbol{x}_{1}=\begin{pmatrix}x_{11}\\x_{12}\end{pmatrix},~\boldsymbol{x}_{2}=\begin{pmatrix}x_{21}\\x_{22}\end{pmatrix},\dots,\boldsymbol{x}_{n}=\begin{pmatrix}x_{n1}\\x_{n2}\end{pmatrix}.
 \end{split}\]</div>
 <ul>
@@ -454,7 +454,7 @@ document.write(`
 \[
     y_{i}=w_{1}x_{i1}+w_{2}x_{i2}=\boldsymbol{w}^{T}\boldsymbol{x}_{i},~i=1,2,\dots,n,
     \]</div>
-<p>donde <span class="math notranslate nohighlight">\(\boldsymbol{w}=(w_{1}, w_{2})^{T}\)</span> representa un vector de coeficientes.</p>
+<p>donde <span class="math notranslate nohighlight">\(\boldsymbol{w}=(w_{1}, w_{2})^{T}\)</span> representa un <em><strong>vector de coeficientes</strong></em>.</p>
 </li>
 </ul>
 <ul>
@@ -469,7 +469,7 @@ document.write(`
 <ul>
 <li><p>La <em><strong>varianza</strong></em> puede ser expresada como</p>
 <div class="math notranslate nohighlight" id="equation-variance-quad-error">
-<span class="eqno">(69)<a class="headerlink" href="#equation-variance-quad-error" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(70)<a class="headerlink" href="#equation-variance-quad-error" title="Permalink to this equation">#</a></span>\[\begin{split}
     \begin{align*}
     s_{y}^{2} &amp;= \frac{1}{n}\sum_{i=1}^{n}(y_{i}-\overline{y})^{2}\\
     &amp;= \frac{1}{n}\sum_{i=1}^{n}\left\{w_{1}(x_{i1}-\overline{x}_{1})+w_{2}(x_{i2}-\overline{x}_{2})\right\}^{2}\\
@@ -478,9 +478,9 @@ document.write(`
     &amp;= \boldsymbol{w}^{T}S\boldsymbol{w},
     \end{align*}
     \end{split}\]</div>
-<p>donde <span class="math notranslate nohighlight">\(S\)</span> es la <em><strong>matriz de covarianza muestral</strong></em>, definida por</p>
+<p>donde <span class="math notranslate nohighlight">\(S\)</span> es la <em><strong>matriz de covarianza muestral</strong></em>, definida por (<code class="docutils literal notranslate"><span class="pre">verifíquelo</span></code>)</p>
 <div class="math notranslate nohighlight" id="equation-sample-covariance-matrix">
-<span class="eqno">(70)<a class="headerlink" href="#equation-sample-covariance-matrix" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(71)<a class="headerlink" href="#equation-sample-covariance-matrix" title="Permalink to this equation">#</a></span>\[\begin{split}
     S=\begin{pmatrix}s_{11} &amp; s_{12}\\s_{21} &amp; s_{22}\end{pmatrix},~s_{jk}=\frac{1}{n}\sum_{i=1}^{n}(x_{ij}-\overline{x}_{j})(x_{ik}-\overline{x}_{k}),~j,k=1,2. 
     \end{split}\]</div>
 </li>
@@ -488,7 +488,7 @@ document.write(`
 <div class="admonition-maximizacion-de-la-varianza admonition">
 <p class="admonition-title">Maximización de la varianza</p>
 <ul class="simple">
-<li><p>El problema de encontrar el vector de coeficientes <span class="math notranslate nohighlight">\(\boldsymbol{w}=(w_{1}, w_{2})^{T}\)</span>, que corresponde a la máxima varianza para los <span class="math notranslate nohighlight">\(n\)</span> datos bidimensionales proyectados sobre <span class="math notranslate nohighlight">\(y=w_{1}x_{1}+w_{2}x_{2}\)</span>, se convierte en el <em><strong>problema de maximización de la varianza</strong></em> <span class="math notranslate nohighlight">\(S_{y}=\boldsymbol{w}^{T}S\boldsymbol{w}\)</span> en la Ecuación <a class="reference internal" href="#equation-variance-quad-error">(69)</a> <em><strong>bajo la restricción</strong></em> <span class="math notranslate nohighlight">\(\boldsymbol{w}^{T}S\boldsymbol{w}=1\)</span>. Esta restricción se aplica porque <span class="math notranslate nohighlight">\(\|\boldsymbol{w}\|\)</span> <em><strong>sería infinitamente grande sin ella y la varianza divergiría</strong></em>.</p></li>
+<li><p>El problema de encontrar el vector de coeficientes <span class="math notranslate nohighlight">\(\boldsymbol{w}=(w_{1}, w_{2})^{T}\)</span>, que corresponde a la máxima varianza para los <span class="math notranslate nohighlight">\(n\)</span> datos bidimensionales proyectados sobre <span class="math notranslate nohighlight">\(y=w_{1}x_{1}+w_{2}x_{2}\)</span>, se convierte en el <em><strong>problema de maximización de la varianza</strong></em> <span class="math notranslate nohighlight">\(S_{y}=\boldsymbol{w}^{T}S\boldsymbol{w}\)</span> en la Ecuación <a class="reference internal" href="#equation-variance-quad-error">(70)</a> <em><strong>bajo la restricción</strong></em> <span class="math notranslate nohighlight">\(\boldsymbol{w}^{T}\boldsymbol{w}=1\)</span>. Esta restricción se aplica porque <span class="math notranslate nohighlight">\(\|\boldsymbol{w}\|\)</span> <em><strong>sería infinitamente grande sin ella y la varianza divergiría</strong></em>.</p></li>
 </ul>
 </div>
 <ul class="simple">
@@ -499,9 +499,9 @@ document.write(`
 L(\boldsymbol{w}, \lambda)=\boldsymbol{w}^{T}S\boldsymbol{w}+\lambda(1-\boldsymbol{w}^{T}\boldsymbol{w})
 \]</div>
 <ul>
-<li><p>Dado que <span class="math notranslate nohighlight">\(\partial(\boldsymbol{w}^{T}S\boldsymbol{w})/\partial\boldsymbol{w}=2S\boldsymbol{w}\)</span> y <span class="math notranslate nohighlight">\(\partial(\boldsymbol{w}^{T}\boldsymbol{w})/\partial\boldsymbol{w}=2\boldsymbol{w}\)</span>, entonces <span class="math notranslate nohighlight">\(\partial L(\boldsymbol{w}, \lambda)/\partial\boldsymbol{w}=0\)</span> sii</p>
+<li><p>Dado que <span class="math notranslate nohighlight">\(\partial(\boldsymbol{w}^{T}S\boldsymbol{w})/\partial\boldsymbol{w}=2S\boldsymbol{w}\)</span> (ver Ecuación <a class="reference internal" href="linear_model.html#equation-quadratic-form-dedrivate">(13)</a>) y <span class="math notranslate nohighlight">\(\partial(\boldsymbol{w}^{T}\boldsymbol{w})/\partial\boldsymbol{w}=2\boldsymbol{w}\)</span>, entonces <span class="math notranslate nohighlight">\(\partial L(\boldsymbol{w}, \lambda)/\partial\boldsymbol{w}=0\)</span> sii</p>
 <div class="math notranslate nohighlight" id="equation-eigen-valuesvector-problem">
-<span class="eqno">(71)<a class="headerlink" href="#equation-eigen-valuesvector-problem" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(72)<a class="headerlink" href="#equation-eigen-valuesvector-problem" title="Permalink to this equation">#</a></span>\[
   S\boldsymbol{w}=\lambda\boldsymbol{w}.
   \]</div>
 </li>
@@ -515,18 +515,19 @@ L(\boldsymbol{w}, \lambda)=\boldsymbol{w}^{T}S\boldsymbol{w}+\lambda(1-\boldsymb
 </li>
 </ul>
 <ul>
-<li><p>La varianza del <em><strong>primer componente principal</strong></em> <span class="math notranslate nohighlight">\(y_{1}\)</span> se alcanza con <span class="math notranslate nohighlight">\(\boldsymbol{w}=\boldsymbol{w}_{1}\)</span>, el cual maximiza la varianza de <a class="reference internal" href="#equation-variance-quad-error">(69)</a>, y es, por lo tanto,</p>
+<li><p>La varianza del <em><strong>primer componente principal</strong></em> <span class="math notranslate nohighlight">\(y_{1}\)</span> se alcanza con <span class="math notranslate nohighlight">\(\boldsymbol{w}=\boldsymbol{w}_{1}\)</span>, el cual maximiza la varianza de la Ecuación <a class="reference internal" href="#equation-variance-quad-error">(70)</a>, y es, por lo tanto,</p>
 <div class="math notranslate nohighlight" id="equation-variance-firstpc">
-<span class="eqno">(72)<a class="headerlink" href="#equation-variance-firstpc" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(73)<a class="headerlink" href="#equation-variance-firstpc" title="Permalink to this equation">#</a></span>\[
   s_{y_{1}}^{2}=\boldsymbol{w}_{1}^{T}S\boldsymbol{w}_{1}=\lambda_{1}.
   \]</div>
 </li>
 </ul>
 <ul class="simple">
-<li><p>Nótese que, la <a class="reference internal" href="#equation-variance-firstpc">(72)</a> es obtenida gracias a la relación entre autovalor-autovector <span class="math notranslate nohighlight">\(S\boldsymbol{w}_{1}=\lambda_{1}\boldsymbol{w}_{1}\)</span> de la matriz simétrica <span class="math notranslate nohighlight">\(S\)</span>, y que el vector <span class="math notranslate nohighlight">\(\boldsymbol{w}_{1}\)</span> es normalizado a longitud 1 (<code class="docutils literal notranslate"><span class="pre">verifíquelo</span></code>).</p></li>
+<li><p>Nótese que, la <a class="reference internal" href="#equation-variance-firstpc">(73)</a> es obtenida gracias a la relación entre autovalor-autovector <span class="math notranslate nohighlight">\(S\boldsymbol{w}_{1}=\lambda_{1}\boldsymbol{w}_{1}\)</span> de la matriz simétrica <span class="math notranslate nohighlight">\(S\)</span>, y que el vector <span class="math notranslate nohighlight">\(\boldsymbol{w}_{1}\)</span> es normalizado a longitud 1 (<code class="docutils literal notranslate"><span class="pre">verifíquelo</span></code>).</p></li>
 </ul>
 <ul>
-<li><p>El <em><strong>segundo componente principal</strong></em>, al proyectar los datos bidimensionales en <span class="math notranslate nohighlight">\(y=w_{1}x_{1}+w_{2}x_{2}\)</span> bajo la <em><strong>restricción de normalización</strong></em> <span class="math notranslate nohighlight">\(\boldsymbol{w}\boldsymbol{w}^{T}=1\)</span> junto con la <em><strong>ortogonalidad al primer componente principal</strong></em>, se define como el vector de coeficientes que <em><strong>maximiza la varianza</strong></em> <span class="math notranslate nohighlight">\(S_{y_{2}}^{2}=\boldsymbol{w}^{T}S\boldsymbol{w}\)</span> con <span class="math notranslate nohighlight">\(\boldsymbol{w}_{1}^{T}\boldsymbol{w}=0\)</span>. La solución, <em><strong>de la misma manera que para el primer componente principal</strong></em>, se obtiene como el punto estacionario respecto a <span class="math notranslate nohighlight">\(\boldsymbol{w}\)</span> para la función Lagrangiana</p>
+<li><p>El <em><strong>segundo componente principal</strong></em>, al proyectar los datos bidimensionales en <span class="math notranslate nohighlight">\(y=w_{1}x_{1}+w_{2}x_{2}\)</span> bajo la <em><strong>restricción de normalización</strong></em> <span class="math notranslate nohighlight">\(\boldsymbol{w}\boldsymbol{w}^{T}=1\)</span> junto con la <em><strong>ortogonalidad al primer componente principal</strong></em>, se define como el vector de coeficientes que <em><strong>maximiza la varianza</strong></em> <span class="math notranslate nohighlight">\(S_{y_{2}}^{2}=\boldsymbol{w}^{T}S\boldsymbol{w}\)</span> con <span class="math notranslate nohighlight">\(\boldsymbol{w}_{1}^{T}\boldsymbol{w}=0\)</span>.</p></li>
+<li><p>La solución, <em><strong>de la misma manera que para el primer componente principal</strong></em>, se obtiene como el punto estacionario respecto a <span class="math notranslate nohighlight">\(\boldsymbol{w}\)</span> para la función Lagrangiana</p>
 <div class="math notranslate nohighlight">
 \[
   L(\boldsymbol{w}, \lambda, \gamma)=\boldsymbol{w}^{T}S\boldsymbol{w}+\lambda(1-\boldsymbol{w}^{T}\boldsymbol{w})+\gamma\boldsymbol{w}_{1}^{T}\boldsymbol{w},
@@ -537,7 +538,7 @@ L(\boldsymbol{w}, \lambda)=\boldsymbol{w}^{T}S\boldsymbol{w}+\lambda(1-\boldsymb
 <ul>
 <li><p>Cuando <em><strong>diferenciamos parcialmente</strong></em> la ecuación anterior respecto a <span class="math notranslate nohighlight">\(\boldsymbol{w}\)</span> y establecemos el <em><strong>resultado igual a 0</strong></em> (<span class="math notranslate nohighlight">\(\partial_{\boldsymbol{w}}L=\boldsymbol{0}\)</span>), obtenemos la ecuación</p>
 <div class="math notranslate nohighlight" id="equation-system-2nd-pc">
-<span class="eqno">(73)<a class="headerlink" href="#equation-system-2nd-pc" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(74)<a class="headerlink" href="#equation-system-2nd-pc" title="Permalink to this equation">#</a></span>\[
   \frac{\partial L(\boldsymbol{w},\lambda, \gamma)}{\partial\boldsymbol{w}}=0\Leftrightarrow 2S\boldsymbol{w}-2\lambda w+\gamma\boldsymbol{w}_{1}=\boldsymbol{0}.
   \]</div>
 </li>
@@ -556,15 +557,16 @@ L(\boldsymbol{w}, \lambda)=\boldsymbol{w}^{T}S\boldsymbol{w}+\lambda(1-\boldsymb
 </li>
 </ul>
 <ul>
-<li><p>Entonces la Ecuación <a class="reference internal" href="#equation-system-2nd-pc">(73)</a> se convierte en</p>
+<li><p>Entonces la Ecuación <a class="reference internal" href="#equation-system-2nd-pc">(74)</a> se convierte en</p>
 <div class="math notranslate nohighlight" id="equation-eigenvalue-problema-system-2nd-pc">
-<span class="eqno">(74)<a class="headerlink" href="#equation-eigenvalue-problema-system-2nd-pc" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(75)<a class="headerlink" href="#equation-eigenvalue-problema-system-2nd-pc" title="Permalink to this equation">#</a></span>\[\begin{split}
   2Sw-2\lambda\boldsymbol{w}+\gamma\boldsymbol{w}_{1}=2S\boldsymbol{w}-2\lambda\boldsymbol{2}=0\Leftrightarrow S\boldsymbol{w}=\lambda\boldsymbol{w},~\text{donde}~\begin{cases}\boldsymbol{w}_{1}^{T}\boldsymbol{w}&amp;=0\\\boldsymbol{w}_{1}^{T}\boldsymbol{w}_{1}&amp;=1\end{cases}
   \end{split}\]</div>
 </li>
 </ul>
 <ul>
-<li><p>La solución del problema de <em><strong>autovalores y autovectores</strong></em> asociado a la Ecuación <a class="reference internal" href="#equation-eigenvalue-problema-system-2nd-pc">(74)</a> entrega el par autovector/autovalor <span class="math notranslate nohighlight">\((\lambda_{2}, \boldsymbol{w}_{})\)</span>, donde <span class="math notranslate nohighlight">\(\boldsymbol{w}_{2}=(w_{21}, w_{22})^{T}\)</span>. El <em><strong>segundo componente principal</strong></em> puede ser dado por la siguiente ecuación</p>
+<li><p>La solución del problema de <em><strong>autovalores y autovectores</strong></em> asociado a la Ecuación <a class="reference internal" href="#equation-eigenvalue-problema-system-2nd-pc">(75)</a> entrega el par autovector/autovalor <span class="math notranslate nohighlight">\((\lambda_{2}, \boldsymbol{w}_{2})\)</span>, donde <span class="math notranslate nohighlight">\(\boldsymbol{w}_{2}=(w_{21}, w_{22})^{T}\)</span>.</p></li>
+<li><p>El <em><strong>segundo componente principal</strong></em> puede ser dado por la siguiente ecuación</p>
 <div class="math notranslate nohighlight">
 \[
   y_{2}=w_{21}x_{1}+w_{22}x_{2}=\boldsymbol{w}_{2}^{T}\boldsymbol{x}
@@ -572,14 +574,15 @@ L(\boldsymbol{w}, \lambda)=\boldsymbol{w}^{T}S\boldsymbol{w}+\lambda(1-\boldsymb
 </li>
 </ul>
 <ul class="simple">
-<li><p>De la relación entre el <em><strong>autovalor y el autovector de la matriz simétrica</strong></em> <span class="math notranslate nohighlight">\(S\)</span>, la varianza del segundo componente principal <span class="math notranslate nohighlight">\(y_{2}\)</span> se convierte en <span class="math notranslate nohighlight">\(s_{y_{2}}^{2}=\boldsymbol{w}_{2}S\boldsymbol{w}_{2}=\lambda_{2}\)</span> de la misma manera que en la Ecuación <a class="reference internal" href="#equation-variance-firstpc">(72)</a>.</p></li>
-<li><p>En resumen, el <em><strong>PCA basado en los datos bidimensionales</strong></em> en Ecuación <a class="reference internal" href="#equation-bidimentional-data-pca">(68)</a> es esencialmente un <em><strong>problema de encontrar los autovalores y autovectores de la matriz de varianza-covarianza muestral</strong></em> <span class="math notranslate nohighlight">\(S\)</span>.</p></li>
+<li><p>De la relación entre el <em><strong>autovalor y el autovector de la matriz simétrica</strong></em> <span class="math notranslate nohighlight">\(S\)</span>, la varianza del segundo componente principal <span class="math notranslate nohighlight">\(y_{2}\)</span> se convierte en <span class="math notranslate nohighlight">\(s_{y_{2}}^{2}=\boldsymbol{w}_{2}S\boldsymbol{w}_{2}=\lambda_{2}\)</span> de la misma manera que en la Ecuación <a class="reference internal" href="#equation-variance-firstpc">(73)</a>.</p></li>
+<li><p>En resumen, el <em><strong>PCA basado en los datos bidimensionales</strong></em> en Ecuación <a class="reference internal" href="#equation-bidimentional-data-pca">(69)</a> es esencialmente un <em><strong>problema de encontrar los autovalores y autovectores de la matriz de varianza-covarianza muestral</strong></em> <span class="math notranslate nohighlight">\(S\)</span>.</p></li>
 </ul>
 </section>
 <section id="autovalores-autovectores-y-componentes-principales">
 <h2>Autovalores, Autovectores y Componentes Principales<a class="headerlink" href="#autovalores-autovectores-y-componentes-principales" title="Permalink to this heading">#</a></h2>
 <ul>
-<li><p>Denotamos los <em><strong>autovalores de la matriz de varianza-covarianza muestral</strong></em> <span class="math notranslate nohighlight">\(S\)</span> en orden descendente según su magnitud como <span class="math notranslate nohighlight">\(\lambda_{1}\geq\lambda_{2}\geq0\)</span>, y los <em><strong>correspondientes autovectores</strong></em> mutuamente <em><strong>ortogonales normalizados a longitud 1</strong></em> como <span class="math notranslate nohighlight">\(\boldsymbol{w}_{1}=(w_{11}, w_{12})^{T}\)</span> y <span class="math notranslate nohighlight">\(\boldsymbol{w}_{2}=(w_{21}, w_{22})^{T}\)</span>. Los <em><strong>primeros y segundos componentes principales</strong></em> y sus respectivas <em><strong>varianzas</strong></em> se dan entonces de la siguiente manera</p>
+<li><p>Denotamos los <em><strong>autovalores de la matriz de varianza-covarianza muestral</strong></em> <span class="math notranslate nohighlight">\(S\)</span> en orden descendente según su magnitud como <span class="math notranslate nohighlight">\(\lambda_{1}\geq\lambda_{2}\geq0\)</span>, y los <em><strong>correspondientes autovectores</strong></em> mutuamente <em><strong>ortogonales normalizados a longitud 1</strong></em> como <span class="math notranslate nohighlight">\(\boldsymbol{w}_{1}=(w_{11}, w_{12})^{T}\)</span> y <span class="math notranslate nohighlight">\(\boldsymbol{w}_{2}=(w_{21}, w_{22})^{T}\)</span>.</p></li>
+<li><p>Los <em><strong>primeros y segundos componentes principales</strong></em> y sus respectivas <em><strong>varianzas</strong></em> se dan entonces de la siguiente manera</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
   \begin{align*}
@@ -589,10 +592,10 @@ L(\boldsymbol{w}, \lambda)=\boldsymbol{w}^{T}S\boldsymbol{w}+\lambda(1-\boldsymb
   \end{split}\]</div>
 </li>
 </ul>
-<figure class="align-center" id="id3">
+<figure class="align-center" id="id4">
 <a class="reference internal image-reference" href="_images/first_second_pca_bidimentional.png"><img alt="_images/first_second_pca_bidimentional.png" src="_images/first_second_pca_bidimentional.png" style="width: 496.29999999999995px; height: 386.4px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 69 </span><span class="caption-text"><em><strong>Valores propios</strong></em>, <em><strong>primeros y segundos componentes principales</strong></em>. Fuente <span id="id2">[<a class="reference internal" href="biblio.html#id20" title="S. Konishi. Introduction to Multivariate Analysis: Linear and Nonlinear Modeling. Chapman &amp; Hall/CRC Texts in Statistical Science. Taylor &amp; Francis, 2014. ISBN 9781466567283. URL: https://books.google.com.co/books?id=fcuuAwAAQBAJ.">Konishi, 2014</a>]</span>.</span><a class="headerlink" href="#id3" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 69 </span><span class="caption-text"><em><strong>Valores propios</strong></em>, <em><strong>primeros y segundos componentes principales</strong></em>. Fuente <span id="id2">[<a class="reference internal" href="biblio.html#id20" title="S. Konishi. Introduction to Multivariate Analysis: Linear and Nonlinear Modeling. Chapman &amp; Hall/CRC Texts in Statistical Science. Taylor &amp; Francis, 2014. ISBN 9781466567283. URL: https://books.google.com.co/books?id=fcuuAwAAQBAJ.">Konishi, 2014</a>]</span>.</span><a class="headerlink" href="#id4" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <ul class="simple">
@@ -602,23 +605,26 @@ L(\boldsymbol{w}, \lambda)=\boldsymbol{w}^{T}S\boldsymbol{w}+\lambda(1-\boldsymb
 <section id="proceso-de-derivacion-de-componentes-principales-y-propiedades">
 <h2>Proceso de Derivación de Componentes Principales y Propiedades<a class="headerlink" href="#proceso-de-derivacion-de-componentes-principales-y-propiedades" title="Permalink to this heading">#</a></h2>
 <ul>
-<li><p>En general, denotamos como <span class="math notranslate nohighlight">\(\boldsymbol{x}=(x_{1}, x_{2},\dots,x_{p})^{T}\)</span> las <span class="math notranslate nohighlight">\(p\)</span> <em><strong>variables representando las características individuales</strong></em>. Basados en los datos observados <span class="math notranslate nohighlight">\(\boldsymbol{x}_{1}, \boldsymbol{x}_{2},\dots, \boldsymbol{x}_{n}\)</span> <span class="math notranslate nohighlight">\(p\)</span>-dimensionales, para las <span class="math notranslate nohighlight">\(p\)</span> variables, obtenemos la <em><strong>matriz de varianza-covarianza muestral</strong></em></p>
+<li><p>En general, denotamos como <span class="math notranslate nohighlight">\(\boldsymbol{x}=(x_{1}, x_{2},\dots,x_{p})^{T}\)</span> las <span class="math notranslate nohighlight">\(p\)</span> <em><strong>variables representando las características individuales</strong></em>. Basados en los datos observados <span class="math notranslate nohighlight">\(\boldsymbol{x}_{1}, \boldsymbol{x}_{2},\dots, \boldsymbol{x}_{n}\)</span>; <span class="math notranslate nohighlight">\(p\)</span>-dimensionales, para las <span class="math notranslate nohighlight">\(p\)</span> variables, obtenemos la <em><strong>matriz de varianza-covarianza muestral</strong></em></p>
 <div class="math notranslate nohighlight" id="equation-covariance-variance-nobs-pdimentionals">
-<span class="eqno">(75)<a class="headerlink" href="#equation-covariance-variance-nobs-pdimentionals" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(76)<a class="headerlink" href="#equation-covariance-variance-nobs-pdimentionals" title="Permalink to this equation">#</a></span>\[
   S=(s_{jk})=\frac{1}{n}\sum_{i=1}^{n}(\boldsymbol{x}_{i}-\overline{\boldsymbol{x}})(\boldsymbol{x}_{i}-\boldsymbol{x})^{T}
   \]</div>
-<p>donde <span class="math notranslate nohighlight">\(\overline{\boldsymbol{x}}\)</span> es el vector de medias muestrales, <span class="math notranslate nohighlight">\(p\)</span>-dimensional, y <span class="math notranslate nohighlight">\(s_{jk}=\sum_{i=1}^{n}(x_{ij}-\overline{x}_{j})(x_{ik}-\overline{x}_{k})/n\)</span>. <code class="docutils literal notranslate"><span class="pre">Escriba</span> <span class="pre">cada</span> <span class="pre">componente</span> <span class="pre">de</span></code> <span class="math notranslate nohighlight">\(S\)</span> <code class="docutils literal notranslate"><span class="pre">en</span> <span class="pre">una</span> <span class="pre">matriz</span></code>.</p>
+<p>donde <span class="math notranslate nohighlight">\(\overline{\boldsymbol{x}}\)</span> es el vector de medias muestrales, <span class="math notranslate nohighlight">\(p\)</span>-dimensional, y <span class="math notranslate nohighlight">\(s_{jk}=\sum_{i=1}^{n}(x_{ij}-\overline{x}_{j})(x_{ik}-\overline{x}_{k})/n\)</span> (<code class="docutils literal notranslate"><span class="pre">escriba</span> <span class="pre">cada</span> <span class="pre">componente</span> <span class="pre">de</span></code> <span class="math notranslate nohighlight">\(S\)</span> <code class="docutils literal notranslate"><span class="pre">en</span> <span class="pre">forma</span> <span class="pre">matricial</span></code>).</p>
 </li>
 </ul>
 <ul>
 <li><p>Siguiendo el concepto básico de la <em><strong>derivación de componentes principales</strong></em>, como se describe para <em><strong>datos bidimensionales</strong></em> en la sección anterior, primero <em><strong>proyectamos los</strong></em> <span class="math notranslate nohighlight">\(n\)</span> <em><strong>datos observados</strong></em>, <span class="math notranslate nohighlight">\(p\)</span><em><strong>-dimensionales sobre el eje de proyección</strong></em></p>
 <div class="math notranslate nohighlight" id="equation-pdimensional-projection-pca">
-<span class="eqno">(76)<a class="headerlink" href="#equation-pdimensional-projection-pca" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(77)<a class="headerlink" href="#equation-pdimensional-projection-pca" title="Permalink to this equation">#</a></span>\[
   y=w_{1}x_{1}+w_{2}x_{2}+\cdots+w_{p}x_{p}=\boldsymbol{w}^{T}\boldsymbol{x},
   \]</div>
 <p>y obtenemos los <em><strong>datos unidimensionales</strong></em> <span class="math notranslate nohighlight">\(y_{i}=\boldsymbol{w}^{T}\boldsymbol{x}_{i}~(i=1,2,\dots,n;~\boldsymbol{x}_{i}~p\text{-dimensional})\)</span>.</p>
 </li>
 </ul>
+<figure class="align-center">
+<img alt="_images/dim_red.jpeg" src="_images/dim_red.jpeg" />
+</figure>
 <ul>
 <li><p>La <em><strong>media de los datos proyectados</strong></em>, representada por <span class="math notranslate nohighlight">\(\overline{y}=n^{-1}\sum_{i=1}^{n}\boldsymbol{w}^{T}\boldsymbol{x}_{i}=\boldsymbol{w}^{T}\overline{\boldsymbol{x}}\)</span> (<code class="docutils literal notranslate"><span class="pre">escriba</span> <span class="pre">el</span> <span class="pre">vector</span> <span class="pre">de</span> <span class="pre">componentes</span> <span class="pre">de</span></code> <span class="math notranslate nohighlight">\(\overline{\boldsymbol{x}}\)</span>) permite expresar la varianza como:</p>
 <div class="math notranslate nohighlight">
@@ -642,6 +648,7 @@ L(\boldsymbol{w}, \lambda)=\boldsymbol{w}^{T}S\boldsymbol{w}+\lambda(1-\boldsymb
 <p class="admonition-title">Observación</p>
 <ul class="simple">
 <li><p>Continuando de la misma manera, el <em><strong>tercer componente principal</strong></em> se define como el eje que, <em><strong>cumpliendo con la ortogonalidad al primer y segundo componente principal, maximiza la varianza de los datos proyectados</strong></em> <span class="math notranslate nohighlight">\(p\)</span><em><strong>-dimensionales</strong></em>. Repitiendo sucesivamente este proceso, podemos en principio derivar <span class="math notranslate nohighlight">\(p\)</span> <em><strong>componentes principales para las combinaciones lineales de las variables originales</strong></em>.</p></li>
+<li><p>La <em><strong>invertibilidad de la matriz de covarianza en PCA se garantiza</strong></em> debido a la necesidad de que <em><strong>las variables originales sean linealmente independientes</strong></em>, lo que conduce a una <em><strong>matriz de covarianza no singular</strong></em>.</p></li>
 </ul>
 </div>
 <ul class="simple">
@@ -650,7 +657,7 @@ L(\boldsymbol{w}, \lambda)=\boldsymbol{w}^{T}S\boldsymbol{w}+\lambda(1-\boldsymb
 <section id="el-problema-de-los-autovalores-de-la-matriz-de-varianza-covarianza-muestral-y-los-componentes-principales">
 <h3>El problema de los autovalores de la matriz de varianza-covarianza muestral y los componentes principales<a class="headerlink" href="#el-problema-de-los-autovalores-de-la-matriz-de-varianza-covarianza-muestral-y-los-componentes-principales" title="Permalink to this heading">#</a></h3>
 <ul>
-<li><p>Denotemos <span class="math notranslate nohighlight">\(S\)</span> como una <em><strong>matriz de varianza-covarianza muestral</strong></em> basada en <span class="math notranslate nohighlight">\(n\)</span> <em><strong>datos observados</strong></em> <span class="math notranslate nohighlight">\(p\)</span>-dimensionales. Como se observa en la Ecuación <a class="reference internal" href="#equation-covariance-variance-nobs-pdimentionals">(75)</a>, es una <em><strong>matriz simétrica de orden</strong></em> <span class="math notranslate nohighlight">\(p\)</span>. Luego, denotamos los <span class="math notranslate nohighlight">\(p\)</span> autovalores</p>
+<li><p>Denotemos <span class="math notranslate nohighlight">\(S\)</span> como una <em><strong>matriz de varianza-covarianza muestral</strong></em> basada en <span class="math notranslate nohighlight">\(n\)</span> <em><strong>datos observados</strong></em> <span class="math notranslate nohighlight">\(p\)</span>-dimensionales. Como se observa en la Ecuación <a class="reference internal" href="#equation-covariance-variance-nobs-pdimentionals">(76)</a>, es una <em><strong>matriz simétrica de orden</strong></em> <span class="math notranslate nohighlight">\(p\)</span>. Luego, denotamos los <span class="math notranslate nohighlight">\(p\)</span> autovalores</p>
 <div class="math notranslate nohighlight">
 \[
   \lambda_{1}\geq\lambda_{2}\geq\cdots\lambda_{i}\geq\cdots\geq\lambda_{p}\geq0,
@@ -690,7 +697,7 @@ L(\boldsymbol{w}, \lambda)=\boldsymbol{w}^{T}S\boldsymbol{w}+\lambda(1-\boldsymb
 <li><p>Para estos autovectores, la <em><strong>normalización</strong></em> <span class="math notranslate nohighlight">\(\boldsymbol{w}_{i}^{T}\boldsymbol{w}_{i}=1\)</span> para longitud del vector 1 y la <em><strong>ortogonalidad</strong></em> <span class="math notranslate nohighlight">\(\boldsymbol{w}_{i}^{T}\boldsymbol{w}_{j}=0\)</span> (para <span class="math notranslate nohighlight">\(i\neq j\)</span>) quedan así establecidas.</p></li>
 <li><p>Los <span class="math notranslate nohighlight">\(p\)</span> <em><strong>componentes principales</strong></em> y su <em><strong>varianza expresada</strong></em> en términos de la <em><strong>combinación lineal de las variables originales</strong></em> pueden ser proporcionados en orden de la siguiente manera</p>
 <div class="math notranslate nohighlight" id="equation-systemof-variance-principal-components">
-<span class="eqno">(77)<a class="headerlink" href="#equation-systemof-variance-principal-components" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(78)<a class="headerlink" href="#equation-systemof-variance-principal-components" title="Permalink to this equation">#</a></span>\[\begin{split}
   \begin{align*}
   y_{1} &amp;= w_{11}x_{1}+w_{12}x_{2}+\cdots+w_{1p}x_{p}=\boldsymbol{w}_{1}^{T}\boldsymbol{x},\quad\text{var}(y_{1})=\lambda_{1},\\
   y_{2} &amp;= w_{21}x_{1}+w_{22}x_{2}+\cdots+w_{2p}x_{p}=\boldsymbol{w}_{2}^{T}\boldsymbol{x},\quad\text{var}(y_{2})=\lambda_{2},\\
@@ -713,9 +720,9 @@ L(\boldsymbol{w}, \lambda)=\boldsymbol{w}^{T}S\boldsymbol{w}+\lambda(1-\boldsymb
 \[
     \{(y_{i1}, y_{i2}):~i=1,2,\dots,n\}
     \]</div>
-<p><em><strong>utilizando solo el primero y el segundo componente principal</strong></em>, donde <span class="math notranslate nohighlight">\(y_{i1}=\boldsymbol{w}_{1}^{T}\boldsymbol{x}_{i},~ y_{i2}=\boldsymbol{w}_{2}^{T}\boldsymbol{x}_{i}\)</span></p>
+<p><em><strong>utilizando solo el primero y el segundo componente principal</strong></em>, donde <span class="math notranslate nohighlight">\(y_{i1}=\boldsymbol{w}_{1}^{T}\boldsymbol{x}_{i}\)</span>, <span class="math notranslate nohighlight">\(y_{i2}=\boldsymbol{w}_{2}^{T}\boldsymbol{x}_{i}\)</span></p>
 </li>
-<li><p>Al <em><strong>proyectar</strong></em> así el conjunto de datos <em><strong>del espacio de dimensiones superior sobre un plano bidimensional</strong></em>, podemos <em><strong>aprehender visualmente la estructura de los datos</strong></em>. Al encontrar el significado de las nuevas variables combinadas como combinaciones lineales de las variables originales, además, podemos <em><strong>extraer información útil</strong></em>.</p></li>
+<li><p>Al <em><strong>proyectar</strong></em> así el conjunto de datos <em><strong>del espacio de dimensiones superior sobre un plano bidimensional</strong></em>, podemos <em><strong>aprender visualmente la estructura de los datos</strong></em>. Al encontrar el significado de las nuevas variables combinadas como combinaciones lineales de las variables originales, además, podemos <em><strong>extraer información útil</strong></em>.</p></li>
 </ul>
 </div>
 <ul>
@@ -733,9 +740,9 @@ L(\boldsymbol{w}, \lambda)=\boldsymbol{w}^{T}S\boldsymbol{w}+\lambda(1-\boldsymb
 <section id="autovalores-y-autovectores-de-una-matriz-simetrica">
 <h2>Autovalores y autovectores de una matriz simétrica<a class="headerlink" href="#autovalores-y-autovectores-de-una-matriz-simetrica" title="Permalink to this heading">#</a></h2>
 <ul>
-<li><p>La matriz de <em><strong>varianza-covarianza muestral</strong></em> <span class="math notranslate nohighlight">\(S\)</span> dada ***por la Ecuación <a class="reference internal" href="#equation-covariance-variance-nobs-pdimentionals">(75)</a> es una <em><strong>matriz simétrica de orden</strong></em> <span class="math notranslate nohighlight">\(p\)</span>, con la siguiente <em><strong>relación entre sus autovalores y autovectores</strong></em></p>
+<li><p>La matriz de <em><strong>varianza-covarianza muestral</strong></em> <span class="math notranslate nohighlight">\(S\)</span> dada por la Ecuación <a class="reference internal" href="#equation-covariance-variance-nobs-pdimentionals">(76)</a> es una <em><strong>matriz simétrica de orden</strong></em> <span class="math notranslate nohighlight">\(p\)</span>, con la siguiente <em><strong>relación entre sus autovalores y autovectores</strong></em></p>
 <div class="math notranslate nohighlight" id="equation-eigenvalue-eigenvector-relation">
-<span class="eqno">(78)<a class="headerlink" href="#equation-eigenvalue-eigenvector-relation" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(79)<a class="headerlink" href="#equation-eigenvalue-eigenvector-relation" title="Permalink to this equation">#</a></span>\[
    S\boldsymbol{w}_{i}=\lambda_{i}\boldsymbol{w}_{i},~\boldsymbol{w}_{i}^{T}\boldsymbol{w}_{i}=1,~\boldsymbol{w}_{i}^{T}\boldsymbol{w}_{j}=0~(i\neq j)
    \]</div>
 <p>para <span class="math notranslate nohighlight">\(i,j=1,2,\dots,p\)</span>.</p>
@@ -756,7 +763,7 @@ L(\boldsymbol{w}, \lambda)=\boldsymbol{w}^{T}S\boldsymbol{w}+\lambda(1-\boldsymb
 </li>
 </ul>
 <ul class="simple">
-<li><p>La <em><strong>relación entre los autovalores y autovectores de la matriz de varianza-covarianza muestral</strong></em> <span class="math notranslate nohighlight">\(S\)</span> dada por Ecuación <a class="reference internal" href="#equation-eigenvalue-eigenvector-relation">(78)</a> puede expresarse de la siguiente manera:</p>
+<li><p>La <em><strong>relación entre los autovalores y autovectores de la matriz de varianza-covarianza muestral</strong></em> <span class="math notranslate nohighlight">\(S\)</span> dada por Ecuación <a class="reference internal" href="#equation-eigenvalue-eigenvector-relation">(79)</a> puede expresarse de la siguiente manera:</p>
 <ol class="arabic simple">
 <li><p><span class="math notranslate nohighlight">\(SW=W\Lambda,\quad W^{T}W=I_{p}\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(W^{T}SW=\Lambda\)</span></p></li>
@@ -785,10 +792,10 @@ L(\boldsymbol{w}, \lambda)=\boldsymbol{w}^{T}S\boldsymbol{w}+\lambda(1-\boldsymb
 <ul>
 <li><p>Para los <span class="math notranslate nohighlight">\(n\)</span> datos observados <span class="math notranslate nohighlight">\(p\)</span> dimensionales</p>
 <div class="math notranslate nohighlight" id="equation-vector-pvariables-ndimensionals">
-<span class="eqno">(79)<a class="headerlink" href="#equation-vector-pvariables-ndimensionals" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(80)<a class="headerlink" href="#equation-vector-pvariables-ndimensionals" title="Permalink to this equation">#</a></span>\[
   \boldsymbol{x}_{i}=(x_{i1}, x_{i2}, \dots, x_{ip})^{T},\quad i=1, 2, \dots, n,
   \]</div>
-<p>Primero obtenemos el <em><strong>vector de media muestral</strong></em> <span class="math notranslate nohighlight">\(\overline{\boldsymbol{x}}=(\overline{x}_{1}, \overline{x}_{2}, \dots, \overline{x}_{p})^{T}\)</span> y la <em><strong>matriz de varianza-covarianza muestral</strong></em> <span class="math notranslate nohighlight">\(S=(s_{jk})\)</span>. Estandarizamos los datos <span class="math notranslate nohighlight">\(p\)</span>-dimensionales en Ecuación <a class="reference internal" href="#equation-vector-pvariables-ndimensionals">(79)</a> de manera que</p>
+<p>Primero obtenemos el <em><strong>vector de media muestral</strong></em> <span class="math notranslate nohighlight">\(\overline{\boldsymbol{x}}=(\overline{x}_{1}, \overline{x}_{2}, \dots, \overline{x}_{p})^{T}\)</span> y la <em><strong>matriz de varianza-covarianza muestral</strong></em> <span class="math notranslate nohighlight">\(S=(s_{jk})\)</span>. Estandarizamos los datos <span class="math notranslate nohighlight">\(p\)</span>-dimensionales en Ecuación <a class="reference internal" href="#equation-vector-pvariables-ndimensionals">(80)</a> de manera que</p>
 <div class="math notranslate nohighlight">
 \[
   \boldsymbol{z}_{i}=(z_{i1}, z_{i2}, \dots, z_{ip})^{T},\quad z_{ij}=\frac{x_{ij}-\overline{x}_{j}}{\sqrt{s_{jj}}},\quad j=1, 2, \dots, p.
@@ -807,7 +814,7 @@ L(\boldsymbol{w}, \lambda)=\boldsymbol{w}^{T}S\boldsymbol{w}+\lambda(1-\boldsymb
 <div class="tip admonition">
 <p class="admonition-title">Observación</p>
 <ul class="simple">
-<li><p>Nótese que en la <em><strong>matriz de varianza-covarianza muestral basada en los datos estandarizados</strong></em>, todos los <em><strong>elementos diagonales</strong></em> <span class="math notranslate nohighlight">\(r_{jj}\)</span> son 1, y obtenemos la matriz <span class="math notranslate nohighlight">\(R\)</span> con <span class="math notranslate nohighlight">\(r_{jk}\)</span> como los elementos no diagonales, los *<strong>coeficientes de correlación muestral entre las variables</strong> <span class="math notranslate nohighlight">\(j\)</span>-ésima y <span class="math notranslate nohighlight">\(k\)</span>-ésima (<em>matriz de correlación muestral</em>).</p></li>
+<li><p>Nótese que en la <em><strong>matriz de varianza-covarianza muestral basada en los datos estandarizados</strong></em>, todos los <em><strong>elementos diagonales</strong></em> <span class="math notranslate nohighlight">\(r_{jj}\)</span> son 1, y obtenemos la matriz <span class="math notranslate nohighlight">\(R\)</span> con <span class="math notranslate nohighlight">\(r_{jk}\)</span> como los elementos no diagonales, los <em><strong>coeficientes de correlación muestral entre las variables</strong></em> <span class="math notranslate nohighlight">\(j\)</span>-ésima y <span class="math notranslate nohighlight">\(k\)</span>-ésima (<em>matriz de correlación muestral</em>).</p></li>
 <li><p><em><strong>PCA</strong></em> comenzando <em><strong>con datos multidimensionales estandarizados</strong></em> se convierte así en un problema de <em><strong>encontrar los autovalores y autovectores de la matriz de correlación muestral</strong></em> <span class="math notranslate nohighlight">\(R\)</span>, lo cual se realiza mediante el <em><strong>mismo proceso de derivación de componentes principales que el de PCA comenzando con una matriz de varianza-covarianza muestral</strong></em>.</p></li>
 </ul>
 </div>
@@ -817,7 +824,8 @@ L(\boldsymbol{w}, \lambda)=\boldsymbol{w}^{T}S\boldsymbol{w}+\lambda(1-\boldsymb
 <div class="admonition-introduccion admonition">
 <p class="admonition-title">Introducción</p>
 <ul class="simple">
-<li><p>En <span class="math notranslate nohighlight">\(PCA\)</span>, <em><strong>la varianza proporciona una medida de información</strong></em>, y, por lo tanto, <em><strong>la pérdida de información puede ser estimada cuantitativamente a partir de los tamaños relativos de las varianzas de los componentes principales</strong></em>. Como se muestra en Ecuación <a class="reference internal" href="#equation-systemof-variance-principal-components">(77)</a>, la <em><strong>varianza del componente principal está dada por el autovalor de la matriz de varianza-covarianza muestral</strong></em>.</p></li>
+<li><p>En <span class="math notranslate nohighlight">\(PCA\)</span>, <em><strong>la varianza proporciona una medida de información</strong></em>, y, por lo tanto, <em><strong>la pérdida de información puede ser estimada cuantitativamente a partir de los tamaños relativos de las varianzas de los componentes principales</strong></em>.</p></li>
+<li><p>Como se muestra en Ecuación <a class="reference internal" href="#equation-systemof-variance-principal-components">(78)</a>, la <em><strong>varianza del componente principal está dada por el autovalor de la matriz de varianza-covarianza muestral</strong></em>.</p></li>
 <li><p>En resumen, podemos utilizar <span class="math notranslate nohighlight">\(\lambda_{1}/(\lambda_{1}+\lambda_{2}+\cdots+\lambda_{p})\)</span> para evaluar <em><strong>qué proporción de la información contenida en las</strong></em> <span class="math notranslate nohighlight">\(p\)</span> <em><strong>variables originales está presente en el primer componente principal</strong></em> <span class="math notranslate nohighlight">\(y_{1}\)</span>.</p></li>
 </ul>
 </div>
@@ -842,6 +850,47 @@ L(\boldsymbol{w}, \lambda)=\boldsymbol{w}^{T}S\boldsymbol{w}+\lambda(1-\boldsymb
 <li><p>En conclusión, la <em><strong>medida cuantitativa de la información contenida en los componentes principales</strong></em> que realmente se utilizan se da por la <em><strong>relación de la suma de las varianzas de esos componentes principales a la suma de las varianzas de todos los componentes principales</strong></em>, lo que sirve como <em><strong>medida de la pérdida de información</strong></em>.</p></li>
 </ul>
 </div>
+<div class="proof example admonition" id="example-0">
+<p class="admonition-title"><span class="caption-number">Example 5 </span> (Relación entre estructura de correlación y pérdida de información)</p>
+<section class="example-content" id="proof-content">
+<ul>
+<li><p>Supongamos que tenemos la <em><strong>matriz de correlación muestral</strong></em> basada en datos observados bidimensionales para las variables <span class="math notranslate nohighlight">\(x_{1}, x_{2}\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    R=\begin{pmatrix}1 &amp; r\\r &amp; 1\end{pmatrix}
+    \end{split}\]</div>
+<p>donde <span class="math notranslate nohighlight">\(r (&gt; 0)\)</span> es el <em><strong>coeficiente de correlación muestral</strong></em> entre dos variables <span class="math notranslate nohighlight">\(x_{1}\)</span> y <span class="math notranslate nohighlight">\(x_{2}\)</span>.</p>
+</li>
+<li><p>La <em><strong>ecuación característica de la matriz de correlación de muestral</strong></em> <span class="math notranslate nohighlight">\(R\)</span> es</p>
+<div class="math notranslate nohighlight">
+\[
+    |R-\lambda I_{2}|=(1-\lambda)^{2}-r^{2}=\lambda^{2}-2\lambda+1-r^{2}=0.
+    \]</div>
+</li>
+<li><p>Sus soluciones son <span class="math notranslate nohighlight">\(\lambda_{1}=1+r\)</span> y <span class="math notranslate nohighlight">\(\lambda_{2}=1 - r\)</span>, y los <em><strong>correspondientes autovectores</strong></em> son entonces <span class="math notranslate nohighlight">\(\boldsymbol{w}_{1} = (1/\sqrt{2}, 1/\sqrt{2})^{T}\)</span> y <span class="math notranslate nohighlight">\(\boldsymbol{w}_{2} = (-1/\sqrt{2}, 1/\sqrt{2})^{T}\)</span>, respectivamente.</p></li>
+<li><p>Los <em><strong>componentes principales primero y segundo</strong></em> obtenidos a partir de la matriz de correlación de la muestra vienen dadas, por tanto, por</p>
+<div class="math notranslate nohighlight">
+\[
+    y_{1}=\frac{1}{\sqrt{2}}x_{1}+\frac{1}{\sqrt{2}}x_{2},\quad y_{2}=-\frac{1}{\sqrt{2}}x_{1}+\frac{1}{\sqrt{2}}x_{2}
+    \]</div>
+</li>
+<li><p>Las <em><strong>contribuciones del primer y segundo componentes principales son</strong></em>, respectivamente,</p>
+<div class="math notranslate nohighlight">
+\[
+    \frac{\lambda_{1}}{\lambda_{1}+\lambda_{2}}=\frac{1+r}{2},\quad\frac{\lambda_{2}}{\lambda_{1}+\lambda_{2}}=\frac{1-r}{2}.
+    \]</div>
+</li>
+</ul>
+</section>
+</div><ul class="simple">
+<li><p>Como se muestra en la Figura <a class="reference internal" href="#exercise-two-pca-rgiven-fig"><span class="std std-numref">Fig. 70</span></a>, la contribución del primer componente principal, y, por lo tanto, la <em><strong>proporción que puede ser explicada únicamente por el primer componente principal, aumenta con la correlación creciente entre las dos variables</strong></em>.</p></li>
+</ul>
+<figure class="align-center" id="exercise-two-pca-rgiven-fig">
+<a class="reference internal image-reference" href="_images/exercise_two_pca_rgiven.png"><img alt="_images/exercise_two_pca_rgiven.png" src="_images/exercise_two_pca_rgiven.png" style="width: 494.9px; height: 366.09999999999997px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 70 </span><span class="caption-text">Componentes principales basados en la <em><strong>matriz de correlación muestral y sus contribuciones</strong></em>. Fuente <span id="id3">[<a class="reference internal" href="biblio.html#id20" title="S. Konishi. Introduction to Multivariate Analysis: Linear and Nonlinear Modeling. Chapman &amp; Hall/CRC Texts in Statistical Science. Taylor &amp; Francis, 2014. ISBN 9781466567283. URL: https://books.google.com.co/books?id=fcuuAwAAQBAJ.">Konishi, 2014</a>]</span>.</span><a class="headerlink" href="#exercise-two-pca-rgiven-fig" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </section>
 <section id="implementacion">
 <h2>Implementación<a class="headerlink" href="#implementacion" title="Permalink to this heading">#</a></h2>
@@ -962,7 +1011,7 @@ L(\boldsymbol{w}, \lambda)=\boldsymbol{w}^{T}S\boldsymbol{w}+\lambda(1-\boldsymb
 <img alt="_images/8e6b8e831da825bea5756226e63abe9d9c24922da550846c184c55b217c6b044.png" src="_images/8e6b8e831da825bea5756226e63abe9d9c24922da550846c184c55b217c6b044.png" />
 </div>
 </div>
-<div class="proof observation admonition" id="observation-0">
+<div class="proof observation admonition" id="observation-1">
 <p class="admonition-title"><span class="caption-number">Observation 23 </span></p>
 <section class="observation-content" id="proof-content">
 <ul class="simple">
@@ -1528,7 +1577,7 @@ transformed shape: (200, 1)
 <img alt="_images/ff010a391872acc2e94eb58ce2a98ae3b3117f6786600a6cd334d34ebdf88a61.png" src="_images/ff010a391872acc2e94eb58ce2a98ae3b3117f6786600a6cd334d34ebdf88a61.png" />
 </div>
 </div>
-<div class="proof observation admonition" id="observation-1">
+<div class="proof observation admonition" id="observation-2">
 <p class="admonition-title"><span class="caption-number">Observation 24 </span></p>
 <section class="observation-content" id="proof-content">
 <ul class="simple">
