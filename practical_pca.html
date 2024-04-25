@@ -437,6 +437,7 @@ document.write(`
 <ul>
 <li><p>Primero encontramos el <em><strong>eje de proyección, conocido como el primer componente principal, que maximiza la varianza global</strong></em>.</p></li>
 <li><p>Luego encontramos el <em><strong>eje de proyección que maximiza la varianza bajo la restricción de ortogonalidad al primer componente principal</strong></em>. Este eje se conoce como el <em><strong>segundo componente principal</strong></em>.</p></li>
+<li><p>La <em><strong>ortogonalidad entre las componentes principales en PCA</strong></em> garantiza una <em><strong>representación óptima de la variabilidad de los datos</strong></em>, lo que <em><strong>facilita la interpretación</strong></em> y el análisis de los mismos.</p></li>
 </ul>
 </li>
 </ul>
@@ -457,6 +458,25 @@ document.write(`
 <p>donde <span class="math notranslate nohighlight">\(\boldsymbol{w}=(w_{1}, w_{2})^{T}\)</span> representa un <em><strong>vector de coeficientes</strong></em>.</p>
 </li>
 </ul>
+<figure class="align-center" id="id4">
+<img alt="_images/Principal20Analysis20principal.gif" src="_images/Principal20Analysis20principal.gif" />
+<figcaption>
+<p><span class="caption-number">Fig. 69 </span><span class="caption-text">Simulación de <em><strong>múltiples ejes de proyección</strong></em> <span class="math notranslate nohighlight">\(y=w_{1}x_{1}+w_{2}x_{2}\)</span> en el PCA.</span><a class="headerlink" href="#id4" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="dropdown admonition">
+<p class="admonition-title">Datos proyectados repetidos?</p>
+<ul class="simple">
+<li><p>Es posible que los <em><strong>datos proyectados en las componentes principales sean repetidos en ciertas circunstancias</strong></em>, especialmente cuando los datos originales tienen una <em><strong>alta dimensionalidad</strong></em> o cuando hay <em><strong>baja variabilidad en algunas dimensiones</strong></em>.</p></li>
+<li><p>Esto es importante tener en cuenta al interpretar los resultados de PCA y al realizar análisis subsiguientes. Cuando esto ocurre, puedes considerar las siguientes estrategias:</p>
+<ul>
+<li><p><em>Normalización de los datos</em></p></li>
+<li><p><em>Reducción de multicolinealidad</em></p></li>
+<li><p>Usar <em>Análisis de Factores</em></p></li>
+</ul>
+</li>
+</ul>
+</div>
 <ul>
 <li><p>La media de los datos <span class="math notranslate nohighlight">\(y_{1}, y_{2}, \dots, y_{n}\)</span> que se <em><strong>proyectan sobre el eje de proyección</strong></em> es</p>
 <div class="math notranslate nohighlight">
@@ -488,7 +508,7 @@ document.write(`
 <div class="admonition-maximizacion-de-la-varianza admonition">
 <p class="admonition-title">Maximización de la varianza</p>
 <ul class="simple">
-<li><p>El problema de encontrar el vector de coeficientes <span class="math notranslate nohighlight">\(\boldsymbol{w}=(w_{1}, w_{2})^{T}\)</span>, que corresponde a la máxima varianza para los <span class="math notranslate nohighlight">\(n\)</span> datos bidimensionales proyectados sobre <span class="math notranslate nohighlight">\(y=w_{1}x_{1}+w_{2}x_{2}\)</span>, se convierte en el <em><strong>problema de maximización de la varianza</strong></em> <span class="math notranslate nohighlight">\(S_{y}=\boldsymbol{w}^{T}S\boldsymbol{w}\)</span> en la Ecuación <a class="reference internal" href="#equation-variance-quad-error">(70)</a> <em><strong>bajo la restricción</strong></em> <span class="math notranslate nohighlight">\(\boldsymbol{w}^{T}\boldsymbol{w}=1\)</span>. Esta restricción se aplica porque <span class="math notranslate nohighlight">\(\|\boldsymbol{w}\|\)</span> <em><strong>sería infinitamente grande sin ella y la varianza divergiría</strong></em>.</p></li>
+<li><p>El problema de encontrar el vector de coeficientes <span class="math notranslate nohighlight">\(\boldsymbol{w}=(w_{1}, w_{2})^{T}\)</span>, <em><strong>que corresponde a la máxima varianza</strong></em> para los <span class="math notranslate nohighlight">\(n\)</span> datos bidimensionales proyectados sobre <span class="math notranslate nohighlight">\(y=w_{1}x_{1}+w_{2}x_{2}\)</span>, se convierte en el <em><strong>problema de maximización de la varianza</strong></em> <span class="math notranslate nohighlight">\(S_{y}=\boldsymbol{w}^{T}S\boldsymbol{w}\)</span> en la Ecuación <a class="reference internal" href="#equation-variance-quad-error">(70)</a> <em><strong>bajo la restricción</strong></em> <span class="math notranslate nohighlight">\(\boldsymbol{w}^{T}\boldsymbol{w}=1\)</span>. Esta restricción se aplica porque <span class="math notranslate nohighlight">\(\|\boldsymbol{w}\|\)</span> <em><strong>sería infinitamente grande sin ella y la varianza divergiría</strong></em>.</p></li>
 </ul>
 </div>
 <ul class="simple">
@@ -575,8 +595,14 @@ L(\boldsymbol{w}, \lambda)=\boldsymbol{w}^{T}S\boldsymbol{w}+\lambda(1-\boldsymb
 </ul>
 <ul class="simple">
 <li><p>De la relación entre el <em><strong>autovalor y el autovector de la matriz simétrica</strong></em> <span class="math notranslate nohighlight">\(S\)</span>, la varianza del segundo componente principal <span class="math notranslate nohighlight">\(y_{2}\)</span> se convierte en <span class="math notranslate nohighlight">\(s_{y_{2}}^{2}=\boldsymbol{w}_{2}S\boldsymbol{w}_{2}=\lambda_{2}\)</span> de la misma manera que en la Ecuación <a class="reference internal" href="#equation-variance-firstpc">(73)</a>.</p></li>
-<li><p>En resumen, el <em><strong>PCA basado en los datos bidimensionales</strong></em> en Ecuación <a class="reference internal" href="#equation-bidimentional-data-pca">(69)</a> es esencialmente un <em><strong>problema de encontrar los autovalores y autovectores de la matriz de varianza-covarianza muestral</strong></em> <span class="math notranslate nohighlight">\(S\)</span>.</p></li>
+<li><p>El <em><strong>PCA basado en los datos bidimensionales</strong></em> en Ecuación <a class="reference internal" href="#equation-bidimentional-data-pca">(69)</a> es esencialmente un <em><strong>problema de encontrar los autovalores y autovectores de la matriz de varianza-covarianza muestral</strong></em> <span class="math notranslate nohighlight">\(S\)</span>.</p></li>
 </ul>
+<div class="tip admonition">
+<p class="admonition-title">Observación</p>
+<ul class="simple">
+<li><p>Dado que <em><strong>cada componente principal <code class="docutils literal notranslate"><span class="pre">captura</span> <span class="pre">una</span> <span class="pre">parte</span> <span class="pre">única</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">variabilidad</span> <span class="pre">en</span> <span class="pre">los</span> <span class="pre">datos</span></code></strong></em>, <em><strong>cada una contiene información diferente sobre la estructura de los datos originales</strong></em>. Esto significa que, <em>mientras más componentes principales tengamos, más información detallada obtenemos sobre la distribución de los datos en el espacio de características</em>.</p></li>
+</ul>
+</div>
 </section>
 <section id="autovalores-autovectores-y-componentes-principales">
 <h2>Autovalores, Autovectores y Componentes Principales<a class="headerlink" href="#autovalores-autovectores-y-componentes-principales" title="Permalink to this heading">#</a></h2>
@@ -592,10 +618,10 @@ L(\boldsymbol{w}, \lambda)=\boldsymbol{w}^{T}S\boldsymbol{w}+\lambda(1-\boldsymb
   \end{split}\]</div>
 </li>
 </ul>
-<figure class="align-center" id="id4">
+<figure class="align-center" id="id5">
 <a class="reference internal image-reference" href="_images/first_second_pca_bidimentional.png"><img alt="_images/first_second_pca_bidimentional.png" src="_images/first_second_pca_bidimentional.png" style="width: 496.29999999999995px; height: 386.4px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 69 </span><span class="caption-text"><em><strong>Valores propios</strong></em>, <em><strong>primeros y segundos componentes principales</strong></em>. Fuente <span id="id2">[<a class="reference internal" href="biblio.html#id20" title="S. Konishi. Introduction to Multivariate Analysis: Linear and Nonlinear Modeling. Chapman &amp; Hall/CRC Texts in Statistical Science. Taylor &amp; Francis, 2014. ISBN 9781466567283. URL: https://books.google.com.co/books?id=fcuuAwAAQBAJ.">Konishi, 2014</a>]</span>.</span><a class="headerlink" href="#id4" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 70 </span><span class="caption-text"><em><strong>Valores propios</strong></em>, <em><strong>primeros y segundos componentes principales</strong></em>. Fuente <span id="id2">[<a class="reference internal" href="biblio.html#id20" title="S. Konishi. Introduction to Multivariate Analysis: Linear and Nonlinear Modeling. Chapman &amp; Hall/CRC Texts in Statistical Science. Taylor &amp; Francis, 2014. ISBN 9781466567283. URL: https://books.google.com.co/books?id=fcuuAwAAQBAJ.">Konishi, 2014</a>]</span>.</span><a class="headerlink" href="#id5" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <ul class="simple">
@@ -735,6 +761,16 @@ L(\boldsymbol{w}, \lambda)=\boldsymbol{w}^{T}S\boldsymbol{w}+\lambda(1-\boldsymb
 <p>donde <span class="math notranslate nohighlight">\(\lambda_{i}\)</span> es la varianza del <span class="math notranslate nohighlight">\(i\)</span><em><strong>-ésimo componente principal</strong></em>, <span class="math notranslate nohighlight">\(w_{ij}\)</span> es el coeficiente de la variable <span class="math notranslate nohighlight">\(x_{j}\)</span> para el <span class="math notranslate nohighlight">\(i\)</span><em><strong>-ésimo componente principal</strong></em>, y <span class="math notranslate nohighlight">\(s_{jj}\)</span> es la varianza de la variable <span class="math notranslate nohighlight">\(x_{j}\)</span>.</p>
 </li>
 </ul>
+<div class="admonition-observacion-reduccion-de-dimensionalidad admonition">
+<p class="admonition-title">Observación (Reducción de dimensionalidad)</p>
+<ul class="simple">
+<li><p><em><strong><code class="docutils literal notranslate"><span class="pre">¿Cuántas</span> <span class="pre">componentes</span> <span class="pre">principales</span> <span class="pre">son</span> <span class="pre">necesarias?</span></code></strong></em>: Trazar un <em><strong>gráfico de la varianza explicada acumulativa en función del número de componentes</strong></em> y <em><strong>seleccionar el número de componentes que capturan una cantidad significativa de la varianza total</strong></em> (por ejemplo, el <em><strong><code class="docutils literal notranslate"><span class="pre">70%</span> <span class="pre">o</span> <span class="pre">el</span> <span class="pre">80%</span></code></strong></em>).</p></li>
+<li><p>El <em><strong>70% o 80% de varianza explicada es un umbral comúnmente utilizado en PCA</strong></em> para determinar el número de componentes principales que se deben retener en un modelo. Al <em><strong>retener el 70% o 80% de la varianza</strong></em>, se <em><strong>conserva la mayor parte de la información importante en los datos originales</strong></em>, y generalmente, conservar este porcentaje implica una <em><strong>reducción relevante en la dimensionalidad de los datos</strong></em>.</p></li>
+</ul>
+</div>
+<figure class="align-center">
+<img alt="_images/pca2_pca3.png" src="_images/pca2_pca3.png" />
+</figure>
 </section>
 </section>
 <section id="autovalores-y-autovectores-de-una-matriz-simetrica">
@@ -883,12 +919,12 @@ L(\boldsymbol{w}, \lambda)=\boldsymbol{w}^{T}S\boldsymbol{w}+\lambda(1-\boldsymb
 </ul>
 </section>
 </div><ul class="simple">
-<li><p>Como se muestra en la Figura <a class="reference internal" href="#exercise-two-pca-rgiven-fig"><span class="std std-numref">Fig. 70</span></a>, la contribución del primer componente principal, y, por lo tanto, la <em><strong>proporción que puede ser explicada únicamente por el primer componente principal, aumenta con la correlación creciente entre las dos variables</strong></em>.</p></li>
+<li><p>Como se muestra en la Figura <a class="reference internal" href="#exercise-two-pca-rgiven-fig"><span class="std std-numref">Fig. 71</span></a>, la contribución del primer componente principal, y, por lo tanto, la <em><strong>proporción que puede ser explicada únicamente por el primer componente principal, aumenta con la correlación creciente entre las dos variables</strong></em>.</p></li>
 </ul>
 <figure class="align-center" id="exercise-two-pca-rgiven-fig">
 <a class="reference internal image-reference" href="_images/exercise_two_pca_rgiven.png"><img alt="_images/exercise_two_pca_rgiven.png" src="_images/exercise_two_pca_rgiven.png" style="width: 494.9px; height: 366.09999999999997px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 70 </span><span class="caption-text">Componentes principales basados en la <em><strong>matriz de correlación muestral y sus contribuciones</strong></em>. Fuente <span id="id3">[<a class="reference internal" href="biblio.html#id20" title="S. Konishi. Introduction to Multivariate Analysis: Linear and Nonlinear Modeling. Chapman &amp; Hall/CRC Texts in Statistical Science. Taylor &amp; Francis, 2014. ISBN 9781466567283. URL: https://books.google.com.co/books?id=fcuuAwAAQBAJ.">Konishi, 2014</a>]</span>.</span><a class="headerlink" href="#exercise-two-pca-rgiven-fig" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 71 </span><span class="caption-text">Componentes principales basados en la <em><strong>matriz de correlación muestral y sus contribuciones</strong></em>. Fuente <span id="id3">[<a class="reference internal" href="biblio.html#id20" title="S. Konishi. Introduction to Multivariate Analysis: Linear and Nonlinear Modeling. Chapman &amp; Hall/CRC Texts in Statistical Science. Taylor &amp; Francis, 2014. ISBN 9781466567283. URL: https://books.google.com.co/books?id=fcuuAwAAQBAJ.">Konishi, 2014</a>]</span>.</span><a class="headerlink" href="#exercise-two-pca-rgiven-fig" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
@@ -1083,12 +1119,43 @@ transformed shape: (200, 1)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">digits</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1797, 64)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">matshow</span><span class="p">(</span><span class="n">digits</span><span class="o">.</span><span class="n">images</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <img alt="_images/3dece298d7a78ccf636cc03fbe55ebc847b68226088c93ba9070b894c9514e72.png" src="_images/3dece298d7a78ccf636cc03fbe55ebc847b68226088c93ba9070b894c9514e72.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">digits</span><span class="o">.</span><span class="n">images</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 0.,  0.,  0., 12., 13.,  5.,  0.,  0.],
+       [ 0.,  0.,  0., 11., 16.,  9.,  0.,  0.],
+       [ 0.,  0.,  3., 15., 16.,  6.,  0.,  0.],
+       [ 0.,  7., 15., 16., 16.,  2.,  0.,  0.],
+       [ 0.,  0.,  1., 16., 16.,  3.,  0.,  0.],
+       [ 0.,  0.,  1., 16., 16.,  6.,  0.,  0.],
+       [ 0.,  0.,  1., 16., 16.,  6.,  0.,  0.],
+       [ 0.,  0.,  0., 11., 16., 10.,  0.,  0.]])
+</pre></div>
+</div>
 </div>
 </div>
 <div class="cell docutils container">
@@ -1537,12 +1604,19 @@ transformed shape: (200, 1)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/f6400bb77da1ed462737718db8bea398a5807ab0e5fa5ed99c5c282fc8eac354.png" src="_images/f6400bb77da1ed462737718db8bea398a5807ab0e5fa5ed99c5c282fc8eac354.png" />
+<img alt="_images/d066052212e17b4994e5d0ebd1e32ef057ca660a97d2a187b98d62d79206b39e.png" src="_images/d066052212e17b4994e5d0ebd1e32ef057ca660a97d2a187b98d62d79206b39e.png" />
 </div>
 </div>
 <ul class="simple">
 <li><p>Para <code class="docutils literal notranslate"><span class="pre">comprender</span> <span class="pre">mejor</span> <span class="pre">las</span> <span class="pre">conexiones</span> <span class="pre">entre</span> <span class="pre">estos</span> <span class="pre">puntos</span></code>, podemos utilizar el <code class="docutils literal notranslate"><span class="pre">PCA</span> <span class="pre">para</span> <span class="pre">condensarlos</span> <span class="pre">en</span> <span class="pre">un</span> <span class="pre">número</span> <span class="pre">de</span> <span class="pre">dimensiones</span> <span class="pre">más</span> <span class="pre">manejable</span></code>, por ejemplo, <code class="docutils literal notranslate"><span class="pre">dos</span> <span class="pre">dimensiones</span> <span class="pre">(proyectar</span> <span class="pre">de</span> <span class="pre">64</span> <span class="pre">a</span> <span class="pre">2</span> <span class="pre">dimensiones)</span></code></p></li>
 </ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
@@ -1567,14 +1641,14 @@ transformed shape: (200, 1)
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">projected</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">projected</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span>
             <span class="n">c</span><span class="o">=</span><span class="n">digits</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span>
             <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">));</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;component 1&#39;</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;component 2&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;PC 1&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;PC 2&#39;</span><span class="p">);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ff010a391872acc2e94eb58ce2a98ae3b3117f6786600a6cd334d34ebdf88a61.png" src="_images/ff010a391872acc2e94eb58ce2a98ae3b3117f6786600a6cd334d34ebdf88a61.png" />
+<img alt="_images/bcdb5b7ce236ce13239f601c57436e3ad51f8b6294cee5016e1d96b0da0e90ea.png" src="_images/bcdb5b7ce236ce13239f601c57436e3ad51f8b6294cee5016e1d96b0da0e90ea.png" />
 </div>
 </div>
 <div class="proof observation admonition" id="observation-2">
@@ -1615,7 +1689,8 @@ transformed shape: (200, 1)
 <section id="pca-como-filtro-de-ruido">
 <h3>PCA como filtro de ruido<a class="headerlink" href="#pca-como-filtro-de-ruido" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
-<li><p>El PCA puede servir como técnica para <code class="docutils literal notranslate"><span class="pre">filtrar</span> <span class="pre">el</span> <span class="pre">ruido</span> <span class="pre">de</span> <span class="pre">los</span> <span class="pre">datos</span></code>. El concepto fundamental es que los <code class="docutils literal notranslate"><span class="pre">componentes</span> <span class="pre">con</span> <span class="pre">una</span> <span class="pre">varianza</span> <span class="pre">significativamente</span> <span class="pre">mayor</span> <span class="pre">que</span> <span class="pre">el</span> <span class="pre">impacto</span> <span class="pre">del</span> <span class="pre">ruido,</span> <span class="pre">están</span> <span class="pre">menos</span> <span class="pre">influidas</span> <span class="pre">por</span> <span class="pre">éste</span></code>. Por consiguiente, si se reconstruyen los datos utilizando el <code class="docutils literal notranslate"><span class="pre">subconjunto</span> <span class="pre">primario</span> <span class="pre">de</span> <span class="pre">componentes</span> <span class="pre">principales</span> <span class="pre">con</span> <span class="pre">la</span> <span class="pre">mayor</span> <span class="pre">varianza,</span> <span class="pre">se</span> <span class="pre">conserva</span> <span class="pre">efectivamente</span> <span class="pre">la</span> <span class="pre">señal</span> <span class="pre">al</span> <span class="pre">tiempo</span> <span class="pre">que</span> <span class="pre">se</span> <span class="pre">elimina</span> <span class="pre">el</span> <span class="pre">ruido</span></code>. Para observar esto en acción con el conjunto de datos de <code class="docutils literal notranslate"><span class="pre">dígitos</span></code>, empezaremos generando <code class="docutils literal notranslate"><span class="pre">gráficos</span> <span class="pre">para</span> <span class="pre">varias</span> <span class="pre">instancias</span> <span class="pre">de</span> <span class="pre">los</span> <span class="pre">datos</span> <span class="pre">originales</span> <span class="pre">libres</span> <span class="pre">de</span> <span class="pre">ruido</span></code></p></li>
+<li><p>El PCA puede servir como técnica para <code class="docutils literal notranslate"><span class="pre">filtrar</span> <span class="pre">el</span> <span class="pre">ruido</span> <span class="pre">de</span> <span class="pre">los</span> <span class="pre">datos</span></code>. El concepto fundamental es que los <em><strong><code class="docutils literal notranslate"><span class="pre">componentes</span> <span class="pre">con</span> <span class="pre">una</span> <span class="pre">varianza</span> <span class="pre">significativamente</span> <span class="pre">mayor</span> <span class="pre">que</span> <span class="pre">el</span> <span class="pre">impacto</span> <span class="pre">del</span> <span class="pre">ruido,</span> <span class="pre">están</span> <span class="pre">menos</span> <span class="pre">influidas</span> <span class="pre">por</span> <span class="pre">éste</span></code></strong></em>. Por consiguiente, si se reconstruyen los datos utilizando el <code class="docutils literal notranslate"><span class="pre">subconjunto</span> <span class="pre">primario</span> <span class="pre">de</span> <span class="pre">componentes</span> <span class="pre">principales</span> <span class="pre">con</span> <span class="pre">la</span> <span class="pre">mayor</span> <span class="pre">varianza,</span> <span class="pre">se</span> <span class="pre">conserva</span> <span class="pre">efectivamente</span> <span class="pre">la</span> <span class="pre">señal</span> <span class="pre">al</span> <span class="pre">tiempo</span> <span class="pre">que</span> <span class="pre">se</span> <span class="pre">elimina</span> <span class="pre">el</span> <span class="pre">ruido</span></code>.</p></li>
+<li><p>Para observar esto en acción con el conjunto de datos de <code class="docutils literal notranslate"><span class="pre">dígitos</span></code>, empezaremos generando <code class="docutils literal notranslate"><span class="pre">gráficos</span> <span class="pre">para</span> <span class="pre">varias</span> <span class="pre">instancias</span> <span class="pre">de</span> <span class="pre">los</span> <span class="pre">datos</span> <span class="pre">originales</span> <span class="pre">libres</span> <span class="pre">de</span> <span class="pre">ruido</span></code></p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1720,6 +1795,9 @@ transformed shape: (200, 1)
 </div>
 </div>
 <ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">min_faces_per_person=60</span></code> asegura que <em><strong>solo se incluyan personas con al menos 60 imágenes disponibles</strong></em> en el conjunto de datos. <code class="docutils literal notranslate"><span class="pre">(1348,</span> <span class="pre">62,</span> <span class="pre">47)</span></code> está asociado con el <em><strong>shape de las imágenes de los rostros en el conjunto de datos</strong></em>. Indica que hay <em><strong>1348 imágenes en total</strong></em>. <em><strong>Cada imagen tiene dimensiones de 62 píxeles de alto por 47 píxeles de ancho</strong></em>. Esto significa que cada imagen tiene una <em><strong>resolución de 62x47 píxeles</strong></em> y que hay <em><strong>1348 imágenes en total</strong></em> en el conjunto de datos.</p></li>
+</ul>
+<ul class="simple">
 <li><p>A continuación <code class="docutils literal notranslate"><span class="pre">examinaremos</span> <span class="pre">los</span> <span class="pre">ejes</span> <span class="pre">principales</span> <span class="pre">que</span> <span class="pre">engloban</span> <span class="pre">este</span> <span class="pre">conjunto</span> <span class="pre">de</span> <span class="pre">datos</span></code>. Debido a su <code class="docutils literal notranslate"><span class="pre">considerable</span> <span class="pre">tamaño</span></code>, emplearemos <code class="docutils literal notranslate"><span class="pre">randomized</span> <span class="pre">PCA</span></code>. Este enfoque emplea una <code class="docutils literal notranslate"><span class="pre">técnica</span> <span class="pre">aleatoria</span> <span class="pre">para</span> <span class="pre">aproximar</span> <span class="pre">rápidamente</span> <span class="pre">los</span></code> <span class="math notranslate nohighlight">\(N\)</span> <code class="docutils literal notranslate"><span class="pre">componentes</span> <span class="pre">principales</span> <span class="pre">iniciales</span></code>, lo que resulta especialmente ventajoso para datos de gran dimensión, como éste, con casi <code class="docutils literal notranslate"><span class="pre">3.000</span> <span class="pre">dimensiones.</span> <span class="pre">Nos</span> <span class="pre">centraremos</span> <span class="pre">en</span> <span class="pre">los</span> <span class="pre">primeros</span> <span class="pre">150</span> <span class="pre">componentes</span></code></p></li>
 </ul>
 <div class="cell docutils container">
@@ -1750,7 +1828,7 @@ transformed shape: (200, 1)
 </div>
 </div>
 <ul class="simple">
-<li><p>Nótese que las <code class="docutils literal notranslate"><span class="pre">caras</span> <span class="pre">propias</span> <span class="pre">iniciales</span></code> (empezando por la parte superior izquierda) parecen estar <code class="docutils literal notranslate"><span class="pre">relacionadas</span> <span class="pre">con</span> <span class="pre">el</span> <span class="pre">ángulo</span> <span class="pre">de</span> <span class="pre">iluminación</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">cara</span></code>, mientras que los <code class="docutils literal notranslate"><span class="pre">vectores</span> <span class="pre">principales</span> <span class="pre">posteriores</span> <span class="pre">empiezan</span> <span class="pre">a</span> <span class="pre">aislar</span> <span class="pre">rasgos</span> <span class="pre">específicos</span> <span class="pre">como</span> <span class="pre">los</span> <span class="pre">ojos,</span> <span class="pre">la</span> <span class="pre">nariz</span> <span class="pre">y</span> <span class="pre">los</span> <span class="pre">labios</span></code>. Examinemos ahora la <code class="docutils literal notranslate"><span class="pre">varianza</span> <span class="pre">acumulada</span> <span class="pre">asociada</span> <span class="pre">a</span> <span class="pre">estos</span> <span class="pre">componentes</span></code> para calibrar hasta qué punto la proyección conserva la información de los datos</p></li>
+<li><p>Nótese que las <code class="docutils literal notranslate"><span class="pre">caras</span> <span class="pre">propias</span> <span class="pre">iniciales</span></code> (empezando por la parte superior izquierda) parecen estar <em><strong><code class="docutils literal notranslate"><span class="pre">relacionadas</span> <span class="pre">con</span> <span class="pre">el</span> <span class="pre">ángulo</span> <span class="pre">de</span> <span class="pre">iluminación</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">cara</span></code></strong></em>, mientras que los <em><strong><code class="docutils literal notranslate"><span class="pre">vectores</span> <span class="pre">principales</span> <span class="pre">posteriores</span> <span class="pre">empiezan</span> <span class="pre">a</span> <span class="pre">aislar</span> <span class="pre">rasgos</span> <span class="pre">específicos</span> <span class="pre">como</span> <span class="pre">los</span> <span class="pre">ojos,</span> <span class="pre">la</span> <span class="pre">nariz</span> <span class="pre">y</span> <span class="pre">los</span> <span class="pre">labios</span></code></strong></em>. Examinemos ahora la <code class="docutils literal notranslate"><span class="pre">varianza</span> <span class="pre">acumulada</span> <span class="pre">asociada</span> <span class="pre">a</span> <span class="pre">estos</span> <span class="pre">componentes</span></code> para calibrar hasta qué punto la proyección conserva la información de los datos</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1796,7 +1874,8 @@ transformed shape: (200, 1)
 </div>
 <ul class="simple">
 <li><p>Las imágenes de la <code class="docutils literal notranslate"><span class="pre">fila</span> <span class="pre">superior</span> <span class="pre">representan</span> <span class="pre">la</span> <span class="pre">entrada</span> <span class="pre">original</span></code>, mientras que la <code class="docutils literal notranslate"><span class="pre">fila</span> <span class="pre">inferior</span> <span class="pre">muestra</span> <span class="pre">imágenes</span> <span class="pre">reconstruidas</span> <span class="pre">utilizando</span> <span class="pre">sólo</span> <span class="pre">150</span> <span class="pre">de</span> <span class="pre">las</span> <span class="pre">aproximadamente</span> <span class="pre">3.000</span> <span class="pre">características</span> <span class="pre">iniciales</span></code>. Esta visualización ilustra eficazmente por qué la selección de características PCA, logra un éxito significativo.</p></li>
-<li><p>A pesar de <code class="docutils literal notranslate"><span class="pre">reducir</span> <span class="pre">significativamente</span> <span class="pre">la</span> <span class="pre">dimensionalidad</span></code> de los datos en aproximadamente un factor de 20, <code class="docutils literal notranslate"><span class="pre">las</span> <span class="pre">imágenes</span> <span class="pre">proyectadas</span> <span class="pre">conservan</span> <span class="pre">suficiente</span> <span class="pre">información</span> <span class="pre">para</span> <span class="pre">que</span> <span class="pre">podamos</span> <span class="pre">reconocer</span> <span class="pre">a</span> <span class="pre">los</span> <span class="pre">individuos</span></code> en las imágenes mediante inspección visual. Esto implica que nuestro <code class="docutils literal notranslate"><span class="pre">algoritmo</span> <span class="pre">de</span> <span class="pre">clasificación</span> <span class="pre">puede</span> <span class="pre">entrenarse</span> <span class="pre">con</span> <span class="pre">datos</span> <span class="pre">de</span> <span class="pre">150</span> <span class="pre">dimensiones</span> <span class="pre">en</span> <span class="pre">lugar</span> <span class="pre">de</span> <span class="pre">con</span> <span class="pre">datos</span> <span class="pre">de</span> <span class="pre">3.000</span> <span class="pre">dimensiones</span></code>. Dependiendo del algoritmo específico elegido, esto puede conducir a una <code class="docutils literal notranslate"><span class="pre">clasificación</span> <span class="pre">mucho</span> <span class="pre">más</span> <span class="pre">eficiente</span></code>.</p></li>
+<li><p>A pesar de <code class="docutils literal notranslate"><span class="pre">reducir</span> <span class="pre">significativamente</span> <span class="pre">la</span> <span class="pre">dimensionalidad</span></code> de los datos en aproximadamente un factor de 20, <code class="docutils literal notranslate"><span class="pre">las</span> <span class="pre">imágenes</span> <span class="pre">proyectadas</span> <span class="pre">conservan</span> <span class="pre">suficiente</span> <span class="pre">información</span> <span class="pre">para</span> <span class="pre">que</span> <span class="pre">podamos</span> <span class="pre">reconocer</span> <span class="pre">a</span> <span class="pre">los</span> <span class="pre">individuos</span></code> en las imágenes mediante inspección visual.</p></li>
+<li><p>Esto implica que nuestro <code class="docutils literal notranslate"><span class="pre">algoritmo</span> <span class="pre">de</span> <span class="pre">clasificación</span> <span class="pre">puede</span> <span class="pre">entrenarse</span> <span class="pre">con</span> <span class="pre">datos</span> <span class="pre">de</span> <span class="pre">150</span> <span class="pre">dimensiones</span> <span class="pre">en</span> <span class="pre">lugar</span> <span class="pre">de</span> <span class="pre">con</span> <span class="pre">datos</span> <span class="pre">de</span> <span class="pre">3.000</span> <span class="pre">dimensiones</span></code>. Dependiendo del algoritmo específico elegido, esto puede conducir a una <code class="docutils literal notranslate"><span class="pre">clasificación</span> <span class="pre">mucho</span> <span class="pre">más</span> <span class="pre">eficiente</span></code>.</p></li>
 </ul>
 </section>
 </section>
