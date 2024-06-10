@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>\(k\)-Vecinos más cercanos &#8212; Machine Learning</title>
   
@@ -19,53 +18,54 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=ca93fcec" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=530fe47d" />
+    <link rel="stylesheet" type="text/css" href="_static/.ipynb_checkpoints/custom-checkpoint.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'knn_model';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/custom.js?v=14184634"></script>
+    <script src="_static/.ipynb_checkpoints/custom-checkpoint.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Modelos lineales" href="linear_model.html" />
@@ -79,7 +79,15 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -114,11 +122,14 @@ const thebe_selector_output = ".output, .cell_output"
 </form></div>
   </div>
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -133,9 +144,11 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="intro.html">
+  
   
   
   
@@ -145,18 +158,29 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="_static/logo-uninorte.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="_static/logo-uninorte.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="_static/fotolihki.jpg" class="logo__image only-light" alt="Machine Learning - Home"/>
+    <script>document.write(`<img src="_static/fotolihki.jpg" class="logo__image only-dark" alt="Machine Learning - Home"/>`);</script>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Machine Learning
+                    Profesor: Dr. Lihki Rubio
                 </a>
             </li>
         </ul>
@@ -215,53 +239,6 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="header-article-item">
 
 <div class="article-header-buttons">
-
-
-
-
-
-<div class="dropdown dropdown-source-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
-    <i class="fab fa-github"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
-   class="btn btn-sm btn-source-repository-button dropdown-item"
-   title="Source repository"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="btn__text-container">Repository</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fknn_model.html&body=Your%20issue%20content%20here." target="_blank"
-   class="btn btn-sm btn-source-issues-button dropdown-item"
-   title="Open an issue"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="btn__text-container">Open issue</span>
-</a>
-</li>
-      
-  </ul>
-</div>
-
 
 
 
@@ -327,20 +304,22 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -391,16 +370,16 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="k-vecinos-mas-cercanos">
-<h1><span class="math notranslate nohighlight">\(k\)</span>-Vecinos más cercanos<a class="headerlink" href="#k-vecinos-mas-cercanos" title="Permalink to this heading">#</a></h1>
+<h1><span class="math notranslate nohighlight">\(k\)</span>-Vecinos más cercanos<a class="headerlink" href="#k-vecinos-mas-cercanos" title="Link to this heading">#</a></h1>
 <ul class="simple">
 <li><p>El algoritmo <code class="docutils literal notranslate"><span class="pre">vecino</span> <span class="pre">más</span> <span class="pre">cercano</span></code> es considerado uno de los <code class="docutils literal notranslate"><span class="pre">más</span> <span class="pre">simples</span> <span class="pre">dentro</span> <span class="pre">del</span> <span class="pre">aprendizaje</span> <span class="pre">automático</span></code>. Su enfoque consiste en <code class="docutils literal notranslate"><span class="pre">memorizar</span> <span class="pre">el</span> <span class="pre">conjunto</span> <span class="pre">de</span> <span class="pre">entrenamiento</span> <span class="pre">y</span> <span class="pre">luego</span> <span class="pre">predecir</span> <span class="pre">la</span> <span class="pre">etiqueta</span> <span class="pre">del</span> <span class="pre">vecino</span> <span class="pre">más</span> <span class="pre">cercano</span> <span class="pre">en</span> <span class="pre">dicho</span> <span class="pre">conjunto</span></code>. Este método se basa en la idea de que las <code class="docutils literal notranslate"><span class="pre">características</span> <span class="pre">utilizadas</span> <span class="pre">para</span> <span class="pre">describir</span> <span class="pre">los</span> <span class="pre">puntos</span> <span class="pre">en</span> <span class="pre">el</span> <span class="pre">dominio</span> <span class="pre">son</span> <span class="pre">relevantes</span> <span class="pre">para</span> <span class="pre">determinar</span> <span class="pre">sus</span> <span class="pre">etiquetas</span></code>, de manera que es probable que <code class="docutils literal notranslate"><span class="pre">puntos</span> <span class="pre">cercanos</span> <span class="pre">tengan</span> <span class="pre">la</span> <span class="pre">misma</span> <span class="pre">etiqueta</span></code>. Incluso en situaciones donde el conjunto de entrenamiento es muy grande, es posible encontrar un vecino más cercano, como por ejemplo cuando el <code class="docutils literal notranslate"><span class="pre">conjunto</span> <span class="pre">de</span> <span class="pre">entrenamiento</span> <span class="pre">abarca</span> <span class="pre">toda</span> <span class="pre">la</span> <span class="pre">Web</span> <span class="pre">y</span> <span class="pre">las</span> <span class="pre">distancias</span> <span class="pre">se</span> <span class="pre">basan</span> <span class="pre">en</span> <span class="pre">enlaces</span></code>.</p></li>
 <li><p>A diferencia de otros paradigmas algorítmicos que requieren hipótesis predefinidas, el método del <code class="docutils literal notranslate"><span class="pre">vecino</span> <span class="pre">más</span> <span class="pre">cercano</span> <span class="pre">calcula</span> <span class="pre">una</span> <span class="pre">etiqueta</span> <span class="pre">para</span> <span class="pre">cualquier</span> <span class="pre">punto</span> <span class="pre">de</span> <span class="pre">prueba</span> <span class="pre">sin</span> <span class="pre">buscar</span> <span class="pre">un</span> <span class="pre">predictor</span> <span class="pre">dentro</span> <span class="pre">de</span> <span class="pre">una</span> <span class="pre">clase</span> <span class="pre">de</span> <span class="pre">funciones</span> <span class="pre">predefinida</span></code>. En este capítulo, se describen los métodos del <code class="docutils literal notranslate"><span class="pre">vecino</span> <span class="pre">más</span> <span class="pre">cercano</span></code> tanto para problemas de <code class="docutils literal notranslate"><span class="pre">clasificación</span></code> como de <code class="docutils literal notranslate"><span class="pre">regresión</span></code>, se analiza su rendimiento en clasificación binaria y se discute la eficacia de su aplicación.</p></li>
 </ul>
 <section id="analisis">
-<h2>Análisis<a class="headerlink" href="#analisis" title="Permalink to this heading">#</a></h2>
+<h2>Análisis<a class="headerlink" href="#analisis" title="Link to this heading">#</a></h2>
 <div class="proof definition admonition" id="def_knn">
 <p class="admonition-title"><span class="caption-number">Definition 1 </span> (<span class="math notranslate nohighlight">\(k\)</span>-NN (Clasificación))</p>
 <section class="definition-content" id="proof-content">
@@ -428,9 +407,10 @@ document.write(`
 </ul>
 </section>
 </div><figure class="align-center" id="knn-classification-fig">
-<a class="reference internal image-reference" href="_images/knn_classification.png"><img alt="_images/knn_classification.png" src="_images/knn_classification.png" style="width: 531.9px; height: 463.5px;" /></a>
+<a class="reference internal image-reference" href="_images/knn_classification.png"><img alt="_images/knn_classification.png" src="_images/knn_classification.png" style="width: 531.9px; height: 463.5px;" />
+</a>
 <figcaption>
-<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Clasificación usando <span class="math notranslate nohighlight">\(k\)</span>-NN para <span class="math notranslate nohighlight">\(k=3\)</span>. Source: <a class="reference external" href="http://kdnuggets.com">kdnuggets.com</a>.</span><a class="headerlink" href="#knn-classification-fig" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Clasificación usando <span class="math notranslate nohighlight">\(k\)</span>-NN para <span class="math notranslate nohighlight">\(k=3\)</span>. Source: <a class="reference external" href="http://kdnuggets.com">kdnuggets.com</a>.</span><a class="headerlink" href="#knn-classification-fig" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <div class="tip admonition">
@@ -467,9 +447,10 @@ document.write(`
 </ol>
 </div>
 <figure class="align-center" id="knn-ties">
-<a class="reference internal image-reference" href="_images/knn_ties.png"><img alt="_images/knn_ties.png" src="_images/knn_ties.png" style="width: 702.0px; height: 197.4px;" /></a>
+<a class="reference internal image-reference" href="_images/knn_ties.png"><img alt="_images/knn_ties.png" src="_images/knn_ties.png" style="width: 702.0px; height: 197.4px;" />
+</a>
 <figcaption>
-<p><span class="caption-number">Fig. 5 </span><span class="caption-text">k-NN: Empates en la selección de clase con mayor frecuencia.</span><a class="headerlink" href="#knn-ties" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 5 </span><span class="caption-text">k-NN: Empates en la selección de clase con mayor frecuencia.</span><a class="headerlink" href="#knn-ties" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <ul class="simple">
@@ -496,7 +477,7 @@ h_{S}(\boldsymbol{x})=\frac{1}{k}\sum_{i=1}^{k}y_{\pi_{i}(\boldsymbol{x})}.
 <li><p>Más en general, para alguna función <span class="math notranslate nohighlight">\(\phi:~(\mathcal{X}, \mathcal{Y})^{k}\rightarrow\mathcal{Y}\)</span>, la regla <span class="math notranslate nohighlight">\(k\)</span>-NN con respecto a <span class="math notranslate nohighlight">\(\phi\)</span> es:</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-knn-regeq">
-<span class="eqno">(1)<a class="headerlink" href="#equation-knn-regeq" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(1)<a class="headerlink" href="#equation-knn-regeq" title="Link to this equation">#</a></span>\[
 h_{S}(\boldsymbol{x})=\phi((\boldsymbol{x}_{\pi_{1}(\boldsymbol{x})}, y_{\pi_{1}(\boldsymbol{x})}),\dots,(\boldsymbol{x}_{\pi_{k}(\boldsymbol{x})}, y_{\pi_{k}(\boldsymbol{x})})).
 \]</div>
 <ul class="simple">
@@ -515,7 +496,7 @@ h_{S}(\boldsymbol{x})=\sum_{i=1}^{k}\frac{\rho(\boldsymbol{x}, \boldsymbol{x}_{\
 <li><p>Para una <code class="docutils literal notranslate"><span class="pre">distribución</span> <span class="pre">de</span> <span class="pre">probabilidad</span></code>, <span class="math notranslate nohighlight">\(\mathcal{D}\)</span>, sobre <span class="math notranslate nohighlight">\(\mathcal{X}\times\mathcal{Y}\)</span>, se puede medir la probabilidad de que <span class="math notranslate nohighlight">\(h\)</span> <code class="docutils literal notranslate"><span class="pre">cometa</span> <span class="pre">un</span> <span class="pre">error</span></code> cuando los puntos etiquetados se extraen aleatoriamente según <span class="math notranslate nohighlight">\(\mathcal{D}\)</span>. Redefinimos el <code class="docutils literal notranslate"><span class="pre">error</span> <span class="pre">verdadero</span> <span class="pre">(o</span> <span class="pre">riesgo)</span></code> de una regla de predicción <span class="math notranslate nohighlight">\(h\)</span> como</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-real-error">
-<span class="eqno">(2)<a class="headerlink" href="#equation-real-error" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(2)<a class="headerlink" href="#equation-real-error" title="Link to this equation">#</a></span>\[
 L_{\mathcal{D}}(h):=\underset{(\boldsymbol{x},y)\sim\mathcal{D}}{\mathbb{P}}[h(\boldsymbol{x})\neq y]:=\mathcal{D}(\{(\boldsymbol{x},y):~h(\boldsymbol{x})\neq y\}).
 \]</div>
 <ul class="simple">
@@ -532,7 +513,7 @@ L_{S}(h):=\frac{|\{i\in\left[m\right]:~h(\boldsymbol{x}_{i})\neq y_{i}\}|}{m},~\
 <li><p><code class="docutils literal notranslate"><span class="pre">Predictor</span> <span class="pre">óptimo</span> <span class="pre">de</span> <span class="pre">Bayes.</span></code> Dada cualquier distribución de probabilidad <span class="math notranslate nohighlight">\(\mathcal{D}\)</span> sobre <span class="math notranslate nohighlight">\(\mathcal{X}\times\{0, 1\}\)</span>, la <code class="docutils literal notranslate"><span class="pre">mejor</span> <span class="pre">función</span> <span class="pre">de</span> <span class="pre">predicción</span> <span class="pre">de</span> <span class="pre">etiquetas</span></code> de <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> a <span class="math notranslate nohighlight">\(\{0, 1\}\)</span> será</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-bayes-opt-pred">
-<span class="eqno">(3)<a class="headerlink" href="#equation-bayes-opt-pred" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(3)<a class="headerlink" href="#equation-bayes-opt-pred" title="Link to this equation">#</a></span>\[\begin{split}
 f_{\mathcal{D}}(x)=
 \begin{cases}
 1,&amp;\text{si}~\mathbb{P}[y=1|x]\geq1/2\\
@@ -552,7 +533,7 @@ f_{\mathcal{D}}(x)=
 <li><p>Definimos ahora la <code class="docutils literal notranslate"><span class="pre">función</span> <span class="pre">de</span> <span class="pre">riesgo</span></code> como la <code class="docutils literal notranslate"><span class="pre">pérdida</span> <span class="pre">esperada</span> <span class="pre">de</span> <span class="pre">un</span> <span class="pre">clasificador</span></code>, <span class="math notranslate nohighlight">\(h\in\mathcal{H}\)</span>, con respecto a la distribución de probabilidad <span class="math notranslate nohighlight">\(\mathcal{D}\)</span> sobre <span class="math notranslate nohighlight">\(Z\)</span>, a saber,</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-risk-function">
-<span class="eqno">(4)<a class="headerlink" href="#equation-risk-function" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(4)<a class="headerlink" href="#equation-risk-function" title="Link to this equation">#</a></span>\[
 L_{\mathcal{D}}(h):=\underset{z\sim\mathcal{D}}{\mathbb{E}}[\ell(h, z)].
 \]</div>
 <ul class="simple">
@@ -797,7 +778,8 @@ h^{\star}(\boldsymbol{x})=\mathbb{1}_{\left[\eta(\boldsymbol{x})&gt;1/2\right]}.
 </section>
 </div><p><strong><code class="docutils literal notranslate"><span class="pre">Demostración</span></code></strong></p>
 <figure class="align-center" id="box-neigh-knn-fig">
-<a class="reference internal image-reference" href="_images/box_neigh_knn.png"><img alt="_images/box_neigh_knn.png" src="_images/box_neigh_knn.png" style="width: 227.70000000000002px; height: 234.9px;" /></a>
+<a class="reference internal image-reference" href="_images/box_neigh_knn.png"><img alt="_images/box_neigh_knn.png" src="_images/box_neigh_knn.png" style="width: 227.70000000000002px; height: 234.9px;" />
+</a>
 </figure>
 <ul class="simple">
 <li><p>Fijemos <span class="math notranslate nohighlight">\(\varepsilon=1/T\)</span>, para algún entero <span class="math notranslate nohighlight">\(T\)</span>, sea <span class="math notranslate nohighlight">\(r=T^{d}\)</span>, y sea <span class="math notranslate nohighlight">\(C_{1}, C_{2}, \dots, C_{m}\)</span> un <code class="docutils literal notranslate"><span class="pre">cubrimiento</span> <span class="pre">del</span> <span class="pre">conjunto</span></code> <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> usando <code class="docutils literal notranslate"><span class="pre">cajas</span> <span class="pre">de</span> <span class="pre">longitud</span></code> <span class="math notranslate nohighlight">\(\varepsilon\)</span>. Es decir, para cada <span class="math notranslate nohighlight">\((\alpha_{1}, \alpha_{2},\dots,\alpha_{d})\in [T]^{d}\)</span>, existe un conjunto <span class="math notranslate nohighlight">\(C_{i}\)</span> de la forma</p></li>
@@ -874,7 +856,7 @@ h^{\star}(\boldsymbol{x})=\mathbb{1}_{\left[\eta(\boldsymbol{x})&gt;1/2\right]}.
 </section>
 </div></section>
 <section id="implementacion">
-<h2>Implementación<a class="headerlink" href="#implementacion" title="Permalink to this heading">#</a></h2>
+<h2>Implementación<a class="headerlink" href="#implementacion" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">Clasificación</span> <span class="pre">k-vecinos</span></code></strong>. Como ya se estudió anteriormente, en su versión más sencilla, el algoritmo <code class="docutils literal notranslate"><span class="pre">k-NN</span></code> solo considera exactamente un vecino más cercano, que es el <code class="docutils literal notranslate"><span class="pre">dato</span> <span class="pre">de</span> <span class="pre">entrenamiento</span> <span class="pre">más</span> <span class="pre">cercano</span> <span class="pre">al</span> <span class="pre">punto</span> <span class="pre">para</span> <span class="pre">el</span> <span class="pre">que</span> <span class="pre">queremos</span> <span class="pre">hacer</span> <span class="pre">una</span> <span class="pre">predicción</span></code>. La predicción es entonces simplemente la etiqueta conocida para este punto de entrenamiento.</p></li>
 </ul>
@@ -1025,7 +1007,7 @@ h^{\star}(\boldsymbol{x})=\mathbb{1}_{\left[\eta(\boldsymbol{x})&gt;1/2\right]}.
 </ul>
 </section>
 <section id="analisis-de-kneighborsclassifier">
-<h2>Análisis de <code class="docutils literal notranslate"><span class="pre">KNeighborsClassifier</span></code><a class="headerlink" href="#analisis-de-kneighborsclassifier" title="Permalink to this heading">#</a></h2>
+<h2>Análisis de <code class="docutils literal notranslate"><span class="pre">KNeighborsClassifier</span></code><a class="headerlink" href="#analisis-de-kneighborsclassifier" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Para los conjuntos de datos bidimensionales, también podemos ilustrar la <code class="docutils literal notranslate"><span class="pre">predicción</span> <span class="pre">para</span> <span class="pre">todos</span> <span class="pre">los</span> <span class="pre">posibles</span> <span class="pre">puntos</span> <span class="pre">de</span> <span class="pre">prueba</span> <span class="pre">en</span> <span class="pre">el</span> <span class="pre">plano</span></code> <span class="math notranslate nohighlight">\(xy\)</span>. Coloreamos el plano según la clase que se asignaría a un punto en esta región. Esto nos permite ver el <code class="docutils literal notranslate"><span class="pre">límite</span> <span class="pre">de</span> <span class="pre">decisión</span> <span class="pre">(decision</span> <span class="pre">boundary)</span></code> (ver <a class="reference external" href="https://github.com/amueller/mglearn/blob/master/mglearn/plot_2d_separator.py">plot_2d_separator</a>), el cual está <code class="docutils literal notranslate"><span class="pre">entre</span> <span class="pre">el</span> <span class="pre">lugar</span> <span class="pre">donde</span> <span class="pre">el</span> <span class="pre">algoritmo</span> <span class="pre">asigna</span> <span class="pre">la</span> <span class="pre">clase</span> <span class="pre">0</span> <span class="pre">y</span> <span class="pre">el</span> <span class="pre">lugar</span> <span class="pre">donde</span> <span class="pre">asigna</span> <span class="pre">la</span> <span class="pre">clase</span> <span class="pre">1</span></code>.</p></li>
 </ul>
@@ -1061,16 +1043,17 @@ h^{\star}(\boldsymbol{x})=\mathbb{1}_{\left[\eta(\boldsymbol{x})&gt;1/2\right]}.
 </ul>
 </section>
 <section id="aplicacion-breast-cancer-dataset">
-<h2>Aplicación: Breast Cancer Dataset<a class="headerlink" href="#aplicacion-breast-cancer-dataset" title="Permalink to this heading">#</a></h2>
+<h2>Aplicación: Breast Cancer Dataset<a class="headerlink" href="#aplicacion-breast-cancer-dataset" title="Link to this heading">#</a></h2>
 <figure class="align-center" id="breast-cancer-knn-fig">
-<a class="reference internal image-reference" href="_images/breast_cancer_knn.png"><img alt="_images/breast_cancer_knn.png" src="_images/breast_cancer_knn.png" style="width: 616.5px; height: 511.2px;" /></a>
+<a class="reference internal image-reference" href="_images/breast_cancer_knn.png"><img alt="_images/breast_cancer_knn.png" src="_images/breast_cancer_knn.png" style="width: 616.5px; height: 511.2px;" />
+</a>
 </figure>
 <ul class="simple">
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">Breast</span> <span class="pre">Cancer</span> <span class="pre">Dataset</span></code></strong>. Investiguemos si podemos confirmar la <code class="docutils literal notranslate"><span class="pre">conexión</span> <span class="pre">entre</span> <span class="pre">la</span> <span class="pre">complejidad</span> <span class="pre">del</span> <span class="pre">modelo</span> <span class="pre">y</span> <span class="pre">la</span> <span class="pre">generalización</span></code> que hemos discutido antes. Lo haremos con el conjunto de datos de cáncer de mama <code class="docutils literal notranslate"><span class="pre">(Breast</span> <span class="pre">Cancer)</span></code> del mundo real.</p></li>
 </ul>
 </section>
 <section id="analisis-exploratorio-de-datos">
-<h2>Análisis Exploratorio de Datos<a class="headerlink" href="#analisis-exploratorio-de-datos" title="Permalink to this heading">#</a></h2>
+<h2>Análisis Exploratorio de Datos<a class="headerlink" href="#analisis-exploratorio-de-datos" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Procedemos a realizar un <code class="docutils literal notranslate"><span class="pre">análisis</span> <span class="pre">exploratorio</span> <span class="pre">de</span> <span class="pre">datos</span></code> para investigar y resumir principales características de nuestros datos. Primero cargamos nuestro dataset usando la función <code class="docutils literal notranslate"><span class="pre">load_breast_cancer()</span></code> de <code class="docutils literal notranslate"><span class="pre">sklearn.datasets</span></code></p></li>
 </ul>
@@ -1901,11 +1884,11 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/9e575560b62f21fedc16beb963cb9f09308ffa02025730bc0fff2d6766d81381.png" src="_images/9e575560b62f21fedc16beb963cb9f09308ffa02025730bc0fff2d6766d81381.png" />
+<img alt="_images/5742d9327c824d74ff975016703ea6b1a323ba92e4affa1509027ee594591128.png" src="_images/5742d9327c824d74ff975016703ea6b1a323ba92e4affa1509027ee594591128.png" />
 </div>
 </div>
 <section id="multicolinealidad">
-<h3>Multicolinealidad<a class="headerlink" href="#multicolinealidad" title="Permalink to this heading">#</a></h3>
+<h3>Multicolinealidad<a class="headerlink" href="#multicolinealidad" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>La <code class="docutils literal notranslate"><span class="pre">multicolinealidad</span></code> es un problema ya que, <code class="docutils literal notranslate"><span class="pre">reduce</span> <span class="pre">la</span> <span class="pre">importancia</span> <span class="pre">de</span> <span class="pre">las</span> <span class="pre">variables</span> <span class="pre">independientes</span></code>. A fin de solucionar este problema,  se <code class="docutils literal notranslate"><span class="pre">eliminan</span> <span class="pre">los</span> <span class="pre">predictores</span> <span class="pre">altamente</span> <span class="pre">correlacionados</span></code>. Podemos comprobar la presencia de multicolinealidad entre algunas de las variables. Por ejemplo, la columna <code class="docutils literal notranslate"><span class="pre">mean</span> <span class="pre">radius</span></code> tiene una <code class="docutils literal notranslate"><span class="pre">correlación</span> <span class="pre">de</span> <span class="pre">1.0</span></code> con las columnas <code class="docutils literal notranslate"><span class="pre">mean</span> <span class="pre">perimeter</span></code> y <code class="docutils literal notranslate"><span class="pre">mean</span> <span class="pre">area</span></code>, respectivamente. Esto se debe a que <code class="docutils literal notranslate"><span class="pre">las</span> <span class="pre">tres</span> <span class="pre">columnas</span> <span class="pre">contienen</span> <span class="pre">esencialmente</span> <span class="pre">la</span> <span class="pre">misma</span> <span class="pre">información</span></code>, que es el tamaño físico de la observación.</p></li>
 <li><p>Por lo tanto, <code class="docutils literal notranslate"><span class="pre">sólo</span> <span class="pre">debemos</span> <span class="pre">elegir</span> <span class="pre">una</span> <span class="pre">de</span> <span class="pre">las</span> <span class="pre">tres</span> <span class="pre">columnas</span> <span class="pre">cuando</span> <span class="pre">pasemos</span> <span class="pre">al</span> <span class="pre">análisis</span> <span class="pre">posterior</span></code>. Otro lugar donde la <code class="docutils literal notranslate"><span class="pre">multicolinealidad</span></code> es evidente, es entre las columnas <code class="docutils literal notranslate"><span class="pre">&quot;mean&quot;</span></code> y <code class="docutils literal notranslate"><span class="pre">&quot;worst&quot;</span></code>. Por ejemplo, la columna <code class="docutils literal notranslate"><span class="pre">mean</span> <span class="pre">radius</span></code> tiene una <code class="docutils literal notranslate"><span class="pre">correlación</span> <span class="pre">de</span> <span class="pre">1.0</span></code> con la columna <code class="docutils literal notranslate"><span class="pre">worst</span> <span class="pre">radius</span></code>. También hay multicolinealidad entre los atributos <code class="docutils literal notranslate"><span class="pre">compactness,</span> <span class="pre">concavity</span></code> y <code class="docutils literal notranslate"><span class="pre">concave</span> <span class="pre">points</span></code>. Así que podemos elegir sólo uno de estos, por ejemplo <code class="docutils literal notranslate"><span class="pre">compactness</span></code>. De la matriz de correlación sabemos que estas columnas están altamente correlacionadas con las columnas <code class="docutils literal notranslate"><span class="pre">mean</span> <span class="pre">radius</span></code>, <code class="docutils literal notranslate"><span class="pre">perimeter</span></code>, <code class="docutils literal notranslate"><span class="pre">area</span></code>. Por lo tanto, estas columnas serán eliminadas.</p></li>
@@ -2003,7 +1986,7 @@ dtype: int64
 </div>
 </section>
 <section id="factor-de-inflacion-de-la-varianza-vif">
-<h3>Factor de Inflación de la Varianza (VIF)<a class="headerlink" href="#factor-de-inflacion-de-la-varianza-vif" title="Permalink to this heading">#</a></h3>
+<h3>Factor de Inflación de la Varianza (VIF)<a class="headerlink" href="#factor-de-inflacion-de-la-varianza-vif" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Para abordar la multicolinealidad, se pueden aplicar técnicas como la regularización o la selección de características para, seleccionar un subconjunto de variables independientes que no estén altamente correlacionadas entre sí. En esta sección, nos centraremos en la más común: <code class="docutils literal notranslate"><span class="pre">VIF</span> <span class="pre">(Factores</span> <span class="pre">de</span> <span class="pre">Inflación</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">Varianza)</span></code>.</p></li>
 <li><p>El <code class="docutils literal notranslate"><span class="pre">VIF</span></code> determina la <code class="docutils literal notranslate"><span class="pre">fuerza</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">correlación</span> <span class="pre">entre</span> <span class="pre">las</span> <span class="pre">variables</span> <span class="pre">independientes</span></code>. Se pronostica tomando una variable y comparándola con todas las demás. La puntuación <code class="docutils literal notranslate"><span class="pre">VIF</span></code> de una variable independiente representa hasta qué punto la variable se explica por otras variables independientes.</p></li>
@@ -2245,7 +2228,7 @@ dtype: int64
 </section>
 </section>
 <section id="seleccion-del-modelo-k-nn">
-<h2>Selección del modelo K-NN<a class="headerlink" href="#seleccion-del-modelo-k-nn" title="Permalink to this heading">#</a></h2>
+<h2>Selección del modelo K-NN<a class="headerlink" href="#seleccion-del-modelo-k-nn" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">División</span> <span class="pre">en</span> <span class="pre">entrenamiento</span> <span class="pre">(train)</span> <span class="pre">y</span> <span class="pre">prueba</span> <span class="pre">(test)</span></code>. Dividimos la variable objetivo y las variables independientes. A continuación, evaluamos el <code class="docutils literal notranslate"><span class="pre">rendimiento</span> <span class="pre">del</span> <span class="pre">conjunto</span> <span class="pre">de</span> <span class="pre">entrenamiento</span> <span class="pre">y</span> <span class="pre">de</span> <span class="pre">prueba</span> <span class="pre">con</span> <span class="pre">diferentes</span> <span class="pre">números</span> <span class="pre">de</span> <span class="pre">vecinos</span></code></p></li>
 </ul>
@@ -2329,7 +2312,7 @@ dtype: int64
 </ul>
 </section>
 <section id="regresion-por-k-vecinos">
-<h2>Regresión por <span class="math notranslate nohighlight">\(k\)</span>-vecinos<a class="headerlink" href="#regresion-por-k-vecinos" title="Permalink to this heading">#</a></h2>
+<h2>Regresión por <span class="math notranslate nohighlight">\(k\)</span>-vecinos<a class="headerlink" href="#regresion-por-k-vecinos" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>También existe una <code class="docutils literal notranslate"><span class="pre">variante</span> <span class="pre">de</span> <span class="pre">regresión</span> <span class="pre">del</span> <span class="pre">algoritmo</span></code> <span class="math notranslate nohighlight">\(k\)</span><code class="docutils literal notranslate"><span class="pre">-vecinos</span> <span class="pre">más</span> <span class="pre">cercanos</span></code>. Una vez más, vamos a empezar utilizando el <code class="docutils literal notranslate"><span class="pre">vecino</span> <span class="pre">más</span> <span class="pre">cercano</span> <span class="pre">simple</span></code>, esta vez utilizando el conjunto de datos <code class="docutils literal notranslate"><span class="pre">wave</span></code>. Hemos añadido tres puntos de datos de prueba como estrellas verdes en el eje <span class="math notranslate nohighlight">\(x\)</span>. <code class="docutils literal notranslate"><span class="pre">La</span> <span class="pre">predicción</span> <span class="pre">utilizando</span> <span class="pre">un</span> <span class="pre">solo</span> <span class="pre">vecino</span> <span class="pre">es</span> <span class="pre">sólo</span> <span class="pre">el</span> <span class="pre">valor</span> <span class="pre">objetivo</span> <span class="pre">del</span> <span class="pre">vecino</span> <span class="pre">más</span> <span class="pre">cercano</span></code></p></li>
 </ul>
@@ -2412,7 +2395,7 @@ dtype: int64
 </div>
 </section>
 <section id="analisis-de-kneighborsregressor">
-<h2>Análisis de <code class="docutils literal notranslate"><span class="pre">KNeighborsRegressor</span></code><a class="headerlink" href="#analisis-de-kneighborsregressor" title="Permalink to this heading">#</a></h2>
+<h2>Análisis de <code class="docutils literal notranslate"><span class="pre">KNeighborsRegressor</span></code><a class="headerlink" href="#analisis-de-kneighborsregressor" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Para nuestro conjunto de datos unidimensional, podemos ver cómo son las predicciones para todos los valores posibles de las características. Para ello, creamos un conjunto de datos de prueba compuesto por muchos puntos de la línea</p></li>
 </ul>
@@ -2451,7 +2434,7 @@ dtype: int64
 <li><p>Como podemos ver en el gráfico, <code class="docutils literal notranslate"><span class="pre">al</span> <span class="pre">utilizar</span> <span class="pre">un</span> <span class="pre">solo</span> <span class="pre">vecino</span></code>, cada punto del conjunto de entrenamiento tiene una influencia obvia en las predicciones, y <code class="docutils literal notranslate"><span class="pre">los</span> <span class="pre">valores</span> <span class="pre">predichos</span> <span class="pre">pasan</span> <span class="pre">por</span> <span class="pre">todos</span> <span class="pre">los</span> <span class="pre">puntos</span> <span class="pre">de</span> <span class="pre">datos</span></code>. Esto conduce a una predicción muy inestable. <code class="docutils literal notranslate"><span class="pre">Tener</span> <span class="pre">en</span> <span class="pre">cuenta</span> <span class="pre">más</span> <span class="pre">vecinos</span> <span class="pre">conduce</span> <span class="pre">a</span> <span class="pre">predicciones</span> <span class="pre">más</span> <span class="pre">suaves</span></code>, pero éstas no se ajustan tan bien a los datos de entrenamiento.</p></li>
 </ul>
 <section id="aplicacion-world-hydropower-generation">
-<h3>Aplicación: World Hydropower Generation<a class="headerlink" href="#aplicacion-world-hydropower-generation" title="Permalink to this heading">#</a></h3>
+<h3>Aplicación: World Hydropower Generation<a class="headerlink" href="#aplicacion-world-hydropower-generation" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">World</span> <span class="pre">Hydropower</span> <span class="pre">Generation</span></code></strong>: Esta sección se centra en el uso del modelo <span class="math notranslate nohighlight">\(k\)</span>-NN y sus hiperparamétros, para garantizar una mejor comprensión de este algoritmo. <code class="docutils literal notranslate"><span class="pre">No</span> <span class="pre">se</span> <span class="pre">utilizan</span> <span class="pre">otros</span> <span class="pre">recursos</span> <span class="pre">como</span> <span class="pre">la</span> <span class="pre">ingeniería</span> <span class="pre">de</span> <span class="pre">características,</span> <span class="pre">la</span> <span class="pre">reducción</span> <span class="pre">de</span> <span class="pre">dimensionalidad</span></code>. El conjunto de datos utilizado es una recopilación de la <code class="docutils literal notranslate"><span class="pre">generación</span> <span class="pre">de</span> <span class="pre">energía</span> <span class="pre">de</span> <span class="pre">varios</span> <span class="pre">países</span> <span class="pre">europeos</span></code>, medida en <code class="docutils literal notranslate"><span class="pre">THh</span> <span class="pre">entre</span> <span class="pre">2000</span> <span class="pre">y</span> <span class="pre">2019</span></code>. Su contenido fue extraído de <code class="docutils literal notranslate"><span class="pre">World</span> <span class="pre">in</span> <span class="pre">Data</span></code>.</p></li>
 </ul>
@@ -3256,11 +3239,10 @@ RMSLE Valid: 0.03904370874530979
 
               
               
-                <footer class="bd-footer-article">
+              
+              
+                <footer class="prev-next-footer">
                   
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="supervised_intro.html"
@@ -3280,10 +3262,7 @@ RMSLE Valid: 0.03904370874530979
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -3291,6 +3270,7 @@ RMSLE Valid: 0.03904370874530979
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -3327,16 +3307,17 @@ RMSLE Valid: 0.03904370874530979
   <div class="footer-item">
     
 <p class="component-author">
-By Lihki Rubio PhD in Mathematical Engineering
+By Lihki Rubio, Ph.D.
 </p>
 
   </div>
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
-      © Copyright Department of Mathematics and Statistics.
+      © Copyright 2023.
       <br/>
     
   </p>
@@ -3349,6 +3330,9 @@ By Lihki Rubio PhD in Mathematical Engineering
   
   <div class="footer-item">
     
+<div class="extra_footer">
+  <p>Lihki Rubio, Ph.D. All rights reserved.</p>
+</div>
   </div>
   
 </div>
@@ -3360,8 +3344,8 @@ By Lihki Rubio PhD in Mathematical Engineering
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>

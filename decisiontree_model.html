@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Árboles de decisión &#8212; Machine Learning</title>
   
@@ -19,53 +18,54 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=ca93fcec" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=530fe47d" />
+    <link rel="stylesheet" type="text/css" href="_static/.ipynb_checkpoints/custom-checkpoint.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'decisiontree_model';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/custom.js?v=14184634"></script>
+    <script src="_static/.ipynb_checkpoints/custom-checkpoint.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Máquinas de vectores de soporte" href="svm_model.html" />
@@ -79,7 +79,15 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -114,11 +122,14 @@ const thebe_selector_output = ".output, .cell_output"
 </form></div>
   </div>
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -133,9 +144,11 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="intro.html">
+  
   
   
   
@@ -145,18 +158,29 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="_static/logo-uninorte.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="_static/logo-uninorte.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="_static/fotolihki.jpg" class="logo__image only-light" alt="Machine Learning - Home"/>
+    <script>document.write(`<img src="_static/fotolihki.jpg" class="logo__image only-dark" alt="Machine Learning - Home"/>`);</script>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Machine Learning
+                    Profesor: Dr. Lihki Rubio
                 </a>
             </li>
         </ul>
@@ -215,53 +239,6 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="header-article-item">
 
 <div class="article-header-buttons">
-
-
-
-
-
-<div class="dropdown dropdown-source-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
-    <i class="fab fa-github"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
-   class="btn btn-sm btn-source-repository-button dropdown-item"
-   title="Source repository"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="btn__text-container">Repository</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fdecisiontree_model.html&body=Your%20issue%20content%20here." target="_blank"
-   class="btn btn-sm btn-source-issues-button dropdown-item"
-   title="Open an issue"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="btn__text-container">Open issue</span>
-</a>
-</li>
-      
-  </ul>
-</div>
-
 
 
 
@@ -327,20 +304,22 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -392,12 +371,12 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="arboles-de-decision">
-<h1>Árboles de decisión<a class="headerlink" href="#arboles-de-decision" title="Permalink to this heading">#</a></h1>
+<h1>Árboles de decisión<a class="headerlink" href="#arboles-de-decision" title="Link to this heading">#</a></h1>
 <section id="analisis">
-<h2>Análisis<a class="headerlink" href="#analisis" title="Permalink to this heading">#</a></h2>
+<h2>Análisis<a class="headerlink" href="#analisis" title="Link to this heading">#</a></h2>
 <p><strong><code class="docutils literal notranslate"><span class="pre">Observación</span></code></strong></p>
 <ul class="simple">
 <li><p>Los árboles de clasificación <code class="docutils literal notranslate"><span class="pre">se</span> <span class="pre">basan</span> <span class="pre">en</span> <span class="pre">una</span> <span class="pre">idea</span> <span class="pre">simple,</span> <span class="pre">pero</span> <span class="pre">poderosa</span></code>, y se encuentran entre las <code class="docutils literal notranslate"><span class="pre">técnicas</span> <span class="pre">más</span> <span class="pre">populares</span> <span class="pre">de</span> <span class="pre">clasificación</span></code>. Son sistemas de varias etapas, y la clasificación de un patrón en una clase se realiza de forma secuencial. <code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">través</span> <span class="pre">de</span> <span class="pre">una</span> <span class="pre">serie</span> <span class="pre">de</span> <span class="pre">pruebas,</span> <span class="pre">las</span> <span class="pre">clases</span> <span class="pre">se</span> <span class="pre">rechazan</span> <span class="pre">de</span> <span class="pre">forma</span> <span class="pre">secuencial</span> <span class="pre">hasta</span> <span class="pre">que</span> <span class="pre">se</span> <span class="pre">llega</span> <span class="pre">a</span> <span class="pre">una</span> <span class="pre">decisión</span> <span class="pre">a</span> <span class="pre">favor</span> <span class="pre">de</span> <span class="pre">una</span> <span class="pre">clase</span> <span class="pre">restante</span></code>.</p></li>
@@ -408,9 +387,10 @@ document.write(`
 <li><p>La idea básica de los <code class="docutils literal notranslate"><span class="pre">OBCT</span></code> es <code class="docutils literal notranslate"><span class="pre">dividir</span> <span class="pre">el</span> <span class="pre">espacio</span> <span class="pre">de</span> <span class="pre">características</span> <span class="pre">en</span> <span class="pre">(hiper)rectángulos</span></code>; es decir, el espacio se divide mediante hiperplanos, que son paralelos a los ejes. Esto se ilustra en la <a class="reference internal" href="#fig-decision-hypplanes-obct"><span class="std std-numref">Fig. 9</span></a></p></li>
 </ul>
 <figure class="align-center" id="fig-decision-hypplanes-obct">
-<a class="reference internal image-reference" href="_images/decision_hypplanes_obct.png"><img alt="_images/decision_hypplanes_obct.png" src="_images/decision_hypplanes_obct.png" style="width: 400.8px; height: 413.4px;" /></a>
+<a class="reference internal image-reference" href="_images/decision_hypplanes_obct.png"><img alt="_images/decision_hypplanes_obct.png" src="_images/decision_hypplanes_obct.png" style="width: 400.8px; height: 413.4px;" />
+</a>
 <figcaption>
-<p><span class="caption-number">Fig. 9 </span><span class="caption-text">Partición de espacio de características. Árbol de clasificación (OBCT). Fuente <span id="id1">[<a class="reference internal" href="biblio.html#id17" title="S. Theodoridis. Machine Learning: A Bayesian and Optimization Perspective. Elsevier Science, 2020. ISBN 9780128188040. URL: https://books.google.com.co/books?id=l-nEDwAAQBAJ.">Theodoridis, 2020</a>]</span>.</span><a class="headerlink" href="#fig-decision-hypplanes-obct" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 9 </span><span class="caption-text">Partición de espacio de características. Árbol de clasificación (OBCT). Fuente <span id="id1">[<a class="reference internal" href="biblio.html#id17" title="S. Theodoridis. Machine Learning: A Bayesian and Optimization Perspective. Elsevier Science, 2020. ISBN 9780128188040. URL: https://books.google.com.co/books?id=l-nEDwAAQBAJ.">Theodoridis, 2020</a>]</span>.</span><a class="headerlink" href="#fig-decision-hypplanes-obct" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <ul class="simple">
@@ -418,9 +398,10 @@ document.write(`
 en la <a class="reference internal" href="#fig-decision-hypplanes-obct"><span class="std std-numref">Fig. 9</span></a>.</p></li>
 </ul>
 <figure class="align-center" id="fig-decision-tree-obct">
-<a class="reference internal image-reference" href="_images/decision_tree_obct.png"><img alt="_images/decision_tree_obct.png" src="_images/decision_tree_obct.png" style="width: 405.59999999999997px; height: 362.4px;" /></a>
+<a class="reference internal image-reference" href="_images/decision_tree_obct.png"><img alt="_images/decision_tree_obct.png" src="_images/decision_tree_obct.png" style="width: 405.59999999999997px; height: 362.4px;" />
+</a>
 <figcaption>
-<p><span class="caption-number">Fig. 10 </span><span class="caption-text">Árbol de clasificación (OBCT). Partición del espacio para <a class="reference internal" href="#fig-decision-hypplanes-obct"><span class="std std-numref">Fig. 9</span></a>. Fuente <span id="id2">[<a class="reference internal" href="biblio.html#id17" title="S. Theodoridis. Machine Learning: A Bayesian and Optimization Perspective. Elsevier Science, 2020. ISBN 9780128188040. URL: https://books.google.com.co/books?id=l-nEDwAAQBAJ.">Theodoridis, 2020</a>]</span>.</span><a class="headerlink" href="#fig-decision-tree-obct" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 10 </span><span class="caption-text">Árbol de clasificación (OBCT). Partición del espacio para <a class="reference internal" href="#fig-decision-hypplanes-obct"><span class="std std-numref">Fig. 9</span></a>. Fuente <span id="id2">[<a class="reference internal" href="biblio.html#id17" title="S. Theodoridis. Machine Learning: A Bayesian and Optimization Perspective. Elsevier Science, 2020. ISBN 9780128188040. URL: https://books.google.com.co/books?id=l-nEDwAAQBAJ.">Theodoridis, 2020</a>]</span>.</span><a class="headerlink" href="#fig-decision-tree-obct" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <div class="admonition-observacion admonition">
@@ -464,9 +445,10 @@ X_{tY}\cup X_{tN}&amp;=X_{t}
 I(t)=-\sum_{m=1}^{M}P(\omega_{m}|t)\log_{2}P(\omega_{m}|t)
 \]</div>
 <figure class="align-center" id="entropy-function-fig">
-<a class="reference internal image-reference" href="_images/entropy_function.png"><img alt="_images/entropy_function.png" src="_images/entropy_function.png" style="width: 600.0px; height: 589.2px;" /></a>
+<a class="reference internal image-reference" href="_images/entropy_function.png"><img alt="_images/entropy_function.png" src="_images/entropy_function.png" style="width: 600.0px; height: 589.2px;" />
+</a>
 <figcaption>
-<p><span class="caption-number">Fig. 11 </span><span class="caption-text">Función de entropía <span class="math notranslate nohighlight">\(I(t)\)</span> para clasificación binaria.</span><a class="headerlink" href="#entropy-function-fig" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 11 </span><span class="caption-text">Función de entropía <span class="math notranslate nohighlight">\(I(t)\)</span> para clasificación binaria.</span><a class="headerlink" href="#entropy-function-fig" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <ul class="simple">
@@ -520,9 +502,10 @@ I(t)&amp;=-P(\text{rojo})\cdot\log_{2}(P(\text{rojo}))-P(\text{azul})\cdot\log_{
 \end{split}\]</div>
 </div>
 <figure class="align-center" id="trees-entropy-fig">
-<a class="reference internal image-reference" href="_images/entropy_decision_tree.png"><img alt="_images/entropy_decision_tree.png" src="_images/entropy_decision_tree.png" style="width: 624.8000000000001px; height: 754.8000000000001px;" /></a>
+<a class="reference internal image-reference" href="_images/entropy_decision_tree.png"><img alt="_images/entropy_decision_tree.png" src="_images/entropy_decision_tree.png" style="width: 624.8000000000001px; height: 754.8000000000001px;" />
+</a>
 <figcaption>
-<p><span class="caption-number">Fig. 12 </span><span class="caption-text">Pureza de nodos en un árbol de decisión. Fuente <code class="docutils literal notranslate"><span class="pre">towardsdatascience</span></code>.</span><a class="headerlink" href="#trees-entropy-fig" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 12 </span><span class="caption-text">Pureza de nodos en un árbol de decisión. Fuente <code class="docutils literal notranslate"><span class="pre">towardsdatascience</span></code>.</span><a class="headerlink" href="#trees-entropy-fig" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <ul class="simple">
@@ -595,7 +578,7 @@ su valor <code class="docutils literal notranslate"><span class="pre">máximo</s
 </ul>
 </section>
 <section id="combinacion-de-clasificadores">
-<h2>Combinación de clasificadores<a class="headerlink" href="#combinacion-de-clasificadores" title="Permalink to this heading">#</a></h2>
+<h2>Combinación de clasificadores<a class="headerlink" href="#combinacion-de-clasificadores" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Hasta ahora, hemos revisado en detalle una serie de clasificadores, y se presentarán más métodos en las siguientes secciones, relativos a las <code class="docutils literal notranslate"><span class="pre">máquinas</span> <span class="pre">de</span> <span class="pre">vectores</span> <span class="pre">de</span> <span class="pre">soporte</span></code> y las <code class="docutils literal notranslate"><span class="pre">redes</span> <span class="pre">neuronales</span></code>. La pregunta obvia a la que se enfrenta un profesional/investigador sin experiencia es: <code class="docutils literal notranslate"><span class="pre">¿qué</span> <span class="pre">método</span> <span class="pre">uso</span> <span class="pre">entonces?</span> <span class="pre">Por</span> <span class="pre">desgracia,</span> <span class="pre">no</span> <span class="pre">hay</span> <span class="pre">una</span> <span class="pre">respuesta</span> <span class="pre">definitiva.</span></code></p></li>
 </ul>
@@ -697,7 +680,7 @@ l_{c}=
 </ul>
 </section>
 <section id="enfoque-boosting">
-<h2>Enfoque Boosting<a class="headerlink" href="#enfoque-boosting" title="Permalink to this heading">#</a></h2>
+<h2>Enfoque Boosting<a class="headerlink" href="#enfoque-boosting" title="Link to this heading">#</a></h2>
 <div class="proof observation admonition" id="observation_dt1">
 <p class="admonition-title"><span class="caption-number">Observation 5 </span></p>
 <section class="observation-content" id="proof-content">
@@ -717,21 +700,22 @@ l_{c}=
 <li><p>Dado un <em>número suficiente de iteraciones, se puede mejorar significativamente lo (pobre) del aprendiz débil</em>. Por ejemplo, en algunos casos de clasificación, el <em>error de entrenamiento puede tender a cero a medida que aumenta el número de iteraciones</em>. El entrenamiento de un clasificador <em>mediante una manipulación adecuada de los datos de entrenamiento</em> (de hecho, <em>el mecanismo de ponderación identifica las muestras difíciles, las que siguen fallando, y pone más énfasis en ellas</em>) <em>se puede obtener un clasificador fuerte</em>. Por supuesto, como veremos más adelante, el hecho de que el error de entrenamiento tienda a cero no significa necesariamente que el error de prueba llegue a cero.</p></li>
 </ul>
 <figure class="align-center" id="boosted-tree-numref">
-<a class="reference internal image-reference" href="_images/boosted_tree.jpg"><img alt="_images/boosted_tree.jpg" src="_images/boosted_tree.jpg" style="width: 508.5px; height: 210.6px;" /></a>
+<a class="reference internal image-reference" href="_images/boosted_tree.jpg"><img alt="_images/boosted_tree.jpg" src="_images/boosted_tree.jpg" style="width: 508.5px; height: 210.6px;" />
+</a>
 <figcaption>
-<p><span class="caption-number">Fig. 13 </span><span class="caption-text">Ilustración del <code class="docutils literal notranslate"><span class="pre">Arbol</span> <span class="pre">Boosting</span></code>: Fuente <span id="id11">[<a class="reference internal" href="biblio.html#id26" title="Sonia Kahiomba Kiangala and Zenghui Wang. An effective adaptive customization framework for small manufacturing plants using extreme gradient boosting-xgboost and random forest ensemble learning algorithms in an industry 4.0 environment. Machine Learning with Applications, 4:100024, 2021.">Kiangala and Wang, 2021</a>]</span>.</span><a class="headerlink" href="#boosted-tree-numref" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 13 </span><span class="caption-text">Ilustración del <code class="docutils literal notranslate"><span class="pre">Arbol</span> <span class="pre">Boosting</span></code>: Fuente <span id="id11">[<a class="reference internal" href="biblio.html#id26" title="Sonia Kahiomba Kiangala and Zenghui Wang. An effective adaptive customization framework for small manufacturing plants using extreme gradient boosting-xgboost and random forest ensemble learning algorithms in an industry 4.0 environment. Machine Learning with Applications, 4:100024, 2021.">Kiangala and Wang, 2021</a>]</span>.</span><a class="headerlink" href="#boosted-tree-numref" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <div class="admonition-algoritmo-adaboost-adaptive-boosting admonition">
 <p class="admonition-title">Algoritmo AdaBoost (Adaptive Boosting)</p>
 <p>Considere una <em>tarea de clasificación de dos clases</em> y supongamos que se nos da un conjunto de <span class="math notranslate nohighlight">\(N\)</span> <em>observaciones de entrenamiento</em>, <span class="math notranslate nohighlight">\((y_{n}, \boldsymbol{x}_{n}),~n=1,2,\dots,N\)</span>, con <span class="math notranslate nohighlight">\(y_{n}\in\{-1, 1\}\)</span>. Nuestro objetivo es <em>diseñar un clasificador binario</em>,</p>
 <div class="math notranslate nohighlight" id="equation-sign-fn-adaboost-eq">
-<span class="eqno">(24)<a class="headerlink" href="#equation-sign-fn-adaboost-eq" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(24)<a class="headerlink" href="#equation-sign-fn-adaboost-eq" title="Link to this equation">#</a></span>\[
 f(\boldsymbol{x})=\text{sgn}\{F(\boldsymbol{x})\}
 \]</div>
 <p>donde</p>
 <div class="math notranslate nohighlight" id="equation-adaboosting-model-eq">
-<span class="eqno">(25)<a class="headerlink" href="#equation-adaboosting-model-eq" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(25)<a class="headerlink" href="#equation-adaboosting-model-eq" title="Link to this equation">#</a></span>\[
 F(\boldsymbol{x}):=\sum_{k=1}^{K}a_{k}\phi(\boldsymbol{x};\boldsymbol{\theta}_{k}),
 \]</div>
 <p>y <span class="math notranslate nohighlight">\(\phi(\boldsymbol{x}; \boldsymbol{\theta}_{k})\in\{-1, 1\}\)</span>, es el <em>clasificador base en la iteración</em> <span class="math notranslate nohighlight">\(k\)</span>, definido en términos de un <em>conjunto de parámetros</em>, <span class="math notranslate nohighlight">\(\boldsymbol{\theta}_{k},~k=1,2,\dots, K\)</span> <em>a ser estimados</em>.</p>
@@ -766,9 +750,10 @@ F_{i}(\cdot)=\sum_{k=1}^{i}a_{k}\phi(\cdot; \boldsymbol{\theta}_{k}).
 </li>
 </ul>
 <figure class="align-center" id="loss-fn-adaboost-fig">
-<a class="reference internal image-reference" href="_images/loss_fn_adaboost.png"><img alt="_images/loss_fn_adaboost.png" src="_images/loss_fn_adaboost.png" style="width: 430.40000000000003px; height: 262.40000000000003px;" /></a>
+<a class="reference internal image-reference" href="_images/loss_fn_adaboost.png"><img alt="_images/loss_fn_adaboost.png" src="_images/loss_fn_adaboost.png" style="width: 430.40000000000003px; height: 262.40000000000003px;" />
+</a>
 <figcaption>
-<p><span class="caption-number">Fig. 14 </span><span class="caption-text">Pérdida 0-1, exponencial, log-loss y error al cuadrado. Fuente <span id="id12">[<a class="reference internal" href="biblio.html#id17" title="S. Theodoridis. Machine Learning: A Bayesian and Optimization Perspective. Elsevier Science, 2020. ISBN 9780128188040. URL: https://books.google.com.co/books?id=l-nEDwAAQBAJ.">Theodoridis, 2020</a>]</span>.</span><a class="headerlink" href="#loss-fn-adaboost-fig" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 14 </span><span class="caption-text">Pérdida 0-1, exponencial, log-loss y error al cuadrado. Fuente <span id="id12">[<a class="reference internal" href="biblio.html#id17" title="S. Theodoridis. Machine Learning: A Bayesian and Optimization Perspective. Elsevier Science, 2020. ISBN 9780128188040. URL: https://books.google.com.co/books?id=l-nEDwAAQBAJ.">Theodoridis, 2020</a>]</span>.</span><a class="headerlink" href="#loss-fn-adaboost-fig" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <ul class="simple">
@@ -776,7 +761,7 @@ F_{i}(\cdot)=\sum_{k=1}^{i}a_{k}\phi(\cdot; \boldsymbol{\theta}_{k}).
 <li><p>Observe que <strong>la pérdida exponencial coloca más peso sobre los errores de clasificación</strong> <span class="math notranslate nohighlight">\((yF(\boldsymbol{x}) &lt; 0)\)</span> <strong>en comparación con los correctamente identificados</strong> <span class="math notranslate nohighlight">\((yF(\boldsymbol{x}) &gt; 0)\)</span>. Empleando la función de <em>pérdida exponencial</em>, el conjunto <span class="math notranslate nohighlight">\(a_{i},\boldsymbol{\theta}_{i}\)</span> se obtiene mediante la respectiva <strong>función de coste empírica</strong>, de la siguiente manera:</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-costfn-adaboost-eq">
-<span class="eqno">(26)<a class="headerlink" href="#equation-costfn-adaboost-eq" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(26)<a class="headerlink" href="#equation-costfn-adaboost-eq" title="Link to this equation">#</a></span>\[\begin{split}
 \begin{align*}
 (a_{i}, \boldsymbol{\theta}_{i})&amp;=\text{arg}\text{min}_{a,\boldsymbol{\theta}}\sum_{n=1}^{N}\mathcal{L}(y_{n}, F(\boldsymbol{x}_{n}))\\
 &amp;=\text{arg}\text{min}_{a,\boldsymbol{\theta}}\sum_{n=1}^{N}\exp\left(-y_{n}(F_{i-1}(\boldsymbol{x}_{n})+a\phi(\boldsymbol{x}_{n};\boldsymbol{\theta}))\right).
@@ -785,7 +770,7 @@ F_{i}(\cdot)=\sum_{k=1}^{i}a_{k}\phi(\cdot; \boldsymbol{\theta}_{k}).
 <ul>
 <li><p>Esta <em>tarea de optimización</em> también se realiza en dos pasos. En primer lugar, <span class="math notranslate nohighlight">\(a\)</span> <strong>se trata de forma fija y optimizamos con respecto a</strong> <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span>,</p>
 <div class="math notranslate nohighlight" id="equation-weights-omega-eq">
-<span class="eqno">(27)<a class="headerlink" href="#equation-weights-omega-eq" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(27)<a class="headerlink" href="#equation-weights-omega-eq" title="Link to this equation">#</a></span>\[\begin{split}
     \begin{align*}
     \boldsymbol{\theta}_{i}&amp;=\text{arg}\text{min}_{a,\boldsymbol{\theta}}\sum_{n=1}^{N}\exp\left(-y_{n}(F_{i-1}(\boldsymbol{x}_{n})+a\phi(\boldsymbol{x}_{n};\boldsymbol{\theta}))\right)\\
     &amp;=\text{argmin}_{\boldsymbol{\theta}}\sum_{n=1}^{N}\omega_{n}^{(i)}\exp(-y_{n}a\phi(\boldsymbol{x}_{n};\boldsymbol{\theta})),
@@ -801,7 +786,7 @@ clasificador base</strong>. Nótese, sin embargo, que la <em>función de pérdid
 es binario</em>, de modo que <span class="math notranslate nohighlight">\(\phi(\boldsymbol{x}, \boldsymbol{\theta})\in\{-1, 1\}\)</span>.</p></li>
 <li><p>Si <em>suponemos que</em> <span class="math notranslate nohighlight">\(a &gt; 0\)</span> (volveremos a ello pronto) la optimización de Ecuación <a class="reference internal" href="#equation-costfn-adaboost-eq">(26)</a> se ve fácilmente que es equivalente a <em>optimizar el siguiente coste</em>:</p>
 <div class="math notranslate nohighlight" id="equation-loss-funtion-01">
-<span class="eqno">(28)<a class="headerlink" href="#equation-loss-funtion-01" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(28)<a class="headerlink" href="#equation-loss-funtion-01" title="Link to this equation">#</a></span>\[
     \boldsymbol{\theta}_{i}=\text{argmin}_{\theta}P_{i},~\text{donde}~P_{i}:=\sum_{n=1}^{N}\omega_{n}^{(i)}\chi_{(-\infty, 0]}(y_{n}\phi(\boldsymbol{x}_{n}, \boldsymbol{\theta})),
     \]</div>
 <p>y <span class="math notranslate nohighlight">\(\chi_{(-\infty, 0]}\)</span> es la <em>función de pérdida 0-1</em>.</p>
@@ -814,7 +799,7 @@ es binario</em>, de modo que <span class="math notranslate nohighlight">\(\phi(\
 <ul>
 <li><p>Una vez calculado el <span class="math notranslate nohighlight">\(\boldsymbol{\theta}_{i}\)</span> óptimo, a partir de las respectivas definiciones,</p>
 <div class="math notranslate nohighlight" id="equation-pi-eq">
-<span class="eqno">(29)<a class="headerlink" href="#equation-pi-eq" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(29)<a class="headerlink" href="#equation-pi-eq" title="Link to this equation">#</a></span>\[
     \sum_{y_{n}\phi(\boldsymbol{x}_{n}; \boldsymbol{\theta}_{i})&lt;0}\omega_{n}^{(i)}=P_{i},~\text{y}~\sum_{y_{n}\phi(\boldsymbol{x}_{n}; \boldsymbol{\theta}_{i})&gt;0}\omega_{n}^{(i)}=1-P_{i}.
     \]</div>
 </li>
@@ -893,21 +878,21 @@ a_{i}=\text{argmin}_{a}\{\exp(-a)(1-P_{i})+\exp(a)P_{i}\}.
 </div>
 </section>
 <section id="la-funcion-log-loss">
-<h2>La función Log-Loss<a class="headerlink" href="#la-funcion-log-loss" title="Permalink to this heading">#</a></h2>
+<h2>La función Log-Loss<a class="headerlink" href="#la-funcion-log-loss" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>En <code class="docutils literal notranslate"><span class="pre">AdaBoost</span></code>, se empleó la <code class="docutils literal notranslate"><span class="pre">función</span> <span class="pre">de</span> <span class="pre">pérdida</span> <span class="pre">exponencial</span></code>. Desde un punto de vista teórico, esto puede
 justificarse con el siguiente argumento. Consideremos el <code class="docutils literal notranslate"><span class="pre">valor</span> <span class="pre">medio</span> <span class="pre">con</span> <span class="pre">respecto</span> <span class="pre">a</span> <span class="pre">la</span> <span class="pre">etiqueta</span> <span class="pre">binaria,</span></code> <span class="math notranslate nohighlight">\(y\)</span>, de
 la <code class="docutils literal notranslate"><span class="pre">función</span> <span class="pre">de</span> <span class="pre">pérdida</span> <span class="pre">exponencial</span></code></p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-mean-exp-loss-fn-eq">
-<span class="eqno">(30)<a class="headerlink" href="#equation-mean-exp-loss-fn-eq" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(30)<a class="headerlink" href="#equation-mean-exp-loss-fn-eq" title="Link to this equation">#</a></span>\[
 \mathbb{E}(\exp(-yF(\boldsymbol{x})))=P(y=1)\exp(-F(\boldsymbol{x}))+P(y=-1)\exp(F(\boldsymbol{x}))
 \]</div>
 <ul class="simple">
 <li><p>Tomando <code class="docutils literal notranslate"><span class="pre">derivada</span> <span class="pre">con</span> <span class="pre">respecto</span> <span class="pre">a</span></code> <span class="math notranslate nohighlight">\(F(\boldsymbol{x})\)</span> <code class="docutils literal notranslate"><span class="pre">e</span> <span class="pre">igualando</span> <span class="pre">a</span> <span class="pre">cero</span></code>, fácilmente obtenemos el mínimo de <a class="reference internal" href="#equation-mean-exp-loss-fn-eq">(30)</a> el cual ocurre en</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-min-exp-loss-fn-eq">
-<span class="eqno">(31)<a class="headerlink" href="#equation-min-exp-loss-fn-eq" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(31)<a class="headerlink" href="#equation-min-exp-loss-fn-eq" title="Link to this equation">#</a></span>\[
 \frac{\partial}{\partial F(\boldsymbol{x})}(\mathbb{E}(\exp(-yF(\boldsymbol{x}))))=0\Leftrightarrow F_{\star}(\boldsymbol{x})=\text{argmin}_{f}\mathbb{E}[\exp(-yf)]=\frac{1}{2}\ln\frac{P(y=1|\boldsymbol{x})}{P(y=-1|\boldsymbol{x})}
 \]</div>
 <ul class="simple">
@@ -935,7 +920,7 @@ m_{x}:=|yF(\boldsymbol{x})|.
 </ul>
 </section>
 <section id="arboles-boosting">
-<h2>Arboles Boosting<a class="headerlink" href="#arboles-boosting" title="Permalink to this heading">#</a></h2>
+<h2>Arboles Boosting<a class="headerlink" href="#arboles-boosting" title="Link to this heading">#</a></h2>
 <div class="proof observation admonition" id="observation_dt2">
 <p class="admonition-title"><span class="caption-number">Observation 6 </span></p>
 <section class="observation-content" id="proof-content">
@@ -957,14 +942,14 @@ m_{x}:=|yF(\boldsymbol{x})|.
 <li><p>En un modelo de árbol boosting, el <strong>clasificador base está formado por un árbol</strong>. En la práctica, se pueden emplear <em>árboles cuyo tamaño (<strong>la profundidad máxima es la mayor longitud posible entre la raíz y una hoja</strong>) no debe ser muy grande, para acercarse más a un clasificador débil</em>. Normalmente, <strong>valores de</strong> <span class="math notranslate nohighlight">\(J\)</span> <strong>entre 4 y 8</strong> son aconsejables. El modelo de <strong>árbol boosting</strong> puede escribirse como</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-bost-tree-model-eq">
-<span class="eqno">(32)<a class="headerlink" href="#equation-bost-tree-model-eq" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(32)<a class="headerlink" href="#equation-bost-tree-model-eq" title="Link to this equation">#</a></span>\[
 F(\boldsymbol{x})=\sum_{k=1}^{K}T(\boldsymbol{x}; \boldsymbol{\Theta}_{k}),\quad\text{donde}\quad T(\boldsymbol{x}; \boldsymbol{\Theta}_{k})=\sum_{j=1}^{J}\hat{y}_{kj}\chi_{R_{kj}}(\boldsymbol{x}).
 \]</div>
 <ul class="simple">
 <li><p>La Ecuación <a class="reference internal" href="#equation-bost-tree-model-eq">(32)</a> es básicamente la misma que Ecuación <a class="reference internal" href="#equation-adaboosting-model-eq">(25)</a>, con el coeficiente <span class="math notranslate nohighlight">\(a_{k}\)</span> igual a uno. Hemos supuesto que el <em>tamaño de todos los árboles es el mismo</em>, aunque no tiene por qué ser así. Adoptando una <em>función de pérdida</em> <span class="math notranslate nohighlight">\(\mathcal{L}\)</span> y la <code class="docutils literal notranslate"><span class="pre">lógica</span> <span class="pre">greedy</span></code> utilizada para el enfoque boosting más general, llegamos al siguiente esquema recursivo de optimización:</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-rec-optimization-eq">
-<span class="eqno">(33)<a class="headerlink" href="#equation-rec-optimization-eq" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(33)<a class="headerlink" href="#equation-rec-optimization-eq" title="Link to this equation">#</a></span>\[
 \boldsymbol{\Theta}_{i}=\text{argmin}_{\boldsymbol{\Theta}}\sum_{n=1}^{N}\mathcal{L}(y_{n}, F_{i-1}(\boldsymbol{x}_{n})+T(\boldsymbol{x}_{n}; \boldsymbol{\Theta})).
 \]</div>
 <ul class="simple">
@@ -988,9 +973,9 @@ F_{i}(\cdot)=F_{i-1}(\cdot)+\nu T(\cdot; \boldsymbol{\theta}_{i}).
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="implementacion">
-<h1>Implementación<a class="headerlink" href="#implementacion" title="Permalink to this heading">#</a></h1>
+<h1>Implementación<a class="headerlink" href="#implementacion" title="Link to this heading">#</a></h1>
 <section id="control-de-complejidad">
-<h2>Control de complejidad<a class="headerlink" href="#control-de-complejidad" title="Permalink to this heading">#</a></h2>
+<h2>Control de complejidad<a class="headerlink" href="#control-de-complejidad" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Al construir un árbol como se describe en esta sección, hasta que todas las hojas sean puras, da lugar a modelos muy complejos y muy ajustados a los datos de entrenamiento. <code class="docutils literal notranslate"><span class="pre">La</span> <span class="pre">presencia</span> <span class="pre">de</span> <span class="pre">hojas</span> <span class="pre">puras</span> <span class="pre">significa</span> <span class="pre">que</span> <span class="pre">un</span> <span class="pre">árbol</span> <span class="pre">es</span> <span class="pre">100%</span> <span class="pre">preciso</span> <span class="pre">en</span> <span class="pre">el</span> <span class="pre">conjunto</span> <span class="pre">de</span> <span class="pre">entrenamiento</span></code>; cada punto de datos del conjunto de entrenamiento está en una hoja que tiene la clase mayoritaria correcta.</p></li>
 <li><p>Hay dos estrategias comunes para evitar el overfitting: <code class="docutils literal notranslate"><span class="pre">detener</span> <span class="pre">la</span> <span class="pre">creación</span> <span class="pre">del</span> <span class="pre">árbol</span> <span class="pre">antes</span> <span class="pre">de</span> <span class="pre">tiempo</span> <span class="pre">(también</span> <span class="pre">llamada</span> <span class="pre">prepoda),</span> <span class="pre">o</span> <span class="pre">construir</span> <span class="pre">el</span> <span class="pre">árbol,</span> <span class="pre">pero</span> <span class="pre">luego</span> <span class="pre">eliminar</span> <span class="pre">o</span> <span class="pre">colapsar</span> <span class="pre">nodos</span> <span class="pre">que</span> <span class="pre">contienen</span> <span class="pre">poca</span> <span class="pre">información</span> <span class="pre">(también</span> <span class="pre">llamada</span> <span class="pre">poda</span> <span class="pre">posterior</span> <span class="pre">o</span> <span class="pre">simplemente</span> <span class="pre">poda)</span></code>. Los posibles criterios para la <code class="docutils literal notranslate"><span class="pre">prepoda</span></code> incluyen la <code class="docutils literal notranslate"><span class="pre">limitación</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">profundidad</span> <span class="pre">máxima</span> <span class="pre">del</span> <span class="pre">árbol,</span> <span class="pre">limitar</span> <span class="pre">el</span> <span class="pre">número</span> <span class="pre">máximo</span> <span class="pre">de</span> <span class="pre">hojas,</span> <span class="pre">o</span> <span class="pre">exigir</span> <span class="pre">un</span> <span class="pre">número</span> <span class="pre">mínimo</span> <span class="pre">de</span> <span class="pre">puntos</span> <span class="pre">en</span> <span class="pre">un</span> <span class="pre">nodo</span> <span class="pre">para</span> <span class="pre">seguir</span> <span class="pre">dividiéndolo</span></code>.</p></li>
@@ -1053,7 +1038,7 @@ Accuracy on test set: 0.951
 </div>
 </section>
 <section id="analisis-de-los-arboles-de-decision">
-<h2>Análisis de los árboles de decisión<a class="headerlink" href="#analisis-de-los-arboles-de-decision" title="Permalink to this heading">#</a></h2>
+<h2>Análisis de los árboles de decisión<a class="headerlink" href="#analisis-de-los-arboles-de-decision" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Podemos visualizar un árbol de decisión utilizando la función <code class="docutils literal notranslate"><span class="pre">export_graphviz</span></code> del módulo <code class="docutils literal notranslate"><span class="pre">tree</span></code>. Esta función escribe un archivo en el formato <code class="docutils literal notranslate"><span class="pre">.dot</span></code> de archivo de texto para almacenar gráficos. Establecemos una opción para colorear los nodos, para reflejar la clase mayoritaria en cada nodo y pasamos los nombres de las clases y las características para que el árbol pueda ser etiquetado correctamente. El argumento <code class="docutils literal notranslate"><span class="pre">impurity</span></code> está relacionado con la probabilidad de que clasifiquemos incorrectamente un nuevo punto de datos de forma incorrecta, normalmente calculada mediante la métrica de entropia <code class="docutils literal notranslate"><span class="pre">giny</span></code> la cual se aborda teóricamente en la sección anterior.</p></li>
 </ul>
@@ -1110,7 +1095,7 @@ Accuracy on test set: 0.951
 </ul>
 </section>
 <section id="caracteristicas-importantes-en-los-arboles">
-<h2>Características importantes en los árboles<a class="headerlink" href="#caracteristicas-importantes-en-los-arboles" title="Permalink to this heading">#</a></h2>
+<h2>Características importantes en los árboles<a class="headerlink" href="#caracteristicas-importantes-en-los-arboles" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>En lugar de mirar todo el árbol, lo que puede ser agotador, hay algunas <code class="docutils literal notranslate"><span class="pre">propiedades</span> <span class="pre">útiles</span> <span class="pre">que</span> <span class="pre">podemos</span> <span class="pre">derivar</span> <span class="pre">para</span> <span class="pre">resumir</span> <span class="pre">el</span> <span class="pre">funcionamiento</span> <span class="pre">del</span> <span class="pre">árbol</span></code>. El resumen más utilizado es el de las <code class="docutils literal notranslate"><span class="pre">características</span> <span class="pre">importantes,</span> <span class="pre">que</span> <span class="pre">califica</span> <span class="pre">la</span> <span class="pre">importancia</span> <span class="pre">de</span> <span class="pre">cada</span> <span class="pre">característica</span> <span class="pre">para</span> <span class="pre">la</span> <span class="pre">decisión</span> <span class="pre">que</span> <span class="pre">toma</span> <span class="pre">el</span> <span class="pre">árbol</span></code>. Es un número entre 0 y 1 para cada característica, donde 0 significa “no se utiliza en absoluto” y 1 significa “predice perfectamente el objetivo”. Las características siempre suman 1</p></li>
 </ul>
@@ -1286,7 +1271,7 @@ Accuracy on test set: 0.951
 </ul>
 </section>
 <section id="ensamble-de-arboles-de-decision">
-<h2>Ensamble de árboles de decisión<a class="headerlink" href="#ensamble-de-arboles-de-decision" title="Permalink to this heading">#</a></h2>
+<h2>Ensamble de árboles de decisión<a class="headerlink" href="#ensamble-de-arboles-de-decision" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">Los</span> <span class="pre">ensambles</span> <span class="pre">son</span> <span class="pre">métodos</span> <span class="pre">que</span> <span class="pre">combinan</span> <span class="pre">múltiples</span> <span class="pre">modelos</span> <span class="pre">de</span> <span class="pre">aprendizaje</span> <span class="pre">automático</span> <span class="pre">para</span> <span class="pre">crear</span> <span class="pre">modelos</span> <span class="pre">más</span> <span class="pre">potentes</span></code>. Hay muchos modelos en la literatura de aprendizaje automático que pertenecen a esta categoría, pero hay dos modelos de ensamble que han demostrado su eficacia en una amplia gama de conjuntos de datos de clasificación y regresión, ambos utilizan árboles de decisión como bloques de construcción: los <code class="docutils literal notranslate"><span class="pre">random</span> <span class="pre">forest</span></code> y los <code class="docutils literal notranslate"><span class="pre">gradient</span> <span class="pre">boosted</span> <span class="pre">decision</span> <span class="pre">trees.</span></code></p></li>
 </ul>
@@ -1544,11 +1529,10 @@ Accuracy on test set: 0.958
 
               
               
-                <footer class="bd-footer-article">
+              
+              
+                <footer class="prev-next-footer">
                   
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="bayes_model.html"
@@ -1568,10 +1552,7 @@ Accuracy on test set: 0.958
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -1579,6 +1560,7 @@ Accuracy on test set: 0.958
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -1616,16 +1598,17 @@ Accuracy on test set: 0.958
   <div class="footer-item">
     
 <p class="component-author">
-By Lihki Rubio PhD in Mathematical Engineering
+By Lihki Rubio, Ph.D.
 </p>
 
   </div>
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
-      © Copyright Department of Mathematics and Statistics.
+      © Copyright 2023.
       <br/>
     
   </p>
@@ -1638,6 +1621,9 @@ By Lihki Rubio PhD in Mathematical Engineering
   
   <div class="footer-item">
     
+<div class="extra_footer">
+  <p>Lihki Rubio, Ph.D. All rights reserved.</p>
+</div>
   </div>
   
 </div>
@@ -1649,8 +1635,8 @@ By Lihki Rubio PhD in Mathematical Engineering
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>

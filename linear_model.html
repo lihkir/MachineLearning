@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Modelos lineales &#8212; Machine Learning</title>
   
@@ -19,53 +18,54 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=ca93fcec" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=530fe47d" />
+    <link rel="stylesheet" type="text/css" href="_static/.ipynb_checkpoints/custom-checkpoint.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'linear_model';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/custom.js?v=14184634"></script>
+    <script src="_static/.ipynb_checkpoints/custom-checkpoint.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Clasificadores Naive Bayes" href="bayes_model.html" />
@@ -79,7 +79,15 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -114,11 +122,14 @@ const thebe_selector_output = ".output, .cell_output"
 </form></div>
   </div>
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -133,9 +144,11 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="intro.html">
+  
   
   
   
@@ -145,18 +158,29 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="_static/logo-uninorte.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="_static/logo-uninorte.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="_static/fotolihki.jpg" class="logo__image only-light" alt="Machine Learning - Home"/>
+    <script>document.write(`<img src="_static/fotolihki.jpg" class="logo__image only-dark" alt="Machine Learning - Home"/>`);</script>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Machine Learning
+                    Profesor: Dr. Lihki Rubio
                 </a>
             </li>
         </ul>
@@ -215,53 +239,6 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="header-article-item">
 
 <div class="article-header-buttons">
-
-
-
-
-
-<div class="dropdown dropdown-source-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
-    <i class="fab fa-github"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
-   class="btn btn-sm btn-source-repository-button dropdown-item"
-   title="Source repository"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="btn__text-container">Repository</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Flinear_model.html&body=Your%20issue%20content%20here." target="_blank"
-   class="btn btn-sm btn-source-issues-button dropdown-item"
-   title="Open an issue"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="btn__text-container">Open issue</span>
-</a>
-</li>
-      
-  </ul>
-</div>
-
 
 
 
@@ -327,20 +304,22 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -391,19 +370,19 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="modelos-lineales">
-<h1>Modelos lineales<a class="headerlink" href="#modelos-lineales" title="Permalink to this heading">#</a></h1>
+<h1>Modelos lineales<a class="headerlink" href="#modelos-lineales" title="Link to this heading">#</a></h1>
 <ul class="simple">
 <li><p>Los <code class="docutils literal notranslate"><span class="pre">modelos</span> <span class="pre">lineales</span></code> son una clase de modelos que se utilizan ampliamente en la práctica y se han estudiado mucho en las últimas décadas, con raíces que se remontan a más de cien años. Los <code class="docutils literal notranslate"><span class="pre">modelos</span> <span class="pre">lineales</span></code> hacen una <code class="docutils literal notranslate"><span class="pre">predicción</span> <span class="pre">utilizando</span> <span class="pre">una</span> <span class="pre">función</span> <span class="pre">lineal</span> <span class="pre">de</span> <span class="pre">las</span> <span class="pre">características</span> <span class="pre">de</span> <span class="pre">entrada</span></code>, que explicaremos en breve.</p></li>
 </ul>
 <section id="modelo-de-regresion-lineal">
-<h2>Modelo de regresión lineal<a class="headerlink" href="#modelo-de-regresion-lineal" title="Permalink to this heading">#</a></h2>
+<h2>Modelo de regresión lineal<a class="headerlink" href="#modelo-de-regresion-lineal" title="Link to this heading">#</a></h2>
 <p><strong><code class="docutils literal notranslate"><span class="pre">Formulación</span></code></strong></p>
 <p>El modelo</p>
 <div class="math notranslate nohighlight" id="equation-linear-reg">
-<span class="eqno">(5)<a class="headerlink" href="#equation-linear-reg" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(5)<a class="headerlink" href="#equation-linear-reg" title="Link to this equation">#</a></span>\[
 \boldsymbol{y}=\boldsymbol{X}\boldsymbol{\beta}+\boldsymbol{\varepsilon},
 \]</div>
 <p>se denomina, <code class="docutils literal notranslate"><span class="pre">modelo</span> <span class="pre">de</span> <span class="pre">regresión</span> <span class="pre">lineal</span></code> clásico, si se cumplen los siguientes supuestos:</p>
@@ -415,7 +394,7 @@ document.write(`
 <li><p>El <code class="docutils literal notranslate"><span class="pre">modelo</span> <span class="pre">de</span> <span class="pre">regresión</span> <span class="pre">lineal</span></code> <a class="reference internal" href="#equation-linear-reg">(5)</a> puede escribirse en la siguiente forma</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-linear-reg-mat">
-<span class="eqno">(6)<a class="headerlink" href="#equation-linear-reg-mat" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(6)<a class="headerlink" href="#equation-linear-reg-mat" title="Link to this equation">#</a></span>\[\begin{split}
 \begin{pmatrix}
 y_{1}\\
 y_{2}\\
@@ -492,7 +471,7 @@ y_{n}
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>w[0]: 0.393906  b: -0.031804
 </pre></div>
 </div>
-<img alt="_images/3a56db647f064837c6e7d69b4183eb9119494200a2a63d0fd617215dc73dca0e.png" src="_images/3a56db647f064837c6e7d69b4183eb9119494200a2a63d0fd617215dc73dca0e.png" />
+<img alt="_images/a8410b8c3495ed199573c9f331e8da7d4b878b233eb2be2c9c6897437a0cc4e1.png" src="_images/a8410b8c3495ed199573c9f331e8da7d4b878b233eb2be2c9c6897437a0cc4e1.png" />
 </div>
 </div>
 <ul class="simple">
@@ -509,7 +488,7 @@ y_{n}
 </div>
 </section>
 <section id="minimos-cuadrados-ordinarios">
-<h2>Mínimos Cuadrados Ordinarios<a class="headerlink" href="#minimos-cuadrados-ordinarios" title="Permalink to this heading">#</a></h2>
+<h2>Mínimos Cuadrados Ordinarios<a class="headerlink" href="#minimos-cuadrados-ordinarios" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">La</span> <span class="pre">regresión</span> <span class="pre">lineal,</span> <span class="pre">o</span> <span class="pre">mínimos</span> <span class="pre">cuadrados</span> <span class="pre">ordinarios</span> <span class="pre">(Ordinary</span> <span class="pre">Least</span> <span class="pre">Squares</span> <span class="pre">(OLS))</span></code>, es el modelo lineal <code class="docutils literal notranslate"><span class="pre">más</span> <span class="pre">sencillo</span> <span class="pre">y</span> <span class="pre">clásico</span> <span class="pre">para</span> <span class="pre">la</span> <span class="pre">regresión</span></code>. La regresión lineal <code class="docutils literal notranslate"><span class="pre">encuentra</span> <span class="pre">el</span> <span class="pre">vector</span> <span class="pre">de</span> <span class="pre">parámetros</span></code> <span class="math notranslate nohighlight">\(\boldsymbol{\hat{\beta}}\)</span> <code class="docutils literal notranslate"><span class="pre">que</span> <span class="pre">minimiza</span> <span class="pre">el</span> <span class="pre">error</span> <span class="pre">cuadrático</span> <span class="pre">medio</span> <span class="pre">entre</span> <span class="pre">las</span> <span class="pre">predicciones</span> <span class="pre">y</span> <span class="pre">los</span> <span class="pre">verdaderos</span> <span class="pre">objetivos</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">regresión</span></code>, <span class="math notranslate nohighlight">\(y\)</span>, <code class="docutils literal notranslate"><span class="pre">en</span> <span class="pre">el</span> <span class="pre">conjunto</span> <span class="pre">de</span> <span class="pre">entrenamiento</span></code>.</p></li>
 <li><p>El error cuadrático medio es la suma de las diferencias al cuadrado entre las predicciones y los valores reales. La regresión lineal no tiene parámetros, lo cual es una ventaja, pero, <code class="docutils literal notranslate"><span class="pre">no</span> <span class="pre">tiene</span> <span class="pre">forma</span> <span class="pre">de</span> <span class="pre">controlar</span> <span class="pre">la</span> <span class="pre">complejidad</span> <span class="pre">del</span> <span class="pre">modelo</span></code>.</p></li>
@@ -591,15 +570,16 @@ Test set score: 0.66
 </ul>
 </section>
 <section id="aplicacion-regresion-ridge-y-ols">
-<h2>Aplicación: Regresión Ridge y OLS<a class="headerlink" href="#aplicacion-regresion-ridge-y-ols" title="Permalink to this heading">#</a></h2>
+<h2>Aplicación: Regresión Ridge y OLS<a class="headerlink" href="#aplicacion-regresion-ridge-y-ols" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Veamos cómo se comporta <code class="docutils literal notranslate"><span class="pre">LinearRegression</span></code> en un conjunto de datos más complejo, como el conjunto de datos de <code class="docutils literal notranslate"><span class="pre">viviendas</span> <span class="pre">de</span> <span class="pre">Boston</span></code>. Recordemos que este conjunto de datos tiene <code class="docutils literal notranslate"><span class="pre">506</span> <span class="pre">muestras</span> <span class="pre">y</span> <span class="pre">105</span> <span class="pre">características</span></code> derivadas. En primer lugar, <code class="docutils literal notranslate"><span class="pre">cargamos</span> <span class="pre">el</span> <span class="pre">conjunto</span> <span class="pre">de</span> <span class="pre">datos</span></code> y lo <code class="docutils literal notranslate"><span class="pre">dividimos</span> <span class="pre">en</span> <span class="pre">un</span> <span class="pre">conjunto</span> <span class="pre">de</span> <span class="pre">entrenamiento</span> <span class="pre">y</span> <span class="pre">otro</span> <span class="pre">de</span> <span class="pre">prueba</span></code>. A continuación, construimos el modelo de regresión lineal como antes. Iniciemos realizando un <code class="docutils literal notranslate"><span class="pre">análisis</span> <span class="pre">exploratorio</span> <span class="pre">de</span> <span class="pre">datos</span></code>.</p></li>
 </ul>
 <figure class="align-center" id="boston-houses-ds-numref">
-<a class="reference internal image-reference" href="_images/boston_houses_ds.jpeg"><img alt="_images/boston_houses_ds.jpeg" src="_images/boston_houses_ds.jpeg" style="width: 672.0px; height: 448.7px;" /></a>
+<a class="reference internal image-reference" href="_images/boston_houses_ds.jpeg"><img alt="_images/boston_houses_ds.jpeg" src="_images/boston_houses_ds.jpeg" style="width: 672.0px; height: 448.7px;" />
+</a>
 </figure>
 <section id="analisis-exploratorio-de-datos">
-<h3>Análisis Exploratorio de Datos<a class="headerlink" href="#analisis-exploratorio-de-datos" title="Permalink to this heading">#</a></h3>
+<h3>Análisis Exploratorio de Datos<a class="headerlink" href="#analisis-exploratorio-de-datos" title="Link to this heading">#</a></h3>
 <p><strong><code class="docutils literal notranslate"><span class="pre">1.</span> <span class="pre">Importar</span> <span class="pre">librerías</span> <span class="pre">PythonImportar</span> <span class="pre">librerías</span> <span class="pre">Python</span></code></strong></p>
 <ul class="simple">
 <li><p>Se importan las <code class="docutils literal notranslate"><span class="pre">librerías</span> <span class="pre">esenciales</span></code> para facilitar el análisis que abarca la <code class="docutils literal notranslate"><span class="pre">carga</span> <span class="pre">de</span> <span class="pre">datos,</span> <span class="pre">la</span> <span class="pre">evaluación</span> <span class="pre">estadística,</span> <span class="pre">la</span> <span class="pre">visualización,</span> <span class="pre">la</span> <span class="pre">transformación</span> <span class="pre">de</span> <span class="pre">datos,</span> <span class="pre">la</span> <span class="pre">fusión</span> <span class="pre">y</span> <span class="pre">la</span> <span class="pre">unión</span></code></p></li>
@@ -1495,18 +1475,18 @@ memory usage: 67.2+ KB
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/07c71a28aa1d5c34eefa485334b47e56e374d60ab819ae912bb7ce822cb35677.png" src="_images/07c71a28aa1d5c34eefa485334b47e56e374d60ab819ae912bb7ce822cb35677.png" />
-<img alt="_images/71f0989724c53c5672bf26c2f9b119e4ba54b2d4ba9fb9f87165ae4329f69594.png" src="_images/71f0989724c53c5672bf26c2f9b119e4ba54b2d4ba9fb9f87165ae4329f69594.png" />
-<img alt="_images/eb874e57eede70be76a7ea764fc657ff30793dd06cb5c8be71ab7a6dc92f182f.png" src="_images/eb874e57eede70be76a7ea764fc657ff30793dd06cb5c8be71ab7a6dc92f182f.png" />
-<img alt="_images/195349ed1a4e1e7a2c5a4d1733af34016808ef0693e7e5bf1157b7f912635f4d.png" src="_images/195349ed1a4e1e7a2c5a4d1733af34016808ef0693e7e5bf1157b7f912635f4d.png" />
-<img alt="_images/b815c9414d48ed24edc8bc6e857cac35ffafd2b924f9354469305a8a75e561d5.png" src="_images/b815c9414d48ed24edc8bc6e857cac35ffafd2b924f9354469305a8a75e561d5.png" />
-<img alt="_images/425eaa267037814b9df431a3b1c3b17019e2e9081f0ade58d3b730eab52d096d.png" src="_images/425eaa267037814b9df431a3b1c3b17019e2e9081f0ade58d3b730eab52d096d.png" />
-<img alt="_images/0cddea2a72866e9ad2d60e5c6f5365b15186bb73954c5aa7c0d901acf66958ef.png" src="_images/0cddea2a72866e9ad2d60e5c6f5365b15186bb73954c5aa7c0d901acf66958ef.png" />
-<img alt="_images/519e4a4b01159b37b98856415209320d9224d866d1aded6f743ea423cc3b5572.png" src="_images/519e4a4b01159b37b98856415209320d9224d866d1aded6f743ea423cc3b5572.png" />
-<img alt="_images/b9fcc95a3b08cf78e9192775e33b59299c0b98220a723b42759018fabb1abb1b.png" src="_images/b9fcc95a3b08cf78e9192775e33b59299c0b98220a723b42759018fabb1abb1b.png" />
-<img alt="_images/7c92b370bff43cb4b21d3c9f1b00a3e86a4f5ca1361294c9e194b046dac89d58.png" src="_images/7c92b370bff43cb4b21d3c9f1b00a3e86a4f5ca1361294c9e194b046dac89d58.png" />
-<img alt="_images/6d8e6e2ec2244062962176c81b26a9964cffbdeb676cdd84c96f72ac5a19ea7a.png" src="_images/6d8e6e2ec2244062962176c81b26a9964cffbdeb676cdd84c96f72ac5a19ea7a.png" />
-<img alt="_images/f5fda751b0e2ff71f793ce0764463007bd4c04a1098d3cc653758c8d38ac2760.png" src="_images/f5fda751b0e2ff71f793ce0764463007bd4c04a1098d3cc653758c8d38ac2760.png" />
+<img alt="_images/7d9089a71b775110add3ae1e071a4e5b98c2fc529a31caca1ac3c4be8adfb278.png" src="_images/7d9089a71b775110add3ae1e071a4e5b98c2fc529a31caca1ac3c4be8adfb278.png" />
+<img alt="_images/f44e65a3e299bf52318abf00f6e53cacda83c50ac19c15905e73c0162044c055.png" src="_images/f44e65a3e299bf52318abf00f6e53cacda83c50ac19c15905e73c0162044c055.png" />
+<img alt="_images/03c5d28a95e3deb8071eb86ecd1bb8a46cce34ee6936023ab50fcb337032d7f5.png" src="_images/03c5d28a95e3deb8071eb86ecd1bb8a46cce34ee6936023ab50fcb337032d7f5.png" />
+<img alt="_images/0a2b145b38bf759e63a474c751a87d8d4093def4ad097872b2bde7b6c7902cf4.png" src="_images/0a2b145b38bf759e63a474c751a87d8d4093def4ad097872b2bde7b6c7902cf4.png" />
+<img alt="_images/ab5f48c344845a1be540ef093668593e044d9e837ffa25aac867bb266f4a99c7.png" src="_images/ab5f48c344845a1be540ef093668593e044d9e837ffa25aac867bb266f4a99c7.png" />
+<img alt="_images/1d194cff0a5df4435518bbf8792af01240a94cdaf838416a408ec4ad735b492f.png" src="_images/1d194cff0a5df4435518bbf8792af01240a94cdaf838416a408ec4ad735b492f.png" />
+<img alt="_images/0334eb1f8e2d54cb6129e60025bcd195e1b20aca51a5a19f57c4040ebfb32fb5.png" src="_images/0334eb1f8e2d54cb6129e60025bcd195e1b20aca51a5a19f57c4040ebfb32fb5.png" />
+<img alt="_images/f710530799e5afdbb21ce0e033005afd18a6fd2103b89dc10c027053905f6d56.png" src="_images/f710530799e5afdbb21ce0e033005afd18a6fd2103b89dc10c027053905f6d56.png" />
+<img alt="_images/89ad47fe478f79e3b82b63bf435c512f5bb8035b87b32d266f1c4712f319d5a7.png" src="_images/89ad47fe478f79e3b82b63bf435c512f5bb8035b87b32d266f1c4712f319d5a7.png" />
+<img alt="_images/221b2775b2945462187cece9078d8ca2e554210e1b5f6990da1e5a02d7c00d04.png" src="_images/221b2775b2945462187cece9078d8ca2e554210e1b5f6990da1e5a02d7c00d04.png" />
+<img alt="_images/87d6ee0d05a218f78a1a11348604061dd4278a0e7a339198b15a903fc9124126.png" src="_images/87d6ee0d05a218f78a1a11348604061dd4278a0e7a339198b15a903fc9124126.png" />
+<img alt="_images/b8f3a583b65f1570c241df8cc6edcd7d4ff71fb50d721c577819678fbd8efe45.png" src="_images/b8f3a583b65f1570c241df8cc6edcd7d4ff71fb50d721c577819678fbd8efe45.png" />
 </div>
 </div>
 <ul class="simple">
@@ -1580,9 +1560,9 @@ Test set score: 0.61
 </section>
 </section>
 <section id="regresion-ridge">
-<h2>Regresión ridge<a class="headerlink" href="#regresion-ridge" title="Permalink to this heading">#</a></h2>
+<h2>Regresión ridge<a class="headerlink" href="#regresion-ridge" title="Link to this heading">#</a></h2>
 <section id="analisis">
-<h3>Análisis<a class="headerlink" href="#analisis" title="Permalink to this heading">#</a></h3>
+<h3>Análisis<a class="headerlink" href="#analisis" title="Link to this heading">#</a></h3>
 <div class="admonition-observacion admonition">
 <p class="admonition-title">Observación</p>
 <ul class="simple">
@@ -1595,7 +1575,7 @@ Test set score: 0.61
 <ul>
 <li><p>Consideremos el <code class="docutils literal notranslate"><span class="pre">modelo</span> <span class="pre">de</span> <span class="pre">regresión</span> <span class="pre">lineal</span></code></p>
 <div class="math notranslate nohighlight" id="equation-linear-model-comp">
-<span class="eqno">(7)<a class="headerlink" href="#equation-linear-model-comp" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(7)<a class="headerlink" href="#equation-linear-model-comp" title="Link to this equation">#</a></span>\[
     y_{i}=\beta_{0}+\beta_{1}\cdot x_{i1}+\beta_{2}\cdot x_{i2}+\cdots+\beta_{p}\cdot x_{ip}+\varepsilon_{i},~i = 1,2,\dots, n,
     \]</div>
 <p>basado en los datos observados <span class="math notranslate nohighlight">\(\{(y_{i}, x_{i1}, x_{i2},\dots, x_{ip}):~i=1,2,\dots,n\}\)</span> para la variable respuesta <span class="math notranslate nohighlight">\(y\)</span> y <span class="math notranslate nohighlight">\(p\)</span> variables predictoras <span class="math notranslate nohighlight">\(\boldsymbol{x}=(x_{1}, x_{2},\dots,x_{p})\)</span>. La <code class="docutils literal notranslate"><span class="pre">regresión</span> <span class="pre">ridge</span></code> propuesta por <code class="docutils literal notranslate"><span class="pre">Hoerl</span> <span class="pre">y</span> <span class="pre">Kennard</span> <span class="pre">(1970)</span></code> es un método para <code class="docutils literal notranslate"><span class="pre">evitar</span> <span class="pre">la</span> <span class="pre">inestabilidad</span> <span class="pre">de</span> <span class="pre">las</span> <span class="pre">estimaciones</span> <span class="pre">en</span> <span class="pre">los</span> <span class="pre">modelos</span> <span class="pre">de</span> <span class="pre">regresión</span> <span class="pre">lineal,</span> <span class="pre">causada</span> <span class="pre">por</span> <span class="pre">la</span> <span class="pre">multicolinealidad</span></code>, esto es, correlación alta entre más de dos variables predictoras.</p>
@@ -1611,11 +1591,11 @@ Test set score: 0.61
 </div>
 <p>En primer lugar, obtenemos la <code class="docutils literal notranslate"><span class="pre">media</span></code> <span class="math notranslate nohighlight">\(\bar x_{j}=n^{-1}\sum_{i=1}^{n}x_{ij}\)</span> y la <code class="docutils literal notranslate"><span class="pre">varianza</span></code> <span class="math notranslate nohighlight">\(s_{j}^2=n^{-1}\sum_{i=1}^{n}(x_{ij}-\bar x_{j})^{2}\)</span>, <span class="math notranslate nohighlight">\(j=1,2,\dots,p\)</span> de los datos para las variables predictoras y <code class="docutils literal notranslate"><span class="pre">estandaricemos</span></code> los datos de la siguiente manera</p>
 <div class="math notranslate nohighlight" id="equation-estand-ridge-reg">
-<span class="eqno">(8)<a class="headerlink" href="#equation-estand-ridge-reg" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(8)<a class="headerlink" href="#equation-estand-ridge-reg" title="Link to this equation">#</a></span>\[
 z_{ij}=\frac{x_{ij}-\bar x_{j}}{s_{j}},~i=1,2,\dots,n,~j=1,2,\dots,p.
 \]</div>
 <div class="dropdown admonition">
-<p class="admonition-title">¿Por qué estandarizar? </p>
+<p class="admonition-title">¿Por qué estandarizar?</p>
 <ul class="simple">
 <li><p>La <code class="docutils literal notranslate"><span class="pre">regresión</span> <span class="pre">ridge</span></code> regulariza la <code class="docutils literal notranslate"><span class="pre">regresión</span> <span class="pre">lineal</span></code> imponiendo una <code class="docutils literal notranslate"><span class="pre">penalización</span> <span class="pre">al</span> <span class="pre">tamaño</span> <span class="pre">de</span> <span class="pre">los</span> <span class="pre">coeficientes</span></code>. Así, los coeficientes se contraen hacia cero y entre sí. Cuando esto ocurre, si las <code class="docutils literal notranslate"><span class="pre">variables</span> <span class="pre">independientes</span> <span class="pre">no</span> <span class="pre">tienen</span> <span class="pre">la</span> <span class="pre">misma</span> <span class="pre">escala,</span> <span class="pre">la</span> <span class="pre">contracción</span> <span class="pre">no</span> <span class="pre">es</span> <span class="pre">justa</span></code>.</p></li>
 <li><p>Dos variables independientes con <code class="docutils literal notranslate"><span class="pre">diferentes</span> <span class="pre">escalas</span> <span class="pre">tendrán</span> <span class="pre">diferentes</span> <span class="pre">contribuciones</span> <span class="pre">a</span> <span class="pre">los</span> <span class="pre">términos</span> <span class="pre">penalizados</span></code>, porque el término penalizado es una suma de cuadrados de todos los coeficientes. Para evitar este tipo de problemas, muy a menudo, las <code class="docutils literal notranslate"><span class="pre">variables</span> <span class="pre">independientes</span> <span class="pre">se</span> <span class="pre">centran</span> <span class="pre">y</span> <span class="pre">se</span> <span class="pre">escalan</span></code> para que tengan varianza unitaria.</p></li>
@@ -1623,7 +1603,7 @@ z_{ij}=\frac{x_{ij}-\bar x_{j}}{s_{j}},~i=1,2,\dots,n,~j=1,2,\dots,p.
 </div>
 <p>El modelo de <code class="docutils literal notranslate"><span class="pre">regresión</span> <span class="pre">lineal</span> <span class="pre">basado</span> <span class="pre">en</span> <span class="pre">los</span> <span class="pre">datos</span> <span class="pre">estandarizados</span></code> puede expresarse entonces como</p>
 <div class="math notranslate nohighlight" id="equation-eq-reg-li-z">
-<span class="eqno">(9)<a class="headerlink" href="#equation-eq-reg-li-z" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(9)<a class="headerlink" href="#equation-eq-reg-li-z" title="Link to this equation">#</a></span>\[\begin{split}
 \begin{align*}
 y_{i} &amp;= \beta_{0} + \beta_{1}\bar x_{1} + \beta_{2}\bar x_{2} + \cdots + \beta_{p}\bar x_{p} + 
 \beta_{1}^{\star}z_{i1} + \beta_{2}^{\star}z_{i2} + \cdots + \beta_{p}^{\star}z_{ip} + \varepsilon_{i}\\
@@ -1632,7 +1612,7 @@ y_{i} &amp;= \beta_{0} + \beta_{1}\bar x_{1} + \beta_{2}\bar x_{2} + \cdots + \b
 \end{split}\]</div>
 <p>donde <span class="math notranslate nohighlight">\(\beta_{0}^{\star}=\beta_{0}+\beta_{1}\bar x_{1}+\beta_{2}\bar x_{2}+\cdots+\beta_{p}\bar x_{p}~\text{y}~\beta_{j}^{\star}=s_{j}\beta_{j}\)</span>. Por lo tanto, podemos expresar el <code class="docutils literal notranslate"><span class="pre">modelo</span> <span class="pre">de</span> <span class="pre">regresión</span> <span class="pre">lineal</span> <span class="pre">basados</span> <span class="pre">en</span> <span class="pre">los</span> <span class="pre">datos</span> <span class="pre">estandarizados</span></code> para la variable predictora como</p>
 <div class="math notranslate nohighlight" id="equation-reg-ridge-model">
-<span class="eqno">(10)<a class="headerlink" href="#equation-reg-ridge-model" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(10)<a class="headerlink" href="#equation-reg-ridge-model" title="Link to this equation">#</a></span>\[
 \boldsymbol{y}=\beta_{0}^{\star}\boldsymbol{1}+Z\boldsymbol{\beta}_{s}+\boldsymbol{\varepsilon},
 \]</div>
 <p>en <code class="docutils literal notranslate"><span class="pre">forma</span> <span class="pre">matricial</span></code></p>
@@ -1685,7 +1665,7 @@ z_{n1} &amp; z_{n2} &amp; \cdots &amp; z_{np}
 <p>donde <span class="math notranslate nohighlight">\(\boldsymbol{1}\)</span> es un vector <span class="math notranslate nohighlight">\(n\)</span>-dimensional de unos, <span class="math notranslate nohighlight">\(\boldsymbol{\beta}_{s}=(s_{1}\beta_{1}, s_{2}\beta_{2},\dots,s_{p}\beta_{p})^{T}\)</span>, y <span class="math notranslate nohighlight">\(Z\)</span> es una matriz de <span class="math notranslate nohighlight">\(n\times p\)</span> que contiene los datos estandarizados <span class="math notranslate nohighlight">\(z_{ij}=(x_{ij}-\bar x_{j})/s_{j},~ i=1,2,\dots,n; j=1,2,\dots,p\)</span> en su posición <span class="math notranslate nohighlight">\((i,j)\)</span>.</p>
 <p>El estimador <code class="docutils literal notranslate"><span class="pre">ridge</span></code> para el vector de coeficientes esta dado entonces por <code class="docutils literal notranslate"><span class="pre">minimización</span></code> de:</p>
 <div class="math notranslate nohighlight" id="equation-ridge-coeff-stand">
-<span class="eqno">(11)<a class="headerlink" href="#equation-ridge-coeff-stand" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(11)<a class="headerlink" href="#equation-ridge-coeff-stand" title="Link to this equation">#</a></span>\[
 S_{\lambda}(\beta_{0}^{\star}, \boldsymbol{\beta}_{s})=(\boldsymbol{y}-\beta_{0}^{\star}\boldsymbol{1}-Z\boldsymbol{\beta}_{s})^{T}(\boldsymbol{y}-\beta_{0}^{\star}\boldsymbol{1}-Z\boldsymbol{\beta}_{s})+\lambda\boldsymbol{\beta}_{s}^{T}\boldsymbol{\beta}_{s}
 \]</div>
 <p>donde el <code class="docutils literal notranslate"><span class="pre">termino</span> <span class="pre">de</span> <span class="pre">regularización</span></code> <span class="math notranslate nohighlight">\(L^2\)</span>: (<span class="math notranslate nohighlight">\(\lambda\boldsymbol{\beta}_{s}^{T}\boldsymbol{\beta}_{s}\)</span>) con <code class="docutils literal notranslate"><span class="pre">parámetro</span> <span class="pre">de</span> <span class="pre">regularización</span></code> <span class="math notranslate nohighlight">\(\lambda\)</span> ha sido agregado al <code class="docutils literal notranslate"><span class="pre">vector</span> <span class="pre">de</span> <span class="pre">coeficientes</span> <span class="pre">de</span> <span class="pre">regresión,</span> <span class="pre">excepto</span> <span class="pre">el</span> <span class="pre">intercepto</span></code>. Este término es conocido como <code class="docutils literal notranslate"><span class="pre">weight</span> <span class="pre">decay</span></code>. Veamos una simulación de la <code class="docutils literal notranslate"><span class="pre">regularización</span> <span class="pre">ridge</span></code> usando a la <a class="reference external" href="https://es.wikipedia.org/wiki/Matriz_de_Hilbert">matriz de Hilbert</a> como input y un <code class="docutils literal notranslate"><span class="pre">vector</span> <span class="pre">unitario</span></code>, como output.</p>
@@ -1744,7 +1724,7 @@ S_{\lambda}(\beta_{0}^{\star}, \boldsymbol{\beta}_{s})=\boldsymbol{y}^{T}\boldsy
 \]</div>
 <p>Diferenciando con respecto a <span class="math notranslate nohighlight">\(\beta_{0}^{\star}\)</span> y <span class="math notranslate nohighlight">\(\boldsymbol{\beta}_{s}\)</span> para resolver el <code class="docutils literal notranslate"><span class="pre">problema</span> <span class="pre">de</span> <span class="pre">minimización</span></code>, obtenemos las siguientes ecuaciones:</p>
 <div class="math notranslate nohighlight" id="equation-eq-betaz">
-<span class="eqno">(12)<a class="headerlink" href="#equation-eq-betaz" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(12)<a class="headerlink" href="#equation-eq-betaz" title="Link to this equation">#</a></span>\[
 \begin{align*}
 \frac{\partial S_{\lambda}(\beta_{0}^{\star}, \boldsymbol{\beta}_{s})}{\partial\beta_{0}^{\star}}&amp;=-2n\overline{y}+2n\beta_{0}^{\star}=0
 \end{align*}
@@ -1791,7 +1771,7 @@ x_{p}
 \end{split}\]</div>
 <p>Por lo tanto, para <span class="math notranslate nohighlight">\(k=1,2,\dots,p\)</span>, <code class="docutils literal notranslate"><span class="pre">bajo</span> <span class="pre">el</span> <span class="pre">supuesto</span> <span class="pre">de</span> <span class="pre">simetría</span></code> para <span class="math notranslate nohighlight">\(A\)</span> se tiene que</p>
 <div class="math notranslate nohighlight" id="equation-quadratic-form-dedrivate">
-<span class="eqno">(13)<a class="headerlink" href="#equation-quadratic-form-dedrivate" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(13)<a class="headerlink" href="#equation-quadratic-form-dedrivate" title="Link to this equation">#</a></span>\[\begin{split}
 \begin{align*}
 \frac{\partial(\boldsymbol{x}^{T}A\boldsymbol{x})}{\partial\boldsymbol{x}}&amp;=
 \begin{pmatrix}
@@ -1807,7 +1787,7 @@ x_{p}
 \end{split}\]</div>
 <p><code class="docutils literal notranslate"><span class="pre">Nótese</span> <span class="pre">que</span></code> <span class="math notranslate nohighlight">\(A:=Z^{T}Z\)</span>, <code class="docutils literal notranslate"><span class="pre">es</span> <span class="pre">simétrica</span></code>, en efecto: <span class="math notranslate nohighlight">\(A^{T}=(Z^{T}Z)^{T}=Z^{T}(Z^{T})^{T}=Z^{T}Z=A\)</span>, entonces <span class="math notranslate nohighlight">\(\partial_{\boldsymbol{\beta}_{s}}(\boldsymbol{\beta}_{s}^{T}Z^{T}Z\boldsymbol{\beta}_{s})=2Z^{T}Z\boldsymbol{\beta}_{s}\)</span>, por lo tanto</p>
 <div class="math notranslate nohighlight" id="equation-eq-betas">
-<span class="eqno">(14)<a class="headerlink" href="#equation-eq-betas" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(14)<a class="headerlink" href="#equation-eq-betas" title="Link to this equation">#</a></span>\[
 \begin{align*}
 \frac{\partial S_{\lambda}(\beta_{0}^{\star},\boldsymbol{\beta}_{s})}{\partial\boldsymbol{\beta}_{s}}=-2Z^{T}\boldsymbol{y}+2Z^{T}Z\boldsymbol{\beta}_{s}+2\lambda\boldsymbol{\beta}_{s}=\boldsymbol{0}
 \end{align*}
@@ -1830,7 +1810,7 @@ S_{\lambda}(\boldsymbol{\beta}_{s})=(\boldsymbol{y}-Z\boldsymbol{\beta}_{s})^{T}
 <p><code class="docutils literal notranslate"><span class="pre">En</span> <span class="pre">efecto</span></code>, para obtener <code class="docutils literal notranslate"><span class="pre">estimación</span> <span class="pre">ridge</span> <span class="pre">del</span> <span class="pre">vector</span> <span class="pre">de</span> <span class="pre">coeficientes</span></code> <span class="math notranslate nohighlight">\(\boldsymbol{\beta}_{s}=(\hat{\beta}_{1}, \hat{\beta}_{2},\dots, \hat{\beta}_{p})\)</span>, primero, nótese que al reemplazar <span class="math notranslate nohighlight">\(\hat{\beta}_{0}^{\star}=\overline{y}\)</span> en Eq. <a class="reference internal" href="#equation-reg-ridge-model">(10)</a> se tiene que <span class="math notranslate nohighlight">\(y=\overline{y}\boldsymbol{1}+Z\boldsymbol{\beta}_{s}+\varepsilon\)</span>, entonces <span class="math notranslate nohighlight">\(\boldsymbol{y}-\overline{y}\boldsymbol{1}\)</span> esta <code class="docutils literal notranslate"><span class="pre">centrando</span> <span class="pre">los</span> <span class="pre">datos</span> <span class="pre">en</span> <span class="pre">relación</span> <span class="pre">a</span> <span class="pre">la</span> <span class="pre">variable</span> <span class="pre">respuesta</span></code>.</p>
 <p><code class="docutils literal notranslate"><span class="pre">Estandarizando</span> <span class="pre">las</span> <span class="pre">variables</span> <span class="pre">predictoras</span> <span class="pre">y</span> <span class="pre">respuesta</span></code> en nuestro modelo inicial Ecuación <a class="reference internal" href="#equation-linear-model-comp">(7)</a>, mediante <span class="math notranslate nohighlight">\(y_{i}-\overline{y}\)</span> y <span class="math notranslate nohighlight">\((x_{ij}-\bar x_{j})/s_{j}\)</span> se tienen las siguientes igualdades, <code class="docutils literal notranslate"><span class="pre">verifiquelas</span></code></p>
 <div class="math notranslate nohighlight" id="equation-ridge-normalization">
-<span class="eqno">(15)<a class="headerlink" href="#equation-ridge-normalization" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(15)<a class="headerlink" href="#equation-ridge-normalization" title="Link to this equation">#</a></span>\[
 \sum_{i=1}^{n}y_{i}=0,\quad\sum_{i=1}^{n}x_{ij}=0,~j=1,2,\dots,p,\quad\sum_{i=1}^{n}x_{ij}^{2}=n
 \]</div>
 <p>Entonces,</p>
@@ -1853,7 +1833,7 @@ y=X\boldsymbol{\beta}+\boldsymbol{\varepsilon},
 <p class="admonition-title">Propiedades del estimador ridge</p>
 <p>El <code class="docutils literal notranslate"><span class="pre">estimador</span> <span class="pre">ridge</span></code> satisface las siguientes propiedades:</p>
 <div class="math notranslate nohighlight" id="equation-ridge-props">
-<span class="eqno">(16)<a class="headerlink" href="#equation-ridge-props" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(16)<a class="headerlink" href="#equation-ridge-props" title="Link to this equation">#</a></span>\[\begin{split}
 \begin{align}
 \text{E}(\hat{\boldsymbol{\beta}}_{R})&amp;=(X^{T}X+\lambda\boldsymbol{I}_{p})^{-1}X^{T}X\boldsymbol{\beta}\\
 \text{Cov}(\boldsymbol{\beta}_{R})&amp;=\sigma^{2}(X^{T}X+\lambda\boldsymbol{I}_{p})^{-1}X^{T}X(X^{T}X+\lambda\boldsymbol{I}_{p})^{-1}\\
@@ -1869,7 +1849,7 @@ y=X\boldsymbol{\beta}+\boldsymbol{\varepsilon},
 </div>
 </section>
 <section id="implementacion">
-<h3>Implementación<a class="headerlink" href="#implementacion" title="Permalink to this heading">#</a></h3>
+<h3>Implementación<a class="headerlink" href="#implementacion" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>La <code class="docutils literal notranslate"><span class="pre">regresión</span> <span class="pre">ridge</span></code> se implementa en <code class="docutils literal notranslate"><span class="pre">linear_model.Ridge</span></code>. Veamos qué tal lo hace en el conjunto de datos ampliado de <code class="docutils literal notranslate"><span class="pre">Boston</span> <span class="pre">Housing</span></code>.</p></li>
 </ul>
@@ -1996,7 +1976,7 @@ Test set score: 0.77
 </section>
 </section>
 <section id="lasso">
-<h2>Lasso<a class="headerlink" href="#lasso" title="Permalink to this heading">#</a></h2>
+<h2>Lasso<a class="headerlink" href="#lasso" title="Link to this heading">#</a></h2>
 <p><strong><code class="docutils literal notranslate"><span class="pre">Observación</span></code></strong></p>
 <ul class="simple">
 <li><p>Una alternativa a la <code class="docutils literal notranslate"><span class="pre">regresión</span> <span class="pre">ridge</span></code> para regularizar la <code class="docutils literal notranslate"><span class="pre">regresión</span> <span class="pre">lineal</span></code> es la <code class="docutils literal notranslate"><span class="pre">regresión</span> <span class="pre">lasso</span></code>. Al igual que con la regresión <code class="docutils literal notranslate"><span class="pre">ridge</span></code>, el uso de <code class="docutils literal notranslate"><span class="pre">lasso</span></code> también <code class="docutils literal notranslate"><span class="pre">restringe</span> <span class="pre">los</span> <span class="pre">coeficientes</span> <span class="pre">para</span> <span class="pre">que</span> <span class="pre">sean</span> <span class="pre">cercanos</span> <span class="pre">a</span> <span class="pre">cero,</span> <span class="pre">pero</span> <span class="pre">de</span> <span class="pre">una</span> <span class="pre">forma</span> <span class="pre">ligeramente</span> <span class="pre">diferente,</span> <span class="pre">llamada</span> <span class="pre">regularización</span></code> <span class="math notranslate nohighlight">\(L^1\)</span>.</p></li>
@@ -2018,9 +1998,10 @@ S_{\lambda}(\boldsymbol{\beta})=(y-X\boldsymbol{\beta})^{T}(y-X\boldsymbol{\beta
 </ul>
 </div>
 <figure class="align-center" id="fig-ridge-lasso">
-<a class="reference internal image-reference" href="_images/ridge_lasso.png"><img alt="_images/ridge_lasso.png" src="_images/ridge_lasso.png" style="width: 618.75px; height: 377.7px;" /></a>
+<a class="reference internal image-reference" href="_images/ridge_lasso.png"><img alt="_images/ridge_lasso.png" src="_images/ridge_lasso.png" style="width: 618.75px; height: 377.7px;" />
+</a>
 <figcaption>
-<p><span class="caption-number">Fig. 6 </span><span class="caption-text">Estimación ridge (izquierda) y estimación lasso (derecha).</span><a class="headerlink" href="#fig-ridge-lasso" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 6 </span><span class="caption-text">Estimación ridge (izquierda) y estimación lasso (derecha).</span><a class="headerlink" href="#fig-ridge-lasso" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>La diferencia entre la estimación lasso y la estimación ridge puede demostrarse, para simplificar, para el caso de sólo dos variables predictoras <span class="math notranslate nohighlight">\(x_{1}\)</span> y <span class="math notranslate nohighlight">\(x_{2}\)</span>. <code class="docutils literal notranslate"><span class="pre">En</span> <span class="pre">la</span> <span class="pre">estimación</span> <span class="pre">ridge,</span> <span class="pre">la</span> <span class="pre">solución</span> <span class="pre">se</span> <span class="pre">basa</span> <span class="pre">en</span> <span class="pre">la</span> <span class="pre">restricción</span></code> <span class="math notranslate nohighlight">\(\beta_{1}^{2}+\beta_{2}^{2}\leq c_{1}\)</span> de minimizar</p>
@@ -2040,7 +2021,7 @@ S(\beta_{1}, \beta_{2})=\sum_{i=1}^{n}\left(y_{i}-\sum_{j=1}^{2}\beta_{j}x_{ij}\
 </div>
 </section>
 <section id="aplicacion-regresion-lasso">
-<h2>Aplicación: Regresión Lasso<a class="headerlink" href="#aplicacion-regresion-lasso" title="Permalink to this heading">#</a></h2>
+<h2>Aplicación: Regresión Lasso<a class="headerlink" href="#aplicacion-regresion-lasso" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Apliquemos <code class="docutils literal notranslate"><span class="pre">lasso</span></code> al conjunto de datos ampliado de <code class="docutils literal notranslate"><span class="pre">Boston</span> <span class="pre">Housing</span></code></p></li>
 </ul>
@@ -2148,12 +2129,12 @@ Number of features used: 96
 </ul>
 </section>
 <section id="modelos-lineales-para-clasificacion">
-<h2>Modelos lineales para clasificación<a class="headerlink" href="#modelos-lineales-para-clasificacion" title="Permalink to this heading">#</a></h2>
+<h2>Modelos lineales para clasificación<a class="headerlink" href="#modelos-lineales-para-clasificacion" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">Los</span> <span class="pre">modelos</span> <span class="pre">lineales</span> <span class="pre">también</span> <span class="pre">se</span> <span class="pre">utilizan</span> <span class="pre">ampliamente</span> <span class="pre">para</span> <span class="pre">la</span> <span class="pre">clasificación</span></code>. Veamos primero la <code class="docutils literal notranslate"><span class="pre">clasificación</span> <span class="pre">binaria</span></code>. En este caso, la predicción se realiza mediante la siguiente fórmula</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-linear-class">
-<span class="eqno">(17)<a class="headerlink" href="#equation-linear-class" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(17)<a class="headerlink" href="#equation-linear-class" title="Link to this equation">#</a></span>\[
 \hat{y}=\beta_{0}+\beta_{1}\cdot x_{1}+\beta_{2}\cdot x_{2}+\cdots+\beta_{p}\cdot x_{p}
 \]</div>
 <ul class="simple">
@@ -2202,7 +2183,7 @@ Number of features used: 96
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/508916006be05b74697bcd0caadaffdf256205846bccc84c9dc2aee0ed5812f9.png" src="_images/508916006be05b74697bcd0caadaffdf256205846bccc84c9dc2aee0ed5812f9.png" />
+<img alt="_images/a6e4c709c71bf7ddcf9337cc2134612d01b77ac4829d8daf01c32c5483eca2e4.png" src="_images/a6e4c709c71bf7ddcf9337cc2134612d01b77ac4829d8daf01c32c5483eca2e4.png" />
 </div>
 </div>
 <ul class="simple">
@@ -2282,7 +2263,7 @@ Test set score: 0.951
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Training set score: 0.960
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Training set score: 0.958
 Test set score: 0.958
 </pre></div>
 </div>
@@ -2326,7 +2307,7 @@ Test set score: 0.930
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/05ebde705c2710e39267f82d9458fb6b69fa207b9d8539f698774fcdbf6d793b.png" src="_images/05ebde705c2710e39267f82d9458fb6b69fa207b9d8539f698774fcdbf6d793b.png" />
+<img alt="_images/e35d06c0c4064f1468ae32a2a70dc9ea8257e050f69e231be5eb6853b35d70b5.png" src="_images/e35d06c0c4064f1468ae32a2a70dc9ea8257e050f69e231be5eb6853b35d70b5.png" />
 </div>
 </div>
 <ul class="simple">
@@ -2364,7 +2345,7 @@ Training accuracy of l1 logreg with C=100.000: 0.99
 Test accuracy of l1 logreg with C=100.000: 0.98
 </pre></div>
 </div>
-<img alt="_images/6f6bd1a32c69c7108c566b002beb43caa9229244e19aa4a93de2406b5a7407e6.png" src="_images/6f6bd1a32c69c7108c566b002beb43caa9229244e19aa4a93de2406b5a7407e6.png" />
+<img alt="_images/6878212c7efa02b6edf5c27a0107398f8821a372797b6335754b1139a1e5751a.png" src="_images/6878212c7efa02b6edf5c27a0107398f8821a372797b6335754b1139a1e5751a.png" />
 </div>
 </div>
 <ul class="simple">
@@ -2372,7 +2353,7 @@ Test accuracy of l1 logreg with C=100.000: 0.98
 </ul>
 </section>
 <section id="modelos-lineales-para-la-clasificacion-multiclase">
-<h2>Modelos lineales para la clasificación multiclase<a class="headerlink" href="#modelos-lineales-para-la-clasificacion-multiclase" title="Permalink to this heading">#</a></h2>
+<h2>Modelos lineales para la clasificación multiclase<a class="headerlink" href="#modelos-lineales-para-la-clasificacion-multiclase" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Muchos modelos de clasificación lineal sólo sirven para la clasificación binaria y no se extienden de forma natural al caso multiclase (con la excepción de la <code class="docutils literal notranslate"><span class="pre">regresión</span> <span class="pre">logística</span></code>). Una técnica común para extender un algoritmo de clasificación binaria a un <code class="docutils literal notranslate"><span class="pre">algoritmo</span> <span class="pre">de</span> <span class="pre">clasificación</span> <span class="pre">multiclase</span></code> es el enfoque <code class="docutils literal notranslate"><span class="pre">one-vs.-rest</span></code>. En el enfoque <code class="docutils literal notranslate"><span class="pre">one-vs.-rest</span></code>, <code class="docutils literal notranslate"><span class="pre">se</span> <span class="pre">aprende</span> <span class="pre">un</span> <span class="pre">modelo</span> <span class="pre">binario</span> <span class="pre">para</span> <span class="pre">cada</span> <span class="pre">clase</span> <span class="pre">fija,</span> <span class="pre">el</span> <span class="pre">cual</span> <span class="pre">intenta</span> <span class="pre">separar</span> <span class="pre">esa</span> <span class="pre">clase</span> <span class="pre">de</span> <span class="pre">todas</span> <span class="pre">las</span> <span class="pre">demás,</span> <span class="pre">lo</span> <span class="pre">cual</span> <span class="pre">da</span> <span class="pre">lugar</span> <span class="pre">a</span> <span class="pre">tantos</span> <span class="pre">modelos</span> <span class="pre">binarios</span> <span class="pre">como</span> <span class="pre">clases</span> <span class="pre">exista</span></code>.</p></li>
 <li><p>Para hacer una predicción, se ejecutan todos los clasificadores binarios en un punto de prueba. <code class="docutils literal notranslate"><span class="pre">El</span> <span class="pre">clasificador</span> <span class="pre">que</span> <span class="pre">tenga</span> <span class="pre">la</span> <span class="pre">mayor</span> <span class="pre">puntuación</span> <span class="pre">en</span> <span class="pre">su</span> <span class="pre">clase</span> <span class="pre">&quot;gana&quot;,</span> <span class="pre">y</span> <span class="pre">esta</span> <span class="pre">etiqueta</span> <span class="pre">de</span> <span class="pre">clase</span> <span class="pre">se</span> <span class="pre">devuelve</span> <span class="pre">como</span> <span class="pre">predicción</span></code>. Al tener un clasificador binario por clase, se tiene un vector de coeficientes <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span> para cada clase. La clase para la que el resultado de la fórmula de clasificación dada aquí, es la más alta, es la etiqueta de clase asignada:</p></li>
@@ -2445,7 +2426,7 @@ Intercept shape:  (3,)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/b3fc909542e9daab34e489446af86a9ac474473a5558d00865f975833ee4ef6b.png" src="_images/b3fc909542e9daab34e489446af86a9ac474473a5558d00865f975833ee4ef6b.png" />
+<img alt="_images/1743eaa2545101e1de1e4adf71ec19d9f2d2892fdf14554d2423d390cbe50607.png" src="_images/1743eaa2545101e1de1e4adf71ec19d9f2d2892fdf14554d2423d390cbe50607.png" />
 </div>
 </div>
 <ul class="simple">
@@ -2470,7 +2451,7 @@ Intercept shape:  (3,)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/e707b6086af7bb86483c3a5daa2f82a299ea6cd5dee33c659a0c0dc9ac66e566.png" src="_images/e707b6086af7bb86483c3a5daa2f82a299ea6cd5dee33c659a0c0dc9ac66e566.png" />
+<img alt="_images/48e873066a8356c2159360a35207d2cd8cc8295e5be718caa0397c5c90bfb156.png" src="_images/48e873066a8356c2159360a35207d2cd8cc8295e5be718caa0397c5c90bfb156.png" />
 </div>
 </div>
 <div class="tip admonition">
@@ -2511,11 +2492,10 @@ Intercept shape:  (3,)
 
               
               
-                <footer class="bd-footer-article">
+              
+              
+                <footer class="prev-next-footer">
                   
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="knn_model.html"
@@ -2535,10 +2515,7 @@ Intercept shape:  (3,)
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -2546,6 +2523,7 @@ Intercept shape:  (3,)
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -2582,16 +2560,17 @@ Intercept shape:  (3,)
   <div class="footer-item">
     
 <p class="component-author">
-By Lihki Rubio PhD in Mathematical Engineering
+By Lihki Rubio, Ph.D.
 </p>
 
   </div>
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
-      © Copyright Department of Mathematics and Statistics.
+      © Copyright 2023.
       <br/>
     
   </p>
@@ -2604,6 +2583,9 @@ By Lihki Rubio PhD in Mathematical Engineering
   
   <div class="footer-item">
     
+<div class="extra_footer">
+  <p>Lihki Rubio, Ph.D. All rights reserved.</p>
+</div>
   </div>
   
 </div>
@@ -2615,8 +2597,8 @@ By Lihki Rubio PhD in Mathematical Engineering
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>

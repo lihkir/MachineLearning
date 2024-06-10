@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Análisis de Componentes Principales &#8212; Machine Learning</title>
   
@@ -19,53 +18,54 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=ca93fcec" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=530fe47d" />
+    <link rel="stylesheet" type="text/css" href="_static/.ipynb_checkpoints/custom-checkpoint.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'practical_pca';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/custom.js?v=14184634"></script>
+    <script src="_static/.ipynb_checkpoints/custom-checkpoint.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Evaluación de modelos" href="model_evaluation.html" />
@@ -79,7 +79,15 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -114,11 +122,14 @@ const thebe_selector_output = ".output, .cell_output"
 </form></div>
   </div>
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -133,9 +144,11 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="intro.html">
+  
   
   
   
@@ -145,18 +158,29 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="_static/logo-uninorte.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="_static/logo-uninorte.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="_static/fotolihki.jpg" class="logo__image only-light" alt="Machine Learning - Home"/>
+    <script>document.write(`<img src="_static/fotolihki.jpg" class="logo__image only-dark" alt="Machine Learning - Home"/>`);</script>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Machine Learning
+                    Profesor: Dr. Lihki Rubio
                 </a>
             </li>
         </ul>
@@ -215,53 +239,6 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="header-article-item">
 
 <div class="article-header-buttons">
-
-
-
-
-
-<div class="dropdown dropdown-source-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
-    <i class="fab fa-github"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
-   class="btn btn-sm btn-source-repository-button dropdown-item"
-   title="Source repository"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="btn__text-container">Repository</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fpractical_pca.html&body=Your%20issue%20content%20here." target="_blank"
-   class="btn btn-sm btn-source-issues-button dropdown-item"
-   title="Open an issue"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="btn__text-container">Open issue</span>
-</a>
-</li>
-      
-  </ul>
-</div>
-
 
 
 
@@ -327,20 +304,22 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -395,12 +374,12 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="analisis-de-componentes-principales">
-<h1>Análisis de Componentes Principales<a class="headerlink" href="#analisis-de-componentes-principales" title="Permalink to this heading">#</a></h1>
+<h1>Análisis de Componentes Principales<a class="headerlink" href="#analisis-de-componentes-principales" title="Link to this heading">#</a></h1>
 <section id="analisis">
-<h2>Análisis<a class="headerlink" href="#analisis" title="Permalink to this heading">#</a></h2>
+<h2>Análisis<a class="headerlink" href="#analisis" title="Link to this heading">#</a></h2>
 <div class="admonition-introduccion admonition">
 <p class="admonition-title">Introducción</p>
 <ul class="simple">
@@ -411,11 +390,12 @@ document.write(`
 </div>
 </section>
 <section id="concepto-basico">
-<h2>Concepto básico<a class="headerlink" href="#concepto-basico" title="Permalink to this heading">#</a></h2>
+<h2>Concepto básico<a class="headerlink" href="#concepto-basico" title="Link to this heading">#</a></h2>
 <figure class="align-center" id="pca-3projections-fig">
-<a class="reference internal image-reference" href="_images/pca_3projections.png"><img alt="_images/pca_3projections.png" src="_images/pca_3projections.png" style="width: 420.0px; height: 297.59999999999997px;" /></a>
+<a class="reference internal image-reference" href="_images/pca_3projections.png"><img alt="_images/pca_3projections.png" src="_images/pca_3projections.png" style="width: 420.0px; height: 297.59999999999997px;" />
+</a>
 <figcaption>
-<p><span class="caption-number">Fig. 68 </span><span class="caption-text">Proyección en tres ejes diferentes, (a), (b) y (c), y la dispersión de los datos. Fuente <span id="id1">[<a class="reference internal" href="biblio.html#id20" title="S. Konishi. Introduction to Multivariate Analysis: Linear and Nonlinear Modeling. Chapman &amp; Hall/CRC Texts in Statistical Science. Taylor &amp; Francis, 2014. ISBN 9781466567283. URL: https://books.google.com.co/books?id=fcuuAwAAQBAJ.">Konishi, 2014</a>]</span>.</span><a class="headerlink" href="#pca-3projections-fig" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 68 </span><span class="caption-text">Proyección en tres ejes diferentes, (a), (b) y (c), y la dispersión de los datos. Fuente <span id="id1">[<a class="reference internal" href="biblio.html#id20" title="S. Konishi. Introduction to Multivariate Analysis: Linear and Nonlinear Modeling. Chapman &amp; Hall/CRC Texts in Statistical Science. Taylor &amp; Francis, 2014. ISBN 9781466567283. URL: https://books.google.com.co/books?id=fcuuAwAAQBAJ.">Konishi, 2014</a>]</span>.</span><a class="headerlink" href="#pca-3projections-fig" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <ul>
@@ -446,7 +426,7 @@ document.write(`
 <li><p>Apliquemos lo mencionado en la anterior observación a datos bidimensionales. Denotamos los <span class="math notranslate nohighlight">\(n\)</span> <em><strong>datos observados bidimensionales</strong></em> <span class="math notranslate nohighlight">\(\boldsymbol{x}=(x_{1}, x_{2})^{T}\)</span> como</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-bidimentional-data-pca">
-<span class="eqno">(69)<a class="headerlink" href="#equation-bidimentional-data-pca" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(69)<a class="headerlink" href="#equation-bidimentional-data-pca" title="Link to this equation">#</a></span>\[\begin{split}
 \boldsymbol{x}_{1}=\begin{pmatrix}x_{11}\\x_{12}\end{pmatrix},~\boldsymbol{x}_{2}=\begin{pmatrix}x_{21}\\x_{22}\end{pmatrix},\dots,\boldsymbol{x}_{n}=\begin{pmatrix}x_{n1}\\x_{n2}\end{pmatrix}.
 \end{split}\]</div>
 <ul>
@@ -461,7 +441,7 @@ document.write(`
 <figure class="align-center" id="id4">
 <img alt="_images/Principal20Analysis20principal.gif" src="_images/Principal20Analysis20principal.gif" />
 <figcaption>
-<p><span class="caption-number">Fig. 69 </span><span class="caption-text">Simulación de <em><strong>múltiples ejes de proyección</strong></em> <span class="math notranslate nohighlight">\(y=w_{1}x_{1}+w_{2}x_{2}\)</span> en el PCA.</span><a class="headerlink" href="#id4" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 69 </span><span class="caption-text">Simulación de <em><strong>múltiples ejes de proyección</strong></em> <span class="math notranslate nohighlight">\(y=w_{1}x_{1}+w_{2}x_{2}\)</span> en el PCA.</span><a class="headerlink" href="#id4" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <div class="dropdown admonition">
@@ -489,7 +469,7 @@ document.write(`
 <ul>
 <li><p>La <em><strong>varianza</strong></em> puede ser expresada como</p>
 <div class="math notranslate nohighlight" id="equation-variance-quad-error">
-<span class="eqno">(70)<a class="headerlink" href="#equation-variance-quad-error" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(70)<a class="headerlink" href="#equation-variance-quad-error" title="Link to this equation">#</a></span>\[\begin{split}
     \begin{align*}
     s_{y}^{2} &amp;= \frac{1}{n}\sum_{i=1}^{n}(y_{i}-\overline{y})^{2}\\
     &amp;= \frac{1}{n}\sum_{i=1}^{n}\left\{w_{1}(x_{i1}-\overline{x}_{1})+w_{2}(x_{i2}-\overline{x}_{2})\right\}^{2}\\
@@ -500,7 +480,7 @@ document.write(`
     \end{split}\]</div>
 <p>donde <span class="math notranslate nohighlight">\(S\)</span> es la <em><strong>matriz de covarianza muestral</strong></em>, definida por (<code class="docutils literal notranslate"><span class="pre">verifíquelo</span></code>)</p>
 <div class="math notranslate nohighlight" id="equation-sample-covariance-matrix">
-<span class="eqno">(71)<a class="headerlink" href="#equation-sample-covariance-matrix" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(71)<a class="headerlink" href="#equation-sample-covariance-matrix" title="Link to this equation">#</a></span>\[\begin{split}
     S=\begin{pmatrix}s_{11} &amp; s_{12}\\s_{21} &amp; s_{22}\end{pmatrix},~s_{jk}=\frac{1}{n}\sum_{i=1}^{n}(x_{ij}-\overline{x}_{j})(x_{ik}-\overline{x}_{k}),~j,k=1,2. 
     \end{split}\]</div>
 </li>
@@ -521,7 +501,7 @@ L(\boldsymbol{w}, \lambda)=\boldsymbol{w}^{T}S\boldsymbol{w}+\lambda(1-\boldsymb
 <ul>
 <li><p>Dado que <span class="math notranslate nohighlight">\(\partial(\boldsymbol{w}^{T}S\boldsymbol{w})/\partial\boldsymbol{w}=2S\boldsymbol{w}\)</span> (ver Ecuación <a class="reference internal" href="linear_model.html#equation-quadratic-form-dedrivate">(13)</a>) y <span class="math notranslate nohighlight">\(\partial(\boldsymbol{w}^{T}\boldsymbol{w})/\partial\boldsymbol{w}=2\boldsymbol{w}\)</span>, entonces <span class="math notranslate nohighlight">\(\partial L(\boldsymbol{w}, \lambda)/\partial\boldsymbol{w}=0\)</span> sii</p>
 <div class="math notranslate nohighlight" id="equation-eigen-valuesvector-problem">
-<span class="eqno">(72)<a class="headerlink" href="#equation-eigen-valuesvector-problem" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(72)<a class="headerlink" href="#equation-eigen-valuesvector-problem" title="Link to this equation">#</a></span>\[
   S\boldsymbol{w}=\lambda\boldsymbol{w}.
   \]</div>
 </li>
@@ -537,7 +517,7 @@ L(\boldsymbol{w}, \lambda)=\boldsymbol{w}^{T}S\boldsymbol{w}+\lambda(1-\boldsymb
 <ul>
 <li><p>La varianza del <em><strong>primer componente principal</strong></em> <span class="math notranslate nohighlight">\(y_{1}\)</span> se alcanza con <span class="math notranslate nohighlight">\(\boldsymbol{w}=\boldsymbol{w}_{1}\)</span>, el cual maximiza la varianza de la Ecuación <a class="reference internal" href="#equation-variance-quad-error">(70)</a>, y es, por lo tanto,</p>
 <div class="math notranslate nohighlight" id="equation-variance-firstpc">
-<span class="eqno">(73)<a class="headerlink" href="#equation-variance-firstpc" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(73)<a class="headerlink" href="#equation-variance-firstpc" title="Link to this equation">#</a></span>\[
   s_{y_{1}}^{2}=\boldsymbol{w}_{1}^{T}S\boldsymbol{w}_{1}=\lambda_{1}.
   \]</div>
 </li>
@@ -558,7 +538,7 @@ L(\boldsymbol{w}, \lambda)=\boldsymbol{w}^{T}S\boldsymbol{w}+\lambda(1-\boldsymb
 <ul>
 <li><p>Cuando <em><strong>diferenciamos parcialmente</strong></em> la ecuación anterior respecto a <span class="math notranslate nohighlight">\(\boldsymbol{w}\)</span> y establecemos el <em><strong>resultado igual a 0</strong></em> (<span class="math notranslate nohighlight">\(\partial_{\boldsymbol{w}}L=\boldsymbol{0}\)</span>), obtenemos la ecuación</p>
 <div class="math notranslate nohighlight" id="equation-system-2nd-pc">
-<span class="eqno">(74)<a class="headerlink" href="#equation-system-2nd-pc" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(74)<a class="headerlink" href="#equation-system-2nd-pc" title="Link to this equation">#</a></span>\[
   \frac{\partial L(\boldsymbol{w},\lambda, \gamma)}{\partial\boldsymbol{w}}=0\Leftrightarrow 2S\boldsymbol{w}-2\lambda w+\gamma\boldsymbol{w}_{1}=\boldsymbol{0}.
   \]</div>
 </li>
@@ -579,7 +559,7 @@ L(\boldsymbol{w}, \lambda)=\boldsymbol{w}^{T}S\boldsymbol{w}+\lambda(1-\boldsymb
 <ul>
 <li><p>Entonces la Ecuación <a class="reference internal" href="#equation-system-2nd-pc">(74)</a> se convierte en</p>
 <div class="math notranslate nohighlight" id="equation-eigenvalue-problema-system-2nd-pc">
-<span class="eqno">(75)<a class="headerlink" href="#equation-eigenvalue-problema-system-2nd-pc" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(75)<a class="headerlink" href="#equation-eigenvalue-problema-system-2nd-pc" title="Link to this equation">#</a></span>\[\begin{split}
   2Sw-2\lambda\boldsymbol{w}+\gamma\boldsymbol{w}_{1}=2S\boldsymbol{w}-2\lambda\boldsymbol{2}=0\Leftrightarrow S\boldsymbol{w}=\lambda\boldsymbol{w},~\text{donde}~\begin{cases}\boldsymbol{w}_{1}^{T}\boldsymbol{w}&amp;=0\\\boldsymbol{w}_{1}^{T}\boldsymbol{w}_{1}&amp;=1\end{cases}
   \end{split}\]</div>
 </li>
@@ -605,7 +585,7 @@ L(\boldsymbol{w}, \lambda)=\boldsymbol{w}^{T}S\boldsymbol{w}+\lambda(1-\boldsymb
 </div>
 </section>
 <section id="autovalores-autovectores-y-componentes-principales">
-<h2>Autovalores, Autovectores y Componentes Principales<a class="headerlink" href="#autovalores-autovectores-y-componentes-principales" title="Permalink to this heading">#</a></h2>
+<h2>Autovalores, Autovectores y Componentes Principales<a class="headerlink" href="#autovalores-autovectores-y-componentes-principales" title="Link to this heading">#</a></h2>
 <ul>
 <li><p>Denotamos los <em><strong>autovalores de la matriz de varianza-covarianza muestral</strong></em> <span class="math notranslate nohighlight">\(S\)</span> en orden descendente según su magnitud como <span class="math notranslate nohighlight">\(\lambda_{1}\geq\lambda_{2}\geq0\)</span>, y los <em><strong>correspondientes autovectores</strong></em> mutuamente <em><strong>ortogonales normalizados a longitud 1</strong></em> como <span class="math notranslate nohighlight">\(\boldsymbol{w}_{1}=(w_{11}, w_{12})^{T}\)</span> y <span class="math notranslate nohighlight">\(\boldsymbol{w}_{2}=(w_{21}, w_{22})^{T}\)</span>.</p></li>
 <li><p>Los <em><strong>primeros y segundos componentes principales</strong></em> y sus respectivas <em><strong>varianzas</strong></em> se dan entonces de la siguiente manera</p>
@@ -619,9 +599,10 @@ L(\boldsymbol{w}, \lambda)=\boldsymbol{w}^{T}S\boldsymbol{w}+\lambda(1-\boldsymb
 </li>
 </ul>
 <figure class="align-center" id="id5">
-<a class="reference internal image-reference" href="_images/first_second_pca_bidimentional.png"><img alt="_images/first_second_pca_bidimentional.png" src="_images/first_second_pca_bidimentional.png" style="width: 496.29999999999995px; height: 386.4px;" /></a>
+<a class="reference internal image-reference" href="_images/first_second_pca_bidimentional.png"><img alt="_images/first_second_pca_bidimentional.png" src="_images/first_second_pca_bidimentional.png" style="width: 496.29999999999995px; height: 386.4px;" />
+</a>
 <figcaption>
-<p><span class="caption-number">Fig. 70 </span><span class="caption-text"><em><strong>Valores propios</strong></em>, <em><strong>primeros y segundos componentes principales</strong></em>. Fuente <span id="id2">[<a class="reference internal" href="biblio.html#id20" title="S. Konishi. Introduction to Multivariate Analysis: Linear and Nonlinear Modeling. Chapman &amp; Hall/CRC Texts in Statistical Science. Taylor &amp; Francis, 2014. ISBN 9781466567283. URL: https://books.google.com.co/books?id=fcuuAwAAQBAJ.">Konishi, 2014</a>]</span>.</span><a class="headerlink" href="#id5" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 70 </span><span class="caption-text"><em><strong>Valores propios</strong></em>, <em><strong>primeros y segundos componentes principales</strong></em>. Fuente <span id="id2">[<a class="reference internal" href="biblio.html#id20" title="S. Konishi. Introduction to Multivariate Analysis: Linear and Nonlinear Modeling. Chapman &amp; Hall/CRC Texts in Statistical Science. Taylor &amp; Francis, 2014. ISBN 9781466567283. URL: https://books.google.com.co/books?id=fcuuAwAAQBAJ.">Konishi, 2014</a>]</span>.</span><a class="headerlink" href="#id5" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <ul class="simple">
@@ -629,11 +610,11 @@ L(\boldsymbol{w}, \lambda)=\boldsymbol{w}^{T}S\boldsymbol{w}+\lambda(1-\boldsymb
 </ul>
 </section>
 <section id="proceso-de-derivacion-de-componentes-principales-y-propiedades">
-<h2>Proceso de Derivación de Componentes Principales y Propiedades<a class="headerlink" href="#proceso-de-derivacion-de-componentes-principales-y-propiedades" title="Permalink to this heading">#</a></h2>
+<h2>Proceso de Derivación de Componentes Principales y Propiedades<a class="headerlink" href="#proceso-de-derivacion-de-componentes-principales-y-propiedades" title="Link to this heading">#</a></h2>
 <ul>
 <li><p>En general, denotamos como <span class="math notranslate nohighlight">\(\boldsymbol{x}=(x_{1}, x_{2},\dots,x_{p})^{T}\)</span> las <span class="math notranslate nohighlight">\(p\)</span> <em><strong>variables representando las características individuales</strong></em>. Basados en los datos observados <span class="math notranslate nohighlight">\(\boldsymbol{x}_{1}, \boldsymbol{x}_{2},\dots, \boldsymbol{x}_{n}\)</span>; <span class="math notranslate nohighlight">\(p\)</span>-dimensionales, para las <span class="math notranslate nohighlight">\(p\)</span> variables, obtenemos la <em><strong>matriz de varianza-covarianza muestral</strong></em></p>
 <div class="math notranslate nohighlight" id="equation-covariance-variance-nobs-pdimentionals">
-<span class="eqno">(76)<a class="headerlink" href="#equation-covariance-variance-nobs-pdimentionals" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(76)<a class="headerlink" href="#equation-covariance-variance-nobs-pdimentionals" title="Link to this equation">#</a></span>\[
   S=(s_{jk})=\frac{1}{n}\sum_{i=1}^{n}(\boldsymbol{x}_{i}-\overline{\boldsymbol{x}})(\boldsymbol{x}_{i}-\boldsymbol{x})^{T}
   \]</div>
 <p>donde <span class="math notranslate nohighlight">\(\overline{\boldsymbol{x}}\)</span> es el vector de medias muestrales, <span class="math notranslate nohighlight">\(p\)</span>-dimensional, y <span class="math notranslate nohighlight">\(s_{jk}=\sum_{i=1}^{n}(x_{ij}-\overline{x}_{j})(x_{ik}-\overline{x}_{k})/n\)</span> (<code class="docutils literal notranslate"><span class="pre">escriba</span> <span class="pre">cada</span> <span class="pre">componente</span> <span class="pre">de</span></code> <span class="math notranslate nohighlight">\(S\)</span> <code class="docutils literal notranslate"><span class="pre">en</span> <span class="pre">forma</span> <span class="pre">matricial</span></code>).</p>
@@ -642,7 +623,7 @@ L(\boldsymbol{w}, \lambda)=\boldsymbol{w}^{T}S\boldsymbol{w}+\lambda(1-\boldsymb
 <ul>
 <li><p>Siguiendo el concepto básico de la <em><strong>derivación de componentes principales</strong></em>, como se describe para <em><strong>datos bidimensionales</strong></em> en la sección anterior, primero <em><strong>proyectamos los</strong></em> <span class="math notranslate nohighlight">\(n\)</span> <em><strong>datos observados</strong></em>, <span class="math notranslate nohighlight">\(p\)</span><em><strong>-dimensionales sobre el eje de proyección</strong></em></p>
 <div class="math notranslate nohighlight" id="equation-pdimensional-projection-pca">
-<span class="eqno">(77)<a class="headerlink" href="#equation-pdimensional-projection-pca" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(77)<a class="headerlink" href="#equation-pdimensional-projection-pca" title="Link to this equation">#</a></span>\[
   y=w_{1}x_{1}+w_{2}x_{2}+\cdots+w_{p}x_{p}=\boldsymbol{w}^{T}\boldsymbol{x},
   \]</div>
 <p>y obtenemos los <em><strong>datos unidimensionales</strong></em> <span class="math notranslate nohighlight">\(y_{i}=\boldsymbol{w}^{T}\boldsymbol{x}_{i}~(i=1,2,\dots,n;~\boldsymbol{x}_{i}~p\text{-dimensional})\)</span>.</p>
@@ -681,7 +662,7 @@ L(\boldsymbol{w}, \lambda)=\boldsymbol{w}^{T}S\boldsymbol{w}+\lambda(1-\boldsymb
 <li><p>Como resultado, <em><strong>PCA se convierte así en el problema de los autovalores de la matriz de varianza-covarianza muestral</strong></em> <span class="math notranslate nohighlight">\(S\)</span>, como se describe a continuación.</p></li>
 </ul>
 <section id="el-problema-de-los-autovalores-de-la-matriz-de-varianza-covarianza-muestral-y-los-componentes-principales">
-<h3>El problema de los autovalores de la matriz de varianza-covarianza muestral y los componentes principales<a class="headerlink" href="#el-problema-de-los-autovalores-de-la-matriz-de-varianza-covarianza-muestral-y-los-componentes-principales" title="Permalink to this heading">#</a></h3>
+<h3>El problema de los autovalores de la matriz de varianza-covarianza muestral y los componentes principales<a class="headerlink" href="#el-problema-de-los-autovalores-de-la-matriz-de-varianza-covarianza-muestral-y-los-componentes-principales" title="Link to this heading">#</a></h3>
 <ul>
 <li><p>Denotemos <span class="math notranslate nohighlight">\(S\)</span> como una <em><strong>matriz de varianza-covarianza muestral</strong></em> basada en <span class="math notranslate nohighlight">\(n\)</span> <em><strong>datos observados</strong></em> <span class="math notranslate nohighlight">\(p\)</span>-dimensionales. Como se observa en la Ecuación <a class="reference internal" href="#equation-covariance-variance-nobs-pdimentionals">(76)</a>, es una <em><strong>matriz simétrica de orden</strong></em> <span class="math notranslate nohighlight">\(p\)</span>. Luego, denotamos los <span class="math notranslate nohighlight">\(p\)</span> autovalores</p>
 <div class="math notranslate nohighlight">
@@ -723,7 +704,7 @@ L(\boldsymbol{w}, \lambda)=\boldsymbol{w}^{T}S\boldsymbol{w}+\lambda(1-\boldsymb
 <li><p>Para estos autovectores, la <em><strong>normalización</strong></em> <span class="math notranslate nohighlight">\(\boldsymbol{w}_{i}^{T}\boldsymbol{w}_{i}=1\)</span> para longitud del vector 1 y la <em><strong>ortogonalidad</strong></em> <span class="math notranslate nohighlight">\(\boldsymbol{w}_{i}^{T}\boldsymbol{w}_{j}=0\)</span> (para <span class="math notranslate nohighlight">\(i\neq j\)</span>) quedan así establecidas.</p></li>
 <li><p>Los <span class="math notranslate nohighlight">\(p\)</span> <em><strong>componentes principales</strong></em> y su <em><strong>varianza expresada</strong></em> en términos de la <em><strong>combinación lineal de las variables originales</strong></em> pueden ser proporcionados en orden de la siguiente manera</p>
 <div class="math notranslate nohighlight" id="equation-systemof-variance-principal-components">
-<span class="eqno">(78)<a class="headerlink" href="#equation-systemof-variance-principal-components" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(78)<a class="headerlink" href="#equation-systemof-variance-principal-components" title="Link to this equation">#</a></span>\[\begin{split}
   \begin{align*}
   y_{1} &amp;= w_{11}x_{1}+w_{12}x_{2}+\cdots+w_{1p}x_{p}=\boldsymbol{w}_{1}^{T}\boldsymbol{x},\quad\text{var}(y_{1})=\lambda_{1},\\
   y_{2} &amp;= w_{21}x_{1}+w_{22}x_{2}+\cdots+w_{2p}x_{p}=\boldsymbol{w}_{2}^{T}\boldsymbol{x},\quad\text{var}(y_{2})=\lambda_{2},\\
@@ -774,11 +755,11 @@ L(\boldsymbol{w}, \lambda)=\boldsymbol{w}^{T}S\boldsymbol{w}+\lambda(1-\boldsymb
 </section>
 </section>
 <section id="autovalores-y-autovectores-de-una-matriz-simetrica">
-<h2>Autovalores y autovectores de una matriz simétrica<a class="headerlink" href="#autovalores-y-autovectores-de-una-matriz-simetrica" title="Permalink to this heading">#</a></h2>
+<h2>Autovalores y autovectores de una matriz simétrica<a class="headerlink" href="#autovalores-y-autovectores-de-una-matriz-simetrica" title="Link to this heading">#</a></h2>
 <ul>
 <li><p>La matriz de <em><strong>varianza-covarianza muestral</strong></em> <span class="math notranslate nohighlight">\(S\)</span> dada por la Ecuación <a class="reference internal" href="#equation-covariance-variance-nobs-pdimentionals">(76)</a> es una <em><strong>matriz simétrica de orden</strong></em> <span class="math notranslate nohighlight">\(p\)</span>, con la siguiente <em><strong>relación entre sus autovalores y autovectores</strong></em></p>
 <div class="math notranslate nohighlight" id="equation-eigenvalue-eigenvector-relation">
-<span class="eqno">(79)<a class="headerlink" href="#equation-eigenvalue-eigenvector-relation" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(79)<a class="headerlink" href="#equation-eigenvalue-eigenvector-relation" title="Link to this equation">#</a></span>\[
    S\boldsymbol{w}_{i}=\lambda_{i}\boldsymbol{w}_{i},~\boldsymbol{w}_{i}^{T}\boldsymbol{w}_{i}=1,~\boldsymbol{w}_{i}^{T}\boldsymbol{w}_{j}=0~(i\neq j)
    \]</div>
 <p>para <span class="math notranslate nohighlight">\(i,j=1,2,\dots,p\)</span>.</p>
@@ -817,7 +798,7 @@ L(\boldsymbol{w}, \lambda)=\boldsymbol{w}^{T}S\boldsymbol{w}+\lambda(1-\boldsymb
 </div>
 </section>
 <section id="estandarizacion-y-matriz-de-correlacion-muestral">
-<h2>Estandarización y matriz de correlación muestral<a class="headerlink" href="#estandarizacion-y-matriz-de-correlacion-muestral" title="Permalink to this heading">#</a></h2>
+<h2>Estandarización y matriz de correlación muestral<a class="headerlink" href="#estandarizacion-y-matriz-de-correlacion-muestral" title="Link to this heading">#</a></h2>
 <div class="tip admonition">
 <p class="admonition-title">Introducción</p>
 <ul class="simple">
@@ -828,7 +809,7 @@ L(\boldsymbol{w}, \lambda)=\boldsymbol{w}^{T}S\boldsymbol{w}+\lambda(1-\boldsymb
 <ul>
 <li><p>Para los <span class="math notranslate nohighlight">\(n\)</span> datos observados <span class="math notranslate nohighlight">\(p\)</span> dimensionales</p>
 <div class="math notranslate nohighlight" id="equation-vector-pvariables-ndimensionals">
-<span class="eqno">(80)<a class="headerlink" href="#equation-vector-pvariables-ndimensionals" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(80)<a class="headerlink" href="#equation-vector-pvariables-ndimensionals" title="Link to this equation">#</a></span>\[
   \boldsymbol{x}_{i}=(x_{i1}, x_{i2}, \dots, x_{ip})^{T},\quad i=1, 2, \dots, n,
   \]</div>
 <p>Primero obtenemos el <em><strong>vector de media muestral</strong></em> <span class="math notranslate nohighlight">\(\overline{\boldsymbol{x}}=(\overline{x}_{1}, \overline{x}_{2}, \dots, \overline{x}_{p})^{T}\)</span> y la <em><strong>matriz de varianza-covarianza muestral</strong></em> <span class="math notranslate nohighlight">\(S=(s_{jk})\)</span>. Estandarizamos los datos <span class="math notranslate nohighlight">\(p\)</span>-dimensionales en Ecuación <a class="reference internal" href="#equation-vector-pvariables-ndimensionals">(80)</a> de manera que</p>
@@ -856,7 +837,7 @@ L(\boldsymbol{w}, \lambda)=\boldsymbol{w}^{T}S\boldsymbol{w}+\lambda(1-\boldsymb
 </div>
 </section>
 <section id="reduccion-de-dimension-y-perdida-de-informacion">
-<h2>Reducción de dimensión y pérdida de información<a class="headerlink" href="#reduccion-de-dimension-y-perdida-de-informacion" title="Permalink to this heading">#</a></h2>
+<h2>Reducción de dimensión y pérdida de información<a class="headerlink" href="#reduccion-de-dimension-y-perdida-de-informacion" title="Link to this heading">#</a></h2>
 <div class="admonition-introduccion admonition">
 <p class="admonition-title">Introducción</p>
 <ul class="simple">
@@ -922,14 +903,15 @@ L(\boldsymbol{w}, \lambda)=\boldsymbol{w}^{T}S\boldsymbol{w}+\lambda(1-\boldsymb
 <li><p>Como se muestra en la Figura <a class="reference internal" href="#exercise-two-pca-rgiven-fig"><span class="std std-numref">Fig. 71</span></a>, la contribución del primer componente principal, y, por lo tanto, la <em><strong>proporción que puede ser explicada únicamente por el primer componente principal, aumenta con la correlación creciente entre las dos variables</strong></em>.</p></li>
 </ul>
 <figure class="align-center" id="exercise-two-pca-rgiven-fig">
-<a class="reference internal image-reference" href="_images/exercise_two_pca_rgiven.png"><img alt="_images/exercise_two_pca_rgiven.png" src="_images/exercise_two_pca_rgiven.png" style="width: 494.9px; height: 366.09999999999997px;" /></a>
+<a class="reference internal image-reference" href="_images/exercise_two_pca_rgiven.png"><img alt="_images/exercise_two_pca_rgiven.png" src="_images/exercise_two_pca_rgiven.png" style="width: 494.9px; height: 366.09999999999997px;" />
+</a>
 <figcaption>
-<p><span class="caption-number">Fig. 71 </span><span class="caption-text">Componentes principales basados en la <em><strong>matriz de correlación muestral y sus contribuciones</strong></em>. Fuente <span id="id3">[<a class="reference internal" href="biblio.html#id20" title="S. Konishi. Introduction to Multivariate Analysis: Linear and Nonlinear Modeling. Chapman &amp; Hall/CRC Texts in Statistical Science. Taylor &amp; Francis, 2014. ISBN 9781466567283. URL: https://books.google.com.co/books?id=fcuuAwAAQBAJ.">Konishi, 2014</a>]</span>.</span><a class="headerlink" href="#exercise-two-pca-rgiven-fig" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 71 </span><span class="caption-text">Componentes principales basados en la <em><strong>matriz de correlación muestral y sus contribuciones</strong></em>. Fuente <span id="id3">[<a class="reference internal" href="biblio.html#id20" title="S. Konishi. Introduction to Multivariate Analysis: Linear and Nonlinear Modeling. Chapman &amp; Hall/CRC Texts in Statistical Science. Taylor &amp; Francis, 2014. ISBN 9781466567283. URL: https://books.google.com.co/books?id=fcuuAwAAQBAJ.">Konishi, 2014</a>]</span>.</span><a class="headerlink" href="#exercise-two-pca-rgiven-fig" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="implementacion">
-<h2>Implementación<a class="headerlink" href="#implementacion" title="Permalink to this heading">#</a></h2>
+<h2>Implementación<a class="headerlink" href="#implementacion" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Hasta este momento, hemos analizado en detalle <em><strong>estimadores de aprendizaje supervisado</strong></em>: aquellos estimadores que <em><strong>predicen etiquetas basadas en datos de entrenamiento etiquetados</strong></em>. Ahora, empezamos a examinar varios <em><strong>estimadores no supervisados</strong></em>, los cuales pueden resaltar aspectos interesantes de los datos sin hacer referencia a etiquetas conocidas.</p></li>
 <li><p>En esta sección, exploramos lo que posiblemente es uno de los <em><strong>algoritmos no supervisados más ampliamente utilizados</strong></em>: el <em><strong>análisis de componentes principales (PCA)</strong></em>. PCA es fundamentalmente un <em><strong>algoritmo de reducción de dimensionalidad</strong></em>, pero también puede ser útil como <em><strong>herramienta de visualización, para filtrado de ruido, extracción y construcción de características, y mucho más</strong></em>.</p></li>
@@ -954,7 +936,7 @@ L(\boldsymbol{w}, \lambda)=\boldsymbol{w}^{T}S\boldsymbol{w}+\lambda(1-\boldsymb
 </div>
 </section>
 <section id="introduccion-al-analisis-de-componentes-principales">
-<h2>Introducción al análisis de componentes principales<a class="headerlink" href="#introduccion-al-analisis-de-componentes-principales" title="Permalink to this heading">#</a></h2>
+<h2>Introducción al análisis de componentes principales<a class="headerlink" href="#introduccion-al-analisis-de-componentes-principales" title="Link to this heading">#</a></h2>
 <p>El <code class="docutils literal notranslate"><span class="pre">análisis</span> <span class="pre">de</span> <span class="pre">componentes</span> <span class="pre">principales</span> <span class="pre">(PCA)</span></code> es una <code class="docutils literal notranslate"><span class="pre">técnica</span> <span class="pre">no</span> <span class="pre">supervisada,</span> <span class="pre">rápida</span> <span class="pre">y</span> <span class="pre">adaptable</span></code>, diseñada para <code class="docutils literal notranslate"><span class="pre">reducir</span> <span class="pre">la</span> <span class="pre">dimensionalidad</span> <span class="pre">de</span> <span class="pre">los</span> <span class="pre">datos</span></code>. La forma más sencilla de comprender su funcionamiento es a través del <code class="docutils literal notranslate"><span class="pre">examen</span> <span class="pre">de</span> <span class="pre">un</span> <span class="pre">conjunto</span> <span class="pre">de</span> <span class="pre">datos</span> <span class="pre">bidimensional</span></code>. Tomemos en consideración la <code class="docutils literal notranslate"><span class="pre">recopilación</span> <span class="pre">posterior</span> <span class="pre">de</span> <span class="pre">200</span> <span class="pre">puntos</span> <span class="pre">de</span> <span class="pre">datos</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1055,7 +1037,7 @@ L(\boldsymbol{w}, \lambda)=\boldsymbol{w}^{T}S\boldsymbol{w}+\lambda(1-\boldsymb
 </ul>
 </section>
 </div><section id="pca-para-reduccion-de-dimension">
-<h3>PCA para reducción de dimensión<a class="headerlink" href="#pca-para-reduccion-de-dimension" title="Permalink to this heading">#</a></h3>
+<h3>PCA para reducción de dimensión<a class="headerlink" href="#pca-para-reduccion-de-dimension" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>El <code class="docutils literal notranslate"><span class="pre">PCA</span></code> puede emplearse para <code class="docutils literal notranslate"><span class="pre">reducir</span> <span class="pre">la</span> <span class="pre">dimensionalidad</span> <span class="pre">anulando</span> <span class="pre">uno</span> <span class="pre">o</span> <span class="pre">varios</span> <span class="pre">de</span> <span class="pre">los</span> <span class="pre">componentes</span> <span class="pre">principales</span> <span class="pre">más</span> <span class="pre">pequeños</span></code>. De este modo se obtiene una <code class="docutils literal notranslate"><span class="pre">representación</span> <span class="pre">de</span> <span class="pre">los</span> <span class="pre">datos</span> <span class="pre">de</span> <span class="pre">menor</span> <span class="pre">dimensión,</span> <span class="pre">conservando</span> <span class="pre">al</span> <span class="pre">mismo</span> <span class="pre">tiempo</span> <span class="pre">la</span> <span class="pre">mayor</span> <span class="pre">varianza</span> <span class="pre">posible</span></code> de los datos. A continuación se muestra un ejemplo de utilización de <code class="docutils literal notranslate"><span class="pre">PCA</span> <span class="pre">com</span></code> transformación para la reducción de la dimensionalidad`</p></li>
 </ul>
@@ -1098,7 +1080,7 @@ transformed shape: (200, 1)
 </ul>
 </section>
 <section id="pca-para-visualizacion-digitos-escritos-a-mano">
-<h3>PCA para visualización: Dígitos escritos a mano<a class="headerlink" href="#pca-para-visualizacion-digitos-escritos-a-mano" title="Permalink to this heading">#</a></h3>
+<h3>PCA para visualización: Dígitos escritos a mano<a class="headerlink" href="#pca-para-visualizacion-digitos-escritos-a-mano" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>El valor de <code class="docutils literal notranslate"><span class="pre">reducir</span> <span class="pre">la</span> <span class="pre">dimensionalidad</span> <span class="pre">puede</span> <span class="pre">no</span> <span class="pre">ser</span> <span class="pre">del</span> <span class="pre">todo</span> <span class="pre">evidente</span> <span class="pre">en</span> <span class="pre">sólo</span> <span class="pre">dos</span> <span class="pre">dimensiones</span></code>, pero se hace mucho más evidente cuando se trata de <code class="docutils literal notranslate"><span class="pre">datos</span> <span class="pre">de</span> <span class="pre">alta</span> <span class="pre">dimensionalidad</span></code>. Para ilustrarlo, examinaremos la aplicación de <code class="docutils literal notranslate"><span class="pre">PCA</span></code> al conjunto de datos de <code class="docutils literal notranslate"><span class="pre">dígitos</span> <span class="pre">escritos</span> <span class="pre">a</span> <span class="pre">mano</span></code> (imágenes <span class="math notranslate nohighlight">\(8\times8\)</span> (64-dimensional) de píxeles enteros en el rango <span class="math notranslate nohighlight">\(0,\dots,16\)</span>.).</p></li>
 </ul>
@@ -1604,7 +1586,7 @@ transformed shape: (200, 1)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/d066052212e17b4994e5d0ebd1e32ef057ca660a97d2a187b98d62d79206b39e.png" src="_images/d066052212e17b4994e5d0ebd1e32ef057ca660a97d2a187b98d62d79206b39e.png" />
+<img alt="_images/9e5922b55e810a005bfadb9ad32ac1bf006f4e08523b0b0e54c8c335bd7d2e73.png" src="_images/9e5922b55e810a005bfadb9ad32ac1bf006f4e08523b0b0e54c8c335bd7d2e73.png" />
 </div>
 </div>
 <ul class="simple">
@@ -1648,7 +1630,7 @@ transformed shape: (200, 1)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/bcdb5b7ce236ce13239f601c57436e3ad51f8b6294cee5016e1d96b0da0e90ea.png" src="_images/bcdb5b7ce236ce13239f601c57436e3ad51f8b6294cee5016e1d96b0da0e90ea.png" />
+<img alt="_images/513434debffc235f293e38099ccee4b4d0bf1b1173b44eedce27bd7cc919cedb.png" src="_images/513434debffc235f293e38099ccee4b4d0bf1b1173b44eedce27bd7cc919cedb.png" />
 </div>
 </div>
 <div class="proof observation admonition" id="observation-2">
@@ -1664,7 +1646,7 @@ transformed shape: (200, 1)
 </ul>
 </section>
 <section id="seleccion-del-numero-de-componentes">
-<h3>Selección del número de componentes<a class="headerlink" href="#seleccion-del-numero-de-componentes" title="Permalink to this heading">#</a></h3>
+<h3>Selección del número de componentes<a class="headerlink" href="#seleccion-del-numero-de-componentes" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Un aspecto esencial de la aplicación práctica del <code class="docutils literal notranslate"><span class="pre">PCA</span></code> consiste en <code class="docutils literal notranslate"><span class="pre">determinar</span> <span class="pre">el</span> <span class="pre">número</span> <span class="pre">óptimo</span> <span class="pre">de</span> <span class="pre">componentes</span> <span class="pre">necesarios</span> <span class="pre">para</span> <span class="pre">caracterizar</span> <span class="pre">los</span> <span class="pre">datos</span></code>. Esto puede lograrse analizando la <code class="docutils literal notranslate"><span class="pre">proporción</span> <span class="pre">de</span> <span class="pre">varianza</span> <span class="pre">explicada</span> <span class="pre">acumulativa</span> <span class="pre">en</span> <span class="pre">relación</span> <span class="pre">con</span> <span class="pre">el</span> <span class="pre">número</span> <span class="pre">de</span> <span class="pre">componentes</span></code></p></li>
 </ul>
@@ -1687,7 +1669,7 @@ transformed shape: (200, 1)
 </ul>
 </section>
 <section id="pca-como-filtro-de-ruido">
-<h3>PCA como filtro de ruido<a class="headerlink" href="#pca-como-filtro-de-ruido" title="Permalink to this heading">#</a></h3>
+<h3>PCA como filtro de ruido<a class="headerlink" href="#pca-como-filtro-de-ruido" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>El PCA puede servir como técnica para <code class="docutils literal notranslate"><span class="pre">filtrar</span> <span class="pre">el</span> <span class="pre">ruido</span> <span class="pre">de</span> <span class="pre">los</span> <span class="pre">datos</span></code>. El concepto fundamental es que los <em><strong><code class="docutils literal notranslate"><span class="pre">componentes</span> <span class="pre">con</span> <span class="pre">una</span> <span class="pre">varianza</span> <span class="pre">significativamente</span> <span class="pre">mayor</span> <span class="pre">que</span> <span class="pre">el</span> <span class="pre">impacto</span> <span class="pre">del</span> <span class="pre">ruido,</span> <span class="pre">están</span> <span class="pre">menos</span> <span class="pre">influidas</span> <span class="pre">por</span> <span class="pre">éste</span></code></strong></em>. Por consiguiente, si se reconstruyen los datos utilizando el <code class="docutils literal notranslate"><span class="pre">subconjunto</span> <span class="pre">primario</span> <span class="pre">de</span> <span class="pre">componentes</span> <span class="pre">principales</span> <span class="pre">con</span> <span class="pre">la</span> <span class="pre">mayor</span> <span class="pre">varianza,</span> <span class="pre">se</span> <span class="pre">conserva</span> <span class="pre">efectivamente</span> <span class="pre">la</span> <span class="pre">señal</span> <span class="pre">al</span> <span class="pre">tiempo</span> <span class="pre">que</span> <span class="pre">se</span> <span class="pre">elimina</span> <span class="pre">el</span> <span class="pre">ruido</span></code>.</p></li>
 <li><p>Para observar esto en acción con el conjunto de datos de <code class="docutils literal notranslate"><span class="pre">dígitos</span></code>, empezaremos generando <code class="docutils literal notranslate"><span class="pre">gráficos</span> <span class="pre">para</span> <span class="pre">varias</span> <span class="pre">instancias</span> <span class="pre">de</span> <span class="pre">los</span> <span class="pre">datos</span> <span class="pre">originales</span> <span class="pre">libres</span> <span class="pre">de</span> <span class="pre">ruido</span></code></p></li>
@@ -1773,7 +1755,7 @@ transformed shape: (200, 1)
 </ul>
 </section>
 <section id="ejemplo-eigenfaces">
-<h3>Ejemplo Eigenfaces<a class="headerlink" href="#ejemplo-eigenfaces" title="Permalink to this heading">#</a></h3>
+<h3>Ejemplo Eigenfaces<a class="headerlink" href="#ejemplo-eigenfaces" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Examinamos la utilización de una <code class="docutils literal notranslate"><span class="pre">proyección</span> <span class="pre">PCA</span></code> como <code class="docutils literal notranslate"><span class="pre">selector</span> <span class="pre">de</span> <span class="pre">características</span></code> en el contexto del <code class="docutils literal notranslate"><span class="pre">reconocimiento</span> <span class="pre">facial</span></code>. Profundicemos en los detalles, trabajado con el conjunto de datos <code class="docutils literal notranslate"><span class="pre">Labeled</span> <span class="pre">Faces</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">Wild</span></code> proporcionado por <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code></p></li>
 </ul>
@@ -1824,7 +1806,7 @@ transformed shape: (200, 1)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/879e80db378b8b6fd7d0513c6ae16da3bbd65578e521e9eb5171ad0a51f68613.png" src="_images/879e80db378b8b6fd7d0513c6ae16da3bbd65578e521e9eb5171ad0a51f68613.png" />
+<img alt="_images/d032e91d5804ca1b1fe3ed7d454baa2fe9c5a366b071f6c9ad45b267b4e0e6c6.png" src="_images/d032e91d5804ca1b1fe3ed7d454baa2fe9c5a366b071f6c9ad45b267b4e0e6c6.png" />
 </div>
 </div>
 <ul class="simple">
@@ -1869,7 +1851,7 @@ transformed shape: (200, 1)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/6da2488b2fa27b926339e021b6272d5379501139a325e85a62decd21ae8f9b8a.png" src="_images/6da2488b2fa27b926339e021b6272d5379501139a325e85a62decd21ae8f9b8a.png" />
+<img alt="_images/054741864d514ffec4cf32d1c1b7e2b4e8c8d814439dd71d1ea63683754d89a7.png" src="_images/054741864d514ffec4cf32d1c1b7e2b4e8c8d814439dd71d1ea63683754d89a7.png" />
 </div>
 </div>
 <ul class="simple">
@@ -1906,11 +1888,10 @@ transformed shape: (200, 1)
 
               
               
-                <footer class="bd-footer-article">
+              
+              
+                <footer class="prev-next-footer">
                   
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="ann_model.html"
@@ -1930,10 +1911,7 @@ transformed shape: (200, 1)
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -1941,6 +1919,7 @@ transformed shape: (200, 1)
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -1981,16 +1960,17 @@ transformed shape: (200, 1)
   <div class="footer-item">
     
 <p class="component-author">
-By Lihki Rubio PhD in Mathematical Engineering
+By Lihki Rubio, Ph.D.
 </p>
 
   </div>
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
-      © Copyright Department of Mathematics and Statistics.
+      © Copyright 2023.
       <br/>
     
   </p>
@@ -2003,6 +1983,9 @@ By Lihki Rubio PhD in Mathematical Engineering
   
   <div class="footer-item">
     
+<div class="extra_footer">
+  <p>Lihki Rubio, Ph.D. All rights reserved.</p>
+</div>
   </div>
   
 </div>
@@ -2014,8 +1997,8 @@ By Lihki Rubio PhD in Mathematical Engineering
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>
