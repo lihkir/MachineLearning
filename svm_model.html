@@ -32,9 +32,9 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=ca93fcec" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
     <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=530fe47d" />
     <link rel="stylesheet" type="text/css" href="_static/.ipynb_checkpoints/custom-checkpoint.css" />
@@ -193,6 +193,11 @@
 
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Máquinas de vectores de soporte</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ann_model.html">Redes Neuronales y Deep Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dl_computer_vision.html">Deep Learning para Visión por Computadora</a></li>
+
+
+
+
 <li class="toctree-l1"><a class="reference internal" href="practical_pca.html">Análisis de Componentes Principales</a></li>
 <li class="toctree-l1"><a class="reference internal" href="model_evaluation.html">Evaluación de modelos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="chains_pipelines.html">Cadenas de Algoritmos y Pipelines</a></li>
@@ -1324,10 +1329,9 @@ J(f)=\sum_{n=1}^{N}\mathcal{L}(y_{n}, f(\boldsymbol{x}_{n})),\quad\text{donde}\q
 <ul>
 <li><p>Consideraremos en esta sección, la <code class="docutils literal notranslate"><span class="pre">función</span> <span class="pre">discriminante</span> <span class="pre">en</span> <span class="pre">el</span> <span class="pre">espacio</span> <span class="pre">RKHS</span></code></p>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-    \\[1mm]
+\[
     f(\boldsymbol{x})=\theta_{0}+\langle\boldsymbol{\theta}, \phi(\boldsymbol{x})\rangle,
-    \end{split}\]</div>
+    \]</div>
 <p>donde <span class="math notranslate nohighlight">\(\phi(\boldsymbol{x})\)</span> es el mapeo de características. <code class="docutils literal notranslate"><span class="pre">Proyectamos</span> <span class="pre">la</span> <span class="pre">tarea</span> <span class="pre">de</span> <span class="pre">optimización</span> <span class="pre">como</span> <span class="pre">un</span> <span class="pre">problema</span> <span class="pre">lineal</span> <span class="pre">en</span> <span class="pre">el</span> <span class="pre">espacio</span> <span class="pre">de</span> <span class="pre">inputs</span></code>, <span class="math notranslate nohighlight">\(\mathbb{R}^{l}\)</span>, y al final la información del kernel será implantada usando el <code class="docutils literal notranslate"><span class="pre">kernel</span> <span class="pre">trick</span></code>.</p>
 </li>
 <li><p>La tarea de diseñar un clasificador lineal, ahora es equivalente a minimizar la función de costo</p></li>
@@ -1680,7 +1684,7 @@ L(\boldsymbol{\theta}, \theta_{0}, \xi, \lambda)=\frac{1}{2}\|\boldsymbol{\theta
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/a749ec442a6c6dea12195548b29b61a7c0df32ca86bdb5c6dd3e578b93dc00f3.png" src="_images/a749ec442a6c6dea12195548b29b61a7c0df32ca86bdb5c6dd3e578b93dc00f3.png" />
+<img alt="_images/660acd8750caf21555d5b4d32b4649240ecbcc059d8b2d73c5ab60f676443d1e.png" src="_images/660acd8750caf21555d5b4d32b4649240ecbcc059d8b2d73c5ab60f676443d1e.png" />
 </div>
 </div>
 <ul class="simple">
@@ -1777,7 +1781,7 @@ L(\boldsymbol{\theta}, \theta_{0}, \xi, \lambda)=\frac{1}{2}\|\boldsymbol{\theta
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/693fe5a15c5e3ce36a262bfed4a79ffdede23ede653983a90c020a5d5fea8558.png" src="_images/693fe5a15c5e3ce36a262bfed4a79ffdede23ede653983a90c020a5d5fea8558.png" />
+<img alt="_images/38e7802984338415ded9297e2fe4aea704fc0de38cbd7fa844e1440573042600.png" src="_images/38e7802984338415ded9297e2fe4aea704fc0de38cbd7fa844e1440573042600.png" />
 </div>
 </div>
 <ul class="simple">
@@ -1796,7 +1800,7 @@ L(\boldsymbol{\theta}, \theta_{0}, \xi, \lambda)=\frac{1}{2}\|\boldsymbol{\theta
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/fa421c7badea6801ce3926f13661d0fd5d02c76c0e30434c821720dc6c1ef4c5.png" src="_images/fa421c7badea6801ce3926f13661d0fd5d02c76c0e30434c821720dc6c1ef4c5.png" />
+<img alt="_images/73e81f664e165ab2508f87f2efbbb8907664106b71db6f195f2c52b44537eb39.png" src="_images/73e81f664e165ab2508f87f2efbbb8907664106b71db6f195f2c52b44537eb39.png" />
 </div>
 </div>
 </section>
