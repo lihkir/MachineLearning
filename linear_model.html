@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Modelos lineales &#8212; Machine Learning</title>
+    <title>Regresión Ridge y Lasso &#8212; Machine Learning</title>
   
   
   
@@ -68,8 +68,8 @@
     <script src="_static/.ipynb_checkpoints/custom-checkpoint.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Clasificadores Naive Bayes" href="bayes_model.html" />
-    <link rel="prev" title="\(k\)-Vecinos más cercanos" href="knn_model.html" />
+    <link rel="next" title="Clasificadores Bayesiano" href="bayes_model.html" />
+    <link rel="prev" title="\(k\)-vecinos más cercanos" href="knn_model.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -186,10 +186,10 @@
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="supervised_intro.html">Aprendizaje supervisado</a></li>
-<li class="toctree-l1"><a class="reference internal" href="knn_model.html"><span class="math notranslate nohighlight">\(k\)</span>-Vecinos más cercanos</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Modelos lineales</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bayes_model.html">Clasificadores Naive Bayes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="decisiontree_model.html">Árboles de decisión</a></li>
+<li class="toctree-l1"><a class="reference internal" href="knn_model.html"><span class="math notranslate nohighlight">\(k\)</span>-vecinos más cercanos</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Regresión Ridge y Lasso</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bayes_model.html">Clasificadores Bayesiano</a></li>
+<li class="toctree-l1"><a class="reference internal" href="decisiontree_model.html">Decision Trees, Random Forest y XGBoost</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="svm_model.html">Máquinas de vectores de soporte</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ann_model.html">Redes Neuronales y Deep Learning</a></li>
@@ -341,7 +341,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Modelos lineales</h1>
+    <h1>Regresión Ridge y Lasso</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -377,8 +377,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="modelos-lineales">
-<h1>Modelos lineales<a class="headerlink" href="#modelos-lineales" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="regresion-ridge-y-lasso">
+<h1>Regresión Ridge y Lasso<a class="headerlink" href="#regresion-ridge-y-lasso" title="Link to this heading">#</a></h1>
 <ul class="simple">
 <li><p>Los <code class="docutils literal notranslate"><span class="pre">modelos</span> <span class="pre">lineales</span></code> son una clase de modelos que se utilizan ampliamente en la práctica y se han estudiado mucho en las últimas décadas, con raíces que se remontan a más de cien años. Los <code class="docutils literal notranslate"><span class="pre">modelos</span> <span class="pre">lineales</span></code> hacen una <code class="docutils literal notranslate"><span class="pre">predicción</span> <span class="pre">utilizando</span> <span class="pre">una</span> <span class="pre">función</span> <span class="pre">lineal</span> <span class="pre">de</span> <span class="pre">las</span> <span class="pre">características</span> <span class="pre">de</span> <span class="pre">entrada</span></code>, que explicaremos en breve.</p></li>
 </ul>
@@ -2506,7 +2506,7 @@ Intercept shape:  (3,)
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="math notranslate nohighlight">\(k\)</span>-Vecinos más cercanos</p>
+        <p class="prev-next-title"><span class="math notranslate nohighlight">\(k\)</span>-vecinos más cercanos</p>
       </div>
     </a>
     <a class="right-next"
@@ -2514,7 +2514,7 @@ Intercept shape:  (3,)
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Clasificadores Naive Bayes</p>
+        <p class="prev-next-title">Clasificadores Bayesiano</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

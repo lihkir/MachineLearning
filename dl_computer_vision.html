@@ -186,10 +186,10 @@
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="supervised_intro.html">Aprendizaje supervisado</a></li>
-<li class="toctree-l1"><a class="reference internal" href="knn_model.html"><span class="math notranslate nohighlight">\(k\)</span>-Vecinos más cercanos</a></li>
-<li class="toctree-l1"><a class="reference internal" href="linear_model.html">Modelos lineales</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bayes_model.html">Clasificadores Naive Bayes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="decisiontree_model.html">Árboles de decisión</a></li>
+<li class="toctree-l1"><a class="reference internal" href="knn_model.html"><span class="math notranslate nohighlight">\(k\)</span>-vecinos más cercanos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linear_model.html">Regresión Ridge y Lasso</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bayes_model.html">Clasificador Bayesiano</a></li>
+<li class="toctree-l1"><a class="reference internal" href="decisiontree_model.html">Random Forest y XGBoost</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="svm_model.html">Máquinas de vectores de soporte</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ann_model.html">Redes Neuronales y Deep Learning</a></li>
@@ -2614,8 +2614,33 @@ I'(u, v)=\textsf{median}_{(i, j)\in R}\{I(u+i, v+j)\}.
 <li><p>Las <em><strong>máscaras de tamaño 2x2 son conceptualmente simples</strong></em>, pero <em><strong>no son tan útiles para calcular la dirección de los bordes como las máscaras simétricas respecto al punto central, las más pequeñas de las cuales son de tamaño</strong></em> <span class="math notranslate nohighlight">\(3\times 3\)</span>. Estas últimas consideran la naturaleza de los datos en los lados opuestos del punto central, aportando así más información sobre la dirección de un borde.</p></li>
 </ul>
 </div>
+<ul>
+<li><p>Las aproximaciones digitales más simples a las <em><strong>derivadas parciales utilizando máscaras de tamaño</strong></em> <span class="math notranslate nohighlight">\(3\times 3\)</span> son proporcionadas por</p>
+<div class="math notranslate nohighlight" id="equation-prewitt-masks-derivates">
+<span class="eqno">(76)<a class="headerlink" href="#equation-prewitt-masks-derivates" title="Link to this equation">#</a></span>\[\begin{split}
+  \begin{align*}
+  g_{x} &amp;= \frac{\partial f}{\partial x}=(z_{7}+z_{8}+z_{9})-(z_{1}+z_{2}+z_{3})\\
+  g_{y} &amp;= \frac{\partial f}{\partial x}=(z_{3}+z_{6}+z_{9})-(z_{1}+z_{4}+z_{7})
+  \end{align*}
+  \end{split}\]</div>
+</li>
+</ul>
 <ul class="simple">
-<li><p>Las aproximaciones digitales más simples a las <em><strong>derivadas parciales utilizando máscaras de tamaño</strong></em> <span class="math notranslate nohighlight">\(3\times 3\)</span> son proporcionadas por</p></li>
+<li><p>En estas formulaciones, la <em><strong>diferencia entre la tercera y la primera fila de la región de</strong></em> <span class="math notranslate nohighlight">\(3\times 3\)</span> <em><strong>aproxima la derivada en la dirección</strong></em> <span class="math notranslate nohighlight">\(x\)</span>, y la diferencia entre la tercera y la primera columna aproxima la derivada en la dirección <span class="math notranslate nohighlight">\(y\)</span>. Intuitivamente, se espera que estas aproximaciones sean <em><strong>más precisas que las obtenidas con los operadores de Roberts</strong></em>. Las Ecuaciones <a class="reference internal" href="#equation-prewitt-masks-derivates">(76)</a> pueden aplicarse a toda la imagen filtrando <span class="math notranslate nohighlight">\(f\)</span> con las dos máscaras mostradas en las <a class="reference internal" href="#robert-prewitt-sobel-masks-fig"><span class="std std-numref">Fig. 79</span></a>-Prewitt. <em><strong>Estas máscaras se conocen como operadores de Prewitt</strong></em> <span id="id3">[<a class="reference internal" href="biblio.html#id60" title="Judith MS Prewitt and others. Object enhancement and extraction. Picture processing and Psychopictorics, 10(1):15–19, 1970.">Prewitt and others, 1970</a>]</span>.</p></li>
+</ul>
+<ul>
+<li><p>Una ligera variación de las dos ecuaciones anteriores utiliza un coeficiente central con un peso de 2</p>
+<div class="math notranslate nohighlight" id="equation-sobel-masks-derivates">
+<span class="eqno">(77)<a class="headerlink" href="#equation-sobel-masks-derivates" title="Link to this equation">#</a></span>\[\begin{split}
+  \begin{align*}
+  g_{x} &amp;= \frac{\partial f}{\partial x}=(z_{7}+2z_{8}+z_{9})-(z_{1}+2z_{2}+z_{3})\\
+  g_{y} &amp;= \frac{\partial f}{\partial x}=(z_{3}+2z_{6}+z_{9})-(z_{1}+2z_{4}+z_{7})
+  \end{align*}
+  \end{split}\]</div>
+</li>
+</ul>
+<ul class="simple">
+<li><p>Estas máscaras se denominan <em><strong>operadores de Sobel</strong></em> <span id="id4">[<a class="reference internal" href="biblio.html#id61" title="Irwin Edward Sobel. Camera models and machine perception. stanford university, 1970.">Sobel, 1970</a>]</span>. Las máscaras de Prewitt son más simples de implementar que las de Sobel, pero la diferencia computacional entre ellas generalmente no es significativa. <em><strong>Las máscaras de Sobel son preferibles debido a sus mejores características de supresión de ruido</strong></em>, lo cual es crucial al trabajar con derivadas. Cabe destacar que los coeficientes de todas las máscaras en la <a class="reference internal" href="#robert-prewitt-sobel-masks-fig"><span class="std std-numref">Fig. 79</span></a>-Sobel suman cero, produciendo una respuesta nula en áreas de intensidad constante, como se espera de un operador derivativo.</p></li>
 </ul>
 </section>
 </section>
