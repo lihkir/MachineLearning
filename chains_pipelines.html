@@ -61,7 +61,7 @@
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script defer="defer" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'chains_pipelines';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="_static/custom.js?v=14184634"></script>
@@ -186,10 +186,10 @@
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="supervised_intro.html">Aprendizaje supervisado</a></li>
-<li class="toctree-l1"><a class="reference internal" href="knn_model.html"><span class="math notranslate nohighlight">\(k\)</span>-Vecinos más cercanos</a></li>
-<li class="toctree-l1"><a class="reference internal" href="linear_model.html">Modelos lineales</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bayes_model.html">Clasificadores Naive Bayes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="decisiontree_model.html">Árboles de decisión</a></li>
+<li class="toctree-l1"><a class="reference internal" href="knn_model.html"><span class="math notranslate nohighlight">\(k\)</span>-vecinos más cercanos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linear_model.html">Regresión Ridge y Lasso</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bayes_model.html">Clasificador Bayesiano</a></li>
+<li class="toctree-l1"><a class="reference internal" href="decisiontree_model.html">Random Forest y XGBoost</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="svm_model.html">Máquinas de vectores de soporte</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ann_model.html">Redes Neuronales y Deep Learning</a></li>
@@ -974,12 +974,12 @@ Best parameters: {&#39;svm__C&#39;: 1, &#39;svm__gamma&#39;: 1}
 </div>
 </div>
 <ul class="simple">
-<li><p>El proceso se ilustra en la <a class="reference internal" href="#pipeline-predict"><span class="std std-numref">Fig. 86</span></a> para dos transformadores, <code class="docutils literal notranslate"><span class="pre">T1</span></code>, <code class="docutils literal notranslate"><span class="pre">T2</span></code>, y un <code class="docutils literal notranslate"><span class="pre">classifier</span></code> (llamado <code class="docutils literal notranslate"><span class="pre">Classifier</span></code>)</p></li>
+<li><p>El proceso se ilustra en la <a class="reference internal" href="#pipeline-predict"><span class="std std-numref">Fig. 88</span></a> para dos transformadores, <code class="docutils literal notranslate"><span class="pre">T1</span></code>, <code class="docutils literal notranslate"><span class="pre">T2</span></code>, y un <code class="docutils literal notranslate"><span class="pre">classifier</span></code> (llamado <code class="docutils literal notranslate"><span class="pre">Classifier</span></code>)</p></li>
 </ul>
 <figure class="align-center" id="pipeline-predict">
 <a class="reference internal image-reference" href="_images/pipeline_predict.png"><img alt="_images/pipeline_predict.png" src="_images/pipeline_predict.png" style="width: 625.1999999999999px; height: 445.8px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 86 </span><span class="caption-text">Visión general del proceso de entrenamiento y predicción de la tubería.</span><a class="headerlink" href="#pipeline-predict" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 88 </span><span class="caption-text">Visión general del proceso de entrenamiento y predicción de la tubería.</span><a class="headerlink" href="#pipeline-predict" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <ul class="simple">

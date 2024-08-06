@@ -61,7 +61,7 @@
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script defer="defer" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'appendix';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="_static/custom.js?v=14184634"></script>
@@ -494,7 +494,7 @@ a\boldsymbol{x}&amp;=(ax_{1}, ax_{2},\dots, ax_{l}),\quad a\in\mathbb{R}.
 \]</div>
 <p>Se puede demostrar que la definición anterior cumple con todas las propiedades requeridas para que una función sea una norma. Para <span class="math notranslate nohighlight">\(p = 1\)</span>, nos referimos a la norma <span class="math notranslate nohighlight">\(l_{1}\)</span> y para <span class="math notranslate nohighlight">\(p = 2\)</span> se conoce como \textbf{norma euclidiana} o norma <span class="math notranslate nohighlight">\(l_{2}\)</span>. Nótese que esta última resulta de la operación de producto interior, es decir,</p>
 <div class="math notranslate nohighlight" id="equation-eucl-norm">
-<span class="eqno">(90)<a class="headerlink" href="#equation-eucl-norm" title="Link to this equation">#</a></span>\[
+<span class="eqno">(91)<a class="headerlink" href="#equation-eucl-norm" title="Link to this equation">#</a></span>\[
 \|\boldsymbol{x}\|_{2}=\sqrt{\boldsymbol{x}^{H}\boldsymbol{x}}.
 \]</div>
 <p>Esto es válido para cualquier espacio lineal de producto interno. Es decir, dado un espacio lineal con producto interno, <span class="math notranslate nohighlight">\(V\)</span>, con <span class="math notranslate nohighlight">\(\langle\cdot,\cdot\rangle\)</span>, entonces la operación de producto interior induce una norma, es decir</p>
@@ -559,7 +559,7 @@ a\boldsymbol{x}&amp;=(ax_{1}, ax_{2},\dots, ax_{l}),\quad a\in\mathbb{R}.
 <section class="definition-content" id="proof-content">
 <p>Un espacio con producto interno, el cual es completo con respecto a la norma inducida por el producto interno es llamado un <strong>espacio de Hilbert</strong>.</p>
 </section>
-</div><p>Ejemplos de espacios de Hilbert son <span class="math notranslate nohighlight">\(l^{2}\)</span> y <span class="math notranslate nohighlight">\(L^{2}\)</span>. También los espacios vectoriales <span class="math notranslate nohighlight">\(\mathbb{C}^{l}\)</span> y <span class="math notranslate nohighlight">\(\mathbb{R}^{l}\)</span>, equipados con la operación de producto interno <a class="reference internal" href="#ej_inner_prod">Definition 17</a> y la norma Euclideana definida por <a class="reference internal" href="#equation-eucl-norm">(90)</a>, conocidos como espacios Euclidianos son casos especiales de espacios de Hilbert de dimensión finita. Los espacios <span class="math notranslate nohighlight">\(l^{2}\)</span> y <span class="math notranslate nohighlight">\(L^{2}\)</span> son de dimensión infinita. Nótese que <span class="math notranslate nohighlight">\(\mathbb{C}^{l}\)</span>, equipado con la norma <span class="math notranslate nohighlight">\(l_{p},~ p\neq2\)</span>, no es un espacio de Hilbert, debido a que esta norma no es inducida por un producto interno.</p>
+</div><p>Ejemplos de espacios de Hilbert son <span class="math notranslate nohighlight">\(l^{2}\)</span> y <span class="math notranslate nohighlight">\(L^{2}\)</span>. También los espacios vectoriales <span class="math notranslate nohighlight">\(\mathbb{C}^{l}\)</span> y <span class="math notranslate nohighlight">\(\mathbb{R}^{l}\)</span>, equipados con la operación de producto interno <a class="reference internal" href="#ej_inner_prod">Definition 17</a> y la norma Euclideana definida por <a class="reference internal" href="#equation-eucl-norm">(91)</a>, conocidos como espacios Euclidianos son casos especiales de espacios de Hilbert de dimensión finita. Los espacios <span class="math notranslate nohighlight">\(l^{2}\)</span> y <span class="math notranslate nohighlight">\(L^{2}\)</span> son de dimensión infinita. Nótese que <span class="math notranslate nohighlight">\(\mathbb{C}^{l}\)</span>, equipado con la norma <span class="math notranslate nohighlight">\(l_{p},~ p\neq2\)</span>, no es un espacio de Hilbert, debido a que esta norma no es inducida por un producto interno.</p>
 <div class="proof definition admonition" id="def_closed_subspace">
 <p class="admonition-title"><span class="caption-number">Definition 21 </span> (Subsespacio cerrado)</p>
 <section class="definition-content" id="proof-content">
@@ -593,12 +593,12 @@ H=M\oplus M^{T}.
 <section class="definition-content" id="proof-content">
 <p>Un subconjunto no vacio <span class="math notranslate nohighlight">\(C\)</span> de un espacio de Hilbert <span class="math notranslate nohighlight">\(H\)</span>, esto es <span class="math notranslate nohighlight">\(C\subseteq H\)</span>, es llamado <code class="docutils literal notranslate"><span class="pre">convexo</span></code>, si <span class="math notranslate nohighlight">\(\forall~\boldsymbol{x}_{1}, \boldsymbol{x}_{2}\in C\)</span> y <span class="math notranslate nohighlight">\(\forall\lambda\in [0,1]\)</span> se tiene que</p>
 <div class="math notranslate nohighlight" id="equation-eq-convex-line">
-<span class="eqno">(91)<a class="headerlink" href="#equation-eq-convex-line" title="Link to this equation">#</a></span>\[
+<span class="eqno">(92)<a class="headerlink" href="#equation-eq-convex-line" title="Link to this equation">#</a></span>\[
 \boldsymbol{x}:=\lambda\boldsymbol{x}_{1}+(1-\lambda)\boldsymbol{x}_{2}\in C
 \]</div>
 </section>
 </div><ul class="simple">
-<li><p>Nótese que si <span class="math notranslate nohighlight">\(\lambda=1\)</span> entonces <span class="math notranslate nohighlight">\(\boldsymbol{x}=\boldsymbol{x}_{1}\)</span>, y si <span class="math notranslate nohighlight">\(\lambda=0\)</span> entonces <span class="math notranslate nohighlight">\(\boldsymbol{x}=\boldsymbol{x}_{2}\)</span>. para cualquier otro <span class="math notranslate nohighlight">\(\lambda\in[0, 1]\)</span> se tiene que <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> cae dentro de la línea que conecta <span class="math notranslate nohighlight">\(\boldsymbol{x}_{1}\)</span> con <span class="math notranslate nohighlight">\(\boldsymbol{x}_{2}\)</span>. La ecuación <a class="reference internal" href="#equation-eq-convex-line">(91)</a> puede escribirse como</p></li>
+<li><p>Nótese que si <span class="math notranslate nohighlight">\(\lambda=1\)</span> entonces <span class="math notranslate nohighlight">\(\boldsymbol{x}=\boldsymbol{x}_{1}\)</span>, y si <span class="math notranslate nohighlight">\(\lambda=0\)</span> entonces <span class="math notranslate nohighlight">\(\boldsymbol{x}=\boldsymbol{x}_{2}\)</span>. para cualquier otro <span class="math notranslate nohighlight">\(\lambda\in[0, 1]\)</span> se tiene que <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> cae dentro de la línea que conecta <span class="math notranslate nohighlight">\(\boldsymbol{x}_{1}\)</span> con <span class="math notranslate nohighlight">\(\boldsymbol{x}_{2}\)</span>. La ecuación <a class="reference internal" href="#equation-eq-convex-line">(92)</a> puede escribirse como</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[
@@ -635,11 +635,11 @@ f(\lambda\boldsymbol{x}_{1}+(1-\lambda)\boldsymbol{x}_{2})\leq\lambda f(\boldsym
 <li><p>Sea <span class="math notranslate nohighlight">\(\mathcal{X}\subset\mathbb{R}^{l}\)</span> convexo y <span class="math notranslate nohighlight">\(f:\mathcal{X}\longrightarrow\mathbb{R}\)</span> diferenciable. Entonces <span class="math notranslate nohighlight">\(f(\cdot)\)</span> es convexa si y solo si, <span class="math notranslate nohighlight">\(\forall~\boldsymbol{x}, \boldsymbol{y}\in\mathcal{X}\)</span>,</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-subgradientf">
-<span class="eqno">(92)<a class="headerlink" href="#equation-subgradientf" title="Link to this equation">#</a></span>\[
+<span class="eqno">(93)<a class="headerlink" href="#equation-subgradientf" title="Link to this equation">#</a></span>\[
 f(\boldsymbol{y})\geq f(\boldsymbol{x})+\nabla^{T}f(\boldsymbol{x})(\boldsymbol{y}-\boldsymbol{x}).
 \]</div>
 <ul class="simple">
-<li><p>Decimos que el vector <span class="math notranslate nohighlight">\(\nabla^{T}f(\boldsymbol{x})\)</span> es el <strong><code class="docutils literal notranslate"><span class="pre">subgradiente</span> <span class="pre">de</span></code></strong> <span class="math notranslate nohighlight">\(f\)</span> <strong><code class="docutils literal notranslate"><span class="pre">en</span></code></strong> <span class="math notranslate nohighlight">\(x\)</span> si satisface la desigualdad <a class="reference internal" href="#equation-subgradientf">(92)</a>.</p></li>
+<li><p>Decimos que el vector <span class="math notranslate nohighlight">\(\nabla^{T}f(\boldsymbol{x})\)</span> es el <strong><code class="docutils literal notranslate"><span class="pre">subgradiente</span> <span class="pre">de</span></code></strong> <span class="math notranslate nohighlight">\(f\)</span> <strong><code class="docutils literal notranslate"><span class="pre">en</span></code></strong> <span class="math notranslate nohighlight">\(x\)</span> si satisface la desigualdad <a class="reference internal" href="#equation-subgradientf">(93)</a>.</p></li>
 </ul>
 </section>
 </div><ul>
@@ -676,7 +676,7 @@ f(\boldsymbol{y})\geq f(\boldsymbol{x})+\nabla^{T}f(\boldsymbol{x})(\boldsymbol{
 <figure class="align-center" id="def-convex-function">
 <a class="reference internal image-reference" href="_images/convex_function.png"><img alt="_images/convex_function.png" src="_images/convex_function.png" style="width: 518.6999999999999px; height: 278.59999999999997px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 87 </span><span class="caption-text">Gráfica de una función convexa.</span><a class="headerlink" href="#def-convex-function" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 89 </span><span class="caption-text">Gráfica de una función convexa.</span><a class="headerlink" href="#def-convex-function" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
