@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Regresión Ridge y Lasso &#8212; Machine Learning</title>
+    <title>3. Regresión Ridge y Lasso &#8212; Machine Learning</title>
   
   
   
@@ -68,8 +68,8 @@
     <script src="_static/.ipynb_checkpoints/custom-checkpoint.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Clasificador Bayesiano" href="bayes_model.html" />
-    <link rel="prev" title="\(k\)-vecinos más cercanos" href="knn_model.html" />
+    <link rel="next" title="4. Clasificador Bayesiano" href="bayes_model.html" />
+    <link rel="prev" title="2. \(k\)-vecinos más cercanos" href="knn_model.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -185,24 +185,24 @@
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="supervised_intro.html">Aprendizaje supervisado</a></li>
-<li class="toctree-l1"><a class="reference internal" href="knn_model.html"><span class="math notranslate nohighlight">\(k\)</span>-vecinos más cercanos</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Regresión Ridge y Lasso</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bayes_model.html">Clasificador Bayesiano</a></li>
-<li class="toctree-l1"><a class="reference internal" href="decisiontree_model.html">Random Forest y XGBoost</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supervised_intro.html">1. Aprendizaje supervisado</a></li>
+<li class="toctree-l1"><a class="reference internal" href="knn_model.html">2. <span class="math notranslate nohighlight">\(k\)</span>-vecinos más cercanos</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">3. Regresión Ridge y Lasso</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bayes_model.html">4. Clasificador Bayesiano</a></li>
+<li class="toctree-l1"><a class="reference internal" href="decisiontree_model.html">5. Random Forest y XGBoost</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="svm_model.html">Máquinas de vectores de soporte</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ann_model.html">Redes Neuronales y Deep Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dl_computer_vision.html">Deep Learning para Visión por Computadora</a></li>
-
-
+<li class="toctree-l1"><a class="reference internal" href="svm_model.html">7. Máquinas de vectores de soporte</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ann_model.html">8. Redes Neuronales y Deep Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dl_computer_vision.html">9. Deep Learning para Visión por Computadora</a></li>
 
 
-<li class="toctree-l1"><a class="reference internal" href="practical_pca.html">Análisis de Componentes Principales</a></li>
-<li class="toctree-l1"><a class="reference internal" href="model_evaluation.html">Evaluación de modelos</a></li>
-<li class="toctree-l1"><a class="reference internal" href="chains_pipelines.html">Cadenas de Algoritmos y Pipelines</a></li>
-<li class="toctree-l1"><a class="reference internal" href="appendix.html">Apéndice</a></li>
-<li class="toctree-l1"><a class="reference internal" href="biblio.html">Bibliografía</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="practical_pca.html">14. Análisis de Componentes Principales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_evaluation.html">15. Evaluación de modelos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chains_pipelines.html">16. Cadenas de Algoritmos y Pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix.html">17. Apéndice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="biblio.html">18. Bibliografía</a></li>
 </ul>
 
     </div>
@@ -351,21 +351,21 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-de-regresion-lineal">Modelo de regresión lineal</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#minimos-cuadrados-ordinarios">Mínimos Cuadrados Ordinarios</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-regresion-ridge-y-ols">Aplicación: Regresión Ridge y OLS</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-exploratorio-de-datos">Análisis Exploratorio de Datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-de-regresion-lineal">3.1. Modelo de regresión lineal</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#minimos-cuadrados-ordinarios">3.2. Mínimos Cuadrados Ordinarios</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-regresion-ridge-y-ols">3.3. Aplicación: Regresión Ridge y OLS</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-exploratorio-de-datos">3.3.1. Análisis Exploratorio de Datos</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-ridge">Regresión ridge</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis">Análisis</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion">Implementación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-ridge">3.4. Regresión ridge</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis">3.4.1. Análisis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion">3.4.2. Implementación</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lasso">Lasso</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-regresion-lasso">Aplicación: Regresión Lasso</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-lineales-para-clasificacion">Modelos lineales para clasificación</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-lineales-para-la-clasificacion-multiclase">Modelos lineales para la clasificación multiclase</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lasso">3.5. Lasso</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-regresion-lasso">3.6. Aplicación: Regresión Lasso</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-lineales-para-clasificacion">3.7. Modelos lineales para clasificación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-lineales-para-la-clasificacion-multiclase">3.8. Modelos lineales para la clasificación multiclase</a></li>
 </ul>
             </nav>
         </div>
@@ -378,7 +378,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="regresion-ridge-y-lasso">
-<h1>Regresión Ridge y Lasso<a class="headerlink" href="#regresion-ridge-y-lasso" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">3. </span>Regresión Ridge y Lasso<a class="headerlink" href="#regresion-ridge-y-lasso" title="Link to this heading">#</a></h1>
 <div class="tip admonition">
 <p class="admonition-title">Introducción</p>
 <ul class="simple">
@@ -387,10 +387,10 @@ document.write(`
 </ul>
 </div>
 <section id="modelo-de-regresion-lineal">
-<h2>Modelo de regresión lineal<a class="headerlink" href="#modelo-de-regresion-lineal" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">3.1. </span>Modelo de regresión lineal<a class="headerlink" href="#modelo-de-regresion-lineal" title="Link to this heading">#</a></h2>
 <p><strong><code class="docutils literal notranslate"><span class="pre">Formulación</span></code></strong>: El modelo</p>
 <div class="math notranslate nohighlight" id="equation-linear-reg">
-<span class="eqno">(5)<a class="headerlink" href="#equation-linear-reg" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.1)<a class="headerlink" href="#equation-linear-reg" title="Link to this equation">#</a></span>\[
 \boldsymbol{y}=\boldsymbol{X}\boldsymbol{\beta}+\boldsymbol{\varepsilon},
 \]</div>
 <p>se denomina, <em><strong>modelo de regresión lineal</strong></em> clásico, si se cumplen los siguientes supuestos:</p>
@@ -399,10 +399,10 @@ document.write(`
 <li><p><span class="math notranslate nohighlight">\(\text{Cov}(\boldsymbol{\varepsilon})=\mathbb{E}(\boldsymbol{\varepsilon}\boldsymbol{\varepsilon}^{T})=\sigma^{2}\boldsymbol{I}\)</span></p></li>
 <li><p>La matriz de diseño <span class="math notranslate nohighlight">\(\boldsymbol{X}\)</span> tiene <em><strong>rango completo</strong></em>, es decir <span class="math notranslate nohighlight">\(\textrm{rk}(\boldsymbol{X})=p+1\)</span></p></li>
 <li><p>El <em><strong>modelo de regresión normal</strong></em> clasico es obtenido si adicionalmente  se tiene que <span class="math notranslate nohighlight">\(\boldsymbol{\varepsilon}\sim N(\boldsymbol{0}, \sigma^{2}\boldsymbol{I})\)</span>.</p></li>
-<li><p>El <em><strong>modelo de regresión lineal</strong></em> <a class="reference internal" href="#equation-linear-reg">(5)</a> puede escribirse en la siguiente forma</p></li>
+<li><p>El <em><strong>modelo de regresión lineal</strong></em> <a class="reference internal" href="#equation-linear-reg">(3.1)</a> puede escribirse en la siguiente forma</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-linear-reg-mat">
-<span class="eqno">(6)<a class="headerlink" href="#equation-linear-reg-mat" title="Link to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(3.2)<a class="headerlink" href="#equation-linear-reg-mat" title="Link to this equation">#</a></span>\[\begin{split}
 \begin{pmatrix}
 y_{1}\\
 y_{2}\\
@@ -438,7 +438,7 @@ y_{n}
 \end{pmatrix}
 \end{split}\]</div>
 <ul class="simple">
-<li><p>A partir del sistema <a class="reference internal" href="#equation-linear-reg-mat">(6)</a>, se puede observar que la <span class="math notranslate nohighlight">\(i\)</span>-esima <em><strong>predicción para un modelo lineal</strong></em> es la siguiente:</p></li>
+<li><p>A partir del sistema <a class="reference internal" href="#equation-linear-reg-mat">(3.2)</a>, se puede observar que la <span class="math notranslate nohighlight">\(i\)</span>-esima <em><strong>predicción para un modelo lineal</strong></em> es la siguiente:</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[
@@ -496,7 +496,7 @@ y_{n}
 </div>
 </section>
 <section id="minimos-cuadrados-ordinarios">
-<h2>Mínimos Cuadrados Ordinarios<a class="headerlink" href="#minimos-cuadrados-ordinarios" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">3.2. </span>Mínimos Cuadrados Ordinarios<a class="headerlink" href="#minimos-cuadrados-ordinarios" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><em><strong>La regresión lineal, o mínimos cuadrados ordinarios (Ordinary Least Squares (OLS))</strong></em>, es el modelo lineal <em><strong>más sencillo y clásico para la regresión</strong></em>. La regresión lineal <em><strong>encuentra el vector de parámetros</strong></em> <span class="math notranslate nohighlight">\(\boldsymbol{\hat{\beta}}\)</span> <em><strong>que minimiza el error cuadrático medio entre las predicciones y los verdaderos objetivos de la regresión</strong></em>, <span class="math notranslate nohighlight">\(y\)</span>, <em><strong>en el conjunto de entrenamiento</strong></em>.</p></li>
 <li><p>El error cuadrático medio es la suma de las diferencias al cuadrado entre las predicciones y los valores reales. La regresión lineal no tiene parámetros, lo cual es una ventaja, pero, <em><strong>no tiene forma de controlar la complejidad del modelo</strong></em>.</p></li>
@@ -547,7 +547,7 @@ lr.intercept_: -0.031804343026759746
 </div>
 </div>
 <div class="proof observation admonition" id="observation_lm1">
-<p class="admonition-title"><span class="caption-number">Observation 3 </span></p>
+<p class="admonition-title"><span class="caption-number">Observation 3.1 </span></p>
 <section class="observation-content" id="proof-content">
 <p>El extraño <em><strong>guion bajo</strong></em> al final de <code class="docutils literal notranslate"><span class="pre">coef_</span></code> e <code class="docutils literal notranslate"><span class="pre">intercept</span></code>_ es usado a menudo por <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> para almacenar cualquier <em><strong>objeto que se deriva de los datos de entrenamiento</strong></em>, usando atributos que terminan con un guion bajo al final. Esto es <em><strong>para separarlos de los parámetros que son establecidos por el usuario</strong></em>.</p>
 </section>
@@ -578,16 +578,15 @@ Test set score: 0.66
 </ul>
 </section>
 <section id="aplicacion-regresion-ridge-y-ols">
-<h2>Aplicación: Regresión Ridge y OLS<a class="headerlink" href="#aplicacion-regresion-ridge-y-ols" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">3.3. </span>Aplicación: Regresión Ridge y OLS<a class="headerlink" href="#aplicacion-regresion-ridge-y-ols" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Veamos cómo se comporta <code class="docutils literal notranslate"><span class="pre">LinearRegression</span></code> en un conjunto de datos más complejo, como el conjunto de datos de <em><strong>viviendas de Boston</strong></em>. Recordemos que este conjunto de datos tiene <em><strong>506 muestras y 105 características</strong></em> derivadas. En primer lugar, <em><strong>cargamos el conjunto de datos</strong></em> y lo <em><strong>dividimos en un conjunto de entrenamiento y otro de prueba</strong></em>. A continuación, construimos el modelo de regresión lineal como antes. Iniciemos realizando un <em><strong>análisis exploratorio de datos</strong></em>.</p></li>
 </ul>
 <figure class="align-center" id="boston-houses-ds-numref">
-<a class="reference internal image-reference" href="_images/boston_houses_ds.jpeg"><img alt="_images/boston_houses_ds.jpeg" src="_images/boston_houses_ds.jpeg" style="width: 672.0px; height: 448.7px;" />
-</a>
+<a class="reference internal image-reference" href="_images/boston_houses_ds.jpeg"><img alt="_images/boston_houses_ds.jpeg" src="_images/boston_houses_ds.jpeg" style="width: 672.0px; height: 448.7px;" /></a>
 </figure>
 <section id="analisis-exploratorio-de-datos">
-<h3>Análisis Exploratorio de Datos<a class="headerlink" href="#analisis-exploratorio-de-datos" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.3.1. </span>Análisis Exploratorio de Datos<a class="headerlink" href="#analisis-exploratorio-de-datos" title="Link to this heading">#</a></h3>
 <p><strong><code class="docutils literal notranslate"><span class="pre">1.</span> <span class="pre">Importar</span> <span class="pre">librerías</span> <span class="pre">PythonImportar</span> <span class="pre">librerías</span> <span class="pre">Python</span></code></strong></p>
 <ul class="simple">
 <li><p>Se importan las <em><strong>librerías esenciales</strong></em> para facilitar el análisis que abarca la <em><strong>carga de datos, la evaluación estadística, la visualización, la transformación de datos, la fusión y la unión</strong></em></p></li>
@@ -1568,9 +1567,9 @@ Test set score: 0.61
 </section>
 </section>
 <section id="regresion-ridge">
-<h2>Regresión ridge<a class="headerlink" href="#regresion-ridge" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">3.4. </span>Regresión ridge<a class="headerlink" href="#regresion-ridge" title="Link to this heading">#</a></h2>
 <section id="analisis">
-<h3>Análisis<a class="headerlink" href="#analisis" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.4.1. </span>Análisis<a class="headerlink" href="#analisis" title="Link to this heading">#</a></h3>
 <div class="admonition-observacion admonition">
 <p class="admonition-title">Observación</p>
 <ul class="simple">
@@ -1579,16 +1578,21 @@ Test set score: 0.61
 <li><p>La <em><strong>regularización</strong></em> consiste en <em><strong>restringir explícitamente un modelo para evitar el overfitting</strong></em>. El tipo particular utilizado por la <em><strong>regresión ridge</strong></em> se conoce como <em><strong>regularización</strong></em> <span class="math notranslate nohighlight">\(L^2\)</span>.</p></li>
 </ul>
 </div>
+<figure class="align-default" id="ridge-lasso-ilustration-fig">
+<a class="reference internal image-reference" href="_images/ridge_lasso_ilustration.jpg"><img alt="_images/ridge_lasso_ilustration.jpg" src="_images/ridge_lasso_ilustration.jpg" style="width: 623.5px; height: 259.5px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 3.1 </span><span class="caption-text">Ilustration del score de predicción en el conjunto de test para <em><strong>linear regression, ridge</strong></em> y <em><strong>lasso</strong></em>.</span><a class="headerlink" href="#ridge-lasso-ilustration-fig" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
 <p><strong><code class="docutils literal notranslate"><span class="pre">Formulación</span></code></strong></p>
 <ul>
 <li><p>Consideremos el <em><strong>modelo de regresión lineal</strong></em></p>
 <div class="math notranslate nohighlight" id="equation-linear-model-comp">
-<span class="eqno">(7)<a class="headerlink" href="#equation-linear-model-comp" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.3)<a class="headerlink" href="#equation-linear-model-comp" title="Link to this equation">#</a></span>\[
     y_{i}=\beta_{0}+\beta_{1}\cdot x_{i1}+\beta_{2}\cdot x_{i2}+\cdots+\beta_{p}\cdot x_{ip}+\varepsilon_{i},~i = 1,2,\dots, n,
     \]</div>
-<p>basado en los datos observados <span class="math notranslate nohighlight">\(\{(y_{i}, x_{i1}, x_{i2},\dots, x_{ip}):~i=1,2,\dots,n\}\)</span> para la variable respuesta <span class="math notranslate nohighlight">\(y\)</span> y <span class="math notranslate nohighlight">\(p\)</span> variables predictoras <span class="math notranslate nohighlight">\(\boldsymbol{x}=(x_{1}, x_{2},\dots,x_{p})\)</span>. La <em><strong>regresión ridge</strong></em> propuesta por <em><strong>Hoerl y Kennard (1970)</strong></em> es un método para <em><strong>evitar la inestabilidad de las estimaciones en los modelos de regresión lineal, causada por la multicolinealidad</strong></em>, esto es, correlación alta entre más de dos variables predictoras.</p>
+<p>basado en los datos observados <span class="math notranslate nohighlight">\(\{(y_{i}, x_{i1}, x_{i2},\dots, x_{ip}):~i=1,2,\dots,n\}\)</span> para la variable respuesta <span class="math notranslate nohighlight">\(y\)</span> y <span class="math notranslate nohighlight">\(p\)</span> variables predictoras <span class="math notranslate nohighlight">\(\boldsymbol{x}=(x_{1}, x_{2},\dots,x_{p})\)</span>. La <em><strong>regresión ridge</strong></em> propuesta por <span id="id1">[<a class="reference internal" href="biblio.html#id63" title="Arthur E Hoerl and Robert W Kennard. Ridge regression: biased estimation for nonorthogonal problems. Technometrics, 12(1):55–67, 1970.">Hoerl and Kennard, 1970</a>]</span> es un método para <em><strong>evitar la inestabilidad de las estimaciones en los modelos de regresión lineal, causada por la multicolinealidad</strong></em>, esto es, correlación alta entre más de dos variables predictoras.</p>
 </li>
-<li><p>Este método es una regularización, en la que la <em><strong>suma de cuadrados de los coeficientes de regresión, excluyendo el intercepto, es el término de penalización</strong></em>, y las estimaciones de coeficientes de regresión se obtienen de la siguiente manera.</p></li>
 </ul>
 <div class="tip dropdown admonition">
 <p class="admonition-title">Problema de multicolinealidad</p>
@@ -1597,9 +1601,14 @@ Test set score: 0.61
 <li><p><em><strong>Resulta difícil para el modelo estimar la relación entre cada variable predictora y la variable respuesta de forma independiente</strong></em> porque las variables predictoras tienden a cambiar al unísono.</p></li>
 </ul>
 </div>
-<p>En primer lugar, obtenemos la <em><strong>media</strong></em> <span class="math notranslate nohighlight">\(\bar x_{j}=n^{-1}\sum_{i=1}^{n}x_{ij}\)</span> y la <em><strong>varianza</strong></em> <span class="math notranslate nohighlight">\(s_{j}^2=n^{-1}\sum_{i=1}^{n}(x_{ij}-\bar x_{j})^{2}\)</span>, <span class="math notranslate nohighlight">\(j=1,2,\dots,p\)</span> de los datos para las variables predictoras y <em><strong>estandaricemos</strong></em> los datos de la siguiente manera</p>
+<ul class="simple">
+<li><p>Este método es una regularización, en la que la <em><strong>suma de cuadrados de los coeficientes de regresión, excluyendo el intercepto, es el término de penalización</strong></em>, y las estimaciones de coeficientes de regresión se obtienen de la siguiente manera.</p></li>
+</ul>
+<ul class="simple">
+<li><p>En primer lugar, obtenemos la <em><strong>media</strong></em> <span class="math notranslate nohighlight">\(\bar x_{j}=n^{-1}\sum_{i=1}^{n}x_{ij}\)</span> y la <em><strong>varianza</strong></em> <span class="math notranslate nohighlight">\(s_{j}^2=n^{-1}\sum_{i=1}^{n}(x_{ij}-\bar x_{j})^{2}\)</span>, <span class="math notranslate nohighlight">\(j=1,2,\dots,p\)</span> de los datos para las variables predictoras y <em><strong>estandaricemos</strong></em> los datos de la siguiente manera</p></li>
+</ul>
 <div class="math notranslate nohighlight" id="equation-estand-ridge-reg">
-<span class="eqno">(8)<a class="headerlink" href="#equation-estand-ridge-reg" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.4)<a class="headerlink" href="#equation-estand-ridge-reg" title="Link to this equation">#</a></span>\[
 z_{ij}=\frac{x_{ij}-\bar x_{j}}{s_{j}},~i=1,2,\dots,n,~j=1,2,\dots,p.
 \]</div>
 <div class="dropdown admonition">
@@ -1609,74 +1618,80 @@ z_{ij}=\frac{x_{ij}-\bar x_{j}}{s_{j}},~i=1,2,\dots,n,~j=1,2,\dots,p.
 <li><p>Dos variables independientes con <em><strong>diferentes escalas tendrán diferentes contribuciones a los términos penalizados</strong></em>, porque el término penalizado es una suma de cuadrados de todos los coeficientes. Para evitar este tipo de problemas, muy a menudo, las <em><strong>variables independientes se centran y se escalan</strong></em> para que tengan varianza unitaria.</p></li>
 </ul>
 </div>
-<p>El modelo de <em><strong>regresión lineal basado en los datos estandarizados</strong></em> puede expresarse entonces como</p>
+<ul>
+<li><p>El modelo de <em><strong>regresión lineal basado en los datos estandarizados</strong></em> puede expresarse entonces como</p>
 <div class="math notranslate nohighlight" id="equation-eq-reg-li-z">
-<span class="eqno">(9)<a class="headerlink" href="#equation-eq-reg-li-z" title="Link to this equation">#</a></span>\[\begin{split}
-\begin{align*}
-y_{i} &amp;= \beta_{0} + \beta_{1}\bar x_{1} + \beta_{2}\bar x_{2} + \cdots + \beta_{p}\bar x_{p} + 
-\beta_{1}^{\star}z_{i1} + \beta_{2}^{\star}z_{i2} + \cdots + \beta_{p}^{\star}z_{ip} + \varepsilon_{i}\\
-&amp;=\beta_{0}^{\star} + \beta_{1}^{\star}z_{i1} + \beta_{2}^{\star}z_{i2} + \cdots + \beta_{p}^{\star}z_{ip} + \varepsilon_{i},~ i = 1,2,\dots,n,
-\end{align*}
-\end{split}\]</div>
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-eq-reg-li-z" title="Link to this equation">#</a></span>\[\begin{split}
+    \begin{align*}
+    y_{i} &amp;= \beta_{0} + \beta_{1}\bar x_{1} + \beta_{2}\bar x_{2} + \cdots + \beta_{p}\bar x_{p} + 
+    \beta_{1}^{\star}z_{i1} + \beta_{2}^{\star}z_{i2} + \cdots + \beta_{p}^{\star}z_{ip} + \varepsilon_{i}\\
+    &amp;=\beta_{0}^{\star} + \beta_{1}^{\star}z_{i1} + \beta_{2}^{\star}z_{i2} + \cdots + \beta_{p}^{\star}z_{ip} + \varepsilon_{i},~ i = 1,2,\dots,n,
+    \end{align*}
+    \end{split}\]</div>
 <p>donde <span class="math notranslate nohighlight">\(\beta_{0}^{\star}=\beta_{0}+\beta_{1}\bar x_{1}+\beta_{2}\bar x_{2}+\cdots+\beta_{p}\bar x_{p}~\text{y}~\beta_{j}^{\star}=s_{j}\beta_{j}\)</span>. Por lo tanto, podemos expresar el <em><strong>modelo de regresión lineal basados en los datos estandarizados</strong></em> para la variable predictora como</p>
 <div class="math notranslate nohighlight" id="equation-reg-ridge-model">
-<span class="eqno">(10)<a class="headerlink" href="#equation-reg-ridge-model" title="Link to this equation">#</a></span>\[
-\boldsymbol{y}=\beta_{0}^{\star}\boldsymbol{1}+Z\boldsymbol{\beta}_{s}+\boldsymbol{\varepsilon},
-\]</div>
+<span class="eqno">(3.6)<a class="headerlink" href="#equation-reg-ridge-model" title="Link to this equation">#</a></span>\[
+    \boldsymbol{y}=\beta_{0}^{\star}\boldsymbol{1}+Z\boldsymbol{\beta}_{s}+\boldsymbol{\varepsilon},
+    \]</div>
 <p>en <em><strong>forma matricial</strong></em></p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-\begin{pmatrix}
-y_{1}\\
-y_{2}\\
-\vdots\\
-y_{i}\\
-\vdots\\
-y_{n}
-\end{pmatrix}
-=
-\beta_{0}^{\star}
-\begin{pmatrix}
-1\\
-1\\
-\vdots\\
-1\\
-\vdots\\
-1
-\end{pmatrix}
-+
-\begin{pmatrix}
-z_{11} &amp; z_{12} &amp; \cdots &amp; z_{1p}\\
-z_{21} &amp; z_{22} &amp; \cdots &amp; z_{2p}\\
-\vdots &amp; \vdots &amp; &amp; \vdots\\
-z_{31} &amp; z_{32} &amp; \cdots &amp; z_{3p}\\
-\vdots &amp; \vdots &amp; &amp; \vdots\\
-z_{n1} &amp; z_{n2} &amp; \cdots &amp; z_{np}
-\end{pmatrix}
-\begin{pmatrix}
-\beta_{0}\\[2mm]
-\beta_{1}\\[2mm]
-\beta_{2}\\
-\vdots\\[2mm]
-\beta_{p}
-\end{pmatrix}
-+
-\begin{pmatrix}
-\varepsilon_{1}\\
-\varepsilon_{2}\\
-\vdots\\
-\varepsilon_{i}\\
-\vdots\\
-\varepsilon_{n}
-\end{pmatrix}
-\end{split}\]</div>
+    \begin{pmatrix}
+    y_{1}\\
+    y_{2}\\
+    \vdots\\
+    y_{i}\\
+    \vdots\\
+    y_{n}
+    \end{pmatrix}
+    =
+    \beta_{0}^{\star}
+    \begin{pmatrix}
+    1\\
+    1\\
+    \vdots\\
+    1\\
+    \vdots\\
+    1
+    \end{pmatrix}
+    +
+    \begin{pmatrix}
+    z_{11} &amp; z_{12} &amp; \cdots &amp; z_{1p}\\
+    z_{21} &amp; z_{22} &amp; \cdots &amp; z_{2p}\\
+    \vdots &amp; \vdots &amp; &amp; \vdots\\
+    z_{31} &amp; z_{32} &amp; \cdots &amp; z_{3p}\\
+    \vdots &amp; \vdots &amp; &amp; \vdots\\
+    z_{n1} &amp; z_{n2} &amp; \cdots &amp; z_{np}
+    \end{pmatrix}
+    \begin{pmatrix}
+    \beta_{0}\\[2mm]
+    \beta_{1}\\[2mm]
+    \beta_{2}\\
+    \vdots\\[2mm]
+    \beta_{p}
+    \end{pmatrix}
+    +
+    \begin{pmatrix}
+    \varepsilon_{1}\\
+    \varepsilon_{2}\\
+    \vdots\\
+    \varepsilon_{i}\\
+    \vdots\\
+    \varepsilon_{n}
+    \end{pmatrix}
+    \end{split}\]</div>
 <p>donde <span class="math notranslate nohighlight">\(\boldsymbol{1}\)</span> es un vector <span class="math notranslate nohighlight">\(n\)</span>-dimensional de unos, <span class="math notranslate nohighlight">\(\boldsymbol{\beta}_{s}=(s_{1}\beta_{1}, s_{2}\beta_{2},\dots,s_{p}\beta_{p})^{T}\)</span>, y <span class="math notranslate nohighlight">\(Z\)</span> es una matriz de <span class="math notranslate nohighlight">\(n\times p\)</span> que contiene los datos estandarizados <span class="math notranslate nohighlight">\(z_{ij}=(x_{ij}-\bar x_{j})/s_{j},~ i=1,2,\dots,n; j=1,2,\dots,p\)</span> en su posición <span class="math notranslate nohighlight">\((i,j)\)</span>.</p>
-<p>El estimador <em><strong>ridge</strong></em> para el vector de coeficientes esta dado entonces por <em><strong>minimización</strong></em> de:</p>
+</li>
+</ul>
+<ul>
+<li><p>El estimador <em><strong>ridge</strong></em> para el vector de coeficientes esta dado entonces por <em><strong>minimización</strong></em> de:</p>
 <div class="math notranslate nohighlight" id="equation-ridge-coeff-stand">
-<span class="eqno">(11)<a class="headerlink" href="#equation-ridge-coeff-stand" title="Link to this equation">#</a></span>\[
-S_{\lambda}(\beta_{0}^{\star}, \boldsymbol{\beta}_{s})=(\boldsymbol{y}-\beta_{0}^{\star}\boldsymbol{1}-Z\boldsymbol{\beta}_{s})^{T}(\boldsymbol{y}-\beta_{0}^{\star}\boldsymbol{1}-Z\boldsymbol{\beta}_{s})+\lambda\boldsymbol{\beta}_{s}^{T}\boldsymbol{\beta}_{s}
-\]</div>
-<p>donde el <em><strong>termino de regularización</strong></em> <span class="math notranslate nohighlight">\(L^2\)</span>: (<span class="math notranslate nohighlight">\(\lambda\boldsymbol{\beta}_{s}^{T}\boldsymbol{\beta}_{s}\)</span>) con <em><strong>parámetro de regularización</strong></em> <span class="math notranslate nohighlight">\(\lambda\)</span> ha sido agregado al <em><strong>vector de coeficientes de regresión, excepto el intercepto</strong></em>. Este término es conocido como <code class="docutils literal notranslate"><span class="pre">weight</span> <span class="pre">decay</span></code>. Veamos una simulación de la <em><strong>regularización ridge</strong></em> usando a la <a class="reference external" href="https://es.wikipedia.org/wiki/Matriz_de_Hilbert">matriz de Hilbert</a> como input y un <em><strong>vector unitario</strong></em>, como output.</p>
+<span class="eqno">(3.7)<a class="headerlink" href="#equation-ridge-coeff-stand" title="Link to this equation">#</a></span>\[
+    S_{\lambda}(\beta_{0}^{\star}, \boldsymbol{\beta}_{s})=(\boldsymbol{y}-\beta_{0}^{\star}\boldsymbol{1}-Z\boldsymbol{\beta}_{s})^{T}(\boldsymbol{y}-\beta_{0}^{\star}\boldsymbol{1}-Z\boldsymbol{\beta}_{s})+\lambda\boldsymbol{\beta}_{s}^{T}\boldsymbol{\beta}_{s}
+    \]</div>
+<p>donde el <em><strong>término de regularización</strong></em> <span class="math notranslate nohighlight">\(L^2\)</span>: (<span class="math notranslate nohighlight">\(\lambda\boldsymbol{\beta}_{s}^{T}\boldsymbol{\beta}_{s}\)</span>) con <em><strong>parámetro de regularización</strong></em> <span class="math notranslate nohighlight">\(\lambda\)</span> ha sido agregado al <em><strong>vector de coeficientes de regresión, excepto el intercepto</strong></em>. Este término es conocido como <code class="docutils literal notranslate"><span class="pre">weight</span> <span class="pre">decay</span></code>. Veamos una simulación de la <em><strong>regularización ridge</strong></em> usando a la <a class="reference external" href="https://es.wikipedia.org/wiki/Matriz_de_Hilbert">matriz de Hilbert</a> como input y un <em><strong>vector unitario</strong></em>, como output.</p>
+</li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -1725,14 +1740,14 @@ S_{\lambda}(\beta_{0}^{\star}, \boldsymbol{\beta}_{s})=(\boldsymbol{y}-\beta_{0}
 <img alt="_images/f50d6aed9c507611edfa6c4cf66752632889d8ada237dbf33c3b87747ad6ee21.png" src="_images/f50d6aed9c507611edfa6c4cf66752632889d8ada237dbf33c3b87747ad6ee21.png" />
 </div>
 </div>
-<p>La Eq. <a class="reference internal" href="#equation-ridge-coeff-stand">(11)</a> puede <em><strong>reescribirse</strong></em> de la siguiente forma al <em><strong>desarrollar los productos asociados y aplicar propiedades de la transpuesta</strong></em></p>
+<p>La Eq. <a class="reference internal" href="#equation-ridge-coeff-stand">(3.7)</a> puede <em><strong>reescribirse</strong></em> de la siguiente forma al <em><strong>desarrollar los productos asociados y aplicar propiedades de la transpuesta</strong></em></p>
 <div class="math notranslate nohighlight">
 \[
 S_{\lambda}(\beta_{0}^{\star}, \boldsymbol{\beta}_{s})=\boldsymbol{y}^{T}\boldsymbol{y}-2\boldsymbol{y}^{T}\beta_{0}^{\star}\boldsymbol{1}-2\boldsymbol{y}^{T}Z\boldsymbol{\beta}_{s}+2\beta_{0}\textcolor{red}{\boldsymbol{1}^{T}Z}\boldsymbol{\beta}_{s}+n\beta_{0}^{\star^{2}}+\boldsymbol{\beta}_{s}^{T}Z^{T}Z\boldsymbol{\beta}_{s}+\lambda\boldsymbol{\beta}_{s}^{T}\boldsymbol{\beta}_{s}
 \]</div>
 <p>Diferenciando con respecto a <span class="math notranslate nohighlight">\(\beta_{0}^{\star}\)</span> y <span class="math notranslate nohighlight">\(\boldsymbol{\beta}_{s}\)</span> para resolver el <em><strong>problema de minimización</strong></em>, obtenemos las siguientes ecuaciones:</p>
 <div class="math notranslate nohighlight" id="equation-eq-betaz">
-<span class="eqno">(12)<a class="headerlink" href="#equation-eq-betaz" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.8)<a class="headerlink" href="#equation-eq-betaz" title="Link to this equation">#</a></span>\[
 \begin{align*}
 \frac{\partial S_{\lambda}(\beta_{0}^{\star}, \boldsymbol{\beta}_{s})}{\partial\beta_{0}^{\star}}&amp;=-2n\overline{y}+2n\beta_{0}^{\star}=0
 \end{align*}
@@ -1779,7 +1794,7 @@ x_{p}
 \end{split}\]</div>
 <p>Por lo tanto, para <span class="math notranslate nohighlight">\(k=1,2,\dots,p\)</span>, <em><strong>bajo el supuesto de simetría</strong></em> para <span class="math notranslate nohighlight">\(A\)</span> se tiene que</p>
 <div class="math notranslate nohighlight" id="equation-quadratic-form-dedrivate">
-<span class="eqno">(13)<a class="headerlink" href="#equation-quadratic-form-dedrivate" title="Link to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(3.9)<a class="headerlink" href="#equation-quadratic-form-dedrivate" title="Link to this equation">#</a></span>\[\begin{split}
 \begin{align*}
 \frac{\partial(\boldsymbol{x}^{T}A\boldsymbol{x})}{\partial\boldsymbol{x}}&amp;=
 \begin{pmatrix}
@@ -1795,12 +1810,12 @@ x_{p}
 \end{split}\]</div>
 <p><em><strong>Nótese que</strong></em> <span class="math notranslate nohighlight">\(A:=Z^{T}Z\)</span>, <em><strong>es simétrica</strong></em>, en efecto: <span class="math notranslate nohighlight">\(A^{T}=(Z^{T}Z)^{T}=Z^{T}(Z^{T})^{T}=Z^{T}Z=A\)</span>, entonces <span class="math notranslate nohighlight">\(\partial_{\boldsymbol{\beta}_{s}}(\boldsymbol{\beta}_{s}^{T}Z^{T}Z\boldsymbol{\beta}_{s})=2Z^{T}Z\boldsymbol{\beta}_{s}\)</span>, por lo tanto</p>
 <div class="math notranslate nohighlight" id="equation-eq-betas">
-<span class="eqno">(14)<a class="headerlink" href="#equation-eq-betas" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.10)<a class="headerlink" href="#equation-eq-betas" title="Link to this equation">#</a></span>\[
 \begin{align*}
 \frac{\partial S_{\lambda}(\beta_{0}^{\star},\boldsymbol{\beta}_{s})}{\partial\boldsymbol{\beta}_{s}}=-2Z^{T}\boldsymbol{y}+2Z^{T}Z\boldsymbol{\beta}_{s}+2\lambda\boldsymbol{\beta}_{s}=\boldsymbol{0}
 \end{align*}
 \]</div>
-<p><em><strong>Resolviendo las ecuaciones</strong></em> <a class="reference internal" href="#equation-eq-betaz">(12)</a> y <a class="reference internal" href="#equation-eq-betas">(14)</a> para <span class="math notranslate nohighlight">\(\beta_{0}^{\star}\)</span> y <span class="math notranslate nohighlight">\(\boldsymbol{\beta}_{s}\)</span>, se tienen <em><strong>estimadores ridge</strong></em> para el modelo de regresión <a class="reference internal" href="#equation-eq-reg-li-z">(9)</a></p>
+<p><em><strong>Resolviendo las ecuaciones</strong></em> <a class="reference internal" href="#equation-eq-betaz">(3.8)</a> y <a class="reference internal" href="#equation-eq-betas">(3.10)</a> para <span class="math notranslate nohighlight">\(\beta_{0}^{\star}\)</span> y <span class="math notranslate nohighlight">\(\boldsymbol{\beta}_{s}\)</span>, se tienen <em><strong>estimadores ridge</strong></em> para el modelo de regresión <a class="reference internal" href="#equation-eq-reg-li-z">(3.5)</a></p>
 <div class="math notranslate nohighlight">
 \[
 \hat{\beta}_{0}^{\star}=\overline{y}\quad\text{y}\quad\hat{\boldsymbol{\beta}}_{s}=(Z^{T}Z+\lambda I_{p})^{-1}Z^{T}\boldsymbol{y}
@@ -1815,10 +1830,10 @@ x_{p}
 \[
 S_{\lambda}(\boldsymbol{\beta}_{s})=(\boldsymbol{y}-Z\boldsymbol{\beta}_{s})^{T}(\boldsymbol{y}-Z\boldsymbol{\beta}_{s})+\lambda\boldsymbol{\beta}_{s}^{T}\boldsymbol{\beta}_{s}.
 \]</div>
-<p><em><strong>En efecto</strong></em>, para obtener <em><strong>estimación ridge del vector de coeficientes</strong></em> <span class="math notranslate nohighlight">\(\boldsymbol{\beta}_{s}=(\hat{\beta}_{1}, \hat{\beta}_{2},\dots, \hat{\beta}_{p})\)</span>, primero, nótese que al reemplazar <span class="math notranslate nohighlight">\(\hat{\beta}_{0}^{\star}=\overline{y}\)</span> en Eq. <a class="reference internal" href="#equation-reg-ridge-model">(10)</a> se tiene que <span class="math notranslate nohighlight">\(y=\overline{y}\boldsymbol{1}+Z\boldsymbol{\beta}_{s}+\varepsilon\)</span>, entonces <span class="math notranslate nohighlight">\(\boldsymbol{y}-\overline{y}\boldsymbol{1}\)</span> esta <em><strong>centrando los datos en relación a la variable respuesta</strong></em>.</p>
-<p><em><strong>Estandarizando las variables predictoras y respuesta</strong></em> en nuestro modelo inicial Ecuación <a class="reference internal" href="#equation-linear-model-comp">(7)</a>, mediante <span class="math notranslate nohighlight">\(y_{i}-\overline{y}\)</span> y <span class="math notranslate nohighlight">\((x_{ij}-\bar x_{j})/s_{j}\)</span> se tienen las siguientes igualdades, <em><strong>verifiquelas</strong></em></p>
+<p><em><strong>En efecto</strong></em>, para obtener <em><strong>estimación ridge del vector de coeficientes</strong></em> <span class="math notranslate nohighlight">\(\boldsymbol{\beta}_{s}=(\hat{\beta}_{1}, \hat{\beta}_{2},\dots, \hat{\beta}_{p})\)</span>, primero, nótese que al reemplazar <span class="math notranslate nohighlight">\(\hat{\beta}_{0}^{\star}=\overline{y}\)</span> en Eq. <a class="reference internal" href="#equation-reg-ridge-model">(3.6)</a> se tiene que <span class="math notranslate nohighlight">\(y=\overline{y}\boldsymbol{1}+Z\boldsymbol{\beta}_{s}+\varepsilon\)</span>, entonces <span class="math notranslate nohighlight">\(\boldsymbol{y}-\overline{y}\boldsymbol{1}\)</span> esta <em><strong>centrando los datos en relación a la variable respuesta</strong></em>.</p>
+<p><em><strong>Estandarizando las variables predictoras y respuesta</strong></em> en nuestro modelo inicial Ecuación <a class="reference internal" href="#equation-linear-model-comp">(3.3)</a>, mediante <span class="math notranslate nohighlight">\(y_{i}-\overline{y}\)</span> y <span class="math notranslate nohighlight">\((x_{ij}-\bar x_{j})/s_{j}\)</span> se tienen las siguientes igualdades, <em><strong>verifiquelas</strong></em></p>
 <div class="math notranslate nohighlight" id="equation-ridge-normalization">
-<span class="eqno">(15)<a class="headerlink" href="#equation-ridge-normalization" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.11)<a class="headerlink" href="#equation-ridge-normalization" title="Link to this equation">#</a></span>\[
 \sum_{i=1}^{n}y_{i}=0,\quad\sum_{i=1}^{n}x_{ij}=0,~j=1,2,\dots,p,\quad\sum_{i=1}^{n}x_{ij}^{2}=n
 \]</div>
 <p>Entonces,</p>
@@ -1826,13 +1841,13 @@ S_{\lambda}(\boldsymbol{\beta}_{s})=(\boldsymbol{y}-Z\boldsymbol{\beta}_{s})^{T}
 \[
 \beta_{0}^{\star}=\bar{y}=\frac{1}{n}\sum_{i=1}^{n}y_{i}=0.
 \]</div>
-<p><em><strong>En virtud de la implicación</strong></em> de estas igualdades con respecto al parámetro <span class="math notranslate nohighlight">\(\beta_{0}^{\star}\)</span> y la Ecuación <a class="reference internal" href="#equation-eq-reg-li-z">(9)</a>, podemos <em><strong>considerar sin perdida de generalidad</strong></em>, el modelo de regresión</p>
+<p><em><strong>En virtud de la implicación</strong></em> de estas igualdades con respecto al parámetro <span class="math notranslate nohighlight">\(\beta_{0}^{\star}\)</span> y la Ecuación <a class="reference internal" href="#equation-eq-reg-li-z">(3.5)</a>, podemos <em><strong>considerar sin perdida de generalidad</strong></em>, el modelo de regresión</p>
 <div class="math notranslate nohighlight">
 \[
 y=X\boldsymbol{\beta}+\boldsymbol{\varepsilon},
 \]</div>
 <p>donde <span class="math notranslate nohighlight">\(X\in\mathbb{R}^{n\times p},~\boldsymbol{\beta}\in\mathbb{R}^{p},~E(\boldsymbol{\varepsilon})=0\)</span> y <span class="math notranslate nohighlight">\(\textrm{cov}(\boldsymbol{\varepsilon})=\sigma^2\boldsymbol{I}\)</span>.</p>
-<p>Por lo tanto <em><strong>minimizando el operador</strong></em> <span class="math notranslate nohighlight">\(S_{\lambda}(\boldsymbol{\beta})=(y-X\boldsymbol{\beta})^{T}(y-X\boldsymbol{\beta})+\lambda\boldsymbol{\beta}^{T}\boldsymbol{\beta}\)</span>, de <em><strong>forma análoga al procedimiento de optimización para</strong></em> Eq. <a class="reference internal" href="#equation-ridge-coeff-stand">(11)</a>, obtenemos el estimador de ridge:</p>
+<p>Por lo tanto <em><strong>minimizando el operador</strong></em> <span class="math notranslate nohighlight">\(S_{\lambda}(\boldsymbol{\beta})=(y-X\boldsymbol{\beta})^{T}(y-X\boldsymbol{\beta})+\lambda\boldsymbol{\beta}^{T}\boldsymbol{\beta}\)</span>, de <em><strong>forma análoga al procedimiento de optimización para</strong></em> Eq. <a class="reference internal" href="#equation-ridge-coeff-stand">(3.7)</a>, obtenemos el estimador de ridge:</p>
 <div class="math notranslate nohighlight">
 \[
 \hat{\boldsymbol{\beta}}_{R}=(X^{T}X+\lambda\boldsymbol{I}_{p})^{-1}X^{T}\boldsymbol{y}.
@@ -1841,7 +1856,7 @@ y=X\boldsymbol{\beta}+\boldsymbol{\varepsilon},
 <p class="admonition-title">Propiedades del estimador ridge</p>
 <p>El <em><strong>estimador ridge</strong></em> satisface las siguientes propiedades:</p>
 <div class="math notranslate nohighlight" id="equation-ridge-props">
-<span class="eqno">(16)<a class="headerlink" href="#equation-ridge-props" title="Link to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(3.12)<a class="headerlink" href="#equation-ridge-props" title="Link to this equation">#</a></span>\[\begin{split}
 \begin{align}
 \text{E}(\hat{\boldsymbol{\beta}}_{R})&amp;=(X^{T}X+\lambda\boldsymbol{I}_{p})^{-1}X^{T}X\boldsymbol{\beta}\\
 \text{Cov}(\boldsymbol{\beta}_{R})&amp;=\sigma^{2}(X^{T}X+\lambda\boldsymbol{I}_{p})^{-1}X^{T}X(X^{T}X+\lambda\boldsymbol{I}_{p})^{-1}\\
@@ -1849,15 +1864,15 @@ y=X\boldsymbol{\beta}+\boldsymbol{\varepsilon},
 \text{E}[(\hat{\boldsymbol{\beta}}_{R}-\boldsymbol{\beta})^{T}(\hat{\boldsymbol{\beta}}_{R}-\boldsymbol{\beta})]&amp;=\displaystyle{\sigma^{2}\sum_{j=1}^{p}\frac{l_{j}}{(l_{j}+\lambda)^{2}}+\lambda^{2}\boldsymbol{\beta}^{T}(X^{T}X+\lambda\boldsymbol{I}_{p})^{-2}\boldsymbol{\beta}},
 \end{align}
 \end{split}\]</div>
-<p>donde <span class="math notranslate nohighlight">\(l_{1}, l_{2},\dots, l_{p}\)</span> son los <em><strong>autovalores ordenados</strong></em> de <span class="math notranslate nohighlight">\(X^{T}X\)</span>. El primer término del lado derecho de la última ecuación en <a class="reference internal" href="#equation-ridge-props">(16)</a> representa la suma de las <em><strong>varianzas de los componentes del estimador ridge</strong></em>, y el segundo término es el <em><strong>cuadrado del sesgo</strong></em>.</p>
+<p>donde <span class="math notranslate nohighlight">\(l_{1}, l_{2},\dots, l_{p}\)</span> son los <em><strong>autovalores ordenados</strong></em> de <span class="math notranslate nohighlight">\(X^{T}X\)</span>. El primer término del lado derecho de la última ecuación en <a class="reference internal" href="#equation-ridge-props">(3.12)</a> representa la suma de las <em><strong>varianzas de los componentes del estimador ridge</strong></em>, y el segundo término es el <em><strong>cuadrado del sesgo</strong></em>.</p>
 </div>
 <div class="tip admonition">
 <p class="admonition-title">Ejercicio para el lector</p>
-<p>Queda como <em><strong>ejercicio para el lector verificar las Propiedades</strong></em> <a class="reference internal" href="#equation-ridge-props">(16)</a> del <em><strong>estimador ridge</strong></em>. <em>Sugerencia: Revisar el texto de Sadanori Konishi</em>, <em><strong>Introduction to Multivariate Analysis: Linear and Nonlinear Modeling</strong></em> <span id="id1">[<a class="reference internal" href="biblio.html#id20" title="S. Konishi. Introduction to Multivariate Analysis: Linear and Nonlinear Modeling. Chapman &amp; Hall/CRC Texts in Statistical Science. Taylor &amp; Francis, 2014. ISBN 9781466567283. URL: https://books.google.com.co/books?id=fcuuAwAAQBAJ.">Konishi, 2014</a>]</span>.</p>
+<p>Queda como <em><strong>ejercicio para el lector verificar las Propiedades</strong></em> <a class="reference internal" href="#equation-ridge-props">(3.12)</a> del <em><strong>estimador ridge</strong></em>. <em>Sugerencia: Revisar el texto de Sadanori Konishi</em>, <em><strong>Introduction to Multivariate Analysis: Linear and Nonlinear Modeling</strong></em> <span id="id2">[<a class="reference internal" href="biblio.html#id20" title="S. Konishi. Introduction to Multivariate Analysis: Linear and Nonlinear Modeling. Chapman &amp; Hall/CRC Texts in Statistical Science. Taylor &amp; Francis, 2014. ISBN 9781466567283. URL: https://books.google.com.co/books?id=fcuuAwAAQBAJ.">Konishi, 2014</a>]</span>.</p>
 </div>
 </section>
 <section id="implementacion">
-<h3>Implementación<a class="headerlink" href="#implementacion" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.4.2. </span>Implementación<a class="headerlink" href="#implementacion" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>La <em><strong>regresión ridge</strong></em> se implementa en <code class="docutils literal notranslate"><span class="pre">linear_model.Ridge</span></code>. Veamos qué tal lo hace en el conjunto de datos ampliado de <code class="docutils literal notranslate"><span class="pre">Boston</span> <span class="pre">Housing</span></code>.</p></li>
 </ul>
@@ -1984,7 +1999,7 @@ Test set score: 0.77
 </section>
 </section>
 <section id="lasso">
-<h2>Lasso<a class="headerlink" href="#lasso" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">3.5. </span>Lasso<a class="headerlink" href="#lasso" title="Link to this heading">#</a></h2>
 <p><strong><code class="docutils literal notranslate"><span class="pre">Observación</span></code></strong></p>
 <ul class="simple">
 <li><p>Una alternativa a la <em><strong>regresión ridge</strong></em> para regularizar la <em><strong>regresión lineal</strong></em> es la <em><strong>regresión lasso</strong></em>. Al igual que con la regresión <em><strong>ridge</strong></em>, el uso de <em><strong>lasso</strong></em> también <em><strong>restringe los coeficientes para que sean cercanos a cero, pero de una forma ligeramente diferente, llamada regularización</strong></em> <span class="math notranslate nohighlight">\(L^1\)</span>.</p></li>
@@ -1997,7 +2012,7 @@ Test set score: 0.77
 \[
 S_{\lambda}(\boldsymbol{\beta})=(y-X\boldsymbol{\beta})^{T}(y-X\boldsymbol{\beta})+\lambda\sum_{i=1}^{p}|\beta_{j}|,
 \]</div>
-<p>donde los datos observados están normalizados como en la Ecuación <a class="reference internal" href="#equation-ridge-normalization">(15)</a>. A diferencia de la contracción de los coeficientes de regresión hacia cero, que se produce en la regresión de ridge, <em><strong>lasso da lugar a una estimación exactamente igual a cero para algunos de los coeficientes.</strong></em></p>
+<p>donde los datos observados están normalizados como en la Ecuación <a class="reference internal" href="#equation-ridge-normalization">(3.11)</a>. A diferencia de la contracción de los coeficientes de regresión hacia cero, que se produce en la regresión de ridge, <em><strong>lasso da lugar a una estimación exactamente igual a cero para algunos de los coeficientes.</strong></em></p>
 <div class="tip admonition">
 <p class="admonition-title">Observación</p>
 <ul class="simple">
@@ -2006,10 +2021,9 @@ S_{\lambda}(\boldsymbol{\beta})=(y-X\boldsymbol{\beta})^{T}(y-X\boldsymbol{\beta
 </ul>
 </div>
 <figure class="align-center" id="fig-ridge-lasso">
-<a class="reference internal image-reference" href="_images/ridge_lasso.png"><img alt="_images/ridge_lasso.png" src="_images/ridge_lasso.png" style="width: 618.75px; height: 377.7px;" />
-</a>
+<a class="reference internal image-reference" href="_images/ridge_lasso.png"><img alt="_images/ridge_lasso.png" src="_images/ridge_lasso.png" style="width: 618.75px; height: 377.7px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 6 </span><span class="caption-text">Estimación ridge (izquierda) y estimación lasso (derecha).</span><a class="headerlink" href="#fig-ridge-lasso" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 3.2 </span><span class="caption-text">Estimación ridge (izquierda) y estimación lasso (derecha).</span><a class="headerlink" href="#fig-ridge-lasso" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>La diferencia entre la estimación lasso y la estimación ridge puede demostrarse, para simplificar, para el caso de sólo dos variables predictoras <span class="math notranslate nohighlight">\(x_{1}\)</span> y <span class="math notranslate nohighlight">\(x_{2}\)</span>. <em><strong>En la estimación ridge, la solución se basa en la restricción</strong></em> <span class="math notranslate nohighlight">\(\beta_{1}^{2}+\beta_{2}^{2}\leq c_{1}\)</span> de minimizar</p>
@@ -2019,8 +2033,8 @@ S(\beta_{1}, \beta_{2})=\sum_{i=1}^{n}\left(y_{i}-\sum_{j=1}^{2}\beta_{j}x_{ij}\
 \]</div>
 <p>para datos centrados, mientras que <em><strong>la estimación lasso se basa en la restricción</strong></em> <span class="math notranslate nohighlight">\(|\beta_{1}|+|\beta_{2}|\leq c_{2}\)</span>.</p>
 <ul class="simple">
-<li><p>Dado que la <em><strong>estimación por mínimos cuadrados es la solución que minimiza</strong></em> <span class="math notranslate nohighlight">\(S(\beta_{1}, \beta_{2})\)</span>, <em><strong>esta se produce en el centro de una elipse</strong></em>. Sin embargo, como se muestra en la <a class="reference internal" href="#fig-ridge-lasso"><span class="std std-numref">Fig. 6</span></a>, las soluciones que satisfacen las restricciones en las <em><strong>estimaciones ridge se encuentran en regiones diferentes de las que satisfacen las restricciones en las estimaciones lasso</strong></em>.</p></li>
-<li><p>La diferencia esencial entre la estimación ridge y la estimación lasso como se muestra en la <a class="reference internal" href="#fig-ridge-lasso"><span class="std std-numref">Fig. 6</span></a>, es que <em><strong>la estimación ridge reduce todas las estimaciones del coeficiente de regresión hacia, pero no exactamente cero</strong></em>, en relación con las correspondientes a los mínimos cuadrados, mientras que <em><strong>la estimación lasso localiza algunas de las estimaciones del coeficiente de regresión exactamente iguales a cero</strong></em>.</p></li>
+<li><p>Dado que la <em><strong>estimación por mínimos cuadrados es la solución que minimiza</strong></em> <span class="math notranslate nohighlight">\(S(\beta_{1}, \beta_{2})\)</span>, <em><strong>esta se produce en el centro de una elipse</strong></em>. Sin embargo, como se muestra en la <a class="reference internal" href="#fig-ridge-lasso"><span class="std std-numref">Fig. 3.2</span></a>, las soluciones que satisfacen las restricciones en las <em><strong>estimaciones ridge se encuentran en regiones diferentes de las que satisfacen las restricciones en las estimaciones lasso</strong></em>.</p></li>
+<li><p>La diferencia esencial entre la estimación ridge y la estimación lasso como se muestra en la <a class="reference internal" href="#fig-ridge-lasso"><span class="std std-numref">Fig. 3.2</span></a>, es que <em><strong>la estimación ridge reduce todas las estimaciones del coeficiente de regresión hacia, pero no exactamente cero</strong></em>, en relación con las correspondientes a los mínimos cuadrados, mientras que <em><strong>la estimación lasso localiza algunas de las estimaciones del coeficiente de regresión exactamente iguales a cero</strong></em>.</p></li>
 <li><p>Debido a su característica de reducir algunos coeficientes a exactamente cero, <em><strong>lasso también puede utilizarse para la selección de variables en modelos a gran escala con muchas variables predictoras</strong></em>, para las que el parámetro de regularización <span class="math notranslate nohighlight">\(\lambda\)</span> afecta al grado de de esparcimiento de la solución.</p></li>
 </ul>
 <div class="tip admonition">
@@ -2029,7 +2043,7 @@ S(\beta_{1}, \beta_{2})=\sum_{i=1}^{n}\left(y_{i}-\sum_{j=1}^{2}\beta_{j}x_{ij}\
 </div>
 </section>
 <section id="aplicacion-regresion-lasso">
-<h2>Aplicación: Regresión Lasso<a class="headerlink" href="#aplicacion-regresion-lasso" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">3.6. </span>Aplicación: Regresión Lasso<a class="headerlink" href="#aplicacion-regresion-lasso" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Apliquemos <code class="docutils literal notranslate"><span class="pre">lasso</span></code> al conjunto de datos ampliado de <code class="docutils literal notranslate"><span class="pre">Boston</span> <span class="pre">Housing</span></code></p></li>
 </ul>
@@ -2137,12 +2151,12 @@ Number of features used: 96
 </ul>
 </section>
 <section id="modelos-lineales-para-clasificacion">
-<h2>Modelos lineales para clasificación<a class="headerlink" href="#modelos-lineales-para-clasificacion" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">3.7. </span>Modelos lineales para clasificación<a class="headerlink" href="#modelos-lineales-para-clasificacion" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><em><strong>Los modelos lineales también se utilizan ampliamente para la clasificación</strong></em>. Veamos primero la <em><strong>clasificación binaria</strong></em>. En este caso, la predicción se realiza mediante la siguiente fórmula</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-linear-class">
-<span class="eqno">(17)<a class="headerlink" href="#equation-linear-class" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.13)<a class="headerlink" href="#equation-linear-class" title="Link to this equation">#</a></span>\[
 \hat{y}=\beta_{0}+\beta_{1}\cdot x_{1}+\beta_{2}\cdot x_{2}+\cdots+\beta_{p}\cdot x_{p}
 \]</div>
 <ul class="simple">
@@ -2296,7 +2310,7 @@ Test set score: 0.930
 </div>
 </div>
 <ul class="simple">
-<li><p>Cuando se desplaza más hacia la izquierda en la escala mostrada en la <a class="reference internal" href="supervised_intro.html#fig-sweet-spot"><span class="std std-numref">Fig. 3</span></a> e obtiene un <em><strong>modelo subjustado, tanto la precisión del conjunto de entrenamiento como la de la prueba disminuyen en relación con los parámetros por defecto</strong></em>. Por último, veamos los coeficientes aprendidos por los modelos con las tres configuraciones diferentes de los parámetros de regularización <span class="math notranslate nohighlight">\(C\)</span></p></li>
+<li><p>Cuando se desplaza más hacia la izquierda en la escala mostrada en la <a class="reference internal" href="supervised_intro.html#fig-sweet-spot"><span class="std std-numref">Fig. 1.3</span></a> e obtiene un <em><strong>modelo subjustado, tanto la precisión del conjunto de entrenamiento como la de la prueba disminuyen en relación con los parámetros por defecto</strong></em>. Por último, veamos los coeficientes aprendidos por los modelos con las tres configuraciones diferentes de los parámetros de regularización <span class="math notranslate nohighlight">\(C\)</span></p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2361,7 +2375,7 @@ Test accuracy of l1 logreg with C=100.000: 0.98
 </ul>
 </section>
 <section id="modelos-lineales-para-la-clasificacion-multiclase">
-<h2>Modelos lineales para la clasificación multiclase<a class="headerlink" href="#modelos-lineales-para-la-clasificacion-multiclase" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">3.8. </span>Modelos lineales para la clasificación multiclase<a class="headerlink" href="#modelos-lineales-para-la-clasificacion-multiclase" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Muchos modelos de clasificación lineal sólo sirven para la clasificación binaria y no se extienden de forma natural al caso multiclase (con la excepción de la <em><strong>regresión logística</strong></em>). Una técnica común para extender un algoritmo de clasificación binaria a un <em><strong>algoritmo de clasificación multiclase</strong></em> es el enfoque <code class="docutils literal notranslate"><span class="pre">one-vs.-rest</span></code>. En el enfoque <code class="docutils literal notranslate"><span class="pre">one-vs.-rest</span></code>, <em><strong>se aprende un modelo binario para cada clase fija, el cual intenta separar esa clase de todas las demás, lo cual da lugar a tantos modelos binarios como clases exista</strong></em>.</p></li>
 <li><p>Para hacer una predicción, se ejecutan todos los clasificadores binarios en un punto de prueba. <em><strong>El clasificador que tenga la mayor puntuación en su clase “gana”, y esta etiqueta de clase se devuelve como predicción</strong></em>. Al tener un clasificador binario por clase, se tiene un vector de coeficientes <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span> para cada clase. La clase para la que el resultado de la fórmula de clasificación dada aquí, es la más alta, es la etiqueta de clase asignada:</p></li>
@@ -2511,7 +2525,7 @@ Intercept shape:  (3,)
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="math notranslate nohighlight">\(k\)</span>-vecinos más cercanos</p>
+        <p class="prev-next-title"><span class="section-number">2. </span><span class="math notranslate nohighlight">\(k\)</span>-vecinos más cercanos</p>
       </div>
     </a>
     <a class="right-next"
@@ -2519,7 +2533,7 @@ Intercept shape:  (3,)
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Clasificador Bayesiano</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Clasificador Bayesiano</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -2539,21 +2553,21 @@ Intercept shape:  (3,)
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-de-regresion-lineal">Modelo de regresión lineal</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#minimos-cuadrados-ordinarios">Mínimos Cuadrados Ordinarios</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-regresion-ridge-y-ols">Aplicación: Regresión Ridge y OLS</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-exploratorio-de-datos">Análisis Exploratorio de Datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-de-regresion-lineal">3.1. Modelo de regresión lineal</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#minimos-cuadrados-ordinarios">3.2. Mínimos Cuadrados Ordinarios</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-regresion-ridge-y-ols">3.3. Aplicación: Regresión Ridge y OLS</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-exploratorio-de-datos">3.3.1. Análisis Exploratorio de Datos</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-ridge">Regresión ridge</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis">Análisis</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion">Implementación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-ridge">3.4. Regresión ridge</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis">3.4.1. Análisis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion">3.4.2. Implementación</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lasso">Lasso</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-regresion-lasso">Aplicación: Regresión Lasso</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-lineales-para-clasificacion">Modelos lineales para clasificación</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-lineales-para-la-clasificacion-multiclase">Modelos lineales para la clasificación multiclase</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lasso">3.5. Lasso</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-regresion-lasso">3.6. Aplicación: Regresión Lasso</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-lineales-para-clasificacion">3.7. Modelos lineales para clasificación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-lineales-para-la-clasificacion-multiclase">3.8. Modelos lineales para la clasificación multiclase</a></li>
 </ul>
   </nav></div>
 

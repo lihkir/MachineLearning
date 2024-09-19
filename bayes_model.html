@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Clasificador Bayesiano &#8212; Machine Learning</title>
+    <title>4. Clasificador Bayesiano &#8212; Machine Learning</title>
   
   
   
@@ -68,8 +68,8 @@
     <script src="_static/.ipynb_checkpoints/custom-checkpoint.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Random Forest y XGBoost" href="decisiontree_model.html" />
-    <link rel="prev" title="Regresión Ridge y Lasso" href="linear_model.html" />
+    <link rel="next" title="5. Random Forest y XGBoost" href="decisiontree_model.html" />
+    <link rel="prev" title="3. Regresión Ridge y Lasso" href="linear_model.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -185,24 +185,24 @@
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="supervised_intro.html">Aprendizaje supervisado</a></li>
-<li class="toctree-l1"><a class="reference internal" href="knn_model.html"><span class="math notranslate nohighlight">\(k\)</span>-vecinos más cercanos</a></li>
-<li class="toctree-l1"><a class="reference internal" href="linear_model.html">Regresión Ridge y Lasso</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Clasificador Bayesiano</a></li>
-<li class="toctree-l1"><a class="reference internal" href="decisiontree_model.html">Random Forest y XGBoost</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supervised_intro.html">1. Aprendizaje supervisado</a></li>
+<li class="toctree-l1"><a class="reference internal" href="knn_model.html">2. <span class="math notranslate nohighlight">\(k\)</span>-vecinos más cercanos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linear_model.html">3. Regresión Ridge y Lasso</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">4. Clasificador Bayesiano</a></li>
+<li class="toctree-l1"><a class="reference internal" href="decisiontree_model.html">5. Random Forest y XGBoost</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="svm_model.html">Máquinas de vectores de soporte</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ann_model.html">Redes Neuronales y Deep Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dl_computer_vision.html">Deep Learning para Visión por Computadora</a></li>
-
-
+<li class="toctree-l1"><a class="reference internal" href="svm_model.html">7. Máquinas de vectores de soporte</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ann_model.html">8. Redes Neuronales y Deep Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dl_computer_vision.html">9. Deep Learning para Visión por Computadora</a></li>
 
 
-<li class="toctree-l1"><a class="reference internal" href="practical_pca.html">Análisis de Componentes Principales</a></li>
-<li class="toctree-l1"><a class="reference internal" href="model_evaluation.html">Evaluación de modelos</a></li>
-<li class="toctree-l1"><a class="reference internal" href="chains_pipelines.html">Cadenas de Algoritmos y Pipelines</a></li>
-<li class="toctree-l1"><a class="reference internal" href="appendix.html">Apéndice</a></li>
-<li class="toctree-l1"><a class="reference internal" href="biblio.html">Bibliografía</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="practical_pca.html">14. Análisis de Componentes Principales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_evaluation.html">15. Evaluación de modelos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chains_pipelines.html">16. Cadenas de Algoritmos y Pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix.html">17. Apéndice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="biblio.html">18. Bibliografía</a></li>
 </ul>
 
     </div>
@@ -351,8 +351,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formulacion">Formulación</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-titanic-dataset">Aplicación: Titanic Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formulacion">4.1. Formulación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-titanic-dataset">4.2. Aplicación: Titanic Dataset</a></li>
 </ul>
             </nav>
         </div>
@@ -365,7 +365,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="clasificador-bayesiano">
-<h1>Clasificador Bayesiano<a class="headerlink" href="#clasificador-bayesiano" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">4. </span>Clasificador Bayesiano<a class="headerlink" href="#clasificador-bayesiano" title="Link to this heading">#</a></h1>
 <div class="admonition-observacion admonition">
 <p class="admonition-title">Observación</p>
 <ul class="simple">
@@ -375,7 +375,7 @@ document.write(`
 </ul>
 </div>
 <section id="formulacion">
-<h2>Formulación<a class="headerlink" href="#formulacion" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">4.1. </span>Formulación<a class="headerlink" href="#formulacion" title="Link to this heading">#</a></h2>
 <p>En la clasificación mediante el <code class="docutils literal notranslate"><span class="pre">enfoque</span> <span class="pre">Bayesiano</span></code>, el concepto básico está plasmado en el <code class="docutils literal notranslate"><span class="pre">Teorema</span> <span class="pre">de</span> <span class="pre">Bayes</span></code>. Como ejemplo, <code class="docutils literal notranslate"><span class="pre">supongamos</span> <span class="pre">que</span> <span class="pre">hemos</span> <span class="pre">observado</span> <span class="pre">la</span> <span class="pre">aparición</span> <span class="pre">de</span> <span class="pre">un</span> <span class="pre">síntoma</span> <span class="pre">en</span> <span class="pre">un</span> <span class="pre">determinado</span> <span class="pre">paciente</span> <span class="pre">en</span> <span class="pre">forma</span> <span class="pre">de</span> <span class="pre">fiebre</span> <span class="pre">y</span> <span class="pre">necesitamos</span> <span class="pre">evaluar</span> <span class="pre">si</span> <span class="pre">ha</span> <span class="pre">sido</span> <span class="pre">causado</span> <span class="pre">por</span> <span class="pre">un</span> <span class="pre">resfriado</span> <span class="pre">o</span> <span class="pre">por</span> <span class="pre">la</span> <span class="pre">inﬂuenza</span></code>. <strong>Si la probabilidad de que un resfriado sea la causa de la fiebre es mayor que la de la inﬂuenza, entonces podemos atribuir, al menos tentativamente, la fiebre de este paciente a un resfriado</strong>.</p>
 <p>Este es el concepto subyacente de la <code class="docutils literal notranslate"><span class="pre">clasificación</span> <span class="pre">de</span> <span class="pre">Bayes</span></code>. El <code class="docutils literal notranslate"><span class="pre">Teorema</span> <span class="pre">de</span> <span class="pre">Bayes</span></code> da la <code class="docutils literal notranslate"><span class="pre">relación</span> <span class="pre">entre</span> <span class="pre">la</span> <span class="pre">probabilidad</span> <span class="pre">condicional</span> <span class="pre">de</span> <span class="pre">un</span> <span class="pre">evento</span> <span class="pre">basado</span> <span class="pre">en</span> <span class="pre">la</span> <span class="pre">información</span> <span class="pre">adquirida</span></code>, que en este caso puede <code class="docutils literal notranslate"><span class="pre">describirse</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">siguiente</span> <span class="pre">manera</span></code></p>
 <p>En primer lugar, denotamos la probabilidad de <code class="docutils literal notranslate"><span class="pre">fiebre</span></code> (<span class="math notranslate nohighlight">\(D\)</span>) como síntoma de un <code class="docutils literal notranslate"><span class="pre">resfriado</span></code> (<span class="math notranslate nohighlight">\(G1\)</span> ) y de la <code class="docutils literal notranslate"><span class="pre">inﬂuenza</span></code> (<span class="math notranslate nohighlight">\(G2\)</span>) por</p>
@@ -386,7 +386,7 @@ P(D|G_{1})=\frac{P(D\cap G_{1})}{P(G_{1})},\quad P(D|G_{2})=\frac{P(D\cap G_{2})
 <p>respectivamente. <span class="math notranslate nohighlight">\(P(D|G_{1})\)</span> y <span class="math notranslate nohighlight">\(P(D|G_{2})\)</span> representan las <code class="docutils literal notranslate"><span class="pre">probabilidades</span> <span class="pre">de</span> <span class="pre">que</span> <span class="pre">la</span> <span class="pre">fiebre</span> <span class="pre">sea</span> <span class="pre">el</span> <span class="pre">resultado</span> <span class="pre">de</span> <span class="pre">un</span> <span class="pre">resfriado</span> <span class="pre">y</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">inﬂuenza,</span> <span class="pre">respectivamente,</span> <span class="pre">y</span> <span class="pre">se</span> <span class="pre">denominan</span> <span class="pre">probabilidades</span> <span class="pre">condicionales</span></code>. Aquí, <span class="math notranslate nohighlight">\(P(G_{1})\)</span> y <span class="math notranslate nohighlight">\(P(G_{2})\)</span> <span class="math notranslate nohighlight">\((P(G_{1})+P(G_{2}) =
 1)\)</span>, son las <code class="docutils literal notranslate"><span class="pre">incidencias</span> <span class="pre">relativas</span> <span class="pre">de</span> <span class="pre">los</span> <span class="pre">resfriados</span> <span class="pre">y</span> <span class="pre">la</span> <span class="pre">inﬂuenza</span></code>, y se denominan probabilidades a priori. Se supone que estas <code class="docutils literal notranslate"><span class="pre">probabilidades</span> <span class="pre">condicionales</span> <span class="pre">y</span> <span class="pre">a</span> <span class="pre">priori</span> <span class="pre">pueden</span> <span class="pre">estimarse</span> <span class="pre">a</span> <span class="pre">partir</span> <span class="pre">de</span> <span class="pre">las</span> <span class="pre">observaciones</span> <span class="pre">y</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">información</span> <span class="pre">acumulada</span></code>. Entonces la probabilidad <span class="math notranslate nohighlight">\(P(D)\)</span> viene dada por</p>
 <div class="math notranslate nohighlight" id="equation-eq-prob-total">
-<span class="eqno">(18)<a class="headerlink" href="#equation-eq-prob-total" title="Link to this equation">#</a></span>\[
+<span class="eqno">(4.1)<a class="headerlink" href="#equation-eq-prob-total" title="Link to this equation">#</a></span>\[
 P(D)=P(G_{1})P(D|G_{1})+P(G_{2})P(D|G_{2}),
 \]</div>
 <p>la <code class="docutils literal notranslate"><span class="pre">probabilidad</span> <span class="pre">de</span> <span class="pre">que</span> <span class="pre">la</span> <span class="pre">fiebre</span> <span class="pre">sea</span> <span class="pre">el</span> <span class="pre">resultado</span> <span class="pre">de</span> <span class="pre">un</span> <span class="pre">resfriado</span> <span class="pre">o</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">inﬂuenza</span></code>, llamada la ley de la <code class="docutils literal notranslate"><span class="pre">probabilidad</span> <span class="pre">total</span></code>.</p>
@@ -398,13 +398,13 @@ P(G_{i}|D)&amp;=\frac{P(G_{i}\cap D)}{P(D)}\\
 &amp;=\frac{P(G_{i})P(D|G_{i})}{P(G_{1})P(D|G_{1})+P(G_{1})P(D|G_{2})},\quad i=1,2,
 \end{align*}
 \end{split}\]</div>
-<p>donde <span class="math notranslate nohighlight">\(P(D)\)</span> es la <code class="docutils literal notranslate"><span class="pre">probabilidad</span> <span class="pre">total</span></code> Ecuación <a class="reference internal" href="#equation-eq-prob-total">(18)</a>. Tras la aparición del resultado <span class="math notranslate nohighlight">\(D\)</span>, las probabilidades condicionales <span class="math notranslate nohighlight">\(P(G_{i}|D)\)</span> se convierten en <code class="docutils literal notranslate"><span class="pre">probabilidades</span> <span class="pre">posteriores</span></code>. En general, el <code class="docutils literal notranslate"><span class="pre">Teorema</span> <span class="pre">de</span> <span class="pre">Bayes</span></code> se formula como sigue.</p>
+<p>donde <span class="math notranslate nohighlight">\(P(D)\)</span> es la <code class="docutils literal notranslate"><span class="pre">probabilidad</span> <span class="pre">total</span></code> Ecuación <a class="reference internal" href="#equation-eq-prob-total">(4.1)</a>. Tras la aparición del resultado <span class="math notranslate nohighlight">\(D\)</span>, las probabilidades condicionales <span class="math notranslate nohighlight">\(P(G_{i}|D)\)</span> se convierten en <code class="docutils literal notranslate"><span class="pre">probabilidades</span> <span class="pre">posteriores</span></code>. En general, el <code class="docutils literal notranslate"><span class="pre">Teorema</span> <span class="pre">de</span> <span class="pre">Bayes</span></code> se formula como sigue.</p>
 <div class="proof theorem admonition" id="bayes_theorem">
-<p class="admonition-title"><span class="caption-number">Theorem 2 </span> (Teorema de Bayes)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 4.1 </span> (Teorema de Bayes)</p>
 <section class="theorem-content" id="proof-content">
 <p>Suponga que el espacio muestral <span class="math notranslate nohighlight">\(\Omega\)</span> es divido en <span class="math notranslate nohighlight">\(r\)</span> <code class="docutils literal notranslate"><span class="pre">eventos</span> <span class="pre">mutuamente</span> <span class="pre">disyuntos</span></code> <span class="math notranslate nohighlight">\(G_{j}\)</span> como <span class="math notranslate nohighlight">\(\Omega=G_{1}\cup G_{2}\cup\cdots\cup G_{r}~(G_{i}\cap G_{j}=\emptyset)\)</span>. Entonces, para cualquier evento <span class="math notranslate nohighlight">\(D\)</span>, la <code class="docutils literal notranslate"><span class="pre">probabilidad</span> <span class="pre">condicional</span></code> <span class="math notranslate nohighlight">\(P(G_{i}|D)\)</span> esta dada por</p>
 <div class="math notranslate nohighlight" id="equation-eq-bayes-theorem">
-<span class="eqno">(19)<a class="headerlink" href="#equation-eq-bayes-theorem" title="Link to this equation">#</a></span>\[
+<span class="eqno">(4.2)<a class="headerlink" href="#equation-eq-bayes-theorem" title="Link to this equation">#</a></span>\[
 P(G_{i}|D)=\frac{P(G_{i}\cap D)}{P(D)}=\frac{P(G_{i})P(D|G_{i})}{\displaystyle{\sum_{j=1}^{r}P(G_{j})P(D|G_{j})}},~i=1,2,\dots,r,
 \]</div>
 <p>donde <span class="math notranslate nohighlight">\(~\displaystyle{\sum_{j=1}^{r}P(G_{j})=1}\)</span>.</p>
@@ -419,7 +419,7 @@ G_{1}:~\boldsymbol{x}_{1}^{(1)}, \boldsymbol{x}_{2}^{(1)},\dots, \boldsymbol{x}_
 \]</div>
 <p>Supongamos que los datos de entrenamiento para las clases <span class="math notranslate nohighlight">\(G_{i}~(i=1,2)\)</span> han sido <code class="docutils literal notranslate"><span class="pre">observados</span> <span class="pre">de</span> <span class="pre">acuerdo</span> <span class="pre">a</span> <span class="pre">una</span> <span class="pre">distribución</span> <span class="pre">normal</span></code> <span class="math notranslate nohighlight">\(p\)</span>-dimensional <span class="math notranslate nohighlight">\(N_{p}(\boldsymbol{\mu}_{i},\Sigma_{i})\)</span> con vector de medias <span class="math notranslate nohighlight">\(\boldsymbol{\mu}_{i}\)</span> y matrices de varianza-covarianza <span class="math notranslate nohighlight">\(\Sigma_{i}\)</span> como sigue:</p>
 <div class="math notranslate nohighlight" id="equation-eq-mean-cov-bayes">
-<span class="eqno">(20)<a class="headerlink" href="#equation-eq-mean-cov-bayes" title="Link to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(4.3)<a class="headerlink" href="#equation-eq-mean-cov-bayes" title="Link to this equation">#</a></span>\[\begin{split}
 \begin{align*}
 G_{1}&amp;: N_{p}(\boldsymbol{\mu}_{1}, \Sigma_{1})\sim\boldsymbol{x}_{1}^{(1)},\boldsymbol{x}_{2}^{(1)},\dots, \boldsymbol{x}_{n_{1}}^{(1)},\\
 G_{2}&amp;: N_{p}(\boldsymbol{\mu}_{2}, \Sigma_{2})\sim\boldsymbol{x}_{1}^{(2)},\boldsymbol{x}_{2}^{(2)},\dots, \boldsymbol{x}_{n_{2}}^{(1)}.
@@ -427,15 +427,14 @@ G_{2}&amp;: N_{p}(\boldsymbol{\mu}_{2}, \Sigma_{2})\sim\boldsymbol{x}_{1}^{(2)},
 \end{split}\]</div>
 <p>Dado este tipo de modelo de distribución de probabilidad, entonces, si suponemos que cierto dato <span class="math notranslate nohighlight">\(\boldsymbol{x}_{0}\)</span> pertenece a la clase <span class="math notranslate nohighlight">\(G_{1}\)</span> o <span class="math notranslate nohighlight">\(G_{2}\)</span>, el <code class="docutils literal notranslate"><span class="pre">nivel</span> <span class="pre">relativo</span> <span class="pre">de</span> <span class="pre">ocurrencia</span></code> de ese dato en cada clase (la <code class="docutils literal notranslate"><span class="pre">verosimilitud</span></code> o grado de certeza) puede ser cuantificado por <span class="math notranslate nohighlight">\(f(\boldsymbol{x}_{0}|\boldsymbol{\mu}_{i},\Sigma_{i})\)</span>, usando la <code class="docutils literal notranslate"><span class="pre">distribución</span> <span class="pre">normal</span></code> <span class="math notranslate nohighlight">\(p\)</span><code class="docutils literal notranslate"><span class="pre">-dimensional</span></code>. Esta corresponde a la probabilidad condicional <span class="math notranslate nohighlight">\(P(D|G_{i})\)</span> descrita por el <code class="docutils literal notranslate"><span class="pre">Teorema</span> <span class="pre">de</span> <span class="pre">Bayes</span></code> y puede ser denominada la <code class="docutils literal notranslate"><span class="pre">verosimilitud</span></code> del dato <span class="math notranslate nohighlight">\(\boldsymbol{x}_{0}\)</span>.</p>
 </div>
-<p>Por ejemplo, consideremos una observación, extraida de una distribución normal <span class="math notranslate nohighlight">\(N(170, 6^2)\)</span> asociada con <code class="docutils literal notranslate"><span class="pre">alturas</span> <span class="pre">de</span> <span class="pre">hombres</span></code>. Entonces, usando la función de densidad de probabilidad, el <code class="docutils literal notranslate"><span class="pre">nivel</span> <span class="pre">relativo</span> <span class="pre">de</span> <span class="pre">ocurrencia</span> <span class="pre">de</span> <span class="pre">hombres</span> <span class="pre">de</span> <span class="pre">178</span> <span class="pre">cm</span> <span class="pre">de</span> <span class="pre">altura</span></code>, puede ser determinado como <span class="math notranslate nohighlight">\(f(178|170, 6^2)\)</span> (ver <a class="reference internal" href="#fig-heights-bayes"><span class="std std-numref">Fig. 7</span></a>).</p>
+<p>Por ejemplo, consideremos una observación, extraida de una distribución normal <span class="math notranslate nohighlight">\(N(170, 6^2)\)</span> asociada con <code class="docutils literal notranslate"><span class="pre">alturas</span> <span class="pre">de</span> <span class="pre">hombres</span></code>. Entonces, usando la función de densidad de probabilidad, el <code class="docutils literal notranslate"><span class="pre">nivel</span> <span class="pre">relativo</span> <span class="pre">de</span> <span class="pre">ocurrencia</span> <span class="pre">de</span> <span class="pre">hombres</span> <span class="pre">de</span> <span class="pre">178</span> <span class="pre">cm</span> <span class="pre">de</span> <span class="pre">altura</span></code>, puede ser determinado como <span class="math notranslate nohighlight">\(f(178|170, 6^2)\)</span> (ver <a class="reference internal" href="#fig-heights-bayes"><span class="std std-numref">Fig. 4.1</span></a>).</p>
 <figure class="align-center" id="fig-heights-bayes">
-<a class="reference internal image-reference" href="_images/heights_bayes.png"><img alt="_images/heights_bayes.png" src="_images/heights_bayes.png" style="width: 405.20000000000005px; height: 310.8px;" />
-</a>
+<a class="reference internal image-reference" href="_images/heights_bayes.png"><img alt="_images/heights_bayes.png" src="_images/heights_bayes.png" style="width: 405.20000000000005px; height: 310.8px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 7 </span><span class="caption-text">Nivel relativo de ocurrencia <span class="math notranslate nohighlight">\(f(178|170, 6^{2})\)</span>. Fuente <span id="id1">[<a class="reference internal" href="biblio.html#id20" title="S. Konishi. Introduction to Multivariate Analysis: Linear and Nonlinear Modeling. Chapman &amp; Hall/CRC Texts in Statistical Science. Taylor &amp; Francis, 2014. ISBN 9781466567283. URL: https://books.google.com.co/books?id=fcuuAwAAQBAJ.">Konishi, 2014</a>]</span>.</span><a class="headerlink" href="#fig-heights-bayes" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 4.1 </span><span class="caption-text">Nivel relativo de ocurrencia <span class="math notranslate nohighlight">\(f(178|170, 6^{2})\)</span>. Fuente <span id="id1">[<a class="reference internal" href="biblio.html#id20" title="S. Konishi. Introduction to Multivariate Analysis: Linear and Nonlinear Modeling. Chapman &amp; Hall/CRC Texts in Statistical Science. Taylor &amp; Francis, 2014. ISBN 9781466567283. URL: https://books.google.com.co/books?id=fcuuAwAAQBAJ.">Konishi, 2014</a>]</span>.</span><a class="headerlink" href="#fig-heights-bayes" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
-<p>Para obtener los datos de verosimilitud, reemplazamos los <code class="docutils literal notranslate"><span class="pre">parametros</span> <span class="pre">desconocidos</span></code>, <span class="math notranslate nohighlight">\(\boldsymbol{\mu}_{i}\)</span> y <span class="math notranslate nohighlight">\(\Sigma_{i}\)</span> en Eq. <a class="reference internal" href="#equation-eq-mean-cov-bayes">(20)</a> con sus respectivas <code class="docutils literal notranslate"><span class="pre">estimaciones</span> <span class="pre">de</span> <span class="pre">máxima</span> <span class="pre">verosimilitud</span></code></p>
+<p>Para obtener los datos de verosimilitud, reemplazamos los <code class="docutils literal notranslate"><span class="pre">parametros</span> <span class="pre">desconocidos</span></code>, <span class="math notranslate nohighlight">\(\boldsymbol{\mu}_{i}\)</span> y <span class="math notranslate nohighlight">\(\Sigma_{i}\)</span> en Eq. <a class="reference internal" href="#equation-eq-mean-cov-bayes">(4.3)</a> con sus respectivas <code class="docutils literal notranslate"><span class="pre">estimaciones</span> <span class="pre">de</span> <span class="pre">máxima</span> <span class="pre">verosimilitud</span></code></p>
 <div class="math notranslate nohighlight">
 \[
 \overline{\boldsymbol{x}}_{i}=\frac{1}{n_{i}}\sum_{j=1}^{n_{i}}\boldsymbol{x}_{j}^{(i)},\quad
@@ -464,9 +463,9 @@ S_{i}=\frac{1}{n_{i}}\sum_{j=1}^{n_{i}}(\boldsymbol{x}_{j}^{(i)}-\overline{\bold
 &lt; 0 &amp; \Rightarrow~\boldsymbol{x}\in G_{2}.
 \end{cases}
 \end{split}\]</div>
-<p>Por el <code class="docutils literal notranslate"><span class="pre">Teorema</span> <span class="pre">de</span> <span class="pre">Bayes</span></code> Eq. <a class="reference internal" href="#equation-eq-bayes-theorem">(19)</a>, las probabilidades posteriores están dadas por</p>
+<p>Por el <code class="docutils literal notranslate"><span class="pre">Teorema</span> <span class="pre">de</span> <span class="pre">Bayes</span></code> Eq. <a class="reference internal" href="#equation-eq-bayes-theorem">(4.2)</a>, las probabilidades posteriores están dadas por</p>
 <div class="math notranslate nohighlight" id="equation-eq-bayes-normal">
-<span class="eqno">(21)<a class="headerlink" href="#equation-eq-bayes-normal" title="Link to this equation">#</a></span>\[
+<span class="eqno">(4.4)<a class="headerlink" href="#equation-eq-bayes-normal" title="Link to this equation">#</a></span>\[
 P(G_{i}|\boldsymbol{x})=\frac{P(G_{i})P(\boldsymbol{x}|G_{i})}{P(G_{1})P(\boldsymbol{x}|G_{1})+P(G_{1})P(\boldsymbol{x}|G_{2})},\quad i=1,2.
 \]</div>
 <p>Usando las <code class="docutils literal notranslate"><span class="pre">distribuciones</span> <span class="pre">normales</span></code> <span class="math notranslate nohighlight">\(p\)</span><code class="docutils literal notranslate"><span class="pre">-dimensionales</span> <span class="pre">estimadas</span></code> <span class="math notranslate nohighlight">\(f(\boldsymbol{x}|\overline{\boldsymbol{x}}_{i}, S_{i})~(i=1,2)\)</span>, la <code class="docutils literal notranslate"><span class="pre">probabilidad</span> <span class="pre">condicional</span></code> puede ser escrita como</p>
@@ -474,15 +473,14 @@ P(G_{i}|\boldsymbol{x})=\frac{P(G_{i})P(\boldsymbol{x}|G_{i})}{P(G_{1})P(\boldsy
 \[
 P(\boldsymbol{x}|G_{i})=\frac{f(\boldsymbol{x}|\overline{\boldsymbol{x}}_{i}, S_{i})}{f(\boldsymbol{x}|\overline{\boldsymbol{x}}_{1}, S_{1})+f(\boldsymbol{x}|\overline{\boldsymbol{x}}_{2}, S_{2})},\quad i=1,2,
 \]</div>
-<p>(ver <a class="reference internal" href="#fig-bayes-normal"><span class="std std-numref">Fig. 8</span></a>) representación del <code class="docutils literal notranslate"><span class="pre">nivel</span> <span class="pre">relativo</span> <span class="pre">de</span> <span class="pre">ocurrencia</span></code>.</p>
+<p>(ver <a class="reference internal" href="#fig-bayes-normal"><span class="std std-numref">Fig. 4.2</span></a>) representación del <code class="docutils literal notranslate"><span class="pre">nivel</span> <span class="pre">relativo</span> <span class="pre">de</span> <span class="pre">ocurrencia</span></code>.</p>
 <figure class="align-center" id="fig-bayes-normal">
-<a class="reference internal image-reference" href="_images/bayes_normal.png"><img alt="_images/bayes_normal.png" src="_images/bayes_normal.png" style="width: 394.0px; height: 303.6px;" />
-</a>
+<a class="reference internal image-reference" href="_images/bayes_normal.png"><img alt="_images/bayes_normal.png" src="_images/bayes_normal.png" style="width: 394.0px; height: 303.6px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 8 </span><span class="caption-text"><span class="math notranslate nohighlight">\(P(\boldsymbol{x}|G_{i})\)</span>. Nivel relativo de ocurrencia del dato <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> en cada clase. Fuente <span id="id2">[<a class="reference internal" href="biblio.html#id20" title="S. Konishi. Introduction to Multivariate Analysis: Linear and Nonlinear Modeling. Chapman &amp; Hall/CRC Texts in Statistical Science. Taylor &amp; Francis, 2014. ISBN 9781466567283. URL: https://books.google.com.co/books?id=fcuuAwAAQBAJ.">Konishi, 2014</a>]</span>.</span><a class="headerlink" href="#fig-bayes-normal" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 4.2 </span><span class="caption-text"><span class="math notranslate nohighlight">\(P(\boldsymbol{x}|G_{i})\)</span>. Nivel relativo de ocurrencia del dato <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> en cada clase. Fuente <span id="id2">[<a class="reference internal" href="biblio.html#id20" title="S. Konishi. Introduction to Multivariate Analysis: Linear and Nonlinear Modeling. Chapman &amp; Hall/CRC Texts in Statistical Science. Taylor &amp; Francis, 2014. ISBN 9781466567283. URL: https://books.google.com.co/books?id=fcuuAwAAQBAJ.">Konishi, 2014</a>]</span>.</span><a class="headerlink" href="#fig-bayes-normal" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
-<p>Sustituyendo estas ecuaciones en <a class="reference internal" href="#equation-eq-bayes-normal">(21)</a>, el radio de <code class="docutils literal notranslate"><span class="pre">probabilidades</span> <span class="pre">posteriores</span></code> es expresado como</p>
+<p>Sustituyendo estas ecuaciones en <a class="reference internal" href="#equation-eq-bayes-normal">(4.4)</a>, el radio de <code class="docutils literal notranslate"><span class="pre">probabilidades</span> <span class="pre">posteriores</span></code> es expresado como</p>
 <div class="math notranslate nohighlight">
 \[
 \frac{P(G_{1}|\boldsymbol{x})}{P(G_{2}|\boldsymbol{x})}=
@@ -491,7 +489,7 @@ P(\boldsymbol{x}|G_{i})=\frac{f(\boldsymbol{x}|\overline{\boldsymbol{x}}_{i}, S_
 \]</div>
 <p><code class="docutils literal notranslate"><span class="pre">Tomando</span> <span class="pre">el</span> <span class="pre">logaritmo</span></code> de esta expresión, <code class="docutils literal notranslate"><span class="pre">bajo</span> <span class="pre">el</span> <span class="pre">supuesto</span> <span class="pre">de</span> <span class="pre">que</span> <span class="pre">las</span> <span class="pre">probabilidades</span> <span class="pre">a</span> <span class="pre">priori</span> <span class="pre">son</span> <span class="pre">iguales</span></code>, obtenemos la <code class="docutils literal notranslate"><span class="pre">clasificación</span> <span class="pre">Bayesiana</span></code> basada en la distribución de probabilidad</p>
 <div class="math notranslate nohighlight" id="equation-bayes-class-rule">
-<span class="eqno">(22)<a class="headerlink" href="#equation-bayes-class-rule" title="Link to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(4.5)<a class="headerlink" href="#equation-bayes-class-rule" title="Link to this equation">#</a></span>\[\begin{split}
 h(\boldsymbol{x})=\log\frac{f(\boldsymbol{x}|\overline{\boldsymbol{x}}_{1}, S_{1})}{f(\boldsymbol{x}|\overline{\boldsymbol{x}}_{2}, S_{2})}\quad
 \begin{cases}
 \geq 0 &amp;\Rightarrow~\boldsymbol{x}\in G_{1}\\
@@ -505,7 +503,7 @@ f(\boldsymbol{x}|\boldsymbol{x}_{i}, S_{i})=\frac{1}{(2\pi)^{p/2}|S_{i}|^{1/2}}\
 \]</div>
 <p>Entonces, la <code class="docutils literal notranslate"><span class="pre">función</span> <span class="pre">discriminante</span></code> <span class="math notranslate nohighlight">\(h(\boldsymbol{x})\)</span> esta dada por:</p>
 <div class="math notranslate nohighlight" id="equation-quad-disc-eq">
-<span class="eqno">(23)<a class="headerlink" href="#equation-quad-disc-eq" title="Link to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(4.6)<a class="headerlink" href="#equation-quad-disc-eq" title="Link to this equation">#</a></span>\[\begin{split}
 \begin{align*}
 h(\boldsymbol{x})&amp;=\log f(\boldsymbol{x}|\overline{\boldsymbol{x}}_{1}, S_{1})-\log f(\boldsymbol{x}|\overline{\boldsymbol{x}}_{2}, S_{2})\\[2mm]
 &amp;=\log\left\{\left[(2\pi)^{p}|S_{1}|\right]^{-1/2}\right\}+\log\left\{\exp\left[-\frac{1}{2}(\boldsymbol{x}-\overline{\boldsymbol{x}}_{1})^{T}S_{1}^{-1}(\boldsymbol{x}-\overline{\boldsymbol{x}}_{1})\right]\right\}\\
@@ -513,7 +511,7 @@ h(\boldsymbol{x})&amp;=\log f(\boldsymbol{x}|\overline{\boldsymbol{x}}_{1}, S_{1
 &amp;=\frac{1}{2}\left\{(\boldsymbol{x}-\overline{\boldsymbol{x}}_{2})^{T}S_{2}^{-1}(\boldsymbol{x}-\overline{\boldsymbol{x}}_{2})-(\boldsymbol{x}-\overline{\boldsymbol{x}}_{1})^{T}S_{1}^{-1}(\boldsymbol{x}-\overline{\boldsymbol{x}}_{1})-\log\left(\frac{|S_{1}|}{|S_{2}|}\right)\right\}.
 \end{align*}
 \end{split}\]</div>
-<p>La función <span class="math notranslate nohighlight">\(h(\boldsymbol{x})\)</span> de la Eq. <a class="reference internal" href="#equation-quad-disc-eq">(23)</a> es conocida como <code class="docutils literal notranslate"><span class="pre">función</span> <span class="pre">discriminante</span> <span class="pre">cuadratica</span></code>. Reemplazando <span class="math notranslate nohighlight">\(S_{i}\)</span> con la <code class="docutils literal notranslate"><span class="pre">matriz</span> <span class="pre">de</span> <span class="pre">varianza-covarianza</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">muestra</span> <span class="pre">conjunta</span></code> <span class="math notranslate nohighlight">\(S=(n_{1}S_{1}+n_{2}S_{2})/(n_{1}+n_{2})\)</span>, la función discriminante es además reducida a la <code class="docutils literal notranslate"><span class="pre">función</span> <span class="pre">discriminante</span> <span class="pre">lineal</span></code> (<em>verifíquelo</em>)</p>
+<p>La función <span class="math notranslate nohighlight">\(h(\boldsymbol{x})\)</span> de la Eq. <a class="reference internal" href="#equation-quad-disc-eq">(4.6)</a> es conocida como <code class="docutils literal notranslate"><span class="pre">función</span> <span class="pre">discriminante</span> <span class="pre">cuadratica</span></code>. Reemplazando <span class="math notranslate nohighlight">\(S_{i}\)</span> con la <code class="docutils literal notranslate"><span class="pre">matriz</span> <span class="pre">de</span> <span class="pre">varianza-covarianza</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">muestra</span> <span class="pre">conjunta</span></code> <span class="math notranslate nohighlight">\(S=(n_{1}S_{1}+n_{2}S_{2})/(n_{1}+n_{2})\)</span>, la función discriminante es además reducida a la <code class="docutils literal notranslate"><span class="pre">función</span> <span class="pre">discriminante</span> <span class="pre">lineal</span></code> (<em>verifíquelo</em>)</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{align*}
@@ -521,10 +519,10 @@ h(\boldsymbol{x})&amp;=\frac{1}{2}(\boldsymbol{x}-\overline{\boldsymbol{x}}_{2})
 &amp;=(\boldsymbol{x}_{1}-\overline{\boldsymbol{x}}_{2})^{T}S^{-1}\boldsymbol{x}-\frac{1}{2}(\overline{\boldsymbol{x}}_{1}^{T}S^{-1}\overline{\boldsymbol{x}}_{1}-\overline{\boldsymbol{x}}_{2}^{T}S^{-1}\overline{\boldsymbol{x}}_{2})
 \end{align*}
 \end{split}\]</div>
-<p>De esta forma, obtenemos la <code class="docutils literal notranslate"><span class="pre">regla</span> <span class="pre">de</span> <span class="pre">clasificación</span> <span class="pre">de</span> <span class="pre">Bayes</span></code> <a class="reference internal" href="#equation-bayes-class-rule">(22)</a> basada en el <code class="docutils literal notranslate"><span class="pre">signo</span> <span class="pre">del</span> <span class="pre">logaritmo</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">razón</span> <span class="pre">entre</span> <span class="pre">la</span> <span class="pre">distribución</span> <span class="pre">de</span> <span class="pre">probabilidad</span> <span class="pre">estimada</span> <span class="pre">que</span> <span class="pre">caracteriza</span> <span class="pre">la</span> <span class="pre">clase</span></code>. La función <span class="math notranslate nohighlight">\(h(\boldsymbol{x})\)</span> expresada por la distribución normal <span class="math notranslate nohighlight">\(p\)</span>-dimensional entrega las <code class="docutils literal notranslate"><span class="pre">funciones</span> <span class="pre">discriminantes</span> <span class="pre">lineales</span> <span class="pre">y</span> <span class="pre">cuadráticas</span></code>.</p>
+<p>De esta forma, obtenemos la <code class="docutils literal notranslate"><span class="pre">regla</span> <span class="pre">de</span> <span class="pre">clasificación</span> <span class="pre">de</span> <span class="pre">Bayes</span></code> <a class="reference internal" href="#equation-bayes-class-rule">(4.5)</a> basada en el <code class="docutils literal notranslate"><span class="pre">signo</span> <span class="pre">del</span> <span class="pre">logaritmo</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">razón</span> <span class="pre">entre</span> <span class="pre">la</span> <span class="pre">distribución</span> <span class="pre">de</span> <span class="pre">probabilidad</span> <span class="pre">estimada</span> <span class="pre">que</span> <span class="pre">caracteriza</span> <span class="pre">la</span> <span class="pre">clase</span></code>. La función <span class="math notranslate nohighlight">\(h(\boldsymbol{x})\)</span> expresada por la distribución normal <span class="math notranslate nohighlight">\(p\)</span>-dimensional entrega las <code class="docutils literal notranslate"><span class="pre">funciones</span> <span class="pre">discriminantes</span> <span class="pre">lineales</span> <span class="pre">y</span> <span class="pre">cuadráticas</span></code>.</p>
 </section>
 <section id="aplicacion-titanic-dataset">
-<h2>Aplicación: Titanic Dataset<a class="headerlink" href="#aplicacion-titanic-dataset" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">4.2. </span>Aplicación: Titanic Dataset<a class="headerlink" href="#aplicacion-titanic-dataset" title="Link to this heading">#</a></h2>
 <figure class="align-center" id="titanic-pic-fig">
 <img alt="_images/titanic_pic.jpeg" src="_images/titanic_pic.jpeg" />
 </figure>
@@ -3223,7 +3221,7 @@ memory usage: 25.9 KB
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Regresión Ridge y Lasso</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>Regresión Ridge y Lasso</p>
       </div>
     </a>
     <a class="right-next"
@@ -3231,7 +3229,7 @@ memory usage: 25.9 KB
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Random Forest y XGBoost</p>
+        <p class="prev-next-title"><span class="section-number">5. </span>Random Forest y XGBoost</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -3251,8 +3249,8 @@ memory usage: 25.9 KB
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formulacion">Formulación</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-titanic-dataset">Aplicación: Titanic Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formulacion">4.1. Formulación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-titanic-dataset">4.2. Aplicación: Titanic Dataset</a></li>
 </ul>
   </nav></div>
 

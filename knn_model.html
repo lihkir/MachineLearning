@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>\(k\)-vecinos más cercanos &#8212; Machine Learning</title>
+    <title>2. \(k\)-vecinos más cercanos &#8212; Machine Learning</title>
   
   
   
@@ -68,8 +68,8 @@
     <script src="_static/.ipynb_checkpoints/custom-checkpoint.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Regresión Ridge y Lasso" href="linear_model.html" />
-    <link rel="prev" title="Aprendizaje supervisado" href="supervised_intro.html" />
+    <link rel="next" title="3. Regresión Ridge y Lasso" href="linear_model.html" />
+    <link rel="prev" title="1. Aprendizaje supervisado" href="supervised_intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -185,24 +185,24 @@
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="supervised_intro.html">Aprendizaje supervisado</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#"><span class="math notranslate nohighlight">\(k\)</span>-vecinos más cercanos</a></li>
-<li class="toctree-l1"><a class="reference internal" href="linear_model.html">Regresión Ridge y Lasso</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bayes_model.html">Clasificador Bayesiano</a></li>
-<li class="toctree-l1"><a class="reference internal" href="decisiontree_model.html">Random Forest y XGBoost</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supervised_intro.html">1. Aprendizaje supervisado</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">2. <span class="math notranslate nohighlight">\(k\)</span>-vecinos más cercanos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linear_model.html">3. Regresión Ridge y Lasso</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bayes_model.html">4. Clasificador Bayesiano</a></li>
+<li class="toctree-l1"><a class="reference internal" href="decisiontree_model.html">5. Random Forest y XGBoost</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="svm_model.html">Máquinas de vectores de soporte</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ann_model.html">Redes Neuronales y Deep Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dl_computer_vision.html">Deep Learning para Visión por Computadora</a></li>
-
-
+<li class="toctree-l1"><a class="reference internal" href="svm_model.html">7. Máquinas de vectores de soporte</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ann_model.html">8. Redes Neuronales y Deep Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dl_computer_vision.html">9. Deep Learning para Visión por Computadora</a></li>
 
 
-<li class="toctree-l1"><a class="reference internal" href="practical_pca.html">Análisis de Componentes Principales</a></li>
-<li class="toctree-l1"><a class="reference internal" href="model_evaluation.html">Evaluación de modelos</a></li>
-<li class="toctree-l1"><a class="reference internal" href="chains_pipelines.html">Cadenas de Algoritmos y Pipelines</a></li>
-<li class="toctree-l1"><a class="reference internal" href="appendix.html">Apéndice</a></li>
-<li class="toctree-l1"><a class="reference internal" href="biblio.html">Bibliografía</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="practical_pca.html">14. Análisis de Componentes Principales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_evaluation.html">15. Evaluación de modelos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chains_pipelines.html">16. Cadenas de Algoritmos y Pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix.html">17. Apéndice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="biblio.html">18. Bibliografía</a></li>
 </ul>
 
     </div>
@@ -351,19 +351,19 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis">Análisis</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion">Implementación</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-kneighborsclassifier">Análisis de <code class="docutils literal notranslate"><span class="pre">KNeighborsClassifier</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-breast-cancer-dataset">Aplicación: Breast Cancer Dataset</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-exploratorio-de-datos">Análisis Exploratorio de Datos</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multicolinealidad">Multicolinealidad</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#factor-de-inflacion-de-la-varianza-vif">Factor de Inflación de la Varianza (VIF)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis">2.1. Análisis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion">2.2. Implementación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-kneighborsclassifier">2.3. Análisis de <code class="docutils literal notranslate"><span class="pre">KNeighborsClassifier</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-breast-cancer-dataset">2.4. Aplicación: Breast Cancer Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-exploratorio-de-datos">2.5. Análisis Exploratorio de Datos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multicolinealidad">2.5.1. Multicolinealidad</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#factor-de-inflacion-de-la-varianza-vif">2.5.2. Factor de Inflación de la Varianza (VIF)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-del-modelo-k-nn">Selección del modelo K-NN</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-por-k-vecinos">Regresión por <span class="math notranslate nohighlight">\(k\)</span>-vecinos</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-kneighborsregressor">Análisis de <code class="docutils literal notranslate"><span class="pre">KNeighborsRegressor</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-world-hydropower-generation">Aplicación: World Hydropower Generation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-del-modelo-k-nn">2.6. Selección del modelo K-NN</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-por-k-vecinos">2.7. Regresión por <span class="math notranslate nohighlight">\(k\)</span>-vecinos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-kneighborsregressor">2.8. Análisis de <code class="docutils literal notranslate"><span class="pre">KNeighborsRegressor</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-world-hydropower-generation">2.8.1. Aplicación: World Hydropower Generation</a></li>
 </ul>
 </li>
 </ul>
@@ -378,7 +378,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="k-vecinos-mas-cercanos">
-<h1><span class="math notranslate nohighlight">\(k\)</span>-vecinos más cercanos<a class="headerlink" href="#k-vecinos-mas-cercanos" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">2. </span><span class="math notranslate nohighlight">\(k\)</span>-vecinos más cercanos<a class="headerlink" href="#k-vecinos-mas-cercanos" title="Link to this heading">#</a></h1>
 <div class="tip admonition">
 <p class="admonition-title">Introducción</p>
 <ul class="simple">
@@ -387,9 +387,9 @@ document.write(`
 </ul>
 </div>
 <section id="analisis">
-<h2>Análisis<a class="headerlink" href="#analisis" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">2.1. </span>Análisis<a class="headerlink" href="#analisis" title="Link to this heading">#</a></h2>
 <div class="proof definition admonition" id="def_knn">
-<p class="admonition-title"><span class="caption-number">Definition 1 </span> (<span class="math notranslate nohighlight">\(k\)</span>-NN (Clasificación))</p>
+<p class="admonition-title"><span class="caption-number">Definition 2.1 </span> (<span class="math notranslate nohighlight">\(k\)</span>-NN (Clasificación))</p>
 <section class="definition-content" id="proof-content">
 <ul class="simple">
 <li><p>Sea <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> nuestro <em><strong>dominio de instancia</strong></em> (<em><strong>conjunto de objetos que se desea etiquetar</strong></em>), dotado con una métrica <span class="math notranslate nohighlight">\(\rho\)</span>. Es decir, <span class="math notranslate nohighlight">\(\rho:\mathcal{X}\times\mathcal{X}\longrightarrow\mathbb{R}\)</span> es una  función que retorna la <em><strong>distancia entre cualquier par de elementos</strong></em> de <span class="math notranslate nohighlight">\(\mathcal{X}\)</span>. Por ejemplo, si <span class="math notranslate nohighlight">\(\mathcal{X}=\mathbb{R}^{d}\)</span>, entonces <span class="math notranslate nohighlight">\(\rho\)</span> puede ser la <em><strong>distancia Euclidiana</strong></em>,</p></li>
@@ -415,10 +415,9 @@ document.write(`
 </ul>
 </section>
 </div><figure class="align-center" id="knn-classification-fig">
-<a class="reference internal image-reference" href="_images/knn_classification.png"><img alt="_images/knn_classification.png" src="_images/knn_classification.png" style="width: 531.9px; height: 463.5px;" />
-</a>
+<a class="reference internal image-reference" href="_images/knn_classification.png"><img alt="_images/knn_classification.png" src="_images/knn_classification.png" style="width: 531.9px; height: 463.5px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Clasificación usando <span class="math notranslate nohighlight">\(k\)</span>-NN para <span class="math notranslate nohighlight">\(k=3\)</span>. Source: <a class="reference external" href="http://kdnuggets.com">kdnuggets.com</a>.</span><a class="headerlink" href="#knn-classification-fig" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 2.1 </span><span class="caption-text">Clasificación usando <span class="math notranslate nohighlight">\(k\)</span>-NN para <span class="math notranslate nohighlight">\(k=3\)</span>. Source: <a class="reference external" href="http://kdnuggets.com">kdnuggets.com</a>.</span><a class="headerlink" href="#knn-classification-fig" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <ul class="simple">
@@ -427,15 +426,15 @@ document.write(`
 <div class="tip admonition">
 <p class="admonition-title"><em><strong>1. Elija un <em><strong><span class="math notranslate nohighlight">\(k\)</span></strong></em> diferente</strong></em></p>
 <ul class="simple">
-<li><p>Aunque un método de clasificación de tres vecinos más cercanos soluciona el problema de la selección de vecinos en las <a class="reference internal" href="#knn-ties"><span class="std std-numref">Fig. 5</span></a> i) y ii), pero, no resuelve el problema de la <a class="reference internal" href="#knn-ties"><span class="std std-numref">Fig. 5</span></a> iii).</p></li>
+<li><p>Aunque un método de clasificación de tres vecinos más cercanos soluciona el problema de la selección de vecinos en las <a class="reference internal" href="#knn-ties"><span class="std std-numref">Fig. 2.2</span></a> i) y ii), pero, no resuelve el problema de la <a class="reference internal" href="#knn-ties"><span class="std std-numref">Fig. 2.2</span></a> iii).</p></li>
 <li><p>De hecho, sigue existiendo la posibilidad de que se produzcan empates de selección en el conjunto de datos mayor, independientemente del valor de <span class="math notranslate nohighlight">\(k\)</span>.</p></li>
 </ul>
 </div>
 <div class="stretched-link admonition">
 <p class="admonition-title"><em><strong>2. Elija al azar entre los valores empatados</strong></em></p>
 <ul class="simple">
-<li><p>Aplicando este enfoque a la <a class="reference internal" href="#knn-ties"><span class="std std-numref">Fig. 5</span></a> ii), cada una de las tres observaciones tendría la misma probabilidad de ser seleccionada como uno de los dos vecinos.</p></li>
-<li><p>En la <a class="reference internal" href="#knn-ties"><span class="std std-numref">Fig. 5</span></a> iii), se seleccionaría el <span class="math notranslate nohighlight">\(A\)</span> más cercano a <span class="math notranslate nohighlight">\(N\)</span>, y uno de los tres puntos observados restantes se seleccionaría al azar.</p></li>
+<li><p>Aplicando este enfoque a la <a class="reference internal" href="#knn-ties"><span class="std std-numref">Fig. 2.2</span></a> ii), cada una de las tres observaciones tendría la misma probabilidad de ser seleccionada como uno de los dos vecinos.</p></li>
+<li><p>En la <a class="reference internal" href="#knn-ties"><span class="std std-numref">Fig. 2.2</span></a> iii), se seleccionaría el <span class="math notranslate nohighlight">\(A\)</span> más cercano a <span class="math notranslate nohighlight">\(N\)</span>, y uno de los tres puntos observados restantes se seleccionaría al azar.</p></li>
 <li><p>Dependiendo de cuáles de los valores empatados se permitan en el modelo, podría tener un efecto significativo en cómo se clasifica <span class="math notranslate nohighlight">\(N\)</span>.</p></li>
 </ul>
 </div>
@@ -443,9 +442,9 @@ document.write(`
 <p class="admonition-title"><em><strong>3. Permitir observaciones hasta el punto de parada natural</strong></em></p>
 <p>La idea aquí es <em>elegir el valor de <span class="math notranslate nohighlight">\(k\geq 2\)</span> más pequeño tal que, no existan empates</em></p>
 <ul class="simple">
-<li><p>Para la <a class="reference internal" href="#knn-ties"><span class="std std-numref">Fig. 5</span></a> i), se seleccionarían las dos observaciones más cercanas para <span class="math notranslate nohighlight">\(k=3\)</span> (igual que en los dos métodos anteriores).</p></li>
-<li><p>Para la <a class="reference internal" href="#knn-ties"><span class="std std-numref">Fig. 5</span></a> ii), como hay un empate para <span class="math notranslate nohighlight">\(k=3\)</span>, se consideran los tres vecinos más cercanos. La restricción de solo dos vecinos se elimina para esta observación en particular.</p></li>
-<li><p>Del mismo modo, en la <a class="reference internal" href="#knn-ties"><span class="std std-numref">Fig. 5</span></a> iii) se seleccionan las cuatro observaciones. Observe que <em>este método elegiría tantos valores como fuera necesario para evitar el empate</em>. Si en la <a class="reference internal" href="#knn-ties"><span class="std std-numref">Fig. 5</span></a> ii) hubiera ocho puntos equidistantes, se incluirían los ocho en el modelo.</p></li>
+<li><p>Para la <a class="reference internal" href="#knn-ties"><span class="std std-numref">Fig. 2.2</span></a> i), se seleccionarían las dos observaciones más cercanas para <span class="math notranslate nohighlight">\(k=3\)</span> (igual que en los dos métodos anteriores).</p></li>
+<li><p>Para la <a class="reference internal" href="#knn-ties"><span class="std std-numref">Fig. 2.2</span></a> ii), como hay un empate para <span class="math notranslate nohighlight">\(k=3\)</span>, se consideran los tres vecinos más cercanos. La restricción de solo dos vecinos se elimina para esta observación en particular.</p></li>
+<li><p>Del mismo modo, en la <a class="reference internal" href="#knn-ties"><span class="std std-numref">Fig. 2.2</span></a> iii) se seleccionan las cuatro observaciones. Observe que <em>este método elegiría tantos valores como fuera necesario para evitar el empate</em>. Si en la <a class="reference internal" href="#knn-ties"><span class="std std-numref">Fig. 2.2</span></a> ii) hubiera ocho puntos equidistantes, se incluirían los ocho en el modelo.</p></li>
 </ul>
 </div>
 <div class="stretched-link admonition">
@@ -458,14 +457,13 @@ document.write(`
 </ul>
 </div>
 <figure class="align-center" id="knn-ties">
-<a class="reference internal image-reference" href="_images/knn_ties.png"><img alt="_images/knn_ties.png" src="_images/knn_ties.png" style="width: 702.0px; height: 197.4px;" />
-</a>
+<a class="reference internal image-reference" href="_images/knn_ties.png"><img alt="_images/knn_ties.png" src="_images/knn_ties.png" style="width: 702.0px; height: 197.4px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 5 </span><span class="caption-text">k-NN: Empates en la selección de clase con mayor frecuencia.</span><a class="headerlink" href="#knn-ties" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 2.2 </span><span class="caption-text">k-NN: Empates en la selección de clase con mayor frecuencia.</span><a class="headerlink" href="#knn-ties" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <ul class="simple">
-<li><p><em><strong><code class="docutils literal notranslate"><span class="pre">Predictor</span></code></strong></em>: Definamos por <span class="math notranslate nohighlight">\(h_{S}(\boldsymbol{x})\)</span> la <em><strong>regla de predicción</strong></em> (el subíndice <span class="math notranslate nohighlight">\(S\)</span> hace hincapié en el hecho de que <em><strong>el predictor de salida depende de</strong></em> <span class="math notranslate nohighlight">\(S\)</span>). Esta función también se denomina <em><strong>predictor, hipótesis o clasificador</strong></em>. El <em><strong>predictor</strong></em> puede utilizarse para predecir la etiqueta de nuevos puntos de dominio. Cuando <span class="math notranslate nohighlight">\(k=1\)</span> (ver <a class="reference internal" href="#def_knn">Definition 1</a>), tenemos la regla <span class="math notranslate nohighlight">\(1\)</span>-NN:</p></li>
+<li><p><em><strong><code class="docutils literal notranslate"><span class="pre">Predictor</span></code></strong></em>: Definamos por <span class="math notranslate nohighlight">\(h_{S}(\boldsymbol{x})\)</span> la <em><strong>regla de predicción</strong></em> (el subíndice <span class="math notranslate nohighlight">\(S\)</span> hace hincapié en el hecho de que <em><strong>el predictor de salida depende de</strong></em> <span class="math notranslate nohighlight">\(S\)</span>). Esta función también se denomina <em><strong>predictor, hipótesis o clasificador</strong></em>. El <em><strong>predictor</strong></em> puede utilizarse para predecir la etiqueta de nuevos puntos de dominio. Cuando <span class="math notranslate nohighlight">\(k=1\)</span> (ver <a class="reference internal" href="#def_knn">Definition 2.1</a>), tenemos la regla <span class="math notranslate nohighlight">\(1\)</span>-NN:</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[
@@ -475,7 +473,7 @@ h_{S}(\boldsymbol{x})=y_{\pi_{1}(\boldsymbol{x})}.
 <li><p>Nótese que hemos considerado la <em><strong>métrica Euclideana</strong></em> en esta definición, pero, <em><strong>dependiendo del conjunto de datos, podría ser mas adecuado utilizar una métrica diferente</strong></em> (ver <a class="reference external" href="https://es.wikipedia.org/wiki/Geometr%C3%ADa_del_taxista">Manhatan</a>, <a class="reference external" href="https://en.wikipedia.org/wiki/Minkowski_distance">Minkowski</a>). Esto es, una métrica alternativa, podría <em><strong>mejorar los errores cometidos por el clasificador</strong></em>.</p></li>
 </ul>
 <div class="proof definition admonition" id="def_knn_reg">
-<p class="admonition-title"><span class="caption-number">Definition 2 </span> (<span class="math notranslate nohighlight">\(k\)</span>-NN (Regresión))</p>
+<p class="admonition-title"><span class="caption-number">Definition 2.2 </span> (<span class="math notranslate nohighlight">\(k\)</span>-NN (Regresión))</p>
 <section class="definition-content" id="proof-content">
 <ul class="simple">
 <li><p>Para <em><strong>problemas de regresión</strong></em>, a saber, <span class="math notranslate nohighlight">\(\mathcal{Y}=\mathbb{R}\)</span>, se puede definir la <em><strong>regla de predicción</strong></em> como la <em><strong>media objetivo</strong></em> de los <span class="math notranslate nohighlight">\(k\)</span> vecinos más cercanos. Esto es,</p></li>
@@ -488,11 +486,11 @@ h_{S}(\boldsymbol{x})=\frac{1}{k}\sum_{i=1}^{k}y_{\pi_{i}(\boldsymbol{x})}.
 <li><p>Más en general, para alguna función <span class="math notranslate nohighlight">\(\phi:~(\mathcal{X}, \mathcal{Y})^{k}\rightarrow\mathcal{Y}\)</span>, la regla <span class="math notranslate nohighlight">\(k\)</span>-NN con respecto a <span class="math notranslate nohighlight">\(\phi\)</span> es:</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-knn-regeq">
-<span class="eqno">(1)<a class="headerlink" href="#equation-knn-regeq" title="Link to this equation">#</a></span>\[
+<span class="eqno">(2.1)<a class="headerlink" href="#equation-knn-regeq" title="Link to this equation">#</a></span>\[
 h_{S}(\boldsymbol{x})=\phi((\boldsymbol{x}_{\pi_{1}(\boldsymbol{x})}, y_{\pi_{1}(\boldsymbol{x})}),\dots,(\boldsymbol{x}_{\pi_{k}(\boldsymbol{x})}, y_{\pi_{k}(\boldsymbol{x})})).
 \]</div>
 <ul class="simple">
-<li><p>Se puede verificar que podemos lanzar la predicción por mayoría de etiquetas (<em><strong>clasificación</strong></em>) o por el objetivo promediado (<em><strong>regresión</strong></em>) como en la Ecuación <a class="reference internal" href="#equation-knn-regeq">(1)</a> mediante una <em><strong>elección adecuada de</strong></em> <span class="math notranslate nohighlight">\(\phi\)</span>.</p></li>
+<li><p>Se puede verificar que podemos lanzar la predicción por mayoría de etiquetas (<em><strong>clasificación</strong></em>) o por el objetivo promediado (<em><strong>regresión</strong></em>) como en la Ecuación <a class="reference internal" href="#equation-knn-regeq">(2.1)</a> mediante una <em><strong>elección adecuada de</strong></em> <span class="math notranslate nohighlight">\(\phi\)</span>.</p></li>
 <li><p>La generalidad puede llevar a otras reglas, por ejemplo, si <span class="math notranslate nohighlight">\(\mathcal{Y}=\mathbb{R}\)</span>, podemos tomar una <em><strong>media ponderada de los objetivos según la distancia a</strong></em> <span class="math notranslate nohighlight">\(x\)</span></p></li>
 </ul>
 <div class="math notranslate nohighlight">
@@ -501,13 +499,13 @@ h_{S}(\boldsymbol{x})=\sum_{i=1}^{k}\frac{\rho(\boldsymbol{x}, \boldsymbol{x}_{\
 \]</div>
 </section>
 </div><div class="proof definition admonition" id="def_emp_error">
-<p class="admonition-title"><span class="caption-number">Definition 3 </span> (Error empírico y verdadero revisado)</p>
+<p class="admonition-title"><span class="caption-number">Definition 2.3 </span> (Error empírico y verdadero revisado)</p>
 <section class="definition-content" id="proof-content">
 <ul class="simple">
 <li><p>Para una <em><strong>distribución de probabilidad</strong></em>, <span class="math notranslate nohighlight">\(\mathcal{D}\)</span>, sobre <span class="math notranslate nohighlight">\(\mathcal{X}\times\mathcal{Y}\)</span>, se puede medir la probabilidad de que <span class="math notranslate nohighlight">\(h\)</span> <em><strong>cometa un error</strong></em> cuando los puntos etiquetados se extraen aleatoriamente según <span class="math notranslate nohighlight">\(\mathcal{D}\)</span>. Redefinimos el <em><strong>error verdadero (o riesgo)</strong></em> de una regla de predicción <span class="math notranslate nohighlight">\(h\)</span> como</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-real-error">
-<span class="eqno">(2)<a class="headerlink" href="#equation-real-error" title="Link to this equation">#</a></span>\[
+<span class="eqno">(2.2)<a class="headerlink" href="#equation-real-error" title="Link to this equation">#</a></span>\[
 L_{\mathcal{D}}(h):=\underset{(\boldsymbol{x},y)\sim\mathcal{D}}{\mathbb{P}}[h(\boldsymbol{x})\neq y]:=\mathcal{D}(\{(\boldsymbol{x},y):~h(\boldsymbol{x})\neq y\}).
 \]</div>
 <ul class="simple">
@@ -527,7 +525,7 @@ L_{S}(h):=\frac{|\{i\in\left[m\right]:~h(\boldsymbol{x}_{i})\neq y_{i}\}|}{m},~\
 <li><p><em><strong><code class="docutils literal notranslate"><span class="pre">Predictor</span> <span class="pre">óptimo</span> <span class="pre">de</span> <span class="pre">Bayes</span></code></strong></em>: Dada cualquier distribución de probabilidad <span class="math notranslate nohighlight">\(\mathcal{D}\)</span> sobre <span class="math notranslate nohighlight">\(\mathcal{X}\times\{0, 1\}\)</span>, la <em><strong>mejor función de predicción de etiquetas</strong></em> de <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> a <span class="math notranslate nohighlight">\(\{0, 1\}\)</span> será</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-bayes-opt-pred">
-<span class="eqno">(3)<a class="headerlink" href="#equation-bayes-opt-pred" title="Link to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(2.3)<a class="headerlink" href="#equation-bayes-opt-pred" title="Link to this equation">#</a></span>\[\begin{split}
 f_{\mathcal{D}}(x)=
 \begin{cases}
 1,&amp;\text{si}~\mathbb{P}[y=1|x]\geq1/2\\
@@ -538,7 +536,7 @@ f_{\mathcal{D}}(x)=
 <li><p>Se puede verificar que <em><strong>para toda distribución de probabilidad</strong></em> <span class="math notranslate nohighlight">\(\mathcal{D}\)</span>, <em><strong>el predictor óptimo de Bayes</strong></em> <span class="math notranslate nohighlight">\(f_{D}\)</span> <em><strong>es óptimo</strong></em>, en el sentido de que <em><strong>ningún otro clasificador</strong></em>, <span class="math notranslate nohighlight">\(g : \mathcal \rightarrow\{0, 1\}\)</span>, <em><strong>tiene un error menor</strong></em>. Es decir, para cada clasificador <span class="math notranslate nohighlight">\(g, L_{\mathcal{D}}(f_{\mathcal{D}}) \leq L_{\mathcal{D}}(g)\)</span>.</p></li>
 </ul>
 <div class="proof definition admonition" id="gen_loss_fun">
-<p class="admonition-title"><span class="caption-number">Definition 4 </span> (Funciones de pérdidas generalizadas)</p>
+<p class="admonition-title"><span class="caption-number">Definition 2.4 </span> (Funciones de pérdidas generalizadas)</p>
 <section class="definition-content" id="proof-content">
 <ul class="simple">
 <li><p>Dado cualquier conjunto <span class="math notranslate nohighlight">\(\mathcal{H}\)</span> (que desempeña el papel de nuestras <em><strong>hipótesis, o predictor</strong></em>) y algún <em><strong>dominio</strong></em> <span class="math notranslate nohighlight">\(Z\)</span> sea <span class="math notranslate nohighlight">\(\ell\)</span> cualquier función de <span class="math notranslate nohighlight">\(\mathcal{H}\times Z\)</span> al conjunto de los números reales no negativos, <span class="math notranslate nohighlight">\(\ell: \mathcal{H}\times Z\rightarrow\mathbb{R}^{+}\)</span>. Llamamos a estas funciones, <em><strong>funciones de pérdida</strong></em>.</p></li>
@@ -546,7 +544,7 @@ f_{\mathcal{D}}(x)=
 <li><p>Definimos ahora la <em><strong>función de riesgo</strong></em> como la <em><strong>pérdida esperada de un clasificador</strong></em>, <span class="math notranslate nohighlight">\(h\in\mathcal{H}\)</span>, con respecto a la distribución de probabilidad <span class="math notranslate nohighlight">\(\mathcal{D}\)</span> sobre <span class="math notranslate nohighlight">\(Z\)</span>, a saber,</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-risk-function">
-<span class="eqno">(4)<a class="headerlink" href="#equation-risk-function" title="Link to this equation">#</a></span>\[
+<span class="eqno">(2.4)<a class="headerlink" href="#equation-risk-function" title="Link to this equation">#</a></span>\[
 L_{\mathcal{D}}(h):=\underset{z\sim\mathcal{D}}{\mathbb{E}}[\ell(h, z)].
 \]</div>
 <ul class="simple">
@@ -574,12 +572,12 @@ L_{S}(h):=\frac{1}{m}\sum_{i=1}^{m}\ell(h, z_{i}).
 <li><p><span class="math notranslate nohighlight">\(\ell_{\text{0-1}}(h, (x,y))\)</span> se utiliza en <em><strong>problemas de clasificación binaria o multiclase</strong></em>. Hay que tener en cuenta que, para una variable aleatoria, <span class="math notranslate nohighlight">\(\alpha\)</span>, que toma los valores <span class="math notranslate nohighlight">\(\{0,1\}\)</span>,</p>
 <div class="math notranslate nohighlight">
 \[\mathbb{E}_{\alpha\sim\mathcal{D}}[\alpha] = \mathbb{P}_{\alpha\sim\mathcal{D}}[\alpha = 1].\]</div>
-<p>Por lo tanto, las funciones de pérdida definidas en Eq. <a class="reference internal" href="#equation-risk-function">(4)</a> y Eq. <a class="reference internal" href="#equation-real-error">(2)</a> son equivalentes.</p>
+<p>Por lo tanto, las funciones de pérdida definidas en Eq. <a class="reference internal" href="#equation-risk-function">(2.4)</a> y Eq. <a class="reference internal" href="#equation-real-error">(2.2)</a> son equivalentes.</p>
 </li>
 </ul>
 </section>
 </div><div class="proof observation admonition" id="knn_analysis">
-<p class="admonition-title"><span class="caption-number">Observation 1 </span> (<span class="math notranslate nohighlight">\(1\)</span>-NN)</p>
+<p class="admonition-title"><span class="caption-number">Observation 2.1 </span> (<span class="math notranslate nohighlight">\(1\)</span>-NN)</p>
 <section class="observation-content" id="proof-content">
 <ul class="simple">
 <li><p>Dado que las reglas NN son <em><strong>métodos de aprendizaje tan naturales</strong></em>, sus propiedades de generalización han sido ampliamente estudiadas. La mayoría de los resultados anteriores son resultados de <em><strong>consistencia asintótica</strong></em>, que analizan el rendimiento de las reglas NN cuando el tamaño de la muestra, <span class="math notranslate nohighlight">\(m\)</span>, tiende a <span class="math notranslate nohighlight">\(\infty\)</span>, y la <em><strong>tasa de convergencia depende de la distribución subyacente</strong></em>.</p></li>
@@ -597,7 +595,7 @@ L_{S}(h):=\frac{1}{m}\sum_{i=1}^{m}\ell(h, z_{i}).
 \eta(\boldsymbol{x})=\mathbb{P}[y=1|\boldsymbol{x}].
 \]</div>
 <ul class="simple">
-<li><p>La <em><strong>regla óptima de Bayes</strong></em> (es decir, la hipótesis que minimiza <span class="math notranslate nohighlight">\(L_{\mathcal{D}}(h)\)</span> sobre todas las funciones <span class="math notranslate nohighlight">\(h\in\mathcal{H}\)</span>, ver Eq. <a class="reference internal" href="#equation-bayes-opt-pred">(3)</a>) es</p></li>
+<li><p>La <em><strong>regla óptima de Bayes</strong></em> (es decir, la hipótesis que minimiza <span class="math notranslate nohighlight">\(L_{\mathcal{D}}(h)\)</span> sobre todas las funciones <span class="math notranslate nohighlight">\(h\in\mathcal{H}\)</span>, ver Eq. <a class="reference internal" href="#equation-bayes-opt-pred">(2.3)</a>) es</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[
@@ -612,7 +610,7 @@ h^{\star}(\boldsymbol{x})=\mathbb{1}_{\left[\eta(\boldsymbol{x})&gt;1/2\right]}.
 <p>El siguiente Lema aplica la <em><strong>Lipschitzness</strong></em> de la función de <em><strong>probabilidad condicional</strong></em> para acotar el <em><strong>error verdadero</strong></em> de la regla <em><strong>1-NN</strong></em> en función de la distancia entre cada <em><strong>instancia de prueba</strong></em> y su <em><strong>vecino más cercano en el conjunto de entrenamiento</strong></em>.</p>
 </div>
 <div class="proof lemma admonition" id="knn_lemma1">
-<p class="admonition-title"><span class="caption-number">Lemma 1 </span></p>
+<p class="admonition-title"><span class="caption-number">Lemma 2.1 </span></p>
 <section class="lemma-content" id="proof-content">
 <p>Sea <span class="math notranslate nohighlight">\(\mathcal{X}=[0,1]^{d},~ \mathcal{Y}=\{0,1\}\)</span>, y <span class="math notranslate nohighlight">\(\mathcal{D}\)</span> una distribución sobre <span class="math notranslate nohighlight">\(\mathcal{X}\times\mathcal{Y}\)</span>, para la cual, la <em><strong>función de probabilidad condicional</strong></em>, <span class="math notranslate nohighlight">\(\eta\)</span>, es una <em><strong>función</strong></em> <span class="math notranslate nohighlight">\(c\)</span><em><strong>-Lipschitz</strong></em>. Sea <span class="math notranslate nohighlight">\(S=(\boldsymbol{x}_{1}, y_{1}),\dots,(\boldsymbol{x}_{m}, y_{m})\)</span> una muestra <em><strong>iid</strong></em> y sea <span class="math notranslate nohighlight">\(h_{S}\)</span> su correspondiente <em><strong>hipótesis</strong></em> <span class="math notranslate nohighlight">\(1\)</span>-NN. Sea <span class="math notranslate nohighlight">\(h^{\star}\)</span> la <em><strong>regla óptima de Bayes</strong></em> para <span class="math notranslate nohighlight">\(\eta\)</span>. Entonces,</p>
 <div class="math notranslate nohighlight">
@@ -716,7 +714,7 @@ h^{\star}(\boldsymbol{x})=\mathbb{1}_{\left[\eta(\boldsymbol{x})&gt;1/2\right]}.
 <p>El siguiente paso es <em><strong>acotar la distancia entre una variable aleatoria</strong></em> <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> <em><strong>y su vecino mas cercano en</strong></em> <span class="math notranslate nohighlight">\(S\)</span>. Primero necesitaremos el siguiente Teorema, el cual <em><strong>acota el peso probabilístico de subconjuntos que no son alcanzados por una muestra aleatoria, como una función del tamaño de la muestra</strong></em>.</p>
 </div>
 <div class="proof lemma admonition" id="knn_lemma2">
-<p class="admonition-title"><span class="caption-number">Lemma 2 </span></p>
+<p class="admonition-title"><span class="caption-number">Lemma 2.2 </span></p>
 <section class="lemma-content" id="proof-content">
 <p>Sea <span class="math notranslate nohighlight">\(C_{1}, C_{2},\dots,C_{r}\)</span> una colección de <em><strong>subconjuntos de algún dominio</strong></em> <span class="math notranslate nohighlight">\(\mathcal{X}\)</span>. Sea <span class="math notranslate nohighlight">\(S\)</span> una sucesión de <span class="math notranslate nohighlight">\(m\)</span> <em><strong>puntos iid muestreados de acuerdo a una distribución de probabilidad</strong></em> <span class="math notranslate nohighlight">\(\mathcal{D}\)</span> sobre <span class="math notranslate nohighlight">\(\mathcal{X}\)</span>. Entonces:</p>
 <div class="math notranslate nohighlight">
@@ -755,7 +753,7 @@ h^{\star}(\boldsymbol{x})=\mathbb{1}_{\left[\eta(\boldsymbol{x})&gt;1/2\right]}.
 </li>
 </ul>
 <div class="proof definition admonition" id="des_bernoulli">
-<p class="admonition-title"><span class="caption-number">Definition 5 </span> (Desigualdad de Bernoulli)</p>
+<p class="admonition-title"><span class="caption-number">Definition 2.5 </span> (Desigualdad de Bernoulli)</p>
 <section class="definition-content" id="proof-content">
 <p><em><strong>Desigualdad de Bernoulli</strong></em>: Sea <span class="math notranslate nohighlight">\(x\in\mathbb{R}\)</span> tal que <span class="math notranslate nohighlight">\(x&gt;-1\)</span> y <span class="math notranslate nohighlight">\(n\in\mathbb{Z}^{+}\)</span>, entonces, <span class="math notranslate nohighlight">\((1+x)^{n}\geq1+nx\)</span>.</p>
 </section>
@@ -780,7 +778,7 @@ h^{\star}(\boldsymbol{x})=\mathbb{1}_{\left[\eta(\boldsymbol{x})&gt;1/2\right]}.
 \end{align*}
 \end{split}\]</div>
 <div class="proof theorem admonition" id="knn_theorem1">
-<p class="admonition-title"><span class="caption-number">Theorem 1 </span></p>
+<p class="admonition-title"><span class="caption-number">Theorem 2.1 </span></p>
 <section class="theorem-content" id="proof-content">
 <p>Sea <span class="math notranslate nohighlight">\(\mathcal{X}=[0, 1]^{d},~\mathcal{Y}=\{0, 1\}\)</span> y <span class="math notranslate nohighlight">\(\mathcal{D}\)</span> una distribución sobre <span class="math notranslate nohighlight">\(\mathcal{X}\times\mathcal{Y}\)</span> para la cual la <em><strong>función de probabilidad condicional</strong></em>, <span class="math notranslate nohighlight">\(\eta\)</span>, es una función <span class="math notranslate nohighlight">\(c\)</span><em><strong>-Lipschitz</strong></em>. Denotamos con <span class="math notranslate nohighlight">\(h_{S}\)</span> el resultado de aplicar la regla <span class="math notranslate nohighlight">\(1\)</span>-NN a una muestra <span class="math notranslate nohighlight">\(S\sim\mathcal{D}^{m}\)</span>. Entonces</p>
 <div class="math notranslate nohighlight">
@@ -790,8 +788,7 @@ h^{\star}(\boldsymbol{x})=\mathbb{1}_{\left[\eta(\boldsymbol{x})&gt;1/2\right]}.
 </section>
 </div><p><strong><code class="docutils literal notranslate"><span class="pre">Demostración</span></code></strong></p>
 <figure class="align-center" id="box-neigh-knn-fig">
-<a class="reference internal image-reference" href="_images/box_neigh_knn.png"><img alt="_images/box_neigh_knn.png" src="_images/box_neigh_knn.png" style="width: 227.70000000000002px; height: 234.9px;" />
-</a>
+<a class="reference internal image-reference" href="_images/box_neigh_knn.png"><img alt="_images/box_neigh_knn.png" src="_images/box_neigh_knn.png" style="width: 227.70000000000002px; height: 234.9px;" /></a>
 </figure>
 <ul class="simple">
 <li><p>Fijemos <span class="math notranslate nohighlight">\(\varepsilon=1/T\)</span>, para algún entero <span class="math notranslate nohighlight">\(T\)</span>, sea <span class="math notranslate nohighlight">\(r=T^{d}\)</span>, y sea <span class="math notranslate nohighlight">\(C_{1}, C_{2}, \dots, C_{m}\)</span> un <em><strong>cubrimiento del conjunto</strong></em> <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> usando <em><strong>cajas de longitud</strong></em> <span class="math notranslate nohighlight">\(\varepsilon\)</span>. Es decir, para cada <span class="math notranslate nohighlight">\((\alpha_{1}, \alpha_{2},\dots,\alpha_{d})\in [T]^{d}\)</span>, existe un conjunto <span class="math notranslate nohighlight">\(C_{i}\)</span> de la forma</p></li>
@@ -831,7 +828,7 @@ h^{\star}(\boldsymbol{x})=\mathbb{1}_{\left[\eta(\boldsymbol{x})&gt;1/2\right]}.
 \mathbb{E}_{\boldsymbol{x}, S}(\|\boldsymbol{x}-\boldsymbol{x}_{\pi_{1}(\boldsymbol{x})}\|)\leq\sqrt{d}\left(\frac{1/\varepsilon^{d}}{me}+\varepsilon\right)=\sqrt{d}\left(\frac{\varepsilon^{-d}}{me}+\varepsilon\right)\leq\sqrt{d}\left(\frac{2^{d}\varepsilon^{-d}}{me}+\varepsilon\right).
 \]</div>
 <ul class="simple">
-<li><p>Usando el <a class="reference internal" href="#knn_lemma1">Lemma 1</a> se tiene que</p></li>
+<li><p>Usando el <a class="reference internal" href="#knn_lemma1">Lemma 2.1</a> se tiene que</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -862,13 +859,13 @@ h^{\star}(\boldsymbol{x})=\mathbb{1}_{\left[\eta(\boldsymbol{x})&gt;1/2\right]}.
 \end{align*}
 \]</div>
 <div class="proof observation admonition" id="observation-9">
-<p class="admonition-title"><span class="caption-number">Observation 2 </span></p>
+<p class="admonition-title"><span class="caption-number">Observation 2.2 </span></p>
 <section class="observation-content" id="proof-content">
 <p>El Teorema implica que si <em><strong>primero fijamos la distribución generadora de datos y luego hacemos tender</strong></em> <span class="math notranslate nohighlight">\(m\)</span> <em><strong>a infinito</strong></em>, entonces <em><strong>el error de la regla</strong></em> <span class="math notranslate nohighlight">\(1\)</span>-NN <em><strong>converge al doble del error de Bayes</strong></em>. El análisis puede generalizarse a valores mayores que <span class="math notranslate nohighlight">\(k\)</span>, demostrando que el error esperado de la regla <span class="math notranslate nohighlight">\(k\)</span>-NN converge a <span class="math notranslate nohighlight">\((1+\sqrt{8/k})\)</span> veces el error del <em><strong>clasificador de Bayes</strong></em>.</p>
 </section>
 </div></section>
 <section id="implementacion">
-<h2>Implementación<a class="headerlink" href="#implementacion" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">2.2. </span>Implementación<a class="headerlink" href="#implementacion" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">Clasificación</span> <span class="pre">k-vecinos</span></code></strong>. Como ya se estudió anteriormente, en su versión más sencilla, el algoritmo <em><strong>k-NN</strong></em> solo considera exactamente un vecino más cercano, que es el <em><strong>dato de entrenamiento más cercano al punto para el que queremos hacer una predicción</strong></em>. La predicción es entonces simplemente la etiqueta conocida para este punto de entrenamiento.</p></li>
 </ul>
@@ -1019,7 +1016,7 @@ h^{\star}(\boldsymbol{x})=\mathbb{1}_{\left[\eta(\boldsymbol{x})&gt;1/2\right]}.
 </ul>
 </section>
 <section id="analisis-de-kneighborsclassifier">
-<h2>Análisis de <code class="docutils literal notranslate"><span class="pre">KNeighborsClassifier</span></code><a class="headerlink" href="#analisis-de-kneighborsclassifier" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">2.3. </span>Análisis de <code class="docutils literal notranslate"><span class="pre">KNeighborsClassifier</span></code><a class="headerlink" href="#analisis-de-kneighborsclassifier" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Para los conjuntos de datos bidimensionales, también podemos ilustrar la <em><strong>predicción para todos los posibles puntos de prueba en el plano</strong></em> <span class="math notranslate nohighlight">\(xy\)</span>. Coloreamos el plano según la clase que se asignaría a un punto en esta región. Esto nos permite ver el <em><strong>límite de decisión (decision boundary)</strong></em> (ver <a class="reference external" href="https://github.com/amueller/mglearn/blob/master/mglearn/plot_2d_separator.py">plot_2d_separator</a>), el cual está <em><strong>entre el lugar donde el algoritmo asigna la clase 0 y el lugar donde asigna la clase 1</strong></em>.</p></li>
 </ul>
@@ -1055,17 +1052,16 @@ h^{\star}(\boldsymbol{x})=\mathbb{1}_{\left[\eta(\boldsymbol{x})&gt;1/2\right]}.
 </ul>
 </section>
 <section id="aplicacion-breast-cancer-dataset">
-<h2>Aplicación: Breast Cancer Dataset<a class="headerlink" href="#aplicacion-breast-cancer-dataset" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">2.4. </span>Aplicación: Breast Cancer Dataset<a class="headerlink" href="#aplicacion-breast-cancer-dataset" title="Link to this heading">#</a></h2>
 <figure class="align-center" id="breast-cancer-knn-fig">
-<a class="reference internal image-reference" href="_images/breast_cancer_knn.png"><img alt="_images/breast_cancer_knn.png" src="_images/breast_cancer_knn.png" style="width: 616.5px; height: 511.2px;" />
-</a>
+<a class="reference internal image-reference" href="_images/breast_cancer_knn.png"><img alt="_images/breast_cancer_knn.png" src="_images/breast_cancer_knn.png" style="width: 616.5px; height: 511.2px;" /></a>
 </figure>
 <ul class="simple">
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">Breast</span> <span class="pre">Cancer</span> <span class="pre">Dataset</span></code></strong>. Investiguemos si podemos confirmar la <em><strong>conexión entre la complejidad del modelo y la generalización</strong></em> que hemos discutido antes. Lo haremos con el conjunto de datos de cáncer de mama <em><strong>(Breast Cancer)</strong></em> del mundo real.</p></li>
 </ul>
 </section>
 <section id="analisis-exploratorio-de-datos">
-<h2>Análisis Exploratorio de Datos<a class="headerlink" href="#analisis-exploratorio-de-datos" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">2.5. </span>Análisis Exploratorio de Datos<a class="headerlink" href="#analisis-exploratorio-de-datos" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Procedemos a realizar un <em><strong>análisis exploratorio de datos</strong></em> para investigar y resumir principales características de nuestros datos. Primero cargamos nuestro dataset usando la función <code class="docutils literal notranslate"><span class="pre">load_breast_cancer()</span></code> de <code class="docutils literal notranslate"><span class="pre">sklearn.datasets</span></code></p></li>
 </ul>
@@ -1900,7 +1896,7 @@ dtype: int64
 </div>
 </div>
 <section id="multicolinealidad">
-<h3>Multicolinealidad<a class="headerlink" href="#multicolinealidad" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">2.5.1. </span>Multicolinealidad<a class="headerlink" href="#multicolinealidad" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>La <em><strong>multicolinealidad</strong></em> es un problema ya que, <em><strong>reduce la importancia de las variables independientes</strong></em>. A fin de solucionar este problema,  se <em><strong>eliminan los predictores altamente correlacionados</strong></em>. Podemos comprobar la presencia de multicolinealidad entre algunas de las variables. Por ejemplo, la columna <em><strong>mean radius</strong></em> tiene una <em><strong>correlación de 1.0</strong></em> con las columnas <em><strong>mean perimeter</strong></em> y <em><strong>mean área</strong></em>, respectivamente. Esto se debe a que <em><strong>las tres columnas contienen esencialmente la misma información</strong></em>, que es el tamaño físico de la observación.</p></li>
 <li><p>Por lo tanto, <em><strong>sólo debemos elegir una de las tres columnas cuando pasemos al análisis posterior</strong></em>. Otro lugar donde la <em><strong>multicolinealidad</strong></em> es evidente, es entre las columnas <code class="docutils literal notranslate"><span class="pre">&quot;mean&quot;</span></code> y <code class="docutils literal notranslate"><span class="pre">&quot;worst&quot;</span></code>. Por ejemplo, la columna <code class="docutils literal notranslate"><span class="pre">mean</span> <span class="pre">radius</span></code> tiene una <em><strong>correlación de 1.0</strong></em> con la columna <code class="docutils literal notranslate"><span class="pre">worst</span> <span class="pre">radius</span></code>. También hay multicolinealidad entre los atributos <code class="docutils literal notranslate"><span class="pre">compactness,</span> <span class="pre">concavity</span></code> y <code class="docutils literal notranslate"><span class="pre">concave</span> <span class="pre">points</span></code>. Así que podemos elegir solo uno de estos, por ejemplo <code class="docutils literal notranslate"><span class="pre">compactness</span></code>. De la matriz de correlación sabemos que estas columnas están altamente correlacionadas con las columnas <code class="docutils literal notranslate"><span class="pre">mean</span> <span class="pre">radius</span></code>, <code class="docutils literal notranslate"><span class="pre">perimeter</span></code>, <code class="docutils literal notranslate"><span class="pre">area</span></code>. Por lo tanto, estas columnas serán eliminadas.</p></li>
@@ -1998,7 +1994,7 @@ dtype: int64
 </div>
 </section>
 <section id="factor-de-inflacion-de-la-varianza-vif">
-<h3>Factor de Inflación de la Varianza (VIF)<a class="headerlink" href="#factor-de-inflacion-de-la-varianza-vif" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">2.5.2. </span>Factor de Inflación de la Varianza (VIF)<a class="headerlink" href="#factor-de-inflacion-de-la-varianza-vif" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Para abordar la multicolinealidad, se pueden aplicar técnicas como la regularización o la selección de características para, seleccionar un subconjunto de variables independientes que no estén altamente correlacionadas entre sí. En esta sección, nos centraremos en la más común: <em><strong>VIF (Factores de Inflación de la Varianza)</strong></em>.</p></li>
 <li><p>El <code class="docutils literal notranslate"><span class="pre">VIF</span></code> determina la <em><strong>fuerza de la correlación entre las variables independientes</strong></em>. Se pronostica tomando una variable y comparándola con todas las demás. La puntuación <code class="docutils literal notranslate"><span class="pre">VIF</span></code> de una variable independiente representa hasta qué punto la variable se explica por otras variables independientes.</p></li>
@@ -2240,7 +2236,7 @@ dtype: int64
 </section>
 </section>
 <section id="seleccion-del-modelo-k-nn">
-<h2>Selección del modelo K-NN<a class="headerlink" href="#seleccion-del-modelo-k-nn" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">2.6. </span>Selección del modelo K-NN<a class="headerlink" href="#seleccion-del-modelo-k-nn" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><em><strong>División en entrenamiento (train) y prueba (test)</strong></em>. Dividimos la variable objetivo y las variables independientes. A continuación, evaluamos el <em><strong>rendimiento del conjunto de entrenamiento y de prueba con diferentes números de vecinos</strong></em></p></li>
 </ul>
@@ -2400,7 +2396,7 @@ Best parameters:  {&#39;n_neighbors&#39;: 5}
 </div>
 </section>
 <section id="regresion-por-k-vecinos">
-<h2>Regresión por <span class="math notranslate nohighlight">\(k\)</span>-vecinos<a class="headerlink" href="#regresion-por-k-vecinos" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">2.7. </span>Regresión por <span class="math notranslate nohighlight">\(k\)</span>-vecinos<a class="headerlink" href="#regresion-por-k-vecinos" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>También existe una <em><strong>variante de regresión del algoritmo</strong></em> <span class="math notranslate nohighlight">\(k\)</span><em><strong>-vecinos más cercanos</strong></em>. Una vez más, vamos a empezar utilizando el <em><strong>vecino más cercano simple</strong></em>, esta vez utilizando el conjunto de datos <code class="docutils literal notranslate"><span class="pre">wave</span></code>. Hemos añadido tres puntos de datos de prueba como estrellas verdes en el eje <span class="math notranslate nohighlight">\(x\)</span>. <em><strong>La predicción utilizando un solo vecino es sólo el valor objetivo del vecino más cercano</strong></em></p></li>
 </ul>
@@ -2483,7 +2479,7 @@ Best parameters:  {&#39;n_neighbors&#39;: 5}
 </div>
 </section>
 <section id="analisis-de-kneighborsregressor">
-<h2>Análisis de <code class="docutils literal notranslate"><span class="pre">KNeighborsRegressor</span></code><a class="headerlink" href="#analisis-de-kneighborsregressor" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">2.8. </span>Análisis de <code class="docutils literal notranslate"><span class="pre">KNeighborsRegressor</span></code><a class="headerlink" href="#analisis-de-kneighborsregressor" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Para nuestro conjunto de datos unidimensional, podemos ver cómo son las predicciones para todos los valores posibles de las características. Para ello, creamos un conjunto de datos de prueba compuesto por muchos puntos de la línea</p></li>
 </ul>
@@ -2522,7 +2518,7 @@ Best parameters:  {&#39;n_neighbors&#39;: 5}
 <li><p>Como podemos ver en el gráfico, <em><strong>al utilizar un solo vecino</strong></em>, cada punto del conjunto de entrenamiento tiene una influencia obvia en las predicciones, y <em><strong>los valores predichos pasan por todos los puntos de datos</strong></em>. Esto conduce a una predicción muy inestable. <em><strong>Tener en cuenta más vecinos conduce a predicciones más suaves</strong></em>, pero éstas no se ajustan tan bien a los datos de entrenamiento.</p></li>
 </ul>
 <section id="aplicacion-world-hydropower-generation">
-<h3>Aplicación: World Hydropower Generation<a class="headerlink" href="#aplicacion-world-hydropower-generation" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">2.8.1. </span>Aplicación: World Hydropower Generation<a class="headerlink" href="#aplicacion-world-hydropower-generation" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">World</span> <span class="pre">Hydropower</span> <span class="pre">Generation</span></code></strong>: Esta sección se centra en el uso del modelo <span class="math notranslate nohighlight">\(k\)</span>-NN y sus hiperparamétros, para garantizar una mejor comprensión de este algoritmo. <em><strong>No se utilizan otros recursos como la ingeniería de características, la reducción de dimensionalidad</strong></em>. El conjunto de datos utilizado es una recopilación de la <em><strong>generación de energía de varios países europeos</strong></em>, medida en <em><strong>THh entre 2000 y 2019</strong></em>. Su contenido fue extraído de <em><strong>World in Data</strong></em>.</p></li>
 </ul>
@@ -3338,7 +3334,7 @@ RMSLE Valid: 0.03904370874530979
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Aprendizaje supervisado</p>
+        <p class="prev-next-title"><span class="section-number">1. </span>Aprendizaje supervisado</p>
       </div>
     </a>
     <a class="right-next"
@@ -3346,7 +3342,7 @@ RMSLE Valid: 0.03904370874530979
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Regresión Ridge y Lasso</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>Regresión Ridge y Lasso</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -3366,19 +3362,19 @@ RMSLE Valid: 0.03904370874530979
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis">Análisis</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion">Implementación</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-kneighborsclassifier">Análisis de <code class="docutils literal notranslate"><span class="pre">KNeighborsClassifier</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-breast-cancer-dataset">Aplicación: Breast Cancer Dataset</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-exploratorio-de-datos">Análisis Exploratorio de Datos</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multicolinealidad">Multicolinealidad</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#factor-de-inflacion-de-la-varianza-vif">Factor de Inflación de la Varianza (VIF)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis">2.1. Análisis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion">2.2. Implementación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-kneighborsclassifier">2.3. Análisis de <code class="docutils literal notranslate"><span class="pre">KNeighborsClassifier</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-breast-cancer-dataset">2.4. Aplicación: Breast Cancer Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-exploratorio-de-datos">2.5. Análisis Exploratorio de Datos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multicolinealidad">2.5.1. Multicolinealidad</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#factor-de-inflacion-de-la-varianza-vif">2.5.2. Factor de Inflación de la Varianza (VIF)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-del-modelo-k-nn">Selección del modelo K-NN</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-por-k-vecinos">Regresión por <span class="math notranslate nohighlight">\(k\)</span>-vecinos</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-kneighborsregressor">Análisis de <code class="docutils literal notranslate"><span class="pre">KNeighborsRegressor</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-world-hydropower-generation">Aplicación: World Hydropower Generation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-del-modelo-k-nn">2.6. Selección del modelo K-NN</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-por-k-vecinos">2.7. Regresión por <span class="math notranslate nohighlight">\(k\)</span>-vecinos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-kneighborsregressor">2.8. Análisis de <code class="docutils literal notranslate"><span class="pre">KNeighborsRegressor</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-world-hydropower-generation">2.8.1. Aplicación: World Hydropower Generation</a></li>
 </ul>
 </li>
 </ul>
