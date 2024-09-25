@@ -4347,7 +4347,7 @@ Length: 102, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/55ae27957611e9d70cee8bc240393c7e6412bf34dd9c09728f6b77980d7b7f8a.png" src="_images/55ae27957611e9d70cee8bc240393c7e6412bf34dd9c09728f6b77980d7b7f8a.png" />
+<img alt="_images/18cde9be2d27606a6bb9ca0683ecc9d63c42ac685bdd4e44e774e7408ab1aee6.png" src="_images/18cde9be2d27606a6bb9ca0683ecc9d63c42ac685bdd4e44e774e7408ab1aee6.png" />
 </div>
 </div>
 <ul class="simple">
@@ -5229,15 +5229,6 @@ F(\boldsymbol{y}^{r})=H(\boldsymbol{y}^{r-1})-\boldsymbol{y}^{r-1}.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-09-23 14:02:47.217688: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
-2024-09-23 14:02:47.224159: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:485] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
-2024-09-23 14:02:47.230044: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:8454] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
-2024-09-23 14:02:47.231843: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1452] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
-2024-09-23 14:02:47.237619: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
-To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
-2024-09-23 14:02:47.710347: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
-</pre></div>
-</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Available devices:
 PhysicalDevice(name=&#39;/physical_device:CPU:0&#39;, device_type=&#39;CPU&#39;)
 PhysicalDevice(name=&#39;/physical_device:GPU:0&#39;, device_type=&#39;GPU&#39;)
@@ -5245,14 +5236,7 @@ TensorFlow is using GPU.
 GPU details: {&#39;compute_capability&#39;: (8, 9), &#39;device_name&#39;: &#39;NVIDIA GeForce RTX 4070&#39;}
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
-I0000 00:00:1727118168.130259  296363 cuda_executor.cc:1001] could not open file to read NUMA node: /sys/bus/pci/devices/0000:01:00.0/numa_node
-Your kernel may have been built without NUMA support.
-I0000 00:00:1727118168.154117  296363 cuda_executor.cc:1001] could not open file to read NUMA node: /sys/bus/pci/devices/0000:01:00.0/numa_node
-Your kernel may have been built without NUMA support.
-I0000 00:00:1727118168.154163  296363 cuda_executor.cc:1001] could not open file to read NUMA node: /sys/bus/pci/devices/0000:01:00.0/numa_node
-Your kernel may have been built without NUMA support.
-I0000 00:00:1727118168.154653  296363 cuda_executor.cc:1001] could not open file to read NUMA node: /sys/bus/pci/devices/0000:01:00.0/numa_node
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>I0000 00:00:1727226009.344075    2151 cuda_executor.cc:1001] could not open file to read NUMA node: /sys/bus/pci/devices/0000:01:00.0/numa_node
 Your kernel may have been built without NUMA support.
 </pre></div>
 </div>
@@ -5265,7 +5249,7 @@ Your kernel may have been built without NUMA support.
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">from</span> <span class="nn">tensorflow.keras.preprocessing.image</span> <span class="kn">import</span> <span class="n">ImageDataGenerator</span>
 <span class="kn">from</span> <span class="nn">tensorflow.keras.utils</span> <span class="kn">import</span> <span class="n">load_img</span>
-<span class="kn">from</span> <span class="nn">keras.layers</span> <span class="kn">import</span> <span class="n">Conv2D</span><span class="p">,</span> <span class="n">Dense</span><span class="p">,</span> <span class="n">BatchNormalization</span><span class="p">,</span> <span class="n">Activation</span><span class="p">,</span> <span class="n">Dropout</span><span class="p">,</span> <span class="n">MaxPooling2D</span><span class="p">,</span> <span class="n">Flatten</span>
+<span class="kn">from</span> <span class="nn">keras.layers</span> <span class="kn">import</span> <span class="n">Conv2D</span><span class="p">,</span> <span class="n">Dense</span><span class="p">,</span> <span class="n">BatchNormalization</span><span class="p">,</span> <span class="n">Activation</span><span class="p">,</span> <span class="n">Dropout</span><span class="p">,</span> <span class="n">MaxPool2D</span><span class="p">,</span> <span class="n">Flatten</span>
 <span class="kn">from</span> <span class="nn">tensorflow.keras.optimizers</span> <span class="kn">import</span> <span class="n">Adam</span><span class="p">,</span> <span class="n">RMSprop</span><span class="p">,</span> <span class="n">SGD</span>
 <span class="kn">from</span> <span class="nn">keras.callbacks</span> <span class="kn">import</span> <span class="n">ModelCheckpoint</span><span class="p">,</span><span class="n">EarlyStopping</span>
 <span class="kn">import</span> <span class="nn">datetime</span>
@@ -5280,14 +5264,6 @@ Your kernel may have been built without NUMA support.
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_dir</span> <span class="o">=</span> <span class="s1">&#39;/home/lihkir/Data/face_sentiment_detection/train/&#39;</span>
 <span class="n">test_dir</span>  <span class="o">=</span> <span class="s1">&#39;/home/lihkir/Data/face_sentiment_detection/test/&#39;</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">row</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="mi">48</span><span class="p">,</span> <span class="mi">48</span>
-<span class="n">classes</span> <span class="o">=</span> <span class="mi">7</span>
 </pre></div>
 </div>
 </div>
@@ -5331,27 +5307,21 @@ test       831      111   1774  1024    958     1233  1247
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_count</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_count</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
-</pre></div>
-</div>
 <img alt="_images/488bf0db970f2930c91fda98bdf940aa38c6335e5c243cacc06b4d47c3bc7919.png" src="_images/488bf0db970f2930c91fda98bdf940aa38c6335e5c243cacc06b4d47c3bc7919.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_count</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_count</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
-</pre></div>
-</div>
 <img alt="_images/95610265aab81ebe715b69703acc2b155153d1469c8d1076f81b73d965441034.png" src="_images/95610265aab81ebe715b69703acc2b155153d1469c8d1076f81b73d965441034.png" />
 </div>
 </div>
@@ -5378,7 +5348,7 @@ test       831      111   1774  1024    958     1233  1247
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_datagen</span> <span class="o">=</span> <span class="n">ImageDataGenerator</span><span class="p">(</span><span class="n">rescale</span><span class="o">=</span><span class="mf">1.</span><span class="o">/</span><span class="mi">255</span><span class="p">,</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_datagen</span> <span class="o">=</span> <span class="n">ImageDataGenerator</span><span class="p">(</span><span class="n">rescale</span><span class="o">=</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">255.0</span><span class="p">,</span>
                                    <span class="n">horizontal_flip</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                                    <span class="n">validation_split</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
 </pre></div>
@@ -5440,7 +5410,7 @@ test       831      111   1774  1024    958     1233  1247
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_datagen</span> <span class="o">=</span> <span class="n">ImageDataGenerator</span><span class="p">(</span><span class="n">rescale</span><span class="o">=</span><span class="mf">1.</span><span class="o">/</span><span class="mi">255</span><span class="p">,</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_datagen</span> <span class="o">=</span> <span class="n">ImageDataGenerator</span><span class="p">(</span><span class="n">rescale</span><span class="o">=</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">255.0</span><span class="p">,</span>
                                    <span class="n">horizontal_flip</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -5487,10 +5457,14 @@ test       831      111   1774  1024    958     1233  1247
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">weight_decay</span> <span class="o">=</span> <span class="mf">1e-4</span>
-
 <span class="n">num_classes</span> <span class="o">=</span> <span class="mi">7</span>
-
-<span class="n">model</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">Sequential</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">Sequential</span><span class="p">()</span>
 
 <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Conv2D</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">,</span> <span class="n">kernel_regularizer</span><span class="o">=</span><span class="n">regularizers</span><span class="o">.</span><span class="n">l2</span><span class="p">(</span><span class="n">weight_decay</span><span class="p">),</span> <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">48</span><span class="p">,</span><span class="mi">48</span><span class="p">,</span><span class="mi">1</span><span class="p">)))</span>
 <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Activation</span><span class="p">(</span><span class="s1">&#39;elu&#39;</span><span class="p">))</span>
@@ -5520,25 +5494,7 @@ test       831      111   1774  1024    958     1233  1247
 <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Activation</span><span class="p">(</span><span class="s1">&#39;elu&#39;</span><span class="p">))</span>
 <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="n">num_classes</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;softmax&#39;</span><span class="p">))</span>
 
-<span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="s1">&#39;categorical_crossentropy&#39;</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">=</span><span class="n">Adam</span><span class="p">(</span><span class="mf">0.0003</span><span class="p">),</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>I0000 00:00:1727118169.408818  296363 cuda_executor.cc:1001] could not open file to read NUMA node: /sys/bus/pci/devices/0000:01:00.0/numa_node
-Your kernel may have been built without NUMA support.
-I0000 00:00:1727118169.408883  296363 cuda_executor.cc:1001] could not open file to read NUMA node: /sys/bus/pci/devices/0000:01:00.0/numa_node
-Your kernel may have been built without NUMA support.
-I0000 00:00:1727118169.408905  296363 cuda_executor.cc:1001] could not open file to read NUMA node: /sys/bus/pci/devices/0000:01:00.0/numa_node
-Your kernel may have been built without NUMA support.
-I0000 00:00:1727118169.530884  296363 cuda_executor.cc:1001] could not open file to read NUMA node: /sys/bus/pci/devices/0000:01:00.0/numa_node
-Your kernel may have been built without NUMA support.
-I0000 00:00:1727118169.530932  296363 cuda_executor.cc:1001] could not open file to read NUMA node: /sys/bus/pci/devices/0000:01:00.0/numa_node
-Your kernel may have been built without NUMA support.
-2024-09-23 14:02:49.530940: I tensorflow/core/common_runtime/gpu/gpu_device.cc:2112] Could not identify NUMA node of platform GPU id 0, defaulting to 0.  Your kernel may not have been built with NUMA support.
-I0000 00:00:1727118169.530975  296363 cuda_executor.cc:1001] could not open file to read NUMA node: /sys/bus/pci/devices/0000:01:00.0/numa_node
-Your kernel may have been built without NUMA support.
-2024-09-23 14:02:49.530991: I tensorflow/core/common_runtime/gpu/gpu_device.cc:2021] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 9558 MB memory:  -&gt; device: 0, name: NVIDIA GeForce RTX 4070, pci bus id: 0000:01:00.0, compute capability: 8.9
+<span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="s1">&#39;categorical_crossentropy&#39;</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">=</span><span class="n">Adam</span><span class="p">(</span><span class="mf">0.0001</span><span class="p">),</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -5550,65 +5506,65 @@ Your kernel may have been built without NUMA support.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">Model: "sequential"</span>
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">Model: "sequential_7"</span>
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┓
 ┃<span style="font-weight: bold"> Layer (type)                    </span>┃<span style="font-weight: bold"> Output Shape           </span>┃<span style="font-weight: bold">       Param # </span>┃
 ┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━┩
-│ conv2d (<span style="color: #0087ff; text-decoration-color: #0087ff">Conv2D</span>)                 │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">48</span>, <span style="color: #00af00; text-decoration-color: #00af00">48</span>, <span style="color: #00af00; text-decoration-color: #00af00">64</span>)     │         <span style="color: #00af00; text-decoration-color: #00af00">1,088</span> │
+│ conv2d_32 (<span style="color: #0087ff; text-decoration-color: #0087ff">Conv2D</span>)              │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">48</span>, <span style="color: #00af00; text-decoration-color: #00af00">48</span>, <span style="color: #00af00; text-decoration-color: #00af00">64</span>)     │         <span style="color: #00af00; text-decoration-color: #00af00">1,088</span> │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ activation (<span style="color: #0087ff; text-decoration-color: #0087ff">Activation</span>)         │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">48</span>, <span style="color: #00af00; text-decoration-color: #00af00">48</span>, <span style="color: #00af00; text-decoration-color: #00af00">64</span>)     │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+│ activation_18 (<span style="color: #0087ff; text-decoration-color: #0087ff">Activation</span>)      │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">48</span>, <span style="color: #00af00; text-decoration-color: #00af00">48</span>, <span style="color: #00af00; text-decoration-color: #00af00">64</span>)     │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ batch_normalization             │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">48</span>, <span style="color: #00af00; text-decoration-color: #00af00">48</span>, <span style="color: #00af00; text-decoration-color: #00af00">64</span>)     │           <span style="color: #00af00; text-decoration-color: #00af00">256</span> │
+│ batch_normalization_34          │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">48</span>, <span style="color: #00af00; text-decoration-color: #00af00">48</span>, <span style="color: #00af00; text-decoration-color: #00af00">64</span>)     │           <span style="color: #00af00; text-decoration-color: #00af00">256</span> │
 │ (<span style="color: #0087ff; text-decoration-color: #0087ff">BatchNormalization</span>)            │                        │               │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ conv2d_1 (<span style="color: #0087ff; text-decoration-color: #0087ff">Conv2D</span>)               │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">48</span>, <span style="color: #00af00; text-decoration-color: #00af00">48</span>, <span style="color: #00af00; text-decoration-color: #00af00">64</span>)     │        <span style="color: #00af00; text-decoration-color: #00af00">65,600</span> │
+│ conv2d_33 (<span style="color: #0087ff; text-decoration-color: #0087ff">Conv2D</span>)              │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">48</span>, <span style="color: #00af00; text-decoration-color: #00af00">48</span>, <span style="color: #00af00; text-decoration-color: #00af00">64</span>)     │        <span style="color: #00af00; text-decoration-color: #00af00">65,600</span> │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ activation_1 (<span style="color: #0087ff; text-decoration-color: #0087ff">Activation</span>)       │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">48</span>, <span style="color: #00af00; text-decoration-color: #00af00">48</span>, <span style="color: #00af00; text-decoration-color: #00af00">64</span>)     │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+│ activation_19 (<span style="color: #0087ff; text-decoration-color: #0087ff">Activation</span>)      │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">48</span>, <span style="color: #00af00; text-decoration-color: #00af00">48</span>, <span style="color: #00af00; text-decoration-color: #00af00">64</span>)     │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ batch_normalization_1           │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">48</span>, <span style="color: #00af00; text-decoration-color: #00af00">48</span>, <span style="color: #00af00; text-decoration-color: #00af00">64</span>)     │           <span style="color: #00af00; text-decoration-color: #00af00">256</span> │
+│ batch_normalization_35          │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">48</span>, <span style="color: #00af00; text-decoration-color: #00af00">48</span>, <span style="color: #00af00; text-decoration-color: #00af00">64</span>)     │           <span style="color: #00af00; text-decoration-color: #00af00">256</span> │
 │ (<span style="color: #0087ff; text-decoration-color: #0087ff">BatchNormalization</span>)            │                        │               │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ max_pooling2d (<span style="color: #0087ff; text-decoration-color: #0087ff">MaxPooling2D</span>)    │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">24</span>, <span style="color: #00af00; text-decoration-color: #00af00">24</span>, <span style="color: #00af00; text-decoration-color: #00af00">64</span>)     │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+│ max_pooling2d_21 (<span style="color: #0087ff; text-decoration-color: #0087ff">MaxPooling2D</span>) │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">24</span>, <span style="color: #00af00; text-decoration-color: #00af00">24</span>, <span style="color: #00af00; text-decoration-color: #00af00">64</span>)     │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ dropout (<span style="color: #0087ff; text-decoration-color: #0087ff">Dropout</span>)               │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">24</span>, <span style="color: #00af00; text-decoration-color: #00af00">24</span>, <span style="color: #00af00; text-decoration-color: #00af00">64</span>)     │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+│ dropout_27 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dropout</span>)            │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">24</span>, <span style="color: #00af00; text-decoration-color: #00af00">24</span>, <span style="color: #00af00; text-decoration-color: #00af00">64</span>)     │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ conv2d_2 (<span style="color: #0087ff; text-decoration-color: #0087ff">Conv2D</span>)               │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">24</span>, <span style="color: #00af00; text-decoration-color: #00af00">24</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)    │       <span style="color: #00af00; text-decoration-color: #00af00">131,200</span> │
+│ conv2d_34 (<span style="color: #0087ff; text-decoration-color: #0087ff">Conv2D</span>)              │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">24</span>, <span style="color: #00af00; text-decoration-color: #00af00">24</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)    │       <span style="color: #00af00; text-decoration-color: #00af00">131,200</span> │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ activation_2 (<span style="color: #0087ff; text-decoration-color: #0087ff">Activation</span>)       │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">24</span>, <span style="color: #00af00; text-decoration-color: #00af00">24</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)    │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+│ activation_20 (<span style="color: #0087ff; text-decoration-color: #0087ff">Activation</span>)      │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">24</span>, <span style="color: #00af00; text-decoration-color: #00af00">24</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)    │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ batch_normalization_2           │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">24</span>, <span style="color: #00af00; text-decoration-color: #00af00">24</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)    │           <span style="color: #00af00; text-decoration-color: #00af00">512</span> │
+│ batch_normalization_36          │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">24</span>, <span style="color: #00af00; text-decoration-color: #00af00">24</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)    │           <span style="color: #00af00; text-decoration-color: #00af00">512</span> │
 │ (<span style="color: #0087ff; text-decoration-color: #0087ff">BatchNormalization</span>)            │                        │               │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ max_pooling2d_1 (<span style="color: #0087ff; text-decoration-color: #0087ff">MaxPooling2D</span>)  │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)    │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+│ max_pooling2d_22 (<span style="color: #0087ff; text-decoration-color: #0087ff">MaxPooling2D</span>) │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)    │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ dropout_1 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dropout</span>)             │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)    │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+│ dropout_28 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dropout</span>)            │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)    │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ conv2d_3 (<span style="color: #0087ff; text-decoration-color: #0087ff">Conv2D</span>)               │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)    │       <span style="color: #00af00; text-decoration-color: #00af00">262,272</span> │
+│ conv2d_35 (<span style="color: #0087ff; text-decoration-color: #0087ff">Conv2D</span>)              │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)    │       <span style="color: #00af00; text-decoration-color: #00af00">262,272</span> │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ activation_3 (<span style="color: #0087ff; text-decoration-color: #0087ff">Activation</span>)       │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)    │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+│ activation_21 (<span style="color: #0087ff; text-decoration-color: #0087ff">Activation</span>)      │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)    │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ batch_normalization_3           │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)    │           <span style="color: #00af00; text-decoration-color: #00af00">512</span> │
+│ batch_normalization_37          │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)    │           <span style="color: #00af00; text-decoration-color: #00af00">512</span> │
 │ (<span style="color: #0087ff; text-decoration-color: #0087ff">BatchNormalization</span>)            │                        │               │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ conv2d_4 (<span style="color: #0087ff; text-decoration-color: #0087ff">Conv2D</span>)               │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)    │       <span style="color: #00af00; text-decoration-color: #00af00">262,272</span> │
+│ conv2d_36 (<span style="color: #0087ff; text-decoration-color: #0087ff">Conv2D</span>)              │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)    │       <span style="color: #00af00; text-decoration-color: #00af00">262,272</span> │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ activation_4 (<span style="color: #0087ff; text-decoration-color: #0087ff">Activation</span>)       │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)    │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+│ activation_22 (<span style="color: #0087ff; text-decoration-color: #0087ff">Activation</span>)      │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)    │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ batch_normalization_4           │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)    │           <span style="color: #00af00; text-decoration-color: #00af00">512</span> │
+│ batch_normalization_38          │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)    │           <span style="color: #00af00; text-decoration-color: #00af00">512</span> │
 │ (<span style="color: #0087ff; text-decoration-color: #0087ff">BatchNormalization</span>)            │                        │               │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ max_pooling2d_2 (<span style="color: #0087ff; text-decoration-color: #0087ff">MaxPooling2D</span>)  │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">6</span>, <span style="color: #00af00; text-decoration-color: #00af00">6</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)      │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+│ max_pooling2d_23 (<span style="color: #0087ff; text-decoration-color: #0087ff">MaxPooling2D</span>) │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">6</span>, <span style="color: #00af00; text-decoration-color: #00af00">6</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)      │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ dropout_2 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dropout</span>)             │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">6</span>, <span style="color: #00af00; text-decoration-color: #00af00">6</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)      │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+│ dropout_29 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dropout</span>)            │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">6</span>, <span style="color: #00af00; text-decoration-color: #00af00">6</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)      │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ flatten (<span style="color: #0087ff; text-decoration-color: #0087ff">Flatten</span>)               │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">4608</span>)           │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+│ flatten_6 (<span style="color: #0087ff; text-decoration-color: #0087ff">Flatten</span>)             │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">4608</span>)           │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ dense (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                   │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)            │       <span style="color: #00af00; text-decoration-color: #00af00">589,952</span> │
+│ dense_15 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)            │       <span style="color: #00af00; text-decoration-color: #00af00">589,952</span> │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ activation_5 (<span style="color: #0087ff; text-decoration-color: #0087ff">Activation</span>)       │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)            │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+│ activation_23 (<span style="color: #0087ff; text-decoration-color: #0087ff">Activation</span>)      │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)            │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ dense_1 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                 │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">7</span>)              │           <span style="color: #00af00; text-decoration-color: #00af00">903</span> │
+│ dense_16 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">7</span>)              │           <span style="color: #00af00; text-decoration-color: #00af00">903</span> │
 └─────────────────────────────────┴────────────────────────┴───────────────┘
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold"> Total params: </span><span style="color: #00af00; text-decoration-color: #00af00">1,315,335</span> (5.02 MB)
@@ -5626,7 +5582,14 @@ Your kernel may have been built without NUMA support.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/7f6ee5f52dcff0ba43f47aa196f2684e3b054b3d2e714ce010c6a5798fab1b75.png" src="_images/7f6ee5f52dcff0ba43f47aa196f2684e3b054b3d2e714ce010c6a5798fab1b75.png" />
+<img alt="_images/2630c8aae06bf565b34fa0f578053b9624587e37ff720ef4caa72bb818782ff1.png" src="_images/2630c8aae06bf565b34fa0f578053b9624587e37ff720ef4caa72bb818782ff1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">epochs</span> <span class="o">=</span> <span class="mi">120</span>
+</pre></div>
+</div>
 </div>
 </div>
 <div class="cell docutils container">
@@ -5645,132 +5608,224 @@ Your kernel may have been built without NUMA support.
 </div>
 </div>
 </div>
-<ul class="simple">
-<li><p>Entrenamiento del modelo</p></li>
-</ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">steps_per_epoch</span> <span class="o">=</span> <span class="n">training_set</span><span class="o">.</span><span class="n">n</span> <span class="o">//</span> <span class="n">training_set</span><span class="o">.</span><span class="n">batch_size</span>
-<span class="n">validation_steps</span> <span class="o">=</span> <span class="n">validation_set</span><span class="o">.</span><span class="n">n</span> <span class="o">//</span> <span class="n">validation_set</span><span class="o">.</span><span class="n">batch_size</span>
-</pre></div>
-</div>
-</div>
-</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">from</span> <span class="nn">joblib</span> <span class="kn">import</span> <span class="n">dump</span><span class="p">,</span> <span class="n">load</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">history_cnn</span> <span class="o">=</span> <span class="kc">None</span>
 
-<span class="n">history</span> <span class="o">=</span> <span class="kc">None</span>
-
-<span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s1">&#39;history.joblib&#39;</span><span class="p">):</span>
-    <span class="n">history</span> <span class="o">=</span> <span class="n">load</span><span class="p">(</span><span class="s1">&#39;history.joblib&#39;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;El archivo &#39;history.joblib&#39; ya existe. Se ha cargado el historial del entrenamiento.&quot;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s1">&#39;history_cnn.joblib&#39;</span><span class="p">):</span>
+    <span class="n">history_cnn</span> <span class="o">=</span> <span class="n">load</span><span class="p">(</span><span class="s1">&#39;history_cnn.joblib&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;El archivo &#39;history_cnn.joblib&#39; ya existe. Se ha cargado el historial del entrenamiento.&quot;</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">training_set</span><span class="p">,</span>
-                        <span class="n">validation_data</span><span class="o">=</span><span class="n">validation_set</span><span class="p">,</span>
-                        <span class="n">epochs</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
-                        <span class="n">callbacks</span><span class="o">=</span><span class="p">[</span><span class="n">checkpointer</span><span class="p">],</span>
-                        <span class="n">steps_per_epoch</span><span class="o">=</span><span class="n">steps_per_epoch</span><span class="p">,</span>
-                        <span class="n">validation_steps</span><span class="o">=</span><span class="n">validation_steps</span><span class="p">)</span>
-
-    <span class="n">dump</span><span class="p">(</span><span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">,</span> <span class="s1">&#39;history.joblib&#39;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;El entrenamiento se ha completado y el historial ha sido guardado en &#39;history.joblib&#39;.&quot;</span><span class="p">)</span>
+    <span class="n">history_cnn</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">training_set</span><span class="p">,</span> 
+                            <span class="n">epochs</span> <span class="o">=</span> <span class="n">epochs</span><span class="p">,</span> <span class="n">callbacks</span><span class="o">=</span><span class="n">checkpointer</span><span class="p">,</span> 
+                            <span class="n">validation_data</span> <span class="o">=</span> <span class="n">validation_set</span><span class="p">,</span>
+                            <span class="n">verbose</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">dump</span><span class="p">(</span><span class="n">history_cnn</span><span class="o">.</span><span class="n">history</span><span class="p">,</span> <span class="s1">&#39;history_cnn.joblib&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;El entrenamiento se ha completado y el historial ha sido guardado en &#39;history_cnn.joblib&#39;.&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>El archivo &#39;history.joblib&#39; ya existe. Se ha cargado el historial del entrenamiento.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 1/120
+
+Epoch 1: val_accuracy improved from -inf to 0.59502, saving model to model.weights.best.keras
+359/359 - 5s - 14ms/step - accuracy: 0.6683 - loss: 0.9239 - val_accuracy: 0.5950 - val_loss: 1.1575
+Epoch 2/120
+
+Epoch 2: val_accuracy did not improve from 0.59502
+359/359 - 5s - 13ms/step - accuracy: 0.6782 - loss: 0.9027 - val_accuracy: 0.5945 - val_loss: 1.1356
+Epoch 3/120
+
+Epoch 3: val_accuracy improved from 0.59502 to 0.60321, saving model to model.weights.best.keras
+359/359 - 5s - 13ms/step - accuracy: 0.6866 - loss: 0.8813 - val_accuracy: 0.6032 - val_loss: 1.1336
+Epoch 4/120
+
+Epoch 4: val_accuracy did not improve from 0.60321
+359/359 - 5s - 13ms/step - accuracy: 0.6955 - loss: 0.8648 - val_accuracy: 0.5983 - val_loss: 1.1448
+Epoch 5/120
+
+Epoch 5: val_accuracy improved from 0.60321 to 0.60704, saving model to model.weights.best.keras
+359/359 - 5s - 13ms/step - accuracy: 0.7010 - loss: 0.8428 - val_accuracy: 0.6070 - val_loss: 1.1362
+Epoch 6/120
+
+Epoch 6: val_accuracy improved from 0.60704 to 0.60739, saving model to model.weights.best.keras
+359/359 - 5s - 13ms/step - accuracy: 0.7091 - loss: 0.8241 - val_accuracy: 0.6074 - val_loss: 1.1460
+Epoch 7/120
+
+Epoch 7: val_accuracy did not improve from 0.60739
+359/359 - 5s - 13ms/step - accuracy: 0.7149 - loss: 0.8101 - val_accuracy: 0.6034 - val_loss: 1.1287
+Epoch 8/120
+
+Epoch 8: val_accuracy did not improve from 0.60739
+359/359 - 5s - 13ms/step - accuracy: 0.7251 - loss: 0.7878 - val_accuracy: 0.6037 - val_loss: 1.1624
+Epoch 9/120
+
+Epoch 9: val_accuracy improved from 0.60739 to 0.60756, saving model to model.weights.best.keras
+359/359 - 5s - 13ms/step - accuracy: 0.7320 - loss: 0.7694 - val_accuracy: 0.6076 - val_loss: 1.1672
+Epoch 10/120
+
+Epoch 10: val_accuracy did not improve from 0.60756
+359/359 - 5s - 13ms/step - accuracy: 0.7368 - loss: 0.7529 - val_accuracy: 0.6037 - val_loss: 1.1993
+Epoch 11/120
+
+Epoch 11: val_accuracy improved from 0.60756 to 0.61557, saving model to model.weights.best.keras
+359/359 - 5s - 13ms/step - accuracy: 0.7456 - loss: 0.7368 - val_accuracy: 0.6156 - val_loss: 1.1559
+Epoch 12/120
+
+Epoch 12: val_accuracy improved from 0.61557 to 0.61906, saving model to model.weights.best.keras
+359/359 - 5s - 13ms/step - accuracy: 0.7498 - loss: 0.7164 - val_accuracy: 0.6191 - val_loss: 1.1780
+Epoch 13/120
+
+Epoch 13: val_accuracy did not improve from 0.61906
+359/359 - 5s - 13ms/step - accuracy: 0.7571 - loss: 0.7013 - val_accuracy: 0.6131 - val_loss: 1.1891
+Epoch 14/120
+
+Epoch 14: val_accuracy did not improve from 0.61906
+359/359 - 5s - 13ms/step - accuracy: 0.7660 - loss: 0.6892 - val_accuracy: 0.6154 - val_loss: 1.1916
+Epoch 15/120
+
+Epoch 15: val_accuracy did not improve from 0.61906
+359/359 - 5s - 13ms/step - accuracy: 0.7711 - loss: 0.6719 - val_accuracy: 0.6128 - val_loss: 1.2086
+Epoch 16/120
+
+Epoch 16: val_accuracy did not improve from 0.61906
+359/359 - 5s - 13ms/step - accuracy: 0.7786 - loss: 0.6519 - val_accuracy: 0.6182 - val_loss: 1.1857
+Epoch 17/120
+
+Epoch 17: val_accuracy improved from 0.61906 to 0.62062, saving model to model.weights.best.keras
+359/359 - 5s - 13ms/step - accuracy: 0.7847 - loss: 0.6326 - val_accuracy: 0.6206 - val_loss: 1.1927
+Epoch 18/120
+
+Epoch 18: val_accuracy did not improve from 0.62062
+359/359 - 5s - 13ms/step - accuracy: 0.7913 - loss: 0.6176 - val_accuracy: 0.6159 - val_loss: 1.2088
+Epoch 19/120
+
+Epoch 19: val_accuracy did not improve from 0.62062
+359/359 - 5s - 13ms/step - accuracy: 0.7960 - loss: 0.6013 - val_accuracy: 0.6022 - val_loss: 1.2471
+Epoch 20/120
+
+Epoch 20: val_accuracy did not improve from 0.62062
+359/359 - 5s - 13ms/step - accuracy: 0.8049 - loss: 0.5880 - val_accuracy: 0.6178 - val_loss: 1.2403
+Epoch 21/120
+
+Epoch 21: val_accuracy improved from 0.62062 to 0.62080, saving model to model.weights.best.keras
+359/359 - 5s - 13ms/step - accuracy: 0.8053 - loss: 0.5811 - val_accuracy: 0.6208 - val_loss: 1.2441
+Epoch 22/120
+
+Epoch 22: val_accuracy did not improve from 0.62080
+359/359 - 5s - 13ms/step - accuracy: 0.8128 - loss: 0.5603 - val_accuracy: 0.6194 - val_loss: 1.2741
+Epoch 23/120
+
+Epoch 23: val_accuracy did not improve from 0.62080
+359/359 - 5s - 13ms/step - accuracy: 0.8172 - loss: 0.5489 - val_accuracy: 0.6081 - val_loss: 1.2811
+Epoch 24/120
+
+Epoch 24: val_accuracy did not improve from 0.62080
+359/359 - 5s - 13ms/step - accuracy: 0.8239 - loss: 0.5325 - val_accuracy: 0.6149 - val_loss: 1.2809
+Epoch 25/120
+
+Epoch 25: val_accuracy did not improve from 0.62080
+359/359 - 5s - 13ms/step - accuracy: 0.8273 - loss: 0.5202 - val_accuracy: 0.6095 - val_loss: 1.3033
+Epoch 26/120
+
+Epoch 26: val_accuracy improved from 0.62080 to 0.62341, saving model to model.weights.best.keras
+359/359 - 5s - 13ms/step - accuracy: 0.8366 - loss: 0.5051 - val_accuracy: 0.6234 - val_loss: 1.2804
+Epoch 27/120
+
+Epoch 27: val_accuracy did not improve from 0.62341
+359/359 - 5s - 13ms/step - accuracy: 0.8400 - loss: 0.4902 - val_accuracy: 0.6192 - val_loss: 1.3059
+Epoch 28/120
+
+Epoch 28: val_accuracy did not improve from 0.62341
+359/359 - 5s - 13ms/step - accuracy: 0.8427 - loss: 0.4788 - val_accuracy: 0.6185 - val_loss: 1.3307
+Epoch 29/120
+
+Epoch 29: val_accuracy did not improve from 0.62341
+359/359 - 5s - 13ms/step - accuracy: 0.8483 - loss: 0.4682 - val_accuracy: 0.6210 - val_loss: 1.3316
+Epoch 30/120
+
+Epoch 30: val_accuracy did not improve from 0.62341
+359/359 - 5s - 13ms/step - accuracy: 0.8526 - loss: 0.4578 - val_accuracy: 0.6170 - val_loss: 1.3451
+Epoch 31/120
+
+Epoch 31: val_accuracy did not improve from 0.62341
+359/359 - 5s - 13ms/step - accuracy: 0.8553 - loss: 0.4512 - val_accuracy: 0.6204 - val_loss: 1.3681
+Epoch 32/120
+
+Epoch 32: val_accuracy did not improve from 0.62341
+359/359 - 5s - 13ms/step - accuracy: 0.8600 - loss: 0.4382 - val_accuracy: 0.6196 - val_loss: 1.3851
+Epoch 33/120
+
+Epoch 33: val_accuracy did not improve from 0.62341
+359/359 - 5s - 13ms/step - accuracy: 0.8678 - loss: 0.4172 - val_accuracy: 0.6185 - val_loss: 1.4119
+Epoch 34/120
+
+Epoch 34: val_accuracy did not improve from 0.62341
+359/359 - 5s - 13ms/step - accuracy: 0.8692 - loss: 0.4122 - val_accuracy: 0.6178 - val_loss: 1.4180
+Epoch 35/120
+
+Epoch 35: val_accuracy did not improve from 0.62341
+359/359 - 5s - 13ms/step - accuracy: 0.8726 - loss: 0.4043 - val_accuracy: 0.6171 - val_loss: 1.4173
+Epoch 36/120
+
+Epoch 36: val_accuracy did not improve from 0.62341
+359/359 - 5s - 13ms/step - accuracy: 0.8766 - loss: 0.3912 - val_accuracy: 0.6196 - val_loss: 1.4120
+Epoch 36: early stopping
+Restoring model weights from the end of the best epoch: 26.
+El entrenamiento se ha completado y el historial ha sido guardado en &#39;history_cnn.joblib&#39;.
 </pre></div>
 </div>
 </div>
 </div>
-<ul class="simple">
-<li><p>Rendimiento del modelo</p></li>
-</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">training_loss</span> <span class="o">=</span> <span class="n">history</span><span class="p">[</span><span class="s1">&#39;loss&#39;</span><span class="p">]</span>
-<span class="n">val_loss</span> <span class="o">=</span> <span class="n">history</span><span class="p">[</span><span class="s1">&#39;val_loss&#39;</span><span class="p">]</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">([</span><span class="s1">&#39;default&#39;</span><span class="p">])</span>
-<span class="c1"># Create count of the number of epochs</span>
-<span class="n">epoch_count</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">training_loss</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">train_acc</span> <span class="o">=</span> <span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">]</span>
+<span class="n">train_loss</span> <span class="o">=</span> <span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;loss&#39;</span><span class="p">]</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
 
-<span class="c1"># Visualize loss history</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">epoch_count</span><span class="p">,</span> <span class="n">training_loss</span><span class="p">,</span> <span class="s1">&#39;r--&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">epoch_count</span><span class="p">,</span> <span class="n">val_loss</span><span class="p">,</span> <span class="s1">&#39;b-&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Training Loss&#39;</span><span class="p">,</span> <span class="s1">&#39;Val Loss&#39;</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Epoch&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Loss&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;val_accuracy&#39;</span><span class="p">])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Training Accuracy vs Validation Accuracy&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Accuracy&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Epoch&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Train&#39;</span><span class="p">,</span> <span class="s1">&#39;Validation&#39;</span><span class="p">],</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;loss&#39;</span><span class="p">])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;val_loss&#39;</span><span class="p">])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Training Loss vs Validation Loss&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Loss&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Epoch&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Train&#39;</span><span class="p">,</span> <span class="s1">&#39;Validation&#39;</span><span class="p">],</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Loss&#39;)
-</pre></div>
-</div>
-<img alt="_images/65a0b342a907c706784311baed76c11df0244914fabd5e0ad9aeccadf3c8fde3.png" src="_images/65a0b342a907c706784311baed76c11df0244914fabd5e0ad9aeccadf3c8fde3.png" />
+<img alt="_images/814ea01dc9f77d905f314d11d475e508ab48a23b8f031cbb12e597a516f9722d.png" src="_images/814ea01dc9f77d905f314d11d475e508ab48a23b8f031cbb12e597a516f9722d.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">training_accuracy</span> <span class="o">=</span> <span class="n">history</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">]</span>
-<span class="n">val_accuracy</span> <span class="o">=</span> <span class="n">history</span><span class="p">[</span><span class="s1">&#39;val_accuracy&#39;</span><span class="p">]</span>
-
-<span class="c1"># Create count of the number of epochs</span>
-<span class="n">epoch_count</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">training_accuracy</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-
-<span class="c1"># Visualize loss history</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">epoch_count</span><span class="p">,</span> <span class="n">training_accuracy</span><span class="p">,</span> <span class="s1">&#39;r--&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">epoch_count</span><span class="p">,</span> <span class="n">val_accuracy</span><span class="p">,</span> <span class="s1">&#39;b-&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Training Accuracy&#39;</span><span class="p">,</span> <span class="s1">&#39;Val Accuracy&#39;</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Epoch&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Accuracy&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">top</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_loss</span><span class="p">,</span> <span class="n">train_acc</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">training_set</span><span class="p">)</span>
+<span class="n">test_loss</span><span class="p">,</span> <span class="n">test_acc</span>   <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">validation_set</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;final train accuracy = </span><span class="si">{:.2f}</span><span class="s2"> , validation accuracy = </span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">train_acc</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span> <span class="n">test_acc</span><span class="o">*</span><span class="mi">100</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.24328126460313798, 1.0)
-</pre></div>
-</div>
-<img alt="_images/6ef4b392e93cf10b7205fbb7dddfbc0824139824911830780cc8eba5b758a40d.png" src="_images/6ef4b392e93cf10b7205fbb7dddfbc0824139824911830780cc8eba5b758a40d.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;cnn_model.keras&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<ul class="simple">
-<li><p>Pruebas de precisión</p></li>
-</ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Test accuracy = </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">test_set</span><span class="w"> </span><span class="p">,</span><span class="n">batch_size</span><span class="o">=</span><span class="n">test_set</span><span class="o">.</span><span class="n">batch_size</span><span class="p">,</span><span class="n">steps</span><span class="o">=</span><span class="n">test_set</span><span class="o">.</span><span class="n">n</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">test_set</span><span class="o">.</span><span class="n">batch_size</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
-I0000 00:00:1727118171.050029  297332 service.cc:146] XLA service 0x7f91cc0043a0 initialized for platform CUDA (this does not guarantee that XLA will be used). Devices:
-I0000 00:00:1727118171.050050  297332 service.cc:154]   StreamExecutor device (0): NVIDIA GeForce RTX 4070, Compute Capability 8.9
-2024-09-23 14:02:51.058982: I tensorflow/compiler/mlir/tensorflow/utils/dump_mlir_util.cc:268] disabling MLIR crash reproducer, set env var `MLIR_CRASH_REPRODUCER_DIRECTORY` to enable.
-2024-09-23 14:02:51.087413: I external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:531] Loaded cuDNN version 8907
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold"> 30/112</span> <span class=" -Color -Color-Green">━━━━━</span><span class=" -Color -Color-White">━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 6ms/step - accuracy: 0.1417 - loss: 1.9806
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>I0000 00:00:1727118171.778960  297332 device_compiler.h:188] Compiled cluster using XLA!  This line is logged at most once for the lifetime of the process.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">112/112</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">2s</span> 5ms/step - accuracy: 0.1445 - loss: 1.9804
-Test accuracy = 14.34151828289032%
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">359/359</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">8s</span> 22ms/step - accuracy: 0.9346 - loss: 0.2856
+<span class=" -Color -Color-Bold">90/90</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">2s</span> 20ms/step - accuracy: 0.6201 - loss: 1.2962
+final train accuracy = 93.66 , validation accuracy = 61.94
 </pre></div>
 </div>
 </div>
@@ -5803,88 +5858,32 @@ Test accuracy = 14.34151828289032%
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">359/359</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">3s</span> 6ms/step
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">359/359</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">8s</span> 21ms/step
 Confusion Matrix
-[[   9    1 3171    0    0   11    4]
- [   2    0  346    0    0    1    0]
- [   8    2 3242    0    5   16    5]
- [  20    0 5726    0    1   20    5]
- [  12    0 3935    0    3   17    5]
- [   8    0 3833    0    4   16    3]
- [   9    1 2514    0    3    8    2]]
+[[ 376   34  450  783  644  557  352]
+ [  47   12   45   75   71   57   42]
+ [ 451   44  456  829  605  556  337]
+ [ 766   86  753 1467 1119  957  624]
+ [ 543   60  550  997  748  654  420]
+ [ 524   68  482  935  698  746  411]
+ [ 357   32  324  627  458  415  324]]
 Classification Report
               precision    recall  f1-score   support
 
-       angry       0.13      0.00      0.01      3196
-     disgust       0.00      0.00      0.00       349
-        fear       0.14      0.99      0.25      3278
-       happy       0.00      0.00      0.00      5772
-     neutral       0.19      0.00      0.00      3972
-         sad       0.18      0.00      0.01      3864
-    surprise       0.08      0.00      0.00      2537
+       angry       0.12      0.12      0.12      3196
+     disgust       0.04      0.03      0.04       349
+        fear       0.15      0.14      0.14      3278
+       happy       0.26      0.25      0.26      5772
+     neutral       0.17      0.19      0.18      3972
+         sad       0.19      0.19      0.19      3864
+    surprise       0.13      0.13      0.13      2537
 
-    accuracy                           0.14     22968
-   macro avg       0.10      0.14      0.04     22968
-weighted avg       0.11      0.14      0.04     22968
+    accuracy                           0.18     22968
+   macro avg       0.15      0.15      0.15     22968
+weighted avg       0.18      0.18      0.18     22968
 </pre></div>
 </div>
-<img alt="_images/ade3f0b5912208879a4c89373dbb0c8a00d440267a20eb52e2ad1f4ea6f41042.png" src="_images/ade3f0b5912208879a4c89373dbb0c8a00d440267a20eb52e2ad1f4ea6f41042.png" />
-</div>
-</div>
-<ul class="simple">
-<li><p>Matriz de confusión en el conjunto de <em><strong>datos de validación</strong></em></p></li>
-</ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">training_set</span><span class="p">)</span>
-<span class="n">y_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">class_labels</span> <span class="o">=</span> <span class="n">test_set</span><span class="o">.</span><span class="n">class_indices</span>
-<span class="n">class_labels</span> <span class="o">=</span> <span class="p">{</span><span class="n">v</span><span class="p">:</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">class_labels</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
-
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">classification_report</span><span class="p">,</span> <span class="n">confusion_matrix</span>
-<span class="n">cm_train</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">training_set</span><span class="o">.</span><span class="n">classes</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Confusion Matrix&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">cm_train</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Classification Report&#39;</span><span class="p">)</span>
-<span class="n">target_names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">class_labels</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">training_set</span><span class="o">.</span><span class="n">classes</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">target_names</span><span class="o">=</span><span class="n">target_names</span><span class="p">))</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">cm_train</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
-<span class="n">tick_mark</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">target_names</span><span class="p">))</span>
-<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">tick_mark</span><span class="p">,</span> <span class="n">target_names</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
-<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">tick_mark</span><span class="p">,</span> <span class="n">target_names</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">359/359</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">2s</span> 5ms/step
-Confusion Matrix
-[[   7    0 3171    0    2   12    4]
- [   0    1  347    0    0    1    0]
- [   8    1 3246    0    2   16    5]
- [  22    0 5711    0    2   30    7]
- [  13    1 3936    0    6   13    3]
- [  11    0 3834    0    3   13    3]
- [   7    1 2517    0    2    8    2]]
-Classification Report
-              precision    recall  f1-score   support
-
-       angry       0.10      0.00      0.00      3196
-     disgust       0.25      0.00      0.01       349
-        fear       0.14      0.99      0.25      3278
-       happy       0.00      0.00      0.00      5772
-     neutral       0.35      0.00      0.00      3972
-         sad       0.14      0.00      0.01      3864
-    surprise       0.08      0.00      0.00      2537
-
-    accuracy                           0.14     22968
-   macro avg       0.15      0.14      0.04     22968
-weighted avg       0.13      0.14      0.04     22968
-</pre></div>
-</div>
-<img alt="_images/9dbbb9ef4e98a349ce665e61cf5e419136d2725eb2a577cb31d4680c26bfd2d3.png" src="_images/9dbbb9ef4e98a349ce665e61cf5e419136d2725eb2a577cb31d4680c26bfd2d3.png" />
+<img alt="_images/8d4807ec39530ef3c728be2d95dc38d7cc28ed1ae0d10623027267078be474e4.png" src="_images/8d4807ec39530ef3c728be2d95dc38d7cc28ed1ae0d10623027267078be474e4.png" />
 </div>
 </div>
 <ul class="simple">
@@ -5911,32 +5910,32 @@ weighted avg       0.13      0.14      0.04     22968
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">90/90</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 10ms/step
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">90/90</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">2s</span> 21ms/step
 Confusion Matrix
-[[   0    0  792    1    0    3    3]
- [   0    0   86    0    0    1    0]
- [   4    3  811    0    0    0    1]
- [   4    2 1436    0    0    1    0]
- [   3    0  978    0    1   10    1]
- [   2    1  955    0    1    7    0]
- [   0    0  631    0    0    3    0]]
+[[116   7  87 202 166 149  72]
+ [  7   0   9  22  27   9  13]
+ [ 87  14  83 217 185 141  92]
+ [190  12 147 348 323 279 144]
+ [130  13 120 237 223 159 111]
+ [111   7 107 218 236 194  93]
+ [ 74   7  78 162 154 102  57]]
 Classification Report
               precision    recall  f1-score   support
 
-       angry       0.00      0.00      0.00       799
+       angry       0.16      0.15      0.15       799
      disgust       0.00      0.00      0.00        87
-        fear       0.14      0.99      0.25       819
-       happy       0.00      0.00      0.00      1443
-     neutral       0.50      0.00      0.00       993
-         sad       0.28      0.01      0.01       966
-    surprise       0.00      0.00      0.00       634
+        fear       0.13      0.10      0.11       819
+       happy       0.25      0.24      0.24      1443
+     neutral       0.17      0.22      0.19       993
+         sad       0.19      0.20      0.19       966
+    surprise       0.10      0.09      0.09       634
 
-    accuracy                           0.14      5741
-   macro avg       0.13      0.14      0.04      5741
-weighted avg       0.15      0.14      0.04      5741
+    accuracy                           0.18      5741
+   macro avg       0.14      0.14      0.14      5741
+weighted avg       0.18      0.18      0.18      5741
 </pre></div>
 </div>
-<img alt="_images/9dbbb9ef4e98a349ce665e61cf5e419136d2725eb2a577cb31d4680c26bfd2d3.png" src="_images/9dbbb9ef4e98a349ce665e61cf5e419136d2725eb2a577cb31d4680c26bfd2d3.png" />
+<img alt="_images/8d4807ec39530ef3c728be2d95dc38d7cc28ed1ae0d10623027267078be474e4.png" src="_images/8d4807ec39530ef3c728be2d95dc38d7cc28ed1ae0d10623027267078be474e4.png" />
 </div>
 </div>
 <ul class="simple">
@@ -5964,51 +5963,37 @@ weighted avg       0.15      0.14      0.04      5741
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">113/113</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 7ms/step
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">113/113</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">2s</span> 20ms/step
 Confusion Matrix
-[[   1    0  951    0    0    5    1]
- [   0    0  110    0    0    1    0]
- [   5    1 1013    0    0    3    2]
- [   2    1 1762    0    4    2    3]
- [   2    2 1218    0    2    7    2]
- [   3    0 1239    0    0    4    1]
- [   0    0  826    0    0    4    1]]
+[[113   7 121 234 196 174 113]
+ [ 11   0  15  25  25  26   9]
+ [138  10 127 247 213 173 116]
+ [217  15 200 417 392 342 191]
+ [150  12 149 284 279 227 132]
+ [144  19 142 311 260 234 137]
+ [111   9  97 183 168 173  90]]
 Classification Report
               precision    recall  f1-score   support
 
-       angry       0.08      0.00      0.00       958
+       angry       0.13      0.12      0.12       958
      disgust       0.00      0.00      0.00       111
-        fear       0.14      0.99      0.25      1024
-       happy       0.00      0.00      0.00      1774
-     neutral       0.33      0.00      0.00      1233
-         sad       0.15      0.00      0.01      1247
-    surprise       0.10      0.00      0.00       831
+        fear       0.15      0.12      0.14      1024
+       happy       0.25      0.24      0.24      1774
+     neutral       0.18      0.23      0.20      1233
+         sad       0.17      0.19      0.18      1247
+    surprise       0.11      0.11      0.11       831
 
-    accuracy                           0.14      7178
-   macro avg       0.12      0.14      0.04      7178
-weighted avg       0.13      0.14      0.04      7178
+    accuracy                           0.18      7178
+   macro avg       0.14      0.14      0.14      7178
+weighted avg       0.17      0.18      0.17      7178
 </pre></div>
 </div>
-<img alt="_images/807bc0b63261c12b3bcf3d1fe5d7e0b6812a881a0932ddc4c076cea4473b5be7.png" src="_images/807bc0b63261c12b3bcf3d1fe5d7e0b6812a881a0932ddc4c076cea4473b5be7.png" />
+<img alt="_images/01967d9cf20448fd227b1828600231c6570879a5788b52166529aba161fad140.png" src="_images/01967d9cf20448fd227b1828600231c6570879a5788b52166529aba161fad140.png" />
 </div>
 </div>
 <ul class="simple">
 <li><p>Grafico de predicciones</p></li>
 </ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># next function assigns one batch to variables, i.e x_test,y_test will have 64 images</span>
-<span class="n">x_test</span><span class="p">,</span><span class="n">y_test</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">test_set</span><span class="p">)</span>
-<span class="n">predict</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_test</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">2/2</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step  
-</pre></div>
-</div>
-</div>
-</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">figure</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
@@ -6025,7 +6010,7 @@ weighted avg       0.13      0.14      0.04      7178
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/7cdbd5ed95786b4ef36657e0df889e31a323cf4a6b91e00a6dcb4e9fae5ccfbb.png" src="_images/7cdbd5ed95786b4ef36657e0df889e31a323cf4a6b91e00a6dcb4e9fae5ccfbb.png" />
+<img alt="_images/0eb0cdecf85eced3a1795c50a6bf5543cecd16fd3b8bb56cb87dbe46f3ca4d6c.png" src="_images/0eb0cdecf85eced3a1795c50a6bf5543cecd16fd3b8bb56cb87dbe46f3ca4d6c.png" />
 </div>
 </div>
 </section>
@@ -6946,7 +6931,7 @@ Message: ham
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 7470098.33it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 8032474.25it/s]
 </pre></div>
 </div>
 </div>
@@ -6962,40 +6947,40 @@ Message: ham
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 7544871.68it/s]
-100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 8628680.79it/s]
-100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 9138235.27it/s]
-100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 8781085.15it/s]
-100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 9588209.92it/s]
-100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 9350327.16it/s]
-100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 7757791.36it/s]
-100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 9339115.74it/s]
-100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 8420348.68it/s]
-100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 8794304.70it/s]
-100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 9134662.86it/s]
-100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 8962971.84it/s]
-100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 8268389.10it/s]
-100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 8271315.96it/s]
-100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 8414284.33it/s]
-100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 9283459.51it/s]
-100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 8247958.91it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 7119581.84it/s]
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 7012745.37it/s]
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 7324911.47it/s]
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 8884588.43it/s]
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 8867729.63it/s]
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 7183051.82it/s]
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 8857645.03it/s]
 100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 8593772.56it/s]
-100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 8715579.11it/s]
-100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 8330291.47it/s]
-100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 8587455.93it/s]
-100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 9159728.57it/s]
-100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 9088474.36it/s]
-100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 7942375.11it/s]
-100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 8164384.20it/s]
-100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 7888746.65it/s]
-100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 8456919.14it/s]
-100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 9000950.53it/s]
-100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 8054625.16it/s]
-100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 6868450.20it/s]
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 8631868.34it/s]
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 8945814.54it/s]
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 8797615.81it/s]
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 8035236.45it/s]
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 8804245.51it/s]
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 8478398.98it/s]
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 8830864.54it/s]
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 8459981.02it/s]
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 8834203.25it/s]
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 6958447.76it/s]
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 8438594.29it/s]
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 8466111.44it/s]
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 8861004.01it/s]
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 8921904.38it/s]
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 8767905.28it/s]
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 8390114.03it/s]
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 8751485.99it/s]
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 8844234.51it/s]
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 8683191.22it/s]
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 8568561.64it/s]
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 8973297.84it/s]
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 5655001.84it/s]
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 2.89 s, sys: 49.4 ms, total: 2.94 s
-Wall time: 3.03 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 2.83 s, sys: 50 ms, total: 2.88 s
+Wall time: 2.94 s
 </pre></div>
 </div>
 </div>
@@ -7061,18 +7046,18 @@ Wall time: 3.03 s
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
 KeyedVectors&lt;vector_size=20, 2 keys&gt;
-[-0.26084453 -3.1335678  -0.09356816  2.1785495   0.39288983 -1.3380513
- -1.9036348  -1.0903465  -3.9092205  -2.4437454   0.2680727  -1.1647297
- -1.3090813  -0.4353036  -2.1076605  -1.4783484   2.305755    2.2424242
- -2.2746186  -3.1972728 ]
--0.26084453
+[-1.181241   -3.710024   -1.5540404   1.7452742   0.3889721  -0.5239634
+ -2.4200559  -0.16418658 -3.6092436   0.85619104  0.46824312 -0.5189654
+  0.04126288  0.744131   -3.1146233  -1.9534556   0.8371728   2.528787
+ -3.689852   -2.0174308 ]
+-1.181241
 1
 KeyedVectors&lt;vector_size=20, 2 keys&gt;
-[ -3.1292682    5.832031    -0.841504     0.7807392    8.026574
-  -5.4927163  -10.445936    -6.2029896    3.4773405   -6.394514
-   9.86094      7.3761225   -0.68587166   0.79936683  -0.3889449
-   1.6934125   -3.7019465   -4.04782     -7.8790655    6.0704637 ]
-5.832031
+[ -4.3021917    4.3163033   -3.0488737    1.4984138    7.108087
+ -10.087342    -3.94172     -6.9372716    2.3337421   -7.018936
+   9.643784     7.381326    -5.2318425   -0.19244012  -0.61319727
+   2.9983945    1.8317717   -9.758069    -4.7036347    3.3743062 ]
+4.3163033
 </pre></div>
 </div>
 </div>
@@ -7084,16 +7069,16 @@ KeyedVectors&lt;vector_size=20, 2 keys&gt;
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;â£900&#39;, 0.7479013204574585),
- (&#39;freefone&#39;, 0.7307223677635193),
- (&#39;digital&#39;, 0.719547688961029),
- (&#39;â£400&#39;, 0.7182024717330933),
- (&#39;several&#39;, 0.7092306017875671),
- (&#39;08006344447&#39;, 0.7054029107093811),
- (&#39;8-hr&#39;, 0.6969763040542603),
- (&#39;enjoyed&#39;, 0.6954887509346008),
- (&#39;registration&#39;, 0.6865538358688354),
- (&#39;sipi&#39;, 0.6838487386703491)]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;anythingtomorrow&#39;, 0.7989494800567627),
+ (&#39;cantdo&#39;, 0.7467942237854004),
+ (&#39;myparents&#39;, 0.7182999849319458),
+ (&#39;missed&#39;, 0.717624843120575),
+ (&#39;cherish&#39;, 0.714693546295166),
+ (&#39;colleagues&#39;, 0.705409586429596),
+ (&#39;holder&#39;, 0.7042951583862305),
+ (&#39;dear&#39;, 0.702792763710022),
+ (&#39;0906346330.&#39;, 0.7017916440963745),
+ (&#39;09061743811&#39;, 0.6933843493461609)]
 </pre></div>
 </div>
 </div>
@@ -7105,16 +7090,16 @@ KeyedVectors&lt;vector_size=20, 2 keys&gt;
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;okors&#39;, 0.8061175346374512),
- (&#39;intrepid&#39;, 0.7708349823951721),
- (&#39;semester&#39;, 0.7267807126045227),
- (&#39;overemphasise.or&#39;, 0.7262406349182129),
- (&#39;enjoyed&#39;, 0.724559485912323),
- (&#39;thank&#39;, 0.7157672643661499),
- (&#39;wishing&#39;, 0.7133525013923645),
- (&#39;dawns&#39;, 0.6990382671356201),
- (&#39;rich&#39;, 0.6973163485527039),
- (&#39;refreshed&#39;, 0.6967615485191345)]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;missed&#39;, 0.8055727481842041),
+ (&#39;intrepid&#39;, 0.7639503479003906),
+ (&#39;urgent&#39;, 0.7146934866905212),
+ (&#39;duo&#39;, 0.7129536271095276),
+ (&#39;thank&#39;, 0.7003694772720337),
+ (&#39;wish&#39;, 0.6905673742294312),
+ (&#39;appreciate&#39;, 0.6860354542732239),
+ (&#39;enjoyed&#39;, 0.6818588376045227),
+ (&#39;hope&#39;, 0.6803081631660461),
+ (&#39;wishin&#39;, 0.6780060529708862)]
 </pre></div>
 </div>
 </div>
@@ -7259,118 +7244,129 @@ KeyedVectors&lt;vector_size=20, 2 keys&gt;
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">history</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">Y_train</span><span class="p">,</span> <span class="n">epochs</span> <span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">verbose</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">joblib</span> <span class="kn">import</span> <span class="n">dump</span><span class="p">,</span> <span class="n">load</span>
+
+<span class="n">history_lstm</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s1">&#39;history_lstm.joblib&#39;</span><span class="p">):</span>
+    <span class="n">history_lstm</span> <span class="o">=</span> <span class="n">load</span><span class="p">(</span><span class="s1">&#39;history_lstm.joblib&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;El archivo &#39;history_lstm.joblib&#39; ya existe. Se ha cargado el historial del entrenamiento.&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">history_lstm</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">Y_train</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">dump</span><span class="p">(</span><span class="n">history_lstm</span><span class="o">.</span><span class="n">history</span><span class="p">,</span> <span class="s1">&#39;history_lstm.joblib&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;El entrenamiento se ha completado y el historial ha sido guardado en &#39;history_lstm.joblib&#39;.&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 1/50
-148/148 - 2s - 14ms/step - accuracy: 0.9166 - loss: 0.2459
+148/148 - 2s - 14ms/step - accuracy: 0.9267 - loss: 0.2315
 Epoch 2/50
-148/148 - 1s - 6ms/step - accuracy: 0.9823 - loss: 0.0724
+148/148 - 1s - 7ms/step - accuracy: 0.9850 - loss: 0.0600
 Epoch 3/50
-148/148 - 1s - 7ms/step - accuracy: 0.9924 - loss: 0.0337
+148/148 - 1s - 7ms/step - accuracy: 0.9930 - loss: 0.0303
 Epoch 4/50
-148/148 - 1s - 7ms/step - accuracy: 0.9956 - loss: 0.0185
+148/148 - 1s - 7ms/step - accuracy: 0.9966 - loss: 0.0157
 Epoch 5/50
-148/148 - 1s - 7ms/step - accuracy: 0.9968 - loss: 0.0151
+148/148 - 1s - 8ms/step - accuracy: 0.9979 - loss: 0.0087
 Epoch 6/50
-148/148 - 1s - 7ms/step - accuracy: 0.9985 - loss: 0.0071
+148/148 - 1s - 7ms/step - accuracy: 0.9987 - loss: 0.0047
 Epoch 7/50
-148/148 - 1s - 7ms/step - accuracy: 0.9983 - loss: 0.0061
+148/148 - 1s - 7ms/step - accuracy: 0.9985 - loss: 0.0055
 Epoch 8/50
-148/148 - 1s - 7ms/step - accuracy: 0.9992 - loss: 0.0034
+148/148 - 1s - 7ms/step - accuracy: 0.9994 - loss: 0.0017
 Epoch 9/50
-148/148 - 1s - 7ms/step - accuracy: 0.9987 - loss: 0.0037
+148/148 - 1s - 6ms/step - accuracy: 0.9996 - loss: 0.0012
 Epoch 10/50
-148/148 - 1s - 7ms/step - accuracy: 0.9994 - loss: 0.0016
+148/148 - 1s - 7ms/step - accuracy: 0.9998 - loss: 8.0327e-04
 Epoch 11/50
-148/148 - 1s - 7ms/step - accuracy: 0.9996 - loss: 9.8194e-04
+148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 5.5067e-04
 Epoch 12/50
-148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 6.8252e-04
+148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 4.1406e-04
 Epoch 13/50
-148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 5.2663e-04
+148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 3.2322e-04
 Epoch 14/50
-148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 4.1459e-04
+148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 2.5748e-04
 Epoch 15/50
-148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 3.3197e-04
+148/148 - 1s - 6ms/step - accuracy: 1.0000 - loss: 2.1433e-04
 Epoch 16/50
-148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 2.7057e-04
+148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 1.7403e-04
 Epoch 17/50
-148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 2.3241e-04
+148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 1.5136e-04
 Epoch 18/50
-148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 1.9687e-04
+148/148 - 1s - 6ms/step - accuracy: 1.0000 - loss: 1.2444e-04
 Epoch 19/50
-148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 1.6494e-04
+148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 1.0496e-04
 Epoch 20/50
-148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 1.4114e-04
+148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 9.1037e-05
 Epoch 21/50
-148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 1.2197e-04
+148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 8.0365e-05
 Epoch 22/50
-148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 1.0665e-04
+148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 6.9303e-05
 Epoch 23/50
-148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 9.2567e-05
+148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 6.1919e-05
 Epoch 24/50
-148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 8.2551e-05
+148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 5.5886e-05
 Epoch 25/50
-148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 7.3058e-05
+148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 4.9211e-05
 Epoch 26/50
-148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 6.5006e-05
+148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 4.3048e-05
 Epoch 27/50
-148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 5.8128e-05
+148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 3.8843e-05
 Epoch 28/50
-148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 5.1336e-05
+148/148 - 1s - 6ms/step - accuracy: 1.0000 - loss: 3.4705e-05
 Epoch 29/50
-148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 4.6276e-05
+148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 3.1055e-05
 Epoch 30/50
-148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 4.2819e-05
+148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 2.8125e-05
 Epoch 31/50
-148/148 - 1s - 6ms/step - accuracy: 1.0000 - loss: 3.8834e-05
+148/148 - 1s - 6ms/step - accuracy: 1.0000 - loss: 2.5803e-05
 Epoch 32/50
-148/148 - 1s - 6ms/step - accuracy: 1.0000 - loss: 3.3544e-05
+148/148 - 1s - 6ms/step - accuracy: 1.0000 - loss: 2.3313e-05
 Epoch 33/50
-148/148 - 1s - 6ms/step - accuracy: 1.0000 - loss: 3.1057e-05
+148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 2.1367e-05
 Epoch 34/50
-148/148 - 1s - 6ms/step - accuracy: 1.0000 - loss: 2.8190e-05
+148/148 - 1s - 6ms/step - accuracy: 1.0000 - loss: 1.9564e-05
 Epoch 35/50
-148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 2.5583e-05
+148/148 - 1s - 6ms/step - accuracy: 1.0000 - loss: 1.8149e-05
 Epoch 36/50
-148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 2.3322e-05
+148/148 - 1s - 6ms/step - accuracy: 1.0000 - loss: 1.6110e-05
 Epoch 37/50
-148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 2.1077e-05
+148/148 - 1s - 6ms/step - accuracy: 1.0000 - loss: 1.4891e-05
 Epoch 38/50
-148/148 - 1s - 6ms/step - accuracy: 1.0000 - loss: 1.9553e-05
+148/148 - 1s - 6ms/step - accuracy: 1.0000 - loss: 1.3603e-05
 Epoch 39/50
-148/148 - 1s - 6ms/step - accuracy: 1.0000 - loss: 1.7590e-05
+148/148 - 1s - 6ms/step - accuracy: 1.0000 - loss: 1.2878e-05
 Epoch 40/50
-148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 1.5973e-05
+148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 1.1417e-05
 Epoch 41/50
-148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 1.5120e-05
+148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 1.0457e-05
 Epoch 42/50
-148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 1.3778e-05
+148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 9.6314e-06
 Epoch 43/50
-148/148 - 1s - 6ms/step - accuracy: 1.0000 - loss: 1.2396e-05
+148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 8.8906e-06
 Epoch 44/50
-148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 1.1675e-05
+148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 8.4654e-06
 Epoch 45/50
-148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 1.0538e-05
+148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 7.5165e-06
 Epoch 46/50
-148/148 - 1s - 6ms/step - accuracy: 1.0000 - loss: 9.7779e-06
+148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 6.9618e-06
 Epoch 47/50
-148/148 - 1s - 6ms/step - accuracy: 1.0000 - loss: 9.0191e-06
+148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 6.4309e-06
 Epoch 48/50
-148/148 - 1s - 6ms/step - accuracy: 1.0000 - loss: 8.1380e-06
+148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 5.9360e-06
 Epoch 49/50
-148/148 - 1s - 6ms/step - accuracy: 1.0000 - loss: 7.5599e-06
+148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 5.4518e-06
 Epoch 50/50
-148/148 - 1s - 6ms/step - accuracy: 1.0000 - loss: 6.9811e-06
+148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 5.1116e-06
+El entrenamiento se ha completado y el historial ha sido guardado en &#39;history_lstm.joblib&#39;.
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">history_lstm</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;model accuracy&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;acc&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;epochs&#39;</span><span class="p">)</span>
@@ -7379,12 +7375,12 @@ Epoch 50/50
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/5b73a8d9a898bfff1383ff346be6121cea9fa322bea132fe01baea2a9e220578.png" src="_images/5b73a8d9a898bfff1383ff346be6121cea9fa322bea132fe01baea2a9e220578.png" />
+<img alt="_images/5ba7d9d76e0137edec6b2ac9c4ddfb54697d45a06ea36bda9c1751eaf2c27fe4.png" src="_images/5ba7d9d76e0137edec6b2ac9c4ddfb54697d45a06ea36bda9c1751eaf2c27fe4.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;loss&#39;</span><span class="p">]);</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">history_lstm</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;loss&#39;</span><span class="p">]);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;model loss&#39;</span><span class="p">);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;loss&#39;</span><span class="p">);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;epochs&#39;</span><span class="p">);</span>
@@ -7393,7 +7389,7 @@ Epoch 50/50
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/42e5f429b961660d0ce7c23a188d7d08573bbddd1bf8db0e734565c0cce130e8.png" src="_images/42e5f429b961660d0ce7c23a188d7d08573bbddd1bf8db0e734565c0cce130e8.png" />
+<img alt="_images/53da0a62929b8ec9e06819961af543855103281cef00522baafdf3d48dda379f.png" src="_images/53da0a62929b8ec9e06819961af543855103281cef00522baafdf3d48dda379f.png" />
 </div>
 </div>
 <ul class="simple">
@@ -7408,8 +7404,8 @@ Epoch 50/50
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>148/148 - 0s - 3ms/step - accuracy: 1.0000 - loss: 6.5225e-06
-27/27 - 0s - 7ms/step - accuracy: 0.9868 - loss: 0.1196
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>148/148 - 0s - 3ms/step - accuracy: 1.0000 - loss: 4.7276e-06
+27/27 - 0s - 7ms/step - accuracy: 0.9868 - loss: 0.1246
 Train: 1.000, Test: 0.9868
 </pre></div>
 </div>
@@ -7426,13 +7422,13 @@ Train: 1.000, Test: 0.9868
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1.0000000e+00 9.4699368e-13]
- [1.0000000e+00 8.4600139e-12]
- [1.0000000e+00 1.2503847e-12]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1.0000000e+00 4.1286904e-13]
+ [1.0000000e+00 3.4418371e-12]
+ [1.0000000e+00 4.1827555e-13]
  ...
- [1.0000000e+00 7.7497302e-13]
- [1.0000000e+00 6.0165544e-13]
- [1.0000000e+00 1.0879973e-12]]
+ [1.0000000e+00 3.7423889e-13]
+ [1.0000000e+00 2.5833727e-13]
+ [1.0000000e+00 5.0445867e-13]]
 </pre></div>
 </div>
 </div>
@@ -7455,7 +7451,7 @@ Train: 1.000, Test: 0.9868
  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 0 0 0 0 0 0 0 0 0 1
  0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 0 1 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0
- 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 1 0 0 0 1 1 0 0 0
+ 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 0 0 1 0 0 0 1 1 0 0 0
  0 1 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0
  0 0 0 0 1 1 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0
  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 0 0 0 0 0 0 0 0 0 1 0
@@ -7469,7 +7465,7 @@ Train: 1.000, Test: 0.9868
  0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 0 0 0
  0 1 0 0 0 0 0 0 0 0 0 0 0 1 0 1 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 0 0 0
- 0 0 0 1 0 1 0 1 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0
+ 0 0 0 1 0 1 0 1 0 0 0 0 0 0 0 0 0 1 1 0 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0
  0 1 1 1 0 1 0 0 0 0 0 0 0 0 0 0 1 1 0 0 0 0]
 </pre></div>
 </div>
@@ -7563,8 +7559,8 @@ Train: 1.000, Test: 0.9868
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[728,   1],
-       [ 10,  97]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[727,   2],
+       [  9,  98]])
 </pre></div>
 </div>
 </div>
@@ -7590,7 +7586,7 @@ Train: 1.000, Test: 0.9868
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/57700c9d546decda823343730e728ae0e87128f47d26477a64f36de85270b494.png" src="_images/57700c9d546decda823343730e728ae0e87128f47d26477a64f36de85270b494.png" />
+<img alt="_images/26350a999f0ca6ca69b210a75147b9a48a621b677627a6bbd529e8e57bfb89c1.png" src="_images/26350a999f0ca6ca69b210a75147b9a48a621b677627a6bbd529e8e57bfb89c1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -7609,8 +7605,8 @@ Train: 1.000, Test: 0.9868
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">20/20</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 4ms/step - accuracy: 0.9849 - loss: 0.1203   
-score: 0.15
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">20/20</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 4ms/step - accuracy: 0.9835 - loss: 0.1280   
+score: 0.16
 acc: 0.98
 </pre></div>
 </div>
@@ -7641,8 +7637,8 @@ acc: 0.98
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">1/1</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 15ms/step
-[[9.9374696e-11 1.0000000e+00]] spam
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">1/1</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 13ms/step
+[[3.8133455e-11 1.0000000e+00]] spam
 </pre></div>
 </div>
 </div>
@@ -7662,8 +7658,8 @@ acc: 0.98
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">1/1</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 10ms/step
-[[1.0000000e+00 2.6438146e-12]] ham
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">1/1</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 14ms/step
+[[1.000000e+00 8.241917e-13]] ham
 </pre></div>
 </div>
 </div>
