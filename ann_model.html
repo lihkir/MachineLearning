@@ -601,10 +601,10 @@ J(\boldsymbol{\theta})=\left(-\sum_{n:\boldsymbol{x}_{n}\in\mathcal{Y}}y_{n}\bol
 <ul>
 <li><p>La <a class="reference internal" href="#perceptron-rule"><span class="std std-numref">Fig. 8.5</span></a> ofrece una interpretación geométrica de la <em><strong>regla del perceptrón</strong></em>. Supongamos que la muestra <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> está mal clasificada por el hiperplano, <span class="math notranslate nohighlight">\(\boldsymbol{\theta}^{(i-1)}\)</span>. Como sabemos, por geometría analítica, <span class="math notranslate nohighlight">\(\boldsymbol{\theta}^{(i-1)}\)</span> <em><strong>corresponde a un vector que es perpendicular al hiperplano que está definido por este vector</strong></em>. Como <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> se encuentra en el lado <span class="math notranslate nohighlight">\((-)\)</span> del hiperplano y está mal clasificado, pertenece a la clase <span class="math notranslate nohighlight">\(\omega_{1}\)</span>; asumiendo <span class="math notranslate nohighlight">\(\mu = 1\)</span>, la corrección aplicada por el algoritmo es</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-    \\[1mm]
+\[
+    \$$1mm]
     \boldsymbol{\theta}^{(i)}=\boldsymbol{\theta}^{(i-1)}+\boldsymbol{x},
-    \end{split}\]</div>
+    \]</div>
 <p>y su efecto es <em><strong>girar el hiperplano en dirección a</strong></em> <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> para colocarlo en el lado <span class="math notranslate nohighlight">\((+)\)</span> del nuevo hiperplano, que está definido por la estimación actualizada <span class="math notranslate nohighlight">\(\boldsymbol{\theta^{(i)}}\)</span>. El <em><strong>algoritmo perceptrón</strong></em> en su modo de funcionamiento patrón por patrón (<em><strong>pattern-by-pattern</strong></em>) se resume en el siguiente algoritmo:</p>
 </li>
 </ul>
@@ -678,10 +678,10 @@ f(z)=
 <ul>
 <li><p><em><strong>Una sola neurona está asociada a un hiperplano</strong></em></p>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-    \\[1mm]
+\[
+    \$$1mm]
     H: \theta_{1}x_{1}+\theta_{2}x_{2}+\cdots+\theta_{l}x_{l}+\theta_{0}=0,
-    \end{split}\]</div>
+    \]</div>
 <p>en el espacio de entrada, y la <em><strong>clasificación se basa en una función no lineal</strong></em> que produce un resultado de uno o cero según en qué lado del hiperplano <span class="math notranslate nohighlight">\(H\)</span> se encuentre un punto. A continuación, se mostrará cómo <em><strong>combinar varias neuronas en capas para crear clasificadores no lineales</strong></em>. Seguiremos un enfoque constructivo simple que será útil al abordar aspectos de las redes neuronales, especialmente en el contexto de arquitecturas profundas de aprendizaje profundo (<em><strong>deep learning</strong></em>).</p>
 </li>
 </ul>
@@ -839,10 +839,10 @@ f(z)=\sigma(z):=\frac{1}{1+\exp(-az)}.
 <ul>
 <li><p>Recordemos que la regla de <em><strong>actualización del algoritmo gradiente descendente</strong></em>, en su versión unidimensional se convierte en</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-    \\[1mm]
+\[
+    \$$1mm]
     \theta(new)=\theta(old)-\mu\left.\frac{d J}{d\theta}\right|_{\theta(old)},
-    \end{split}\]</div>
+    \]</div>
 <p>y las iteraciones parten de un punto inicial arbitrario, <span class="math notranslate nohighlight">\(\theta^{(0)}\)</span>.</p>
 </li>
 <li><p>Si en la iteración actual el algoritmo está digamos, en el punto <span class="math notranslate nohighlight">\(\theta(old) = \theta_{1}\)</span>, entonces se moverá hacia el mínimo local, <span class="math notranslate nohighlight">\(\theta_{l}\)</span>. Esto se debe a que la <em><strong>derivada del coste en</strong></em> <span class="math notranslate nohighlight">\(\theta_{1}\)</span> <em><strong>es igual a la tangente</strong></em> <span class="math notranslate nohighlight">\(\phi_{1}\)</span> (ver <a class="reference internal" href="#convex-function-saddle-point"><span class="std std-numref">Fig. 8.17</span></a>), que es negativa (el ángulo es obtuso) y la actualización, <span class="math notranslate nohighlight">\(\theta(new)\)</span>, se moverá a la derecha, hacia el mínimo local, <span class="math notranslate nohighlight">\(\theta_{l}\)</span>.</p></li>
@@ -988,7 +988,7 @@ b &amp;= b-\textsf{lr}\cdot\frac{\partial\textsf{Loss}}{\partial b}=(0)-(0.01)(-
 <li><p>De acuerdo con lo anterior, la salida de la <span class="math notranslate nohighlight">\(j\)</span>-th neurona en la siguiente capa viene dada por</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-    \\[1mm]
+    \$$1mm]
     y_{j}^{r+1}=f(\boldsymbol{\theta}_{j}^{r+1^T}\boldsymbol{y}^{r})=
     f\left(\boldsymbol{\theta}_{j}^{r+1^{T}}
     \begin{bmatrix}
@@ -1126,10 +1126,10 @@ b &amp;= b-\textsf{lr}\cdot\frac{\partial\textsf{Loss}}{\partial b}=(0)-(0.01)(-
 <ul>
 <li><p>Manteniendo la misma notación en la Ecuación <a class="reference internal" href="#equation-eq-delta-njl">(8.7)</a>, definimos</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-    \\[1mm]
+\[
+    \$$1mm]
     e_{nj}^{r-1}:=\sum_{k=1}^{k_{r}}\delta_{nk}^{r}\theta_{kj}^{r},
-    \end{split}\]</div>
+    \]</div>
 <p>y finalmente obtenemos,</p>
 <div class="math notranslate nohighlight" id="equation-eq-delta-njr-1">
 <span class="eqno">(8.10)<a class="headerlink" href="#equation-eq-delta-njr-1" title="Link to this equation">#</a></span>\[
@@ -6020,23 +6020,23 @@ weighted avg       0.17      0.18      0.17      7178
 <div class="admonition-introduccion admonition">
 <p class="admonition-title">Introducción</p>
 <ul class="simple">
-<li><p>Recordemos de la sección anterior que en el corazón de las <code class="docutils literal notranslate"><span class="pre">redes</span> <span class="pre">convolucionales</span></code> se encuentra el concepto de <code class="docutils literal notranslate"><span class="pre">peso</span> <span class="pre">compartido</span></code>. Es decir, <code class="docutils literal notranslate"><span class="pre">la</span> <span class="pre">misma</span> <span class="pre">matriz</span> <span class="pre">de</span> <span class="pre">filtro</span> <span class="pre">se</span> <span class="pre">desliza</span> <span class="pre">sobre</span> <span class="pre">una</span> <span class="pre">matriz</span> <span class="pre">de</span> <span class="pre">imágenes</span> <span class="pre">en</span> <span class="pre">lugar</span> <span class="pre">de</span> <span class="pre">dedicar</span> <span class="pre">un</span> <span class="pre">peso</span> <span class="pre">específico</span> <span class="pre">a</span> <span class="pre">cada</span> <span class="pre">píxel</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">imagen</span></code>. De este modo, una <code class="docutils literal notranslate"><span class="pre">red</span> <span class="pre">neuronal</span></code> puede <code class="docutils literal notranslate"><span class="pre">escalarse</span> <span class="pre">fácilmente</span> <span class="pre">a</span> <span class="pre">imágenes</span> <span class="pre">de</span> <span class="pre">diferentes</span> <span class="pre">dimensiones</span></code>.</p></li>
-<li><p>Nuestro interés en esta sección se centra en el caso de los <code class="docutils literal notranslate"><span class="pre">datos</span> <span class="pre">secuenciales</span></code>. Es decir, los <code class="docutils literal notranslate"><span class="pre">vectores</span> <span class="pre">de</span> <span class="pre">entrada</span> <span class="pre">no</span> <span class="pre">son</span> <span class="pre">independientes,</span> <span class="pre">sino</span> <span class="pre">que</span> <span class="pre">aparecen</span> <span class="pre">en</span> <span class="pre">secuencia</span></code>. Además, el <code class="docutils literal notranslate"><span class="pre">orden</span> <span class="pre">específico</span> <span class="pre">en</span> <span class="pre">que</span> <span class="pre">se</span> <span class="pre">producen</span> <span class="pre">encierra</span> <span class="pre">información</span> <span class="pre">importante</span></code>. Por ejemplo, este tipo de secuencias se dan en el <strong><code class="docutils literal notranslate"><span class="pre">reconocimiento</span> <span class="pre">del</span> <span class="pre">habla</span> <span class="pre">y</span> <span class="pre">en</span> <span class="pre">el</span> <span class="pre">procesamiento</span> <span class="pre">del</span> <span class="pre">lenguaje,</span> <span class="pre">como</span> <span class="pre">la</span> <span class="pre">traducción</span> <span class="pre">automática,</span> <span class="pre">así</span> <span class="pre">como</span> <span class="pre">también</span> <span class="pre">el</span> <span class="pre">pronostico</span> <span class="pre">de</span> <span class="pre">series</span> <span class="pre">de</span> <span class="pre">tiempo</span> <span class="pre">financieras</span></code></strong>. Sin duda, <code class="docutils literal notranslate"><span class="pre">la</span> <span class="pre">secuencia</span> <span class="pre">en</span> <span class="pre">la</span> <span class="pre">que</span> <span class="pre">se</span> <span class="pre">producen</span> <span class="pre">las</span> <span class="pre">palabras</span> <span class="pre">es</span> <span class="pre">de</span> <span class="pre">suma</span> <span class="pre">importancia</span></code>.</p></li>
-<li><p>El <code class="docutils literal notranslate"><span class="pre">reparto</span> <span class="pre">de</span> <span class="pre">pesos</span> <span class="pre">mediante</span> <span class="pre">convoluciones</span> <span class="pre">también</span> <span class="pre">podría</span> <span class="pre">ser</span> <span class="pre">y</span> <span class="pre">ha</span> <span class="pre">sido</span> <span class="pre">utilizado</span> <span class="pre">para</span> <span class="pre">estos</span> <span class="pre">casos</span></code> <span id="id33">[<a class="reference internal" href="biblio.html#id36" title="Kevin J Lang, Alex H Waibel, and Geoffrey E Hinton. A time-delay neural network architecture for isolated word recognition. Neural networks, 3(1):23–43, 1990.">Lang <em>et al.</em>, 1990</a>]</span>. Tales redes se conocen como <code class="docutils literal notranslate"><span class="pre">redes</span> <span class="pre">neuronales</span> <span class="pre">de</span> <span class="pre">retardo</span> <span class="pre">temporal</span></code>. Sin embargo, <code class="docutils literal notranslate"><span class="pre">deslizar</span> <span class="pre">un</span> <span class="pre">filtro</span> <span class="pre">a</span> <span class="pre">través</span> <span class="pre">del</span> <span class="pre">tiempo</span></code> para formar convoluciones es una <code class="docutils literal notranslate"><span class="pre">operación</span> <span class="pre">de</span> <span class="pre">naturaleza</span> <span class="pre">local</span></code>. La salida es una función de las muestras de entrada dentro de una ventana temporal que abarca la <code class="docutils literal notranslate"><span class="pre">longitud</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">respuesta</span> <span class="pre">al</span> <span class="pre">impulso</span> <span class="pre">del</span> <span class="pre">filtro</span></code>, que por razones prácticas no puede ser muy larga.</p></li>
+<li><p>Recordemos de la sección anterior que en el corazón de las <em><strong>redes convolucionales</strong></em> se encuentra el concepto de <em><strong>peso compartido</strong></em>. Es decir, <em><strong>la misma matriz de filtro se desliza sobre una matriz de imágenes en lugar de dedicar un peso específico a cada píxel de la imagen</strong></em>. De este modo, una <em><strong>red neuronal</strong></em> puede <em><strong>escalarse fácilmente a imágenes de diferentes dimensiones</strong></em>.</p></li>
+<li><p>Nuestro interés en esta sección se centra en el caso de los <em><strong>datos secuenciales</strong></em>. Es decir, los <em><strong>vectores de entrada no son independientes, sino que aparecen en secuencia</strong></em>. Además, el <em><strong>orden específico en que se producen encierra información importante</strong></em>. Por ejemplo, este tipo de secuencias se dan en el <em><strong><strong>reconocimiento del habla y en el procesamiento del lenguaje, como la traducción automática, así como también el pronostico de series de tiempo financieras</strong></strong></em>. Sin duda, <em><strong>la secuencia en la que se producen las palabras es de suma importancia</strong></em>.</p></li>
+<li><p>El <em><strong>reparto de pesos mediante convoluciones también podría ser y ha sido utilizado para estos casos</strong></em> <span id="id33">[<a class="reference internal" href="biblio.html#id36" title="Kevin J Lang, Alex H Waibel, and Geoffrey E Hinton. A time-delay neural network architecture for isolated word recognition. Neural networks, 3(1):23–43, 1990.">Lang <em>et al.</em>, 1990</a>]</span>. Tales redes se conocen como <em><strong>redes neuronales de retardo temporal</strong></em>. Sin embargo, <em><strong>deslizar un filtro a través del tiempo</strong></em> para formar convoluciones es una <em><strong>operación de naturaleza local</strong></em>. La salida es una función de las muestras de entrada dentro de una ventana temporal que abarca la <em><strong>longitud de la respuesta al impulso del filtro</strong></em>, que por razones prácticas no puede ser muy larga.</p></li>
 </ul>
 </div>
 <div class="admonition-redes-neuronales-recurrentes admonition">
 <p class="admonition-title">Redes Neuronales Recurrentes</p>
 <ul>
-<li><p>Las variables que intervienen en una <code class="docutils literal notranslate"><span class="pre">RNN</span></code> son:</p>
+<li><p>Las variables que intervienen en una <em><strong>RNN</strong></em> son:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">Vector</span> <span class="pre">de</span> <span class="pre">estado</span> <span class="pre">en</span> <span class="pre">el</span> <span class="pre">tiempo</span></code> <span class="math notranslate nohighlight">\(n\)</span><code class="docutils literal notranslate"><span class="pre">,</span> <span class="pre">denotado</span> <span class="pre">como</span></code> <span class="math notranslate nohighlight">\(\boldsymbol{h}_{n}\)</span>. El símbolo nos recuerda que <span class="math notranslate nohighlight">\(\boldsymbol{h}\)</span> es un vector de variables ocultas (capa oculta en la jerga de las redes neuronales); <code class="docutils literal notranslate"><span class="pre">el</span> <span class="pre">vector</span> <span class="pre">de</span> <span class="pre">estado</span> <span class="pre">constituye</span> <span class="pre">la</span> <span class="pre">memoria</span> <span class="pre">del</span> <span class="pre">sistema</span></code>,</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Vector</span> <span class="pre">de</span> <span class="pre">entrada</span> <span class="pre">en</span> <span class="pre">el</span> <span class="pre">momento</span></code> <span class="math notranslate nohighlight">\(n\)</span>, denominado <span class="math notranslate nohighlight">\(\boldsymbol{x}_{n}\)</span>,</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Vector</span> <span class="pre">de</span> <span class="pre">salida</span> <span class="pre">en</span> <span class="pre">el</span> <span class="pre">momento</span></code> <span class="math notranslate nohighlight">\(n\)</span>, <span class="math notranslate nohighlight">\(\hat{\boldsymbol{y}}_{n}\)</span>, y el vector de salida objetivo, <span class="math notranslate nohighlight">\(\boldsymbol{y}_{n}\)</span>.</p></li>
+<li><p><em><strong>Vector de estado en el tiempo</strong></em> <span class="math notranslate nohighlight">\(n\)</span><em><strong>, denotado como</strong></em> <span class="math notranslate nohighlight">\(\boldsymbol{h}_{n}\)</span>. El símbolo nos recuerda que <span class="math notranslate nohighlight">\(\boldsymbol{h}\)</span> es un vector de variables ocultas (capa oculta en la jerga de las redes neuronales); <em><strong>el vector de estado constituye la memoria del sistema</strong></em>,</p></li>
+<li><p><em><strong>Vector de entrada en el momento</strong></em> <span class="math notranslate nohighlight">\(n\)</span>, denominado <span class="math notranslate nohighlight">\(\boldsymbol{x}_{n}\)</span>,</p></li>
+<li><p><em><strong>Vector de salida en el momento</strong></em> <span class="math notranslate nohighlight">\(n\)</span>, <span class="math notranslate nohighlight">\(\hat{\boldsymbol{y}}_{n}\)</span>, y el vector de salida objetivo, <span class="math notranslate nohighlight">\(\boldsymbol{y}_{n}\)</span>.</p></li>
 </ul>
 </li>
-<li><p>El modelo se describe mediante un <code class="docutils literal notranslate"><span class="pre">conjunto</span> <span class="pre">de</span> <span class="pre">matrices</span> <span class="pre">y</span> <span class="pre">vectores</span> <span class="pre">de</span> <span class="pre">parámetros</span> <span class="pre">desconocidos</span></code>, a saber, <span class="math notranslate nohighlight">\(U, W, V , \boldsymbol{b}\)</span> y <span class="math notranslate nohighlight">\(\boldsymbol{c}\)</span>, que <code class="docutils literal notranslate"><span class="pre">deben</span> <span class="pre">aprenderse</span> <span class="pre">durante</span> <span class="pre">el</span> <span class="pre">entrenamiento</span></code>.</p></li>
-<li><p>Las <code class="docutils literal notranslate"><span class="pre">ecuaciones</span> <span class="pre">que</span> <span class="pre">describen</span> <span class="pre">un</span> <span class="pre">modelo</span> <span class="pre">RNN</span></code> son</p>
+<li><p>El modelo se describe mediante un <em><strong>conjunto de matrices y vectores de parámetros desconocidos</strong></em>, a saber, <span class="math notranslate nohighlight">\(U, W, V , \boldsymbol{b}\)</span> y <span class="math notranslate nohighlight">\(\boldsymbol{c}\)</span>, que <em><strong>deben aprenderse durante el entrenamiento</strong></em>.</p></li>
+<li><p>Las <em><strong>ecuaciones que describen un modelo RNN</strong></em> son</p>
 <div class="math notranslate nohighlight" id="equation-rnn-system-eq">
 <span class="eqno">(8.14)<a class="headerlink" href="#equation-rnn-system-eq" title="Link to this equation">#</a></span>\[\begin{split}
     \begin{align*}
@@ -6044,42 +6044,42 @@ weighted avg       0.17      0.18      0.17      7178
     \hat{\boldsymbol{y}}_{n}&amp;=g(V\boldsymbol{h}_{n}+\boldsymbol{c}).
     \end{align*}
     \end{split}\]</div>
-<p>donde <code class="docutils literal notranslate"><span class="pre">las</span> <span class="pre">funciones</span> <span class="pre">no</span> <span class="pre">lineales</span></code> <span class="math notranslate nohighlight">\(f\)</span> y <span class="math notranslate nohighlight">\(g\)</span><code class="docutils literal notranslate"> <span class="pre">actúan</span> <span class="pre">elemento</span> <span class="pre">a</span> <span class="pre">elemento</span> <span class="pre">(element-wise)</span></code> y <code class="docutils literal notranslate"><span class="pre">se</span> <span class="pre">aplican</span> <span class="pre">individualmente</span> <span class="pre">a</span> <span class="pre">cada</span> <span class="pre">elemento</span> <span class="pre">de</span> <span class="pre">sus</span> <span class="pre">argumentos</span> <span class="pre">vectoriales</span></code>.</p>
+<p>donde <em><strong>las funciones no lineales</strong></em> <span class="math notranslate nohighlight">\(f\)</span> y <span class="math notranslate nohighlight">\(g\)</span>*** actúan elemento a elemento (element-wise)*** y <em><strong>se aplican individualmente a cada elemento de sus argumentos vectoriales</strong></em>.</p>
 </li>
-<li><p>En otras palabras, <code class="docutils literal notranslate"><span class="pre">una</span> <span class="pre">vez</span> <span class="pre">que</span> <span class="pre">se</span> <span class="pre">ha</span> <span class="pre">observado</span> <span class="pre">un</span> <span class="pre">nuevo</span> <span class="pre">vector</span> <span class="pre">de</span> <span class="pre">entrada,</span> <span class="pre">se</span> <span class="pre">actualiza</span> <span class="pre">el</span> <span class="pre">vector</span> <span class="pre">de</span> <span class="pre">estado</span></code>. Su nuevo valor <code class="docutils literal notranslate"><span class="pre">depende</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">información</span> <span class="pre">más</span> <span class="pre">reciente,</span> <span class="pre">transmitida</span> <span class="pre">por</span> <span class="pre">la</span> <span class="pre">entrada</span></code> <span class="math notranslate nohighlight">\(\boldsymbol{x}_{n}\)</span> así como de la <code class="docutils literal notranslate"><span class="pre">historia</span> <span class="pre">pasada,</span> <span class="pre">ya</span> <span class="pre">que</span> <span class="pre">ésta</span> <span class="pre">se</span> <span class="pre">ha</span> <span class="pre">acumulado</span> <span class="pre">en</span></code> <span class="math notranslate nohighlight">\(\boldsymbol{h}_{n-1}\)</span>. La salida depende del <code class="docutils literal notranslate"><span class="pre">vector</span> <span class="pre">de</span> <span class="pre">estado</span> <span class="pre">actualizado</span></code>, <span class="math notranslate nohighlight">\(\boldsymbol{h}_{n}\)</span>. Es decir, <code class="docutils literal notranslate"><span class="pre">depende</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">&quot;historia&quot;</span> <span class="pre">hasta</span> <span class="pre">el</span> <span class="pre">instante</span> <span class="pre">actual</span></code> <span class="math notranslate nohighlight">\(n\)</span>, tal y como se expresa en <span class="math notranslate nohighlight">\(\boldsymbol{h}_{n}\)</span>.</p></li>
-<li><p>Las opciones típicas para <span class="math notranslate nohighlight">\(f\)</span> son la <code class="docutils literal notranslate"><span class="pre">tangente</span> <span class="pre">hiperbólica,</span> <span class="pre">tanh,</span> <span class="pre">o</span> <span class="pre">las</span> <span class="pre">no</span> <span class="pre">linealidades</span> <span class="pre">ReLU</span></code>. El valor inicial <span class="math notranslate nohighlight">\(\boldsymbol{h}_{0}\)</span> <code class="docutils literal notranslate"><span class="pre">suele</span> <span class="pre">ser</span> <span class="pre">igual</span> <span class="pre">al</span> <span class="pre">vector</span> <span class="pre">cero</span></code>. La <code class="docutils literal notranslate"><span class="pre">no</span> <span class="pre">linealidad</span> <span class="pre">de</span> <span class="pre">salida,</span></code> <span class="math notranslate nohighlight">\(g\)</span><code class="docutils literal notranslate"><span class="pre">,</span> <span class="pre">se</span> <span class="pre">elige</span> <span class="pre">a</span> <span class="pre">menudo</span> <span class="pre">para</span> <span class="pre">ser</span> <span class="pre">la</span> <span class="pre">función</span> <span class="pre">softmax</span></code>.</p></li>
+<li><p>En otras palabras, <em><strong>una vez que se ha observado un nuevo vector de entrada, se actualiza el vector de estado</strong></em>. Su nuevo valor <em><strong>depende de la información más reciente, transmitida por la entrada</strong></em> <span class="math notranslate nohighlight">\(\boldsymbol{x}_{n}\)</span> así como de la <em><strong>historia pasada, ya que ésta se ha acumulado en</strong></em> <span class="math notranslate nohighlight">\(\boldsymbol{h}_{n-1}\)</span>. La salida depende del <em><strong>vector de estado actualizado</strong></em>, <span class="math notranslate nohighlight">\(\boldsymbol{h}_{n}\)</span>. Es decir, <em><strong>depende de la “historia” hasta el instante actual</strong></em> <span class="math notranslate nohighlight">\(n\)</span>, tal y como se expresa en <span class="math notranslate nohighlight">\(\boldsymbol{h}_{n}\)</span>.</p></li>
+<li><p>Las opciones típicas para <span class="math notranslate nohighlight">\(f\)</span> son la <em><strong>tangente hiperbólica, tanh, o las no linealidades ReLU</strong></em>. El valor inicial <span class="math notranslate nohighlight">\(\boldsymbol{h}_{0}\)</span> <em><strong>suele ser igual al vector cero</strong></em>. La <em><strong>no linealidad de salida,</strong></em> <span class="math notranslate nohighlight">\(g\)</span><em><strong>, se elige a menudo para ser la función softmax</strong></em>.</p></li>
 </ul>
 </div>
 <figure class="align-center" id="recurrent-neural-network-arch-numref">
 <a class="reference internal image-reference" href="_images/recurrent_neural_network_arch.png"><img alt="_images/recurrent_neural_network_arch.png" src="_images/recurrent_neural_network_arch.png" style="width: 552.0px; height: 304.8px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 8.41 </span><span class="caption-text">Arquitectura de una <code class="docutils literal notranslate"><span class="pre">Red</span> <span class="pre">Neuronal</span> <span class="pre">Recurrente</span></code>. Fuente <span id="id34">[<a class="reference internal" href="biblio.html#id17" title="S. Theodoridis. Machine Learning: A Bayesian and Optimization Perspective. Elsevier Science, 2020. ISBN 9780128188040. URL: https://books.google.com.co/books?id=l-nEDwAAQBAJ.">Theodoridis, 2020</a>]</span>.</span><a class="headerlink" href="#recurrent-neural-network-arch-numref" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 8.41 </span><span class="caption-text">Arquitectura de una <em><strong>Red Neuronal Recurrente</strong></em>. Fuente <span id="id34">[<a class="reference internal" href="biblio.html#id17" title="S. Theodoridis. Machine Learning: A Bayesian and Optimization Perspective. Elsevier Science, 2020. ISBN 9780128188040. URL: https://books.google.com.co/books?id=l-nEDwAAQBAJ.">Theodoridis, 2020</a>]</span>.</span><a class="headerlink" href="#recurrent-neural-network-arch-numref" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <ul class="simple">
-<li><p>De las ecuaciones anteriores se deduce que las <code class="docutils literal notranslate"><span class="pre">matrices</span> <span class="pre">y</span> <span class="pre">vectores</span> <span class="pre">de</span> <span class="pre">parámetros</span> <span class="pre">se</span> <span class="pre">comparten</span> <span class="pre">en</span> <span class="pre">todos</span> <span class="pre">los</span> <span class="pre">instantes</span> <span class="pre">temporales</span></code>. Durante el entrenamiento, <code class="docutils literal notranslate"><span class="pre">se</span> <span class="pre">inicializan</span> <span class="pre">mediante</span> <span class="pre">números</span> <span class="pre">aleatorios</span></code>. El modelo gráfico
-asociado con Eq. <a class="reference internal" href="#equation-rnn-system-eq">(8.14)</a> se muestra en la <a class="reference internal" href="#recurrent-neural-network-arch-numref"><span class="std std-numref">Fig. 8.41</span></a>A. En la <a class="reference internal" href="#recurrent-neural-network-arch-numref"><span class="std std-numref">Fig. 8.41</span></a>B, <code class="docutils literal notranslate"><span class="pre">el</span> <span class="pre">gráfico</span> <span class="pre">se</span> <span class="pre">despliega</span> <span class="pre">sobre</span> <span class="pre">los</span> <span class="pre">distintos</span> <span class="pre">instantes</span> <span class="pre">de</span> <span class="pre">tiempo</span></code> para los que se dispone de observaciones. Por ejemplo, <code class="docutils literal notranslate"><span class="pre">si</span> <span class="pre">la</span> <span class="pre">secuencia</span> <span class="pre">de</span> <span class="pre">interés</span> <span class="pre">es</span> <span class="pre">una</span> <span class="pre">frase</span> <span class="pre">de</span> <span class="pre">10</span> <span class="pre">palabras</span></code>, entonces <span class="math notranslate nohighlight">\(N\)</span> se establece igual a 10, mientras que <span class="math notranslate nohighlight">\(\boldsymbol{x}_{n}\)</span> es el <code class="docutils literal notranslate"><span class="pre">vector</span> <span class="pre">que</span> <span class="pre">codifica</span> <span class="pre">las</span> <span class="pre">respectivas</span> <span class="pre">palabras</span> <span class="pre">de</span> <span class="pre">entrada</span></code>.</p></li>
+<li><p>De las ecuaciones anteriores se deduce que las <em><strong>matrices y vectores de parámetros se comparten en todos los instantes temporales</strong></em>. Durante el entrenamiento, <em><strong>se inicializan mediante números aleatorios</strong></em>. El modelo gráfico
+asociado con Eq. <a class="reference internal" href="#equation-rnn-system-eq">(8.14)</a> se muestra en la <a class="reference internal" href="#recurrent-neural-network-arch-numref"><span class="std std-numref">Fig. 8.41</span></a>A. En la <a class="reference internal" href="#recurrent-neural-network-arch-numref"><span class="std std-numref">Fig. 8.41</span></a>B, <em><strong>el gráfico se despliega sobre los distintos instantes de tiempo</strong></em> para los que se dispone de observaciones. Por ejemplo, <em><strong>si la secuencia de interés es una frase de 10 palabras</strong></em>, entonces <span class="math notranslate nohighlight">\(N\)</span> se establece igual a 10, mientras que <span class="math notranslate nohighlight">\(\boldsymbol{x}_{n}\)</span> es el <em><strong>vector que codifica las respectivas palabras de entrada</strong></em>.</p></li>
 </ul>
 <section id="backpropagation-en-tiempo">
 <h3><span class="section-number">8.13.1. </span>Backpropagation en tiempo<a class="headerlink" href="#backpropagation-en-tiempo" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>El entrenamiento de las <code class="docutils literal notranslate"><span class="pre">RNN</span></code> sigue una <code class="docutils literal notranslate"><span class="pre">lógica</span> <span class="pre">similar</span> <span class="pre">a</span> <span class="pre">la</span> <span class="pre">del</span> <span class="pre">algoritmo</span> <span class="pre">backpropagation</span></code> para el entrenamiento de redes neuronales de avance. Después de todo, <code class="docutils literal notranslate"><span class="pre">una</span> <span class="pre">RNN</span> <span class="pre">puede</span> <span class="pre">verse</span> <span class="pre">como</span> <span class="pre">una</span> <span class="pre">red</span> <span class="pre">feed-forward</span> <span class="pre">con</span></code> <span class="math notranslate nohighlight">\(N\)</span> <code class="docutils literal notranslate"><span class="pre">capas</span></code>. La <code class="docutils literal notranslate"><span class="pre">capa</span> <span class="pre">superior</span> <span class="pre">es</span> <span class="pre">la</span> <span class="pre">del</span> <span class="pre">instante</span> <span class="pre">de</span> <span class="pre">tiempo</span></code> <span class="math notranslate nohighlight">\(N\)</span> y la <code class="docutils literal notranslate"><span class="pre">primera</span> <span class="pre">capa</span> <span class="pre">corresponde</span> <span class="pre">al</span> <span class="pre">instante</span> <span class="pre">de</span> <span class="pre">tiempo</span></code> <span class="math notranslate nohighlight">\(n = 1\)</span>. Una diferencia radica en que las <code class="docutils literal notranslate"><span class="pre">capas</span> <span class="pre">ocultas</span> <span class="pre">en</span> <span class="pre">una</span> <span class="pre">RNN</span> <span class="pre">también</span> <span class="pre">producen</span> <span class="pre">salidas</span></code>, es decir, <span class="math notranslate nohighlight">\(\hat{\boldsymbol{y}}_{n}\)</span>, y se alimentan directamente con entradas. Sin embargo, <code class="docutils literal notranslate"><span class="pre">en</span> <span class="pre">lo</span> <span class="pre">que</span> <span class="pre">respecta</span> <span class="pre">al</span> <span class="pre">entrenamiento,</span> <span class="pre">estas</span> <span class="pre">diferencias</span> <span class="pre">no</span> <span class="pre">afectan</span> <span class="pre">al</span> <span class="pre">razonamiento</span> <span class="pre">principal</span></code>.</p></li>
-<li><p>El <code class="docutils literal notranslate"><span class="pre">aprendizaje</span> <span class="pre">de</span> <span class="pre">las</span> <span class="pre">matrices</span> <span class="pre">y</span> <span class="pre">vectores</span> <span class="pre">de</span> <span class="pre">parámetros</span> <span class="pre">desconocidos</span></code> se consigue mediante un esquema de gradiente descendente, de acuerdo con Eq. <a class="reference internal" href="#equation-update-equations-gd">(8.3)</a>. Resulta que los <code class="docutils literal notranslate"><span class="pre">gradientes</span> <span class="pre">requeridos</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">función</span> <span class="pre">de</span> <span class="pre">coste</span></code>, con respecto a los parámetros desconocidos, <code class="docutils literal notranslate"><span class="pre">tienen</span> <span class="pre">lugar</span> <span class="pre">recursivamente,</span> <span class="pre">comenzando</span> <span class="pre">en</span> <span class="pre">el</span> <span class="pre">último</span> <span class="pre">instante</span> <span class="pre">de</span> <span class="pre">tiempo,</span></code> <span class="math notranslate nohighlight">\(N\)</span> , y retrocediendo en el tiempo, <span class="math notranslate nohighlight">\(n = N-1, N-2,\dots,1\)</span>. Esta es la razón por la que el algoritmo se conoce como <code class="docutils literal notranslate"><span class="pre">bakpropagation</span> <span class="pre">a</span> <span class="pre">traves</span> <span class="pre">del</span> <span class="pre">tiempo</span> <span class="pre">(BPTT)</span></code>.</p></li>
+<li><p>El entrenamiento de las <em><strong>RNN</strong></em> sigue una <em><strong>lógica similar a la del algoritmo backpropagation</strong></em> para el entrenamiento de redes neuronales de avance. Después de todo, <em><strong>una RNN puede verse como una red feed-forward con</strong></em> <span class="math notranslate nohighlight">\(N\)</span> <em><strong>capas</strong></em>. La <em><strong>capa superior es la del instante de tiempo</strong></em> <span class="math notranslate nohighlight">\(N\)</span> y la <em><strong>primera capa corresponde al instante de tiempo</strong></em> <span class="math notranslate nohighlight">\(n = 1\)</span>. Una diferencia radica en que las <em><strong>capas ocultas en una RNN también producen salidas</strong></em>, es decir, <span class="math notranslate nohighlight">\(\hat{\boldsymbol{y}}_{n}\)</span>, y se alimentan directamente con entradas. Sin embargo, <em><strong>en lo que respecta al entrenamiento, estas diferencias no afectan al razonamiento principal</strong></em>.</p></li>
+<li><p>El <em><strong>aprendizaje de las matrices y vectores de parámetros desconocidos</strong></em> se consigue mediante un esquema de gradiente descendente, de acuerdo con Eq. <a class="reference internal" href="#equation-update-equations-gd">(8.3)</a>. Resulta que los <em><strong>gradientes requeridos de la función de coste</strong></em>, con respecto a los parámetros desconocidos, <em><strong>tienen lugar recursivamente, comenzando en el último instante de tiempo,</strong></em> <span class="math notranslate nohighlight">\(N\)</span> , y retrocediendo en el tiempo, <span class="math notranslate nohighlight">\(n = N-1, N-2,\dots,1\)</span>. Esta es la razón por la que el algoritmo se conoce como <em><strong>bakpropagation a traves del tiempo (BPTT)</strong></em>.</p></li>
 </ul>
 <ul class="simple">
-<li><p>La <code class="docutils literal notranslate"><span class="pre">función</span> <span class="pre">de</span> <span class="pre">coste</span> <span class="pre">es</span> <span class="pre">la</span> <span class="pre">suma</span> <span class="pre">a</span> <span class="pre">lo</span> <span class="pre">largo</span> <span class="pre">del</span> <span class="pre">tiempo,</span></code> <span class="math notranslate nohighlight">\(n\)</span>, de las correspondientes <code class="docutils literal notranslate"><span class="pre">contribuciones</span> <span class="pre">a</span> <span class="pre">la</span> <span class="pre">función</span> <span class="pre">de</span> <span class="pre">pérdida</span></code>, que dependen de los valores respectivos de <span class="math notranslate nohighlight">\(\boldsymbol{h}_{n}, \boldsymbol{x}_{n}\)</span>, es decir,</p></li>
+<li><p>La <em><strong>función de coste es la suma a lo largo del tiempo,</strong></em> <span class="math notranslate nohighlight">\(n\)</span>, de las correspondientes <em><strong>contribuciones a la función de pérdida</strong></em>, que dependen de los valores respectivos de <span class="math notranslate nohighlight">\(\boldsymbol{h}_{n}, \boldsymbol{x}_{n}\)</span>, es decir,</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[
 J(U, W, V, \boldsymbol{b}, \boldsymbol{c})=\sum_{n=1}^{N}J_{n}(U, W, V, \boldsymbol{b}, \boldsymbol{c}).
 \]</div>
 <ul>
-<li><p>Por ejemplo, para el caso de la <code class="docutils literal notranslate"><span class="pre">función</span> <span class="pre">de</span> <span class="pre">pérdida</span> <span class="pre">de</span> <span class="pre">entropía</span> <span class="pre">cruzada</span></code>,</p>
+<li><p>Por ejemplo, para el caso de la <em><strong>función de pérdida de entropía cruzada</strong></em>,</p>
 <div class="math notranslate nohighlight">
 \[
     J_{n}(U, W, V, \boldsymbol{b}, \boldsymbol{c}):=-\sum_{k}y_{nk}\ln\hat{y}_{nk},
     \]</div>
-<p>donde <code class="docutils literal notranslate"><span class="pre">la</span> <span class="pre">suma</span> <span class="pre">es</span> <span class="pre">sobre</span> <span class="pre">la</span> <span class="pre">dimensionalidad</span> <span class="pre">de</span></code> <span class="math notranslate nohighlight">\(\boldsymbol{y}\)</span>, y</p>
+<p>donde <em><strong>la suma es sobre la dimensionalidad de</strong></em> <span class="math notranslate nohighlight">\(\boldsymbol{y}\)</span>, y</p>
 <div class="math notranslate nohighlight">
 \[
     \hat{\boldsymbol{y}}_{n}=g(\boldsymbol{h}_{n}, V, \boldsymbol{c})~\text{y}~\boldsymbol{h}_{n}=f(\boldsymbol{x}_{n}, \boldsymbol{h}_{n-1}, U, W, \boldsymbol{b}).
@@ -6087,25 +6087,25 @@ J(U, W, V, \boldsymbol{b}, \boldsymbol{c})=\sum_{n=1}^{N}J_{n}(U, W, V, \boldsym
 </li>
 </ul>
 <ul>
-<li><p>En el corazón del <code class="docutils literal notranslate"><span class="pre">cálculo</span> <span class="pre">de</span> <span class="pre">los</span> <span class="pre">gradientes</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">función</span> <span class="pre">de</span> <span class="pre">coste</span> <span class="pre">con</span> <span class="pre">respecto</span> <span class="pre">a</span> <span class="pre">las</span> <span class="pre">diversas</span> <span class="pre">matrices</span> <span class="pre">y</span> <span class="pre">vectores</span> <span class="pre">de</span> <span class="pre">parámetros</span></code> se encuentra el cálculo de los <code class="docutils literal notranslate"><span class="pre">gradientes</span> <span class="pre">de</span></code> <span class="math notranslate nohighlight">\(J\)</span> <code class="docutils literal notranslate"><span class="pre">con</span> <span class="pre">respecto</span> <span class="pre">a</span> <span class="pre">los</span> <span class="pre">vectores</span> <span class="pre">de</span> <span class="pre">estado,</span></code> <span class="math notranslate nohighlight">\(\boldsymbol{h}_{n}\)</span>. Una vez calculados estos últimos, el resto de los gradientes, con respecto a las <code class="docutils literal notranslate"><span class="pre">matrices</span> <span class="pre">y</span> <span class="pre">vectores</span> <span class="pre">de</span> <span class="pre">parámetros</span> <span class="pre">desconocidos</span></code>, es una tarea sencilla. Para ello, nótese que cada <span class="math notranslate nohighlight">\(h_{n},~n=1, 2,\dots,N-1\)</span>, afecta a <span class="math notranslate nohighlight">\(J\)</span> de dos maneras:</p>
+<li><p>En el corazón del <em><strong>cálculo de los gradientes de la función de coste con respecto a las diversas matrices y vectores de parámetros</strong></em> se encuentra el cálculo de los <em><strong>gradientes de</strong></em> <span class="math notranslate nohighlight">\(J\)</span> <em><strong>con respecto a los vectores de estado,</strong></em> <span class="math notranslate nohighlight">\(\boldsymbol{h}_{n}\)</span>. Una vez calculados estos últimos, el resto de los gradientes, con respecto a las <em><strong>matrices y vectores de parámetros desconocidos</strong></em>, es una tarea sencilla. Para ello, nótese que cada <span class="math notranslate nohighlight">\(h_{n},~n=1, 2,\dots,N-1\)</span>, afecta a <span class="math notranslate nohighlight">\(J\)</span> de dos maneras:</p>
 <ul class="simple">
-<li><p>Directamente, <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">traves</span> <span class="pre">de</span></code> <span class="math notranslate nohighlight">\(J_{n}\)</span></p></li>
-<li><p>Indirectamente, <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">través</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">cadena</span> <span class="pre">que</span> <span class="pre">impone</span> <span class="pre">la</span> <span class="pre">estructura</span> <span class="pre">RNN</span></code>, es decir,</p></li>
+<li><p>Directamente, <em><strong>a traves de</strong></em> <span class="math notranslate nohighlight">\(J_{n}\)</span></p></li>
+<li><p>Indirectamente, <em><strong>a través de la cadena que impone la estructura RNN</strong></em>, es decir,</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[
     \boldsymbol{h}_{n}\rightarrow\boldsymbol{h}_{n+1}\rightarrow\cdots\rightarrow\boldsymbol{h}_{N}.
     \]</div>
-<p>Es decir, <span class="math notranslate nohighlight">\(\boldsymbol{h}_{n}\)</span>, además de <span class="math notranslate nohighlight">\(J_{n}\)</span>, <code class="docutils literal notranslate"><span class="pre">también</span> <span class="pre">afecta</span> <span class="pre">a</span> <span class="pre">todos</span> <span class="pre">los</span> <span class="pre">valores</span> <span class="pre">de</span> <span class="pre">coste</span> <span class="pre">posteriores</span></code>, <span class="math notranslate nohighlight">\(J_{n+1},\dots, J_{N}\)</span>. Nótese que, a traves de la cadena <span class="math notranslate nohighlight">\(\boldsymbol{h}_{n+1}=f(\boldsymbol{x}_{n+1}, \boldsymbol{h}_{n}, U, W, \boldsymbol{b}).\)</span></p>
+<p>Es decir, <span class="math notranslate nohighlight">\(\boldsymbol{h}_{n}\)</span>, además de <span class="math notranslate nohighlight">\(J_{n}\)</span>, <em><strong>también afecta a todos los valores de coste posteriores</strong></em>, <span class="math notranslate nohighlight">\(J_{n+1},\dots, J_{N}\)</span>. Nótese que, a traves de la cadena <span class="math notranslate nohighlight">\(\boldsymbol{h}_{n+1}=f(\boldsymbol{x}_{n+1}, \boldsymbol{h}_{n}, U, W, \boldsymbol{b}).\)</span></p>
 </li>
 </ul>
 <ul>
-<li><p>Empleando la <code class="docutils literal notranslate"><span class="pre">regla</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">cadena</span></code> para las derivadas, las <code class="docutils literal notranslate"><span class="pre">dependencias</span> <span class="pre">anteriores</span> <span class="pre">conducen</span> <span class="pre">al</span> <span class="pre">siguiente</span> <span class="pre">cálculo</span> <span class="pre">recursivo</span></code>:</p>
+<li><p>Empleando la <em><strong>regla de la cadena</strong></em> para las derivadas, las <em><strong>dependencias anteriores conducen al siguiente cálculo recursivo</strong></em>:</p>
 <div class="math notranslate nohighlight" id="equation-indirect-direct-rec-part">
 <span class="eqno">(8.15)<a class="headerlink" href="#equation-indirect-direct-rec-part" title="Link to this equation">#</a></span>\[
     \frac{\partial J}{\partial\boldsymbol{h}_{n}}=\underbrace{{\left(\frac{\partial\boldsymbol{h}_{n+1}}{\partial\boldsymbol{h}_{n}}\right)^{T}}\frac{\partial J}{\partial\boldsymbol{h}_{n+1}}}_{\text{parte recursiva indirecta}}+\underbrace{\left(\frac{\partial\hat{\boldsymbol{y}}_{n}}{\partial\boldsymbol{h}_{n}}\right)^{T}\frac{\partial J}{\partial\hat{\boldsymbol{y}}_{n}}}_{\text{parte directa}},
     \]</div>
-<p>donde, por definición, la <code class="docutils literal notranslate"><span class="pre">derivada</span> <span class="pre">de</span> <span class="pre">un</span> <span class="pre">vector</span></code>, digamos, <span class="math notranslate nohighlight">\(\boldsymbol{y}\)</span>, <code class="docutils literal notranslate"><span class="pre">con</span> <span class="pre">respecto</span> <span class="pre">a</span> <span class="pre">otro</span> <span class="pre">vector</span></code>, digamos, <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span>, se define como la matriz</p>
+<p>donde, por definición, la <em><strong>derivada de un vector</strong></em>, digamos, <span class="math notranslate nohighlight">\(\boldsymbol{y}\)</span>, <em><strong>con respecto a otro vector</strong></em>, digamos, <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span>, se define como la matriz</p>
 <div class="math notranslate nohighlight">
 \[
     \left[\frac{\partial\boldsymbol{y}}{\partial\boldsymbol{x}}\right]_{ij}:=\frac{\partial y_{i}}{\partial x_{j}}.
@@ -6113,21 +6113,21 @@ J(U, W, V, \boldsymbol{b}, \boldsymbol{c})=\sum_{n=1}^{N}J_{n}(U, W, V, \boldsym
 </li>
 </ul>
 <ul class="simple">
-<li><p>Nótese que el <code class="docutils literal notranslate"><span class="pre">gradiente</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">función</span> <span class="pre">de</span> <span class="pre">coste</span></code>, con respecto a los <code class="docutils literal notranslate"><span class="pre">parámetros</span> <span class="pre">ocultos</span> <span class="pre">(vector</span> <span class="pre">de</span> <span class="pre">estado)</span></code> en la capa “<span class="math notranslate nohighlight">\(n\)</span>”, se da como una <code class="docutils literal notranslate"><span class="pre">función</span> <span class="pre">del</span> <span class="pre">gradiente</span> <span class="pre">respectivo</span> <span class="pre">en</span> <span class="pre">la</span> <span class="pre">capa</span> <span class="pre">anterior</span></code>, es decir, con respecto al <code class="docutils literal notranslate"><span class="pre">vector</span> <span class="pre">de</span> <span class="pre">estado</span> <span class="pre">en</span> <span class="pre">el</span> <span class="pre">tiempo</span></code> <span class="math notranslate nohighlight">\(n + 1\)</span>. Las dos <code class="docutils literal notranslate"><span class="pre">pasadas</span> <span class="pre">requeridas</span> <span class="pre">por</span> <span class="pre">backpropagation</span> <span class="pre">en</span> <span class="pre">el</span> <span class="pre">tiempo</span></code> se resumen a continuación.</p></li>
+<li><p>Nótese que el <em><strong>gradiente de la función de coste</strong></em>, con respecto a los <em><strong>parámetros ocultos (vector de estado)</strong></em> en la capa “<span class="math notranslate nohighlight">\(n\)</span>”, se da como una <em><strong>función del gradiente respectivo en la capa anterior</strong></em>, es decir, con respecto al <em><strong>vector de estado en el tiempo</strong></em> <span class="math notranslate nohighlight">\(n + 1\)</span>. Las dos <em><strong>pasadas requeridas por backpropagation en el tiempo</strong></em> se resumen a continuación.</p></li>
 </ul>
 <div class="admonition-pasadas-de-backpropagation-en-tiempo admonition">
 <p class="admonition-title">Pasadas de Backpropagation en Tiempo</p>
 <ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">Paso</span> <span class="pre">hacia</span> <span class="pre">adelante</span></code>:</p>
+<li><p><em><strong>Paso hacia adelante</strong></em>:</p>
 <ul class="simple">
-<li><p>Iniciando en <span class="math notranslate nohighlight">\(n=1\)</span> y <code class="docutils literal notranslate"><span class="pre">utilizando</span> <span class="pre">las</span> <span class="pre">estimaciones</span> <span class="pre">actuales</span> <span class="pre">de</span> <span class="pre">las</span> <span class="pre">matrices</span> <span class="pre">y</span> <span class="pre">vectores</span> <span class="pre">de</span> <span class="pre">parámetros</span> <span class="pre">implicados</span></code>, calcular en secuencia,</p></li>
+<li><p>Iniciando en <span class="math notranslate nohighlight">\(n=1\)</span> y <em><strong>utilizando las estimaciones actuales de las matrices y vectores de parámetros implicados</strong></em>, calcular en secuencia,</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[
     (\boldsymbol{h}_{1}, \hat{\boldsymbol{y}}_{1})\rightarrow(\boldsymbol{h}_{2}, \hat{\boldsymbol{y}}_{2})\rightarrow\cdots\rightarrow(\boldsymbol{h}_{N}, \hat{\boldsymbol{y}}_{N}).
     \]</div>
 </li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Paso</span> <span class="pre">hacia</span> <span class="pre">atrás</span></code>:</p>
+<li><p><em><strong>Paso hacia atrás</strong></em>:</p>
 <ul class="simple">
 <li><p>Empezando en <span class="math notranslate nohighlight">\(n = N\)</span>, calcular en secuencia,</p></li>
 </ul>
@@ -6139,38 +6139,38 @@ J(U, W, V, \boldsymbol{b}, \boldsymbol{c})=\sum_{n=1}^{N}J_{n}(U, W, V, \boldsym
 </ul>
 </div>
 <ul class="simple">
-<li><p>Nótese que el <code class="docutils literal notranslate"><span class="pre">cálculo</span> <span class="pre">del</span> <span class="pre">gradiente</span></code> <span class="math notranslate nohighlight">\(\partial J/\partial\boldsymbol{h}_{N}\)</span> es sencillo, y <code class="docutils literal notranslate"><span class="pre">solo</span> <span class="pre">involucra</span> <span class="pre">la</span> <span class="pre">parte</span> <span class="pre">directa</span> <span class="pre">en</span></code> Eq. <a class="reference internal" href="#equation-indirect-direct-rec-part">(8.15)</a>.</p></li>
-<li><p>Para la implementación de la <code class="docutils literal notranslate"><span class="pre">BPTT</span></code>, se procede a</p>
+<li><p>Nótese que el <em><strong>cálculo del gradiente</strong></em> <span class="math notranslate nohighlight">\(\partial J/\partial\boldsymbol{h}_{N}\)</span> es sencillo, y <em><strong>solo involucra la parte directa en</strong></em> Eq. <a class="reference internal" href="#equation-indirect-direct-rec-part">(8.15)</a>.</p></li>
+<li><p>Para la implementación de la <em><strong>BPTT</strong></em>, se procede a</p>
 <ol class="arabic simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">inicializar</span> <span class="pre">aleatoriamente</span> <span class="pre">las</span> <span class="pre">matrices</span> <span class="pre">y</span> <span class="pre">vectores</span> <span class="pre">desconocidos</span> <span class="pre">implicados,</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">calcular</span> <span class="pre">todos</span> <span class="pre">los</span> <span class="pre">gradientes</span> <span class="pre">requeridos,</span> <span class="pre">siguiendo</span> <span class="pre">los</span> <span class="pre">pasos</span> <span class="pre">indicados</span> <span class="pre">anteriormente</span></code>, y</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">realizar</span> <span class="pre">las</span> <span class="pre">actualizaciones</span> <span class="pre">según</span> <span class="pre">el</span> <span class="pre">esquema</span> <span class="pre">de</span> <span class="pre">gradiente</span> <span class="pre">descendente</span></code>.</p></li>
+<li><p><em><strong>inicializar aleatoriamente las matrices y vectores desconocidos implicados,</strong></em></p></li>
+<li><p><em><strong>calcular todos los gradientes requeridos, siguiendo los pasos indicados anteriormente</strong></em>, y</p></li>
+<li><p><em><strong>realizar las actualizaciones según el esquema de gradiente descendente</strong></em>.</p></li>
 </ol>
 </li>
-<li><p>Los pasos <code class="docutils literal notranslate"><span class="pre">(2)</span> <span class="pre">y</span> <span class="pre">(3)</span> <span class="pre">se</span> <span class="pre">realizan</span> <span class="pre">de</span> <span class="pre">forma</span> <span class="pre">iterativa</span> <span class="pre">hasta</span> <span class="pre">que</span> <span class="pre">se</span> <span class="pre">cumple</span> <span class="pre">un</span> <span class="pre">criterio</span> <span class="pre">de</span> <span class="pre">convergencia</span></code>, de forma análoga al <code class="docutils literal notranslate"><span class="pre">algoritmo</span> <span class="pre">estándar</span> <span class="pre">de</span> <span class="pre">backpropagation</span></code>.</p></li>
+<li><p>Los pasos <em><strong>(2) y (3) se realizan de forma iterativa hasta que se cumple un criterio de convergencia</strong></em>, de forma análoga al <em><strong>algoritmo estándar de backpropagation</strong></em>.</p></li>
 </ul>
 </section>
 <section id="desvanecimiento-y-explosion-de-gradientes">
 <h3><span class="section-number">8.13.2. </span>Desvanecimiento y explosión de gradientes<a class="headerlink" href="#desvanecimiento-y-explosion-de-gradientes" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>La tarea de <code class="docutils literal notranslate"><span class="pre">desvanecimiento</span> <span class="pre">y</span> <span class="pre">explosión</span> <span class="pre">de</span> <span class="pre">gradientes</span></code> se ha introducido y discutido en secciones anteriores, en el contexto del algoritmo de backpropagation. <code class="docutils literal notranslate"><span class="pre">Los</span> <span class="pre">mismos</span> <span class="pre">problemas</span> <span class="pre">se</span> <span class="pre">presentan</span> <span class="pre">en</span> <span class="pre">el</span> <span class="pre">algoritmo</span> <span class="pre">BPTT</span></code>, dado que, este último es una <code class="docutils literal notranslate"><span class="pre">forma</span> <span class="pre">específica</span> <span class="pre">del</span> <span class="pre">concepto</span> <span class="pre">de</span> <span class="pre">backpropagation</span></code> y, como se ha dicho, una <code class="docutils literal notranslate"><span class="pre">RNN</span></code> puede considerarse como una <code class="docutils literal notranslate"><span class="pre">red</span> <span class="pre">multicapa,</span> <span class="pre">donde</span> <span class="pre">cada</span> <span class="pre">instante</span> <span class="pre">de</span> <span class="pre">tiempo</span> <span class="pre">corresponde</span> <span class="pre">a</span> <span class="pre">una</span> <span class="pre">capa</span> <span class="pre">diferente</span></code>. De hecho en las <code class="docutils literal notranslate"><span class="pre">RNN</span></code>, el fenómeno de <code class="docutils literal notranslate"><span class="pre">desvanecimiento/explosión</span> <span class="pre">de</span> <span class="pre">gradiente</span> <span class="pre">aparece</span> <span class="pre">de</span> <span class="pre">una</span> <span class="pre">forma</span> <span class="pre">bastante</span> <span class="pre">&quot;agresiva&quot;</span></code>, teniendo en cuenta que <span class="math notranslate nohighlight">\(N\)</span> puede alcanzar valores grandes.</p></li>
+<li><p>La tarea de <em><strong>desvanecimiento y explosión de gradientes</strong></em> se ha introducido y discutido en secciones anteriores, en el contexto del algoritmo de backpropagation. <em><strong>Los mismos problemas se presentan en el algoritmo BPTT</strong></em>, dado que, este último es una <em><strong>forma específica del concepto de backpropagation</strong></em> y, como se ha dicho, una <em><strong>RNN</strong></em> puede considerarse como una <em><strong>red multicapa, donde cada instante de tiempo corresponde a una capa diferente</strong></em>. De hecho en las <em><strong>RNN</strong></em>, el fenómeno de <em><strong>desvanecimiento/explosión de gradiente aparece de una forma bastante “agresiva”</strong></em>, teniendo en cuenta que <span class="math notranslate nohighlight">\(N\)</span> puede alcanzar valores grandes.</p></li>
 </ul>
 <ul class="simple">
-<li><p>La naturaleza multiplicativa de la propagación de gradientes puede verse fácilmente en la Eq. <a class="reference internal" href="#equation-indirect-direct-rec-part">(8.15)</a>. Para ayudar a comprender el concepto principal, simplifiquemos el escenario y <code class="docutils literal notranslate"><span class="pre">supongamos</span> <span class="pre">que</span> <span class="pre">sólo</span> <span class="pre">interviene</span> <span class="pre">una</span> <span class="pre">variante</span> <span class="pre">de</span> <span class="pre">estado</span></code>. Entonces los vectores de estado se convierten en escalares, <span class="math notranslate nohighlight">\(h_{n}\)</span> , y la matriz <span class="math notranslate nohighlight">\(W\)</span> en un escalar <span class="math notranslate nohighlight">\(w\)</span>. Además, <code class="docutils literal notranslate"><span class="pre">supongamos</span> <span class="pre">que</span> <span class="pre">las</span> <span class="pre">salidas</span> <span class="pre">también</span> <span class="pre">son</span> <span class="pre">escalares</span></code>. Entonces la recursión en la Eq. <a class="reference internal" href="#equation-indirect-direct-rec-part">(8.15)</a> se simplifica como:</p></li>
+<li><p>La naturaleza multiplicativa de la propagación de gradientes puede verse fácilmente en la Eq. <a class="reference internal" href="#equation-indirect-direct-rec-part">(8.15)</a>. Para ayudar a comprender el concepto principal, simplifiquemos el escenario y <em><strong>supongamos que sólo interviene una variante de estado</strong></em>. Entonces los vectores de estado se convierten en escalares, <span class="math notranslate nohighlight">\(h_{n}\)</span> , y la matriz <span class="math notranslate nohighlight">\(W\)</span> en un escalar <span class="math notranslate nohighlight">\(w\)</span>. Además, <em><strong>supongamos que las salidas también son escalares</strong></em>. Entonces la recursión en la Eq. <a class="reference internal" href="#equation-indirect-direct-rec-part">(8.15)</a> se simplifica como:</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[
 \frac{\partial J}{\partial h_{n}}=\frac{\partial h_{n+1}}{\partial h_{n}}\frac{\partial J}{\partial h_{n+1}}+\frac{\partial\hat{y}_{n}}{\partial h_{n}}\frac{\partial J}{\partial\hat{y}_{n}}.
 \]</div>
 <ul class="simple">
-<li><p>Suponiendo en la Eq. <a class="reference internal" href="#equation-rnn-system-eq">(8.14)</a> que <span class="math notranslate nohighlight">\(f\)</span> <code class="docutils literal notranslate"><span class="pre">es</span> <span class="pre">la</span> <span class="pre">función</span></code> <span class="math notranslate nohighlight">\(\tanh(\cdot)\)</span> <code class="docutils literal notranslate"><span class="pre">estándar</span></code>, teniendo en cuenta que, <span class="math notranslate nohighlight">\(\text{sech}^2(\cdot)=1-\tanh^2(\cdot)\)</span> y <span class="math notranslate nohighlight">\(|\tanh(\cdot)|&lt;1\)</span>, sobre su dominio, se ve fácilmente que</p></li>
+<li><p>Suponiendo en la Eq. <a class="reference internal" href="#equation-rnn-system-eq">(8.14)</a> que <span class="math notranslate nohighlight">\(f\)</span> <em><strong>es la función</strong></em> <span class="math notranslate nohighlight">\(\tanh(\cdot)\)</span> <em><strong>estándar</strong></em>, teniendo en cuenta que, <span class="math notranslate nohighlight">\(\text{sech}^2(\cdot)=1-\tanh^2(\cdot)\)</span> y <span class="math notranslate nohighlight">\(|\tanh(\cdot)|&lt;1\)</span>, sobre su dominio, se ve fácilmente que</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-partial-deriv-hn">
 <span class="eqno">(8.16)<a class="headerlink" href="#equation-partial-deriv-hn" title="Link to this equation">#</a></span>\[
 \frac{\partial h_{n+1}}{\partial h_{n}}=w(1-h_{n+1}^{2}).
 \]</div>
 <ul class="simple">
-<li><p>Escribiendo la <code class="docutils literal notranslate"><span class="pre">recursión</span> <span class="pre">para</span> <span class="pre">dos</span> <span class="pre">pasos</span> <span class="pre">sucesivos</span></code>, repitiendo el proceso en Eq. <a class="reference internal" href="#equation-partial-deriv-hn">(8.16)</a>, por ejemplo, para <span class="math notranslate nohighlight">\(\partial h_{n+2}/\partial h_{n+1}\)</span> obtenemos que,</p></li>
+<li><p>Escribiendo la <em><strong>recursión para dos pasos sucesivos</strong></em>, repitiendo el proceso en Eq. <a class="reference internal" href="#equation-partial-deriv-hn">(8.16)</a>, por ejemplo, para <span class="math notranslate nohighlight">\(\partial h_{n+2}/\partial h_{n+1}\)</span> obtenemos que,</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-partialj-hn-eq">
 <span class="eqno">(8.17)<a class="headerlink" href="#equation-partialj-hn-eq" title="Link to this equation">#</a></span>\[\begin{split}
@@ -6180,20 +6180,288 @@ J(U, W, V, \boldsymbol{b}, \boldsymbol{c})=\sum_{n=1}^{N}J_{n}(U, W, V, \boldsym
 \end{align*}
 \end{split}\]</div>
 <ul class="simple">
-<li><p>No es difícil ver que la <code class="docutils literal notranslate"><span class="pre">multiplicación</span> <span class="pre">de</span> <span class="pre">los</span> <span class="pre">términos</span> <span class="pre">menores</span> <span class="pre">que</span> <span class="pre">uno</span> <span class="pre">puede</span> <span class="pre">llevar</span> <span class="pre">a</span> <span class="pre">valores</span> <span class="pre">de</span> <span class="pre">desvanecimiento</span></code>, sobre todo si tenemos en cuenta que, en la práctica, las <code class="docutils literal notranslate"><span class="pre">secuencias</span> <span class="pre">pueden</span> <span class="pre">ser</span> <span class="pre">bastante</span> <span class="pre">grandes,</span> <span class="pre">por</span> <span class="pre">ejemplo,</span></code> <span class="math notranslate nohighlight">\(N = 100\)</span>. Por lo tanto <code class="docutils literal notranslate"><span class="pre">para</span> <span class="pre">instantes</span> <span class="pre">de</span> <span class="pre">tiempo</span> <span class="pre">cercanos</span> <span class="pre">a</span></code> <span class="math notranslate nohighlight">\(n = 1\)</span>, la <code class="docutils literal notranslate"><span class="pre">contribución</span> <span class="pre">al</span> <span class="pre">gradiente</span> <span class="pre">del</span> <span class="pre">primer</span> <span class="pre">término</span> <span class="pre">del</span> <span class="pre">lado</span> <span class="pre">derecho</span> <span class="pre">en</span> <span class="pre">la</span></code> Eq. <a class="reference internal" href="#equation-partialj-hn-eq">(8.17)</a> implicará un <code class="docutils literal notranslate"><span class="pre">gran</span> <span class="pre">número</span> <span class="pre">de</span> <span class="pre">productos</span> <span class="pre">de</span> <span class="pre">números</span> <span class="pre">menores</span> <span class="pre">que</span> <span class="pre">uno</span> <span class="pre">en</span> <span class="pre">magnitud</span></code>. Por otra parte, el valor de <span class="math notranslate nohighlight">\(w\)</span> estará contribuyendo en <span class="math notranslate nohighlight">\(w^{n}\)</span> potencia. Por lo tanto, <code class="docutils literal notranslate"><span class="pre">si</span> <span class="pre">su</span> <span class="pre">valor</span> <span class="pre">es</span> <span class="pre">mayor</span> <span class="pre">que</span> <span class="pre">uno,</span> <span class="pre">puede</span> <span class="pre">conducir</span> <span class="pre">a</span> <span class="pre">valores</span> <span class="pre">explosivos</span> <span class="pre">de</span> <span class="pre">los</span> <span class="pre">gradientes</span> <span class="pre">respectivos</span></code>.</p></li>
+<li><p>No es difícil ver que la <em><strong>multiplicación de los términos menores que uno puede llevar a valores de desvanecimiento</strong></em>, sobre todo si tenemos en cuenta que, en la práctica, las <em><strong>secuencias pueden ser bastante grandes, por ejemplo,</strong></em> <span class="math notranslate nohighlight">\(N = 100\)</span>. Por lo tanto <em><strong>para instantes de tiempo cercanos a</strong></em> <span class="math notranslate nohighlight">\(n = 1\)</span>, la <em><strong>contribución al gradiente del primer término del lado derecho en la</strong></em> Eq. <a class="reference internal" href="#equation-partialj-hn-eq">(8.17)</a> implicará un <em><strong>gran número de productos de números menores que uno en magnitud</strong></em>. Por otra parte, el valor de <span class="math notranslate nohighlight">\(w\)</span> estará contribuyendo en <span class="math notranslate nohighlight">\(w^{n}\)</span> potencia. Por lo tanto, <em><strong>si su valor es mayor que uno, puede conducir a valores explosivos de los gradientes respectivos</strong></em>.</p></li>
 </ul>
 <ul class="simple">
-<li><p>En varios casos, <code class="docutils literal notranslate"><span class="pre">se</span> <span class="pre">puede</span> <span class="pre">truncar</span> <span class="pre">el</span> <span class="pre">algoritmo</span> <span class="pre">de</span> <span class="pre">backpropagation</span> <span class="pre">a</span> <span class="pre">unos</span> <span class="pre">pocos</span> <span class="pre">pasos</span> <span class="pre">de</span> <span class="pre">tiempo</span></code>. Otra forma, es <code class="docutils literal notranslate"><span class="pre">sustituir</span> <span class="pre">la</span> <span class="pre">no</span> <span class="pre">linealidad</span> <span class="pre">tanh</span> <span class="pre">por</span> <span class="pre">la</span> <span class="pre">ReLU</span></code>. Para el caso del <code class="docutils literal notranslate"><span class="pre">valor</span> <span class="pre">explosivo</span></code>, se puede <code class="docutils literal notranslate"><span class="pre">introducir</span> <span class="pre">una</span> <span class="pre">técnica</span> <span class="pre">que</span> <span class="pre">recorte</span> <span class="pre">los</span> <span class="pre">valores</span> <span class="pre">a</span> <span class="pre">un</span> <span class="pre">umbral</span> <span class="pre">predeterminado</span></code>, una vez que los <code class="docutils literal notranslate"><span class="pre">valores</span> <span class="pre">superen</span> <span class="pre">ese</span> <span class="pre">umbral</span></code>. Sin embargo, otra técnica que suele emplearse en la práctica es <code class="docutils literal notranslate"><span class="pre">sustituir</span> <span class="pre">la</span> <span class="pre">formulación</span> <span class="pre">RNN</span></code> estándar descrita anteriormente por una <code class="docutils literal notranslate"><span class="pre">estructura</span> <span class="pre">alternativa,</span> <span class="pre">que</span> <span class="pre">puede</span> <span class="pre">hacer</span> <span class="pre">mejor</span> <span class="pre">frente</span> <span class="pre">a</span> <span class="pre">estos</span> <span class="pre">fenómenos</span> <span class="pre">causados</span> <span class="pre">por</span> <span class="pre">la</span> <span class="pre">dependencia</span> <span class="pre">a</span> <span class="pre">largo</span> <span class="pre">plazo</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">RNN</span></code>.</p></li>
+<li><p>En varios casos, <em><strong>se puede truncar el algoritmo de backpropagation a unos pocos pasos de tiempo</strong></em>. Otra forma, es <em><strong>sustituir la no linealidad tanh por la ReLU</strong></em>. Para el caso del <em><strong>valor explosivo</strong></em>, se puede <em><strong>introducir una técnica que recorte los valores a un umbral predeterminado</strong></em>, una vez que los <em><strong>valores superen ese umbral</strong></em>. Sin embargo, otra técnica que suele emplearse en la práctica es <em><strong>sustituir la formulación RNN</strong></em> estándar descrita anteriormente por una <em><strong>estructura alternativa, que puede hacer mejor frente a estos fenómenos causados por la dependencia a largo plazo de la RNN</strong></em>.</p></li>
 </ul>
 <div class="proof observation admonition" id="observation_ann9">
 <p class="admonition-title"><span class="caption-number">Observation 8.3 </span></p>
 <section class="observation-content" id="proof-content">
 <ul class="simple">
-<li><p><strong><code class="docutils literal notranslate"><span class="pre">RNN</span> <span class="pre">profundas</span></code></strong>: Además de la red <code class="docutils literal notranslate"><span class="pre">RNN</span> <span class="pre">básica</span> <span class="pre">que</span> <span class="pre">comprende</span> <span class="pre">una</span> <span class="pre">sola</span> <span class="pre">capa</span> <span class="pre">de</span> <span class="pre">estados</span></code>, se han propuesto <code class="docutils literal notranslate"><span class="pre">extensiones</span> <span class="pre">que</span> <span class="pre">implican</span> <span class="pre">múltiples</span> <span class="pre">capas</span> <span class="pre">de</span> <span class="pre">estados</span></code>, una encima de otra (ver <span id="id35">[<a class="reference internal" href="biblio.html#id37" title="Razvan Pascanu, Caglar Gulcehre, Kyunghyun Cho, and Yoshua Bengio. How to construct deep recurrent neural networks. arXiv preprint arXiv:1312.6026, 2013.">Pascanu <em>et al.</em>, 2013</a>]</span>).</p></li>
-<li><p><strong><code class="docutils literal notranslate"><span class="pre">RNN</span> <span class="pre">bidireccionales</span></code></strong>: Como su nombre indica, en las <code class="docutils literal notranslate"><span class="pre">RNN</span> <span class="pre">bidireccionales</span> <span class="pre">hay</span> <span class="pre">dos</span> <span class="pre">variables</span> <span class="pre">de</span> <span class="pre">estado</span></code>, es decir, una denotada como <span class="math notranslate nohighlight">\(\overset{\rightarrow}{\boldsymbol{h}}\)</span><code class="docutils literal notranslate"><span class="pre">,</span> <span class="pre">que</span> <span class="pre">se</span> <span class="pre">propaga</span> <span class="pre">hacia</span> <span class="pre">adelante</span></code>, y otra, <span class="math notranslate nohighlight">\(\overset{\leftarrow}{\boldsymbol{h}}\)</span><code class="docutils literal notranslate"><span class="pre">,</span> <span class="pre">que</span> <span class="pre">se</span> <span class="pre">propaga</span> <span class="pre">hacia</span> <span class="pre">atrás</span></code>. De este modo, <code class="docutils literal notranslate"><span class="pre">las</span> <span class="pre">salidas</span> <span class="pre">dependen</span> <span class="pre">tanto</span> <span class="pre">del</span> <span class="pre">pasado</span> <span class="pre">como</span> <span class="pre">del</span> <span class="pre">futuro</span></code> (ver <span id="id36">[<a class="reference internal" href="biblio.html#id38" title="Alex Graves, Abdel-rahman Mohamed, and Geoffrey Hinton. Speech recognition with deep recurrent neural networks. In 2013 IEEE international conference on acoustics, speech and signal processing, 6645–6649. Ieee, 2013.">Graves <em>et al.</em>, 2013</a>]</span>).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">RNN</span> <span class="pre">profundas</span></code></strong>: Además de la red <em><strong>RNN básica que comprende una sola capa de estados</strong></em>, se han propuesto <em><strong>extensiones que implican múltiples capas de estados</strong></em>, una encima de otra (ver <span id="id35">[<a class="reference internal" href="biblio.html#id37" title="Razvan Pascanu, Caglar Gulcehre, Kyunghyun Cho, and Yoshua Bengio. How to construct deep recurrent neural networks. arXiv preprint arXiv:1312.6026, 2013.">Pascanu <em>et al.</em>, 2013</a>]</span>).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">RNN</span> <span class="pre">bidireccionales</span></code></strong>: Como su nombre indica, en las <em><strong>RNN bidireccionales hay dos variables de estado</strong></em>, es decir, una denotada como <span class="math notranslate nohighlight">\(\overset{\rightarrow}{\boldsymbol{h}}\)</span><em><strong>, que se propaga hacia adelante</strong></em>, y otra, <span class="math notranslate nohighlight">\(\overset{\leftarrow}{\boldsymbol{h}}\)</span><em><strong>, que se propaga hacia atrás</strong></em>. De este modo, <em><strong>las salidas dependen tanto del pasado como del futuro</strong></em> (ver <span id="id36">[<a class="reference internal" href="biblio.html#id38" title="Alex Graves, Abdel-rahman Mohamed, and Geoffrey Hinton. Speech recognition with deep recurrent neural networks. In 2013 IEEE international conference on acoustics, speech and signal processing, 6645–6649. Ieee, 2013.">Graves <em>et al.</em>, 2013</a>]</span>).</p></li>
 </ul>
 </section>
-</div></section>
+</div><div class="tip admonition">
+<p class="admonition-title">Ejemplo</p>
+<ul class="simple">
+<li><p>Ejemplo de BPTT con dos secuencias de texto. Este ejemplo utiliza dos secuencias de texto (una positiva y una negativa) para demostrar cómo funciona el proceso de <strong>Backpropagation Through Time (BPTT)</strong> en una red recurrente. Además, mostramos la actualización de los pesos mediante gradiente descendente.</p></li>
+</ul>
+</div>
+<ul>
+<li><p><em><strong>Paso 1</strong></em>: Definición de los datos y parámetros</p></li>
+<li><p><em><strong>Secuencias de Texto</strong></em></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Secuencia</span> <span class="pre">1</span> <span class="pre">(Positiva)</span></code>: “I love this movie”</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Secuencia</span> <span class="pre">2</span> <span class="pre">(Negativa)</span></code>: “This movie is terrible”</p></li>
+</ul>
+</li>
+<li><p><em><strong>Embeddings de las Palabras</strong></em></p>
+<p>Cada palabra se representa por un vector embedding (<code class="docutils literal notranslate"><span class="pre">Word2Vec</span></code>) de 3 dimensiones:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;I&quot;</span></code> = <span class="math notranslate nohighlight">\([0.1, 0.2, 0.1]\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;love&quot;</span></code> = <span class="math notranslate nohighlight">\([0.4, 0.5, 0.6]\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;this&quot;</span></code> = <span class="math notranslate nohighlight">\([0.3, 0.1, 0.3]\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;movie&quot;</span></code> = <span class="math notranslate nohighlight">\([0.5, 0.1, -0.3]\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;is&quot;</span></code> = <span class="math notranslate nohighlight">\([0.2, 0.3, 0.2]\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;terrible&quot;</span></code> = <span class="math notranslate nohighlight">\([-0.5, -0.6, -0.7]\)</span></p></li>
+</ul>
+</li>
+<li><p><em><strong>Etiquetas de Salida (Clases)</strong></em></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Secuencia</span> <span class="pre">1</span></code>: clase 1 (positiva)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Secuencia</span> <span class="pre">2</span></code>: clase 0 (negativa)</p></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p><em><strong>Paso 2</strong></em>: Arquitectura de la Red Recurrente</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(U\)</span>: matriz de pesos para la transformación de la entrada, dimensión <span class="math notranslate nohighlight">\(3 \times 3\)</span> (3 entradas a 3 neuronas en la capa oculta).</p></li>
+<li><p><span class="math notranslate nohighlight">\(W\)</span>: matriz de pesos recurrentes para los estados ocultos, dimensión <span class="math notranslate nohighlight">\(3 \times 3\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(V\)</span>: matriz de pesos de la capa de salida, dimensión <span class="math notranslate nohighlight">\(3 \times 2\)</span> (3 neuronas ocultas a 2 clases de salida).</p></li>
+<li><p><span class="math notranslate nohighlight">\(b\)</span>: sesgo de la capa oculta, dimensión <span class="math notranslate nohighlight">\(3\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(c\)</span>: sesgo de la capa de salida, dimensión <span class="math notranslate nohighlight">\(2\)</span>.</p></li>
+</ul>
+</li>
+<li><p>Valores iniciales aleatorios para los pesos:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    U = \begin{bmatrix}
+    0.1 &amp; -0.2 &amp; 0.3 \\
+    0.4 &amp; 0.1 &amp; -0.3 \\
+    0.3 &amp; 0.2 &amp; -0.1
+    \end{bmatrix}
+    \end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    W = \begin{bmatrix}
+    0.5 &amp; -0.4 &amp; 0.1 \\
+    -0.1 &amp; 0.2 &amp; 0.4 \\
+    0.2 &amp; 0.1 &amp; 0.3
+    \end{bmatrix}
+    \end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    V = \begin{bmatrix}
+    0.2 &amp; -0.3 \\
+    0.4 &amp; 0.1 \\
+    -0.2 &amp; 0.3
+    \end{bmatrix}
+    \end{split}\]</div>
+</li>
+<li><p>Sesgos iniciales:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    b = \begin{bmatrix}
+    0.1 \\
+    0.1 \\
+    0.1
+    \end{bmatrix}, \quad c = \begin{bmatrix}
+    0.0 \\
+    0.0
+    \end{bmatrix}
+    \end{split}\]</div>
+</li>
+</ul>
+<ul>
+<li><p><em><strong>Paso 3</strong></em>: Propagación hacia Adelante</p>
+<ul class="simple">
+<li><p>Cálculo de los Estados Ocultos <span class="math notranslate nohighlight">\(h_t\)</span></p></li>
+</ul>
+<p>Para cada palabra, calculamos el estado oculto <span class="math notranslate nohighlight">\(h_t\)</span> en cada tiempo <span class="math notranslate nohighlight">\(t\)</span> usando la siguiente fórmula:</p>
+<div class="math notranslate nohighlight">
+\[
+    h_t = \tanh(U \cdot x_t + W \cdot h_{t-1} + b)
+    \]</div>
+<p>Donde <span class="math notranslate nohighlight">\(x_t\)</span> es el vector de embedding de la palabra en el tiempo <span class="math notranslate nohighlight">\(t\)</span> y <span class="math notranslate nohighlight">\(h_0\)</span> es el estado inicial, que podemos suponer que es un vector de ceros.</p>
+</li>
+<li><p><strong>Secuencia 1: “I love this movie” (Clase positiva)</strong></p></li>
+</ul>
+<ol class="arabic">
+<li><p><strong>Tiempo <span class="math notranslate nohighlight">\(t = 1\)</span></strong> (“I”)</p>
+<div class="math notranslate nohighlight">
+\[
+   h_1 = \tanh(U \cdot [0.1, 0.2, 0.1]^\top + W \cdot h_0 + b)
+   \]</div>
+<p>Calculamos <span class="math notranslate nohighlight">\(U \cdot [0.1, 0.2, 0.1]^\top\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+   U \cdot [0.1, 0.2, 0.1]^\top =
+   \begin{bmatrix}
+   0.1 \cdot 0.1 + (-0.2) \cdot 0.2 + 0.3 \cdot 0.1 \\
+   0.4 \cdot 0.1 + 0.1 \cdot 0.2 + (-0.3) \cdot 0.1 \\
+   0.3 \cdot 0.1 + 0.2 \cdot 0.2 + (-0.1) \cdot 0.1
+   \end{bmatrix} =
+   \begin{bmatrix}
+   0.02 \\
+   0.05 \\
+   0.07
+   \end{bmatrix}
+   \end{split}\]</div>
+<p>Como <span class="math notranslate nohighlight">\(h_0 = 0\)</span>, entonces el estado oculto es:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+   h_1 = \tanh\left(\begin{bmatrix} 0.02 \\ 0.05 \\ 0.07 \end{bmatrix} + b \right) = \tanh\left(\begin{bmatrix} 0.12 \\ 0.15 \\ 0.17 \end{bmatrix}\right)
+   \end{split}\]</div>
+<p>Aproximadamente:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+   h_1 \approx \begin{bmatrix} 0.119 \\ 0.149 \\ 0.168 \end{bmatrix}
+   \end{split}\]</div>
+</li>
+<li><p><strong>Tiempo <span class="math notranslate nohighlight">\(t = 2\)</span></strong> (“love”)</p>
+<div class="math notranslate nohighlight">
+\[
+   h_2 = \tanh(U \cdot [0.4, 0.5, 0.6]^\top + W \cdot h_1 + b)
+   \]</div>
+<p>Calculamos <span class="math notranslate nohighlight">\(U \cdot [0.4, 0.5, 0.6]^\top\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+   U \cdot [0.4, 0.5, 0.6]^\top =
+   \begin{bmatrix}
+   0.1 \cdot 0.4 + (-0.2) \cdot 0.5 + 0.3 \cdot 0.6 \\
+   0.4 \cdot 0.4 + 0.1 \cdot 0.5 + (-0.3) \cdot 0.6 \\
+   0.3 \cdot 0.4 + 0.2 \cdot 0.5 + (-0.1) \cdot 0.6
+   \end{bmatrix} =
+   \begin{bmatrix}
+   0.22 \\
+   0.13 \\
+   0.15
+   \end{bmatrix}
+   \end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(W \cdot h_1\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+   W \cdot h_1 = 
+   \begin{bmatrix}
+   0.5 &amp; -0.4 &amp; 0.1 \\
+   -0.1 &amp; 0.2 &amp; 0.4 \\
+   0.2 &amp; 0.1 &amp; 0.3
+   \end{bmatrix}
+   \cdot
+   \begin{bmatrix}
+   0.119 \\
+   0.149 \\
+   0.168
+   \end{bmatrix}
+   \approx
+   \begin{bmatrix}
+   0.065 \\
+   0.096 \\
+   0.074
+   \end{bmatrix}
+   \end{split}\]</div>
+<p>Entonces:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+   h_2 = \tanh\left(\begin{bmatrix} 0.22 \\ 0.13 \\ 0.15 \end{bmatrix} + \begin{bmatrix} 0.065 \\ 0.096 \\ 0.074 \end{bmatrix} + b\right)
+   \end{split}\]</div>
+</li>
+<li><p><strong>Tiempo <span class="math notranslate nohighlight">\(t = 3\)</span></strong> (“this”)</p>
+<div class="math notranslate nohighlight">
+\[
+   h_3 = \tanh(U \cdot [0.3, 0.1, 0.3]^\top + W \cdot h_2 + b)
+   \]</div>
+<p>Calculamos <span class="math notranslate nohighlight">\(U \cdot [0.3, 0.1, 0.3]^\top\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+   U \cdot [0.3, 0.1, 0.3]^\top =
+   \begin{bmatrix}
+   0.1 \cdot 0.3 + (-0.2) \cdot 0.1 + 0.3 \cdot 0.3 \\
+   0.4 \cdot 0.3 + 0.1 \cdot 0.1 + (-0.3) \cdot 0.3 \\
+   0.3 \cdot 0.3 + 0.2 \cdot 0.1 + (-0.1) \cdot 0.3
+   \end{bmatrix} =
+   \begin{bmatrix}
+   0.1 \\
+   0.08 \\
+   0.05
+   \end{bmatrix}
+   \end{split}\]</div>
+<p>Y repetimos el cálculo para <span class="math notranslate nohighlight">\(W \cdot h_2\)</span>.</p>
+</li>
+<li><p><strong>Tiempo <span class="math notranslate nohighlight">\(t = 4\)</span></strong> (“movie”)</p>
+<div class="math notranslate nohighlight">
+\[
+   h_4 = \tanh(U \cdot [0.5, 0.1, -0.3]^\top + W \cdot h_3 + b)
+   \]</div>
+<p>Calculamos <span class="math notranslate nohighlight">\(U \cdot [0.5, 0.1, -0.3]^\top\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+   U \cdot [0.5, 0.1, -0.3]^\top =
+   \begin{bmatrix}
+   0.1 \cdot 0.5 + (-0.2) \cdot 0.1 + 0.3 \cdot (-0.3) \\
+   0.4 \cdot 0.5 + 0.1 \cdot 0.1 + (-0.3) \cdot (-0.3) \\
+   0.3 \cdot 0.5 + 0.2 \cdot 0.1 + (-0.1) \cdot (-0.3)
+   \end{bmatrix} =
+   \begin{bmatrix}
+   0.08 \\
+   0.17 \\
+   0.20
+   \end{bmatrix}
+   \end{split}\]</div>
+</li>
+</ol>
+<ul>
+<li><p><strong>Cálculo de la Salida</strong></p>
+<p>Para cada <span class="math notranslate nohighlight">\(h_t\)</span>, calculamos la salida <span class="math notranslate nohighlight">\(y\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+    y = V \cdot h_t + c
+    \]</div>
+<p>Donde el output será uno de los dos posibles (0 o 1) usando la función softmax o activación similar.</p>
+</li>
+<li><p><em><strong>Paso 4</strong></em>: Cálculo de la Pérdida y Retropropagación</p>
+<p>Se utiliza una función de pérdida (como la entropía cruzada) para calcular el error. Luego se aplica la retropropagación, donde se propagan los errores de salida hacia atrás a través de los estados ocultos y se ajustan los pesos mediante gradiente descendente.</p>
+<p>La actualización de pesos <span class="math notranslate nohighlight">\(W\)</span> se realiza de la siguiente manera:</p>
+<div class="math notranslate nohighlight">
+\[
+    W \leftarrow W - \eta \frac{\partial L}{\partial W}
+    \]</div>
+<p>Donde <span class="math notranslate nohighlight">\(\eta\)</span> es la tasa de aprendizaje y <span class="math notranslate nohighlight">\(\frac{\partial L}{\partial W}\)</span> es el gradiente de la pérdida respecto a <span class="math notranslate nohighlight">\(W\)</span>.</p>
+</li>
+<li><p>Actualización de los Pesos mediante Gradiente Descendente</p></li>
+</ul>
+<ol class="arabic">
+<li><p><strong>Cálculo de Gradientes</strong>:
+Utiliza la regla de la cadena para calcular los gradientes de los pesos con respecto a la función de pérdida.</p></li>
+<li><p><strong>Actualización</strong>:
+Actualiza los pesos y sesgos:</p>
+<div class="math notranslate nohighlight">
+\[
+   W' = W - \eta \cdot \nabla W
+   \]</div>
+<div class="math notranslate nohighlight">
+\[
+   U' = U - \eta \cdot \nabla U
+   \]</div>
+<div class="math notranslate nohighlight">
+\[
+   V' = V - \eta \cdot \nabla V
+   \]</div>
+<div class="math notranslate nohighlight">
+\[
+   b' = b - \eta \cdot \nabla b
+   \]</div>
+<div class="math notranslate nohighlight">
+\[
+   c' = c - \eta \cdot \nabla c
+   \]</div>
+<p>Esto permite que la red ajuste sus pesos y sesgos de manera que minimice la pérdida en las siguientes iteraciones.</p>
+</li>
+</ol>
+</section>
 </section>
 <section id="red-de-memoria-a-largo-plazo-lstm">
 <h2><span class="section-number">8.14. </span>Red de memoria a largo plazo (LSTM)<a class="headerlink" href="#red-de-memoria-a-largo-plazo-lstm" title="Link to this heading">#</a></h2>
@@ -6870,7 +7138,7 @@ Message: ham
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tokenizer</span> <span class="o">=</span> <span class="n">Tokenizer</span><span class="p">(</span><span class="n">num_words</span><span class="o">=</span><span class="n">max_fatures</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">filters</span><span class="o">=</span><span class="s1">&#39;!&quot;#$%&amp;()*+,-./:;&lt;=&gt;?@[\]^_`{|}~&#39;</span><span class="p">,</span> <span class="n">lower</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tokenizer</span> <span class="o">=</span> <span class="n">Tokenizer</span><span class="p">(</span><span class="n">num_words</span><span class="o">=</span><span class="n">max_fatures</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">filters</span><span class="o">=</span><span class="s1">&#39;!&quot;#$%&amp;()*+,-./:;&lt;=&gt;?@[$$^_`{|}~&#39;</span><span class="p">,</span> <span class="n">lower</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">tokenizer</span><span class="o">.</span><span class="n">fit_on_texts</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Message&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">texts_to_sequences</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Message&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">pad_sequences</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
