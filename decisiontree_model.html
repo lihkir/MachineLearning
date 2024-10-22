@@ -1019,7 +1019,7 @@ Accuracy on test set: 0.937
 </div>
 <ul class="simple">
 <li><p>Aquí la función <code class="docutils literal notranslate"><span class="pre">score</span></code> como en la mayoría de clasificadores, devuelve la precisión media en los datos de prueba y las etiquetas dadas. Como era de esperar, <em><strong>la precisión en el conjunto de entrenamiento es del 100%</strong></em>, ya que las hojas son puras, el árbol creció lo suficiente como para poder memorizar perfectamente todas las etiquetas de los datos de entrenamiento. <em><strong>La precisión del conjunto de prueba es ligeramente peor que la de los modelos lineales</strong></em> que vimos anteriormente, que tenían una precisión de alrededor del 95%.</p></li>
-<li><p>Si no restringimos la profundidad de un árbol de decisión, el árbol puede llegar a ser arbitrariamente profundo y complejo. <em><strong>Los árboles no podados son, por tanto, son propensos a sobreajustarse y a no generalizar bien a los nuevos datos</strong></em>. Ahora apliquemos la pre-poda, la cual que dejará de desarrollar el árbol antes de ajustarse perfectamente a los datos de entrenamiento. Una opción es dejar de construir el árbol después de alcanzar una cierta profundidad. En este caso,<em><strong>establecemos que la profundidad máxima sea de 4 (max_depth=4), lo que significa que sólo se pueden formular cuatro preguntas consecutivas</strong></em>. La limitación de la profundidad del árbol disminuye el sobreajuste. Esto conduce a una menor precisión en el conjunto de entrenamiento, pero una mejora en el conjunto de prueba</p></li>
+<li><p>Si no restringimos la profundidad de un árbol de decisión, el árbol puede llegar a ser arbitrariamente profundo y complejo. <em><strong>Los árboles no podados son por tanto, propensos a sobreajustarse y a no generalizar bien a los nuevos datos</strong></em>. Ahora apliquemos la pre-poda, la cual que dejará de desarrollar el árbol antes de ajustarse perfectamente a los datos de entrenamiento. Una opción es dejar de construir el árbol después de alcanzar una cierta profundidad. En este caso,<em><strong>establecemos que la profundidad máxima sea de 4</strong></em> (<code class="docutils literal notranslate"><span class="pre">max_depth=4</span></code>), lo que significa que sólo se pueden formular cuatro preguntas consecutivas. La limitación de la profundidad del árbol disminuye el sobreajuste.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1041,7 +1041,7 @@ Accuracy on test set: 0.951
 <section id="analisis-de-los-arboles-de-decision">
 <h2><span class="section-number">6.2. </span>Análisis de los árboles de decisión<a class="headerlink" href="#analisis-de-los-arboles-de-decision" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>Podemos visualizar un árbol de decisión utilizando la función <code class="docutils literal notranslate"><span class="pre">export_graphviz</span></code> del módulo <code class="docutils literal notranslate"><span class="pre">tree</span></code>. Esta función escribe un archivo en el formato <code class="docutils literal notranslate"><span class="pre">.dot</span></code> de archivo de texto para almacenar gráficos. Establecemos una opción para colorear los nodos, para reflejar la clase mayoritaria en cada nodo y pasamos los nombres de las clases y las características para que el árbol pueda ser etiquetado correctamente. El argumento <code class="docutils literal notranslate"><span class="pre">impurity</span></code> está relacionado con la probabilidad de que clasifiquemos incorrectamente un nuevo punto de datos de forma incorrecta, normalmente calculada mediante la métrica de entropia <code class="docutils literal notranslate"><span class="pre">giny</span></code> la cual se aborda teóricamente en la sección anterior.</p></li>
+<li><p>Podemos visualizar un árbol de decisión con la función <code class="docutils literal notranslate"><span class="pre">export_graphviz</span></code> del módulo <code class="docutils literal notranslate"><span class="pre">tree</span></code>, que genera un archivo en formato <code class="docutils literal notranslate"><span class="pre">.dot</span></code> para gráficos. Configuramos la opción de <em><strong>colorear los nodos según la clase mayoritaria y proporcionamos nombres de clases y características para etiquetar el árbol correctamente</strong></em>. El argumento <code class="docutils literal notranslate"><span class="pre">impurity</span></code> se relaciona con la probabilidad de clasificar incorrectamente un nuevo dato, <em><strong>calculada normalmente mediante la métrica de entropía de Gini</strong></em>, discutida en la sección anterior.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1062,8 +1062,12 @@ Accuracy on test set: 0.951
 </div>
 </div>
 </div>
-<ul class="simple">
-<li><p>Podemos leer este archivo y visualizarlo, utilizando el modulo <code class="docutils literal notranslate"><span class="pre">graphviz</span></code> (o puede utilizar cualquier programa que pueda leer archivos <code class="docutils literal notranslate"><span class="pre">.dot</span></code>). Para que funcione <code class="docutils literal notranslate"><span class="pre">Graphviz</span></code> deberá además realizar la siguiente instalación, la cual es la única dependencia (ver <a class="reference external" href="https://forum.graphviz.org/t/new-simplified-installation-procedure-on-windows/224">Graphviz Instalación</a>)</p></li>
+<ul>
+<li><p>Podemos leer este archivo y visualizarlo, utilizando el modulo <code class="docutils literal notranslate"><span class="pre">graphviz</span></code> (o puede utilizar cualquier programa que pueda leer archivos <code class="docutils literal notranslate"><span class="pre">.dot</span></code>). Para que funcione <code class="docutils literal notranslate"><span class="pre">Graphviz</span></code> deberá además realizar la siguiente instalación, la cual es la única dependencia (ver <a class="reference external" href="https://forum.graphviz.org/t/new-simplified-installation-procedure-on-windows/224">Graphviz Instalación</a>). Además debe ejecutar en su consola</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>graphviz
+</pre></div>
+</div>
+</li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1092,21 +1096,24 @@ Accuracy on test set: 0.951
 </div>
 </div>
 <ul class="simple">
-<li><p>La visualización del árbol proporciona una <em><strong>gran visión en profundidad de cómo el algoritmo realiza predicciones, y es un buen ejemplo de un algoritmo de aprendizaje automático que puede fácilmente explicarse a no expertos</strong></em>. Sin embargo, incluso con un árbol de profundidad cuatro, como se ve aquí, el árbol puede resultar un poco abrumador. Los árboles más profundos (una profundidad de 10 puede ser común) son aún más difíciles de entender.</p></li>
-<li><p>Un método de inspección del árbol que puede ser útil es, averiguar qué camino toma realmente la mayoría de los datos. <em><strong>Las n_samples que se muestran en cada nodo de la figura, entregan el número de muestras en ese nodo</strong></em>, mientras que <em><strong>value provee el número de muestras por clase</strong></em>. Siguiendo las ramas hacia la derecha, vemos que el <em><strong>worst radius</strong></em> <span class="math notranslate nohighlight">\(\leq\)</span> <em><strong>16.795</strong></em> crea un nodo que contiene sólo <em><strong>8 muestras benignas pero 134 muestras malignas. El resto de este lado del árbol utiliza entonces algunas distinciones más finas para separar estas 8 muestras benignas restantes</strong></em>. De las 142 muestras que fueron a la derecha en la división inicial, casi todas ellas (132) terminan en la hoja de la derecha. Tomando la izquierda en la raíz, para el <em><strong>worst radio &gt; 16.795</strong></em> terminamos con <em><strong>25 muestras malignas y 259 muestras benignas</strong></em>. Casi todas las muestras benignas acaban en la segunda hoja de la derecha, y la mayoría de las demás hojas contienen muy pocas muestras.</p></li>
+<li><p>La <em><strong>visualización del árbol ofrece una comprensión profunda de las predicciones del algoritmo y es un buen ejemplo para explicar a no expertos</strong></em>. Sin embargo, un árbol de profundidad cuatro puede ser abrumador, y los de mayor profundidad (como uno de diez) son aún más complejos. Un método útil <em><strong>para inspeccionar el árbol es analizar el camino que siguen la mayoría de los datos</strong></em>.</p></li>
+<li><p><em><strong>En cada nodo, el número de muestras y su clasificación se muestran</strong></em>, como en el caso del nodo donde un <code class="docutils literal notranslate"><span class="pre">&quot;worst</span> <span class="pre">radius&quot;</span></code> de 16.795 resulta en 8 muestras benignas y 134 malignas. La mayoría de las 142 muestras que van hacia la derecha terminan en la hoja derecha. Al ir a la izquierda, con un <code class="docutils literal notranslate"><span class="pre">&quot;worst</span> <span class="pre">radius&quot;</span></code> mayor a 16.795, encontramos 25 muestras malignas y 259 benignas; casi todas las benignas terminan en la segunda hoja a la derecha, mientras que otras hojas contienen muy pocas muestras.</p></li>
 </ul>
 </section>
 <section id="caracteristicas-importantes-en-los-arboles">
 <h2><span class="section-number">6.3. </span>Características importantes en los árboles<a class="headerlink" href="#caracteristicas-importantes-en-los-arboles" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>En lugar de mirar todo el árbol, lo que puede ser agotador, hay algunas <em><strong>propiedades útiles que podemos derivar para resumir el funcionamiento del árbol</strong></em>. El resumen más utilizado es el de las <em><strong>características importantes, que califica la importancia de cada característica para la decisión que toma el árbol</strong></em>. Es un número entre 0 y 1 para cada característica, donde 0 significa “no se utiliza en absoluto” y 1 significa “predice perfectamente el objetivo”. Las características siempre suman 1</p></li>
+<li><p>En lugar de mirar todo el árbol, lo que puede ser agotador, hay algunas <em><strong>propiedades útiles que podemos derivar para resumir el funcionamiento del árbol</strong></em>. El resumen más utilizado es el de las <em><strong>características importantes, que califica la importancia de cada característica para la decisión que toma el árbol</strong></em>. Es un número entre 0 y 1 para cada característica, donde <em><strong>0 significa “no se utiliza en absoluto”</strong></em> y <em><strong>1 significa “predice perfectamente el objetivo”</strong></em>. Las características siempre suman 1</p></li>
 </ul>
 <ul class="simple">
-<li><p>Otra <em><strong>excelente manera de visualizar predicciones a partir de un random forest por ejemplo, es utilizando la librería</strong></em> <a class="reference external" href="https://www.kaggle.com/code/prashant111/explain-your-model-predictions-with-lime/notebook">LIME</a> <em><strong>de Python</strong></em>. Con esta librería se pueden generar por cada instancias, figuras de cartaterísticas importantes y representar sus probabilidades de pertenecer a la clase predicha (<em><strong>pruebela en este ejemplo</strong></em>). Para instalarla solo debe usar</p></li>
+<li><p>Otra <em><strong>excelente manera de visualizar predicciones a partir de un random forest por ejemplo, es utilizando la librería</strong></em> <a class="reference external" href="https://www.kaggle.com/code/prashant111/explain-your-model-predictions-with-lime/notebook">LIME</a> <em><strong>de Python</strong></em>. Con esta librería se pueden generar por cada instancia, figuras de cartaterísticas importantes y representar sus probabilidades de pertenecer a la clase predicha (<em><strong>pruebela en este ejemplo</strong></em>). Para instalarla solo debe usar</p></li>
 </ul>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>lime
 </pre></div>
 </div>
+<ul class="simple">
+<li><p>Procedemos a explorar la visualización de <code class="docutils literal notranslate"><span class="pre">feature_importances_</span></code></p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Feature importances:</span><span class="se">\n</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">tree</span><span class="o">.</span><span class="n">feature_importances_</span><span class="p">))</span>
@@ -1125,7 +1132,7 @@ Accuracy on test set: 0.951
 </div>
 </div>
 <ul class="simple">
-<li><p>Podemos visualizar las importancias de las características de forma similar a la forma en que visualizamos los coeficientes en el modelo lineal</p></li>
+<li><p>Podemos <em>visualizar las importancias de las características de forma similar a la forma en que visualizamos los coeficientes en el modelo lineal</em></p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1158,10 +1165,8 @@ Accuracy on test set: 0.951
 </div>
 </div>
 <ul class="simple">
-<li><p>Aquí vemos que la característica utilizada en la división superior <code class="docutils literal notranslate"><span class="pre">(&quot;worst</span> <span class="pre">radio&quot;)</span></code> es, con mucho, la más importante. Esto confirma nuestra observación al analizar el árbol de que el primer nivel ya separa bastante bien las dos clases. Sin embargo, si una característica tiene un <code class="docutils literal notranslate"><span class="pre">feature_importance</span></code> bajo, no significa que esta característica sea poco informativa. Solo significa que la característica no fue elegida por el árbol, probablemente porque otra característica codifica la misma información.</p></li>
-<li><p>Un valor <strong>negativo</strong> de importancia de característica significa que <strong>la característica aumenta la pérdida</strong>. Esto indica que tu modelo no está haciendo un buen uso de esta característica. Esto podría significar que tu modelo está mal ajustado (no tiene suficientes iteraciones y no ha utilizado la característica lo suficiente) o que <strong>la característica no es útil, por lo que podría intentar eliminarla para mejorar la calidad final</strong>.</p></li>
-<li><p>A diferencia de los coeficientes de los modelos lineales, <strong>las importancias de las características son siempre positivas y no codifican la clase de la que es indicativa una característica</strong>. Las <code class="docutils literal notranslate"><span class="pre">feature_importance</span></code> nos dicen que el <strong>“worst radio”</strong> es importante, pero <strong>no si un</strong> <strong>“worst radio”</strong> <strong>alto es indicativo de que una muestra es benigna o maligna</strong>.</p></li>
-<li><p>De hecho, puede que no haya una relación tan sencilla entre las características y la clase, como se puede ver en el siguiente ejemplo. La siguiente figura muestra un conjunto de datos bidimensional en el que <strong>la característica en el eje</strong> <span class="math notranslate nohighlight">\(y\)</span> <strong>tiene una relación no monótona con la etiqueta de clase, y los límites de decisión encontrados por un árbol de decisión</strong></p></li>
+<li><p>La característica <code class="docutils literal notranslate"><span class="pre">&quot;worst</span> <span class="pre">radio&quot;</span></code> <em><strong>es la más importante en la división superior</strong></em>, lo que confirma que el primer nivel del árbol separa bien las dos clases. Sin embargo, <em><strong>un bajo valor de importancia de una característica no indica que sea poco informativa, sino que podría estar codificada por otra característica</strong></em>. Un <em><strong>valor negativo de importancia sugiere que la característica aumenta la pérdida, lo que puede indicar un mal ajuste del modelo o que la característica no es útil</strong></em>, y podría ser eliminada para mejorar el rendimiento.</p></li>
+<li><p>A diferencia de los coeficientes en modelos lineales, <em><strong>las importancias de las características son siempre positivas y no indican la clase que representa</strong></em>. Así, aunque <code class="docutils literal notranslate"><span class="pre">&quot;worst</span> <span class="pre">radio&quot;</span></code> <em><strong>es importante, no especifica si un valor alto sugiere benignidad o malignidad</strong></em>. Además, la relación entre características y clase no siempre es sencilla, como se muestra en un ejemplo donde <em>una característica tiene una relación no monótona con la etiqueta de clase¨</em>.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -76234,6 +76239,132 @@ Accuracy on test set: 0.958
 <ul class="simple">
 <li><p>En resumen, <code class="docutils literal notranslate"><span class="pre">LIME</span></code> es una herramienta valiosa para <em><strong>aumentar la interpretabilidad y la confianza en modelos de aprendizaje automático</strong></em>, permitiendo a los usuarios <em><strong>comprender y validar las decisiones de los modelos de manera efectiva</strong></em>.</p></li>
 </ul>
+<ul class="simple">
+<li><p>Si deseas <em><strong>mayor capacidad de cómputo, para realizar por ejemplo una validación cruzada</strong></em>, puedes utilizar <a class="reference external" href="https://xgboost.readthedocs.io/en/release_1.3.0/gpu/index.html">XGBoost GPU Support</a>. Antés, debes seguir la guía de instalación ( ver <a class="reference external" href="https://xgboost.readthedocs.io/en/release_1.3.0/build.html">Installation Guide</a>) y además, verificar que tiene instalado CUDA. Una vez instalado, puedes proceder a utilizar <code class="docutils literal notranslate"><span class="pre">XGBoost</span></code>, <em><strong>habilitando el soporte para GPU con el parámetro</strong></em> <code class="docutils literal notranslate"><span class="pre">tree_method='gpu_hist'</span></code>.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">mglearn</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">xgboost</span> <span class="k">as</span> <span class="nn">xgb</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_breast_cancer</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span><span class="p">,</span> <span class="n">GridSearchCV</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">joblib</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cancer</span> <span class="o">=</span> <span class="n">load_breast_cancer</span><span class="p">()</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">cancer</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">cancer</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Confirmamos que el modelo está <em><strong>configurado para usar GPU</strong></em></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">xgb</span><span class="o">.</span><span class="n">XGBClassifier</span><span class="p">(</span><span class="n">tree_method</span><span class="o">=</span><span class="s1">&#39;gpu_hist&#39;</span><span class="p">,</span> <span class="n">use_label_encoder</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Modelo configurado con tree_method=&#39;gpu_hist&#39;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Modelo configurado con tree_method=&#39;gpu_hist&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;max_depth&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span>  <span class="c1"># Rango para la profundidad del árbol</span>
+    <span class="s1">&#39;learning_rate&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">],</span>  <span class="c1"># Rango para la tasa de aprendizaje</span>
+    <span class="s1">&#39;n_estimators&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">300</span><span class="p">],</span>  <span class="c1"># Número de árboles a entrenar</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid_search</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;roc_auc&#39;</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_filename</span> <span class="o">=</span> <span class="s1">&#39;best_xgboost_model.pkl&#39;</span>
+<span class="n">model</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">model_filename</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;El modelo ya existe. Cargando desde </span><span class="si">{</span><span class="n">model_filename</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">joblib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">model_filename</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;El modelo no existe. Entrenando un nuevo modelo...&quot;</span><span class="p">)</span>
+    <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">grid_search</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+    <span class="n">end_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">elapsed_time</span> <span class="o">=</span> <span class="n">end_time</span> <span class="o">-</span> <span class="n">start_time</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mejores parámetros:&quot;</span><span class="p">,</span> <span class="n">grid_search</span><span class="o">.</span><span class="n">best_params_</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mejor AUC en prueba:&quot;</span><span class="p">,</span> <span class="n">grid_search</span><span class="o">.</span><span class="n">best_score_</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Tiempo de cómputo: </span><span class="si">{</span><span class="n">elapsed_time</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> segundos&quot;</span><span class="p">)</span>
+
+    <span class="n">joblib</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">grid_search</span><span class="o">.</span><span class="n">best_estimator_</span><span class="p">,</span> <span class="n">model_filename</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Modelo guardado como </span><span class="si">{</span><span class="n">model_filename</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="n">model</span> <span class="o">=</span> <span class="n">grid_search</span><span class="o">.</span><span class="n">best_estimator_</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>El modelo no existe. Entrenando un nuevo modelo...
+Fitting 5 folds for each of 45 candidates, totalling 225 fits
+Mejores parámetros: {&#39;learning_rate&#39;: 0.2, &#39;max_depth&#39;: 5, &#39;n_estimators&#39;: 200}
+Mejor AUC en prueba: 0.991728305831699
+Tiempo de cómputo: 79.94 segundos
+Modelo guardado como best_xgboost_model.pkl
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_params</span> <span class="o">=</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">value</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">get_params</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">}</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Parámetros del modelo:&quot;</span><span class="p">,</span> <span class="n">model_params</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Parámetros del modelo: {&#39;objective&#39;: &#39;binary:logistic&#39;, &#39;enable_categorical&#39;: False, &#39;learning_rate&#39;: 0.2, &#39;max_depth&#39;: 5, &#39;missing&#39;: nan, &#39;n_estimators&#39;: 200, &#39;tree_method&#39;: &#39;gpu_hist&#39;, &#39;verbosity&#39;: 2, &#39;use_label_encoder&#39;: False}
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Para estar completamente seguro que utilizó su GPU durante la fase de entrenamiento, puede <em><strong>verificar que este dispositivo dedicado se encuentra activo en su administrador de tareas</strong></em></p></li>
+</ul>
+<figure class="align-center" id="gpu-xgboost-fig">
+<a class="reference internal image-reference" href="_images/gpu_xgboost.png"><img alt="_images/gpu_xgboost.png" src="_images/gpu_xgboost.png" style="width: 672.0px; height: 356.29999999999995px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 6.1 </span><span class="caption-text">Uso de GPU durante la fase de entrenamiento usando <code class="docutils literal notranslate"><span class="pre">XGBoost</span> <span class="pre">GPU</span> <span class="pre">Support</span></code>.</span><a class="headerlink" href="#gpu-xgboost-fig" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
 <div class="important admonition">
 <p class="admonition-title">Puntos fuertes, puntos débiles y parámetros</p>
 <ul class="simple">
