@@ -6201,13 +6201,13 @@ J(U, W, V, \boldsymbol{b}, \boldsymbol{c})=\sum_{n=1}^{N}J_{n}(U, W, V, \boldsym
 </div>
 <ul>
 <li><p><em><strong>Paso 1</strong></em>: Definición de los datos y parámetros</p></li>
-<li><p><em><strong>Secuencias de Texto</strong></em></p>
+<li><p><em>Secuencias de Texto</em></p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">Secuencia</span> <span class="pre">1</span> <span class="pre">(Positiva)</span></code>: “I love this movie”</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Secuencia</span> <span class="pre">2</span> <span class="pre">(Negativa)</span></code>: “This movie is terrible”</p></li>
+<li><p><em>Secuencia 1 (Positiva)</em>: <code class="docutils literal notranslate"><span class="pre">&quot;I</span> <span class="pre">love</span> <span class="pre">this</span> <span class="pre">movie&quot;</span></code></p></li>
+<li><p><em>Secuencia 2 (Negativa)</em>: <code class="docutils literal notranslate"><span class="pre">&quot;This</span> <span class="pre">movie</span> <span class="pre">is</span> <span class="pre">terrible&quot;</span></code></p></li>
 </ul>
 </li>
-<li><p><em><strong>Embeddings de las Palabras</strong></em></p>
+<li><p><em>Embeddings de las Palabras</em></p>
 <p>Cada palabra se representa por un vector embedding (<code class="docutils literal notranslate"><span class="pre">Word2Vec</span></code>) de 3 dimensiones:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">&quot;I&quot;</span></code> = <span class="math notranslate nohighlight">\([0.1, 0.2, 0.1]\)</span></p></li>
@@ -6218,249 +6218,168 @@ J(U, W, V, \boldsymbol{b}, \boldsymbol{c})=\sum_{n=1}^{N}J_{n}(U, W, V, \boldsym
 <li><p><code class="docutils literal notranslate"><span class="pre">&quot;terrible&quot;</span></code> = <span class="math notranslate nohighlight">\([-0.5, -0.6, -0.7]\)</span></p></li>
 </ul>
 </li>
-<li><p><em><strong>Etiquetas de Salida (Clases)</strong></em></p>
+<li><p><em>Etiquetas de Salida (Clases)</em></p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">Secuencia</span> <span class="pre">1</span></code>: clase 1 (positiva)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Secuencia</span> <span class="pre">2</span></code>: clase 0 (negativa)</p></li>
+<li><p><em>Secuencia 1</em>: clase 1 (positiva)</p></li>
+<li><p><em>Secuencia 2</em>: clase 0 (negativa)</p></li>
 </ul>
 </li>
+<li><p><em>Definir los Datos y Parámetros Iniciales (tres filas en las matrices significa que hay tres unidades en la capa oculta)</em></p></li>
 </ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}U = \begin{bmatrix} 0.1 &amp; -0.2 &amp; 0.3 \\ 0.4 &amp; 0.1 &amp; -0.3 \\ 0.3 &amp; 0.2 &amp; -0.1 \end{bmatrix}, ~W = \begin{bmatrix} 0.5 &amp; -0.4 &amp; 0.1 \\ -0.1 &amp; 0.2 &amp; 0.4 \\ 0.2 &amp; 0.1 &amp; 0.3 \end{bmatrix}, ~V = \begin{bmatrix} 0.2 &amp; -0.3 \\ 0.4 &amp; 0.1 \\ -0.2 &amp; 0.3 \end{bmatrix}\end{split}\]</div>
+<ul class="simple">
+<li><p><em>Sesgos</em></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}b = \begin{bmatrix} 0.1 \\ 0.1 \\ 0.1 \end{bmatrix}, \quad c = \begin{bmatrix} 0.0 \\ 0.0 \end{bmatrix}\end{split}\]</div>
+<ul class="simple">
+<li><p><em><strong>Paso 2</strong></em>: <em>Propagación hacia Adelante</em></p>
 <ul>
-<li><p><em><strong>Paso 2</strong></em>: Arquitectura de la Red Recurrente</p>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(U\)</span>: matriz de pesos para la transformación de la entrada, dimensión <span class="math notranslate nohighlight">\(3 \times 3\)</span> (3 entradas a 3 neuronas en la capa oculta).</p></li>
-<li><p><span class="math notranslate nohighlight">\(W\)</span>: matriz de pesos recurrentes para los estados ocultos, dimensión <span class="math notranslate nohighlight">\(3 \times 3\)</span>.</p></li>
-<li><p><span class="math notranslate nohighlight">\(V\)</span>: matriz de pesos de la capa de salida, dimensión <span class="math notranslate nohighlight">\(3 \times 2\)</span> (3 neuronas ocultas a 2 clases de salida).</p></li>
-<li><p><span class="math notranslate nohighlight">\(b\)</span>: sesgo de la capa oculta, dimensión <span class="math notranslate nohighlight">\(3\)</span>.</p></li>
-<li><p><span class="math notranslate nohighlight">\(c\)</span>: sesgo de la capa de salida, dimensión <span class="math notranslate nohighlight">\(2\)</span>.</p></li>
+<li><p>Vamos a recalcular las salidas de los estados ocultos <span class="math notranslate nohighlight">\(h_n\)</span> y la salida final <span class="math notranslate nohighlight">\(y_n\)</span>, incluyendo la función de activación en la salida (<code class="docutils literal notranslate"><span class="pre">softmax</span></code>).</p></li>
+<li><p>Tiempo <span class="math notranslate nohighlight">\(n = 1\)</span> (<code class="docutils literal notranslate"><span class="pre">&quot;I&quot;</span></code>)</p></li>
+<li><p>Para la palabra <code class="docutils literal notranslate"><span class="pre">&quot;I&quot;</span></code>, <span class="math notranslate nohighlight">\(x_1 = [0.1, 0.2, 0.1]\)</span>:</p></li>
 </ul>
 </li>
-<li><p>Valores iniciales aleatorios para los pesos:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-    U = \begin{bmatrix}
-    0.1 &amp; -0.2 &amp; 0.3 \\
-    0.4 &amp; 0.1 &amp; -0.3 \\
-    0.3 &amp; 0.2 &amp; -0.1
-    \end{bmatrix}
-    \end{split}\]</div>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-    W = \begin{bmatrix}
-    0.5 &amp; -0.4 &amp; 0.1 \\
-    -0.1 &amp; 0.2 &amp; 0.4 \\
-    0.2 &amp; 0.1 &amp; 0.3
-    \end{bmatrix}
-    \end{split}\]</div>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-    V = \begin{bmatrix}
-    0.2 &amp; -0.3 \\
-    0.4 &amp; 0.1 \\
-    -0.2 &amp; 0.3
-    \end{bmatrix}
-    \end{split}\]</div>
-</li>
-<li><p>Sesgos iniciales:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-    b = \begin{bmatrix}
-    0.1 \\
-    0.1 \\
-    0.1
-    \end{bmatrix}, \quad c = \begin{bmatrix}
-    0.0 \\
-    0.0
-    \end{bmatrix}
-    \end{split}\]</div>
-</li>
-</ul>
-<ul>
-<li><p><em><strong>Paso 3</strong></em>: Propagación hacia Adelante</p>
-<ul class="simple">
-<li><p>Cálculo de los Estados Ocultos <span class="math notranslate nohighlight">\(h_t\)</span></p></li>
-</ul>
-<p>Para cada palabra, calculamos el estado oculto <span class="math notranslate nohighlight">\(h_t\)</span> en cada tiempo <span class="math notranslate nohighlight">\(t\)</span> usando la siguiente fórmula:</p>
-<div class="math notranslate nohighlight">
-\[
-    h_t = \tanh(U \cdot x_t + W \cdot h_{t-1} + b)
-    \]</div>
-<p>Donde <span class="math notranslate nohighlight">\(x_t\)</span> es el vector de embedding de la palabra en el tiempo <span class="math notranslate nohighlight">\(t\)</span> y <span class="math notranslate nohighlight">\(h_0\)</span> es el estado inicial, que podemos suponer que es un vector de ceros.</p>
-</li>
-<li><p><strong>Secuencia 1: “I love this movie” (Clase positiva)</strong></p></li>
 </ul>
 <ol class="arabic">
-<li><p><strong>Tiempo <span class="math notranslate nohighlight">\(t = 1\)</span></strong> (“I”)</p>
+<li><p>Calcular la propagación hacia adelante del estado oculto <span class="math notranslate nohighlight">\(h_1\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    U \cdot x_1 = U \cdot [0.1, 0.2, 0.1]^\top = \begin{bmatrix} 
+    (0.1 \times 0.1) + (-0.2 \times 0.2) + (0.3 \times 0.1) \\ 
+    (0.4 \times 0.1) + (0.1 \times 0.2) + (-0.3 \times 0.1) \\ 
+    (0.3 \times 0.1) + (0.2 \times 0.2) + (-0.1 \times 0.1)
+    \end{bmatrix}
+    = \begin{bmatrix} 
+    0.01 + (-0.04) + 0.03 \\ 
+    0.04 + 0.02 + (-0.03) \\ 
+    0.03 + 0.04 + (-0.01)
+    \end{bmatrix}
+    = \begin{bmatrix} 
+    0.02 \\ 
+    0.05 \\ 
+    0.07
+    \end{bmatrix}
+    \end{split}\]</div>
+<p>Como <span class="math notranslate nohighlight">\(h_0 = [0, 0, 0]\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
-   h_1 = \tanh(U \cdot [0.1, 0.2, 0.1]^\top + W \cdot h_0 + b)
+   h_1 = \tanh([0.02, 0.05, 0.07] + b) = \tanh([0.12, 0.15, 0.17]) \approx [0.119, 0.149, 0.168]
    \]</div>
-<p>Calculamos <span class="math notranslate nohighlight">\(U \cdot [0.1, 0.2, 0.1]^\top\)</span>:</p>
+<ul class="simple">
+<li><p>Tiempo <span class="math notranslate nohighlight">\(n = 2\)</span> (<code class="docutils literal notranslate"><span class="pre">&quot;love&quot;</span></code>)</p></li>
+<li><p>Para la palabra <code class="docutils literal notranslate"><span class="pre">&quot;love&quot;</span></code>, <span class="math notranslate nohighlight">\(x_2 = [0.4, 0.5, 0.6]\)</span>:</p></li>
+</ul>
+</li>
+<li><p>Calcular la propagación hacia adelante del estado oculto <span class="math notranslate nohighlight">\(h_2\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-   U \cdot [0.1, 0.2, 0.1]^\top =
-   \begin{bmatrix}
-   0.1 \cdot 0.1 + (-0.2) \cdot 0.2 + 0.3 \cdot 0.1 \\
-   0.4 \cdot 0.1 + 0.1 \cdot 0.2 + (-0.3) \cdot 0.1 \\
-   0.3 \cdot 0.1 + 0.2 \cdot 0.2 + (-0.1) \cdot 0.1
-   \end{bmatrix} =
-   \begin{bmatrix}
-   0.02 \\
-   0.05 \\
-   0.07
-   \end{bmatrix}
-   \end{split}\]</div>
-<p>Como <span class="math notranslate nohighlight">\(h_0 = 0\)</span>, entonces el estado oculto es:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-   h_1 = \tanh\left(\begin{bmatrix} 0.02 \\ 0.05 \\ 0.07 \end{bmatrix} + b \right) = \tanh\left(\begin{bmatrix} 0.12 \\ 0.15 \\ 0.17 \end{bmatrix}\right)
-   \end{split}\]</div>
-<p>Aproximadamente:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-   h_1 \approx \begin{bmatrix} 0.119 \\ 0.149 \\ 0.168 \end{bmatrix}
+   U \cdot x_2 = \begin{bmatrix} 0.22 \\ 0.13 \\ 0.15 \end{bmatrix}
    \end{split}\]</div>
 </li>
-<li><p><strong>Tiempo <span class="math notranslate nohighlight">\(t = 2\)</span></strong> (“love”)</p>
-<div class="math notranslate nohighlight">
-\[
-   h_2 = \tanh(U \cdot [0.4, 0.5, 0.6]^\top + W \cdot h_1 + b)
-   \]</div>
-<p>Calculamos <span class="math notranslate nohighlight">\(U \cdot [0.4, 0.5, 0.6]^\top\)</span>:</p>
+<li><p>Calcular el estado recurrente con <span class="math notranslate nohighlight">\(W \cdot h_1\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-   U \cdot [0.4, 0.5, 0.6]^\top =
-   \begin{bmatrix}
-   0.1 \cdot 0.4 + (-0.2) \cdot 0.5 + 0.3 \cdot 0.6 \\
-   0.4 \cdot 0.4 + 0.1 \cdot 0.5 + (-0.3) \cdot 0.6 \\
-   0.3 \cdot 0.4 + 0.2 \cdot 0.5 + (-0.1) \cdot 0.6
-   \end{bmatrix} =
-   \begin{bmatrix}
-   0.22 \\
-   0.13 \\
-   0.15
-   \end{bmatrix}
-   \end{split}\]</div>
-<p><span class="math notranslate nohighlight">\(W \cdot h_1\)</span>:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-   W \cdot h_1 = 
-   \begin{bmatrix}
-   0.5 &amp; -0.4 &amp; 0.1 \\
-   -0.1 &amp; 0.2 &amp; 0.4 \\
-   0.2 &amp; 0.1 &amp; 0.3
-   \end{bmatrix}
-   \cdot
-   \begin{bmatrix}
-   0.119 \\
-   0.149 \\
-   0.168
-   \end{bmatrix}
-   \approx
-   \begin{bmatrix}
-   0.065 \\
-   0.096 \\
-   0.074
-   \end{bmatrix}
-   \end{split}\]</div>
-<p>Entonces:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-   h_2 = \tanh\left(\begin{bmatrix} 0.22 \\ 0.13 \\ 0.15 \end{bmatrix} + \begin{bmatrix} 0.065 \\ 0.096 \\ 0.074 \end{bmatrix} + b\right)
+   W \cdot h_1 = \begin{bmatrix} 0.065 \\ 0.096 \\ 0.074 \end{bmatrix}
    \end{split}\]</div>
 </li>
-<li><p><strong>Tiempo <span class="math notranslate nohighlight">\(t = 3\)</span></strong> (“this”)</p>
+<li><p>Propagación total del estado oculto <span class="math notranslate nohighlight">\(h_2\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
-   h_3 = \tanh(U \cdot [0.3, 0.1, 0.3]^\top + W \cdot h_2 + b)
+   h_2 = \tanh([0.22, 0.13, 0.15] + [0.065, 0.096, 0.074] + b) = \tanh([0.385, 0.376, 0.394]) \approx [0.367, 0.359, 0.374]
    \]</div>
-<p>Calculamos <span class="math notranslate nohighlight">\(U \cdot [0.3, 0.1, 0.3]^\top\)</span>:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-   U \cdot [0.3, 0.1, 0.3]^\top =
-   \begin{bmatrix}
-   0.1 \cdot 0.3 + (-0.2) \cdot 0.1 + 0.3 \cdot 0.3 \\
-   0.4 \cdot 0.3 + 0.1 \cdot 0.1 + (-0.3) \cdot 0.3 \\
-   0.3 \cdot 0.3 + 0.2 \cdot 0.1 + (-0.1) \cdot 0.3
-   \end{bmatrix} =
-   \begin{bmatrix}
-   0.1 \\
-   0.08 \\
-   0.05
-   \end{bmatrix}
-   \end{split}\]</div>
-<p>Y repetimos el cálculo para <span class="math notranslate nohighlight">\(W \cdot h_2\)</span>.</p>
 </li>
-<li><p><strong>Tiempo <span class="math notranslate nohighlight">\(t = 4\)</span></strong> (“movie”)</p>
-<div class="math notranslate nohighlight">
-\[
-   h_4 = \tanh(U \cdot [0.5, 0.1, -0.3]^\top + W \cdot h_3 + b)
-   \]</div>
-<p>Calculamos <span class="math notranslate nohighlight">\(U \cdot [0.5, 0.1, -0.3]^\top\)</span>:</p>
+</ol>
+<ul class="simple">
+<li><p><em><strong>Paso 3</strong></em>: <em>Cálculo de la Salida con Activación Softmax</em></p>
+<ul>
+<li><p>La salida se calcula utilizando la matriz <span class="math notranslate nohighlight">\(V\)</span>, aplicando después la función de activación <code class="docutils literal notranslate"><span class="pre">softmax</span></code> para obtener las probabilidades de las dos clases.</p></li>
+</ul>
+</li>
+</ul>
+<ol class="arabic">
+<li><p>Calculamos la salida <span class="math notranslate nohighlight">\(\hat{y}_{2}\)</span> antes de la activación:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-   U \cdot [0.5, 0.1, -0.3]^\top =
-   \begin{bmatrix}
-   0.1 \cdot 0.5 + (-0.2) \cdot 0.1 + 0.3 \cdot (-0.3) \\
-   0.4 \cdot 0.5 + 0.1 \cdot 0.1 + (-0.3) \cdot (-0.3) \\
-   0.3 \cdot 0.5 + 0.2 \cdot 0.1 + (-0.1) \cdot (-0.3)
-   \end{bmatrix} =
-   \begin{bmatrix}
-   0.08 \\
-   0.17 \\
-   0.20
-   \end{bmatrix}
+   \hat{y}_{2} = V \cdot h_2 = \begin{bmatrix} 0.2 &amp; -0.3 \\ 0.4 &amp; 0.1 \\ -0.2 &amp; 0.3 \end{bmatrix} \cdot [0.367, 0.359, 0.374]^\top = \begin{bmatrix} 0.0516 \\ 0.1108 \end{bmatrix}
+   \end{split}\]</div>
+</li>
+<li><p>Aplicamos la función de activación <code class="docutils literal notranslate"><span class="pre">softmax</span></code> para convertir la salida en probabilidades:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+   \text{softmax}(\hat{y}_{2}) = \frac{e^{\hat{y}_{2}}}{\sum e^{\hat{y}_{2}}} = \frac{\begin{bmatrix} e^{0.0516} \\ e^{0.1108} \end{bmatrix}}{e^{0.0516} + e^{0.1108}} = \begin{bmatrix} 0.4852 \\ 0.5148 \end{bmatrix}
    \end{split}\]</div>
 </li>
 </ol>
 <ul>
-<li><p><strong>Cálculo de la Salida</strong></p>
-<p>Para cada <span class="math notranslate nohighlight">\(h_t\)</span>, calculamos la salida <span class="math notranslate nohighlight">\(y\)</span>:</p>
+<li><p><em><strong>Paso 4</strong></em>: <em>Retropropagación del Error</em></p>
+<ul class="simple">
+<li><p>Ahora calculamos el error y el gradiente con respecto a los pesos <span class="math notranslate nohighlight">\(V\)</span>, <span class="math notranslate nohighlight">\(W\)</span>, <span class="math notranslate nohighlight">\(U\)</span>, y los sesgos, usando el método de <strong>cross-entropy</strong> y <strong>BPTT</strong></p></li>
+<li><p><em>Cálculo del Error</em></p></li>
+<li><p>La pérdida es:</p></li>
+</ul>
 <div class="math notranslate nohighlight">
 \[
-    y = V \cdot h_t + c
+    \text{Loss} = - \left[ y_{\text{real}} \cdot \log(\hat{y}) + (1 - y_{\text{real}}) \cdot \log(1 - \hat{y}) \right]
     \]</div>
-<p>Donde el output será uno de los dos posibles (0 o 1) usando la función softmax o activación similar.</p>
-</li>
-<li><p><em><strong>Paso 4</strong></em>: Cálculo de la Pérdida y Retropropagación</p>
-<p>Se utiliza una función de pérdida (como la entropía cruzada) para calcular el error. Luego se aplica la retropropagación, donde se propagan los errores de salida hacia atrás a través de los estados ocultos y se ajustan los pesos mediante gradiente descendente.</p>
-<p>La actualización de pesos <span class="math notranslate nohighlight">\(W\)</span> se realiza de la siguiente manera:</p>
+<ul class="simple">
+<li><p>“<em>Nota: aquí, 0.5148 es la probabilidad asignada a la clase considerada correcta (la etiqueta real), y 0.4852 es la probabilidad para la clase incorrecta</em>”. Si la clase verdadera es 1 (positiva) el error es:</p></li>
+</ul>
 <div class="math notranslate nohighlight">
 \[
-    W \leftarrow W - \eta \frac{\partial L}{\partial W}
+    \text{Loss} = - \log(0.5148) \approx 0.663
     \]</div>
-<p>Donde <span class="math notranslate nohighlight">\(\eta\)</span> es la tasa de aprendizaje y <span class="math notranslate nohighlight">\(\frac{\partial L}{\partial W}\)</span> es el gradiente de la pérdida respecto a <span class="math notranslate nohighlight">\(W\)</span>.</p>
 </li>
-<li><p>Actualización de los Pesos mediante Gradiente Descendente</p></li>
+<li><p><em><strong>Gradientes</strong></em></p></li>
 </ul>
 <ol class="arabic">
-<li><p><strong>Cálculo de Gradientes</strong>:
-Utiliza la regla de la cadena para calcular los gradientes de los pesos con respecto a la función de pérdida.</p></li>
-<li><p><strong>Actualización</strong>:
-Actualiza los pesos y sesgos:</p>
+<li><p><em>Gradiente para <span class="math notranslate nohighlight">\(V\)</span></em>:</p>
 <div class="math notranslate nohighlight">
 \[
-   W' = W - \eta \cdot \nabla W
+   \frac{\partial L}{\partial V} = (y_{\text{pred}} - y_{\text{real}}) \cdot h_2
    \]</div>
 <div class="math notranslate nohighlight">
-\[
-   U' = U - \eta \cdot \nabla U
-   \]</div>
+\[\begin{split}
+   \frac{\partial L}{\partial V} = \left( \begin{bmatrix} 0.4852 \\ 0.5148 \end{bmatrix} - \begin{bmatrix} 0 \\ 1 \end{bmatrix} \right) \cdot \begin{bmatrix} 0.367 \\ 0.359 \\ 0.374 \end{bmatrix}^\top
+   \end{split}\]</div>
 <div class="math notranslate nohighlight">
-\[
-   V' = V - \eta \cdot \nabla V
-   \]</div>
-<div class="math notranslate nohighlight">
-\[
-   b' = b - \eta \cdot \nabla b
-   \]</div>
-<div class="math notranslate nohighlight">
-\[
-   c' = c - \eta \cdot \nabla c
-   \]</div>
-<p>Esto permite que la red ajuste sus pesos y sesgos de manera que minimice la pérdida en las siguientes iteraciones.</p>
+\[\begin{split}
+   \frac{\partial L}{\partial V} = \begin{bmatrix} 0.4852 &amp; 0.4852 \\ -0.4852 &amp; -0.4852 \\ 0.5148 &amp; -0.5148 \end{bmatrix}
+   \end{split}\]</div>
 </li>
+<li><p><em>Gradiente para <span class="math notranslate nohighlight">\(W\)</span> y <span class="math notranslate nohighlight">\(U\)</span></em>:
+Usamos la retropropagación a través del tiempo (BPTT). Los gradientes para <span class="math notranslate nohighlight">\(W\)</span> y <span class="math notranslate nohighlight">\(U\)</span> se calculan usando la regla de la cadena considerando las derivadas del estado oculto.</p></li>
 </ol>
+<ul>
+<li><p><em><strong>Paso 5</strong></em>: <em>Actualización de Pesos</em></p>
+<ul class="simple">
+<li><p>Usamos gradiente descendente para actualizar los pesos. Dado un valor de <span class="math notranslate nohighlight">\(\eta = 0.01\)</span>:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+    V \leftarrow V - \eta \frac{\partial L}{\partial V}
+    \]</div>
+<div class="math notranslate nohighlight">
+\[
+    W \leftarrow W - \eta \frac{\partial L}{\partial W}, \quad U \leftarrow U - \eta \frac{\partial L}{\partial U}
+    \]</div>
+<ul class="simple">
+<li><p>Actualización de los pesos para <span class="math notranslate nohighlight">\(V\)</span>:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    V_{\text{nuevo}} = V - 0.01 \times \begin{bmatrix} 0.4852 &amp; 0.4852 \\ -0.4852 &amp; -0.4852 \\ 0.5148 &amp; -0.5148 \end{bmatrix}=\begin{bmatrix} 
+0.495148 &amp; 0.595148 \\ 
+0.404852 &amp; 0.304852 \\ 
+-0.005148 &amp; 0.005148 
+\end{bmatrix}
+    \end{split}\]</div>
+<ul class="simple">
+<li><p>Realiza las actualizaciones análogas para <span class="math notranslate nohighlight">\(W\)</span> y <span class="math notranslate nohighlight">\(U\)</span>.</p></li>
+</ul>
+</li>
+</ul>
 </section>
 </section>
 <section id="red-de-memoria-a-largo-plazo-lstm">
