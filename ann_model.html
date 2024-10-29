@@ -388,14 +388,14 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#red-de-memoria-a-largo-plazo-lstm">8.14. Red de memoria a largo plazo (LSTM)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#atencion-y-memoria">8.15. Atención y Memoria</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entrenamiento-adversario">8.16. Entrenamiento adversario</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-generativos-profundos">8.17. Modelos Generativos Profundos</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#maquina-de-boltzmann-restringida">8.17.1. Máquina de Boltzmann Restringida</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-procesamiento-del-lenguaje-natural">8.15. Aplicación: Procesamiento del Lenguaje Natural</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#atencion-y-memoria">8.16. Atención y Memoria</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entrenamiento-adversario">8.17. Entrenamiento adversario</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-generativos-profundos">8.18. Modelos Generativos Profundos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#maquina-de-boltzmann-restringida">8.18.1. Máquina de Boltzmann Restringida</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autoencoders">8.18. Autoencoders</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-procesamiento-del-lenguaje-natural">8.19. Aplicación: Procesamiento del Lenguaje Natural</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autoencoders">8.19. Autoencoders</a></li>
 </ul>
             </nav>
         </div>
@@ -6440,261 +6440,8 @@ se muestra en la <a class="reference internal" href="#lstm-arch-rnn-numref"><spa
 </ul>
 </div>
 </section>
-<section id="atencion-y-memoria">
-<h2><span class="section-number">8.15. </span>Atención y Memoria<a class="headerlink" href="#atencion-y-memoria" title="Link to this heading">#</a></h2>
-<div class="admonition-introduccion admonition">
-<p class="admonition-title">Introducción</p>
-<ul class="simple">
-<li><p>El uso histórico de <em><strong>esquemas de atención en redes neuronales</strong></em> se inspira en el <em><strong>mecanismo de atención humana</strong></em>. En la visión humana, <em><strong>nos centramos en información contextual importante</strong></em> cuando observamos escenas. En el aprendizaje automático, los <em><strong>modelos de atención implementan este concepto asignando pesos a las variables que influyen en la salida</strong></em>. Por ejemplo, en una <em><strong>RNN</strong></em>, la salida <span class="math notranslate nohighlight">\(\hat{\boldsymbol{y}}_{n}\)</span> depende del vector de estado <span class="math notranslate nohighlight">\(\boldsymbol{h}_{n}\)</span>, pero <em><strong>no siempre es la información más importante para tareas</strong></em> como la traducción de idiomas (aunque el estado codifica la memoria hasta el tiempo más reciente, <span class="math notranslate nohighlight">\(n\)</span>.).</p></li>
-</ul>
-</div>
-<div class="proof observation admonition" id="observation_ann12">
-<p class="admonition-title"><span class="caption-number">Observation 8.6 </span> (Caso típico)</p>
-<section class="observation-content" id="proof-content">
-<ul class="simple">
-<li><p>En la <em><strong>traducción del japonés al inglés, la última palabra de una frase japonesa puede influir mucho en la primera palabra de la traducción inglesa</strong></em>. Del mismo modo, en la <em><strong>toma de decisiones, nuestras acciones dependen de las experiencias pasadas acumuladas</strong></em>, y algunas <em><strong>experiencias pasadas específicas ejercen más influencia que las recientes</strong></em>.</p></li>
-</ul>
-</section>
-</div><ul class="simple">
-<li><p>Para solucionar este problema, <em><strong>los mecanismos de atención asignan pesos a los vectores de estado anteriores</strong></em>, lo que permite que <em><strong>la salida dependa de una combinación ponderada de información previa</strong></em>. Estas ponderaciones se aprenden durante el entrenamiento, lo que <em><strong>permite al sistema dar prioridad a detalles contextuales significativos</strong></em> a la hora de tomar decisiones o generar resultados.</p></li>
-</ul>
-<ul>
-<li><p>Por ejemplo, el <em><strong>vector de salida</strong></em> puede modificarse para que <em><strong>dependa de todos los vectores de estado calculados anteriormente</strong></em></p>
-<div class="math notranslate nohighlight">
-\[
-    \hat{\boldsymbol{y}}_{n}=f\left(\sum_{i=1}^{n}\alpha_{ni}\boldsymbol{h}_{i}+\boldsymbol{c}\right),
-    \]</div>
-<p>donde <span class="math notranslate nohighlight">\(\alpha_{ni}\)</span> son los <em><strong>correspondientes pesos en el tiempo</strong></em> <span class="math notranslate nohighlight">\(n\)</span>.</p>
-</li>
-<li><p>La idea anterior de <em><strong>combinar todos los vectores de estado</strong></em> ha sido empleada, en una formulación algo diferente, en el <em><strong>sistema de traducción automática</strong></em> (ver <span id="id46">[<a class="reference internal" href="biblio.html#id48" title="Dzmitry Bahdanau, Kyunghyun Cho, and Yoshua Bengio. Neural machine translation by jointly learning to align and translate. arXiv preprint arXiv:1409.0473, 2014.">Bahdanau <em>et al.</em>, 2014</a>]</span>)</p></li>
-</ul>
-<figure class="align-center" id="attention-weights-grayscale-numref">
-<a class="reference internal image-reference" href="_images/attention_weights_grayscale.png"><img alt="_images/attention_weights_grayscale.png" src="_images/attention_weights_grayscale.png" style="width: 381.6px; height: 434.40000000000003px;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 8.43 </span><span class="caption-text">Valores de los pesos de atención en escala de grises. <a class="reference internal" href="#attention_example_grayscale">Example 8.1</a></span><a class="headerlink" href="#attention-weights-grayscale-numref" title="Link to this image">#</a></p>
-</figcaption>
-</figure>
-<div class="proof example admonition" id="attention_example_grayscale">
-<p class="admonition-title"><span class="caption-number">Example 8.1 </span></p>
-<section class="example-content" id="proof-content">
-<p>La <a class="reference internal" href="#attention-weights-grayscale-numref"><span class="std std-numref">Fig. 8.43</span></a> demuestra el razonamiento que subyace a la <em><strong>utilización de un mecanismo de ponderación</strong></em>. La <em><strong>entrada</strong></em> está representada por las <em><strong>palabras en francés</strong></em>, mientras que las secuencias de <em><strong>salida</strong></em> correspondientes están representadas por las <em><strong>palabras en inglés</strong></em>. <em><strong>La visualización representa los pesos de atención como píxeles</strong></em>, donde los <em><strong>pesos más altos se representan como píxeles más blancos</strong></em>. En particular, el <em><strong>término “produce” en la salida</strong></em> es consecuencia de <em><strong>asignar peso a la información de tres puntos temporales consecutivos</strong></em>, vinculados con las palabras <em><strong>“peut plus produire”</strong></em>, mientras que el término <em><strong>“destruction”</strong></em> está <em><strong>asociado con dos palabras</strong></em>, a saber, <em><strong>“la destruction”</strong></em>.</p>
-</section>
-</div><div class="proof observation admonition" id="observation_ann13">
-<p class="admonition-title"><span class="caption-number">Observation 8.7 </span></p>
-<section class="observation-content" id="proof-content">
-<ul class="simple">
-<li><p>Una ventaja notable de <em><strong>incorporar un mecanismo de atención</strong></em> al modelo es la <em><strong>transparencia que aporta a las acciones del modelo</strong></em> y a la formación de la información de salida. Esto resulta especialmente valioso cuando la <em><strong>interpretabilidad de la red es una preocupación</strong></em>, ya que permite comprender el <em><strong>“por qué” y el “cómo” del proceso de toma de decisiones de la red</strong></em>.</p></li>
-</ul>
-</section>
-</div></section>
-<section id="entrenamiento-adversario">
-<h2><span class="section-number">8.16. </span>Entrenamiento adversario<a class="headerlink" href="#entrenamiento-adversario" title="Link to this heading">#</a></h2>
-<div class="admonition-introduccion admonition">
-<p class="admonition-title">Introducción</p>
-<ul class="simple">
-<li><p>Las <em><strong>redes neuronales profundas</strong></em> lideran en la obtención de un <em><strong>rendimiento y precisión sobresalientes</strong></em>, frecuentemente comparables e incluso en <em><strong>algunos casos superiores a las habilidades humanas</strong></em>. Sin embargo, persiste el <em><strong>desafío de afirmar que estos modelos realmente “comprenden” las tareas que han “aprendido” a realizar</strong></em>, a pesar de su habilidad para predecir etiquetas precisas en tareas de clasificación con una confianza considerablemente alta.</p></li>
-<li><p>Es <em><strong>viable generar ejemplos adversos que sistemáticamente engañan a los modelos de aprendizaje automático</strong></em>. Aquí, <em><strong>“adversario” denota la introducción intencional de pequeñas perturbaciones en los patrones dentro del conjunto de datos de entrada</strong></em>, lo que resulta en una <em><strong>alta probabilidad de clasificación incorrecta</strong></em>. Notablemente, estas sutiles perturbaciones de ruido son <em><strong>apenas detectables para los sentidos humanos</strong></em>, ya sea en forma de imágenes o música.</p></li>
-</ul>
-</div>
-<ul class="simple">
-<li><p>La <a class="reference internal" href="#wrong-image-classification-numref"><span class="std std-numref">Fig. 8.44</span></a> muestra una serie de <em><strong>nueve imágenes</strong></em>. Se ha entrenado una <em><strong>red neuronal (AlexNet)</strong></em> para <em><strong>discernir los contenidos de las imágenes</strong></em>. El trío <em><strong>izquierdo de imágenes</strong></em>, tomadas del respectivo conjunto de pruebas, fueron <em><strong>identificadas con precisión</strong></em>. Las imágenes en el <em><strong>centro son versiones ruidosas</strong></em> añadidas a las originales de la izquierda. Las composiciones <em><strong>resultantes se presentan a la derecha</strong></em>. Mientras los seres <em><strong>humanos anticipan sin dificultad las etiquetas correctas</strong></em>, <em><strong>AlexNet catalogó de forma errónea las tres imágenes como “avestruz, struthio camelus”</strong></em>.</p></li>
-</ul>
-<figure class="align-center" id="wrong-image-classification-numref">
-<a class="reference internal image-reference" href="_images/wrong_image_classification.png"><img alt="_images/wrong_image_classification.png" src="_images/wrong_image_classification.png" style="width: 672.0px; height: 661.6px;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 8.44 </span><span class="caption-text">Imágenes de la <em><strong>izquierda</strong></em> se han <em><strong>clasificado correctamente</strong></em>. Todas las <em><strong>imágenes de la derecha</strong></em> han sido <em><strong>clasificadas como “avestruz, Struthio camelus”</strong></em>. Fuente <span id="id47">[<a class="reference internal" href="biblio.html#id17" title="S. Theodoridis. Machine Learning: A Bayesian and Optimization Perspective. Elsevier Science, 2020. ISBN 9780128188040. URL: https://books.google.com.co/books?id=l-nEDwAAQBAJ.">Theodoridis, 2020</a>]</span>.</span><a class="headerlink" href="#wrong-image-classification-numref" title="Link to this image">#</a></p>
-</figcaption>
-</figure>
-<ul>
-<li><p>La causa de este <em><strong>comportamiento aparentemente “peculiar”</strong></em> parece estar vinculada a la <em><strong>naturaleza altamente dimensional del espacio de entrada</strong></em>. Por lo general, en un contexto de aprendizaje, se cumple el <em><strong>supuesto de suavidad</strong></em>.  Esto implica que <em><strong>para un valor positivo suficientemente pequeño</strong></em> <span class="math notranslate nohighlight">\(\epsilon\)</span> y un <em><strong>patrón de entrada</strong></em> <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span>, se espera que el patrón</p>
-<div class="math notranslate nohighlight">
-\[
-    \boldsymbol{x}':= \boldsymbol{x} + \boldsymbol{v},~\text{donde}~\boldsymbol{v} : \|\boldsymbol{v}\|\leq\epsilon,
-    \]</div>
-<p>se <em><strong>clasifique en la misma categoría que</strong></em> <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> <em><strong>con una alta probabilidad</strong></em>.</p>
-</li>
-<li><p>El impacto de la <em><strong>alta dimensionalidad (número de características igual o superior al número de observaciones)</strong></em> en la condición de suavidad se hace evidente, sobre todo en el contexto de un <em><strong>clasificador lineal</strong></em>. Consideremos un <em><strong>clasificador</strong></em> entrenado <em><strong>descrito por sus parámetros</strong></em>, <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span>. Dado un <em><strong>patrón de entrada</strong></em>, <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span>, la <em><strong>etiqueta se determina basándose en el signo del producto interior</strong></em>, <span class="math notranslate nohighlight">\(\boldsymbol{\theta}^{T}\boldsymbol{x}\)</span>. Para el escenario en el que interviene <span class="math notranslate nohighlight">\(\boldsymbol{x}'\)</span>, el producto interior se expresa como</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[
-\boldsymbol{\theta}^{T}\boldsymbol{x}' = \boldsymbol{\theta}^{T}\boldsymbol{x} + \boldsymbol{\theta}^{T}\boldsymbol{v}.
-\]</div>
-<ul class="simple">
-<li><p>Si establecemos intencionadamente <span class="math notranslate nohighlight">\(\boldsymbol{v} = \pm\epsilon\cdot\text{sgn}(\boldsymbol{\theta})\)</span>, donde la <em><strong>operación signo se aplica elemento a elemento</strong></em>, se obtiene un resultado digno de mención. Entonces</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[
-\boldsymbol{\theta}^{T}\boldsymbol{x}'=\boldsymbol{\theta}^{T}\boldsymbol{x}+\boldsymbol{\theta}^{T}\boldsymbol{v}=\boldsymbol{\theta}^{T}\pm\epsilon\sum_{i=1}^{l}|\theta_{i}|.
-\]</div>
-<ul class="simple">
-<li><p>Por lo tanto, cuando la <em><strong>dimensionalidad de la entrada</strong></em> <span class="math notranslate nohighlight">\(l\)</span> <em><strong>es alta</strong></em>, es probable que se produzcan <em><strong>diferencias significativas en los valores del producto interno</strong></em>, lo que podría causar etiquetas de <em><strong>predicción distintas</strong></em> tanto para <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> como para <span class="math notranslate nohighlight">\(\boldsymbol{x}'\)</span>. En términos sencillos, la <em><strong>interacción de la linealidad y la alta dimensionalidad rompe el supuesto de suavidad</strong></em>.</p></li>
-</ul>
-<div class="proof observation admonition" id="observation_ann14">
-<p class="admonition-title"><span class="caption-number">Observation 8.8 </span></p>
-<section class="observation-content" id="proof-content">
-<ul class="simple">
-<li><p>A pesar de que los <em><strong>ejemplos adversos son poco frecuentes</strong></em> en los datos de entrada (tanto en los conjuntos de <em><strong>entrenamiento</strong></em> como en los de <em><strong>prueba</strong></em>), <em><strong>su existencia sigue siendo desconcertante</strong></em>. Además, pueden aprovecharse para <em><strong>engañar deliberadamente a las redes</strong></em>. En consecuencia, han surgido varias <em><strong>técnicas para reforzar la resistencia de las redes frente a adversarios</strong></em>.</p></li>
-</ul>
-</section>
-</div><ul class="simple">
-<li><p>Uno estudio descrito en <span id="id48">[<a class="reference internal" href="biblio.html#id49" title="Christian Szegedy, Wojciech Zaremba, Ilya Sutskever, Joan Bruna, Dumitru Erhan, Ian Goodfellow, and Rob Fergus. Intriguing properties of neural networks. arXiv preprint arXiv:1312.6199, 2013.">Szegedy <em>et al.</em>, 2013</a>]</span>, consiste en <em><strong>generar ejemplos adversos e incorporarlos de nuevo al conjunto de entrenamiento</strong></em>. Esta estrategia funciona como una forma de <em><strong>regularización a través del aumento de datos</strong></em>. Sin embargo, una perspectiva alternativa presentada en <span id="id49">[<a class="reference internal" href="biblio.html#id50" title="Corey Kereliuk, Bob L Sturm, and Jan Larsen. Deep learning and music adversaries. IEEE Transactions on Multimedia, 17(11):2059–2071, 2015.">Kereliuk <em>et al.</em>, 2015</a>]</span> argumenta que este método <em><strong>no mejoró notablemente el rendimiento cuando se aplicó a datos musicales</strong></em>.</p></li>
-</ul>
-<ul>
-<li><p>En <span id="id50">[<a class="reference internal" href="biblio.html#id51" title="Ian J Goodfellow, Jonathon Shlens, and Christian Szegedy. Explaining and harnessing adversarial examples. arXiv preprint arXiv:1412.6572, 2014.">Goodfellow <em>et al.</em>, 2014</a>]</span>, la <em><strong>función de pérdida</strong></em> <span class="math notranslate nohighlight">\(J\)</span> <em><strong>se modifica adecuadamente</strong></em> como</p>
-<div class="math notranslate nohighlight">
-\[
-    J'(\boldsymbol{\theta}, \boldsymbol{x}, \boldsymbol{y})=\alpha J(\boldsymbol{\theta}, \boldsymbol{x}, \boldsymbol{y})+(1-\alpha)J(\boldsymbol{\theta}, \boldsymbol{x}+\Delta\boldsymbol{x}, \boldsymbol{y}),~0&lt;\alpha&lt;1,
-    \]</div>
-<p>donde</p>
-<div class="math notranslate nohighlight">
-\[
-    \Delta\boldsymbol{x}=\epsilon\cdot\text{sgn}\left(\frac{\partial}{\partial\boldsymbol{x}}J(\boldsymbol{\theta}, \boldsymbol{x}, \boldsymbol{y})\right),~\epsilon&gt;0,
-    \]</div>
-<p>es una <em><strong>dirección para la perturbación adversarial</strong></em>.</p>
-</li>
-<li><p>Es importante señalar que los <em><strong>ejemplos adversarios</strong></em> siguen siendo un foco de investigación en evolución dinámica. Se subrayan los <em><strong>peligros potenciales, como la manipulación de vehículos autónomos utilizando muestras adversarios</strong></em>, entre otros (ver <span id="id51">[<a class="reference internal" href="biblio.html#id53" title="Alexey Kurakin, Ian J Goodfellow, and Samy Bengio. Adversarial examples in the physical world. In Artificial intelligence safety and security, pages 99–112. Chapman and Hall/CRC, 2018.">Kurakin <em>et al.</em>, 2018</a>, <a class="reference internal" href="biblio.html#id52" title="Nicolas Papernot, Patrick McDaniel, Ian Goodfellow, Somesh Jha, Z Berkay Celik, and Ananthram Swami. Practical black-box attacks against machine learning. In Proceedings of the 2017 ACM on Asia conference on computer and communications security, 506–519. 2017.">Papernot <em>et al.</em>, 2017</a>, <a class="reference internal" href="biblio.html#id54" title="Nicolas Papernot, Patrick McDaniel, Arunesh Sinha, and Michael Wellman. Towards the science of security and privacy in machine learning. arXiv preprint arXiv:1611.03814, 2016.">Papernot <em>et al.</em>, 2016</a>]</span>).</p></li>
-</ul>
-</section>
-<section id="modelos-generativos-profundos">
-<h2><span class="section-number">8.17. </span>Modelos Generativos Profundos<a class="headerlink" href="#modelos-generativos-profundos" title="Link to this heading">#</a></h2>
-<section id="maquina-de-boltzmann-restringida">
-<h3><span class="section-number">8.17.1. </span>Máquina de Boltzmann Restringida<a class="headerlink" href="#maquina-de-boltzmann-restringida" title="Link to this heading">#</a></h3>
-<div class="admonition-introduccion admonition">
-<p class="admonition-title">Introducción</p>
-<ul class="simple">
-<li><p>Una <em><strong>máquina de Boltzmann restringida (RBM)</strong></em> es una <em><strong>red neuronal artificial estocástica generativa</strong></em> que puede <em><strong>aprender una distribución de probabilidad sobre su conjunto de entradas</strong></em> bajo ajuste de parámetros. Las RBM fueron estudiadas inicialmente con el nombre de <em><strong>Harmonium por Paul Smolensky en 1986</strong></em>, y adquirieron prominencia después de que <em><strong>Geoffrey Hinton</strong></em> y sus colaboradores propusieron para estas, algoritmos de aprendizaje rápido a mediados de 2000.</p></li>
-<li><p>Las <em><strong>RBM</strong></em> han encontrado <em><strong>aplicaciones en la reducción de la dimensionalidad, clasificación, filtrado, aprendizaje de funciones, modelado de temas e incluso en muchas mecánicas cuánticas corporales</strong></em>. Pueden ser entrenados en <em><strong>forma supervisada o no supervisada</strong></em>, dependiendo de la tarea.</p></li>
-</ul>
-</div>
-<ul>
-<li><p>El modelo gráfico de la <a class="reference internal" href="#rboltzmann-model-numref"><span class="std std-numref">Fig. 8.45</span></a> ilustra una <em><strong>máquina de Boltzmann restringida (RBM)</strong></em>. La máquina de Boltzmann utiliza la siguiente <em><strong>distribución de probabilidad conjunta de Boltzmann</strong></em> definida como</p>
-<div class="math notranslate nohighlight">
-\[
-    p(x_{1}, \dots, x_{l}):=p(\boldsymbol{x})=\frac{1}{Z}\exp\left(-\sum_{i}\left(\sum_{j&gt;i}\theta_{ij}x_{i}x_{j}+\theta_{i0}x_{i}\right)\right),
-    \]</div>
-<p>donde cada <em><strong>variable aleatoria toma valores binarios</strong></em> en <span class="math notranslate nohighlight">\(\{-1, 1\}\)</span>, <span class="math notranslate nohighlight">\(\theta_{ij}=0\)</span> si los <em><strong>nodos respectivos no están conectados</strong></em> y la constante <span class="math notranslate nohighlight">\(Z\)</span> se conoce como <em><strong>función de partición</strong></em> y es la <em><strong>constante normalizadora</strong></em> para <em><strong>garantizar que</strong></em> <span class="math notranslate nohighlight">\(p(x_{1}, \dots, x_{l})\)</span> <em><strong>es una distribución de probabilidad</strong></em>.</p>
-</li>
-<li><p>Es importante destacar que los <em><strong>nodos dentro de la misma capa carecen de interconexiones</strong></em>. Esta arquitectura abarca <em><strong>nodos visibles en la capa inferior</strong></em> que reciben observaciones, mientras que la <em><strong>capa superior contiene nodos vinculados a variables ocultas</strong></em>. Cabe destacar que <em><strong>sólo los nodos de la capa inferior reciben observaciones</strong></em>. Es posible construir <em><strong>RBM profundos</strong></em> apilando múltiples <em><strong>RBM</strong></em> unos sobre otros. De acuerdo con la <em><strong>definición general de una máquina de Boltzmann</strong></em>, la distribución conjunta de las variables aleatorias implicadas puede expresarse como:</p>
-<div class="math notranslate nohighlight">
-\[
-    P(v_{1}, \dots, v_{J}, h_{1}, \dots, h_{I})=\frac{1}{Z}\exp(-E(\boldsymbol{v}, \boldsymbol{h})),
-    \]</div>
-<p>donde hemos utilizado símbolos diferentes para las <span class="math notranslate nohighlight">\(J\)</span> <em><strong>variables visibles</strong></em> (<span class="math notranslate nohighlight">\(v_{j},~j = 1, 2,\dots, J\)</span>) y las <span class="math notranslate nohighlight">\(I\)</span> <em><strong>variables ocultas</strong></em> (<span class="math notranslate nohighlight">\(h_{i},~i = 1, 2,\dots, I\)</span>).</p>
-</li>
-</ul>
-<ul class="simple">
-<li><p>La <em><strong>función de energía no es la salida de la RBM</strong></em>, por lo contrario, es una métrica para medir la calidad de un modelo. Produce un <em><strong>valor escalar que corresponde básicamente a la configuración del modelo</strong></em> y es un <em><strong>indicador de la probabilidad de que el modelo esté en esa configuración</strong></em>. Si el modelo está configurado para favorecer una energía baja, las <em><strong>configuraciones que conduzcan a una energía baja tendrán una probabilidad más alta</strong></em>.</p></li>
-</ul>
-<figure class="align-center" id="rboltzmann-model-numref">
-<a class="reference internal image-reference" href="_images/rboltzmann_model.png"><img alt="_images/rboltzmann_model.png" src="_images/rboltzmann_model.png" style="width: 274.4px; height: 121.8px;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 8.45 </span><span class="caption-text">Arquitectura de <em><strong>modelo (RBM)</strong></em>. Fuente <span id="id52">[<a class="reference internal" href="biblio.html#id17" title="S. Theodoridis. Machine Learning: A Bayesian and Optimization Perspective. Elsevier Science, 2020. ISBN 9780128188040. URL: https://books.google.com.co/books?id=l-nEDwAAQBAJ.">Theodoridis, 2020</a>]</span>.</span><a class="headerlink" href="#rboltzmann-model-numref" title="Link to this image">#</a></p>
-</figcaption>
-</figure>
-<ul class="simple">
-<li><p>La <em><strong>energía</strong></em> se define en <em><strong>función de un conjunto de parámetros desconocidos</strong></em>, es decir,</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[
-E(\boldsymbol{v}, \boldsymbol{h})=-\sum_{i=1}^{I}\sum_{j=1}^{J}\theta_{ij}h_{i}v_{j}-\sum_{i=1}^{I}b_{i}h_{i}-\sum_{j=1}^{J}c_{j}v_{j}.                                                                                                                                                                              
-\]</div>
-<ul class="simple">
-<li><p>La <em><strong>constante de normalización</strong></em> se obtiene como</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[
-Z=\sum_{v}\sum_{h}\exp(-E(\boldsymbol{v}, \boldsymbol{h})).
-\]</div>
-<ul class="simple">
-<li><p>Nuestro enfoque será en <em><strong>variables discretas</strong></em>, lo que implica que las <em><strong>distribuciones relacionadas son de carácter probabilístico</strong></em>. Específicamente, nos centraremos en <em><strong>variables de naturaleza binaria</strong></em>, es decir, aquellas que poseen únicamente dos posibles valores, <span class="math notranslate nohighlight">\(v_{j}, h_{i}\in\{0, 1\},\)</span> <span class="math notranslate nohighlight">\(j=1,\dots,J\)</span>, <span class="math notranslate nohighlight">\(i=1,\dots,I\)</span>.</p></li>
-</ul>
-<ul>
-<li><p>El objetivo al <em><strong>entrenar una Máquina de Boltzmann Restringida (RBM)</strong></em> consiste en <em><strong>adquirir el conjunto de parámetros desconocidos</strong></em> <span class="math notranslate nohighlight">\(\theta_{ij}, b_{i}, c_{j}\)</span>, los cuales serán designados colectivamente como, <span class="math notranslate nohighlight">\(\boldsymbol{\Theta},\boldsymbol{b}\)</span> y <span class="math notranslate nohighlight">\(\boldsymbol{c}\)</span> respectivamente. Un enfoque primordial para lograr esto es <em><strong>maximizar la log-verosimilitud</strong></em>, utilizando <span class="math notranslate nohighlight">\(N\)</span> observaciones de las <em><strong>variables visibles</strong></em>, representadas como <span class="math notranslate nohighlight">\(v_{n},~n=1,\dots, N\)</span>, donde</p>
-<div class="math notranslate nohighlight">
-\[
-    \boldsymbol{v}_{n}=[v_{1n}, \dots, v_{Jn}]^{T},
-    \]</div>
-<p>es el vector que contiene las <em><strong>observaciones</strong></em> correspondientes en el <em><strong>momento</strong></em> <span class="math notranslate nohighlight">\(n\)</span>.</p>
-</li>
-</ul>
-<ul>
-<li><p>Diremos que los <em><strong>nodos visibles están fijados en las observaciones respectivas</strong></em>. La correspondiente ***log-verosimilitud (promedio) *** se expresa como sigue:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-    \begin{align*}
-    L(\boldsymbol{\Theta}, \boldsymbol{b}, \boldsymbol{c})&amp;=\frac{1}{N}\sum_{n=1}^{N}\ln P(\boldsymbol{v}_{n};\boldsymbol{\Theta}, \boldsymbol{b}, \boldsymbol{c})\\
-    &amp;=\frac{1}{N}\sum_{n=1}^{N}\ln\left(\frac{1}{Z}\sum_{\boldsymbol{h}}\exp(-E(\boldsymbol{v}_{n}, \boldsymbol{h}; \boldsymbol{\Theta}, \boldsymbol{b}, \boldsymbol{c}))\right)\\
-    &amp;=\frac{1}{N}\sum_{n=1}^{N}\ln\left(\sum_{\boldsymbol{h}}\exp(-E(\boldsymbol{v}_{n}, \boldsymbol{h}; \boldsymbol{\Theta}, \boldsymbol{b}, \boldsymbol{c}))\right)-\ln\sum_{\boldsymbol{v}}\sum_{\boldsymbol{h}}\exp\left(-E(\boldsymbol{v}, \boldsymbol{h})\right),
-    \end{align*}
-    \end{split}\]</div>
-<p>donde el índice “<span class="math notranslate nohighlight">\(n\)</span>” en la energía se refiere a las <em><strong>observaciones respectivas en las cuales los nodos visibles han sido fijados</strong></em>, y el símbolo “<span class="math notranslate nohighlight">\(\Theta\)</span>” ha sido <em><strong>incluido explícitamente en la notación</strong></em>.</p>
-</li>
-</ul>
-<ul>
-<li><p>Tomando la derivada de <span class="math notranslate nohighlight">\(L(\boldsymbol{\Theta}, \boldsymbol{b}, \boldsymbol{c})\)</span> respecto a <span class="math notranslate nohighlight">\(\theta_{ij}\)</span> (similar es el caso de las derivadas respecto a respecto a <span class="math notranslate nohighlight">\(b_{i}\)</span> y <span class="math notranslate nohighlight">\(c_{j}\)</span>) y aplicando las <em><strong>propiedades estándar de las derivadas</strong></em>, se tiene que (<em><strong>verifíquelo</strong></em>)</p>
-<div class="math notranslate nohighlight" id="equation-gradient-boltzmann-eq">
-<span class="eqno">(8.18)<a class="headerlink" href="#equation-gradient-boltzmann-eq" title="Link to this equation">#</a></span>\[
-    \frac{\partial L(\boldsymbol{\Theta}, \boldsymbol{b}, \boldsymbol{c})}{\partial\theta_{ij}}=\frac{1}{N}\sum_{n=1}^{N}\left(\sum_{\boldsymbol{h}}P(\boldsymbol{h}|\boldsymbol{v}_{n})h_{i}v_{jn}\right)-\sum_{\boldsymbol{v}}\sum_{\boldsymbol{h}}P(\boldsymbol{v}, \boldsymbol{h})h_{i}v_{j},
-    \]</div>
-<p>donde</p>
-<div class="math notranslate nohighlight">
-\[
-    P(\boldsymbol{h}|\boldsymbol{v})=\frac{P(\boldsymbol{v}|\boldsymbol{h})}{\sum_{\boldsymbol{h}'}P(\boldsymbol{v}, \boldsymbol{h}')}.
-    \]</div>
-</li>
-</ul>
-<ul class="simple">
-<li><p>El gradiente en la Eq. <a class="reference internal" href="#equation-gradient-boltzmann-eq">(8.18)</a> consta de <em><strong>dos términos</strong></em>. El primero puede ser <em><strong>calculado una vez que</strong></em> <span class="math notranslate nohighlight">\(P(\boldsymbol{h}|\boldsymbol{v})\)</span> <em><strong>está disponible</strong></em>. Básicamente, este término es la <em><strong>tasa media de disparo o correlación</strong></em> cuando la Máquina de Boltzmann Restringida <em><strong>(RBM) está operando en su fase fijada</strong></em>; a menudo, nos referimos a esto como la <em><strong>fase positiva</strong></em> (<em><strong>regla de aprendizaje de Hebb</strong></em> <span id="id53">[<a class="reference internal" href="biblio.html#id55" title="Donald Olding Hebb. The organization of behavior: A neuropsychological theory. Psychology press, 2005.">Hebb, 2005</a>]</span>), y el término se denota como <span class="math notranslate nohighlight">\(\langle h{i}v_{j}\rangle^{+}\)</span>. El segundo término es la <em><strong>correlación correspondiente cuando la RBM está funcionando en su llamada fase libre o negativa</strong></em>, y se denota como <span class="math notranslate nohighlight">\(\langle h_{i}v_{j}\rangle^{-}\)</span>. Por lo tanto, un <em><strong>esquema de aumento de gradiente</strong></em> para maximizar la log-verosimilitud tendrá la forma:</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[
-\theta_{ij}(\text{new})=\theta_{ij}(old)+\mu(\langle h{i}v_{j}\rangle^{+}-\langle h_{i}v_{j}\rangle^{-}).
-\]</div>
-</section>
-</section>
-<section id="autoencoders">
-<h2><span class="section-number">8.18. </span>Autoencoders<a class="headerlink" href="#autoencoders" title="Link to this heading">#</a></h2>
-<ul>
-<li><p>Los <em><strong>autoencoders</strong></em> han sido propuestos como <em><strong>métodos para la reducción de dimensionalidad</strong></em>. Un <em><strong>autoencoder</strong></em> consta de dos partes, el <em><strong>codificador</strong></em> y el <em><strong>decodificador</strong></em>. La <em><strong>salida del codificador es la representación reducida del patrón de entrada</strong></em>, y se define en términos de una función vectorial</p>
-<div class="math notranslate nohighlight">
-\[
-    \boldsymbol{f}:~\boldsymbol{x}\in\mathbb{R}^{l}\longmapsto\boldsymbol{h}\in\mathbb{R}^{m},
-    \]</div>
-<p>donde</p>
-<div class="math notranslate nohighlight">
-\[
-    h_{i}:=f_{i}(\boldsymbol{x})=\phi_{e}(\boldsymbol{\theta}_{i}^{T}\boldsymbol{x}+b_{i}),\quad i=1,2,\dots,m,
-    \]</div>
-<p>con <span class="math notranslate nohighlight">\(\phi_{e}\)</span> función de <em><strong>activación</strong></em>; esta última suele tomarse como la función <em><strong>sigmoidea logística</strong></em> <span class="math notranslate nohighlight">\(\phi_{e}(\cdot)=\sigma(\cdot)\)</span>. En otras palabras, el <em><strong>codificador es una red neuronal feed-forward de una sola capa oculta</strong></em></p>
-</li>
-</ul>
-<ul>
-<li><p>El <em><strong>decodificador</strong></em> es otra función <span class="math notranslate nohighlight">\(\boldsymbol{g}\)</span>.</p>
-<div class="math notranslate nohighlight">
-\[
-    \boldsymbol{g}:~\boldsymbol{h}\in\mathbb{R}^{m}\longmapsto\hat{\boldsymbol{x}}\in\mathbb{R}^{l},
-    \]</div>
-<p>donde</p>
-<div class="math notranslate nohighlight">
-\[
-    \hat{x}_{j}=g_{j}(\boldsymbol{h})=\phi_{d}(\boldsymbol{\theta}'^{T}\boldsymbol{h}+b_{j}'),\quad j=1,\dots,l.
-    \]</div>
-<p>La función de <em><strong>activación</strong></em> <span class="math notranslate nohighlight">\(\phi_{d}\)</span> suele ser la identidad (<em><strong>reconstrucción lineal</strong></em>) o la <em><strong>sigmoidea logística</strong></em>.</p>
-</li>
-</ul>
-<ul class="simple">
-<li><p>La tarea de entrenamiento consiste en <em><strong>estimar los parámetros</strong></em></p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[
-\Theta:=[\boldsymbol{\theta}_{1},\dots,\boldsymbol{\theta}_{m}],~\boldsymbol{b},~\Theta':=[\boldsymbol{\theta}_{1}',\dots,\boldsymbol{\theta}_{l}'],~\boldsymbol{b}'.
-\]</div>
-<ul class="simple">
-<li><p>Es habitual suponer que <span class="math notranslate nohighlight">\(\Theta'=\Theta^{T}\)</span>. Los parámetros se estiman para que el <em><strong>error de reconstrucción</strong></em> <span class="math notranslate nohighlight">\(\boldsymbol{e}=\boldsymbol{x}-\hat{\boldsymbol{x}}\)</span>, sobre las muestras de entrada disponibles sea <em><strong>mínimo</strong></em>. Normalmente, se utiliza el <em><strong>coste por mínimos cuadrados</strong></em> pero también son posibles otras opciones. Las <em><strong>versiones regularizadas</strong></em>, que implican una norma de los parámetros, también es una posibilidad. Si se elige que la activación <span class="math notranslate nohighlight">\(\phi_{e}\)</span> sea la identidad (representación lineal) y <span class="math notranslate nohighlight">\(m &lt; l\)</span> (para evitar la trivialidad), el <em><strong>autoencoder es equivalente a la técnica PCA</strong></em>.</p></li>
-</ul>
-</section>
 <section id="aplicacion-procesamiento-del-lenguaje-natural">
-<h2><span class="section-number">8.19. </span>Aplicación: Procesamiento del Lenguaje Natural<a class="headerlink" href="#aplicacion-procesamiento-del-lenguaje-natural" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">8.15. </span>Aplicación: Procesamiento del Lenguaje Natural<a class="headerlink" href="#aplicacion-procesamiento-del-lenguaje-natural" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
@@ -7850,6 +7597,259 @@ acc: 0.98
 </div>
 </div>
 </section>
+<section id="atencion-y-memoria">
+<h2><span class="section-number">8.16. </span>Atención y Memoria<a class="headerlink" href="#atencion-y-memoria" title="Link to this heading">#</a></h2>
+<div class="admonition-introduccion admonition">
+<p class="admonition-title">Introducción</p>
+<ul class="simple">
+<li><p>El uso histórico de <em><strong>esquemas de atención en redes neuronales</strong></em> se inspira en el <em><strong>mecanismo de atención humana</strong></em>. En la visión humana, <em><strong>nos centramos en información contextual importante</strong></em> cuando observamos escenas. En el aprendizaje automático, los <em><strong>modelos de atención implementan este concepto asignando pesos a las variables que influyen en la salida</strong></em>. Por ejemplo, en una <em><strong>RNN</strong></em>, la salida <span class="math notranslate nohighlight">\(\hat{\boldsymbol{y}}_{n}\)</span> depende del vector de estado <span class="math notranslate nohighlight">\(\boldsymbol{h}_{n}\)</span>, pero <em><strong>no siempre es la información más importante para tareas</strong></em> como la traducción de idiomas (aunque el estado codifica la memoria hasta el tiempo más reciente, <span class="math notranslate nohighlight">\(n\)</span>.).</p></li>
+</ul>
+</div>
+<div class="proof observation admonition" id="observation_ann12">
+<p class="admonition-title"><span class="caption-number">Observation 8.6 </span> (Caso típico)</p>
+<section class="observation-content" id="proof-content">
+<ul class="simple">
+<li><p>En la <em><strong>traducción del japonés al inglés, la última palabra de una frase japonesa puede influir mucho en la primera palabra de la traducción inglesa</strong></em>. Del mismo modo, en la <em><strong>toma de decisiones, nuestras acciones dependen de las experiencias pasadas acumuladas</strong></em>, y algunas <em><strong>experiencias pasadas específicas ejercen más influencia que las recientes</strong></em>.</p></li>
+</ul>
+</section>
+</div><ul class="simple">
+<li><p>Para solucionar este problema, <em><strong>los mecanismos de atención asignan pesos a los vectores de estado anteriores</strong></em>, lo que permite que <em><strong>la salida dependa de una combinación ponderada de información previa</strong></em>. Estas ponderaciones se aprenden durante el entrenamiento, lo que <em><strong>permite al sistema dar prioridad a detalles contextuales significativos</strong></em> a la hora de tomar decisiones o generar resultados.</p></li>
+</ul>
+<ul>
+<li><p>Por ejemplo, el <em><strong>vector de salida</strong></em> puede modificarse para que <em><strong>dependa de todos los vectores de estado calculados anteriormente</strong></em></p>
+<div class="math notranslate nohighlight">
+\[
+    \hat{\boldsymbol{y}}_{n}=f\left(\sum_{i=1}^{n}\alpha_{ni}\boldsymbol{h}_{i}+\boldsymbol{c}\right),
+    \]</div>
+<p>donde <span class="math notranslate nohighlight">\(\alpha_{ni}\)</span> son los <em><strong>correspondientes pesos en el tiempo</strong></em> <span class="math notranslate nohighlight">\(n\)</span>.</p>
+</li>
+<li><p>La idea anterior de <em><strong>combinar todos los vectores de estado</strong></em> ha sido empleada, en una formulación algo diferente, en el <em><strong>sistema de traducción automática</strong></em> (ver <span id="id46">[<a class="reference internal" href="biblio.html#id48" title="Dzmitry Bahdanau, Kyunghyun Cho, and Yoshua Bengio. Neural machine translation by jointly learning to align and translate. arXiv preprint arXiv:1409.0473, 2014.">Bahdanau <em>et al.</em>, 2014</a>]</span>)</p></li>
+</ul>
+<figure class="align-center" id="attention-weights-grayscale-numref">
+<a class="reference internal image-reference" href="_images/attention_weights_grayscale.png"><img alt="_images/attention_weights_grayscale.png" src="_images/attention_weights_grayscale.png" style="width: 381.6px; height: 434.40000000000003px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 8.43 </span><span class="caption-text">Valores de los pesos de atención en escala de grises. <a class="reference internal" href="#attention_example_grayscale">Example 8.1</a></span><a class="headerlink" href="#attention-weights-grayscale-numref" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="proof example admonition" id="attention_example_grayscale">
+<p class="admonition-title"><span class="caption-number">Example 8.1 </span></p>
+<section class="example-content" id="proof-content">
+<p>La <a class="reference internal" href="#attention-weights-grayscale-numref"><span class="std std-numref">Fig. 8.43</span></a> demuestra el razonamiento que subyace a la <em><strong>utilización de un mecanismo de ponderación</strong></em>. La <em><strong>entrada</strong></em> está representada por las <em><strong>palabras en francés</strong></em>, mientras que las secuencias de <em><strong>salida</strong></em> correspondientes están representadas por las <em><strong>palabras en inglés</strong></em>. <em><strong>La visualización representa los pesos de atención como píxeles</strong></em>, donde los <em><strong>pesos más altos se representan como píxeles más blancos</strong></em>. En particular, el <em><strong>término “produce” en la salida</strong></em> es consecuencia de <em><strong>asignar peso a la información de tres puntos temporales consecutivos</strong></em>, vinculados con las palabras <em><strong>“peut plus produire”</strong></em>, mientras que el término <em><strong>“destruction”</strong></em> está <em><strong>asociado con dos palabras</strong></em>, a saber, <em><strong>“la destruction”</strong></em>.</p>
+</section>
+</div><div class="proof observation admonition" id="observation_ann13">
+<p class="admonition-title"><span class="caption-number">Observation 8.7 </span></p>
+<section class="observation-content" id="proof-content">
+<ul class="simple">
+<li><p>Una ventaja notable de <em><strong>incorporar un mecanismo de atención</strong></em> al modelo es la <em><strong>transparencia que aporta a las acciones del modelo</strong></em> y a la formación de la información de salida. Esto resulta especialmente valioso cuando la <em><strong>interpretabilidad de la red es una preocupación</strong></em>, ya que permite comprender el <em><strong>“por qué” y el “cómo” del proceso de toma de decisiones de la red</strong></em>.</p></li>
+</ul>
+</section>
+</div></section>
+<section id="entrenamiento-adversario">
+<h2><span class="section-number">8.17. </span>Entrenamiento adversario<a class="headerlink" href="#entrenamiento-adversario" title="Link to this heading">#</a></h2>
+<div class="admonition-introduccion admonition">
+<p class="admonition-title">Introducción</p>
+<ul class="simple">
+<li><p>Las <em><strong>redes neuronales profundas</strong></em> lideran en la obtención de un <em><strong>rendimiento y precisión sobresalientes</strong></em>, frecuentemente comparables e incluso en <em><strong>algunos casos superiores a las habilidades humanas</strong></em>. Sin embargo, persiste el <em><strong>desafío de afirmar que estos modelos realmente “comprenden” las tareas que han “aprendido” a realizar</strong></em>, a pesar de su habilidad para predecir etiquetas precisas en tareas de clasificación con una confianza considerablemente alta.</p></li>
+<li><p>Es <em><strong>viable generar ejemplos adversos que sistemáticamente engañan a los modelos de aprendizaje automático</strong></em>. Aquí, <em><strong>“adversario” denota la introducción intencional de pequeñas perturbaciones en los patrones dentro del conjunto de datos de entrada</strong></em>, lo que resulta en una <em><strong>alta probabilidad de clasificación incorrecta</strong></em>. Notablemente, estas sutiles perturbaciones de ruido son <em><strong>apenas detectables para los sentidos humanos</strong></em>, ya sea en forma de imágenes o música.</p></li>
+</ul>
+</div>
+<ul class="simple">
+<li><p>La <a class="reference internal" href="#wrong-image-classification-numref"><span class="std std-numref">Fig. 8.44</span></a> muestra una serie de <em><strong>nueve imágenes</strong></em>. Se ha entrenado una <em><strong>red neuronal (AlexNet)</strong></em> para <em><strong>discernir los contenidos de las imágenes</strong></em>. El trío <em><strong>izquierdo de imágenes</strong></em>, tomadas del respectivo conjunto de pruebas, fueron <em><strong>identificadas con precisión</strong></em>. Las imágenes en el <em><strong>centro son versiones ruidosas</strong></em> añadidas a las originales de la izquierda. Las composiciones <em><strong>resultantes se presentan a la derecha</strong></em>. Mientras los seres <em><strong>humanos anticipan sin dificultad las etiquetas correctas</strong></em>, <em><strong>AlexNet catalogó de forma errónea las tres imágenes como “avestruz, struthio camelus”</strong></em>.</p></li>
+</ul>
+<figure class="align-center" id="wrong-image-classification-numref">
+<a class="reference internal image-reference" href="_images/wrong_image_classification.png"><img alt="_images/wrong_image_classification.png" src="_images/wrong_image_classification.png" style="width: 672.0px; height: 661.6px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 8.44 </span><span class="caption-text">Imágenes de la <em><strong>izquierda</strong></em> se han <em><strong>clasificado correctamente</strong></em>. Todas las <em><strong>imágenes de la derecha</strong></em> han sido <em><strong>clasificadas como “avestruz, Struthio camelus”</strong></em>. Fuente <span id="id47">[<a class="reference internal" href="biblio.html#id17" title="S. Theodoridis. Machine Learning: A Bayesian and Optimization Perspective. Elsevier Science, 2020. ISBN 9780128188040. URL: https://books.google.com.co/books?id=l-nEDwAAQBAJ.">Theodoridis, 2020</a>]</span>.</span><a class="headerlink" href="#wrong-image-classification-numref" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<ul>
+<li><p>La causa de este <em><strong>comportamiento aparentemente “peculiar”</strong></em> parece estar vinculada a la <em><strong>naturaleza altamente dimensional del espacio de entrada</strong></em>. Por lo general, en un contexto de aprendizaje, se cumple el <em><strong>supuesto de suavidad</strong></em>.  Esto implica que <em><strong>para un valor positivo suficientemente pequeño</strong></em> <span class="math notranslate nohighlight">\(\epsilon\)</span> y un <em><strong>patrón de entrada</strong></em> <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span>, se espera que el patrón</p>
+<div class="math notranslate nohighlight">
+\[
+    \boldsymbol{x}':= \boldsymbol{x} + \boldsymbol{v},~\text{donde}~\boldsymbol{v} : \|\boldsymbol{v}\|\leq\epsilon,
+    \]</div>
+<p>se <em><strong>clasifique en la misma categoría que</strong></em> <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> <em><strong>con una alta probabilidad</strong></em>.</p>
+</li>
+<li><p>El impacto de la <em><strong>alta dimensionalidad (número de características igual o superior al número de observaciones)</strong></em> en la condición de suavidad se hace evidente, sobre todo en el contexto de un <em><strong>clasificador lineal</strong></em>. Consideremos un <em><strong>clasificador</strong></em> entrenado <em><strong>descrito por sus parámetros</strong></em>, <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span>. Dado un <em><strong>patrón de entrada</strong></em>, <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span>, la <em><strong>etiqueta se determina basándose en el signo del producto interior</strong></em>, <span class="math notranslate nohighlight">\(\boldsymbol{\theta}^{T}\boldsymbol{x}\)</span>. Para el escenario en el que interviene <span class="math notranslate nohighlight">\(\boldsymbol{x}'\)</span>, el producto interior se expresa como</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\boldsymbol{\theta}^{T}\boldsymbol{x}' = \boldsymbol{\theta}^{T}\boldsymbol{x} + \boldsymbol{\theta}^{T}\boldsymbol{v}.
+\]</div>
+<ul class="simple">
+<li><p>Si establecemos intencionadamente <span class="math notranslate nohighlight">\(\boldsymbol{v} = \pm\epsilon\cdot\text{sgn}(\boldsymbol{\theta})\)</span>, donde la <em><strong>operación signo se aplica elemento a elemento</strong></em>, se obtiene un resultado digno de mención. Entonces</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\boldsymbol{\theta}^{T}\boldsymbol{x}'=\boldsymbol{\theta}^{T}\boldsymbol{x}+\boldsymbol{\theta}^{T}\boldsymbol{v}=\boldsymbol{\theta}^{T}\pm\epsilon\sum_{i=1}^{l}|\theta_{i}|.
+\]</div>
+<ul class="simple">
+<li><p>Por lo tanto, cuando la <em><strong>dimensionalidad de la entrada</strong></em> <span class="math notranslate nohighlight">\(l\)</span> <em><strong>es alta</strong></em>, es probable que se produzcan <em><strong>diferencias significativas en los valores del producto interno</strong></em>, lo que podría causar etiquetas de <em><strong>predicción distintas</strong></em> tanto para <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> como para <span class="math notranslate nohighlight">\(\boldsymbol{x}'\)</span>. En términos sencillos, la <em><strong>interacción de la linealidad y la alta dimensionalidad rompe el supuesto de suavidad</strong></em>.</p></li>
+</ul>
+<div class="proof observation admonition" id="observation_ann14">
+<p class="admonition-title"><span class="caption-number">Observation 8.8 </span></p>
+<section class="observation-content" id="proof-content">
+<ul class="simple">
+<li><p>A pesar de que los <em><strong>ejemplos adversos son poco frecuentes</strong></em> en los datos de entrada (tanto en los conjuntos de <em><strong>entrenamiento</strong></em> como en los de <em><strong>prueba</strong></em>), <em><strong>su existencia sigue siendo desconcertante</strong></em>. Además, pueden aprovecharse para <em><strong>engañar deliberadamente a las redes</strong></em>. En consecuencia, han surgido varias <em><strong>técnicas para reforzar la resistencia de las redes frente a adversarios</strong></em>.</p></li>
+</ul>
+</section>
+</div><ul class="simple">
+<li><p>Uno estudio descrito en <span id="id48">[<a class="reference internal" href="biblio.html#id49" title="Christian Szegedy, Wojciech Zaremba, Ilya Sutskever, Joan Bruna, Dumitru Erhan, Ian Goodfellow, and Rob Fergus. Intriguing properties of neural networks. arXiv preprint arXiv:1312.6199, 2013.">Szegedy <em>et al.</em>, 2013</a>]</span>, consiste en <em><strong>generar ejemplos adversos e incorporarlos de nuevo al conjunto de entrenamiento</strong></em>. Esta estrategia funciona como una forma de <em><strong>regularización a través del aumento de datos</strong></em>. Sin embargo, una perspectiva alternativa presentada en <span id="id49">[<a class="reference internal" href="biblio.html#id50" title="Corey Kereliuk, Bob L Sturm, and Jan Larsen. Deep learning and music adversaries. IEEE Transactions on Multimedia, 17(11):2059–2071, 2015.">Kereliuk <em>et al.</em>, 2015</a>]</span> argumenta que este método <em><strong>no mejoró notablemente el rendimiento cuando se aplicó a datos musicales</strong></em>.</p></li>
+</ul>
+<ul>
+<li><p>En <span id="id50">[<a class="reference internal" href="biblio.html#id51" title="Ian J Goodfellow, Jonathon Shlens, and Christian Szegedy. Explaining and harnessing adversarial examples. arXiv preprint arXiv:1412.6572, 2014.">Goodfellow <em>et al.</em>, 2014</a>]</span>, la <em><strong>función de pérdida</strong></em> <span class="math notranslate nohighlight">\(J\)</span> <em><strong>se modifica adecuadamente</strong></em> como</p>
+<div class="math notranslate nohighlight">
+\[
+    J'(\boldsymbol{\theta}, \boldsymbol{x}, \boldsymbol{y})=\alpha J(\boldsymbol{\theta}, \boldsymbol{x}, \boldsymbol{y})+(1-\alpha)J(\boldsymbol{\theta}, \boldsymbol{x}+\Delta\boldsymbol{x}, \boldsymbol{y}),~0&lt;\alpha&lt;1,
+    \]</div>
+<p>donde</p>
+<div class="math notranslate nohighlight">
+\[
+    \Delta\boldsymbol{x}=\epsilon\cdot\text{sgn}\left(\frac{\partial}{\partial\boldsymbol{x}}J(\boldsymbol{\theta}, \boldsymbol{x}, \boldsymbol{y})\right),~\epsilon&gt;0,
+    \]</div>
+<p>es una <em><strong>dirección para la perturbación adversarial</strong></em>.</p>
+</li>
+<li><p>Es importante señalar que los <em><strong>ejemplos adversarios</strong></em> siguen siendo un foco de investigación en evolución dinámica. Se subrayan los <em><strong>peligros potenciales, como la manipulación de vehículos autónomos utilizando muestras adversarios</strong></em>, entre otros (ver <span id="id51">[<a class="reference internal" href="biblio.html#id53" title="Alexey Kurakin, Ian J Goodfellow, and Samy Bengio. Adversarial examples in the physical world. In Artificial intelligence safety and security, pages 99–112. Chapman and Hall/CRC, 2018.">Kurakin <em>et al.</em>, 2018</a>, <a class="reference internal" href="biblio.html#id52" title="Nicolas Papernot, Patrick McDaniel, Ian Goodfellow, Somesh Jha, Z Berkay Celik, and Ananthram Swami. Practical black-box attacks against machine learning. In Proceedings of the 2017 ACM on Asia conference on computer and communications security, 506–519. 2017.">Papernot <em>et al.</em>, 2017</a>, <a class="reference internal" href="biblio.html#id54" title="Nicolas Papernot, Patrick McDaniel, Arunesh Sinha, and Michael Wellman. Towards the science of security and privacy in machine learning. arXiv preprint arXiv:1611.03814, 2016.">Papernot <em>et al.</em>, 2016</a>]</span>).</p></li>
+</ul>
+</section>
+<section id="modelos-generativos-profundos">
+<h2><span class="section-number">8.18. </span>Modelos Generativos Profundos<a class="headerlink" href="#modelos-generativos-profundos" title="Link to this heading">#</a></h2>
+<section id="maquina-de-boltzmann-restringida">
+<h3><span class="section-number">8.18.1. </span>Máquina de Boltzmann Restringida<a class="headerlink" href="#maquina-de-boltzmann-restringida" title="Link to this heading">#</a></h3>
+<div class="admonition-introduccion admonition">
+<p class="admonition-title">Introducción</p>
+<ul class="simple">
+<li><p>Una <em><strong>máquina de Boltzmann restringida (RBM)</strong></em> es una <em><strong>red neuronal artificial estocástica generativa</strong></em> que puede <em><strong>aprender una distribución de probabilidad sobre su conjunto de entradas</strong></em> bajo ajuste de parámetros. Las RBM fueron estudiadas inicialmente con el nombre de <em><strong>Harmonium por Paul Smolensky en 1986</strong></em>, y adquirieron prominencia después de que <em><strong>Geoffrey Hinton</strong></em> y sus colaboradores propusieron para estas, algoritmos de aprendizaje rápido a mediados de 2000.</p></li>
+<li><p>Las <em><strong>RBM</strong></em> han encontrado <em><strong>aplicaciones en la reducción de la dimensionalidad, clasificación, filtrado, aprendizaje de funciones, modelado de temas e incluso en muchas mecánicas cuánticas corporales</strong></em>. Pueden ser entrenados en <em><strong>forma supervisada o no supervisada</strong></em>, dependiendo de la tarea.</p></li>
+</ul>
+</div>
+<ul>
+<li><p>El modelo gráfico de la <a class="reference internal" href="#rboltzmann-model-numref"><span class="std std-numref">Fig. 8.45</span></a> ilustra una <em><strong>máquina de Boltzmann restringida (RBM)</strong></em>. La máquina de Boltzmann utiliza la siguiente <em><strong>distribución de probabilidad conjunta de Boltzmann</strong></em> definida como</p>
+<div class="math notranslate nohighlight">
+\[
+    p(x_{1}, \dots, x_{l}):=p(\boldsymbol{x})=\frac{1}{Z}\exp\left(-\sum_{i}\left(\sum_{j&gt;i}\theta_{ij}x_{i}x_{j}+\theta_{i0}x_{i}\right)\right),
+    \]</div>
+<p>donde cada <em><strong>variable aleatoria toma valores binarios</strong></em> en <span class="math notranslate nohighlight">\(\{-1, 1\}\)</span>, <span class="math notranslate nohighlight">\(\theta_{ij}=0\)</span> si los <em><strong>nodos respectivos no están conectados</strong></em> y la constante <span class="math notranslate nohighlight">\(Z\)</span> se conoce como <em><strong>función de partición</strong></em> y es la <em><strong>constante normalizadora</strong></em> para <em><strong>garantizar que</strong></em> <span class="math notranslate nohighlight">\(p(x_{1}, \dots, x_{l})\)</span> <em><strong>es una distribución de probabilidad</strong></em>.</p>
+</li>
+<li><p>Es importante destacar que los <em><strong>nodos dentro de la misma capa carecen de interconexiones</strong></em>. Esta arquitectura abarca <em><strong>nodos visibles en la capa inferior</strong></em> que reciben observaciones, mientras que la <em><strong>capa superior contiene nodos vinculados a variables ocultas</strong></em>. Cabe destacar que <em><strong>sólo los nodos de la capa inferior reciben observaciones</strong></em>. Es posible construir <em><strong>RBM profundos</strong></em> apilando múltiples <em><strong>RBM</strong></em> unos sobre otros. De acuerdo con la <em><strong>definición general de una máquina de Boltzmann</strong></em>, la distribución conjunta de las variables aleatorias implicadas puede expresarse como:</p>
+<div class="math notranslate nohighlight">
+\[
+    P(v_{1}, \dots, v_{J}, h_{1}, \dots, h_{I})=\frac{1}{Z}\exp(-E(\boldsymbol{v}, \boldsymbol{h})),
+    \]</div>
+<p>donde hemos utilizado símbolos diferentes para las <span class="math notranslate nohighlight">\(J\)</span> <em><strong>variables visibles</strong></em> (<span class="math notranslate nohighlight">\(v_{j},~j = 1, 2,\dots, J\)</span>) y las <span class="math notranslate nohighlight">\(I\)</span> <em><strong>variables ocultas</strong></em> (<span class="math notranslate nohighlight">\(h_{i},~i = 1, 2,\dots, I\)</span>).</p>
+</li>
+</ul>
+<ul class="simple">
+<li><p>La <em><strong>función de energía no es la salida de la RBM</strong></em>, por lo contrario, es una métrica para medir la calidad de un modelo. Produce un <em><strong>valor escalar que corresponde básicamente a la configuración del modelo</strong></em> y es un <em><strong>indicador de la probabilidad de que el modelo esté en esa configuración</strong></em>. Si el modelo está configurado para favorecer una energía baja, las <em><strong>configuraciones que conduzcan a una energía baja tendrán una probabilidad más alta</strong></em>.</p></li>
+</ul>
+<figure class="align-center" id="rboltzmann-model-numref">
+<a class="reference internal image-reference" href="_images/rboltzmann_model.png"><img alt="_images/rboltzmann_model.png" src="_images/rboltzmann_model.png" style="width: 274.4px; height: 121.8px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 8.45 </span><span class="caption-text">Arquitectura de <em><strong>modelo (RBM)</strong></em>. Fuente <span id="id52">[<a class="reference internal" href="biblio.html#id17" title="S. Theodoridis. Machine Learning: A Bayesian and Optimization Perspective. Elsevier Science, 2020. ISBN 9780128188040. URL: https://books.google.com.co/books?id=l-nEDwAAQBAJ.">Theodoridis, 2020</a>]</span>.</span><a class="headerlink" href="#rboltzmann-model-numref" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<ul class="simple">
+<li><p>La <em><strong>energía</strong></em> se define en <em><strong>función de un conjunto de parámetros desconocidos</strong></em>, es decir,</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+E(\boldsymbol{v}, \boldsymbol{h})=-\sum_{i=1}^{I}\sum_{j=1}^{J}\theta_{ij}h_{i}v_{j}-\sum_{i=1}^{I}b_{i}h_{i}-\sum_{j=1}^{J}c_{j}v_{j}.                                                                                                                                                                              
+\]</div>
+<ul class="simple">
+<li><p>La <em><strong>constante de normalización</strong></em> se obtiene como</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+Z=\sum_{v}\sum_{h}\exp(-E(\boldsymbol{v}, \boldsymbol{h})).
+\]</div>
+<ul class="simple">
+<li><p>Nuestro enfoque será en <em><strong>variables discretas</strong></em>, lo que implica que las <em><strong>distribuciones relacionadas son de carácter probabilístico</strong></em>. Específicamente, nos centraremos en <em><strong>variables de naturaleza binaria</strong></em>, es decir, aquellas que poseen únicamente dos posibles valores, <span class="math notranslate nohighlight">\(v_{j}, h_{i}\in\{0, 1\},\)</span> <span class="math notranslate nohighlight">\(j=1,\dots,J\)</span>, <span class="math notranslate nohighlight">\(i=1,\dots,I\)</span>.</p></li>
+</ul>
+<ul>
+<li><p>El objetivo al <em><strong>entrenar una Máquina de Boltzmann Restringida (RBM)</strong></em> consiste en <em><strong>adquirir el conjunto de parámetros desconocidos</strong></em> <span class="math notranslate nohighlight">\(\theta_{ij}, b_{i}, c_{j}\)</span>, los cuales serán designados colectivamente como, <span class="math notranslate nohighlight">\(\boldsymbol{\Theta},\boldsymbol{b}\)</span> y <span class="math notranslate nohighlight">\(\boldsymbol{c}\)</span> respectivamente. Un enfoque primordial para lograr esto es <em><strong>maximizar la log-verosimilitud</strong></em>, utilizando <span class="math notranslate nohighlight">\(N\)</span> observaciones de las <em><strong>variables visibles</strong></em>, representadas como <span class="math notranslate nohighlight">\(v_{n},~n=1,\dots, N\)</span>, donde</p>
+<div class="math notranslate nohighlight">
+\[
+    \boldsymbol{v}_{n}=[v_{1n}, \dots, v_{Jn}]^{T},
+    \]</div>
+<p>es el vector que contiene las <em><strong>observaciones</strong></em> correspondientes en el <em><strong>momento</strong></em> <span class="math notranslate nohighlight">\(n\)</span>.</p>
+</li>
+</ul>
+<ul>
+<li><p>Diremos que los <em><strong>nodos visibles están fijados en las observaciones respectivas</strong></em>. La correspondiente ***log-verosimilitud (promedio) *** se expresa como sigue:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align*}
+    L(\boldsymbol{\Theta}, \boldsymbol{b}, \boldsymbol{c})&amp;=\frac{1}{N}\sum_{n=1}^{N}\ln P(\boldsymbol{v}_{n};\boldsymbol{\Theta}, \boldsymbol{b}, \boldsymbol{c})\\
+    &amp;=\frac{1}{N}\sum_{n=1}^{N}\ln\left(\frac{1}{Z}\sum_{\boldsymbol{h}}\exp(-E(\boldsymbol{v}_{n}, \boldsymbol{h}; \boldsymbol{\Theta}, \boldsymbol{b}, \boldsymbol{c}))\right)\\
+    &amp;=\frac{1}{N}\sum_{n=1}^{N}\ln\left(\sum_{\boldsymbol{h}}\exp(-E(\boldsymbol{v}_{n}, \boldsymbol{h}; \boldsymbol{\Theta}, \boldsymbol{b}, \boldsymbol{c}))\right)-\ln\sum_{\boldsymbol{v}}\sum_{\boldsymbol{h}}\exp\left(-E(\boldsymbol{v}, \boldsymbol{h})\right),
+    \end{align*}
+    \end{split}\]</div>
+<p>donde el índice “<span class="math notranslate nohighlight">\(n\)</span>” en la energía se refiere a las <em><strong>observaciones respectivas en las cuales los nodos visibles han sido fijados</strong></em>, y el símbolo “<span class="math notranslate nohighlight">\(\Theta\)</span>” ha sido <em><strong>incluido explícitamente en la notación</strong></em>.</p>
+</li>
+</ul>
+<ul>
+<li><p>Tomando la derivada de <span class="math notranslate nohighlight">\(L(\boldsymbol{\Theta}, \boldsymbol{b}, \boldsymbol{c})\)</span> respecto a <span class="math notranslate nohighlight">\(\theta_{ij}\)</span> (similar es el caso de las derivadas respecto a respecto a <span class="math notranslate nohighlight">\(b_{i}\)</span> y <span class="math notranslate nohighlight">\(c_{j}\)</span>) y aplicando las <em><strong>propiedades estándar de las derivadas</strong></em>, se tiene que (<em><strong>verifíquelo</strong></em>)</p>
+<div class="math notranslate nohighlight" id="equation-gradient-boltzmann-eq">
+<span class="eqno">(8.18)<a class="headerlink" href="#equation-gradient-boltzmann-eq" title="Link to this equation">#</a></span>\[
+    \frac{\partial L(\boldsymbol{\Theta}, \boldsymbol{b}, \boldsymbol{c})}{\partial\theta_{ij}}=\frac{1}{N}\sum_{n=1}^{N}\left(\sum_{\boldsymbol{h}}P(\boldsymbol{h}|\boldsymbol{v}_{n})h_{i}v_{jn}\right)-\sum_{\boldsymbol{v}}\sum_{\boldsymbol{h}}P(\boldsymbol{v}, \boldsymbol{h})h_{i}v_{j},
+    \]</div>
+<p>donde</p>
+<div class="math notranslate nohighlight">
+\[
+    P(\boldsymbol{h}|\boldsymbol{v})=\frac{P(\boldsymbol{v}|\boldsymbol{h})}{\sum_{\boldsymbol{h}'}P(\boldsymbol{v}, \boldsymbol{h}')}.
+    \]</div>
+</li>
+</ul>
+<ul class="simple">
+<li><p>El gradiente en la Eq. <a class="reference internal" href="#equation-gradient-boltzmann-eq">(8.18)</a> consta de <em><strong>dos términos</strong></em>. El primero puede ser <em><strong>calculado una vez que</strong></em> <span class="math notranslate nohighlight">\(P(\boldsymbol{h}|\boldsymbol{v})\)</span> <em><strong>está disponible</strong></em>. Básicamente, este término es la <em><strong>tasa media de disparo o correlación</strong></em> cuando la Máquina de Boltzmann Restringida <em><strong>(RBM) está operando en su fase fijada</strong></em>; a menudo, nos referimos a esto como la <em><strong>fase positiva</strong></em> (<em><strong>regla de aprendizaje de Hebb</strong></em> <span id="id53">[<a class="reference internal" href="biblio.html#id55" title="Donald Olding Hebb. The organization of behavior: A neuropsychological theory. Psychology press, 2005.">Hebb, 2005</a>]</span>), y el término se denota como <span class="math notranslate nohighlight">\(\langle h{i}v_{j}\rangle^{+}\)</span>. El segundo término es la <em><strong>correlación correspondiente cuando la RBM está funcionando en su llamada fase libre o negativa</strong></em>, y se denota como <span class="math notranslate nohighlight">\(\langle h_{i}v_{j}\rangle^{-}\)</span>. Por lo tanto, un <em><strong>esquema de aumento de gradiente</strong></em> para maximizar la log-verosimilitud tendrá la forma:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\theta_{ij}(\text{new})=\theta_{ij}(old)+\mu(\langle h{i}v_{j}\rangle^{+}-\langle h_{i}v_{j}\rangle^{-}).
+\]</div>
+</section>
+</section>
+<section id="autoencoders">
+<h2><span class="section-number">8.19. </span>Autoencoders<a class="headerlink" href="#autoencoders" title="Link to this heading">#</a></h2>
+<ul>
+<li><p>Los <em><strong>autoencoders</strong></em> han sido propuestos como <em><strong>métodos para la reducción de dimensionalidad</strong></em>. Un <em><strong>autoencoder</strong></em> consta de dos partes, el <em><strong>codificador</strong></em> y el <em><strong>decodificador</strong></em>. La <em><strong>salida del codificador es la representación reducida del patrón de entrada</strong></em>, y se define en términos de una función vectorial</p>
+<div class="math notranslate nohighlight">
+\[
+    \boldsymbol{f}:~\boldsymbol{x}\in\mathbb{R}^{l}\longmapsto\boldsymbol{h}\in\mathbb{R}^{m},
+    \]</div>
+<p>donde</p>
+<div class="math notranslate nohighlight">
+\[
+    h_{i}:=f_{i}(\boldsymbol{x})=\phi_{e}(\boldsymbol{\theta}_{i}^{T}\boldsymbol{x}+b_{i}),\quad i=1,2,\dots,m,
+    \]</div>
+<p>con <span class="math notranslate nohighlight">\(\phi_{e}\)</span> función de <em><strong>activación</strong></em>; esta última suele tomarse como la función <em><strong>sigmoidea logística</strong></em> <span class="math notranslate nohighlight">\(\phi_{e}(\cdot)=\sigma(\cdot)\)</span>. En otras palabras, el <em><strong>codificador es una red neuronal feed-forward de una sola capa oculta</strong></em></p>
+</li>
+</ul>
+<ul>
+<li><p>El <em><strong>decodificador</strong></em> es otra función <span class="math notranslate nohighlight">\(\boldsymbol{g}\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[
+    \boldsymbol{g}:~\boldsymbol{h}\in\mathbb{R}^{m}\longmapsto\hat{\boldsymbol{x}}\in\mathbb{R}^{l},
+    \]</div>
+<p>donde</p>
+<div class="math notranslate nohighlight">
+\[
+    \hat{x}_{j}=g_{j}(\boldsymbol{h})=\phi_{d}(\boldsymbol{\theta}'^{T}\boldsymbol{h}+b_{j}'),\quad j=1,\dots,l.
+    \]</div>
+<p>La función de <em><strong>activación</strong></em> <span class="math notranslate nohighlight">\(\phi_{d}\)</span> suele ser la identidad (<em><strong>reconstrucción lineal</strong></em>) o la <em><strong>sigmoidea logística</strong></em>.</p>
+</li>
+</ul>
+<ul class="simple">
+<li><p>La tarea de entrenamiento consiste en <em><strong>estimar los parámetros</strong></em></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\Theta:=[\boldsymbol{\theta}_{1},\dots,\boldsymbol{\theta}_{m}],~\boldsymbol{b},~\Theta':=[\boldsymbol{\theta}_{1}',\dots,\boldsymbol{\theta}_{l}'],~\boldsymbol{b}'.
+\]</div>
+<ul class="simple">
+<li><p>Es habitual suponer que <span class="math notranslate nohighlight">\(\Theta'=\Theta^{T}\)</span>. Los parámetros se estiman para que el <em><strong>error de reconstrucción</strong></em> <span class="math notranslate nohighlight">\(\boldsymbol{e}=\boldsymbol{x}-\hat{\boldsymbol{x}}\)</span>, sobre las muestras de entrada disponibles sea <em><strong>mínimo</strong></em>. Normalmente, se utiliza el <em><strong>coste por mínimos cuadrados</strong></em> pero también son posibles otras opciones. Las <em><strong>versiones regularizadas</strong></em>, que implican una norma de los parámetros, también es una posibilidad. Si se elige que la activación <span class="math notranslate nohighlight">\(\phi_{e}\)</span> sea la identidad (representación lineal) y <span class="math notranslate nohighlight">\(m &lt; l\)</span> (para evitar la trivialidad), el <em><strong>autoencoder es equivalente a la técnica PCA</strong></em>.</p></li>
+</ul>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -7950,14 +7950,14 @@ acc: 0.98
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#red-de-memoria-a-largo-plazo-lstm">8.14. Red de memoria a largo plazo (LSTM)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#atencion-y-memoria">8.15. Atención y Memoria</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entrenamiento-adversario">8.16. Entrenamiento adversario</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-generativos-profundos">8.17. Modelos Generativos Profundos</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#maquina-de-boltzmann-restringida">8.17.1. Máquina de Boltzmann Restringida</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-procesamiento-del-lenguaje-natural">8.15. Aplicación: Procesamiento del Lenguaje Natural</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#atencion-y-memoria">8.16. Atención y Memoria</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entrenamiento-adversario">8.17. Entrenamiento adversario</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-generativos-profundos">8.18. Modelos Generativos Profundos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#maquina-de-boltzmann-restringida">8.18.1. Máquina de Boltzmann Restringida</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autoencoders">8.18. Autoencoders</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-procesamiento-del-lenguaje-natural">8.19. Aplicación: Procesamiento del Lenguaje Natural</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autoencoders">8.19. Autoencoders</a></li>
 </ul>
   </nav></div>
 
