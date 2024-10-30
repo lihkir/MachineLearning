@@ -6663,7 +6663,7 @@ Message: ham
 </div>
 </div>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">Preprocesamiento</span> <span class="pre">de</span> <span class="pre">Texto</span></code>: A continuación, establecemos una función para <code class="docutils literal notranslate"><span class="pre">transformar</span> <span class="pre">el</span> <span class="pre">texto</span> <span class="pre">a</span> <span class="pre">minúsculas</span> <span class="pre">y</span> <span class="pre">eliminar</span> <span class="pre">signos</span> <span class="pre">de</span> <span class="pre">puntuación/símbolos</span> <span class="pre">de</span> <span class="pre">las</span> <span class="pre">palabras</span></code>.</p></li>
+<li><p><strong>Preprocesamiento de Texto</strong>: A continuación, establecemos una función para *transformar el texto a minúsculas y eliminar signos de puntuación/símbolos de las palabras.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -6674,12 +6674,13 @@ Message: ham
 </div>
 </div>
 </div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">BeautifulSoup</span></code>: Se usa para <em><strong>navegar y manipular la estructura de documentos HTML o XML</strong></em>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">re</span></code>: Permite buscar y <em><strong>manipular texto dentro de esos documentos o cualquier otro texto</strong></em>, usando patrones específicos de expresiones regulares.</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
-<span class="kn">import</span> <span class="nn">re</span>
-
-<span class="k">def</span> <span class="nf">cleanText</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">cleanText</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
     <span class="n">text</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="s2">&quot;html.parser&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
     <span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\|\|\|&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span> 
     <span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;http\S+&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;&lt;URL&gt;&#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
@@ -6690,6 +6691,12 @@ Message: ham
 </div>
 </div>
 </div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">BeautifulSoup(text,</span> <span class="pre">&quot;html.parser&quot;).text</span></code>: <code class="docutils literal notranslate"><span class="pre">BeautifulSoup</span></code> en este caso <em><strong>elimina etiquetas HTML del texto</strong></em>. Convierte <code class="docutils literal notranslate"><span class="pre">text</span></code> en un objeto <code class="docutils literal notranslate"><span class="pre">BeautifulSoup</span></code>, y luego el método <code class="docutils literal notranslate"><span class="pre">.text</span></code> extrae solo el texto visible, eliminando cualquier HTML o XML.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">text</span> <span class="pre">=</span> <span class="pre">re.sub(r'\|\|\|',</span> <span class="pre">r'</span> <span class="pre">',</span> <span class="pre">text)</span></code>: Aquí <code class="docutils literal notranslate"><span class="pre">re.sub</span></code> <em><strong>reemplaza cualquier secuencia de caracteres</strong></em> <code class="docutils literal notranslate"><span class="pre">&quot;|||&quot;</span></code> <em><strong>por un espacio</strong></em> <code class="docutils literal notranslate"><span class="pre">&quot;</span> <span class="pre">&quot;</span></code>. Esto es útil para <em>limpiar delimitadores o caracteres específicos del texto</em>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">text</span> <span class="pre">=</span> <span class="pre">re.sub(r'http\S+',</span> <span class="pre">r'&lt;URL&gt;',</span> <span class="pre">text)</span></code>: <em><strong>Reemplaza cualquier URL (que comience con “http” y continúe sin espacios) con el marcador de posición “<URL>”</strong></em>. Esto ayuda a evitar que URLs específicas queden en el texto sin ser normalizadas.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">text</span> <span class="pre">=</span> <span class="pre">text.replace('x',</span> <span class="pre">'')</span></code>: En tareas de clasificación de texto o en análisis de sentimientos, algunos caracteres pueden no ser útiles para el modelo. Por ejemplo, <em>si “x” se usa como símbolo decorativo o separador, eliminarlo mejora la calidad de las representaciones de texto sin afectar el contenido</em>.</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Message&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Message&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">cleanText</span><span class="p">)</span>
@@ -6700,7 +6707,7 @@ Message: ham
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Message&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Message&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">cleanText</span><span class="p">)</span>
-<span class="n">train</span><span class="p">,</span> <span class="n">test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.000001</span> <span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">train</span><span class="p">,</span> <span class="n">test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.20</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -6730,6 +6737,9 @@ Message: ham
 </div>
 </div>
 </div>
+<ul class="simple">
+<li><p>El módulo <code class="docutils literal notranslate"><span class="pre">nltk</span></code> y, en particular, <code class="docutils literal notranslate"><span class="pre">nltk.corpus.stopwords</span></code> se usan en Procesamiento de Lenguaje Natural (NLP) <em><strong>para trabajar con “stopwords”, es decir, palabras de relleno o comunes en un idioma que suelen eliminarse en el análisis de texto porque no aportan significado específico</strong></em>. Estas palabras pueden ser artículos, preposiciones, pronombres y otros términos que no añaden valor semántico relevante (por ejemplo, <em>“el”, “la”, “un”, “de”, “y” en español; o “the”, “is”, “in”, “and” en inglés</em>).</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">tokenize_text</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
@@ -6744,24 +6754,18 @@ Message: ham
 </div>
 </div>
 </div>
+<ul class="simple">
+<li><p>La función <code class="docutils literal notranslate"><span class="pre">tokenize_text</span></code> <em><strong>toma un texto como entrada y lo divide en una lista de palabras o “tokens” en minúsculas</strong></em>. Esta función usa <code class="docutils literal notranslate"><span class="pre">nltk.sent_tokenize</span></code> y <code class="docutils literal notranslate"><span class="pre">nltk.word_tokenize</span></code> para descomponer el texto en oraciones y palabras.</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">tokenize_text</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
-    <span class="n">tokens</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">sent</span> <span class="ow">in</span> <span class="n">nltk</span><span class="o">.</span><span class="n">sent_tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">nltk</span><span class="o">.</span><span class="n">word_tokenize</span><span class="p">(</span><span class="n">sent</span><span class="p">):</span>
-            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="k">continue</span>
-            <span class="n">tokens</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">word</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
-    <span class="k">return</span> <span class="n">tokens</span>
-
-<span class="n">test_message</span> <span class="o">=</span> <span class="s2">&quot;¡Hola mundo! Este es un test.&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_message</span> <span class="o">=</span> <span class="s2">&quot;Are you unique enough? Find out from 30th August. www.areyouunique.co.uk&quot;</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">tokenize_text</span><span class="p">(</span><span class="n">test_message</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;¡hola&#39;, &#39;mundo&#39;, &#39;!&#39;, &#39;este&#39;, &#39;es&#39;, &#39;un&#39;, &#39;test&#39;, &#39;.&#39;]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;are&#39;, &#39;you&#39;, &#39;unique&#39;, &#39;enough&#39;, &#39;?&#39;, &#39;find&#39;, &#39;out&#39;, &#39;from&#39;, &#39;30th&#39;, &#39;august&#39;, &#39;.&#39;, &#39;www.areyouunique.co.uk&#39;]
 </pre></div>
 </div>
 </div>
@@ -6775,13 +6779,16 @@ Message: ham
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_tagged</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">r</span><span class="p">:</span> <span class="n">TaggedDocument</span><span class="p">(</span><span class="n">words</span><span class="o">=</span><span class="n">tokenize_text</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;Message&#39;</span><span class="p">]),</span> <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="n">r</span><span class="o">.</span><span class="n">Category</span><span class="p">]),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_tagged</span>  <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">r</span><span class="p">:</span> <span class="n">TaggedDocument</span><span class="p">(</span><span class="n">words</span><span class="o">=</span><span class="n">tokenize_text</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;Message&#39;</span><span class="p">]),</span> <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="n">r</span><span class="o">.</span><span class="n">Category</span><span class="p">]),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <ul class="simple">
-<li><p>Número máximo de palabras a utilizar (<code class="docutils literal notranslate"><span class="pre">más</span> <span class="pre">frecuentes</span></code>)</p></li>
+<li><p>La función de arriba, aplica una transformación a cada fila del <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> <code class="docutils literal notranslate"><span class="pre">train</span></code>, <em><strong>convirtiendo el contenido de cada mensaje en un objeto</strong></em> <code class="docutils literal notranslate"><span class="pre">TaggedDocument</span></code>, un <em><strong>formato utilizado en NLP para entrenar modelos de aprendizaje de texto como</strong></em> <code class="docutils literal notranslate"><span class="pre">Doc2Vec</span></code> de la librería <code class="docutils literal notranslate"><span class="pre">Gensim</span></code>.</p></li>
+</ul>
+<ul class="simple">
+<li><p>Número máximo de palabras a utilizar (<em>más frecuentes</em>)</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -6837,9 +6844,9 @@ Message: ham
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([TaggedDocument(words=[&#39;and&#39;, &#39;also&#39;, &#39;i&#39;, &quot;&#39;ve&quot;, &#39;sorta&#39;, &#39;blown&#39;, &#39;him&#39;, &#39;off&#39;, &#39;a&#39;, &#39;couple&#39;, &#39;times&#39;, &#39;recently&#39;, &#39;so&#39;, &#39;id&#39;, &#39;rather&#39;, &#39;not&#39;, &#39;tet&#39;, &#39;him&#39;, &#39;out&#39;, &#39;of&#39;, &#39;the&#39;, &#39;blue&#39;, &#39;looking&#39;, &#39;for&#39;, &#39;weed&#39;], tags=[&#39;ham&#39;]),
-       TaggedDocument(words=[&#39;mmm&#39;, &#39;thats&#39;, &#39;better&#39;, &#39;now&#39;, &#39;i&#39;, &#39;got&#39;, &#39;a&#39;, &#39;roast&#39;, &#39;down&#39;, &#39;me&#39;, &#39;!&#39;, &#39;iâ\x92d&#39;, &#39;b&#39;, &#39;better&#39;, &#39;if&#39;, &#39;i&#39;, &#39;had&#39;, &#39;a&#39;, &#39;few&#39;, &#39;drinks&#39;, &#39;down&#39;, &#39;me&#39;, &#39;2&#39;, &#39;!&#39;, &#39;good&#39;, &#39;indian&#39;, &#39;?&#39;], tags=[&#39;ham&#39;]),
-       TaggedDocument(words=[&#39;mm&#39;, &#39;have&#39;, &#39;some&#39;, &#39;kanji&#39;, &#39;dont&#39;, &#39;eat&#39;, &#39;anything&#39;, &#39;heavy&#39;, &#39;ok&#39;], tags=[&#39;ham&#39;]),
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([TaggedDocument(words=[&#39;reply&#39;, &#39;to&#39;, &#39;win&#39;, &#39;â£100&#39;, &#39;weekly&#39;, &#39;!&#39;, &#39;where&#39;, &#39;will&#39;, &#39;the&#39;, &#39;2006&#39;, &#39;fifa&#39;, &#39;world&#39;, &#39;cup&#39;, &#39;be&#39;, &#39;held&#39;, &#39;?&#39;, &#39;send&#39;, &#39;stop&#39;, &#39;to&#39;, &#39;87239&#39;, &#39;to&#39;, &#39;end&#39;, &#39;service&#39;], tags=[&#39;spam&#39;]),
+       TaggedDocument(words=[&#39;hello&#39;, &#39;.&#39;, &#39;sort&#39;, &#39;of&#39;, &#39;out&#39;, &#39;in&#39;, &#39;town&#39;, &#39;already&#39;, &#39;.&#39;, &#39;that&#39;, &#39;.&#39;, &#39;so&#39;, &#39;dont&#39;, &#39;rush&#39;, &#39;home&#39;, &#39;,&#39;, &#39;i&#39;, &#39;am&#39;, &#39;eating&#39;, &#39;nachos&#39;, &#39;.&#39;, &#39;will&#39;, &#39;let&#39;, &#39;you&#39;, &#39;know&#39;, &#39;eta&#39;, &#39;.&#39;], tags=[&#39;ham&#39;]),
+       TaggedDocument(words=[&#39;how&#39;, &#39;come&#39;, &#39;guoyang&#39;, &#39;go&#39;, &#39;n&#39;, &#39;tell&#39;, &#39;her&#39;, &#39;?&#39;, &#39;then&#39;, &#39;u&#39;, &#39;told&#39;, &#39;her&#39;, &#39;?&#39;], tags=[&#39;ham&#39;]),
        ...,
        TaggedDocument(words=[&#39;prabha&#39;, &#39;..&#39;, &#39;i&#39;, &quot;&#39;m&quot;, &#39;soryda&#39;, &#39;..&#39;, &#39;realy&#39;, &#39;..&#39;, &#39;frm&#39;, &#39;heart&#39;, &#39;i&#39;, &quot;&#39;m&quot;, &#39;sory&#39;], tags=[&#39;ham&#39;]),
        TaggedDocument(words=[&#39;nt&#39;, &#39;joking&#39;, &#39;seriously&#39;, &#39;i&#39;, &#39;told&#39;], tags=[&#39;ham&#39;]),
@@ -6863,7 +6870,7 @@ Message: ham
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 8032474.25it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 4457/4457 [00:00&lt;00:00, 7435963.77it/s]
 </pre></div>
 </div>
 </div>
@@ -6879,40 +6886,40 @@ Message: ham
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 7119581.84it/s]
-100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 7012745.37it/s]
-100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 7324911.47it/s]
-100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 8884588.43it/s]
-100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 8867729.63it/s]
-100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 7183051.82it/s]
-100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 8857645.03it/s]
-100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 8593772.56it/s]
-100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 8631868.34it/s]
-100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 8945814.54it/s]
-100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 8797615.81it/s]
-100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 8035236.45it/s]
-100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 8804245.51it/s]
-100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 8478398.98it/s]
-100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 8830864.54it/s]
-100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 8459981.02it/s]
-100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 8834203.25it/s]
-100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 6958447.76it/s]
-100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 8438594.29it/s]
-100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 8466111.44it/s]
-100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 8861004.01it/s]
-100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 8921904.38it/s]
-100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 8767905.28it/s]
-100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 8390114.03it/s]
-100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 8751485.99it/s]
-100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 8844234.51it/s]
-100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 8683191.22it/s]
-100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 8568561.64it/s]
-100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 8973297.84it/s]
-100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 5571/5571 [00:00&lt;00:00, 5655001.84it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 4457/4457 [00:00&lt;00:00, 7251362.66it/s]
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 4457/4457 [00:00&lt;00:00, 8978872.68it/s]
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 4457/4457 [00:00&lt;00:00, 8817930.63it/s]
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 4457/4457 [00:00&lt;00:00, 9375131.86it/s]
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 4457/4457 [00:00&lt;00:00, 8991829.21it/s]
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 4457/4457 [00:00&lt;00:00, 8793044.65it/s]
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 4457/4457 [00:00&lt;00:00, 9204339.21it/s]
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 4457/4457 [00:00&lt;00:00, 9231611.32it/s]
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 4457/4457 [00:00&lt;00:00, 9365737.94it/s]
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 4457/4457 [00:00&lt;00:00, 9127936.00it/s]
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 4457/4457 [00:00&lt;00:00, 9177227.75it/s]
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 4457/4457 [00:00&lt;00:00, 9026563.46it/s]
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 4457/4457 [00:00&lt;00:00, 9455747.56it/s]
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 4457/4457 [00:00&lt;00:00, 9403427.03it/s]
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 4457/4457 [00:00&lt;00:00, 9328349.76it/s]
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 4457/4457 [00:00&lt;00:00, 9119030.70it/s]
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 4457/4457 [00:00&lt;00:00, 9474917.86it/s]
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 4457/4457 [00:00&lt;00:00, 9105705.27it/s]
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 4457/4457 [00:00&lt;00:00, 8780654.26it/s]
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 4457/4457 [00:00&lt;00:00, 7931274.05it/s]
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 4457/4457 [00:00&lt;00:00, 8202726.16it/s]
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 4457/4457 [00:00&lt;00:00, 9035288.99it/s]
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 4457/4457 [00:00&lt;00:00, 8451181.25it/s]
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 4457/4457 [00:00&lt;00:00, 9268226.54it/s]
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 4457/4457 [00:00&lt;00:00, 9119030.70it/s]
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 4457/4457 [00:00&lt;00:00, 9231611.32it/s]
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 4457/4457 [00:00&lt;00:00, 8872336.46it/s]
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 4457/4457 [00:00&lt;00:00, 8290027.91it/s]
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 4457/4457 [00:00&lt;00:00, 9087998.51it/s]
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 4457/4457 [00:00&lt;00:00, 9356362.83it/s]
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 2.83 s, sys: 50 ms, total: 2.88 s
-Wall time: 2.94 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 2.26 s, sys: 0 ns, total: 2.26 s
+Wall time: 2.35 s
 </pre></div>
 </div>
 </div>
@@ -6937,7 +6944,7 @@ Wall time: 2.94 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9362
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8266
 </pre></div>
 </div>
 </div>
@@ -6950,7 +6957,7 @@ Wall time: 2.94 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;frmcloud&#39;, &#39;2mwen&#39;, &#39;limited&#39;, &#39;counts&#39;, &#39;asda&#39;, &#39;slowing&#39;, &#39;particularly&#39;, &#39;torrents&#39;, &#39;breadstick&#39;, &#39;thepub&#39;]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;phone750&#39;, &#39;weaseling&#39;, &#39;connected&#39;, &#39;ltd.&#39;, &#39;gmw&#39;, &#39;wrongly&#39;, &#39;bless.get&#39;, &#39;gained&#39;, &#39;money.i&#39;, &#39;.so&#39;]
 </pre></div>
 </div>
 </div>
@@ -6978,18 +6985,18 @@ Wall time: 2.94 s
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
 KeyedVectors&lt;vector_size=20, 2 keys&gt;
-[-1.181241   -3.710024   -1.5540404   1.7452742   0.3889721  -0.5239634
- -2.4200559  -0.16418658 -3.6092436   0.85619104  0.46824312 -0.5189654
-  0.04126288  0.744131   -3.1146233  -1.9534556   0.8371728   2.528787
- -3.689852   -2.0174308 ]
--1.181241
+[ -3.2668898   -3.1738384   -8.505668     4.5485306    2.692948
+   3.1493063   -4.462352    -5.3937817   -7.1809254    4.7018075
+   2.7759285    6.317104    -4.7875314   -7.075199    -3.3227246
+   1.9363822    4.517679     6.162188   -14.190054    -0.26278985]
+-3.2668898
 1
 KeyedVectors&lt;vector_size=20, 2 keys&gt;
-[ -4.3021917    4.3163033   -3.0488737    1.4984138    7.108087
- -10.087342    -3.94172     -6.9372716    2.3337421   -7.018936
-   9.643784     7.381326    -5.2318425   -0.19244012  -0.61319727
-   2.9983945    1.8317717   -9.758069    -4.7036347    3.3743062 ]
-4.3163033
+[ 1.2465329   1.5963961   0.8784475   2.2543192   2.5438132  -2.474216
+ -2.310085   -0.6934201   2.6299498  -3.745987    1.3307427   0.41213423
+ -3.2673807  -1.8536966   0.9749198   1.6373183  -1.6213127  -2.8041255
+ -0.5990004   0.34091252]
+1.5963961
 </pre></div>
 </div>
 </div>
@@ -7001,16 +7008,16 @@ KeyedVectors&lt;vector_size=20, 2 keys&gt;
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;anythingtomorrow&#39;, 0.7989494800567627),
- (&#39;cantdo&#39;, 0.7467942237854004),
- (&#39;myparents&#39;, 0.7182999849319458),
- (&#39;missed&#39;, 0.717624843120575),
- (&#39;cherish&#39;, 0.714693546295166),
- (&#39;colleagues&#39;, 0.705409586429596),
- (&#39;holder&#39;, 0.7042951583862305),
- (&#39;dear&#39;, 0.702792763710022),
- (&#39;0906346330.&#39;, 0.7017916440963745),
- (&#39;09061743811&#39;, 0.6933843493461609)]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;resend&#39;, 0.7344722747802734),
+ (&#39;lower&#39;, 0.7169529795646667),
+ (&#39;probs&#39;, 0.7099040150642395),
+ (&#39;08718738034&#39;, 0.7082372307777405),
+ (&#39;clothes&#39;, 0.6989055275917053),
+ (&#39;tuition&#39;, 0.6945768594741821),
+ (&#39;curtsey&#39;, 0.6848364472389221),
+ (&#39;11mths+&#39;, 0.6828041672706604),
+ (&#39;having&#39;, 0.6789382696151733),
+ (&#39;deleted&#39;, 0.6787389516830444)]
 </pre></div>
 </div>
 </div>
@@ -7022,16 +7029,16 @@ KeyedVectors&lt;vector_size=20, 2 keys&gt;
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;missed&#39;, 0.8055727481842041),
- (&#39;intrepid&#39;, 0.7639503479003906),
- (&#39;urgent&#39;, 0.7146934866905212),
- (&#39;duo&#39;, 0.7129536271095276),
- (&#39;thank&#39;, 0.7003694772720337),
- (&#39;wish&#39;, 0.6905673742294312),
- (&#39;appreciate&#39;, 0.6860354542732239),
- (&#39;enjoyed&#39;, 0.6818588376045227),
- (&#39;hope&#39;, 0.6803081631660461),
- (&#39;wishin&#39;, 0.6780060529708862)]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;image&#39;, 0.8254433870315552),
+ (&#39;intrepid&#39;, 0.7505639791488647),
+ (&#39;okors&#39;, 0.7467709183692932),
+ (&#39;count&#39;, 0.7441601753234863),
+ (&#39;mojibiola&#39;, 0.7431001663208008),
+ (&#39;ultimatum&#39;, 0.7118896245956421),
+ (&#39;bâ\x80\x98ham&#39;, 0.7115652561187744),
+ (&#39;cantdo&#39;, 0.7105881571769714),
+ (&#39;abiola&#39;, 0.7102086544036865),
+ (&#39;thank&#39;, 0.6918621063232422)]
 </pre></div>
 </div>
 </div>
@@ -7103,21 +7110,21 @@ KeyedVectors&lt;vector_size=20, 2 keys&gt;
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">Model: "sequential_1"</span>
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">Model: "sequential_4"</span>
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┓
 ┃<span style="font-weight: bold"> Layer (type)                    </span>┃<span style="font-weight: bold"> Output Shape           </span>┃<span style="font-weight: bold">       Param # </span>┃
 ┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━┩
-│ embedding (<span style="color: #0087ff; text-decoration-color: #0087ff">Embedding</span>)           │ ?                      │       <span style="color: #00af00; text-decoration-color: #00af00">187,260</span> │
+│ embedding_4 (<span style="color: #0087ff; text-decoration-color: #0087ff">Embedding</span>)         │ ?                      │       <span style="color: #00af00; text-decoration-color: #00af00">165,340</span> │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ lstm (<span style="color: #0087ff; text-decoration-color: #0087ff">LSTM</span>)                     │ ?                      │   <span style="color: #00af00; text-decoration-color: #00af00">0</span> (unbuilt) │
+│ lstm_4 (<span style="color: #0087ff; text-decoration-color: #0087ff">LSTM</span>)                   │ ?                      │   <span style="color: #00af00; text-decoration-color: #00af00">0</span> (unbuilt) │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ dense_2 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                 │ ?                      │   <span style="color: #00af00; text-decoration-color: #00af00">0</span> (unbuilt) │
+│ dense_4 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                 │ ?                      │   <span style="color: #00af00; text-decoration-color: #00af00">0</span> (unbuilt) │
 └─────────────────────────────────┴────────────────────────┴───────────────┘
 </pre>
-</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold"> Total params: </span><span style="color: #00af00; text-decoration-color: #00af00">187,260</span> (731.48 KB)
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold"> Total params: </span><span style="color: #00af00; text-decoration-color: #00af00">165,340</span> (645.86 KB)
 </pre>
-</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold"> Trainable params: </span><span style="color: #00af00; text-decoration-color: #00af00">187,260</span> (731.48 KB)
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold"> Trainable params: </span><span style="color: #00af00; text-decoration-color: #00af00">165,340</span> (645.86 KB)
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold"> Non-trainable params: </span><span style="color: #00af00; text-decoration-color: #00af00">0</span> (0.00 B)
 </pre>
@@ -7192,105 +7199,105 @@ KeyedVectors&lt;vector_size=20, 2 keys&gt;
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 1/50
-148/148 - 2s - 14ms/step - accuracy: 0.9267 - loss: 0.2315
+148/148 - 2s - 11ms/step - accuracy: 0.9246 - loss: 0.2294
 Epoch 2/50
-148/148 - 1s - 7ms/step - accuracy: 0.9850 - loss: 0.0600
+148/148 - 1s - 7ms/step - accuracy: 0.9844 - loss: 0.0612
 Epoch 3/50
-148/148 - 1s - 7ms/step - accuracy: 0.9930 - loss: 0.0303
+148/148 - 1s - 7ms/step - accuracy: 0.9939 - loss: 0.0287
 Epoch 4/50
-148/148 - 1s - 7ms/step - accuracy: 0.9966 - loss: 0.0157
+148/148 - 1s - 6ms/step - accuracy: 0.9956 - loss: 0.0200
 Epoch 5/50
-148/148 - 1s - 8ms/step - accuracy: 0.9979 - loss: 0.0087
+148/148 - 1s - 7ms/step - accuracy: 0.9973 - loss: 0.0117
 Epoch 6/50
-148/148 - 1s - 7ms/step - accuracy: 0.9987 - loss: 0.0047
+148/148 - 1s - 7ms/step - accuracy: 0.9975 - loss: 0.0083
 Epoch 7/50
-148/148 - 1s - 7ms/step - accuracy: 0.9985 - loss: 0.0055
+148/148 - 1s - 7ms/step - accuracy: 0.9987 - loss: 0.0045
 Epoch 8/50
-148/148 - 1s - 7ms/step - accuracy: 0.9994 - loss: 0.0017
+148/148 - 1s - 7ms/step - accuracy: 0.9992 - loss: 0.0019
 Epoch 9/50
-148/148 - 1s - 6ms/step - accuracy: 0.9996 - loss: 0.0012
+148/148 - 1s - 7ms/step - accuracy: 0.9996 - loss: 0.0013
 Epoch 10/50
-148/148 - 1s - 7ms/step - accuracy: 0.9998 - loss: 8.0327e-04
+148/148 - 1s - 7ms/step - accuracy: 0.9996 - loss: 8.9813e-04
 Epoch 11/50
-148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 5.5067e-04
+148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 6.4990e-04
 Epoch 12/50
-148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 4.1406e-04
+148/148 - 1s - 6ms/step - accuracy: 1.0000 - loss: 5.0027e-04
 Epoch 13/50
-148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 3.2322e-04
+148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 3.9275e-04
 Epoch 14/50
-148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 2.5748e-04
+148/148 - 1s - 6ms/step - accuracy: 1.0000 - loss: 3.0832e-04
 Epoch 15/50
-148/148 - 1s - 6ms/step - accuracy: 1.0000 - loss: 2.1433e-04
+148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 2.5960e-04
 Epoch 16/50
-148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 1.7403e-04
+148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 2.1151e-04
 Epoch 17/50
-148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 1.5136e-04
+148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 1.7948e-04
 Epoch 18/50
-148/148 - 1s - 6ms/step - accuracy: 1.0000 - loss: 1.2444e-04
+148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 1.5452e-04
 Epoch 19/50
-148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 1.0496e-04
+148/148 - 1s - 6ms/step - accuracy: 1.0000 - loss: 1.3186e-04
 Epoch 20/50
-148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 9.1037e-05
+148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 1.1505e-04
 Epoch 21/50
-148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 8.0365e-05
+148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 1.0080e-04
 Epoch 22/50
-148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 6.9303e-05
+148/148 - 1s - 6ms/step - accuracy: 1.0000 - loss: 8.8754e-05
 Epoch 23/50
-148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 6.1919e-05
+148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 7.9170e-05
 Epoch 24/50
-148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 5.5886e-05
+148/148 - 1s - 6ms/step - accuracy: 1.0000 - loss: 6.9984e-05
 Epoch 25/50
-148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 4.9211e-05
+148/148 - 1s - 6ms/step - accuracy: 1.0000 - loss: 6.2725e-05
 Epoch 26/50
-148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 4.3048e-05
+148/148 - 1s - 6ms/step - accuracy: 1.0000 - loss: 5.6174e-05
 Epoch 27/50
-148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 3.8843e-05
+148/148 - 1s - 6ms/step - accuracy: 1.0000 - loss: 5.2045e-05
 Epoch 28/50
-148/148 - 1s - 6ms/step - accuracy: 1.0000 - loss: 3.4705e-05
+148/148 - 1s - 6ms/step - accuracy: 1.0000 - loss: 4.5325e-05
 Epoch 29/50
-148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 3.1055e-05
+148/148 - 1s - 6ms/step - accuracy: 1.0000 - loss: 4.1309e-05
 Epoch 30/50
-148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 2.8125e-05
+148/148 - 1s - 6ms/step - accuracy: 1.0000 - loss: 3.7269e-05
 Epoch 31/50
-148/148 - 1s - 6ms/step - accuracy: 1.0000 - loss: 2.5803e-05
+148/148 - 1s - 6ms/step - accuracy: 1.0000 - loss: 3.4046e-05
 Epoch 32/50
-148/148 - 1s - 6ms/step - accuracy: 1.0000 - loss: 2.3313e-05
+148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 3.0869e-05
 Epoch 33/50
-148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 2.1367e-05
+148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 2.8360e-05
 Epoch 34/50
-148/148 - 1s - 6ms/step - accuracy: 1.0000 - loss: 1.9564e-05
+148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 2.5935e-05
 Epoch 35/50
-148/148 - 1s - 6ms/step - accuracy: 1.0000 - loss: 1.8149e-05
+148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 2.3781e-05
 Epoch 36/50
-148/148 - 1s - 6ms/step - accuracy: 1.0000 - loss: 1.6110e-05
+148/148 - 1s - 8ms/step - accuracy: 1.0000 - loss: 2.1791e-05
 Epoch 37/50
-148/148 - 1s - 6ms/step - accuracy: 1.0000 - loss: 1.4891e-05
+148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 2.0589e-05
 Epoch 38/50
-148/148 - 1s - 6ms/step - accuracy: 1.0000 - loss: 1.3603e-05
+148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 1.8341e-05
 Epoch 39/50
-148/148 - 1s - 6ms/step - accuracy: 1.0000 - loss: 1.2878e-05
+148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 1.7263e-05
 Epoch 40/50
-148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 1.1417e-05
+148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 1.5659e-05
 Epoch 41/50
-148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 1.0457e-05
+148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 1.4416e-05
 Epoch 42/50
-148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 9.6314e-06
+148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 1.3237e-05
 Epoch 43/50
-148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 8.8906e-06
+148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 1.2342e-05
 Epoch 44/50
-148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 8.4654e-06
+148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 1.1210e-05
 Epoch 45/50
-148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 7.5165e-06
+148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 1.0379e-05
 Epoch 46/50
-148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 6.9618e-06
+148/148 - 1s - 6ms/step - accuracy: 1.0000 - loss: 9.6437e-06
 Epoch 47/50
-148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 6.4309e-06
+148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 8.8003e-06
 Epoch 48/50
-148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 5.9360e-06
+148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 8.0948e-06
 Epoch 49/50
-148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 5.4518e-06
+148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 7.7207e-06
 Epoch 50/50
-148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 5.1116e-06
+148/148 - 1s - 7ms/step - accuracy: 1.0000 - loss: 6.9844e-06
 El entrenamiento se ha completado y el historial ha sido guardado en &#39;history_lstm.joblib&#39;.
 </pre></div>
 </div>
@@ -7307,7 +7314,7 @@ El entrenamiento se ha completado y el historial ha sido guardado en &#39;histor
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/5ba7d9d76e0137edec6b2ac9c4ddfb54697d45a06ea36bda9c1751eaf2c27fe4.png" src="_images/5ba7d9d76e0137edec6b2ac9c4ddfb54697d45a06ea36bda9c1751eaf2c27fe4.png" />
+<img alt="_images/eacf227bd30eaaf3487edeaa9cd4c33c1db66124d8d081c7082cdcdc286bb593.png" src="_images/eacf227bd30eaaf3487edeaa9cd4c33c1db66124d8d081c7082cdcdc286bb593.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -7321,12 +7328,9 @@ El entrenamiento se ha completado y el historial ha sido guardado en &#39;histor
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/53da0a62929b8ec9e06819961af543855103281cef00522baafdf3d48dda379f.png" src="_images/53da0a62929b8ec9e06819961af543855103281cef00522baafdf3d48dda379f.png" />
+<img alt="_images/1d415f105e47f63913c97f0049b135f34ed29c513d6461ec8305ee172066efb9.png" src="_images/1d415f105e47f63913c97f0049b135f34ed29c513d6461ec8305ee172066efb9.png" />
 </div>
 </div>
-<ul class="simple">
-<li><p>Evaluar el modelo</p></li>
-</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span><span class="p">,</span> <span class="n">train_acc</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">Y_train</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
@@ -7336,9 +7340,9 @@ El entrenamiento se ha completado y el historial ha sido guardado en &#39;histor
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>148/148 - 0s - 3ms/step - accuracy: 1.0000 - loss: 4.7276e-06
-27/27 - 0s - 7ms/step - accuracy: 0.9868 - loss: 0.1246
-Train: 1.000, Test: 0.9868
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>148/148 - 0s - 3ms/step - accuracy: 1.0000 - loss: 6.5603e-06
+27/27 - 0s - 6ms/step - accuracy: 0.9856 - loss: 0.1570
+Train: 1.000, Test: 0.9856
 </pre></div>
 </div>
 </div>
@@ -7354,17 +7358,20 @@ Train: 1.000, Test: 0.9868
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1.0000000e+00 4.1286904e-13]
- [1.0000000e+00 3.4418371e-12]
- [1.0000000e+00 4.1827555e-13]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1.0000000e+00 1.0334940e-12]
+ [1.0000000e+00 1.2381419e-11]
+ [1.0000000e+00 1.5744090e-12]
  ...
- [1.0000000e+00 3.7423889e-13]
- [1.0000000e+00 2.5833727e-13]
- [1.0000000e+00 5.0445867e-13]]
+ [1.0000000e+00 1.0007380e-12]
+ [1.0000000e+00 7.4370523e-13]
+ [1.0000000e+00 1.3020209e-12]]
 </pre></div>
 </div>
 </div>
 </div>
+<ul class="simple">
+<li><p>Evaluar el modelo</p></li>
+</ul>
 <ul class="simple">
 <li><p>Predecir clases crisp para el conjunto de prueba</p></li>
 </ul>
@@ -7383,7 +7390,7 @@ Train: 1.000, Test: 0.9868
  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 0 0 0 0 0 0 0 0 0 1
  0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 0 1 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0
- 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 0 0 1 0 0 0 1 1 0 0 0
+ 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 1 0 0 0 1 1 0 0 0
  0 1 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0
  0 0 0 0 1 1 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0
  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 0 0 0 0 0 0 0 0 0 1 0
@@ -7395,9 +7402,9 @@ Train: 1.000, Test: 0.9868
  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0
  0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0
  0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
- 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 0 0 0
+ 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 0 0 0
  0 1 0 0 0 0 0 0 0 0 0 0 0 1 0 1 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 0 0 0
- 0 0 0 1 0 1 0 1 0 0 0 0 0 0 0 0 0 1 1 0 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0
+ 0 0 0 1 0 1 0 1 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0
  0 1 1 1 0 1 0 0 0 0 0 0 0 0 0 0 1 1 0 0 0 0]
 </pre></div>
 </div>
@@ -7492,7 +7499,7 @@ Train: 1.000, Test: 0.9868
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[727,   2],
-       [  9,  98]])
+       [ 10,  97]])
 </pre></div>
 </div>
 </div>
@@ -7518,7 +7525,7 @@ Train: 1.000, Test: 0.9868
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/26350a999f0ca6ca69b210a75147b9a48a621b677627a6bbd529e8e57bfb89c1.png" src="_images/26350a999f0ca6ca69b210a75147b9a48a621b677627a6bbd529e8e57bfb89c1.png" />
+<img alt="_images/acff9545c97ef9ef04aac5cde64f1eea5847c6ae88724e059659b863c114fa11.png" src="_images/acff9545c97ef9ef04aac5cde64f1eea5847c6ae88724e059659b863c114fa11.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -7537,8 +7544,8 @@ Train: 1.000, Test: 0.9868
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">20/20</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 4ms/step - accuracy: 0.9835 - loss: 0.1280   
-score: 0.16
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">20/20</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 3ms/step - accuracy: 0.9849 - loss: 0.1506   
+score: 0.17
 acc: 0.98
 </pre></div>
 </div>
@@ -7569,8 +7576,8 @@ acc: 0.98
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">1/1</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 13ms/step
-[[3.8133455e-11 1.0000000e+00]] spam
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">1/1</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 11ms/step
+[[5.0022042e-11 1.0000000e+00]] spam
 </pre></div>
 </div>
 </div>
@@ -7590,8 +7597,8 @@ acc: 0.98
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">1/1</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 14ms/step
-[[1.000000e+00 8.241917e-13]] ham
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">1/1</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 10ms/step
+[[1.0000000e+00 1.5881167e-12]] ham
 </pre></div>
 </div>
 </div>
