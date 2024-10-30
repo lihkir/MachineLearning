@@ -6787,9 +6787,6 @@ Message: ham
 <ul class="simple">
 <li><p>La función de arriba, aplica una transformación a cada fila del <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> <code class="docutils literal notranslate"><span class="pre">train</span></code>, <em><strong>convirtiendo el contenido de cada mensaje en un objeto</strong></em> <code class="docutils literal notranslate"><span class="pre">TaggedDocument</span></code>, un <em><strong>formato utilizado en NLP para entrenar modelos de aprendizaje de texto como</strong></em> <code class="docutils literal notranslate"><span class="pre">Doc2Vec</span></code> de la librería <code class="docutils literal notranslate"><span class="pre">Gensim</span></code>.</p></li>
 </ul>
-<ul class="simple">
-<li><p>Número máximo de palabras a utilizar (<em>más frecuentes</em>)</p></li>
-</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">max_fatures</span> <span class="o">=</span> <span class="mi">500000</span>
@@ -6797,9 +6794,6 @@ Message: ham
 </div>
 </div>
 </div>
-<ul class="simple">
-<li><p>Número máximo de palabras en cada reclamación.</p></li>
-</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">MAX_SEQUENCE_LENGTH</span> <span class="o">=</span> <span class="mi">50</span>
@@ -6812,8 +6806,9 @@ Message: ham
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tokenizer</span> <span class="o">=</span> <span class="n">Tokenizer</span><span class="p">(</span><span class="n">num_words</span><span class="o">=</span><span class="n">max_fatures</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">filters</span><span class="o">=</span><span class="s1">&#39;!&quot;#$%&amp;()*+,-./:;&lt;=&gt;?@[$$^_`{|}~&#39;</span><span class="p">,</span> <span class="n">lower</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">tokenizer</span><span class="o">.</span><span class="n">fit_on_texts</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Message&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">texts_to_sequences</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Message&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">pad_sequences</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">pad_sequences</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">maxlen</span><span class="o">=</span><span class="n">MAX_SEQUENCE_LENGTH</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Found </span><span class="si">%s</span><span class="s1"> unique tokens.&#39;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Shape of data tensor:&#39;</span><span class="p">,</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -6823,20 +6818,12 @@ Message: ham
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">texts_to_sequences</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Message&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">pad_sequences</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">maxlen</span><span class="o">=</span><span class="n">MAX_SEQUENCE_LENGTH</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Shape of data tensor:&#39;</span><span class="p">,</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape of data tensor: (5572, 50)
-</pre></div>
-</div>
-</div>
-</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Tokenizer</span></code>: Es un objeto de <code class="docutils literal notranslate"><span class="pre">Keras</span></code> que <em><strong>convierte texto en secuencias de números enteros, donde cada número representa un token</strong></em> (una palabra o símbolo) en el vocabulario.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_words=max_fatures</span></code>: Establece el <em><strong>número máximo de palabras que se considerarán</strong></em>. Solo se tomarán en cuenta las palabras más frecuentes hasta <code class="docutils literal notranslate"><span class="pre">max_fatures</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">filters='!&quot;#$%&amp;()*+,-./:;&lt;=&gt;?&#64;[$$^_{|}~'</span></code>: Especifica los <em><strong>caracteres que se eliminarán del texto</strong></em>, como puntuación y símbolos.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pad_sequences</span></code>: Este método se utiliza para <em><strong>hacer que todas las secuencias en <code class="docutils literal notranslate"><span class="pre">X</span></code> tengan la misma longitud</strong></em>. Si una <em><strong>secuencia es más corta que <code class="docutils literal notranslate"><span class="pre">MAX_SEQUENCE_LENGTH</span></code>, se rellenará con ceros (o con un valor especificado); si es más larga, se truncará</strong></em>.</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_tagged</span><span class="o">.</span><span class="n">values</span>
@@ -6858,11 +6845,22 @@ Message: ham
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d2v_model</span> <span class="o">=</span> <span class="n">Doc2Vec</span><span class="p">(</span><span class="n">dm</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">dm_mean</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">vector_size</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">min_count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">workers</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.065</span><span class="p">,</span> <span class="n">min_alpha</span><span class="o">=</span><span class="mf">0.065</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d2v_model</span> <span class="o">=</span> <span class="n">Doc2Vec</span><span class="p">(</span><span class="n">dm</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">dm_mean</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">vector_size</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">min_count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">workers</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.065</span><span class="p">,</span> <span class="n">min_alpha</span><span class="o">=</span><span class="mf">0.065</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
+<ul class="simple">
+<li><p>El modelo <code class="docutils literal notranslate"><span class="pre">Doc2Vec</span></code> es útil para <em><strong>convertir documentos en representaciones numéricas (vectores) de tamaño fijo</strong></em>. Esto es esencial porque las <em><strong>LSTM requieren representaciones numéricas</strong></em> para trabajar.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dm=1</span></code>: Especifica que se <em><strong>usará el método Distributed Memory (DM) (en lugar de dm=0, que indica Distributed Bag of Words)</strong></em>. Usar DM tiene textos más largos y complejos donde el <em><strong>orden de las palabras es importante</strong></em> y es crucial capturar el contexto para tareas de NLP que requieren una comprensión profunda del documento, como <em><strong>análisis de sentimientos o clasificación temática</strong></em>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dm_mean=1</span></code>: Utiliza la <em><strong>media de los vectores de contextos de palabras para representar los documentos</strong></em>. Esto suele mejorar la precisión en comparación con otros métodos.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vector_size=20</span></code>: Define el <em><strong>tamaño del vector de salida</strong></em>, lo que significa que cada documento se representará como un vector de 20 dimensiones. Para textos simples o tareas básicas, <em>un tamaño pequeño como 20 puede ser suficiente. Para análisis de texto más detallados, el tamaño del vector puede incrementarse para capturar mejor las relaciones entre palabras y documentos, generalmente entre 100 y 300 dimensiones</em>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">window=8</span></code>: Define el <em><strong>tamaño de la ventana de contexto, es decir, el número máximo de palabras a considerar alrededor de la palabra objetivo en cada documento</strong></em>. En este caso, se consideran hasta 8 palabras a cada lado.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">min_count=1</span></code>: Establece el <em><strong>mínimo de veces que una palabra debe aparecer en el corpus para ser incluida en el modelo</strong></em>. Un valor de 1 significa que todas las palabras en el corpus se incluirán.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">workers=12</span></code>: Utiliza un solo núcleo de procesamiento para el entrenamiento. Si se incrementa este valor, se pueden usar varios núcleos para acelerar el proceso.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">alpha=0.065</span></code>: Establece la <em><strong>tasa de aprendizaje inicial</strong></em>. <code class="docutils literal notranslate"><span class="pre">Doc2Vec</span></code> reduce gradualmente esta tasa durante el entrenamiento.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">min_alpha=0.065</span></code>: Fija el <em><strong>límite inferior de la tasa de aprendizaje</strong></em> para que no disminuya más allá de este valor durante el entrenamiento.</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d2v_model</span><span class="o">.</span><span class="n">build_vocab</span><span class="p">([</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">train_tagged</span><span class="o">.</span><span class="n">values</span><span class="p">)])</span>
@@ -6875,6 +6873,9 @@ Message: ham
 </div>
 </div>
 </div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">d2v_model.build_vocab([x</span> <span class="pre">for</span> <span class="pre">x</span> <span class="pre">in</span> <span class="pre">tqdm(train_tagged.values)])</span></code>: <em><strong>Crea el vocabulario para el modelo</strong></em> <code class="docutils literal notranslate"><span class="pre">Doc2Vec</span></code> <em><strong>en función de los documentos de entrada en</strong></em> <code class="docutils literal notranslate"><span class="pre">train_tagged</span></code></p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
@@ -6936,6 +6937,13 @@ Wall time: 2.35 s
 </div>
 </div>
 </div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">dm/m</span></code>: Indica el <em><strong>tipo de modelo que se está utilizando</strong></em>. <em>dm significa que se está utilizando el enfoque de Distributed Memory (DM). El “m” se refiere a que se está usando la estrategia de “mean” (media) para la representación de los contextos de palabras</em>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">d20</span></code>: Este parámetro indica el tamaño del vector de salida, que es de 20 dimensiones. Es decir, <em><strong>cada documento se representará como un vector de 20 dimensiones</strong></em>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">n5</span></code>: Este número se refiere al <em><strong>número de palabras mínimas requeridas para que una palabra sea incluida en el vocabulario</strong></em>. En este caso, las palabras que aparecen al menos 5 veces serán consideradas.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">w8</span></code>: Este valor representa el <em><strong>tamaño de la ventana de contexto, que es de 8 palabras</strong></em>. Esto significa que al entrenar el modelo, se considera un contexto de 8 palabras antes y después de la palabra objetivo.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">s0.001</span></code>: Este número indica la <em><strong>tasa de aprendizaje inicial</strong></em> (<code class="docutils literal notranslate"><span class="pre">alpha</span></code>), que es de <em><strong>0.001 en este caso</strong></em>. Esta tasa determina cuánto se ajustan los pesos del modelo durante el entrenamiento.</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_words</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">d2v_model</span><span class="o">.</span><span class="n">wv</span><span class="o">.</span><span class="n">key_to_index</span><span class="p">)</span>
@@ -6969,6 +6977,9 @@ Wall time: 2.35 s
 </div>
 </div>
 </div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">embedding_matrix</span> <span class="pre">=</span> <span class="pre">np.zeros((len(d2v_model.wv.key_to_index)+</span> <span class="pre">1,</span> <span class="pre">20))</span></code>: <em><strong>Inicializa una matriz de embeddings (representaciones vectoriales) de tamaño (número de palabras en el vocabulario + 1, 20) llena de ceros</strong></em>. Esta matriz se puede utilizar posteriormente para <em>almacenar las representaciones vectoriales de cada palabra del vocabulario aprendidas por el modelo</em> <code class="docutils literal notranslate"><span class="pre">Doc2Vec</span></code></p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">d2v_model</span><span class="o">.</span><span class="n">dv</span><span class="p">)):</span>
@@ -6978,7 +6989,6 @@ Wall time: 2.35 s
         <span class="nb">print</span><span class="p">(</span><span class="n">d2v_model</span><span class="o">.</span><span class="n">dv</span><span class="p">)</span>
         <span class="n">embedding_matrix</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">vec</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">vec</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">vec</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>  
 </pre></div>
 </div>
 </div>
@@ -7001,6 +7011,9 @@ KeyedVectors&lt;vector_size=20, 2 keys&gt;
 </div>
 </div>
 </div>
+<ul class="simple">
+<li><p>Este bucle <em><strong>itera a través de los vectores de documento en el modelo Doc2Vec, verifica que cada vector sea válido y su longitud adecuada, imprime información relevante, y almacena los vectores en una matriz de embeddings</strong></em>.</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d2v_model</span><span class="o">.</span><span class="n">wv</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="n">positive</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;urgent&#39;</span><span class="p">],</span> <span class="n">topn</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
@@ -7022,6 +7035,9 @@ KeyedVectors&lt;vector_size=20, 2 keys&gt;
 </div>
 </div>
 </div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">d2v_model.wv.most_similar(positive=['urgent'],</span> <span class="pre">topn=10)</span></code>: Se utiliza para encontrar las <em><strong>palabras más similares al término “urgent” en el modelo</strong></em> <code class="docutils literal notranslate"><span class="pre">Doc2Vec</span></code></p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d2v_model</span><span class="o">.</span><span class="n">wv</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="n">positive</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;cherish&#39;</span><span class="p">],</span> <span class="n">topn</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
@@ -7056,7 +7072,7 @@ KeyedVectors&lt;vector_size=20, 2 keys&gt;
 </div>
 </div>
 <ul class="simple">
-<li><p>Layer inicial</p></li>
+<li><p>Capa LSTM inicial</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -7066,7 +7082,7 @@ KeyedVectors&lt;vector_size=20, 2 keys&gt;
 </div>
 </div>
 <ul class="simple">
-<li><p>Vectores de palabras emmbed</p></li>
+<li><p>Vectores de palabras <code class="docutils literal notranslate"><span class="pre">Embedding</span></code></p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -7076,16 +7092,11 @@ KeyedVectors&lt;vector_size=20, 2 keys&gt;
 </div>
 </div>
 <ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">weights=[embedding_matrix]</span></code>: Al pasar esto como un argumento de <code class="docutils literal notranslate"><span class="pre">weights</span></code>, se le <em><strong>indica a <code class="docutils literal notranslate"><span class="pre">Keras</span></code> que use estos vectores iniciales para la capa de incrustación</strong></em>.</p></li>
+</ul>
+<ul class="simple">
 <li><p>Aprender las correlaciones</p></li>
 </ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">split_input</span><span class="p">(</span><span class="n">sequence</span><span class="p">):</span>
-     <span class="k">return</span> <span class="n">sequence</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">tf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">sequence</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">LSTM</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span><span class="n">return_sequences</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
@@ -7101,7 +7112,7 @@ KeyedVectors&lt;vector_size=20, 2 keys&gt;
 </div>
 </div>
 <ul class="simple">
-<li><p>Esqueleto del modelo de salida</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">summary()</span></code> del modelo de salida</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -7348,7 +7359,7 @@ Train: 1.000, Test: 0.9856
 </div>
 </div>
 <ul class="simple">
-<li><p>Predecir probabilidades para el conjunto de prueba</p></li>
+<li><p>Las siguientes líneas están utilizando el modelo entrenado para <em><strong>predecir la probabilidad de que cada entrada en <code class="docutils literal notranslate"><span class="pre">X_test</span></code> pertenezca a cada clase</strong></em>. Luego, se <em><strong>determina la clase más probable para cada entrada</strong></em> y se imprime tanto las probabilidades como las clases predichas.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -7369,12 +7380,6 @@ Train: 1.000, Test: 0.9856
 </div>
 </div>
 </div>
-<ul class="simple">
-<li><p>Evaluar el modelo</p></li>
-</ul>
-<ul class="simple">
-<li><p>Predecir clases crisp para el conjunto de prueba</p></li>
-</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">yhat_classes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">yhat_probs</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -7411,7 +7416,7 @@ Train: 1.000, Test: 0.9856
 </div>
 </div>
 <ul class="simple">
-<li><p>Reducir a matriz 1d</p></li>
+<li><p>Cada número en este arreglo <em><strong>representa la clase predicha para cada muestra en el conjunto de prueba</strong></em>. Por ejemplo, si <em><strong>el valor es 0, significa que la muestra pertenece a la clase 0, y si es 1, significa que la muestra pertenece a la clase 1</strong></em>.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
