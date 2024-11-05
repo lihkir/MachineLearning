@@ -68,7 +68,7 @@
     <script src="_static/.ipynb_checkpoints/custom-checkpoint.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="9. Deep Learning para Visión por Computadora" href="dl_computer_vision.html" />
+    <link rel="next" title="9. Análisis de Componentes Principales" href="practical_pca.html" />
     <link rel="prev" title="7. Máquinas de vectores de soporte" href="svm_model.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -196,16 +196,11 @@
 
 <li class="toctree-l1"><a class="reference internal" href="svm_model.html">7. Máquinas de vectores de soporte</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">8. Redes Neuronales y Deep Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dl_computer_vision.html">9. Deep Learning para Visión por Computadora</a></li>
-
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="practical_pca.html">14. Análisis de Componentes Principales</a></li>
-<li class="toctree-l1"><a class="reference internal" href="model_evaluation.html">15. Evaluación de modelos</a></li>
-<li class="toctree-l1"><a class="reference internal" href="chains_pipelines.html">16. Cadenas de Algoritmos y Pipelines</a></li>
-<li class="toctree-l1"><a class="reference internal" href="appendix.html">17. Apéndice</a></li>
-<li class="toctree-l1"><a class="reference internal" href="biblio.html">18. Bibliografía</a></li>
+<li class="toctree-l1"><a class="reference internal" href="practical_pca.html">9. Análisis de Componentes Principales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_evaluation.html">10. Evaluación de modelos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chains_pipelines.html">11. Cadenas de Algoritmos y Pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix.html">12. Apéndice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="biblio.html">13. Bibliografía</a></li>
 </ul>
 
     </div>
@@ -389,13 +384,17 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#red-de-memoria-a-largo-plazo-lstm">8.14. Red de memoria a largo plazo (LSTM)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-procesamiento-del-lenguaje-natural">8.15. Aplicación: Procesamiento del Lenguaje Natural</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#atencion-y-memoria">8.16. Atención y Memoria</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entrenamiento-adversario">8.17. Entrenamiento adversario</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-generativos-profundos">8.18. Modelos Generativos Profundos</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#maquina-de-boltzmann-restringida">8.18.1. Máquina de Boltzmann Restringida</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#series-de-tiempo">8.16. Series de Tiempo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entrenamiento-de-mlp">8.17. Entrenamiento de MLP</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mlp-para-la-prediccion-de-series-temporales">8.18. MLP para la predicción de series temporales</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lstm-para-la-prediccion-de-series-de-tiempo">8.19. LSTM para la predicción de series de tiempo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#atencion-y-memoria">8.20. Atención y Memoria</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entrenamiento-adversario">8.21. Entrenamiento adversario</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-generativos-profundos">8.22. Modelos Generativos Profundos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#maquina-de-boltzmann-restringida">8.22.1. Máquina de Boltzmann Restringida</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autoencoders">8.19. Autoencoders</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autoencoders">8.23. Autoencoders</a></li>
 </ul>
             </nav>
         </div>
@@ -6462,7 +6461,7 @@ se muestra en la <a class="reference internal" href="#lstm-arch-rnn-numref"><spa
 </div>
 </div>
 <ul class="simple">
-<li><p>Iniciamos verificando que <code class="docutils literal notranslate"><span class="pre">Tensorflow</span></code> está correctamente instalado, y que, además, <code class="docutils literal notranslate"><span class="pre">puede</span> <span class="pre">utilizar</span> <span class="pre">la</span> <span class="pre">GPU</span> <span class="pre">disponible</span> <span class="pre">en</span> <span class="pre">su</span> <span class="pre">computadora</span></code>. En este caso corresponde a una tarjeta de video dedicada <code class="docutils literal notranslate"><span class="pre">GTX</span> <span class="pre">4070</span> <span class="pre">Maxq</span> <span class="pre">12G</span></code></p></li>
+<li><p>Iniciamos verificando que <code class="docutils literal notranslate"><span class="pre">Tensorflow</span></code> está correctamente instalado, y que, además, <em><strong>puede utilizar la GPU disponible en su computadora</strong></em>. En este caso corresponde a una tarjeta de video dedicada <code class="docutils literal notranslate"><span class="pre">GTX</span> <span class="pre">4070</span> <span class="pre">Maxq</span> <span class="pre">12G</span></code></p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -6663,7 +6662,7 @@ Message: ham
 </div>
 </div>
 <ul class="simple">
-<li><p><strong>Preprocesamiento de Texto</strong>: A continuación, establecemos una función para *transformar el texto a minúsculas y eliminar signos de puntuación/símbolos de las palabras.</p></li>
+<li><p><strong>Preprocesamiento de Texto</strong>: A continuación, establecemos una función para <em><strong>transformar el texto a minúsculas y eliminar signos de puntuación/símbolos de las palabras</strong></em>.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -7609,8 +7608,1889 @@ acc: 0.98
 </div>
 </div>
 </section>
+<section id="series-de-tiempo">
+<h2><span class="section-number">8.16. </span>Series de Tiempo<a class="headerlink" href="#series-de-tiempo" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Exiten varios métodos para predecir una serie de tiempo en un momento futuro a partir de observaciones tomadas en el pasado. Uno de estos métodos para realizar predicciones es el <em><strong>modelo autorregresivo</strong></em> (<span class="math notranslate nohighlight">\(AR\)</span>), que expresa la serie en el tiempo <span class="math notranslate nohighlight">\(t\)</span> como una <em><strong>regresión lineal</strong></em> de <span class="math notranslate nohighlight">\(p\)</span> observaciones anteriores</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+y_{t}=\omega_{0}+\sum_{i=1}^{p}\omega_{i}y_{t-i}+\varepsilon_{t}.
+\]</div>
+<ul class="simple">
+<li><p>Aquí, <span class="math notranslate nohighlight">\(\varepsilon_{t}\)</span> es el término de <em><strong>error residual</strong></em> del modelo <span class="math notranslate nohighlight">\(AR\)</span>. La idea que subyace al modelo lineal puede generalizarse en el sentido de que el objetivo de la predicción de series temporales es <em><strong>desarrollar una función</strong></em> <span class="math notranslate nohighlight">\(f\)</span> <em><strong>que prediga</strong></em> <span class="math notranslate nohighlight">\(y_{t}\)</span> <em><strong>en función de las observaciones en</strong></em> <span class="math notranslate nohighlight">\(p\)</span> <em><strong>valores previos en el tiempo</strong></em></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+y_{t}=f(y_{t-1}, y_{t-2}, \dots, y_{t-p}).
+\]</div>
+<ul class="simple">
+<li><p>En este capítulo, exploraremos tres <em><strong>métodos basados en redes neuronales para desarrollar la función</strong></em> <span class="math notranslate nohighlight">\(f\)</span>. Cada método incluye la definición de una <em><strong>arquitectura de red neuronal</strong></em> (en términos del <em><strong>número de capas ocultas, número de neuronas en cada capa oculta</strong></em>, etc.) y luego el algoritmo <em><strong>backpropagation</strong></em> o su variante adecuada para la arquitectura de red utilizada.</p></li>
+</ul>
+</section>
+<section id="entrenamiento-de-mlp">
+<h2><span class="section-number">8.17. </span>Entrenamiento de MLP<a class="headerlink" href="#entrenamiento-de-mlp" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Los pesos <span class="math notranslate nohighlight">\(w\)</span> de una red neuronal se calculan mediante un algoritmo de optimización basado en el gradiente, como el <em><strong>gradiente descendente estocástico, que minimiza iterativamente la función de pérdida o el error</strong></em> (<span class="math notranslate nohighlight">\(L\)</span>) en que incurre la red al hacer predicciones sobre los datos de entrenamiento. El <em><strong>error cuadrático medio</strong></em> (<span class="math notranslate nohighlight">\(MSE\)</span>) y el <em><strong>error absoluto medio</strong></em> (<span class="math notranslate nohighlight">\(MAE\)</span>) se utilizan para <em><strong>tareas de regresión</strong></em>, mientras que la pérdida binaria y categórica logarítmica son funciones de pérdida habituales en los problemas de clasificación.</p></li>
+</ul>
+<ul class="simple">
+<li><p>Para la predicción de series temporales, <span class="math notranslate nohighlight">\(MSE\)</span> y <span class="math notranslate nohighlight">\(MAE\)</span> serían aptos para entrenar los modelos neuronales. <em><strong>Los algoritmos gradiente descendiente funcionan moviendo los pesos, en iteraciones</strong></em> <span class="math notranslate nohighlight">\(i\)</span><em><strong>, a lo largo de su trayectoria de gradiente</strong></em>. El gradiente es la derivada parcial de la función de pérdida <span class="math notranslate nohighlight">\(L\)</span> con respecto al peso. La regla de actualización más sencilla para cambiar un peso <span class="math notranslate nohighlight">\(w\)</span> requiere los valores de los pesos, la derivada parcial de <span class="math notranslate nohighlight">\(L\)</span> con respecto a los pesos, y una tasa de aprendizaje <span class="math notranslate nohighlight">\(\alpha\)</span> que <em><strong>controla la rapidez con la que el punto desciende a lo largo del gradiente</strong></em></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\omega_{i+1}=\omega_{i}-\alpha\left(\frac{\partial L}{\partial\omega}\right)_{\omega = \omega_{i}}
+\]</div>
+<ul class="simple">
+<li><p>Esta regla básica de actualización tiene diversas variantes que influyen en la convergencia del algoritmo. Sin embargo, <em><strong>una entrada crucial para todos los algoritmos basados en el gradiente es la derivada parcial que debe calcularse para todos los pesos de la red</strong></em>. En redes neuronales profundas, algunas de las cuales tienen millones de pesos, el cálculo de la derivada puede ser una tarea computacional gigantesca. En esta dirección es exactamente donde entra en juego el famoso <em><strong>algoritmo backpropagation</strong></em> que resuelve este problema de forma eficiente.</p></li>
+<li><p>Para entender el algoritmo backpropagation, primero hay que conocer los <em><strong>grafos computacionales y cómo se utilizan para realizar cálculos en una red neuronal</strong></em>. Consideremos una <em><strong>red neuronal simple de una sola capa oculta, que tiene dos unidades ocultas, cada una con una activación sigmoidea</strong></em>. La unidad de salida es una transformación lineal de sus entradas. La red se alimenta con dos variables de entrada, <span class="math notranslate nohighlight">\([y_{1},y_{2}]\)</span>. Los pesos se muestran a lo largo de los bordes de la red</p></li>
+</ul>
+<figure class="align-center" id="twoinput-single-hidden-layer">
+<a class="reference internal image-reference" href="_images/twoinput_single_hidden_layer.png"><img alt="_images/twoinput_single_hidden_layer.png" src="_images/twoinput_single_hidden_layer.png" style="width: 300.0px; height: 207.60000000000002px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 8.43 </span><span class="caption-text">Red neuronal con una sola capa oculta y dos entradas.</span><a class="headerlink" href="#twoinput-single-hidden-layer" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<ul class="simple">
+<li><p>La red realiza una serie de <em><strong>sumas, multiplicaciones y un par evaluaciones de funciones sigmoidales para transformar la entrada en una predicción</strong></em>. La transformación de la entrada en una predicción se denomina paso hacia delante de la red neuronal. La <a class="reference internal" href="#forwardprop-single-hidden-layer"><span class="std std-numref">Fig. 8.44</span></a> muestra cómo se consigue un pase hacia adelante mediante un grafo computacional para un par de entrada <span class="math notranslate nohighlight">\([-1, 2]\)</span>. Cada cálculo da como resultado una salida intermedia <span class="math notranslate nohighlight">\(p_{i}\)</span>. <em><strong>Los resultados intermedios</strong></em> <span class="math notranslate nohighlight">\(p_{7}\)</span> <em><strong>y</strong></em> <span class="math notranslate nohighlight">\(p_{8}\)</span> <em><strong>son la salida de las neuronas ocultas</strong></em> <span class="math notranslate nohighlight">\(g_{1}\)</span> y <span class="math notranslate nohighlight">\(g_{2}\)</span>. Durante el entrenamiento, la función de pérdida <span class="math notranslate nohighlight">\(L\)</span> también se calcula en el paso hacia delante</p></li>
+</ul>
+<figure class="align-center" id="forwardprop-single-hidden-layer">
+<img alt="_images/forwardprop_single_hidden_layer.png" src="_images/forwardprop_single_hidden_layer.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 8.44 </span><span class="caption-text">Gráfico computacional de un perceptrón con una capa y dos neuronas ocultas.</span><a class="headerlink" href="#forwardprop-single-hidden-layer" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<ul class="simple">
+<li><p>En este punto, <em><strong>se aplica el algoritmo de backpropagation para calcular las derivadas parciales entre dos nodos conectados por una arista</strong></em>. El recorrido hacia atrás en el grafo para calcular la derivada parcial también se conoce como paso hacia atrás (<em><strong>backward pass</strong></em>). <em><strong>El operador de diferenciación parcial se aplica en cada nodo y las derivadas parciales se asignan a las respectivas aristas que conectan el nodo descendente a lo largo del grafo computacional</strong></em>.</p></li>
+<li><p>Siguiendo la regla de la cadena la derivada parcial <span class="math notranslate nohighlight">\(\partial_{\omega} L\)</span> se calcula <em><strong>multiplicando las derivadas parciales en todas las aristas que conectan el nodo de peso y el nodo de pérdida</strong></em>. Si existen varios caminos entre un nodo de peso y el nodo de pérdida, las derivadas parciales a lo largo de cada camino se suman para obtener la <em><strong>derivada parcial total de la pérdida con respecto al peso</strong></em>. Esta técnica gráfica de implementar los pasos hacia delante y hacia atrás es la técnica computacional subyacente utilizada en potentes bibliotecas de aprendizaje profundo. El paso hacia atrás se ilustra en <a class="reference internal" href="#partialderivates-single-hidden-layer"><span class="std std-numref">Fig. 8.45</span></a></p></li>
+</ul>
+<figure class="align-center" id="partialderivates-single-hidden-layer">
+<img alt="_images/partialderivates_single_hidden_layer.png" src="_images/partialderivates_single_hidden_layer.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 8.45 </span><span class="caption-text">Cálculo de derivadas parciales en un grafo computacional.</span><a class="headerlink" href="#partialderivates-single-hidden-layer" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<ul class="simple">
+<li><p>Las derivadas parciales de la función de pérdida con respecto a los pesos se obtienen aplicando la <em><strong>regla de la cadena</strong></em>:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\frac{\partial L}{\partial\omega_{5}} &amp;= -2(y-\hat{y})\times 1\times p_{7}\\
+\frac{\partial L}{\partial\omega_{6}} &amp;= -2(y-\hat{y})\times 1\times p_{8}\\
+\frac{\partial L}{\partial\omega_{1}} = \frac{\partial L}{\partial\hat{y}}\frac{\partial\hat{y}}{\partial p_{9}}\frac{\partial p_{9}}{\partial p_{7}}\frac{\partial p_{7}}{\partial p_{5}}\frac{\partial p_{5}}{\partial p_{1}}\frac{\partial p_{1}}{\partial\omega_{1}} &amp;= -2(y-\hat{y})\times 1\times\omega_{5}\times p_{7}^{2}e^{-p_{5}}\times 1\times -1\\
+\frac{\partial L}{\partial\omega_{2}} = \frac{\partial L}{\partial\hat{y}}\frac{\partial\hat{y}}{\partial p_{9}}\frac{\partial p_{9}}{\partial p_{7}}\frac{\partial p_{7}}{\partial p_{5}}\frac{\partial p_{5}}{\partial p_{2}}\frac{\partial p_{2}}{\partial\omega_{2}} &amp;= -2(y-\hat{y})\times 1\times\omega_{5}\times p_{7}^{2}e^{-p_{5}}\times 1\times 2\\
+\frac{\partial L}{\partial\omega_{3}} = \frac{\partial L}{\partial\hat{y}}\frac{\partial\hat{y}}{\partial p_{10}}\frac{\partial p_{10}}{\partial p_{8}}\frac{\partial p_{8}}{\partial p_{6}}\frac{\partial p_{6}}{\partial p_{3}}\frac{\partial p_{3}}{\partial\omega_{3}} &amp;= -2(y-\hat{y})\times 1\times\omega_{6}\times p_{8}^{2}e^{-p_{6}}\times 1\times -1\\
+\frac{\partial L}{\partial\omega_{4}} = \frac{\partial L}{\partial\hat{y}}\frac{\partial\hat{y}}{\partial p_{10}}\frac{\partial p_{10}}{\partial p_{8}}\frac{\partial p_{8}}{\partial p_{6}}\frac{\partial p_{6}}{\partial p_{4}}\frac{\partial p_{4}}{\partial\omega_{4}} &amp;= -2(y-\hat{y})\times 1\times\omega_{6}\times p_{8}^{2}e^{-p_{6}}\times 1\times 2.
+\end{align*}
+\end{split}\]</div>
+<ul class="simple">
+<li><p>Durante el entrenamiento, <em><strong>los pesos se inicializan con números aleatorios comúnmente muestreados a partir de una distribución uniforme con límites superior e inferior en</strong></em> <span class="math notranslate nohighlight">\([-1, 1]\)</span> o una <em><strong>distribución normal que tiene media cero y varianza unitaria</strong></em>. Estos esquemas de inicialización aleatoria tienen algunas variantes que mejoran la convergencia de la optimización. En este caso, vamos a suponer que los pesos son inicializados a partir de una distribución aleatoria uniforme y, por tanto, <span class="math notranslate nohighlight">\(w_{1} = -0.33, w_{2} = -0.33, w_{3} = 0.57, w_{4} = -0.01, w_{5}=0.07\)</span>, y <span class="math notranslate nohighlight">\(w_{6} = 0.82\)</span>.</p></li>
+<li><p>Con estos valores, vamos a realizar pasos hacia adelante y hacia atrás sobre el grafo computacional. Actualizamos la figura anterior con los valores calculados durante la <em><strong>pasada hacia adelante en azul y los gradientes calculados durante la pasada hacia atrás en rojo</strong></em>. Para este ejemplo, fijamos el <em><strong>valor real de la variable objetivo como</strong></em> <span class="math notranslate nohighlight">\(y = 1\)</span></p></li>
+</ul>
+<figure class="align-center" id="forward-backward-single-hidden-layer">
+<img alt="_images/forward_backward_single_hidden_layer.png" src="_images/forward_backward_single_hidden_layer.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 8.46 </span><span class="caption-text">Pasos hacia delante (en azul) y hacia atrás (en rojo) sobre un grafo computacional.</span><a class="headerlink" href="#forward-backward-single-hidden-layer" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<ul class="simple">
+<li><p>Una vez calculados los gradientes a lo largo de las aristas, <em><strong>las derivadas parciales con respecto a los pesos no son más que una aplicación de la regla de la cadena</strong></em>, de la que ya hemos hablado. Los valores de las derivadas parciales son los siguientes:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\frac{\partial L}{\partial\omega_{5}} &amp;= -0.919\times 1\times 0.418 = -0.384\\
+\frac{\partial L}{\partial\omega_{6}} &amp;= -0.919\times 1\times 0.357 = -0.328\\
+\frac{\partial L}{\partial\omega_{1}} &amp;= -0.919\times 1\times 0.07\times 0.243\times 1\times -1 = 0.016\\
+\frac{\partial L}{\partial\omega_{2}} &amp;= -0.919\times 1\times 0.07\times 0.243\times 1\times 2 = -0.032\\
+\frac{\partial L}{\partial\omega_{3}} &amp;= -0.919\times 1\times 0.82\times 0.229\times 1\times -1 = 0.173\\
+\frac{\partial L}{\partial\omega_{4}} &amp;= -0.919\times 1\times 0.82\times 0.229\times 1\times 2 = -0.346\\
+\end{align*}
+\end{split}\]</div>
+<ul class="simple">
+<li><p>El siguiente paso consiste en <em><strong>actualizar los pesos mediante el algoritmo de gradiente descendiente</strong></em>. Así, con una <em><strong>tasa de aprendizaje de</strong></em> <span class="math notranslate nohighlight">\(\alpha = 0.01\)</span>, el nuevo valor de</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+w_{5} = 0.07 - 0.01\times -0.384 = 0.0738.
+\]</div>
+<ul class="simple">
+<li><p>El resto de pesos también pueden actualizarse utilizando una regla de actualización similar. El proceso de actualización iterativa de los pesos se repite varias veces. <em><strong>El número de veces que se actualizan los pesos se conoce como número de épocas</strong></em> o pasadas sobre los datos de entrenamiento. Normalmente, un criterio de tolerancia sobre el cambio de la función de pérdida en comparación con la época anterior controla el número de épocas.</p></li>
+<li><p><em><strong>Para determinar los pesos de una red neuronal se utiliza el algoritmo backpropagation junto con un optimizador basado en el gradiente</strong></em>. Afortunadamente, existen potentes bibliotecas de aprendizaje profundo, como <code class="docutils literal notranslate"><span class="pre">Tensorflow,</span> <span class="pre">Theano</span></code> y <code class="docutils literal notranslate"><span class="pre">CNTK</span></code> que implementan gráficos computacionales para entrenar redes neuronales de cualquier arquitectura y complejidad. Estas bibliotecas vienen con soporte para ejecutar los cálculos como operaciones matemáticas en matrices multidimensionales y también pueden aprovechar las <code class="docutils literal notranslate"><span class="pre">GPU</span></code> para realizar cálculos más rápidos.</p></li>
+</ul>
+</section>
+<section id="mlp-para-la-prediccion-de-series-temporales">
+<h2><span class="section-number">8.18. </span>MLP para la predicción de series temporales<a class="headerlink" href="#mlp-para-la-prediccion-de-series-temporales" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>En esta sección, utilizaremos <code class="docutils literal notranslate"><span class="pre">MLP</span></code> para desarrollar <em><strong>modelos de predicción de series temporales</strong></em>. El conjunto de datos utilizado para estos ejemplos es sobre la <em><strong>contaminación atmosférica medida por la concentración de partículas (PM) de diámetro inferior o igual a 2.5 micrómetros</strong></em>.</p></li>
+<li><p>Hay otras variables, como la <em><strong>presión atmosférica, temperatura del aire, punto de rocío, etc</strong></em>. Se han desarrollado un par de modelos de series temporales, uno sobre la <em><strong>presión atmosférica</strong></em> <code class="docutils literal notranslate"><span class="pre">PRES</span></code> y otro sobre <code class="docutils literal notranslate"><span class="pre">pm</span> <span class="pre">2.5</span></code>. El conjunto de datos se ha descargado del repositorio de aprendizaje automático de la <a class="reference external" href="https://archive.ics.uci.edu/ml/datasets/Beijing+PM2.5+Data">UCI</a>.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">MinMaxScaler</span>
+<span class="kn">from</span> <span class="nn">tensorflow</span> <span class="kn">import</span> <span class="n">keras</span>
+<span class="kn">from</span> <span class="nn">keras.layers</span> <span class="kn">import</span> <span class="n">Dense</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Dropout</span>
+<span class="kn">from</span> <span class="nn">keras.optimizers</span> <span class="kn">import</span> <span class="n">SGD</span>
+<span class="kn">from</span> <span class="nn">keras.models</span> <span class="kn">import</span> <span class="n">Model</span>
+<span class="kn">from</span> <span class="nn">keras.models</span> <span class="kn">import</span> <span class="n">load_model</span>
+<span class="kn">from</span> <span class="nn">keras.callbacks</span> <span class="kn">import</span> <span class="n">ModelCheckpoint</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">r2_score</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_absolute_error</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;text.usetex&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s2">&quot;darkgrid&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;datasets/PRSA_data_2010.1.1-2014.12.31.csv&#39;</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="k">lambda</span> <span class="n">column</span><span class="p">:</span> <span class="n">column</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;DEWP&#39;</span><span class="p">,</span> <span class="s1">&#39;TEMP&#39;</span><span class="p">,</span> <span class="s1">&#39;cbwd&#39;</span><span class="p">,</span> <span class="s1">&#39;Iws&#39;</span><span class="p">,</span>	<span class="s1">&#39;Is&#39;</span><span class="p">,</span> <span class="s1">&#39;Ir&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Shape of the dataframe:&#39;</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape of the dataframe: (43824, 7)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>No</th>
+      <th>year</th>
+      <th>month</th>
+      <th>day</th>
+      <th>hour</th>
+      <th>pm2.5</th>
+      <th>PRES</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>2010</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>1021.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>2010</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>1020.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>2010</td>
+      <td>1</td>
+      <td>1</td>
+      <td>2</td>
+      <td>NaN</td>
+      <td>1019.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>2010</td>
+      <td>1</td>
+      <td>1</td>
+      <td>3</td>
+      <td>NaN</td>
+      <td>1019.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>2010</td>
+      <td>1</td>
+      <td>1</td>
+      <td>4</td>
+      <td>NaN</td>
+      <td>1018.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<ul class="simple">
+<li><p>Para asegurarse de que las filas están en el orden correcto de fecha y hora de las observaciones, <em><strong>se crea una nueva columna datetime a partir de las columnas relacionadas con la fecha y la hora del DataFrame</strong></em>. La nueva columna se compone de objetos <code class="docutils literal notranslate"><span class="pre">datetime.datetime</span> <span class="pre">de</span> <span class="pre">Python</span></code>. El DataFrame se ordena en orden ascendente sobre esta columna</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;datetime&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;month&#39;</span><span class="p">,</span> <span class="s1">&#39;day&#39;</span><span class="p">,</span> <span class="s1">&#39;hour&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">],</span> <span class="n">month</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;month&#39;</span><span class="p">],</span> <span class="n">day</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;day&#39;</span><span class="p">],</span>
+                                                                                          <span class="n">hour</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;hour&#39;</span><span class="p">]),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;datetime&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>No</th>
+      <th>year</th>
+      <th>month</th>
+      <th>day</th>
+      <th>hour</th>
+      <th>pm2.5</th>
+      <th>PRES</th>
+      <th>datetime</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>2010</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>1021.0</td>
+      <td>2010-01-01 00:00:00</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>2010</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>1020.0</td>
+      <td>2010-01-01 01:00:00</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>2010</td>
+      <td>1</td>
+      <td>1</td>
+      <td>2</td>
+      <td>NaN</td>
+      <td>1019.0</td>
+      <td>2010-01-01 02:00:00</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>2010</td>
+      <td>1</td>
+      <td>1</td>
+      <td>3</td>
+      <td>NaN</td>
+      <td>1019.0</td>
+      <td>2010-01-01 03:00:00</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>2010</td>
+      <td>1</td>
+      <td>1</td>
+      <td>4</td>
+      <td>NaN</td>
+      <td>1018.0</td>
+      <td>2010-01-01 04:00:00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<ul class="simple">
+<li><p>Dibujamos un diagrama de cajas para visualizar la <em><strong>tendencia central y la dispersión</strong></em> de por ejemplo la columna <code class="docutils literal notranslate"><span class="pre">PRES</span></code></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_fontsize</span> <span class="o">=</span> <span class="mi">18</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  
+<span class="n">g1</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;PRES&#39;</span><span class="p">],</span> <span class="n">orient</span><span class="o">=</span><span class="s2">&quot;h&quot;</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;Set2&quot;</span><span class="p">)</span>
+<span class="n">g1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Box plot of Air Pressure&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">plot_fontsize</span><span class="p">)</span>
+<span class="n">g1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Air Pressure readings in hPa&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">plot_fontsize</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> 
+<span class="n">g2</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;pm2.5&#39;</span><span class="p">],</span> <span class="n">orient</span><span class="o">=</span><span class="s2">&quot;h&quot;</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;Set2&quot;</span><span class="p">)</span>
+<span class="n">g2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Box plot of PM2.5&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">plot_fontsize</span><span class="p">)</span>
+<span class="n">g2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;PM2.5 readings in µg/m³&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">plot_fontsize</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/9375994072b95a60d4a5fdfbc168c0daf18896601b7ae5404493caacd2a21b94.png" src="_images/9375994072b95a60d4a5fdfbc168c0daf18896601b7ae5404493caacd2a21b94.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> 
+<span class="n">g1</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;PRES&#39;</span><span class="p">])</span>
+<span class="n">g1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Time series of Air Pressure&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">plot_fontsize</span><span class="p">)</span>
+<span class="n">g1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Index&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">plot_fontsize</span><span class="p">)</span>
+<span class="n">g1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Air Pressure readings in hPa&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">plot_fontsize</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>  
+<span class="n">g2</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;pm2.5&#39;</span><span class="p">])</span>
+<span class="n">g2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Time series of PM2.5&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">plot_fontsize</span><span class="p">)</span>
+<span class="n">g2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Index&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">plot_fontsize</span><span class="p">)</span>
+<span class="n">g2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;PM2.5 readings in µg/m³&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">plot_fontsize</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/109d4cabf2e4035792ecaea5dd3f3cc8223f8b2399b3c1b86838b716f154aef7.png" src="_images/109d4cabf2e4035792ecaea5dd3f3cc8223f8b2399b3c1b86838b716f154aef7.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p><em><strong>Los algoritmos de gradiente descendiente funcionan mejor (por ejemplo, convergen más rápido) si las variables están dentro del intervalo</strong></em> <span class="math notranslate nohighlight">\([-1, 1]\)</span>. Muchas fuentes relajan el límite hasta <span class="math notranslate nohighlight">\([-3, 3]\)</span>. La variable <code class="docutils literal notranslate"><span class="pre">PRES</span></code> es escalada con <code class="docutils literal notranslate"><span class="pre">minmax</span></code> para limitar la variable transformada dentro de <span class="math notranslate nohighlight">\([0,1]\)</span>.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scaler</span> <span class="o">=</span> <span class="n">MinMaxScaler</span><span class="p">(</span><span class="n">feature_range</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;scaled_PRES&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;PRES&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Observación</p>
+<ul class="simple">
+<li><p>Antes de entrenar el modelo, el conjunto de datos se divide en dos partes: el conjunto de <em><strong>entrenamiento</strong></em> y el conjunto de <em><strong>validación</strong></em>. La red neuronal se entrena en el conjunto de entrenamiento. Esto significa que <em><strong>el cálculo de la función de pérdida, la propagación hacia atrás y los pesos actualizados mediante un algoritmo de gradiente descendiente se realizan en el conjunto de entrenamiento</strong></em>.</p></li>
+<li><p><em><strong>El conjunto de validación se utiliza para evaluar el modelo y determinar el número de épocas en su entrenamiento</strong></em>. Aumentar el número de épocas reducirá aún más la función de pérdida en el conjunto de entrenamiento, pero no necesariamente tendrá el mismo efecto en el conjunto de validación debido al sobreajuste en el conjunto de entrenamiento, por lo que <em><strong>el número de épocas se controla manteniendo una evaluación y verificación sobre la función de pérdida calculada para el conjunto de validación</strong></em>.</p></li>
+</ul>
+</div>
+<ul class="simple">
+<li><p>Utilizamos <code class="docutils literal notranslate"><span class="pre">Keras</span></code> con el backend <code class="docutils literal notranslate"><span class="pre">Tensorflow</span></code> para definir y entrenar el modelo. Todos los pasos implicados en el entrenamiento y validación del modelo se realizan llamando a las funciones apropiadas de la <code class="docutils literal notranslate"><span class="pre">API</span></code> de <code class="docutils literal notranslate"><span class="pre">Keras</span></code>.</p></li>
+</ul>
+<ul class="simple">
+<li><p>Los cuatro primeros años, <em><strong>de 2010 a 2013, se utilizan como entrenamiento y
+2014 se utiliza para la validación</strong></em></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">split_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="mi">2014</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">day</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">hour</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">df_train</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;datetime&#39;</span><span class="p">]</span><span class="o">&lt;</span><span class="n">split_date</span><span class="p">]</span>
+<span class="n">df_val</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;datetime&#39;</span><span class="p">]</span><span class="o">&gt;=</span><span class="n">split_date</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Shape of train:&#39;</span><span class="p">,</span> <span class="n">df_train</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Shape of test:&#39;</span><span class="p">,</span> <span class="n">df_val</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape of train: (35064, 9)
+Shape of test: (8760, 9)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_train</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>No</th>
+      <th>year</th>
+      <th>month</th>
+      <th>day</th>
+      <th>hour</th>
+      <th>pm2.5</th>
+      <th>PRES</th>
+      <th>datetime</th>
+      <th>scaled_PRES</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>2010</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>1021.0</td>
+      <td>2010-01-01 00:00:00</td>
+      <td>0.545455</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>2010</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>1020.0</td>
+      <td>2010-01-01 01:00:00</td>
+      <td>0.527273</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>2010</td>
+      <td>1</td>
+      <td>1</td>
+      <td>2</td>
+      <td>NaN</td>
+      <td>1019.0</td>
+      <td>2010-01-01 02:00:00</td>
+      <td>0.509091</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>2010</td>
+      <td>1</td>
+      <td>1</td>
+      <td>3</td>
+      <td>NaN</td>
+      <td>1019.0</td>
+      <td>2010-01-01 03:00:00</td>
+      <td>0.509091</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>2010</td>
+      <td>1</td>
+      <td>1</td>
+      <td>4</td>
+      <td>NaN</td>
+      <td>1018.0</td>
+      <td>2010-01-01 04:00:00</td>
+      <td>0.490909</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_val</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>No</th>
+      <th>year</th>
+      <th>month</th>
+      <th>day</th>
+      <th>hour</th>
+      <th>pm2.5</th>
+      <th>PRES</th>
+      <th>datetime</th>
+      <th>scaled_PRES</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>35064</th>
+      <td>35065</td>
+      <td>2014</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>24.0</td>
+      <td>1014.0</td>
+      <td>2014-01-01 00:00:00</td>
+      <td>0.418182</td>
+    </tr>
+    <tr>
+      <th>35065</th>
+      <td>35066</td>
+      <td>2014</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>53.0</td>
+      <td>1013.0</td>
+      <td>2014-01-01 01:00:00</td>
+      <td>0.400000</td>
+    </tr>
+    <tr>
+      <th>35066</th>
+      <td>35067</td>
+      <td>2014</td>
+      <td>1</td>
+      <td>1</td>
+      <td>2</td>
+      <td>65.0</td>
+      <td>1013.0</td>
+      <td>2014-01-01 02:00:00</td>
+      <td>0.400000</td>
+    </tr>
+    <tr>
+      <th>35067</th>
+      <td>35068</td>
+      <td>2014</td>
+      <td>1</td>
+      <td>1</td>
+      <td>3</td>
+      <td>70.0</td>
+      <td>1013.0</td>
+      <td>2014-01-01 03:00:00</td>
+      <td>0.400000</td>
+    </tr>
+    <tr>
+      <th>35068</th>
+      <td>35069</td>
+      <td>2014</td>
+      <td>1</td>
+      <td>1</td>
+      <td>4</td>
+      <td>79.0</td>
+      <td>1012.0</td>
+      <td>2014-01-01 04:00:00</td>
+      <td>0.381818</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<ul class="simple">
+<li><p>Restablecemos los <em><strong>índices del conjunto de validación</strong></em></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_val</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_val</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>No</th>
+      <th>year</th>
+      <th>month</th>
+      <th>day</th>
+      <th>hour</th>
+      <th>pm2.5</th>
+      <th>PRES</th>
+      <th>datetime</th>
+      <th>scaled_PRES</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>35065</td>
+      <td>2014</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>24.0</td>
+      <td>1014.0</td>
+      <td>2014-01-01 00:00:00</td>
+      <td>0.418182</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>35066</td>
+      <td>2014</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>53.0</td>
+      <td>1013.0</td>
+      <td>2014-01-01 01:00:00</td>
+      <td>0.400000</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>35067</td>
+      <td>2014</td>
+      <td>1</td>
+      <td>1</td>
+      <td>2</td>
+      <td>65.0</td>
+      <td>1013.0</td>
+      <td>2014-01-01 02:00:00</td>
+      <td>0.400000</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>35068</td>
+      <td>2014</td>
+      <td>1</td>
+      <td>1</td>
+      <td>3</td>
+      <td>70.0</td>
+      <td>1013.0</td>
+      <td>2014-01-01 03:00:00</td>
+      <td>0.400000</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>35069</td>
+      <td>2014</td>
+      <td>1</td>
+      <td>1</td>
+      <td>4</td>
+      <td>79.0</td>
+      <td>1012.0</td>
+      <td>2014-01-01 04:00:00</td>
+      <td>0.381818</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<ul class="simple">
+<li><p>También <em><strong>se grafican las series temporales de entrenamiento y validación normalizadas para PRES</strong></em>.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> 
+<span class="n">g1</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">df_train</span><span class="p">[</span><span class="s1">&#39;scaled_PRES&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">g1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Time series of scaled Air Pressure in train set&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">plot_fontsize</span><span class="p">)</span>
+<span class="n">g1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Index&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">plot_fontsize</span><span class="p">)</span>
+<span class="n">g1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Scaled Air Pressure readings&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">plot_fontsize</span><span class="p">);</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">g2</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">df_val</span><span class="p">[</span><span class="s1">&#39;scaled_PRES&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">g2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Time series of scaled Air Pressure in validation set&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">plot_fontsize</span><span class="p">)</span>
+<span class="n">g2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Index&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">plot_fontsize</span><span class="p">)</span>
+<span class="n">g2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Scaled Air Pressure readings&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">plot_fontsize</span><span class="p">);</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/52fed10808f1e3a9ad6e32c0bf50d7240b62329d897f926d2335931e57331e38.png" src="_images/52fed10808f1e3a9ad6e32c0bf50d7240b62329d897f926d2335931e57331e38.png" />
+</div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Regresores y Variable Objetivo</p>
+<ul class="simple">
+<li><p>Ahora necesitamos generar los <em><strong>regresores</strong></em> (<span class="math notranslate nohighlight">\(X\)</span>) y la <em><strong>variable objetivo</strong></em> (<span class="math notranslate nohighlight">\(y\)</span>) para el entrenamiento y la validación. <em><strong>La matriz bidimensional de regresores y la matriz unidimensional objetivo se crean a partir de la matriz unidimensional original de la columna standardized_PRES</strong></em> en el <em>DataFrame</em>.</p></li>
+<li><p>Para el modelo de predicción de series temporales, de este ejemplo, <em><strong>se utilizan las observaciones de los últimos siete días para predecir el día siguiente</strong></em>. Esto equivale a un modelo <span class="math notranslate nohighlight">\(AR(7)\)</span>. Definimos una función que toma la serie temporal original y el número de pasos temporales en regresores como entrada para generar las matrices <span class="math notranslate nohighlight">\(X\)</span> e <span class="math notranslate nohighlight">\(y\)</span></p></li>
+</ul>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">makeXy</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">nb_timesteps</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Input: </span>
+<span class="sd">           ts: original time series</span>
+<span class="sd">           nb_timesteps: number of time steps in the regressors</span>
+<span class="sd">    Output: </span>
+<span class="sd">           X: 2-D array of regressors</span>
+<span class="sd">           y: 1-D array of target </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nb_timesteps</span><span class="p">,</span> <span class="n">ts</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+        <span class="k">if</span> <span class="n">i</span><span class="o">-</span><span class="n">nb_timesteps</span> <span class="o">&lt;=</span> <span class="mi">4</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="n">nb_timesteps</span><span class="p">,</span> <span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+        <span class="n">X</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">ts</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="n">nb_timesteps</span><span class="p">:</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span> <span class="c1">#Regressors</span>
+        <span class="n">y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ts</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="c1">#Target</span>
+    <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span> <span class="o">=</span> <span class="n">makeXy</span><span class="p">(</span><span class="n">df_train</span><span class="p">[</span><span class="s1">&#39;scaled_PRES&#39;</span><span class="p">],</span> <span class="mi">7</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 6 7
+1 7 8
+2 8 9
+3 9 10
+4 10 11
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Shape of train arrays:&#39;</span><span class="p">,</span> <span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">y_train</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape of train arrays: (35057, 7) (35057,)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_val</span><span class="p">,</span> <span class="n">y_val</span> <span class="o">=</span> <span class="n">makeXy</span><span class="p">(</span><span class="n">df_val</span><span class="p">[</span><span class="s1">&#39;scaled_PRES&#39;</span><span class="p">],</span> <span class="mi">7</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 6 7
+1 7 8
+2 8 9
+3 9 10
+4 10 11
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Shape of validation arrays:&#39;</span><span class="p">,</span> <span class="n">X_val</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">y_val</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape of validation arrays: (8753, 7) (8753,)
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Ahora definimos la red <code class="docutils literal notranslate"><span class="pre">MLP</span></code> utilizando la <code class="docutils literal notranslate"><span class="pre">API</span></code> funcional de <code class="docutils literal notranslate"><span class="pre">Keras</span></code>. En este enfoque <em><strong>una capa puede ser declarada como la entrada de la siguiente capa en el momento de definir la siguiente</strong></em></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">input_layer</span> <span class="o">=</span> <span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;float32&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>En este caso, <code class="docutils literal notranslate"><span class="pre">Input</span></code> es una función que se utiliza para <em><strong>crear una capa de entrada en un modelo de red neuronal</strong></em>. <code class="docutils literal notranslate"><span class="pre">shape=(7,)</span></code> específica la <em><strong>forma de los datos de entrada</strong></em>. En este caso, <em>significa que los datos de entrada tendrán 7 dimensiones</em>. <code class="docutils literal notranslate"><span class="pre">dtype='float32'</span></code> especifica el *<strong>tipo de datos de los elementos de la capa de entrada</strong>. En este caso, son números de punto <em>flotante de 32 bits</em>.</p></li>
+</ul>
+<ul class="simple">
+<li><p>Las capas densas las definimos en esta caso con <em><strong>activación lineal</strong></em>. Puede utilizar un <code class="docutils literal notranslate"><span class="pre">GridSearch</span></code> tal como se hizo en el curso de <em><strong>Machine Learning</strong></em> para encontrar <em><strong>hiperparámetros adecuados minimizando las métricas de regresión</strong></em>.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dense1</span> <span class="o">=</span> <span class="n">Dense</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">)(</span><span class="n">input_layer</span><span class="p">)</span>
+<span class="n">dense2</span> <span class="o">=</span> <span class="n">Dense</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">)(</span><span class="n">dense1</span><span class="p">)</span>
+<span class="n">dense3</span> <span class="o">=</span> <span class="n">Dense</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">)(</span><span class="n">dense2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title"><strong>Dense</strong> e <strong>input_layer</strong></p>
+<ul class="simple">
+<li><p><em><strong><code class="docutils literal notranslate"><span class="pre">Dense</span></code></strong></em>: Correspone a una <em><strong>capa totalmente conectada</strong></em> (fully connected).</p></li>
+<li><p><em><strong>Unidades (Neurons)</strong></em>: 32 neuronas.</p></li>
+<li><p><em><strong><code class="docutils literal notranslate"><span class="pre">dense1</span></code></strong></em>: Esta capa <em><strong>toma como entrada</strong></em> <code class="docutils literal notranslate"><span class="pre">input_layer</span></code>, que puede ser la <em><strong>capa de entrada del modelo u otra capa anterior</strong></em>.</p></li>
+<li><p><em><strong><code class="docutils literal notranslate"><span class="pre">dense2</span></code></strong></em>: Esta capa <em><strong>toma como entrada la salida de</strong></em> <code class="docutils literal notranslate"><span class="pre">dense1</span></code>. Esto significa que <em><strong>los 32 valores de salida de</strong></em> <code class="docutils literal notranslate"><span class="pre">dense1</span></code> <em><strong>se usan como entrada para</strong></em> <code class="docutils literal notranslate"><span class="pre">dense2</span></code>. Similarmente, ocurre con <code class="docutils literal notranslate"><span class="pre">dense3</span></code></p></li>
+</ul>
+</div>
+<div class="admonition-observacion admonition">
+<p class="admonition-title">Observación</p>
+<ul class="simple">
+<li><p>Las <em><strong>múltiples capas ocultas y el gran número de neuronas en cada capa oculta</strong></em> le dan a las redes neuronales la <em><strong>capacidad de modelar la compleja no linealidad de las relaciones subyacentes entre los regresores y el objetivo</strong></em>. Sin embargo, las redes neuronales profundas también <em><strong>pueden sobreajustar los datos de entrenamiento</strong></em> y dar malos resultados en el conjunto de validación o prueba. La función <code class="docutils literal notranslate"><span class="pre">Dropout</span></code> se ha utilizado eficazmente para <em><strong>regularizar las redes neuronales profundas</strong></em>.</p></li>
+</ul>
+</div>
+<ul class="simple">
+<li><p>En este ejemplo, se añade una capa <code class="docutils literal notranslate"><span class="pre">Dropout</span></code> antes de la capa de salida. <em><strong>Dropout aleatoriamente establece</strong></em> <span class="math notranslate nohighlight">\(p\)</span> <em><strong>fracción de neuronas de entrada a cero antes de pasar a la siguiente capa</strong></em>. La eliminación aleatoria de entradas actúa esencialmente como un tipo de ensamblaje de modelos de agregación <code class="docutils literal notranslate"><span class="pre">bootstrap</span></code>. Al <em><strong>apagar neuronas aleatoriamente</strong></em>, <code class="docutils literal notranslate"><span class="pre">Dropout</span></code> está <em><strong>forzando a la red a no depender excesivamente de ninguna unidad específica, mejorando la generalización</strong></em>.</p></li>
+<li><p>Por ejemplo, <em><strong>el bosque aleatorio utiliza el ensamblaje mediante la construcción de árboles en subconjuntos aleatorios de características de entrada</strong></em>. Utilizamos <span class="math notranslate nohighlight">\(p=0.2\)</span> para <em>descartar el 20% de las características de entrada seleccionadas aleatoriamente</em>.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dropout_layer</span> <span class="o">=</span> <span class="n">Dropout</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)(</span><span class="n">dense3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Por último, <em><strong>la capa de salida predice la presión atmosférica del día siguiente</strong></em></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">output_layer</span> <span class="o">=</span> <span class="n">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">)(</span><span class="n">dropout_layer</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Las capas de entrada, densa y de salida se empaquetarán ahora dentro de un modelo, que es una clase envolvente para entrenar y hacer predicciones. <em><strong>Como función de pérdida se utiliza el error cuadrático medio</strong></em> (MSE). Los pesos de la red se optimizan mediante el algoritmo <code class="docutils literal notranslate"><span class="pre">Adam</span></code>. <code class="docutils literal notranslate"><span class="pre">Adam</span></code> significa <em><strong>Estimación Adaptativa de Momentos</strong></em> y ha sido una opción popular para el entrenamiento de redes neuronales profundas.</p></li>
+<li><p>A diferencia del <em><strong>Gradiente Descendiente Estocástico, Adam utiliza diferentes tasas de aprendizaje para cada peso y las actualiza por separado a medida que avanza el entrenamiento</strong></em>. La tasa de aprendizaje de un peso se actualiza basándose en medias móviles ponderadas exponencialmente de los gradientes del peso y los gradientes al cuadrado.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ts_model</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span><span class="n">inputs</span><span class="o">=</span><span class="n">input_layer</span><span class="p">,</span> <span class="n">outputs</span><span class="o">=</span><span class="n">output_layer</span><span class="p">)</span>
+<span class="n">ts_model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="s1">&#39;mean_squared_error&#39;</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">=</span><span class="s1">&#39;adam&#39;</span><span class="p">)</span>
+<span class="n">ts_model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">Model: "functional_1"</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━┓
+┃<span style="font-weight: bold"> Layer (type)                         </span>┃<span style="font-weight: bold"> Output Shape                </span>┃<span style="font-weight: bold">         Param # </span>┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━┩
+│ input_layer (<span style="color: #0087ff; text-decoration-color: #0087ff">InputLayer</span>)             │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">7</span>)                   │               <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dense (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                        │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">32</span>)                  │             <span style="color: #00af00; text-decoration-color: #00af00">256</span> │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dense_1 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                      │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">16</span>)                  │             <span style="color: #00af00; text-decoration-color: #00af00">528</span> │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dense_2 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                      │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">16</span>)                  │             <span style="color: #00af00; text-decoration-color: #00af00">272</span> │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dropout (<span style="color: #0087ff; text-decoration-color: #0087ff">Dropout</span>)                    │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">16</span>)                  │               <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dense_3 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                      │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">1</span>)                   │              <span style="color: #00af00; text-decoration-color: #00af00">17</span> │
+└──────────────────────────────────────┴─────────────────────────────┴─────────────────┘
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold"> Total params: </span><span style="color: #00af00; text-decoration-color: #00af00">1,073</span> (4.19 KB)
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold"> Trainable params: </span><span style="color: #00af00; text-decoration-color: #00af00">1,073</span> (4.19 KB)
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold"> Non-trainable params: </span><span style="color: #00af00; text-decoration-color: #00af00">0</span> (0.00 B)
+</pre>
+</div></div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Observación</p>
+<ul class="simple">
+<li><p>En este caso, <code class="docutils literal notranslate"><span class="pre">Params</span> <span class="pre">#</span></code> es calculado mediante la fórmula: <em><strong><code class="docutils literal notranslate"><span class="pre">Param</span> <span class="pre">#</span> <span class="pre">=</span> <span class="pre">#Entradas</span> <span class="pre">x</span> <span class="pre">#Neuronas</span> <span class="pre">+</span> <span class="pre">#Neuronas</span></code></strong></em>. Esto incluye los <em><strong>pesos de cada conexión entre las entradas y las neuronas</strong></em> y un <em><strong>bias para cada neurona</strong></em>. En este caso <code class="docutils literal notranslate"><span class="pre">Params</span> <span class="pre">#</span> <span class="pre">=</span> <span class="pre">7x32</span> <span class="pre">+</span> <span class="pre">32</span> <span class="pre">=</span> <span class="pre">256</span></code>.</p></li>
+<li><p>El modelo se entrena llamando a la función <code class="docutils literal notranslate"><span class="pre">fit()</span></code> en el objeto modelo y pasándole <code class="docutils literal notranslate"><span class="pre">X_train</span></code> y <code class="docutils literal notranslate"><span class="pre">y_train</span></code>. El entrenamiento se realiza para un <em><strong>número predefinido de épocas</strong></em>. Además, <code class="docutils literal notranslate"><span class="pre">batch_size</span></code> define el <em><strong>número de muestras del conjunto de entrenamiento que se utilizarán para una instancia de backpropagation</strong></em>.</p></li>
+</ul>
+</div>
+<ul class="simple">
+<li><p>El conjunto de datos de validación también se pasa para evaluar el modelo después de cada <code class="docutils literal notranslate"><span class="pre">epoch</span></code> completa. Un objeto <em><strong><code class="docutils literal notranslate"><span class="pre">ModelCheckpoint</span></code> rastrea la función de pérdida en el conjunto de validación y guarda el modelo para la época en la que la función de pérdida ha sido mínima</strong></em>.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">save_weights_at</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;keras_models&#39;</span><span class="p">,</span> <span class="s1">&#39;PRSA_data_Air_Pressure_MLP_weights.</span><span class="si">{epoch:02d}</span><span class="s1">-</span><span class="si">{val_loss:.4f}</span><span class="s1">.keras&#39;</span><span class="p">)</span>
+<span class="n">save_best</span> <span class="o">=</span> <span class="n">ModelCheckpoint</span><span class="p">(</span><span class="n">save_weights_at</span><span class="p">,</span> <span class="n">monitor</span><span class="o">=</span><span class="s1">&#39;val_loss&#39;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                            <span class="n">save_best_only</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">save_weights_only</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;min&#39;</span><span class="p">,</span> <span class="n">save_freq</span><span class="o">=</span><span class="s1">&#39;epoch&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Aquí <code class="docutils literal notranslate"><span class="pre">val_loss</span></code> es el <em><strong>valor de la función de coste para los datos de validación cruzada</strong></em> y <code class="docutils literal notranslate"><span class="pre">loss</span></code> es el <em><strong>valor de la función de coste para los datos de entrenamiento</strong></em>. Con <code class="docutils literal notranslate"><span class="pre">verbose=0</span></code>, no se imprime ningún mensaje en la consola durante el proceso de guardado del modelo. <code class="docutils literal notranslate"><span class="pre">period=1</span></code> indica que <em><strong>el modelo se evaluará y potencialmente se guardará después de cada época</strong></em>.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ts_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y_train</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+             <span class="n">verbose</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">callbacks</span><span class="o">=</span><span class="p">[</span><span class="n">save_best</span><span class="p">],</span> <span class="n">validation_data</span><span class="o">=</span><span class="p">(</span><span class="n">X_val</span><span class="p">,</span> <span class="n">y_val</span><span class="p">),</span>
+             <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
+</pre></div>
+</div>
+<figure class="align-default">
+<a class="reference internal image-reference" href="_images/airpresure_mlp_epochs.png"><img alt="_images/airpresure_mlp_epochs.png" src="_images/airpresure_mlp_epochs.png" style="width: 484.0px; height: 753.0px;" /></a>
+</figure>
+<ul class="simple">
+<li><p>En este caso, el modo <code class="docutils literal notranslate"><span class="pre">verbose=2</span></code> muestra una <em><strong>barra de progreso por cada época</strong></em>. Los modos posibles son: <code class="docutils literal notranslate"><span class="pre">0</span></code> para no mostrar nada, <code class="docutils literal notranslate"><span class="pre">1</span></code> para mostrar la barra de progreso, <code class="docutils literal notranslate"><span class="pre">2</span></code> para mostrar una línea por época. Las <em><strong>muestras se mezclan aleatoriamente antes de cada época</strong></em> (<code class="docutils literal notranslate"><span class="pre">shuffle=True</span></code>).</p></li>
+</ul>
+<ul class="simple">
+<li><p>Se hacen predicciones para la presión atmosférica a partir del mejor modelo guardado. <em><strong>Las predicciones del modelo sobre la presión atmosférica escalada, se transforman inversamente para obtener predicciones sobre la presión atmosférica original</strong></em>. También se calcula la bondad de ajuste o <em><strong><code class="docutils literal notranslate"><span class="pre">R</span> <span class="pre">cuadrado</span></code></strong></em>.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">best_model</span> <span class="o">=</span> <span class="n">load_model</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;keras_models&#39;</span><span class="p">,</span> <span class="s1">&#39;PRSA_data_Air_Pressure_MLP_weights.05-0.0001.keras&#39;</span><span class="p">),</span> <span class="nb">compile</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">preds</span> <span class="o">=</span> <span class="n">best_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_val</span><span class="p">)</span>
+<span class="n">pred_PRES</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">preds</span><span class="p">)</span>
+<span class="n">pred_PRES</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">pred_PRES</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">274/274</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 441us/step
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r2</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">df_val</span><span class="p">[</span><span class="s1">&#39;PRES&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">7</span><span class="p">:],</span> <span class="n">pred_PRES</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;R-squared for the validation set:&#39;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">r2</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R-squared for the validation set: 0.9955
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">5.5</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span> <span class="n">df_val</span><span class="p">[</span><span class="s1">&#39;PRES&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">7</span><span class="p">:</span><span class="mi">56</span><span class="p">],</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span> <span class="n">pred_PRES</span><span class="p">[:</span><span class="mi">50</span><span class="p">],</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Actual&#39;</span><span class="p">,</span><span class="s1">&#39;Predicted&#39;</span><span class="p">],</span> <span class="n">loc</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Actual vs Predicted Air Pressure&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Air Pressure&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Index&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/f69141173a42e6618059571280d3d4214f47f24b8f9bf476e013385c7c128520.png" src="_images/f69141173a42e6618059571280d3d4214f47f24b8f9bf476e013385c7c128520.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p>Para <em><strong>predecir la variable</strong></em> <code class="docutils literal notranslate"><span class="pre">pm2.5</span></code> usando <code class="docutils literal notranslate"><span class="pre">MLP</span></code> usamos la implementación presentada a continuación</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;datasets/PRSA_data_2010.1.1-2014.12.31.csv&#39;</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="k">lambda</span> <span class="n">column</span><span class="p">:</span> <span class="n">column</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;DEWP&#39;</span><span class="p">,</span> <span class="s1">&#39;TEMP&#39;</span><span class="p">,</span> <span class="s1">&#39;cbwd&#39;</span><span class="p">,</span> <span class="s1">&#39;Iws&#39;</span><span class="p">,</span>	<span class="s1">&#39;Is&#39;</span><span class="p">,</span> <span class="s1">&#39;Ir&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Shape of the dataframe:&#39;</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape of the dataframe: (43824, 7)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>No</th>
+      <th>year</th>
+      <th>month</th>
+      <th>day</th>
+      <th>hour</th>
+      <th>pm2.5</th>
+      <th>PRES</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>2010</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>1021.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>2010</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>1020.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>2010</td>
+      <td>1</td>
+      <td>1</td>
+      <td>2</td>
+      <td>NaN</td>
+      <td>1019.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>2010</td>
+      <td>1</td>
+      <td>1</td>
+      <td>3</td>
+      <td>NaN</td>
+      <td>1019.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>2010</td>
+      <td>1</td>
+      <td>1</td>
+      <td>4</td>
+      <td>NaN</td>
+      <td>1018.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<ul class="simple">
+<li><p>Las <em><strong>filas con valores NaN</strong></em> en la columna pm2.5 <em><strong>se eliminan</strong></em></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;pm2.5&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;datetime&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;month&#39;</span><span class="p">,</span> <span class="s1">&#39;day&#39;</span><span class="p">,</span> <span class="s1">&#39;hour&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">],</span> <span class="n">month</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;month&#39;</span><span class="p">],</span> <span class="n">day</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;day&#39;</span><span class="p">],</span>
+                                                                                          <span class="n">hour</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;hour&#39;</span><span class="p">]),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;datetime&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> 
+<span class="n">g1</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;pm2.5&#39;</span><span class="p">],</span> <span class="n">orient</span><span class="o">=</span><span class="s2">&quot;h&quot;</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;Set2&quot;</span><span class="p">)</span>
+<span class="n">g1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Box plot of pm2.5&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">plot_fontsize</span><span class="p">);</span>
+<span class="n">g1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;pm2.5&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">plot_fontsize</span><span class="p">)</span>
+<span class="n">g1</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">yticklabels</span><span class="o">=</span><span class="p">[])</span>
+<span class="n">g1</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="kc">False</span><span class="p">);</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">g2</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;pm2.5&#39;</span><span class="p">])</span>
+<span class="n">g2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Time series of pm2.5&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">plot_fontsize</span><span class="p">)</span>
+<span class="n">g2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Index&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">plot_fontsize</span><span class="p">)</span>
+<span class="n">g2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;pm2.5 readings&#39;</span><span class="p">);</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/7b455a4d3c546c2789d26c120b7f28170858583ffa7e24742a67918e0997f5de.png" src="_images/7b455a4d3c546c2789d26c120b7f28170858583ffa7e24742a67918e0997f5de.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">g1</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;pm2.5&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;datetime&#39;</span><span class="p">]</span><span class="o">&lt;=</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="mi">2010</span><span class="p">,</span><span class="n">month</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span><span class="n">day</span><span class="o">=</span><span class="mi">30</span><span class="p">)],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">)</span>
+<span class="n">g1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;pm2.5 during 2010&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">plot_fontsize</span><span class="p">)</span>
+<span class="n">g1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Index&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">plot_fontsize</span><span class="p">)</span>
+<span class="n">g1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;pm2.5 readings&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">plot_fontsize</span><span class="p">);</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;pm2.5&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;datetime&#39;</span><span class="p">]</span><span class="o">&lt;=</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="mi">2010</span><span class="p">,</span><span class="n">month</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">day</span><span class="o">=</span><span class="mi">31</span><span class="p">)],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Zoom in on one month: pm2.5 during Jan 2010&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">plot_fontsize</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Index&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">plot_fontsize</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;pm2.5 readings&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">plot_fontsize</span><span class="p">);</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/421eba76e525cfc286c11027fe72b291445d468f252b44ce80853961d36baaab.png" src="_images/421eba76e525cfc286c11027fe72b291445d468f252b44ce80853961d36baaab.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scaler</span> <span class="o">=</span> <span class="n">MinMaxScaler</span><span class="p">(</span><span class="n">feature_range</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;scaled_pm2.5&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;pm2.5&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">split_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="mi">2014</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">day</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">hour</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">df_train</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;datetime&#39;</span><span class="p">]</span><span class="o">&lt;</span><span class="n">split_date</span><span class="p">]</span>
+<span class="n">df_val</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;datetime&#39;</span><span class="p">]</span><span class="o">&gt;=</span><span class="n">split_date</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Shape of train:&#39;</span><span class="p">,</span> <span class="n">df_train</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Shape of test:&#39;</span><span class="p">,</span> <span class="n">df_val</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape of train: (33096, 9)
+Shape of test: (8661, 9)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_train</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>No</th>
+      <th>year</th>
+      <th>month</th>
+      <th>day</th>
+      <th>hour</th>
+      <th>pm2.5</th>
+      <th>PRES</th>
+      <th>datetime</th>
+      <th>scaled_pm2.5</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>25</td>
+      <td>2010</td>
+      <td>1</td>
+      <td>2</td>
+      <td>0</td>
+      <td>129.0</td>
+      <td>1020.0</td>
+      <td>2010-01-02 00:00:00</td>
+      <td>0.129779</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>26</td>
+      <td>2010</td>
+      <td>1</td>
+      <td>2</td>
+      <td>1</td>
+      <td>148.0</td>
+      <td>1020.0</td>
+      <td>2010-01-02 01:00:00</td>
+      <td>0.148893</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>27</td>
+      <td>2010</td>
+      <td>1</td>
+      <td>2</td>
+      <td>2</td>
+      <td>159.0</td>
+      <td>1021.0</td>
+      <td>2010-01-02 02:00:00</td>
+      <td>0.159960</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>28</td>
+      <td>2010</td>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+      <td>181.0</td>
+      <td>1022.0</td>
+      <td>2010-01-02 03:00:00</td>
+      <td>0.182093</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>29</td>
+      <td>2010</td>
+      <td>1</td>
+      <td>2</td>
+      <td>4</td>
+      <td>138.0</td>
+      <td>1022.0</td>
+      <td>2010-01-02 04:00:00</td>
+      <td>0.138833</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_val</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>No</th>
+      <th>year</th>
+      <th>month</th>
+      <th>day</th>
+      <th>hour</th>
+      <th>pm2.5</th>
+      <th>PRES</th>
+      <th>datetime</th>
+      <th>scaled_pm2.5</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>33096</th>
+      <td>35065</td>
+      <td>2014</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>24.0</td>
+      <td>1014.0</td>
+      <td>2014-01-01 00:00:00</td>
+      <td>0.024145</td>
+    </tr>
+    <tr>
+      <th>33097</th>
+      <td>35066</td>
+      <td>2014</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>53.0</td>
+      <td>1013.0</td>
+      <td>2014-01-01 01:00:00</td>
+      <td>0.053320</td>
+    </tr>
+    <tr>
+      <th>33098</th>
+      <td>35067</td>
+      <td>2014</td>
+      <td>1</td>
+      <td>1</td>
+      <td>2</td>
+      <td>65.0</td>
+      <td>1013.0</td>
+      <td>2014-01-01 02:00:00</td>
+      <td>0.065392</td>
+    </tr>
+    <tr>
+      <th>33099</th>
+      <td>35068</td>
+      <td>2014</td>
+      <td>1</td>
+      <td>1</td>
+      <td>3</td>
+      <td>70.0</td>
+      <td>1013.0</td>
+      <td>2014-01-01 03:00:00</td>
+      <td>0.070423</td>
+    </tr>
+    <tr>
+      <th>33100</th>
+      <td>35069</td>
+      <td>2014</td>
+      <td>1</td>
+      <td>1</td>
+      <td>4</td>
+      <td>79.0</td>
+      <td>1012.0</td>
+      <td>2014-01-01 04:00:00</td>
+      <td>0.079477</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_val</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">g1</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">df_train</span><span class="p">[</span><span class="s1">&#39;scaled_pm2.5&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">g1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Time series of scaled pm2.5 in train set&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">plot_fontsize</span><span class="p">)</span>
+<span class="n">g1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Index&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">plot_fontsize</span><span class="p">)</span>
+<span class="n">g1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Scaled pm2.5 readings&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">plot_fontsize</span><span class="p">);</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">g2</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">df_val</span><span class="p">[</span><span class="s1">&#39;scaled_pm2.5&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">g2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Time series of scaled pm2.5 in validation set&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">plot_fontsize</span><span class="p">)</span>
+<span class="n">g2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Index&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">plot_fontsize</span><span class="p">)</span>
+<span class="n">g2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Scaled pm2.5 readings&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">plot_fontsize</span><span class="p">);</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/925b5c6eda295e2ea40312c770bcc89c44ba2dcada7ec6e9b7c64d1510736b72.png" src="_images/925b5c6eda295e2ea40312c770bcc89c44ba2dcada7ec6e9b7c64d1510736b72.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span> <span class="o">=</span> <span class="n">makeXy</span><span class="p">(</span><span class="n">df_train</span><span class="p">[</span><span class="s1">&#39;scaled_pm2.5&#39;</span><span class="p">],</span> <span class="mi">7</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 6 7
+1 7 8
+2 8 9
+3 9 10
+4 10 11
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Shape of train arrays:&#39;</span><span class="p">,</span> <span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">y_train</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape of train arrays: (33089, 7) (33089,)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_val</span><span class="p">,</span> <span class="n">y_val</span> <span class="o">=</span> <span class="n">makeXy</span><span class="p">(</span><span class="n">df_val</span><span class="p">[</span><span class="s1">&#39;scaled_pm2.5&#39;</span><span class="p">],</span> <span class="mi">7</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 6 7
+1 7 8
+2 8 9
+3 9 10
+4 10 11
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Shape of validation arrays:&#39;</span><span class="p">,</span> <span class="n">X_val</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">y_val</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape of validation arrays: (8654, 7) (8654,)
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Definimos la <em><strong>capa de entrada</strong></em> que tiene forma <code class="docutils literal notranslate"><span class="pre">(None,</span> <span class="pre">7)</span></code> y de tipo <code class="docutils literal notranslate"><span class="pre">float32</span></code></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">input_layer</span> <span class="o">=</span> <span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;float32&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Dense layers are defined with linear activation</span>
+<span class="n">dense1</span> <span class="o">=</span> <span class="n">Dense</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;tanh&#39;</span><span class="p">)(</span><span class="n">input_layer</span><span class="p">)</span>
+<span class="n">dense2</span> <span class="o">=</span> <span class="n">Dense</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;tanh&#39;</span><span class="p">)(</span><span class="n">dense1</span><span class="p">)</span>
+<span class="n">dense3</span> <span class="o">=</span> <span class="n">Dense</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;tanh&#39;</span><span class="p">)(</span><span class="n">dense2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dropout_layer</span> <span class="o">=</span> <span class="n">Dropout</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)(</span><span class="n">dense3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Finally the output layer gives prediction for the next day&#39;s air pressure.</span>
+<span class="n">output_layer</span> <span class="o">=</span> <span class="n">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">)(</span><span class="n">dropout_layer</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ts_model</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span><span class="n">inputs</span><span class="o">=</span><span class="n">input_layer</span><span class="p">,</span> <span class="n">outputs</span><span class="o">=</span><span class="n">output_layer</span><span class="p">)</span>
+<span class="n">ts_model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="s1">&#39;mean_absolute_error&#39;</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">=</span><span class="s1">&#39;adam&#39;</span><span class="p">)</span>
+<span class="n">ts_model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">Model: "functional_3"</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━┓
+┃<span style="font-weight: bold"> Layer (type)                         </span>┃<span style="font-weight: bold"> Output Shape                </span>┃<span style="font-weight: bold">         Param # </span>┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━┩
+│ input_layer_1 (<span style="color: #0087ff; text-decoration-color: #0087ff">InputLayer</span>)           │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">7</span>)                   │               <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dense_4 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                      │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">32</span>)                  │             <span style="color: #00af00; text-decoration-color: #00af00">256</span> │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dense_5 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                      │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">16</span>)                  │             <span style="color: #00af00; text-decoration-color: #00af00">528</span> │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dense_6 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                      │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">16</span>)                  │             <span style="color: #00af00; text-decoration-color: #00af00">272</span> │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dropout_1 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dropout</span>)                  │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">16</span>)                  │               <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dense_7 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                      │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">1</span>)                   │              <span style="color: #00af00; text-decoration-color: #00af00">17</span> │
+└──────────────────────────────────────┴─────────────────────────────┴─────────────────┘
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold"> Total params: </span><span style="color: #00af00; text-decoration-color: #00af00">1,073</span> (4.19 KB)
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold"> Trainable params: </span><span style="color: #00af00; text-decoration-color: #00af00">1,073</span> (4.19 KB)
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold"> Non-trainable params: </span><span style="color: #00af00; text-decoration-color: #00af00">0</span> (0.00 B)
+</pre>
+</div></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">save_weights_at</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;keras_models&#39;</span><span class="p">,</span> <span class="s1">&#39;PRSA_data_PM2.5_MLP_weights.</span><span class="si">{epoch:02d}</span><span class="s1">-</span><span class="si">{val_loss:.4f}</span><span class="s1">.keras&#39;</span><span class="p">)</span>
+<span class="n">save_best</span> <span class="o">=</span> <span class="n">ModelCheckpoint</span><span class="p">(</span><span class="n">save_weights_at</span><span class="p">,</span> <span class="n">monitor</span><span class="o">=</span><span class="s1">&#39;val_loss&#39;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                            <span class="n">save_best_only</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">save_weights_only</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;min&#39;</span><span class="p">,</span> <span class="n">save_freq</span><span class="o">=</span><span class="s1">&#39;epoch&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ts_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y_train</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+             <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">callbacks</span><span class="o">=</span><span class="p">[</span><span class="n">save_best</span><span class="p">],</span> <span class="n">validation_data</span><span class="o">=</span><span class="p">(</span><span class="n">X_val</span><span class="p">,</span> <span class="n">y_val</span><span class="p">),</span>
+             <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
+</pre></div>
+</div>
+<figure class="align-default">
+<a class="reference internal image-reference" href="_images/mlp_pm25_epochs.png"><img alt="_images/mlp_pm25_epochs.png" src="_images/mlp_pm25_epochs.png" style="width: 561.0px; height: 688.0px;" /></a>
+</figure>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">best_model</span> <span class="o">=</span> <span class="n">load_model</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;keras_models&#39;</span><span class="p">,</span> <span class="s1">&#39;PRSA_data_PM2.5_MLP_weights.19-0.0116.keras&#39;</span><span class="p">),</span> <span class="nb">compile</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">preds</span> <span class="o">=</span> <span class="n">best_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_val</span><span class="p">)</span>
+<span class="n">pred_pm25</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">preds</span><span class="p">)</span>
+<span class="n">pred_pm25</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">pred_pm25</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">271/271</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 1ms/step
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mae</span> <span class="o">=</span> <span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">df_val</span><span class="p">[</span><span class="s1">&#39;pm2.5&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">7</span><span class="p">:],</span> <span class="n">pred_pm25</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;MAE for the validation set:&#39;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">mae</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MAE for the validation set: 11.5359
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Trazamos los 50 primeros valores reales y predichos de <code class="docutils literal notranslate"><span class="pre">pm2.5</span></code></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">5.5</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span> <span class="n">df_val</span><span class="p">[</span><span class="s1">&#39;pm2.5&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">7</span><span class="p">:</span><span class="mi">56</span><span class="p">],</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span> <span class="n">pred_pm25</span><span class="p">[:</span><span class="mi">50</span><span class="p">],</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Actual&#39;</span><span class="p">,</span><span class="s1">&#39;Predicted&#39;</span><span class="p">],</span> <span class="n">loc</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Actual vs Predicted pm2.5&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;pm2.5&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Index&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/6b68983f1bce3ac670d40f9152290bbf3b95c901eebf2b3baa8143c6f9052271.png" src="_images/6b68983f1bce3ac670d40f9152290bbf3b95c901eebf2b3baa8143c6f9052271.png" />
+</div>
+</div>
+</section>
+<section id="lstm-para-la-prediccion-de-series-de-tiempo">
+<h2><span class="section-number">8.19. </span>LSTM para la predicción de series de tiempo<a class="headerlink" href="#lstm-para-la-prediccion-de-series-de-tiempo" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Continuaremos usando el conjunto de datos sobre contaminación del aire (pm2.5) usando LSTM. La lectura y el <em><strong>preprocesamiento de los datos se mantienen igual que en los ejemplos de <code class="docutils literal notranslate"><span class="pre">MLPs</span></code></strong></em>. El conjunto de datos original se divide en dos conjuntos: <em>entrenamiento y validación</em>, que se usan para el entrenamiento y validación del modelo respectivamente.</p></li>
+</ul>
+<ul class="simple">
+<li><p>La función <code class="docutils literal notranslate"><span class="pre">makeXy</span></code> se utiliza para generar arreglos de regresores y objetivos: <code class="docutils literal notranslate"><span class="pre">X_train,</span> <span class="pre">X_val,</span> <span class="pre">y_train</span></code> y <code class="docutils literal notranslate"><span class="pre">y_val</span></code>. <code class="docutils literal notranslate"><span class="pre">X_train</span> <span class="pre">y</span> <span class="pre">X_val</span></code>, generados por la función <code class="docutils literal notranslate"><span class="pre">makeXy</span></code>, son <em><strong>arreglos 2D de forma (número de muestras, número de pasos de tiempo)</strong></em>. Sin embargo, la <em><strong>entrada a las capas RNN debe ser de forma (número de muestras, número de pasos de tiempo, número de características por paso de tiempo)</strong></em>.</p></li>
+<li><p>En este caso, estamos tratando solo con <code class="docutils literal notranslate"><span class="pre">pm2.5</span></code>, por lo tanto, el <em><strong>número de características por paso de tiempo es uno</strong></em>. El número de pasos de tiempo es siete y el número de muestras es el mismo que el número de muestras en <code class="docutils literal notranslate"><span class="pre">X_train</span></code> y <code class="docutils literal notranslate"><span class="pre">X_val</span></code>, que se transforman a arreglos 3D</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_val</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">1</span><span class="p">)),</span> <span class="n">X_val</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">X_val</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">X_val</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">1</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Shape of 3D arrays:&#39;</span><span class="p">,</span> <span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">X_val</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape of 3D arrays: (33089, 7, 1) (8654, 7, 1)
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">X_train</span></code> y <code class="docutils literal notranslate"><span class="pre">X_val</span></code> se han <em><strong>convertido en matrices 3D</strong></em> y sus nuevas formas se ven en la salida de la instrucción de impresión anterior</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">keras.layers</span> <span class="kn">import</span> <span class="n">Dense</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Dropout</span>
+<span class="kn">from</span> <span class="nn">keras.layers</span> <span class="kn">import</span> <span class="n">LSTM</span>
+<span class="kn">from</span> <span class="nn">keras.optimizers</span> <span class="kn">import</span> <span class="n">SGD</span>
+<span class="kn">from</span> <span class="nn">keras.models</span> <span class="kn">import</span> <span class="n">Model</span>
+<span class="kn">from</span> <span class="nn">keras.models</span> <span class="kn">import</span> <span class="n">load_model</span>
+<span class="kn">from</span> <span class="nn">keras.callbacks</span> <span class="kn">import</span> <span class="n">ModelCheckpoint</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>La red neuronal para desarrollar el modelo de predicción de series temporales tiene una <em><strong>capa de entrada, que alimenta a la capa LSTM</strong></em>. La capa LSTM tiene <em><strong>siete pasos temporales</strong></em>, que es el mismo número de observaciones históricas tomadas para hacer la predicción de la presión atmosférica para el día siguiente. Solo <em><strong>el último paso temporal de la LSTM devuelve una salida</strong></em>.</p></li>
+<li><p>Hay <em><strong>sesenta y cuatro neuronas ocultas en cada paso temporal de la capa LSTM</strong></em>. Por lo tanto, la salida de la LSTM tiene sesenta y cuatro
+características:</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">input_layer</span> <span class="o">=</span> <span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;float32&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Aquí <code class="docutils literal notranslate"><span class="pre">shape=(7,1)</span></code> forma de la <em><strong>entrada a la LSTM</strong></em>. <code class="docutils literal notranslate"><span class="pre">7</span></code>: Número de <em><strong>pasos de tiempo (timesteps)</strong></em>. <code class="docutils literal notranslate"><span class="pre">1</span></code>: Número de <em><strong>características (features) por cada paso de tiempo</strong></em>. <code class="docutils literal notranslate"><span class="pre">return_sequences=True</span></code> se usa cuando se necesita <em><strong>pasar la secuencia completa de salidas a la siguiente capa de la red</strong></em>, que también puede ser una capa recurrente como otra LSTM</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lstm_layer1</span> <span class="o">=</span> <span class="n">LSTM</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">return_sequences</span><span class="o">=</span><span class="kc">True</span><span class="p">)(</span><span class="n">input_layer</span><span class="p">)</span>
+<span class="n">lstm_layer2</span> <span class="o">=</span> <span class="n">LSTM</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">64</span><span class="p">),</span> <span class="n">return_sequences</span><span class="o">=</span><span class="kc">False</span><span class="p">)(</span><span class="n">lstm_layer1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>A continuación, <em><strong>la salida de LSTM pasa a una capa de exclusión que elimina aleatoriamente el 20% de la entrada antes de pasar a la capa de salida</strong></em>, que tiene una única neurona oculta con una función de <em><strong>activación lineal</strong></em></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dropout_layer</span> <span class="o">=</span> <span class="n">Dropout</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)(</span><span class="n">lstm_layer2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">output_layer</span> <span class="o">=</span> <span class="n">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">)(</span><span class="n">dropout_layer</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Finalmente, todas las capas se envuelven en un <code class="docutils literal notranslate"><span class="pre">keras.models.Model</span></code> y se entrenan durante <em><strong>veinte epochs para minimizar el MSE</strong></em> utilizando el <em><strong>optimizador Adam</strong></em></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ts_model</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span><span class="n">inputs</span><span class="o">=</span><span class="n">input_layer</span><span class="p">,</span> <span class="n">outputs</span><span class="o">=</span><span class="n">output_layer</span><span class="p">)</span>
+<span class="n">ts_model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="s1">&#39;mean_absolute_error&#39;</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">=</span><span class="s1">&#39;adam&#39;</span><span class="p">)</span> <span class="c1">#SGD(lr=0.001, decay=1e-5))</span>
+<span class="n">ts_model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">Model: "functional_5"</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━┓
+┃<span style="font-weight: bold"> Layer (type)                         </span>┃<span style="font-weight: bold"> Output Shape                </span>┃<span style="font-weight: bold">         Param # </span>┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━┩
+│ input_layer_2 (<span style="color: #0087ff; text-decoration-color: #0087ff">InputLayer</span>)           │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">7</span>, <span style="color: #00af00; text-decoration-color: #00af00">1</span>)                │               <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ lstm (<span style="color: #0087ff; text-decoration-color: #0087ff">LSTM</span>)                          │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">7</span>, <span style="color: #00af00; text-decoration-color: #00af00">64</span>)               │          <span style="color: #00af00; text-decoration-color: #00af00">16,896</span> │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ lstm_1 (<span style="color: #0087ff; text-decoration-color: #0087ff">LSTM</span>)                        │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">32</span>)                  │          <span style="color: #00af00; text-decoration-color: #00af00">12,416</span> │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dropout_2 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dropout</span>)                  │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">32</span>)                  │               <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dense_8 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                      │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">1</span>)                   │              <span style="color: #00af00; text-decoration-color: #00af00">33</span> │
+└──────────────────────────────────────┴─────────────────────────────┴─────────────────┘
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold"> Total params: </span><span style="color: #00af00; text-decoration-color: #00af00">29,345</span> (114.63 KB)
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold"> Trainable params: </span><span style="color: #00af00; text-decoration-color: #00af00">29,345</span> (114.63 KB)
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold"> Non-trainable params: </span><span style="color: #00af00; text-decoration-color: #00af00">0</span> (0.00 B)
+</pre>
+</div></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">save_weights_at</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;keras_models&#39;</span><span class="p">,</span> <span class="s1">&#39;PRSA_data_PM2.5_LSTM_weights.</span><span class="si">{epoch:02d}</span><span class="s1">-</span><span class="si">{val_loss:.4f}</span><span class="s1">.keras&#39;</span><span class="p">)</span>
+<span class="n">save_best</span> <span class="o">=</span> <span class="n">ModelCheckpoint</span><span class="p">(</span><span class="n">save_weights_at</span><span class="p">,</span> <span class="n">monitor</span><span class="o">=</span><span class="s1">&#39;val_loss&#39;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                            <span class="n">save_best_only</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">save_weights_only</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;min&#39;</span><span class="p">,</span> <span class="n">save_freq</span><span class="o">=</span><span class="s1">&#39;epoch&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ts_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y_train</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+             <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">callbacks</span><span class="o">=</span><span class="p">[</span><span class="n">save_best</span><span class="p">],</span> <span class="n">validation_data</span><span class="o">=</span><span class="p">(</span><span class="n">X_val</span><span class="p">,</span> <span class="n">y_val</span><span class="p">),</span>
+             <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<figure class="align-default">
+<a class="reference internal image-reference" href="_images/lstm_epochs.png"><img alt="_images/lstm_epochs.png" src="_images/lstm_epochs.png" style="width: 563.0px; height: 713.0px;" /></a>
+</figure>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">best_model</span> <span class="o">=</span> <span class="n">load_model</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;keras_models&#39;</span><span class="p">,</span> <span class="s1">&#39;PRSA_data_PM2.5_LSTM_weights.20-0.0116.keras&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">preds</span> <span class="o">=</span> <span class="n">best_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_val</span><span class="p">)</span>
+<span class="n">pred_pm25</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">preds</span><span class="p">)</span>
+<span class="n">pred_pm25</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">pred_pm25</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">271/271</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 1ms/step
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_absolute_error</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mae</span> <span class="o">=</span> <span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">df_val</span><span class="p">[</span><span class="s1">&#39;pm2.5&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">7</span><span class="p">:],</span> <span class="n">pred_pm25</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;MAE for the validation set:&#39;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">mae</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MAE for the validation set: 11.5265
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Hemos utilizado <code class="docutils literal notranslate"><span class="pre">keras.callbacks.ModelCheckpoint</span></code> como callback para rastrear el <code class="docutils literal notranslate"><span class="pre">MSE</span></code> del modelo en el conjunto de validación y <em><strong>guardar los pesos de la epoch que da el mínimo MSE</strong></em>. El <code class="docutils literal notranslate"><span class="pre">R-cuadrado</span></code> del mejor modelo para el conjunto de validación es de 0.9959. Los primeros cincuenta valores reales y predichos se muestran en la siguiente figura</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">5.5</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span> <span class="n">df_val</span><span class="p">[</span><span class="s1">&#39;pm2.5&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">7</span><span class="p">:</span><span class="mi">56</span><span class="p">],</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span> <span class="n">pred_pm25</span><span class="p">[:</span><span class="mi">50</span><span class="p">],</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Actual&#39;</span><span class="p">,</span><span class="s1">&#39;Predicted&#39;</span><span class="p">],</span> <span class="n">loc</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Actual vs Predicted pm2.5&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;pm2.5&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Index&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/f087f0b47f75f138a3eb45b24387df0f8379810aebcc1b95792886a02b8d119d.png" src="_images/f087f0b47f75f138a3eb45b24387df0f8379810aebcc1b95792886a02b8d119d.png" />
+</div>
+</div>
+</section>
 <section id="atencion-y-memoria">
-<h2><span class="section-number">8.16. </span>Atención y Memoria<a class="headerlink" href="#atencion-y-memoria" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">8.20. </span>Atención y Memoria<a class="headerlink" href="#atencion-y-memoria" title="Link to this heading">#</a></h2>
 <div class="admonition-introduccion admonition">
 <p class="admonition-title">Introducción</p>
 <ul class="simple">
@@ -7640,13 +9520,13 @@ acc: 0.98
 <figure class="align-center" id="attention-weights-grayscale-numref">
 <a class="reference internal image-reference" href="_images/attention_weights_grayscale.png"><img alt="_images/attention_weights_grayscale.png" src="_images/attention_weights_grayscale.png" style="width: 381.6px; height: 434.40000000000003px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 8.43 </span><span class="caption-text">Valores de los pesos de atención en escala de grises. <a class="reference internal" href="#attention_example_grayscale">Example 8.1</a></span><a class="headerlink" href="#attention-weights-grayscale-numref" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 8.47 </span><span class="caption-text">Valores de los pesos de atención en escala de grises. <a class="reference internal" href="#attention_example_grayscale">Example 8.1</a></span><a class="headerlink" href="#attention-weights-grayscale-numref" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <div class="proof example admonition" id="attention_example_grayscale">
 <p class="admonition-title"><span class="caption-number">Example 8.1 </span></p>
 <section class="example-content" id="proof-content">
-<p>La <a class="reference internal" href="#attention-weights-grayscale-numref"><span class="std std-numref">Fig. 8.43</span></a> demuestra el razonamiento que subyace a la <em><strong>utilización de un mecanismo de ponderación</strong></em>. La <em><strong>entrada</strong></em> está representada por las <em><strong>palabras en francés</strong></em>, mientras que las secuencias de <em><strong>salida</strong></em> correspondientes están representadas por las <em><strong>palabras en inglés</strong></em>. <em><strong>La visualización representa los pesos de atención como píxeles</strong></em>, donde los <em><strong>pesos más altos se representan como píxeles más blancos</strong></em>. En particular, el <em><strong>término “produce” en la salida</strong></em> es consecuencia de <em><strong>asignar peso a la información de tres puntos temporales consecutivos</strong></em>, vinculados con las palabras <em><strong>“peut plus produire”</strong></em>, mientras que el término <em><strong>“destruction”</strong></em> está <em><strong>asociado con dos palabras</strong></em>, a saber, <em><strong>“la destruction”</strong></em>.</p>
+<p>La <a class="reference internal" href="#attention-weights-grayscale-numref"><span class="std std-numref">Fig. 8.47</span></a> demuestra el razonamiento que subyace a la <em><strong>utilización de un mecanismo de ponderación</strong></em>. La <em><strong>entrada</strong></em> está representada por las <em><strong>palabras en francés</strong></em>, mientras que las secuencias de <em><strong>salida</strong></em> correspondientes están representadas por las <em><strong>palabras en inglés</strong></em>. <em><strong>La visualización representa los pesos de atención como píxeles</strong></em>, donde los <em><strong>pesos más altos se representan como píxeles más blancos</strong></em>. En particular, el <em><strong>término “produce” en la salida</strong></em> es consecuencia de <em><strong>asignar peso a la información de tres puntos temporales consecutivos</strong></em>, vinculados con las palabras <em><strong>“peut plus produire”</strong></em>, mientras que el término <em><strong>“destruction”</strong></em> está <em><strong>asociado con dos palabras</strong></em>, a saber, <em><strong>“la destruction”</strong></em>.</p>
 </section>
 </div><div class="proof observation admonition" id="observation_ann13">
 <p class="admonition-title"><span class="caption-number">Observation 8.7 </span></p>
@@ -7657,7 +9537,7 @@ acc: 0.98
 </section>
 </div></section>
 <section id="entrenamiento-adversario">
-<h2><span class="section-number">8.17. </span>Entrenamiento adversario<a class="headerlink" href="#entrenamiento-adversario" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">8.21. </span>Entrenamiento adversario<a class="headerlink" href="#entrenamiento-adversario" title="Link to this heading">#</a></h2>
 <div class="admonition-introduccion admonition">
 <p class="admonition-title">Introducción</p>
 <ul class="simple">
@@ -7666,12 +9546,12 @@ acc: 0.98
 </ul>
 </div>
 <ul class="simple">
-<li><p>La <a class="reference internal" href="#wrong-image-classification-numref"><span class="std std-numref">Fig. 8.44</span></a> muestra una serie de <em><strong>nueve imágenes</strong></em>. Se ha entrenado una <em><strong>red neuronal (AlexNet)</strong></em> para <em><strong>discernir los contenidos de las imágenes</strong></em>. El trío <em><strong>izquierdo de imágenes</strong></em>, tomadas del respectivo conjunto de pruebas, fueron <em><strong>identificadas con precisión</strong></em>. Las imágenes en el <em><strong>centro son versiones ruidosas</strong></em> añadidas a las originales de la izquierda. Las composiciones <em><strong>resultantes se presentan a la derecha</strong></em>. Mientras los seres <em><strong>humanos anticipan sin dificultad las etiquetas correctas</strong></em>, <em><strong>AlexNet catalogó de forma errónea las tres imágenes como “avestruz, struthio camelus”</strong></em>.</p></li>
+<li><p>La <a class="reference internal" href="#wrong-image-classification-numref"><span class="std std-numref">Fig. 8.48</span></a> muestra una serie de <em><strong>nueve imágenes</strong></em>. Se ha entrenado una <em><strong>red neuronal (AlexNet)</strong></em> para <em><strong>discernir los contenidos de las imágenes</strong></em>. El trío <em><strong>izquierdo de imágenes</strong></em>, tomadas del respectivo conjunto de pruebas, fueron <em><strong>identificadas con precisión</strong></em>. Las imágenes en el <em><strong>centro son versiones ruidosas</strong></em> añadidas a las originales de la izquierda. Las composiciones <em><strong>resultantes se presentan a la derecha</strong></em>. Mientras los seres <em><strong>humanos anticipan sin dificultad las etiquetas correctas</strong></em>, <em><strong>AlexNet catalogó de forma errónea las tres imágenes como “avestruz, struthio camelus”</strong></em>.</p></li>
 </ul>
 <figure class="align-center" id="wrong-image-classification-numref">
 <a class="reference internal image-reference" href="_images/wrong_image_classification.png"><img alt="_images/wrong_image_classification.png" src="_images/wrong_image_classification.png" style="width: 672.0px; height: 661.6px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 8.44 </span><span class="caption-text">Imágenes de la <em><strong>izquierda</strong></em> se han <em><strong>clasificado correctamente</strong></em>. Todas las <em><strong>imágenes de la derecha</strong></em> han sido <em><strong>clasificadas como “avestruz, Struthio camelus”</strong></em>. Fuente <span id="id47">[<a class="reference internal" href="biblio.html#id17" title="S. Theodoridis. Machine Learning: A Bayesian and Optimization Perspective. Elsevier Science, 2020. ISBN 9780128188040. URL: https://books.google.com.co/books?id=l-nEDwAAQBAJ.">Theodoridis, 2020</a>]</span>.</span><a class="headerlink" href="#wrong-image-classification-numref" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 8.48 </span><span class="caption-text">Imágenes de la <em><strong>izquierda</strong></em> se han <em><strong>clasificado correctamente</strong></em>. Todas las <em><strong>imágenes de la derecha</strong></em> han sido <em><strong>clasificadas como “avestruz, Struthio camelus”</strong></em>. Fuente <span id="id47">[<a class="reference internal" href="biblio.html#id17" title="S. Theodoridis. Machine Learning: A Bayesian and Optimization Perspective. Elsevier Science, 2020. ISBN 9780128188040. URL: https://books.google.com.co/books?id=l-nEDwAAQBAJ.">Theodoridis, 2020</a>]</span>.</span><a class="headerlink" href="#wrong-image-classification-numref" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <ul>
@@ -7725,9 +9605,9 @@ acc: 0.98
 </ul>
 </section>
 <section id="modelos-generativos-profundos">
-<h2><span class="section-number">8.18. </span>Modelos Generativos Profundos<a class="headerlink" href="#modelos-generativos-profundos" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">8.22. </span>Modelos Generativos Profundos<a class="headerlink" href="#modelos-generativos-profundos" title="Link to this heading">#</a></h2>
 <section id="maquina-de-boltzmann-restringida">
-<h3><span class="section-number">8.18.1. </span>Máquina de Boltzmann Restringida<a class="headerlink" href="#maquina-de-boltzmann-restringida" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">8.22.1. </span>Máquina de Boltzmann Restringida<a class="headerlink" href="#maquina-de-boltzmann-restringida" title="Link to this heading">#</a></h3>
 <div class="admonition-introduccion admonition">
 <p class="admonition-title">Introducción</p>
 <ul class="simple">
@@ -7736,7 +9616,7 @@ acc: 0.98
 </ul>
 </div>
 <ul>
-<li><p>El modelo gráfico de la <a class="reference internal" href="#rboltzmann-model-numref"><span class="std std-numref">Fig. 8.45</span></a> ilustra una <em><strong>máquina de Boltzmann restringida (RBM)</strong></em>. La máquina de Boltzmann utiliza la siguiente <em><strong>distribución de probabilidad conjunta de Boltzmann</strong></em> definida como</p>
+<li><p>El modelo gráfico de la <a class="reference internal" href="#rboltzmann-model-numref"><span class="std std-numref">Fig. 8.49</span></a> ilustra una <em><strong>máquina de Boltzmann restringida (RBM)</strong></em>. La máquina de Boltzmann utiliza la siguiente <em><strong>distribución de probabilidad conjunta de Boltzmann</strong></em> definida como</p>
 <div class="math notranslate nohighlight">
 \[
     p(x_{1}, \dots, x_{l}):=p(\boldsymbol{x})=\frac{1}{Z}\exp\left(-\sum_{i}\left(\sum_{j&gt;i}\theta_{ij}x_{i}x_{j}+\theta_{i0}x_{i}\right)\right),
@@ -7757,7 +9637,7 @@ acc: 0.98
 <figure class="align-center" id="rboltzmann-model-numref">
 <a class="reference internal image-reference" href="_images/rboltzmann_model.png"><img alt="_images/rboltzmann_model.png" src="_images/rboltzmann_model.png" style="width: 274.4px; height: 121.8px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 8.45 </span><span class="caption-text">Arquitectura de <em><strong>modelo (RBM)</strong></em>. Fuente <span id="id52">[<a class="reference internal" href="biblio.html#id17" title="S. Theodoridis. Machine Learning: A Bayesian and Optimization Perspective. Elsevier Science, 2020. ISBN 9780128188040. URL: https://books.google.com.co/books?id=l-nEDwAAQBAJ.">Theodoridis, 2020</a>]</span>.</span><a class="headerlink" href="#rboltzmann-model-numref" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 8.49 </span><span class="caption-text">Arquitectura de <em><strong>modelo (RBM)</strong></em>. Fuente <span id="id52">[<a class="reference internal" href="biblio.html#id17" title="S. Theodoridis. Machine Learning: A Bayesian and Optimization Perspective. Elsevier Science, 2020. ISBN 9780128188040. URL: https://books.google.com.co/books?id=l-nEDwAAQBAJ.">Theodoridis, 2020</a>]</span>.</span><a class="headerlink" href="#rboltzmann-model-numref" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <ul class="simple">
@@ -7822,7 +9702,7 @@ Z=\sum_{v}\sum_{h}\exp(-E(\boldsymbol{v}, \boldsymbol{h})).
 </section>
 </section>
 <section id="autoencoders">
-<h2><span class="section-number">8.19. </span>Autoencoders<a class="headerlink" href="#autoencoders" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">8.23. </span>Autoencoders<a class="headerlink" href="#autoencoders" title="Link to this heading">#</a></h2>
 <ul>
 <li><p>Los <em><strong>autoencoders</strong></em> han sido propuestos como <em><strong>métodos para la reducción de dimensionalidad</strong></em>. Un <em><strong>autoencoder</strong></em> consta de dos partes, el <em><strong>codificador</strong></em> y el <em><strong>decodificador</strong></em>. La <em><strong>salida del codificador es la representación reducida del patrón de entrada</strong></em>, y se define en términos de una función vectorial</p>
 <div class="math notranslate nohighlight">
@@ -7904,11 +9784,11 @@ Z=\sum_{v}\sum_{h}\exp(-E(\boldsymbol{v}, \boldsymbol{h})).
       </div>
     </a>
     <a class="right-next"
-       href="dl_computer_vision.html"
+       href="practical_pca.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">9. </span>Deep Learning para Visión por Computadora</p>
+        <p class="prev-next-title"><span class="section-number">9. </span>Análisis de Componentes Principales</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -7963,13 +9843,17 @@ Z=\sum_{v}\sum_{h}\exp(-E(\boldsymbol{v}, \boldsymbol{h})).
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#red-de-memoria-a-largo-plazo-lstm">8.14. Red de memoria a largo plazo (LSTM)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-procesamiento-del-lenguaje-natural">8.15. Aplicación: Procesamiento del Lenguaje Natural</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#atencion-y-memoria">8.16. Atención y Memoria</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entrenamiento-adversario">8.17. Entrenamiento adversario</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-generativos-profundos">8.18. Modelos Generativos Profundos</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#maquina-de-boltzmann-restringida">8.18.1. Máquina de Boltzmann Restringida</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#series-de-tiempo">8.16. Series de Tiempo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entrenamiento-de-mlp">8.17. Entrenamiento de MLP</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mlp-para-la-prediccion-de-series-temporales">8.18. MLP para la predicción de series temporales</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lstm-para-la-prediccion-de-series-de-tiempo">8.19. LSTM para la predicción de series de tiempo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#atencion-y-memoria">8.20. Atención y Memoria</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entrenamiento-adversario">8.21. Entrenamiento adversario</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-generativos-profundos">8.22. Modelos Generativos Profundos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#maquina-de-boltzmann-restringida">8.22.1. Máquina de Boltzmann Restringida</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autoencoders">8.19. Autoencoders</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autoencoders">8.23. Autoencoders</a></li>
 </ul>
   </nav></div>
 
