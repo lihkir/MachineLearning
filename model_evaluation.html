@@ -32,9 +32,9 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=b4b7a797" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=530fe47d" />
     <link rel="stylesheet" type="text/css" href="_static/.ipynb_checkpoints/custom-checkpoint.css" />
@@ -354,7 +354,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ventajas-de-la-validacion-cruzada">10.1.2. Ventajas de la validación cruzada</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-cruzada-estratificada-k-fold-y-otras-estrategias">10.1.3. Validación cruzada estratificada <span class="math notranslate nohighlight">\(k\)</span>-fold y otras estrategias</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mas-control-sobre-la-validacion-cruzada">10.1.4. Más control sobre la validación cruzada</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-cruzada-con-exclusion-leave-one-out">10.1.5. Validación cruzada con exclusión (leave-one-out)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-cruzada-con-exclusion-leave-one-out">10.1.5. Validación cruzada con exclusión (<code class="docutils literal notranslate"><span class="pre">leave-one-out</span></code>)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-cruzada-aleatoria-y-dividida">10.1.6. Validación cruzada aleatoria y dividida</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-cruzada-con-grupos">10.1.7. Validación cruzada con grupos</a></li>
 </ul>
@@ -425,7 +425,7 @@ document.write(`
 </div>
 </div>
 <ul class="simple">
-<li><p>Creamos un conjunto de datos sintéticos</p></li>
+<li><p>Creamos un conjunto de <em><strong>datos sintético</strong></em></p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -435,7 +435,7 @@ document.write(`
 </div>
 </div>
 <ul class="simple">
-<li><p>Dividimos los datos y las etiquetas en un conjunto de entrenamiento y otro de prueba</p></li>
+<li><p><em><strong>Dividimos</strong></em> los datos y las etiquetas en un <em><strong>conjunto de entrenamiento y otro de prueba</strong></em></p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -445,7 +445,7 @@ document.write(`
 </div>
 </div>
 <ul class="simple">
-<li><p>Instanciar el modelo y ajustarlo al conjunto de entrenamiento</p></li>
+<li><p><em><strong>Instanciar</strong></em> el modelo y <em><strong>ajustarlo al conjunto de entrenamiento</strong></em></p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -455,7 +455,7 @@ document.write(`
 </div>
 </div>
 <ul class="simple">
-<li><p>Evaluar el modelo en el conjunto de prueba</p></li>
+<li><p><em><strong>Evaluar</strong></em> el modelo en el <em><strong>conjunto de prueba</strong></em></p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -470,7 +470,7 @@ document.write(`
 </div>
 </div>
 <ul class="simple">
-<li><p>Evaluar el modelo en el conjunto de entrenamiento</p></li>
+<li><p><em><strong>Evaluar</strong></em> el modelo en el <em><strong>conjunto de entrenamiento</strong></em></p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -484,16 +484,26 @@ document.write(`
 </div>
 </div>
 </div>
+<div class="tip admonition">
+<p class="admonition-title">Observación</p>
 <ul class="simple">
-<li><p>Recuerde que la razón por la que dividimos nuestros datos en conjuntos de entrenamiento y de prueba, es que estamos interesados en medir lo bien que nuestro modelo se generaliza a nuevos datos no vistos anteriormente. <em><strong>No nos interesa lo bien que nuestro modelo se ajusta al conjunto de entrenamiento, sino lo bien que puede hacer predicciones sobre datos no observados durante el entrenamiento</strong></em>.</p></li>
-<li><p>En esta sección, ampliaremos dos aspectos de esta evaluación. En primer lugar, introduciremos la <em><strong>validación cruzada</strong></em> (cross-validation), una forma más sólida de <em><strong>evaluar el rendimiento de la generalización</strong></em>, y discutiremos los métodos para <em><strong>evaluar el rendimiento de la clasificación y la regresión</strong></em> que van más allá de las medidas por defecto de <em><strong>precisión (accuracy)</strong></em> y <span class="math notranslate nohighlight">\(R^2\)</span> proporcionadas por el método <code class="docutils literal notranslate"><span class="pre">score</span></code>. También hablaremos del <em><strong>grid search</strong></em>, un método eficaz para ajustar los parámetros de los modelos supervisados y obtener el <em><strong>mejor rendimiento de la generalización</strong></em>.</p></li>
+<li><p>Recuerde que la razón por la que dividimos nuestros datos en conjuntos de entrenamiento y de prueba, es que estamos interesados en medir lo bien que nuestro modelo se generaliza a nuevos datos (<em>no vistos anteriormente</em>). <em><strong>No nos interesa lo bien que nuestro modelo se ajusta al conjunto de entrenamiento, sino lo bien que puede hacer predicciones sobre datos no observados durante el entrenamiento</strong></em>.</p></li>
+</ul>
+</div>
+<ul class="simple">
+<li><p>En esta sección, ampliaremos dos aspectos de esta evaluación. En primer lugar, introduciremos la <em><strong>validación cruzada</strong></em> (<code class="docutils literal notranslate"><span class="pre">cross-validation</span></code>), una forma más sólida de <em><strong>evaluar el rendimiento de la generalización</strong></em>, y discutiremos los <em><strong>métodos para evaluar el rendimiento de la clasificación y la regresión</strong></em> que van más allá de las medidas por defecto <code class="docutils literal notranslate"><span class="pre">accuracy</span></code> y <span class="math notranslate nohighlight">\(R^2\)</span> proporcionadas por el método <code class="docutils literal notranslate"><span class="pre">score</span></code>. También hablaremos del <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code>, un método eficaz para ajustar los parámetros de los modelos supervisados y obtener el <em><strong>mejor rendimiento de la generalización</strong></em>.</p></li>
 </ul>
 <section id="cross-validation">
 <h2><span class="section-number">10.1. </span>Cross-Validation<a class="headerlink" href="#cross-validation" title="Link to this heading">#</a></h2>
+<div class="tip admonition">
+<p class="admonition-title">Introducción</p>
 <ul class="simple">
-<li><p>La <em><strong>validación cruzada (cross-validation)</strong></em> es un <em><strong>método estadístico</strong></em> para evaluar el rendimiento de la generalización que es <em><strong>más estable y exhaustivo</strong></em> que el uso de una división en un conjunto de entrenamiento y otro de prueba. En la validación cruzada, <em><strong>los datos se dividen repetidamente y se entrenan múltiples modelos</strong></em>. La versión más utilizada de la validación cruzada es la <em><strong>k-fold cross-validation</strong></em>, donde <em><strong>k</strong></em> es un número <em><strong>especificado por el usuario, normalmente 5 o 10</strong></em>.</p></li>
-<li><p><em><strong>Cuando se realiza la validación cruzada five-fold, los datos se dividen primero en cinco partes de tamaño (aproximadamente) igual, llamadas pliegues (folds)</strong></em>. A continuación, se entrena una secuencia de modelos. <em><strong>El primer modelo se entrena utilizando el primer pliegue como conjunto de prueba, y los pliegues restantes (2-5) se utilizan como conjunto de entrenamiento. El modelo se construye utilizando los datos de los pliegues 2-5, y luego se evalúa accuracy en el pliegue 1</strong></em>.</p></li>
-<li><p>A continuación, luego se construye otro modelo, esta vez utilizando el pliegue 2 como conjunto de prueba y los datos de los pliegues 1, 3, 4 y 5 como conjunto de entrenamiento. Este proceso se repite utilizando los pliegues 3, 4 y 5 como conjuntos de prueba. <em><strong>Para cada una de estas cinco divisiones de los datos en conjuntos de entrenamiento y de prueba, calculamos</strong></em> <code class="docutils literal notranslate"><span class="pre">accuracy</span></code>. Al final, hemos recogido cinco valores de <code class="docutils literal notranslate"><span class="pre">accuracy</span></code>.</p></li>
+<li><p>La <em><strong>validación cruzada</strong></em> (<code class="docutils literal notranslate"><span class="pre">cross-validation</span></code>) es un <em><strong>método estadístico para evaluar el rendimiento de la generalización</strong></em> que es <em>más estable y exhaustivo que el uso de una división en un conjunto de entrenamiento y otro de prueba</em>. En la validación cruzada, <em><strong>los datos se dividen repetidamente y se entrenan múltiples modelos</strong></em>. La versión más utilizada de la validación cruzada es la <code class="docutils literal notranslate"><span class="pre">k-fold</span> <span class="pre">cross-validation</span></code>, donde <code class="docutils literal notranslate"><span class="pre">k</span></code> es un número <em><strong>especificado por el usuario, normalmente 5 o 10</strong></em>.</p></li>
+</ul>
+</div>
+<ul class="simple">
+<li><p>Cuando se realiza la validación cruzada <code class="docutils literal notranslate"><span class="pre">five-fold</span></code>, <em><strong>los datos se dividen primero en cinco partes de tamaño (aproximadamente) igual, llamadas pliegues (<code class="docutils literal notranslate"><span class="pre">folds</span></code>)</strong></em>. A continuación, se entrena una secuencia de modelos. <em><strong>El primer modelo se entrena utilizando el primer pliegue como conjunto de prueba, y los pliegues restantes (2-5) se utilizan como conjunto de entrenamiento. El modelo se construye utilizando los datos de los pliegues 2-5, y luego se evalúa accuracy en el pliegue 1</strong></em>.</p></li>
+<li><p>A continuación, luego se construye otro modelo, esta vez utilizando el <em><strong>pliegue 2 como conjunto de prueba y los datos de los pliegues 1, 3, 4 y 5 como conjunto de entrenamiento</strong></em>. Este proceso se repite utilizando los pliegues 3, 4 y 5 como conjuntos de prueba. <em><strong>Para cada una de estas cinco divisiones de los datos en conjuntos de entrenamiento y de prueba, calculamos</strong></em> <code class="docutils literal notranslate"><span class="pre">accuracy</span></code>. Al final, hemos recogido cinco valores de <code class="docutils literal notranslate"><span class="pre">accuracy</span></code>.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -503,7 +513,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/aa557bdb5079f148667eb0825fd90cf07b0c8d074e9c1df1bb09be72ea85c648.png" src="_images/aa557bdb5079f148667eb0825fd90cf07b0c8d074e9c1df1bb09be72ea85c648.png" />
+<img alt="_images/464ba17b4c200310244bcd04b0b83810a15c15e388b3bdb0c2b90033a9130eb5.png" src="_images/464ba17b4c200310244bcd04b0b83810a15c15e388b3bdb0c2b90033a9130eb5.png" />
 </div>
 </div>
 <ul class="simple">
@@ -514,13 +524,13 @@ document.write(`
 <h3><span class="section-number">10.1.1. </span>Validación cruzada en scikit-learn<a class="headerlink" href="#validacion-cruzada-en-scikit-learn" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>La validación cruzada se implementa en <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> utilizando la función <code class="docutils literal notranslate"><span class="pre">cross_val_score</span></code> del módulo <code class="docutils literal notranslate"><span class="pre">model_selection</span></code>. <em><strong>Los parámetros de la función</strong></em> <code class="docutils literal notranslate"><span class="pre">cross_val_score</span></code> <em><strong>son, el modelo que queremos evaluar, los datos de entrenamiento y las etiquetas reales</strong></em>. Vamos a evaluar <code class="docutils literal notranslate"><span class="pre">LogisticRegression</span></code> en el conjunto de datos <code class="docutils literal notranslate"><span class="pre">iris</span></code>.</p></li>
-<li><p>Utilizaremos los parámetros por defecto de este modelo, más adelante estudiaremos como conseguir los más óptimos por medio de <code class="docutils literal notranslate"><span class="pre">grid-search</span></code>, por ahora solo estamos interesados en evaluar el modelo por defecto usando <code class="docutils literal notranslate"><span class="pre">cross_val_score</span></code>. Para más información acerca de los argumentos del modelo (ver <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html">sklearn.linear_model.LogisticRegression</a>).</p></li>
+<li><p>Utilizaremos los <em><strong>parámetros por defecto de este modelo</strong></em>, más adelante estudiaremos como conseguir los más óptimos por medio de <code class="docutils literal notranslate"><span class="pre">grid-search</span></code>, por ahora solo estamos interesados en <em><strong>evaluar el modelo por defecto usando</strong></em> <code class="docutils literal notranslate"><span class="pre">cross_val_score</span></code>. Para más información acerca de los argumentos del modelo (ver <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html">sklearn.linear_model.LogisticRegression</a>).</p></li>
 </ul>
 <div class="tip admonition">
 <p class="admonition-title">Iris dataset</p>
 <ul class="simple">
-<li><p><em><strong>Objetivo Principal</strong></em>: <em><strong>Predecir la especie de una flor <code class="docutils literal notranslate"><span class="pre">iris</span></code> basándose en medidas de sus características morfológicas</strong></em>. El dataset contiene tres especies de <code class="docutils literal notranslate"><span class="pre">iris</span></code>: <code class="docutils literal notranslate"><span class="pre">setosa</span></code>, <code class="docutils literal notranslate"><span class="pre">versicolor</span></code> y <code class="docutils literal notranslate"><span class="pre">virginica</span></code>, y las características medidas son el largo y el ancho del sépalo y el pétalo.</p></li>
-<li><p><em><strong>Uso</strong></em>: Este problema de clasificación permite evaluar la <em><strong>capacidad de un modelo para diferenciar entre las especies basándose en características continuas</strong></em>.</p></li>
+<li><p><strong>Objetivo Principal</strong>: <em>Predecir la especie de una flor <code class="docutils literal notranslate"><span class="pre">iris</span></code> basándose en medidas de sus características morfológicas</em>. El dataset contiene tres especies de <code class="docutils literal notranslate"><span class="pre">iris</span></code>: <code class="docutils literal notranslate"><span class="pre">setosa</span></code>, <code class="docutils literal notranslate"><span class="pre">versicolor</span></code> y <code class="docutils literal notranslate"><span class="pre">virginica</span></code>, y las características medidas son el largo y el ancho del sépalo y el pétalo.</p></li>
+<li><p><em><strong>Uso</strong></em>: Este problema de clasificación permite evaluar la <em>capacidad de un modelo para diferenciar entre las especies basándose en características continuas</em>.</p></li>
 </ul>
 </div>
 <figure class="align-center">
@@ -659,7 +669,7 @@ petal width (cm):
 </div>
 </div>
 <ul class="simple">
-<li><p>Por defecto, <code class="docutils literal notranslate"><span class="pre">cross_val_score</span></code> realiza una <code class="docutils literal notranslate"><span class="pre">five-fold</span> <span class="pre">cross</span> <span class="pre">validation</span></code>, devolviendo cinco valores de <code class="docutils literal notranslate"><span class="pre">accuracy</span></code>. Podemos cambiar el número de pliegues <em><strong>(folds)</strong></em> utilizados, cambiando el parámetro <code class="docutils literal notranslate"><span class="pre">cv</span></code>:</p></li>
+<li><p><em><strong>Por defecto</strong></em>, <code class="docutils literal notranslate"><span class="pre">cross_val_score</span></code> <em><strong>realiza una</strong></em> <code class="docutils literal notranslate"><span class="pre">five-fold</span> <span class="pre">cross</span> <span class="pre">validation</span></code>, devolviendo cinco valores de <code class="docutils literal notranslate"><span class="pre">accuracy</span></code>. Podemos cambiar el número de pliegues <em><strong>(folds)</strong></em> utilizados, cambiando el parámetro <code class="docutils literal notranslate"><span class="pre">cv</span></code>:</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -692,26 +702,42 @@ petal width (cm):
 </div>
 <ul class="simple">
 <li><p>Utilizando la <em><strong>validación cruzada media</strong></em> podemos concluir que, esperamos que el modelo sea de precisión en torno al 97% de media. Si observamos las cinco puntuaciones producidas por la validación cruzada de cinco pliegues <em><strong>five-fold cross validation</strong></em>, también podemos concluir que hay una <em><strong>varianza relativamente alta en la precisión entre pliegues, que va del 100% de precisión al 93.33% de precisión aproximadamente</strong></em>.</p></li>
-<li><p>Esto podría implicar que el modelo es muy <em><strong>dependiente de los pliegues particulares utilizados para el entrenamiento</strong></em>, pero también podría ser simplemente una <em><strong>consecuencia del pequeño tamaño del conjunto de datos</strong></em>.</p></li>
+<li><p>Esto podría implicar que <em><strong><code class="docutils literal notranslate"><span class="pre">el</span> <span class="pre">modelo</span> <span class="pre">es</span> <span class="pre">muy</span> <span class="pre">dependiente</span> <span class="pre">de</span> <span class="pre">los</span> <span class="pre">pliegues</span> <span class="pre">particulares</span> <span class="pre">utilizados</span> <span class="pre">para</span> <span class="pre">el</span> <span class="pre">entrenamiento</span></code></strong></em>, pero también podría ser simplemente una <em><strong>consecuencia del pequeño tamaño del conjunto de datos</strong></em>. Normalmente, <em><strong>si los resultados de</strong></em> <code class="docutils literal notranslate"><span class="pre">accuracy</span></code> <em><strong>varían considerablemente durante la validación cruzada de 5 pliegues</strong></em>, esto puede indicar <em><strong>problemas en el modelo, en los datos, o en el proceso de validación</strong></em>.</p></li>
 </ul>
+<div class="tip admonition">
+<p class="admonition-title">Varianza alta de <em>accuracy</em> entre pliegues</p>
+<ul class="simple">
+<li><p><strong>Varianza en los datos</strong>: Si los datos no están bien distribuidos o existen diferencias significativas entre los pliegues, los resultados de accuracy pueden variar mucho entre cada uno. <em>Esto sucede comúnmente cuando los datos presentan sesgos o cuando ciertos pliegues contienen muestras que son más difíciles de clasificar</em>.</p></li>
+<li><p><strong>Modelo inestable o de alta varianza</strong>: Algunos modelos, especialmente los que son complejos o sensibles a los datos de entrenamiento (como los árboles de decisión sin poda o redes neuronales profundas con pocos datos), pueden tener un rendimiento inconsistente en diferentes subconjuntos de los datos. <em>En estos casos, el modelo se ajusta demasiado a los pliegues específicos, produciendo fluctuaciones en el</em> <code class="docutils literal notranslate"><span class="pre">accuracy</span></code>.</p></li>
+<li><p><strong>Tamaño de la muestra</strong>: <em>Si el conjunto de datos es pequeño, la variabilidad en los pliegues puede ser mayor, ya que cada subconjunto de datos tiene un peso proporcionalmente alto</em>. En estos casos, la validación cruzada puede reflejar variaciones amplificadas.</p></li>
+<li><p><strong>Datos atípicos</strong>: <em>La presencia de datos atípicos (outliers) en algunos de los pliegues puede afectar el</em> <code class="docutils literal notranslate"><span class="pre">accuracy</span></code> <em>y producir resultados más dispares</em>. Es importante revisar si los pliegues contienen estos datos y considerar métodos para manejarlos.</p></li>
+</ul>
+</div>
 </section>
 <section id="ventajas-de-la-validacion-cruzada">
 <h3><span class="section-number">10.1.2. </span>Ventajas de la validación cruzada<a class="headerlink" href="#ventajas-de-la-validacion-cruzada" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Son varios los beneficios de utilizar la <em><strong>validación cruzada</strong></em> en lugar de una única división en un conjunto de entrenamiento y otro de prueba. En primer lugar, recuerde que <code class="docutils literal notranslate"><span class="pre">train_test_split</span></code> realiza una división aleatoria de los datos. Imaginemos que <em><strong>tenemos “suerte” al dividir aleatoriamente los datos, y todos los ejemplos que son difíciles de clasificar acaban en el conjunto de entrenamiento</strong></em>. En ese caso, <em><strong>el conjunto de prueba sólo contendrá ejemplos “fáciles”, y nuestra precisión en el conjunto de prueba será irrealmente alto</strong></em>. Por el contrario, <em><strong>si tenemos “mala suerte”, es posible que pongamos al azar todos los ejemplos difíciles de clasificar en el conjunto de prueba y en consecuencia, obtener una scoring irrealmente baja</strong></em>.</p></li>
-<li><p>Sin embargo, al utilizar la validación cruzada, cada ejemplo estará en el conjunto de entrenamiento exactamente una vez: cada ejemplo está en uno de los pliegues (<em><strong>folds</strong></em>), y cada pliegue es el conjunto de prueba una vez. Por lo tanto, <em><strong>el modelo tiene que generalizar bien a todas las muestras del conjunto de datos, para que todas las validaciones cruzadas (y su media) sean altas</strong></em>. El hecho de <em><strong>tener múltiples divisiones de los datos también proporciona cierta información sobre la sensibilidad de nuestro modelo a la selección, a la selección del conjunto de datos de entrenamiento</strong></em>.</p></li>
-<li><p>En el caso del conjunto de datos <code class="docutils literal notranslate"><span class="pre">iris</span></code>, vimos precisiones de entre el 93.33% y el 100%. <em><strong>Se trata de un rango bastante amplio que nos da una idea de cómo podría funcionar el modelo en el peor y el mejor de los casos, cuando se aplica a nuevos datos</strong></em>. Otro beneficio de la validación cruzada en comparación con el uso de una única división de los datos es que utilizamos nuestros datos de forma más eficaz. Al utilizar <code class="docutils literal notranslate"><span class="pre">train_test_split</span></code>, solemos utilizar <em><strong>75% de los datos para el entrenamiento y 25% de los datos para la evaluación</strong></em>. Cuando se utiliza la validación cruzada de cinco pliegues (<em><strong>five-fold</strong></em>), en cada iteración podemos utilizar <em><strong>cuatro quintos de los datos (80%) para ajustar el modelo</strong></em>.</p></li>
-<li><p>Cuando se utiliza la validación cruzada de 10 pliegues, podemos utilizar <em><strong>nueve décimas partes de los datos (90%)</strong></em> para ajustar el modelo. Un <em><strong>mayor número de datos suele dar lugar a modelos más precisos</strong></em>. La principal <em><strong>desventaja de la validación cruzada es el aumento del coste computacional</strong></em>. Como ahora <em><strong>estamos entrenando k modelos en lugar de un único modelo</strong></em>, la validación cruzada será aproximadamente <code class="docutils literal notranslate"><span class="pre">k</span></code> veces más lenta que hacer una única división de los datos.</p></li>
-</ul>
-<div class="tip admonition">
+<div class="important admonition">
 <p class="admonition-title">Observación</p>
-<p>Es importante tener en cuenta que la <em><strong>validación cruzada no es una forma de construir un modelo que pueda aplicarse a nuevos datos. La validación cruzada no devuelve un modelo</strong></em>. Cuando se llama a <code class="docutils literal notranslate"><span class="pre">cross_validation_score</span></code>, se construyen internamente múltiples modelos, pero el propósito de la validación cruzada es <em><strong>evaluar lo bien que un algoritmo determinado generalizará cuando es entrenado en un conjunto de datos específico</strong></em>.</p>
+<ul class="simple">
+<li><p>Son varios los beneficios de utilizar la <em><strong>validación cruzada</strong></em> en lugar de una única división en un conjunto de entrenamiento y otro de prueba. En primer lugar, recuerde que <code class="docutils literal notranslate"><span class="pre">train_test_split</span></code> realiza una división aleatoria de los datos. Imaginemos que <em><strong>tenemos “suerte” al dividir aleatoriamente los datos, y todos los ejemplos que son difíciles de clasificar acaban en el conjunto de entrenamiento</strong></em>.</p></li>
+<li><p>En ese caso, <em><strong>el conjunto de prueba sólo contendrá ejemplos “fáciles”, y nuestra precisión en el conjunto de prueba será irrealmente alto</strong></em>. Por el contrario, <em><strong>si tenemos “mala suerte”, es posible que pongamos al azar todos los ejemplos difíciles de clasificar en el conjunto de prueba y en consecuencia, obtener una score irrealmente bajo</strong></em>.</p></li>
+</ul>
+</div>
+<ul class="simple">
+<li><p>La <em><strong>validación cruzada garantiza que cada ejemplo esté en el conjunto de prueba una vez, obligando al modelo a generalizar bien en todo el conjunto</strong></em>. Proporciona un rango de precisión que muestra el rendimiento en el mejor y peor caso. A diferencia de dividir una sola vez, <em><strong>la validación cruzada usa más datos para entrenamiento</strong></em> (por ejemplo, 80% en cinco pliegues o 90% en diez pliegues), <em><strong>lo que mejora la precisión</strong></em>. Sin embargo, <em><strong>su desventaja es el mayor coste computacional</strong></em>, ya que se entrenan varios modelos en lugar de uno solo.</p></li>
+</ul>
+<div class="caution admonition">
+<p class="admonition-title">Observación</p>
+<ul class="simple">
+<li><p>Es importante tener en cuenta que la <em><strong>validación cruzada no es una forma de construir un modelo que pueda aplicarse a nuevos datos. La validación cruzada no devuelve un modelo</strong></em>.</p></li>
+<li><p>Cuando se llama a <code class="docutils literal notranslate"><span class="pre">cross_validation_score</span></code>, se construyen internamente múltiples modelos, pero <em><strong>el propósito de la validación cruzada es evaluar lo bien que un algoritmo determinado generalizará</strong></em> cuando es entrenado en un conjunto de datos específico.</p></li>
+</ul>
 </div>
 </section>
 <section id="validacion-cruzada-estratificada-k-fold-y-otras-estrategias">
 <h3><span class="section-number">10.1.3. </span>Validación cruzada estratificada <span class="math notranslate nohighlight">\(k\)</span>-fold y otras estrategias<a class="headerlink" href="#validacion-cruzada-estratificada-k-fold-y-otras-estrategias" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Dividir el conjunto de datos en <em><strong>k pliegues</strong></em> comenzando por la primera parte de los datos, como descrito en la sección anterior, <em><strong>puede no ser siempre una buena idea</strong></em>. Por ejemplo, veamos el conjunto de datos <code class="docutils literal notranslate"><span class="pre">iris</span></code></p></li>
+<li><p>Dividir el conjunto de datos en <code class="docutils literal notranslate"><span class="pre">k</span></code> <em><strong>pliegues</strong></em> comenzando por la primera parte de los datos, como descrito en la sección anterior, <em><strong>puede no ser siempre una buena idea</strong></em>. Por ejemplo, veamos el conjunto de datos <code class="docutils literal notranslate"><span class="pre">iris</span></code></p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -733,8 +759,8 @@ petal width (cm):
 </div>
 </div>
 <ul class="simple">
-<li><p>Nótese que <em><strong>el primer tercio de los datos corresponde a la clase 0, el segundo tercio a la clase 1 y el último tercio a la clase 2</strong></em>. Imagine que realiza una validación cruzada <em><strong>3-fold</strong></em> en este conjunto de datos. El primer pliegue sería sólo la clase 0, por lo que en la primera división de los datos, el conjunto de prueba sería sólo la clase 0, y el conjunto de entrenamiento sería sólo las clases 1 y 2. <em><strong>Como las clases en el entrenamiento y la prueba serían diferentes en las tres divisiones, la precisión de la validación cruzada de tres pliegues sería cero en este conjunto de datos</strong></em>. Esto no es muy útil, ya que podemos obtener una precisión mucho mejor que el 0% en el dataset <code class="docutils literal notranslate"><span class="pre">iris</span></code>.</p></li>
-<li><p>Como la estrategia simple de <code class="docutils literal notranslate"><span class="pre">k-fold</span></code> falla aquí, <em><strong>scikit-learn no la utiliza para clasificación, sino que utiliza la validación cruzada estratificada k-fold</strong></em>. En la validación cruzada estratificada, dividimos los datos de forma que las <em><strong>proporciones entre las clases sean las mismas en cada pliegue como en todo el conjunto de datos</strong></em>.</p></li>
+<li><p>En este conjunto de datos, el <em><strong>primer tercio corresponde a la clase 0, el segundo a la clase 1 y el último a la clase 2</strong></em>. Al realizar una <em><strong>validación cruzada de 3 pliegues, cada pliegue contendría solo una clase en el conjunto de prueba</strong></em> y <em><strong>las otras dos en el conjunto de entrenamiento</strong></em>. Esto causaría que la precisión fuera del 0%, ya que las clases en entrenamiento y prueba no coincidirían en ninguna división, lo cual es ineficaz para evaluar el modelo.</p></li>
+<li><p>Como la estrategia simple de <code class="docutils literal notranslate"><span class="pre">k-fold</span></code> falla aquí, <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> <em><strong>no la utiliza para clasificación, sino que utiliza la <code class="docutils literal notranslate"><span class="pre">validación</span> <span class="pre">cruzada</span> <span class="pre">estratificada</span> <span class="pre">k-fold</span></code></strong></em>. En la validación cruzada estratificada, dividimos los datos de forma que las <em><strong>proporciones entre las clases sean las mismas en cada pliegue como en todo el conjunto de datos</strong></em>.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -743,19 +769,36 @@ petal width (cm):
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/cfc2289b827814972bc54341ab0482a351d0c498542b5ce562db9dd6475c512f.png" src="_images/cfc2289b827814972bc54341ab0482a351d0c498542b5ce562db9dd6475c512f.png" />
+<img alt="_images/16c4a06a1cbc231a522754d8efdd1a866821b29bdc053e9632c382dce6612dac.png" src="_images/16c4a06a1cbc231a522754d8efdd1a866821b29bdc053e9632c382dce6612dac.png" />
 </div>
 </div>
 <ul class="simple">
-<li><p><em><strong>Por ejemplo, si el 90% de las muestras pertenecen a la clase A y el 10% de las muestras pertenecen a la clase B, entonces la validación cruzada estratificada garantiza que en cada pliegue, el 90% de las muestras pertenezcan a la clase A y el 10% de las muestras pertenezcan a la clase B</strong></em>. Suele ser una buena idea utilizar la validación cruzada estratificada de <code class="docutils literal notranslate"><span class="pre">k</span></code> pliegues en lugar de la validación cruzada de <code class="docutils literal notranslate"><span class="pre">k</span></code> pliegues para evaluar un clasificador, porque da lugar a <em><strong>estimaciones más fiables del rendimiento de la generalización</strong></em>. En el caso de que sólo el 10% de las muestras pertenezcan a la clase B utilizando la validación cruzada <em><strong>k-fold</strong></em> estándar, podría ocurrir fácilmente que un pliegue sólo contuviera muestras de la clase A. El uso de este pliegue como conjunto de prueba no sería muy informativo sobre el rendimiento general del clasificador.</p></li>
-<li><p>Para la regresión, <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> utiliza la validación cruzada <code class="docutils literal notranslate"><span class="pre">k-fold</span></code> estándar por defecto. Sería posible también tratar de hacer cada pliegue representativo de los diferentes valores objetivo de la regresión, pero esta no es una estrategia comúnmente utilizada. En el curso <em><strong>Time Series Forecasting</strong></em> analizaremos este tipo de validación cruzada.</p></li>
+<li><p>La validación cruzada estratificada de <code class="docutils literal notranslate"><span class="pre">k</span></code> pliegues <em><strong>distribuye las clases en cada pliegue según su proporción en el conjunto de datos, evitando que un pliegue carezca de muestras de alguna clase</strong></em>. Esto ofrece <em><strong>estimaciones más fiables del rendimiento del clasificador</strong></em> en comparación con la validación cruzada estándar de <code class="docutils literal notranslate"><span class="pre">k</span></code> pliegues, especialmente en conjuntos de datos desbalanceados.</p></li>
+<li><p>Para la regresión, <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> utiliza la validación cruzada <code class="docutils literal notranslate"><span class="pre">k-fold</span></code> estándar por defecto. Sería posible también tratar de hacer cada pliegue representativo de los diferentes valores objetivo de la regresión, pero esta no es una estrategia comúnmente utilizada.</p></li>
 </ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">StratifiedKFold</span>
+<span class="n">stratified_kfold</span> <span class="o">=</span> <span class="n">StratifiedKFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">scores</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">logreg</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">stratified_kfold</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cross-validation scores:</span><span class="se">\n</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">scores</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Cross-validation scores:
+[0.98 0.96 0.98]
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="mas-control-sobre-la-validacion-cruzada">
 <h3><span class="section-number">10.1.4. </span>Más control sobre la validación cruzada<a class="headerlink" href="#mas-control-sobre-la-validacion-cruzada" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Hemos visto antes que podemos ajustar el número de pliegues que utiliza <code class="docutils literal notranslate"><span class="pre">cross_val_score</span></code> utilizando el parámetro <code class="docutils literal notranslate"><span class="pre">cv</span></code>. Sin embargo, <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> permite un control mucho más fino sobre lo que sucede durante la división de los datos, proporcionando un divisor de validación cruzada como parámetro <code class="docutils literal notranslate"><span class="pre">cv</span></code>. <em><strong>Para la mayoría de los casos de uso, los valores predeterminados de validación cruzada k-fold para la regresión y la validación estratificada funcionan bien, pero hay algunos casos en los que una estrategia diferente se podría querer utilizar</strong></em>.</p></li>
-<li><p>Digamos, por ejemplo, que queremos utilizar la validación cruzada <code class="docutils literal notranslate"><span class="pre">k-fold</span></code> estándar en un conjunto de datos de clasificación para <em><strong>reproducir los resultados de otra persona</strong></em>. Para ello, primero tenemos que importar la clase <code class="docutils literal notranslate"><span class="pre">KFold</span> <span class="pre">splitter</span></code> del módulo <code class="docutils literal notranslate"><span class="pre">model_selection</span></code> e instanciarla con el número de pliegues que queremos utilizar.</p></li>
+<li><p>Podemos <em><strong>ajustar el número de pliegues en</strong></em> <code class="docutils literal notranslate"><span class="pre">cross_val_score</span></code> <em><strong>con el parámetro</strong></em> <code class="docutils literal notranslate"><span class="pre">cv</span></code>. No obstante, <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> permite mayor control al aceptar un divisor de validación cruzada como parámetro <code class="docutils literal notranslate"><span class="pre">cv</span></code>. Aunque <em><strong>los valores predeterminados suelen ser adecuados, en ciertos casos puede ser útil una estrategia diferente</strong></em>.</p></li>
+<li><p>Por ejemplo, para replicar resultados con validación cruzada <code class="docutils literal notranslate"><span class="pre">k-fold</span></code> en clasificación, se puede importar la clase <code class="docutils literal notranslate"><span class="pre">KFold</span></code> de <code class="docutils literal notranslate"><span class="pre">model_selection</span></code> e instanciarla con el número deseado de pliegues.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -766,7 +809,7 @@ petal width (cm):
 </div>
 </div>
 <ul class="simple">
-<li><p>Entonces, podemos pasar el objeto <em><strong>kfold splitter</strong></em> como el parámetro <code class="docutils literal notranslate"><span class="pre">cv</span></code> a <code class="docutils literal notranslate"><span class="pre">cross_val_score</span></code>:</p></li>
+<li><p>Entonces, podemos pasar el objeto <code class="docutils literal notranslate"><span class="pre">kfold</span> <span class="pre">splitter</span></code> como el parámetro <code class="docutils literal notranslate"><span class="pre">cv</span></code> a <code class="docutils literal notranslate"><span class="pre">cross_val_score</span></code>:</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -782,8 +825,7 @@ petal width (cm):
 </div>
 </div>
 <ul class="simple">
-<li><p>De este modo, podemos comprobar que, efectivamente, es una muy <em><strong>mala idea utilizar la validación cruzada triple (no estratificada)</strong></em> en el conjunto de datos <code class="docutils literal notranslate"><span class="pre">iris</span></code>. Recuerde que cada pliegue corresponde a una de las clases del conjunto de datos <code class="docutils literal notranslate"><span class="pre">iris</span></code>, por lo que no se puede aprender nada. Otra forma de resolver este problema es <em><strong>aleatorizar los datos en lugar de estratificar los pliegues</strong></em>, para eliminar la ordenación de las muestras por etiquetas. Si <em><strong>shuffle es True, primero se aleatorizan todos los datos y luego se dividen en los k-folds</strong></em>.</p></li>
-<li><p>Podemos hacerlo estableciendo el parámetro <code class="docutils literal notranslate"><span class="pre">shuffle</span></code> de <code class="docutils literal notranslate"><span class="pre">KFold</span></code> en <code class="docutils literal notranslate"><span class="pre">True</span></code>. Si aleatorizamos los datos, tenemos también que fijar el <code class="docutils literal notranslate"><span class="pre">random_state</span></code> para conseguir una aleatoriedad reproducible. De lo contrario, cada ejecución de <code class="docutils literal notranslate"><span class="pre">cross_val_score</span></code> daría un resultado diferente, ya que cada vez se utilizaría una división distinta. Aleatorizar los datos antes de dividirlos produce un resultado mucho mejor</p></li>
+<li><p>Usar <em><strong>validación cruzada triple (no estratificada) en el conjunto de datos iris es ineficaz</strong></em>, ya que cada pliegue corresponde a una clase, impidiendo el aprendizaje. Para evitarlo, <em><strong>se recomienda aleatorizar los datos en lugar de estratificarlos, configurando</strong></em> <code class="docutils literal notranslate"><span class="pre">shuffle=True</span></code> en <code class="docutils literal notranslate"><span class="pre">KFold</span></code> <em><strong>y fijando</strong></em> <code class="docutils literal notranslate"><span class="pre">random_state</span></code> para obtener resultados reproducibles. Esta aleatorización mejora significativamente los resultados.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -801,9 +843,9 @@ petal width (cm):
 </div>
 </section>
 <section id="validacion-cruzada-con-exclusion-leave-one-out">
-<h3><span class="section-number">10.1.5. </span>Validación cruzada con exclusión (leave-one-out)<a class="headerlink" href="#validacion-cruzada-con-exclusion-leave-one-out" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">10.1.5. </span>Validación cruzada con exclusión (<code class="docutils literal notranslate"><span class="pre">leave-one-out</span></code>)<a class="headerlink" href="#validacion-cruzada-con-exclusion-leave-one-out" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Otro método de validación cruzada que se utiliza con frecuencia es el <em><strong>leave-one-out</strong></em>. Se puede pensar en la validación cruzada de exclusión como una <em><strong>validación cruzada de k pliegues en la que cada pliegue de prueba es una sola muestra</strong></em>. <em><strong>Para cada pliegue, se elige un único punto de datos que será el conjunto de prueba</strong></em>. Esto puede consumir mucho tiempo, sobre todo para conjuntos de datos grandes, pero a veces proporciona <em><strong>mejores estimaciones en conjuntos de datos pequeños</strong></em>.</p></li>
+<li><p>El método de <em><strong>validación cruzada</strong></em> <code class="docutils literal notranslate"><span class="pre">leave-one-out</span></code> <em><strong>es una variante de</strong></em> <code class="docutils literal notranslate"><span class="pre">k</span></code> <em><strong>pliegues</strong></em> donde <em><strong>cada pliegue de prueba contiene solo una muestra</strong></em>. Aunque es más lento en conjuntos de datos grandes, puede ofrecer <em><strong><code class="docutils literal notranslate"><span class="pre">mejores</span> <span class="pre">estimaciones</span> <span class="pre">en</span> <span class="pre">conjuntos</span> <span class="pre">de</span> <span class="pre">datos</span> <span class="pre">pequeños</span></code></strong></em>.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -832,8 +874,8 @@ Mean accuracy: 0.97
 <section id="validacion-cruzada-aleatoria-y-dividida">
 <h3><span class="section-number">10.1.6. </span>Validación cruzada aleatoria y dividida<a class="headerlink" href="#validacion-cruzada-aleatoria-y-dividida" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Otra estrategia muy flexible para la validación cruzada es <em><strong>la validación cruzada aleatoria (shuffle-split cross-validation</strong></em>). En la validación cruzada de división aleatoria, cada división (split) está compuesta de tantos <code class="docutils literal notranslate"><span class="pre">train_size</span></code> <em><strong>puntos (disyuntos)</strong></em> para el conjunto de entrenamiento y tantos <code class="docutils literal notranslate"><span class="pre">test_size</span></code> <em><strong>puntos (disjuntos)</strong></em> para el conjunto de prueba, se fijen inicialmente.</p></li>
-<li><p>Esta división se repite <code class="docutils literal notranslate"><span class="pre">n_iter</span></code> veces, de forma aleatoria. <em><strong>Para la ejecución de cuatro iteraciones de división de un conjunto de datos que consta de 10 puntos, con un conjunto de entrenamiento de 5 puntos y conjuntos de prueba de 2 puntos cada uno</strong></em> (puede usar enteros para <code class="docutils literal notranslate"><span class="pre">train_size</span></code> y <code class="docutils literal notranslate"><span class="pre">test_size</span></code> para asignarles sus tamaños absolutos, o números de tipo flotante para usar fracciones del conjunto de datos)</p></li>
+<li><p>Otra estrategia muy flexible para la validación cruzada es <em><strong>la validación cruzada aleatoria</strong></em> (<code class="docutils literal notranslate"><span class="pre">shuffle-split</span> <span class="pre">cross-validation</span></code>). En la validación cruzada de división aleatoria, cada división (<code class="docutils literal notranslate"><span class="pre">split</span></code>) está compuesta de tantos <code class="docutils literal notranslate"><span class="pre">train_size</span></code> <em><strong>puntos (disyuntos)</strong></em> para el conjunto de entrenamiento y tantos <code class="docutils literal notranslate"><span class="pre">test_size</span></code> <em><strong>puntos (disjuntos)</strong></em> para el conjunto de prueba, se fijen inicialmente.</p></li>
+<li><p>Esta división se repite <code class="docutils literal notranslate"><span class="pre">n_iter</span></code> veces, de forma aleatoria. A continuación se muestra <em><strong>la ejecución de cuatro iteraciones de división de un conjunto de datos que consta de <code class="docutils literal notranslate"><span class="pre">10</span> <span class="pre">puntos</span></code>, con un conjunto de entrenamiento de <code class="docutils literal notranslate"><span class="pre">5</span> <span class="pre">puntos</span></code> y conjuntos de prueba de <code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">puntos</span></code> cada uno</strong></em></p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -846,7 +888,7 @@ Mean accuracy: 0.97
 </div>
 </div>
 <ul class="simple">
-<li><p>El siguiente código divide el conjunto de datos en un <em><strong>50% de entrenamiento y un 50% de prueba para 10 iteraciones</strong></em></p></li>
+<li><p><em>Puede usar enteros para <code class="docutils literal notranslate"><span class="pre">train_size</span></code> y <code class="docutils literal notranslate"><span class="pre">test_size</span></code> para asignarles sus tamaños absolutos, o números de tipo flotante para usar fracciones del conjunto de datos</em>. El siguiente código divide el conjunto de datos en un <em><strong>50% de entrenamiento y un 50% de prueba para 10 iteraciones</strong></em></p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -872,7 +914,7 @@ Mean accuracy: 0.97
 </div>
 </div>
 <ul class="simple">
-<li><p><em><strong>La validación cruzada aleatoria permite controlar el número de iteraciones independientemente del tamaño del entrenamiento y de la prueba, lo que a veces puede ser útil</strong></em>. También permite solamente usar parte de los datos en cada iteración, proporcionando <code class="docutils literal notranslate"><span class="pre">train_size</span></code> y <code class="docutils literal notranslate"><span class="pre">test_size</span></code> que no suman uno. El submuestreo de los datos de esta manera puede ser <em><strong>útil para experimentar con grandes conjuntos de datos</strong></em>. También existe una variante estratificada de <code class="docutils literal notranslate"><span class="pre">ShuffleSplit</span></code>, llamada <code class="docutils literal notranslate"><span class="pre">StratifiedShuffleSplit</span></code>, que puede proporcionar resultados más fiables para las tareas de clasificación.</p></li>
+<li><p>La <em><strong>validación cruzada aleatoria permite ajustar el número de iteraciones y usar solo una parte de los datos en cada iteración</strong></em>, lo cual es <em><strong>útil para grandes conjuntos de datos</strong></em>. La variante estratificada, <code class="docutils literal notranslate"><span class="pre">StratifiedShuffleSplit</span></code>, <em><strong>ofrece resultados más fiables en tareas de clasificación</strong></em>.</p></li>
 </ul>
 </section>
 <section id="validacion-cruzada-con-grupos">
@@ -881,18 +923,17 @@ Mean accuracy: 0.97
 <p class="admonition-title">GroupKFold</p>
 <ul class="simple">
 <li><p>Digamos que quieres construir un sistema para <em><strong>reconocer emociones a partir de imágenes de rostros (o imágenes médicas)</strong></em>, y se recopila un conjunto de datos con imágenes de 100 personas, donde cada persona es capturada varias veces, mostrando varias emociones.</p></li>
-<li><p>El objetivo es construir un clasificador que pueda <em><strong>identificar correctamente las emociones de las personas que no están en el conjunto de datos</strong></em>. <code class="docutils literal notranslate"><span class="pre">GroupKFold</span></code> es una variación de k-fold que <em><strong>garantiza que el mismo grupo no esté representado en los conjuntos de prueba y de entrenamiento</strong></em>.</p></li>
+<li><p>El objetivo es construir un clasificador que pueda <em><strong>identificar correctamente las emociones de las personas que no están en el conjunto de datos</strong></em>. <code class="docutils literal notranslate"><span class="pre">GroupKFold</span></code> es una variación de <code class="docutils literal notranslate"><span class="pre">k-fold</span></code> que <em><strong>garantiza que el mismo grupo no esté representado en los conjuntos de prueba y de entrenamiento</strong></em>.</p></li>
 </ul>
 </div>
 <div class="tip admonition">
 <p class="admonition-title">Observación</p>
 <ul class="simple">
-<li><p>Se podría utilizar la validación cruzada estratificada por defecto para medir el rendimiento de un clasificador aquí. Sin embargo, <em><strong>es probable que haya imágenes de la misma persona tanto en el conjunto de entrenamiento como en el de prueba</strong></em>. Será mucho más fácil para un clasificador detectar emociones en un rostro que forma parte del conjunto de entrenamiento, en comparación con una cara completamente nueva.</p></li>
-<li><p><em><strong>Para evaluar con precisión la generalización a nuevas caras, debemos asegurarnos de que los conjuntos de entrenamiento y de prueba contengan imágenes de personas diferentes</strong></em>. Para ello, podemos utilizar <code class="docutils literal notranslate"><span class="pre">GroupKFold</span></code>, que toma como argumento una matriz de grupos que podemos utilizar para indicar qué persona aparece en la imagen.</p></li>
+<li><p>La validación cruzada estratificada puede medir el rendimiento de un clasificador, pero <em><strong>si hay imágenes de la misma persona en los conjuntos de entrenamiento y prueba, el modelo reconocerá más fácilmente emociones en rostros ya vistos</strong></em>. Para <em><strong>evaluar mejor la generalización a nuevas caras, es recomendable usar</strong></em> <code class="docutils literal notranslate"><span class="pre">GroupKFold</span></code>, que permite <em><strong>separar las imágenes por persona en los conjuntos de entrenamiento y prueba</strong></em>.</p></li>
 </ul>
 </div>
 <ul class="simple">
-<li><p>El siguiente es un ejemplo de uso para exponer el funcionamiento de esta validación cruzada, considerando un <em><strong>conjunto de datos sintético</strong></em> con una agrupación dada por la matriz <em><strong>groups</strong></em>. El conjunto de datos consta de <em><strong>12 puntos de datos</strong></em>, y para cada uno de ellos, <em><strong>groups</strong></em> especifica a qué grupo pertenece el punto. Los grupos especifican que <em><strong>hay cuatro grupos, y las tres primeras muestras pertenecen al primer grupo, las siguientes cuatro muestras pertenecen al segundo grupo</strong></em>, y así sucesivamente</p></li>
+<li><p>Este ejemplo ilustra el uso de la validación cruzada en un conjunto de datos sintético con agrupación definida por la matriz groups. El conjunto tiene <em><strong>12 datos, organizados en cuatro grupos: los primeros tres puntos pertenecen al primer grupo, los siguientes cuatro al segundo, y así sucesivamente</strong></em>.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2972,16 +3013,16 @@ Test set accuracy: 1.000
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "ml_tf"
+            mode: "tf"
         },
         kernelOptions: {
-            name: "ml_tf",
+            name: "tf",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'ml_tf'</script>
+    <script>kernelName = 'tf'</script>
 
                 </article>
               
@@ -3032,7 +3073,7 @@ Test set accuracy: 1.000
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ventajas-de-la-validacion-cruzada">10.1.2. Ventajas de la validación cruzada</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-cruzada-estratificada-k-fold-y-otras-estrategias">10.1.3. Validación cruzada estratificada <span class="math notranslate nohighlight">\(k\)</span>-fold y otras estrategias</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mas-control-sobre-la-validacion-cruzada">10.1.4. Más control sobre la validación cruzada</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-cruzada-con-exclusion-leave-one-out">10.1.5. Validación cruzada con exclusión (leave-one-out)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-cruzada-con-exclusion-leave-one-out">10.1.5. Validación cruzada con exclusión (<code class="docutils literal notranslate"><span class="pre">leave-one-out</span></code>)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-cruzada-aleatoria-y-dividida">10.1.6. Validación cruzada aleatoria y dividida</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-cruzada-con-grupos">10.1.7. Validación cruzada con grupos</a></li>
 </ul>
