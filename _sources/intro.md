@@ -24,7 +24,7 @@ Machine Learning
 - Básicamente, ***cualquiera que disponga de datos históricos consistentes puede analizar esos datos con métodos de análisis de series temporales*** y, a continuación, ***modelar, pronosticar y predecir***. En algunos sectores, el objetivo del análisis de series temporales es facilitar la predicción. Algunas tecnologías, como la analítica aumentada, pueden incluso seleccionar automáticamente la predicción entre otros algoritmos estadísticos si ofrece la mayor certeza.
 ````
 
-````{admonition} Evaluación
+<!-- ````{admonition} Evaluación
 
 1. ***Parcial Teórico***: 30% "`Individual`" 
 2. ***Parcial Práctico*** (**`Python`**): 30% "`Individual`"
@@ -39,5 +39,5 @@ Machine Learning
      - *Numerical Results*
    - ***Formato***: [Jupyter Book](https://jupyterbook.org/en/stable/intro.html)
    - ***Tutorial***: [JBook Tutorial](https://youtu.be/m_wCMg2EmdQ?feature=shared)
-````
+```` -->
 

@@ -9965,7 +9965,7 @@ El entrenamiento se ha completado y el historial ha sido guardado en &#39;histor
 <p class="admonition-title">Introducción</p>
 <ul class="simple">
 <li><p>Una <em><strong>máquina de Boltzmann restringida (RBM)</strong></em> es una <em><strong>red neuronal artificial estocástica generativa</strong></em> que puede <em><strong>aprender una distribución de probabilidad sobre su conjunto de entradas</strong></em> bajo ajuste de parámetros. Las RBM fueron estudiadas inicialmente con el nombre de <em><strong>Harmonium por Paul Smolensky en 1986</strong></em>, y adquirieron prominencia después de que <em><strong>Geoffrey Hinton</strong></em> y sus colaboradores propusieron para estas, algoritmos de aprendizaje rápido a mediados de 2000.</p></li>
-<li><p>Las <em><strong>RBM</strong></em> han encontrado <em><strong>aplicaciones en la reducción de la dimensionalidad, clasificación, filtrado, aprendizaje de funciones, modelado de temas e incluso en muchas mecánicas cuánticas corporales</strong></em>. Pueden ser entrenados en <em><strong>forma supervisada o no supervisada</strong></em>, dependiendo de la tarea.</p></li>
+<li><p>Las <em><strong>RBM</strong></em> han encontrado <em><strong>aplicaciones en la <code class="docutils literal notranslate"><span class="pre">reducción</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">dimensionalidad,</span> <span class="pre">clasificación,</span> <span class="pre">filtrado,</span> <span class="pre">aprendizaje</span> <span class="pre">de</span> <span class="pre">funciones,</span> <span class="pre">modelado</span> <span class="pre">de</span> <span class="pre">temas</span> <span class="pre">e</span> <span class="pre">incluso</span> <span class="pre">en</span> <span class="pre">muchas</span> <span class="pre">mecánicas</span> <span class="pre">cuánticas</span> <span class="pre">corporales</span></code></strong></em>. Pueden ser entrenados en <em><strong>forma supervisada o no supervisada</strong></em>, dependiendo de la tarea.</p></li>
 </ul>
 </div>
 <ul>
@@ -9976,7 +9976,8 @@ El entrenamiento se ha completado y el historial ha sido guardado en &#39;histor
     \]</div>
 <p>donde cada <em><strong>variable aleatoria toma valores binarios</strong></em> en <span class="math notranslate nohighlight">\(\{-1, 1\}\)</span>, <span class="math notranslate nohighlight">\(\theta_{ij}=0\)</span> si los <em><strong>nodos respectivos no están conectados</strong></em> y la constante <span class="math notranslate nohighlight">\(Z\)</span> se conoce como <em><strong>función de partición</strong></em> y es la <em><strong>constante normalizadora</strong></em> para <em><strong>garantizar que</strong></em> <span class="math notranslate nohighlight">\(p(x_{1}, \dots, x_{l})\)</span> <em><strong>es una distribución de probabilidad</strong></em>.</p>
 </li>
-<li><p>Es importante destacar que los <em><strong>nodos dentro de la misma capa carecen de interconexiones</strong></em>. Esta arquitectura abarca <em><strong>nodos visibles en la capa inferior</strong></em> que reciben observaciones, mientras que la <em><strong>capa superior contiene nodos vinculados a variables ocultas</strong></em>. Cabe destacar que <em><strong>sólo los nodos de la capa inferior reciben observaciones</strong></em>. Es posible construir <em><strong>RBM profundos</strong></em> apilando múltiples <em><strong>RBM</strong></em> unos sobre otros. De acuerdo con la <em><strong>definición general de una máquina de Boltzmann</strong></em>, la distribución conjunta de las variables aleatorias implicadas puede expresarse como:</p>
+<li><p>Es importante destacar que los <em><strong>nodos dentro de la misma capa carecen de interconexiones</strong></em>. Esta arquitectura abarca <em><strong>nodos visibles en la capa inferior</strong></em> que reciben observaciones, mientras que la <em><strong>capa superior contiene nodos vinculados a variables ocultas</strong></em>. Cabe destacar que <em><strong>sólo los nodos de la capa inferior reciben observaciones</strong></em>. Es posible construir <em><strong>RBM profundos</strong></em> apilando múltiples <em><strong>RBM</strong></em> unos sobre otros.</p></li>
+<li><p>De acuerdo con la <em><strong>definición general de una máquina de Boltzmann</strong></em>, la distribución conjunta de las variables aleatorias implicadas puede expresarse como:</p>
 <div class="math notranslate nohighlight">
 \[
     P(v_{1}, \dots, v_{J}, h_{1}, \dots, h_{I})=\frac{1}{Z}\exp(-E(\boldsymbol{v}, \boldsymbol{h})),
@@ -10020,7 +10021,7 @@ Z=\sum_{v}\sum_{h}\exp(-E(\boldsymbol{v}, \boldsymbol{h})).
 </li>
 </ul>
 <ul>
-<li><p>Diremos que los <em><strong>nodos visibles están fijados en las observaciones respectivas</strong></em>. La correspondiente ***log-verosimilitud (promedio) *** se expresa como sigue:</p>
+<li><p>Diremos que los <em><strong>nodos visibles están fijados en las observaciones respectivas</strong></em>. La correspondiente <em><strong>log-verosimilitud (promedio)</strong></em> se expresa como sigue:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
     \begin{align*}
