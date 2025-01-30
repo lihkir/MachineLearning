@@ -352,9 +352,10 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplos-de-tareas-de-aprendizaje-automatico-supervisado">1.1. Ejemplos de tareas de aprendizaje automático supervisado</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clasificacion-y-regresion">1.2. Clasificación y regresión</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generalizacion-sobreajuste-y-subajuste">1.3. Generalización, sobreajuste y subajuste</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relacion-entre-la-complejidad-del-modelo-y-el-tamano-del-conjunto-de-datos">1.4. Relación entre la complejidad del modelo y el tamaño del conjunto de datos</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmos-de-aprendizaje-automatico-supervisado">1.5. Algoritmos de aprendizaje automático supervisado</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algunos-ejemplos-de-conjuntos-de-datos">1.6. Algunos ejemplos de conjuntos de datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#enfoque-estadistico-para-detectar-sobreajuste">1.4. Enfoque estadístico para detectar sobreajuste</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relacion-entre-la-complejidad-del-modelo-y-el-tamano-del-conjunto-de-datos">1.5. Relación entre la complejidad del modelo y el tamaño del conjunto de datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmos-de-aprendizaje-automatico-supervisado">1.6. Algoritmos de aprendizaje automático supervisado</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algunos-ejemplos-de-conjuntos-de-datos">1.7. Algunos ejemplos de conjuntos de datos</a></li>
 </ul>
             </nav>
         </div>
@@ -377,7 +378,8 @@ document.write(`
 <div class="tip admonition">
 <p class="admonition-title">Introducción</p>
 <ul class="simple">
-<li><p>Los algoritmos de aprendizaje automático más eficaces <em><strong>automatizan la toma de decisiones mediante la generalización a partir de ejemplos</strong></em>. El aprendizaje supervisado es un ejemplo claro, donde <em><strong>se proporcionan pares de entradas y salidas deseadas</strong></em> (datos etiquetados) para <em><strong>entrenar modelos que clasifiquen datos o predigan resultados con precisión</strong></em>. El algoritmo ajusta sus ponderaciones mediante <em><strong>validación cruzada</strong></em> hasta que se adapta correctamente. Así, puede producir resultados precisos para nuevas entradas sin intervención humana, gracias a la supervisión inicial que recibe.</p></li>
+<li><p>Los algoritmos de aprendizaje automático más eficaces <em><strong>automatizan la toma de decisiones mediante la generalización a partir de ejemplos</strong></em>. El aprendizaje supervisado es un ejemplo claro, donde <em><strong>se proporcionan pares de entradas y salidas deseadas</strong></em> (datos etiquetados) para <em><strong>entrenar modelos que clasifiquen datos o predigan resultados con precisión</strong></em>.</p></li>
+<li><p>El algoritmo ajusta sus ponderaciones mediante <em><strong>validación cruzada</strong></em> hasta que se adapta correctamente. Así, puede <em><strong>producir resultados precisos para nuevas entradas</strong></em> sin intervención humana, gracias a la supervisión inicial que recibe.</p></li>
 </ul>
 </div>
 <section id="ejemplos-de-tareas-de-aprendizaje-automatico-supervisado">
@@ -428,22 +430,108 @@ Aquí la <em>entrada es un registro de la transacción de la tarjeta de crédito
 <p><span class="caption-number">Fig. 1.3 </span><span class="caption-text">Complejidad vs precisión para entrenamiento y prueba. Source: <a class="reference external" href="http://towardsai.net">towardsai.net</a>.</span><a class="headerlink" href="#fig-sweet-spot" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
+<div class="warning admonition">
+<p class="admonition-title">¿Qué diferencia es aceptable?</p>
+<ul class="simple">
+<li><p><em><strong>No hay una regla fija</strong></em>, para decidir si es aceptable la diferencia entre el desempeño en el conjunto de entrenamiento (train) y el de prueba (test), pero generalmente:</p>
+<ul>
+<li><p><em><strong>Diferencias menores al 5-10% en el score suelen ser aceptables</strong></em>.</p></li>
+<li><p><em><strong>Diferencias mayores al 15-20% indican que el modelo podría estar sobreajustado</strong></em> y necesita ajustes (<em>regularización, más datos, reducción de complejidad, etc.</em>).</p></li>
+</ul>
+</li>
+<li><p><em><strong>Conclusión</strong></em>: Si nota que el modelo rinde excepcionalmente bien en entrenamiento, pero mal en prueba, es probable que esté memorizando en lugar de aprender patrones generales. Evaluar la diferencia entre los scores en train y test es clave para detectar y corregir el sobreajuste.</p></li>
+</ul>
+</div>
+</section>
+<section id="enfoque-estadistico-para-detectar-sobreajuste">
+<h2><span class="section-number">1.4. </span>Enfoque estadístico para detectar sobreajuste<a class="headerlink" href="#enfoque-estadistico-para-detectar-sobreajuste" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>El sobreajuste se puede verificar formulando una prueba de hipótesis donde:</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(H_0:~\textsf{No hay diferencia significativa en el rendimiento entre el conjunto de entrenamiento y prueba.}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(H_1:~\textsf{Existe una diferencia significativa en el rendimiento entre ambos conjuntos, lo que sugiere sobreajuste.}\)</span></p></li>
+</ul>
+</li>
+</ul>
+<div class="important admonition">
+<p class="admonition-title"><em><strong>Métodos para probarlo</strong></em></p>
+<ul class="simple">
+<li><p><em><strong>Prueba <span class="math notranslate nohighlight">\(t\)</span> para muestras pareadas</strong></em></p>
+<ul>
+<li><p>Si tienes múltiples <strong>folds</strong> en validación cruzada, puedes comparar los scores del modelo en entrenamiento y prueba con una <strong>prueba t de muestras pareadas</strong>:</p></li>
+<li><p>Si el <span class="math notranslate nohighlight">\(p\)</span>-valor es <strong>menor a 0.05</strong>, hay evidencia estadística de que el modelo tiene una diferencia significativa de rendimiento, sugiriendo sobreajuste.</p></li>
+</ul>
+</li>
+<li><p><em><strong>Prueba de Wilcoxon (para datos no normales)</strong></em></p>
+<ul>
+<li><p>Si los <em><strong>scores no siguen una distribución normal, la prueba de Wilcoxon</strong></em> es una alternativa no paramétrica a la prueba <span class="math notranslate nohighlight">\(t\)</span>.</p></li>
+</ul>
+</li>
+<li><p><em><strong>Intervalos de confianza para la diferencia de rendimiento</strong></em></p>
+<ul>
+<li><p>Puedes construir intervalos de confianza (por ejemplo, al 95%) para la diferencia entre los scores de entrenamiento y prueba.</p></li>
+<li><p>Si el intervalo <strong>no incluye el cero</strong>, indica que la diferencia es significativa.</p></li>
+</ul>
+</li>
+<li><p><em><strong>Conclusión</strong></em>: Si la prueba de hipótesis muestra una diferencia estadísticamente significativa entre el desempeño en <strong>train</strong> y <strong>test</strong>, es una señal clara de sobreajuste. Sin embargo, también debes analizar la magnitud de la diferencia y considerar técnicas de regularización o aumento de datos para mejorar la generalización del modelo.</p></li>
+</ul>
+</div>
+<ul class="simple">
+<li><p>Observe las siguiente simulación de lo mencionado anteriormente, usando <code class="docutils literal notranslate"><span class="pre">Python</span></code></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+
+<span class="n">train_scores</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.90</span><span class="p">,</span> <span class="mf">0.92</span><span class="p">,</span> <span class="mf">0.91</span><span class="p">,</span> <span class="mf">0.93</span><span class="p">,</span> <span class="mf">0.92</span><span class="p">])</span>
+<span class="n">test_scores</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.80</span><span class="p">,</span> <span class="mf">0.82</span><span class="p">,</span> <span class="mf">0.81</span><span class="p">,</span> <span class="mf">0.79</span><span class="p">,</span> <span class="mf">0.83</span><span class="p">])</span>
+
+<span class="n">t_stat</span><span class="p">,</span> <span class="n">p_value_t</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">ttest_rel</span><span class="p">(</span><span class="n">train_scores</span><span class="p">,</span> <span class="n">test_scores</span><span class="p">)</span>
+
+<span class="n">w_stat</span><span class="p">,</span> <span class="n">p_value_w</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">wilcoxon</span><span class="p">(</span><span class="n">train_scores</span><span class="p">,</span> <span class="n">test_scores</span><span class="p">)</span>
+
+<span class="n">diff</span> <span class="o">=</span> <span class="n">train_scores</span> <span class="o">-</span> <span class="n">test_scores</span>
+<span class="n">mean_diff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">diff</span><span class="p">)</span>
+<span class="n">conf_int</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">interval</span><span class="p">(</span><span class="mf">0.95</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">diff</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="n">mean_diff</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">stats</span><span class="o">.</span><span class="n">sem</span><span class="p">(</span><span class="n">diff</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Prueba t: t-statistic = </span><span class="si">{</span><span class="n">t_stat</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">, p-valor = </span><span class="si">{</span><span class="n">p_value_t</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Prueba de Wilcoxon: W-statistic = </span><span class="si">{</span><span class="n">w_stat</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">, p-valor = </span><span class="si">{</span><span class="n">p_value_w</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Intervalo de confianza 95% para la diferencia: </span><span class="si">{</span><span class="n">conf_int</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="k">if</span> <span class="n">p_value_t</span> <span class="o">&lt;</span> <span class="n">alpha</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Existe una diferencia significativa entre Train y Test. Puede haber sobreajuste.&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No se encontró una diferencia significativa entre Train y Test.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Prueba t: t-statistic = 12.159, p-valor = 0.000
+Prueba de Wilcoxon: W-statistic = 0.000, p-valor = 0.062
+Intervalo de confianza 95% para la diferencia: (0.08179551272830933, 0.13020448727169073)
+Existe una diferencia significativa entre Train y Test. Puede haber sobreajuste.
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="relacion-entre-la-complejidad-del-modelo-y-el-tamano-del-conjunto-de-datos">
-<h2><span class="section-number">1.4. </span>Relación entre la complejidad del modelo y el tamaño del conjunto de datos<a class="headerlink" href="#relacion-entre-la-complejidad-del-modelo-y-el-tamano-del-conjunto-de-datos" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">1.5. </span>Relación entre la complejidad del modelo y el tamaño del conjunto de datos<a class="headerlink" href="#relacion-entre-la-complejidad-del-modelo-y-el-tamano-del-conjunto-de-datos" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Es importante señalar que la complejidad del modelo está íntimamente ligada a la variación de entradas contenidas en el conjunto de datos de entrenamiento: <em><strong>cuanto mayor sea la variedad de puntos de datos, más complejo será el modelo que se puede utilizar sin sobreajustar</strong></em>. Por lo general, al recolectar más puntos de datos se obtiene un modelo más complejo sin que haya un exceso de ajuste. Sin embargo, la simple duplicación de los mismos puntos de datos o la recopilación de datos muy similares no ayudará.</p></li>
 <li><p>Disponer de más datos y construir modelos adecuadamente más complejos a menudo puede hacer maravillas en las tareas de <em><strong>aprendizaje supervisado</strong></em>. En este curso, nos centraremos en trabajar con conjuntos de datos de tamaño fijo. En el mundo real, a menudo se puede decidir la cantidad de datos que se van a recoger, lo cual puede ser más beneficioso que ajustar y afinar su modelo. <em><strong>Nunca subestime el poder de tener más datos</strong></em>.</p></li>
 </ul>
 </section>
 <section id="algoritmos-de-aprendizaje-automatico-supervisado">
-<h2><span class="section-number">1.5. </span>Algoritmos de aprendizaje automático supervisado<a class="headerlink" href="#algoritmos-de-aprendizaje-automatico-supervisado" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">1.6. </span>Algoritmos de aprendizaje automático supervisado<a class="headerlink" href="#algoritmos-de-aprendizaje-automatico-supervisado" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>A continuación se abordarán los <em><strong>algoritmos de aprendizaje automático</strong></em> más populares. Se estudiará cómo aprenden de los datos y cómo hacen predicciones. También discutiremos el concepto de complejidad para cada uno de estos modelos, y proporcionaremos una visión general de cómo cada algoritmo construye un modelo. Examinaremos los puntos fuertes y débiles de cada algoritmo y a qué tipo de datos pueden aplicarse mejor. También explicaremos el significado de los parámetros y opciones más importantes. Muchos algoritmos tienen una variante de clasificación y otra de regresión, y describiremos ambas.</p></li>
 </ul>
 </section>
 <section id="algunos-ejemplos-de-conjuntos-de-datos">
-<h2><span class="section-number">1.6. </span>Algunos ejemplos de conjuntos de datos<a class="headerlink" href="#algunos-ejemplos-de-conjuntos-de-datos" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">1.7. </span>Algunos ejemplos de conjuntos de datos<a class="headerlink" href="#algunos-ejemplos-de-conjuntos-de-datos" title="Link to this heading">#</a></h2>
 <ul>
 <li><p>Utilizaremos varios conjuntos de datos para ilustrar los diferentes algoritmos. Algunos de los conjuntos de datos serán pequeños y sintéticos, <em><strong>diseñados para destacar aspectos concretos de los algoritmos</strong></em>. Otros conjuntos de datos serán <em><strong>ejemplos grandes del mundo real</strong></em>. Un ejemplo de conjunto de datos sintético de clasificación de dos clases es el conjunto de datos de <code class="docutils literal notranslate"><span class="pre">forge</span></code>, que tiene dos características.</p></li>
 <li><p>El siguiente código crea un gráfico de dispersión que visualiza todos los puntos de datos de este <em><strong>dataset</strong></em>. El gráfico tiene la primera característica en el eje <span class="math notranslate nohighlight">\(x\)</span> y la segunda en el eje <span class="math notranslate nohighlight">\(y\)</span>. Como siempre ocurre en los gráficos de dispersión, cada punto de datos está representado por un punto. El color y la forma del punto indican su clase. Generamos el conjunto de datos usando la librería <code class="docutils literal notranslate"><span class="pre">mglearn</span></code> (también puede utilizar <code class="docutils literal notranslate"><span class="pre">make_blobs</span></code> de <code class="docutils literal notranslate"><span class="pre">sklearn</span></code>) e importamos <code class="docutils literal notranslate"><span class="pre">warning</span></code> para evitar mensajes molestos, relacionados con advertencias inofensivas o funciones obsoletas en la actual versión de <code class="docutils literal notranslate"><span class="pre">Python</span></code>. En el presente curso usaremos las <em><strong>versión 3.9 de Python</strong></em>.</p></li>
@@ -732,9 +820,10 @@ dict_keys([&#39;data&#39;, &#39;target&#39;, &#39;frame&#39;, &#39;target_names&
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplos-de-tareas-de-aprendizaje-automatico-supervisado">1.1. Ejemplos de tareas de aprendizaje automático supervisado</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clasificacion-y-regresion">1.2. Clasificación y regresión</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generalizacion-sobreajuste-y-subajuste">1.3. Generalización, sobreajuste y subajuste</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relacion-entre-la-complejidad-del-modelo-y-el-tamano-del-conjunto-de-datos">1.4. Relación entre la complejidad del modelo y el tamaño del conjunto de datos</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmos-de-aprendizaje-automatico-supervisado">1.5. Algoritmos de aprendizaje automático supervisado</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algunos-ejemplos-de-conjuntos-de-datos">1.6. Algunos ejemplos de conjuntos de datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#enfoque-estadistico-para-detectar-sobreajuste">1.4. Enfoque estadístico para detectar sobreajuste</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relacion-entre-la-complejidad-del-modelo-y-el-tamano-del-conjunto-de-datos">1.5. Relación entre la complejidad del modelo y el tamaño del conjunto de datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmos-de-aprendizaje-automatico-supervisado">1.6. Algoritmos de aprendizaje automático supervisado</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algunos-ejemplos-de-conjuntos-de-datos">1.7. Algunos ejemplos de conjuntos de datos</a></li>
 </ul>
   </nav></div>
 

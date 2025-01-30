@@ -350,18 +350,19 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis">2.1. Análisis</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion">2.2. Implementación</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-kneighborsclassifier">2.3. Análisis de <code class="docutils literal notranslate"><span class="pre">KNeighborsClassifier</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-breast-cancer-dataset">2.4. Aplicación: Breast Cancer Dataset</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-exploratorio-de-datos">2.5. Análisis Exploratorio de Datos</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multicolinealidad">2.5.1. Multicolinealidad</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#factor-de-inflacion-de-la-varianza-vif">2.5.2. Factor de Inflación de la Varianza (VIF)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios">2.2. Ejercicios</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion">2.3. Implementación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-kneighborsclassifier">2.4. Análisis de <code class="docutils literal notranslate"><span class="pre">KNeighborsClassifier</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-breast-cancer-dataset">2.5. Aplicación: Breast Cancer Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-exploratorio-de-datos">2.6. Análisis Exploratorio de Datos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multicolinealidad">2.6.1. Multicolinealidad</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#factor-de-inflacion-de-la-varianza-vif">2.6.2. Factor de Inflación de la Varianza (VIF)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-del-modelo-k-nn">2.6. Selección del modelo K-NN</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-por-k-vecinos">2.7. Regresión por <span class="math notranslate nohighlight">\(k\)</span>-vecinos</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-kneighborsregressor">2.8. Análisis de <code class="docutils literal notranslate"><span class="pre">KNeighborsRegressor</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-world-hydropower-generation">2.8.1. Aplicación: World Hydropower Generation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-del-modelo-k-nn">2.7. Selección del modelo K-NN</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-por-k-vecinos">2.8. Regresión por <span class="math notranslate nohighlight">\(k\)</span>-vecinos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-kneighborsregressor">2.9. Análisis de <code class="docutils literal notranslate"><span class="pre">KNeighborsRegressor</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-world-hydropower-generation">2.9.1. Aplicación: World Hydropower Generation</a></li>
 </ul>
 </li>
 </ul>
@@ -862,8 +863,140 @@ h^{\star}(\boldsymbol{x})=\mathbb{1}_{\left[\eta(\boldsymbol{x})&gt;1/2\right]}.
 <p>El Teorema implica que si <em><strong>primero fijamos la distribución generadora de datos y luego hacemos tender</strong></em> <span class="math notranslate nohighlight">\(m\)</span> <em><strong>a infinito</strong></em>, entonces <em><strong>el error de la regla</strong></em> <span class="math notranslate nohighlight">\(1\)</span>-NN <em><strong>converge al doble del error de Bayes</strong></em>. El análisis puede generalizarse a valores mayores que <span class="math notranslate nohighlight">\(k\)</span>, demostrando que el error esperado de la regla <span class="math notranslate nohighlight">\(k\)</span>-NN converge a <span class="math notranslate nohighlight">\((1+\sqrt{8/k})\)</span> veces el error del <em><strong>clasificador de Bayes</strong></em>.</p>
 </section>
 </div></section>
+<section id="ejercicios">
+<h2><span class="section-number">2.2. </span>Ejercicios<a class="headerlink" href="#ejercicios" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>En este ejercicio, demostrará el siguiente teorema para la regla <span class="math notranslate nohighlight">\(k\)</span>-NN.</p></li>
+</ul>
+<div class="proof theorem admonition" id="theorem-10">
+<p class="admonition-title"><span class="caption-number">Theorem 2.2 </span></p>
+<section class="theorem-content" id="proof-content">
+<p>Sea <span class="math notranslate nohighlight">\(X = [0,1]^d\)</span>, <span class="math notranslate nohighlight">\(Y = \{0,1\}\)</span> y <span class="math notranslate nohighlight">\(D\)</span> una distribución sobre <span class="math notranslate nohighlight">\(X \times Y\)</span> tal que la función de probabilidad condicional <span class="math notranslate nohighlight">\(\eta\)</span> es una función <span class="math notranslate nohighlight">\(c\)</span>-Lipschitz. Sea <span class="math notranslate nohighlight">\(h_S\)</span> el resultado de aplicar la regla de los <span class="math notranslate nohighlight">\(k\)</span>-vecinos más cercanos (k-NN) a una muestra <span class="math notranslate nohighlight">\(S \sim D^m\)</span>, donde <span class="math notranslate nohighlight">\(k \geq 10\)</span>. Sea <span class="math notranslate nohighlight">\(h^*\)</span> la hipótesis óptima de Bayes. Entonces,</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbb{E}_S\left[ L_D(h_S) \right] \leq \left(1 + \frac{8}{k}\right) L_D(h^*) + \frac{6c\sqrt{d} + k}{m^{1/(d+1)}}.
+\]</div>
+</section>
+</div><ul class="simple">
+<li><p><strong>Parte 1</strong>: Demuestre el siguiente Lema</p></li>
+</ul>
+<div class="proof lemma admonition" id="lemma-11">
+<p class="admonition-title"><span class="caption-number">Lemma 2.3 </span></p>
+<section class="lemma-content" id="proof-content">
+<ul>
+<li><p>Sea <span class="math notranslate nohighlight">\(C_1, \dots, C_r\)</span> una colección de subconjuntos de un conjunto dominio <span class="math notranslate nohighlight">\(X\)</span>. Sea <span class="math notranslate nohighlight">\(S\)</span> una secuencia de <span class="math notranslate nohighlight">\(m\)</span> puntos muestreados de manera independiente e idénticamente distribuida (i.i.d.) según alguna distribución de probabilidad <span class="math notranslate nohighlight">\(D\)</span> sobre <span class="math notranslate nohighlight">\(X\)</span>. Entonces, para todo <span class="math notranslate nohighlight">\(k \geq 2\)</span>, se cumple que:</p>
+<div class="math notranslate nohighlight">
+\[
+    \mathbb{E}_{S \sim D^m} \left[ \sum_{i : |C_i \cap S| &lt; k} P[C_i] \right] \leq \frac{2rk}{m}.
+    \]</div>
+</li>
+</ul>
+</section>
+</div><ul>
+<li><p><strong>Sugerencia</strong></p>
+<ul class="simple">
+<li><p>Demostrar que</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+    \mathbb{E}\left[\sum_{i:|C_i \cap S| &lt; k} P[C_i]\right] = \sum_{i=1}^r P[C_i] \mathbb{P}_S[|C_i \cap S| &lt; k].
+    \]</div>
+<ul class="simple">
+<li><p>Fijar algún <span class="math notranslate nohighlight">\(i\)</span> y suponer que <span class="math notranslate nohighlight">\(k &lt; P[C_i] \frac{m}{2}\)</span>. Usar el límite de Chernoff para demostrar que</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+    \mathbb{P}_S[|C_i \cap S| &lt; k] \leq \mathbb{P}_S\left[|C_i \cap S| &lt; P[C_i] \frac{m}{2}\right] \leq e^{-\frac{P[C_i] m}{8}}.
+    \]</div>
+<ul class="simple">
+<li><p>Usar la desigualdad <span class="math notranslate nohighlight">\(\max_a a e^{-ma} \leq \frac{1}{me}\)</span> para demostrar que, para tal <span class="math notranslate nohighlight">\(i\)</span>, tenemos</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+    P[C_i] \mathbb{P}_S[|C_i \cap S| &lt; k] \leq P[C_i] e^{-\frac{P[C_i] m}{8}} \leq \frac{8}{me}.
+    \]</div>
+<ul class="simple">
+<li><p>Concluir la demostración utilizando el hecho de que, en el caso de <span class="math notranslate nohighlight">\(k \geq P[C_i] \frac{m}{2}\)</span>, claramente tenemos:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+    P[C_i] \mathbb{P}_S[|C_i \cap S| &lt; k] \leq P[C_i] \leq \frac{2k}{m}.
+    \]</div>
+</li>
+</ul>
+<ul class="simple">
+<li><p><strong>Parte 2</strong>: Utilizamos la notación <span class="math notranslate nohighlight">\(y \sim p\)</span> como una abreviatura para indicar que “<span class="math notranslate nohighlight">\(y\)</span> es una variable aleatoria de Bernoulli con valor esperado <span class="math notranslate nohighlight">\(p\)</span>”. Demuestre el siguiente lema:</p></li>
+</ul>
+<div class="proof lemma admonition" id="lemma-12">
+<p class="admonition-title"><span class="caption-number">Lemma 2.4 </span></p>
+<section class="lemma-content" id="proof-content">
+<p>Sea <span class="math notranslate nohighlight">\(k \geq 10\)</span> y sean <span class="math notranslate nohighlight">\(Z_1, \dots, Z_k\)</span> variables aleatorias independientes de Bernoulli con <span class="math notranslate nohighlight">\(P[Z_i = 1] = p_i\)</span>. Denotemos por <span class="math notranslate nohighlight">\(p = \frac{1}{k} \sum_{i} p_i\)</span> y <span class="math notranslate nohighlight">\(p^* = \frac{1}{k} \sum_{i=1}^k Z_i\)</span>. Se debe demostrar que:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbb{E}_{Z_1, \dots, Z_k} \left[ P_{y \sim p} \left[ y \neq 1 \mid p^* &gt; \frac{1}{2} \right] \right] \leq \left( 1 + \frac{8}{k} \right) \mathbb{P}_{y \sim p} \left[ y \neq 1 \mid p &gt; \frac{1}{2} \right].
+\]</div>
+</section>
+</div><ul class="simple">
+<li><p><strong>Sugerencia</strong></p></li>
+</ul>
+<ul class="simple">
+<li><p>Sin pérdida de generalidad, supongamos que <span class="math notranslate nohighlight">\(p \leq \frac{1}{2}\)</span>. Entonces, tenemos que <span class="math notranslate nohighlight">\(P_{y \sim p} [y = 1 \mid p &gt; \frac{1}{2}] = p\)</span>. Definimos <span class="math notranslate nohighlight">\(y^* = 1[p^* &gt; \frac{1}{2}]\)</span>.</p></li>
+<li><p>A continuación, demuestre que:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\mathbb{E}_{Z_1, \dots, Z_k} P_{y \sim p} [y = y^*] - p = P_{Z_1, \dots, Z_k} [p^* &gt; \frac{1}{2}] (1 - 2p).
+\]</div>
+<ul>
+<li><p>Utilizando el límite de Chernoff, podemos demostrar que:</p>
+<div class="math notranslate nohighlight">
+\[
+    P[p^* &gt; \frac{1}{2}] \leq e^{-k p \left(\frac{1}{2p} - 1\right)},
+    \]</div>
+<p>donde <span class="math notranslate nohighlight">\(h(a) = (1 + a) \log(1 + a) - a\)</span>.</p>
+</li>
+<li><p>Para concluir la demostración del lema, podemos apoyarnos en la siguiente desigualdad (sin necesidad de demostrarla): Para todo <span class="math notranslate nohighlight">\(p \in [0, \frac{1}{2}]\)</span> y <span class="math notranslate nohighlight">\(k \geq 10\)</span>:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+(1 - 2p) e^{-k p + k^2 (\log(2p) + 1)} \leq \frac{8}{k p}.
+\]</div>
+<ul class="simple">
+<li><p><strong>Parte 3</strong></p></li>
+</ul>
+<ul class="simple">
+<li><p>Sea <span class="math notranslate nohighlight">\(p, p' \in [0, 1]\)</span> y <span class="math notranslate nohighlight">\(y' \in \{0, 1\}\)</span>. Demuestre que:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+P_{y \sim p}[y \neq y'] \leq P_{y \sim p'}[y \neq y'] + |p - p'|.
+\]</div>
+<ul class="simple">
+<li><p><strong>Parte 4</strong></p></li>
+</ul>
+<ul>
+<li><p>Concluya la demostración del teorema de acuerdo con los siguientes pasos:</p></li>
+<li><p>Tal como en la demostración del <a class="reference internal" href="#knn_theorem1">Theorem 2.1</a>, sea <span class="math notranslate nohighlight">\(\delta &gt; 0\)</span> y sea <span class="math notranslate nohighlight">\(\{C_1, \dots, C_r\}\)</span> la cubierta del conjunto <span class="math notranslate nohighlight">\(X\)</span> utilizando cajas de longitud <span class="math notranslate nohighlight">\(\delta\)</span>. Para cada par de puntos <span class="math notranslate nohighlight">\(x, x' \in C_i\)</span>, tenemos que</p>
+<div class="math notranslate nohighlight">
+\[
+  \|x - x'\| \leq \sqrt{d} \delta.
+  \]</div>
+<p>En caso contrario, se cumple que</p>
+<div class="math notranslate nohighlight">
+\[
+  \|x - x'\| \leq 2\sqrt{d}.
+  \]</div>
+</li>
+<li><p>Demostrar que</p>
+<div class="math notranslate nohighlight">
+\[
+  \mathbb{E}_S[LD(h_S)] \leq \mathbb{E}_S\left[\sum_{i : |C_i \cap S| &lt; k} P[C_i]\right] + \max_i P_S, (x, y)\left( h_S(x) = y \mid \forall j \in [k], \|x - x_{\pi_j(x)}\| \leq \delta \sqrt{d} \right).
+  \]</div>
+</li>
+</ul>
+</section>
 <section id="implementacion">
-<h2><span class="section-number">2.2. </span>Implementación<a class="headerlink" href="#implementacion" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">2.3. </span>Implementación<a class="headerlink" href="#implementacion" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">Clasificación</span> <span class="pre">k-vecinos</span></code></strong>. Como ya se estudió anteriormente, en su versión más sencilla, el algoritmo <em><strong>k-NN</strong></em> solo considera exactamente un vecino más cercano, que es el <em><strong>dato de entrenamiento más cercano al punto para el que queremos hacer una predicción</strong></em>. La predicción es entonces simplemente la etiqueta conocida para este punto de entrenamiento.</p></li>
 </ul>
@@ -1418,7 +1551,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </ul>
 </section>
 <section id="analisis-de-kneighborsclassifier">
-<h2><span class="section-number">2.3. </span>Análisis de <code class="docutils literal notranslate"><span class="pre">KNeighborsClassifier</span></code><a class="headerlink" href="#analisis-de-kneighborsclassifier" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">2.4. </span>Análisis de <code class="docutils literal notranslate"><span class="pre">KNeighborsClassifier</span></code><a class="headerlink" href="#analisis-de-kneighborsclassifier" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Para los conjuntos de datos bidimensionales, también podemos ilustrar la <em><strong>predicción para todos los posibles puntos de prueba en el plano</strong></em> <span class="math notranslate nohighlight">\(xy\)</span>. Coloreamos el plano según la clase que se asignaría a un punto en esta región. Esto nos permite ver el <em><strong>límite de decisión (decision boundary)</strong></em> (ver <a class="reference external" href="https://github.com/amueller/mglearn/blob/master/mglearn/plot_2d_separator.py">plot_2d_separator</a>), el cual está <em><strong>entre el lugar donde el algoritmo asigna la clase 0 y el lugar donde asigna la clase 1</strong></em>.</p></li>
 </ul>
@@ -1454,7 +1587,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </ul>
 </section>
 <section id="aplicacion-breast-cancer-dataset">
-<h2><span class="section-number">2.4. </span>Aplicación: Breast Cancer Dataset<a class="headerlink" href="#aplicacion-breast-cancer-dataset" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">2.5. </span>Aplicación: Breast Cancer Dataset<a class="headerlink" href="#aplicacion-breast-cancer-dataset" title="Link to this heading">#</a></h2>
 <figure class="align-center" id="breast-cancer-knn-fig">
 <a class="reference internal image-reference" href="_images/breast_cancer_knn.png"><img alt="_images/breast_cancer_knn.png" src="_images/breast_cancer_knn.png" style="width: 616.5px; height: 511.2px;" /></a>
 </figure>
@@ -1463,7 +1596,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </ul>
 </section>
 <section id="analisis-exploratorio-de-datos">
-<h2><span class="section-number">2.5. </span>Análisis Exploratorio de Datos<a class="headerlink" href="#analisis-exploratorio-de-datos" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">2.6. </span>Análisis Exploratorio de Datos<a class="headerlink" href="#analisis-exploratorio-de-datos" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Procedemos a realizar un <em><strong>análisis exploratorio de datos</strong></em> para investigar y resumir principales características de nuestros datos. Primero cargamos nuestro dataset usando la función <code class="docutils literal notranslate"><span class="pre">load_breast_cancer()</span></code> de <code class="docutils literal notranslate"><span class="pre">sklearn.datasets</span></code></p></li>
 </ul>
@@ -2580,14 +2713,14 @@ La variable worst fractal dimension tiene una relación significativa con la var
 </div>
 </div>
 <section id="multicolinealidad">
-<h3><span class="section-number">2.5.1. </span>Multicolinealidad<a class="headerlink" href="#multicolinealidad" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">2.6.1. </span>Multicolinealidad<a class="headerlink" href="#multicolinealidad" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>La <em><strong>multicolinealidad</strong></em> es un problema ya que, <em><strong>reduce la importancia de las variables independientes</strong></em>. A fin de solucionar este problema,  se <em><strong>eliminan los predictores altamente correlacionados</strong></em>. Podemos comprobar la presencia de multicolinealidad entre algunas de las variables. Por ejemplo, la columna <em><strong>mean radius</strong></em> tiene una <em><strong>correlación de 1.0</strong></em> con las columnas <em><strong>mean perimeter</strong></em> y <em><strong>mean área</strong></em>, respectivamente. Esto se debe a que <em><strong>las tres columnas contienen esencialmente la misma información</strong></em>, que es el tamaño físico de la observación.</p></li>
 <li><p>Por lo tanto, <em><strong>sólo debemos elegir una de las tres columnas cuando pasemos al análisis posterior</strong></em>. Otro lugar donde la <em><strong>multicolinealidad</strong></em> es evidente, es entre las columnas <code class="docutils literal notranslate"><span class="pre">&quot;mean&quot;</span></code> y <code class="docutils literal notranslate"><span class="pre">&quot;worst&quot;</span></code>. Por ejemplo, la columna <code class="docutils literal notranslate"><span class="pre">mean</span> <span class="pre">radius</span></code> tiene una <em><strong>correlación de 1.0</strong></em> con la columna <code class="docutils literal notranslate"><span class="pre">worst</span> <span class="pre">radius</span></code>. También hay multicolinealidad entre los atributos <code class="docutils literal notranslate"><span class="pre">compactness,</span> <span class="pre">concavity</span></code> y <code class="docutils literal notranslate"><span class="pre">concave</span> <span class="pre">points</span></code>. Así que podemos elegir solo uno de estos, por ejemplo <code class="docutils literal notranslate"><span class="pre">compactness</span></code>. De la matriz de correlación sabemos que estas columnas están altamente correlacionadas con las columnas <code class="docutils literal notranslate"><span class="pre">mean</span> <span class="pre">radius</span></code>, <code class="docutils literal notranslate"><span class="pre">perimeter</span></code>, <code class="docutils literal notranslate"><span class="pre">area</span></code>.</p></li>
 </ul>
 </section>
 <section id="factor-de-inflacion-de-la-varianza-vif">
-<h3><span class="section-number">2.5.2. </span>Factor de Inflación de la Varianza (VIF)<a class="headerlink" href="#factor-de-inflacion-de-la-varianza-vif" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">2.6.2. </span>Factor de Inflación de la Varianza (VIF)<a class="headerlink" href="#factor-de-inflacion-de-la-varianza-vif" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Para abordar la multicolinealidad, se pueden aplicar técnicas como la regularización o la selección de características para, seleccionar un subconjunto de variables independientes que no estén altamente correlacionadas entre sí. En esta sección, nos centraremos en la más común: <em><strong>VIF (Factores de Inflación de la Varianza)</strong></em>.</p></li>
 <li><p>El <code class="docutils literal notranslate"><span class="pre">VIF</span></code> determina la <em><strong>fuerza de la correlación entre las variables independientes</strong></em>. Se pronostica tomando una variable y comparándola con todas las demás. La puntuación <code class="docutils literal notranslate"><span class="pre">VIF</span></code> de una variable independiente representa hasta qué punto la variable se explica por otras variables independientes.</p></li>
@@ -2829,7 +2962,7 @@ La variable worst fractal dimension tiene una relación significativa con la var
 </section>
 </section>
 <section id="seleccion-del-modelo-k-nn">
-<h2><span class="section-number">2.6. </span>Selección del modelo K-NN<a class="headerlink" href="#seleccion-del-modelo-k-nn" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">2.7. </span>Selección del modelo K-NN<a class="headerlink" href="#seleccion-del-modelo-k-nn" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><em><strong>División en entrenamiento (train) y prueba (test)</strong></em>. Dividimos la variable objetivo y las variables independientes. A continuación, evaluamos el <em><strong>rendimiento del conjunto de entrenamiento y de prueba con diferentes números de vecinos</strong></em></p></li>
 </ul>
@@ -3797,7 +3930,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 </section>
 <section id="regresion-por-k-vecinos">
-<h2><span class="section-number">2.7. </span>Regresión por <span class="math notranslate nohighlight">\(k\)</span>-vecinos<a class="headerlink" href="#regresion-por-k-vecinos" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">2.8. </span>Regresión por <span class="math notranslate nohighlight">\(k\)</span>-vecinos<a class="headerlink" href="#regresion-por-k-vecinos" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>También existe una <em><strong>variante de regresión del algoritmo</strong></em> <span class="math notranslate nohighlight">\(k\)</span><em><strong>-vecinos más cercanos</strong></em>. Una vez más, vamos a empezar utilizando el <em><strong>vecino más cercano simple</strong></em>, esta vez utilizando el conjunto de datos <code class="docutils literal notranslate"><span class="pre">wave</span></code>. Hemos añadido tres puntos de datos de prueba como estrellas verdes en el eje <span class="math notranslate nohighlight">\(x\)</span>. <em><strong>La predicción utilizando un solo vecino es sólo el valor objetivo del vecino más cercano</strong></em></p></li>
 </ul>
@@ -4284,7 +4417,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 </section>
 <section id="analisis-de-kneighborsregressor">
-<h2><span class="section-number">2.8. </span>Análisis de <code class="docutils literal notranslate"><span class="pre">KNeighborsRegressor</span></code><a class="headerlink" href="#analisis-de-kneighborsregressor" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">2.9. </span>Análisis de <code class="docutils literal notranslate"><span class="pre">KNeighborsRegressor</span></code><a class="headerlink" href="#analisis-de-kneighborsregressor" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Para nuestro conjunto de datos unidimensional, podemos ver cómo son las predicciones para todos los valores posibles de las características. Para ello, creamos un conjunto de datos de prueba compuesto por muchos puntos de la línea</p></li>
 </ul>
@@ -4323,7 +4456,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <li><p>Como podemos ver en el gráfico, <em><strong>al utilizar un solo vecino</strong></em>, cada punto del conjunto de entrenamiento tiene una influencia obvia en las predicciones, y <em><strong>los valores predichos pasan por todos los puntos de datos</strong></em>. Esto conduce a una predicción muy inestable. <em><strong>Tener en cuenta más vecinos conduce a predicciones más suaves</strong></em>, pero éstas no se ajustan tan bien a los datos de entrenamiento.</p></li>
 </ul>
 <section id="aplicacion-world-hydropower-generation">
-<h3><span class="section-number">2.8.1. </span>Aplicación: World Hydropower Generation<a class="headerlink" href="#aplicacion-world-hydropower-generation" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">2.9.1. </span>Aplicación: World Hydropower Generation<a class="headerlink" href="#aplicacion-world-hydropower-generation" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">World</span> <span class="pre">Hydropower</span> <span class="pre">Generation</span></code></strong>: Esta sección se centra en el uso del modelo <span class="math notranslate nohighlight">\(k\)</span>-NN y sus hiperparamétros, para garantizar una mejor comprensión de este algoritmo. <em><strong>No se utilizan otros recursos como la ingeniería de características, la reducción de dimensionalidad</strong></em>. El conjunto de datos utilizado es una recopilación de la <em><strong>generación de energía de varios países europeos</strong></em>, medida en <em><strong>THh entre 2000 y 2019</strong></em>. Su contenido fue extraído de <em><strong>World in Data</strong></em>.</p></li>
 </ul>
@@ -5168,18 +5301,19 @@ RMSLE Valid: 0.039043708745309796
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis">2.1. Análisis</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion">2.2. Implementación</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-kneighborsclassifier">2.3. Análisis de <code class="docutils literal notranslate"><span class="pre">KNeighborsClassifier</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-breast-cancer-dataset">2.4. Aplicación: Breast Cancer Dataset</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-exploratorio-de-datos">2.5. Análisis Exploratorio de Datos</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multicolinealidad">2.5.1. Multicolinealidad</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#factor-de-inflacion-de-la-varianza-vif">2.5.2. Factor de Inflación de la Varianza (VIF)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios">2.2. Ejercicios</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion">2.3. Implementación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-kneighborsclassifier">2.4. Análisis de <code class="docutils literal notranslate"><span class="pre">KNeighborsClassifier</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-breast-cancer-dataset">2.5. Aplicación: Breast Cancer Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-exploratorio-de-datos">2.6. Análisis Exploratorio de Datos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multicolinealidad">2.6.1. Multicolinealidad</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#factor-de-inflacion-de-la-varianza-vif">2.6.2. Factor de Inflación de la Varianza (VIF)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-del-modelo-k-nn">2.6. Selección del modelo K-NN</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-por-k-vecinos">2.7. Regresión por <span class="math notranslate nohighlight">\(k\)</span>-vecinos</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-kneighborsregressor">2.8. Análisis de <code class="docutils literal notranslate"><span class="pre">KNeighborsRegressor</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-world-hydropower-generation">2.8.1. Aplicación: World Hydropower Generation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-del-modelo-k-nn">2.7. Selección del modelo K-NN</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-por-k-vecinos">2.8. Regresión por <span class="math notranslate nohighlight">\(k\)</span>-vecinos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-kneighborsregressor">2.9. Análisis de <code class="docutils literal notranslate"><span class="pre">KNeighborsRegressor</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-world-hydropower-generation">2.9.1. Aplicación: World Hydropower Generation</a></li>
 </ul>
 </li>
 </ul>

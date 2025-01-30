@@ -15,29 +15,24 @@ Machine Learning
 ````{admonition} ***Introducción***
 :class: tip
 
-- La ***predicción de series temporales*** es el proceso de ***análisis de datos de series temporales mediante estadísticas y modelos para hacer predicciones y fundamentar la toma de decisiones estratégicas***. No siempre se trata de una predicción exacta, y la probabilidad de las previsiones puede variar enormemente, especialmente cuando se trata de las variables que suelen fluctuar en los datos de las series temporales, así como de factores que se escapan de nuestro control. Sin embargo, la ***predicción permite saber qué resultados son más —o menos— probables que otros posibles***. 
+- En la era del ***Big Data*** y la ***automatización***, ***Machine Learning (ML)*** se ha convertido en una ***herramienta fundamental para transformar datos en conocimiento útil y en decisiones estratégicas***. Este curso está diseñado para proporcionar una comprensión sólida de los ***fundamentos teóricos y prácticos del aprendizaje automático***, con un enfoque en su aplicabilidad en el mundo real.
 
-- A menudo, ***cuanto más amplios sean los datos con los que disponemos, más precisas pueden ser las predicciones***. La predicción de series temporales se utiliza a menudo junto con el análisis de series temporales. El ***análisis de series temporales implica el desarrollo de modelos para comprender los datos y entender las causas subyacentes***. El análisis puede ***proporcionar el “por qué” de los resultados que se observan***. La predicción da el siguiente paso de qué hacer con ese conocimiento y las extrapolaciones predecibles de lo que podría ocurrir en el futuro.
+- ¿Por qué es importante Machine Learning para tu carrera?
 
-- Las predicciones con series de tiempo tienen una serie de aplicaciones en diversos sectores. ***Tiene un gran número de aplicaciones prácticas***, entre las que se incluyen: ***las predicciones meteorológicas, climáticas, económicas, sanitarias, de ingeniería, financieras, comerciales, de estudios medioambientales, de estudios sociales, etc***. 
+    - El Machine Learning impulsa innovaciones en casi todas las industrias, desde la ***banca y finanzas, donde se usa para la detección de fraudes y la evaluación de riesgos crediticios***, hasta la ***salud, donde se aplica en el diagnóstico asistido por inteligencia artificial***. Dominar estas técnicas le permitirá:
+    
+    - Resolver problemas complejos mediante modelos predictivos.
+    - Optimizar procesos y mejorar la toma de decisiones en las empresas.
+    - Desarrollar productos y servicios impulsados por IA.
 
-- Básicamente, ***cualquiera que disponga de datos históricos consistentes puede analizar esos datos con métodos de análisis de series temporales*** y, a continuación, ***modelar, pronosticar y predecir***. En algunos sectores, el objetivo del análisis de series temporales es facilitar la predicción. Algunas tecnologías, como la analítica aumentada, pueden incluso seleccionar automáticamente la predicción entre otros algoritmos estadísticos si ofrece la mayor certeza.
-````
+- Aplicaciones Reales
 
-<!-- ````{admonition} Evaluación
+    - En este curso, explorarás aplicaciones de Machine Learning en diferentes áreas, tales como:
+        - ***Finanzas***: Predicción de precios de acciones y detección de fraudes.
+        - ***Salud***: Diagnóstico automatizado y análisis de imágenes médicas.
+        - ***Industria y manufactura***: Mantenimiento predictivo y optimización de procesos.
+        - ***Marketing y negocios***: Recomendación de productos y segmentación de clientes.
+        - ***Medio ambiente***: Predicción de la calidad del aire
+        - ***Energías renovables***: Predicción de velocidad del viento y radiación solar
 
-1. ***Parcial Teórico***: 30% "`Individual`" 
-2. ***Parcial Práctico*** (**`Python`**): 30% "`Individual`"
-3. ***Proyecto Final***: 40% "`Grupal`"
-   - ***Aplicaciones***: *Energías Renovables, Contaminación, Finanzas, etc,....*
-   - ***Componente teórico***: *Modelos: GARCH, Modelo Original*
-   - ***Resultados numéricos***: Modelos: *ES, ARIMA, GARCH, ANN, Modelo Original*
-   - ***Contenido**:
-     - *Title*
-     - *Abstract*
-     - *Data*
-     - *Numerical Results*
-   - ***Formato***: [Jupyter Book](https://jupyterbook.org/en/stable/intro.html)
-   - ***Tutorial***: [JBook Tutorial](https://youtu.be/m_wCMg2EmdQ?feature=shared)
-```` -->
-
+- A lo largo del curso, combinarás teoría con práctica mediante el uso de herramientas como `Python, Scikit-Learn` y `TensorFlow`, preparándole para enfrentar desafíos en el mundo laboral con un enfoque basado en datos.
