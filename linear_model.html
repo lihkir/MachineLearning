@@ -361,9 +361,10 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lasso">3.5. Lasso</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-regresion-lasso">3.6. Aplicación: Regresión Lasso</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-lineales-para-clasificacion">3.7. Modelos lineales para clasificación</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-lineales-para-la-clasificacion-multiclase">3.8. Modelos lineales para la clasificación multiclase</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios">3.6. Ejercicios</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-regresion-lasso">3.7. Aplicación: Regresión Lasso</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-lineales-para-clasificacion">3.8. Modelos lineales para clasificación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-lineales-para-la-clasificacion-multiclase">3.9. Modelos lineales para la clasificación multiclase</a></li>
 </ul>
             </nav>
         </div>
@@ -2040,8 +2041,56 @@ S(\beta_{1}, \beta_{2})=\sum_{i=1}^{n}\left(y_{i}-\sum_{j=1}^{2}\beta_{j}x_{ij}\
 <p>Queda como <em><strong>ejercicio para el lector, encontrar parámetros de estimación lasso</strong></em>, tal como se realizó en el caso de la regresión ridge. Se sugiere investigar sobre el <em><strong>algoritmo LARS (Least Angle Regression) de Efron et al. (2004)</strong></em>.</p>
 </div>
 </section>
+<section id="ejercicios">
+<h2><span class="section-number">3.6. </span>Ejercicios<a class="headerlink" href="#ejercicios" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Sea <span class="math notranslate nohighlight">\(Y\)</span> un vector aleatorio de dimensión <span class="math notranslate nohighlight">\(n\)</span>. Consideremos la transformación lineal <span class="math notranslate nohighlight">\(Z = c + A Y\)</span>, donde <span class="math notranslate nohighlight">\(c\)</span> es un vector constante de dimensión <span class="math notranslate nohighlight">\(m\)</span> y <span class="math notranslate nohighlight">\(A\)</span> es una matriz constante de dimensiones <span class="math notranslate nohighlight">\(m \times n\)</span>. Demuestre que la esperanza y la matriz de varianza-covarianza del vector aleatorio <span class="math notranslate nohighlight">\(Z\)</span> de dimensión <span class="math notranslate nohighlight">\(m\)</span> están dadas, respectivamente, por</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[
+\mathbb{E}[Z] = c + A \mathbb{E}[Y],
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\mathbb{E}[(Z - \mathbb{E}[Z])(Z - \mathbb{E}[Z])^T] = A \operatorname{cov}(Y) A^T.
+\]</div>
+<ol class="arabic" start="2">
+<li><p>Se dice que una matriz cuadrada <span class="math notranslate nohighlight">\(P\)</span> es idempotente si <span class="math notranslate nohighlight">\(P^2 = P\)</span>. Demuestre que una matriz simétrica <span class="math notranslate nohighlight">\(P\)</span> de dimensión <span class="math notranslate nohighlight">\(n \times n\)</span> es idempotente de rango <span class="math notranslate nohighlight">\(r\)</span> si y solo si todos sus valores propios son 0 o 1, y que el número de valores propios iguales a 1 es igual a <span class="math notranslate nohighlight">\(\operatorname{tr} P = r\)</span>.</p></li>
+<li><p>Sea <span class="math notranslate nohighlight">\(P = X (X^T X)^{-1} X^T\)</span>, donde <span class="math notranslate nohighlight">\(X\)</span> es una matriz de diseño de dimensiones <span class="math notranslate nohighlight">\(n \times (p+1)\)</span>, definida en la Ecuación <a class="reference internal" href="#equation-linear-reg">(3.1)</a>. Demuestre que:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(P^2 = P\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\((I_n - P)^2 = I_n - P\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(\operatorname{tr} P = p + 1\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(\operatorname{tr} (I_n - P) = n - p - 1\)</span>.</p></li>
+</ul>
+</li>
+<li><p>Demuestre que el Criterio de Información de Akaike (AIC) para el modelo de regresión lineal Gaussiano <a class="reference internal" href="#equation-linear-reg">(3.1)</a> está dado por la siguiente ecuación:</p>
+<div class="math notranslate nohighlight">
+\[
+    AIC = n \log(2\pi \hat{\sigma}^2) + n + 2(p + 2),
+    \]</div>
+<p>donde</p>
+<div class="math notranslate nohighlight">
+\[
+    \hat{\sigma}^2 = \frac{(y - X \hat{\beta})^T (y - X \hat{\beta})}{n} = \frac{(y - \hat{y})^T (y - \hat{y})}{n}.
+    \]</div>
+</li>
+<li><p>Demuestre que resolver la ecuación</p>
+<div class="math notranslate nohighlight">
+\[
+    S_{\lambda}(\boldsymbol{\beta})=(y-X\boldsymbol{\beta})^{T}(y-X\boldsymbol{\beta})+\lambda\sum_{i=1}^{p}|\beta_{j}|^{q},
+    \]</div>
+<p>es equivalente a minimizar la siguiente función con la restricción de norma <span class="math notranslate nohighlight">\(L_q\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+    (y - X\beta)^T (y - X\beta) \quad \text{sujeto a} \quad \sum_{j=1}^{m} |\beta_j|^q \leq \eta.
+    \]</div>
+<p>Encuentre la relación entre el parámetro de regularización <span class="math notranslate nohighlight">\(\lambda\)</span> y <span class="math notranslate nohighlight">\(\eta\)</span>.</p>
+</li>
+</ol>
+</section>
 <section id="aplicacion-regresion-lasso">
-<h2><span class="section-number">3.6. </span>Aplicación: Regresión Lasso<a class="headerlink" href="#aplicacion-regresion-lasso" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">3.7. </span>Aplicación: Regresión Lasso<a class="headerlink" href="#aplicacion-regresion-lasso" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Apliquemos <code class="docutils literal notranslate"><span class="pre">lasso</span></code> al conjunto de datos ampliado de <code class="docutils literal notranslate"><span class="pre">Boston</span> <span class="pre">Housing</span></code></p></li>
 </ul>
@@ -2149,7 +2198,7 @@ Number of features used: 96
 </ul>
 </section>
 <section id="modelos-lineales-para-clasificacion">
-<h2><span class="section-number">3.7. </span>Modelos lineales para clasificación<a class="headerlink" href="#modelos-lineales-para-clasificacion" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">3.8. </span>Modelos lineales para clasificación<a class="headerlink" href="#modelos-lineales-para-clasificacion" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><em><strong>Los modelos lineales también se utilizan ampliamente para la clasificación</strong></em>. Veamos primero la <em><strong>clasificación binaria</strong></em>. En este caso, la predicción se realiza mediante la siguiente fórmula</p></li>
 </ul>
@@ -2373,7 +2422,7 @@ Test accuracy of l1 logreg with C=100.000: 0.98
 </ul>
 </section>
 <section id="modelos-lineales-para-la-clasificacion-multiclase">
-<h2><span class="section-number">3.8. </span>Modelos lineales para la clasificación multiclase<a class="headerlink" href="#modelos-lineales-para-la-clasificacion-multiclase" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">3.9. </span>Modelos lineales para la clasificación multiclase<a class="headerlink" href="#modelos-lineales-para-la-clasificacion-multiclase" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Muchos modelos de clasificación lineal sólo sirven para la clasificación binaria y no se extienden de forma natural al caso multiclase (con la excepción de la <em><strong>regresión logística</strong></em>). Una técnica común para extender un algoritmo de clasificación binaria a un <em><strong>algoritmo de clasificación multiclase</strong></em> es el enfoque <code class="docutils literal notranslate"><span class="pre">one-vs.-rest</span></code>. En el enfoque <code class="docutils literal notranslate"><span class="pre">one-vs.-rest</span></code>, <em><strong>se aprende un modelo binario para cada clase fija, el cual intenta separar esa clase de todas las demás, lo cual da lugar a tantos modelos binarios como clases exista</strong></em>.</p></li>
 <li><p>Para hacer una predicción, se ejecutan todos los clasificadores binarios en un punto de prueba. <em><strong>El clasificador que tenga la mayor puntuación en su clase “gana”, y esta etiqueta de clase se devuelve como predicción</strong></em>. Al tener un clasificador binario por clase, se tiene un vector de coeficientes <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span> para cada clase. La clase para la que el resultado de la fórmula de clasificación dada aquí, es la más alta, es la etiqueta de clase asignada:</p></li>
@@ -2496,16 +2545,16 @@ Intercept shape:  (3,)
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "ml_tf"
+            mode: "tf"
         },
         kernelOptions: {
-            name: "ml_tf",
+            name: "tf",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'ml_tf'</script>
+    <script>kernelName = 'tf'</script>
 
                 </article>
               
@@ -2563,9 +2612,10 @@ Intercept shape:  (3,)
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lasso">3.5. Lasso</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-regresion-lasso">3.6. Aplicación: Regresión Lasso</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-lineales-para-clasificacion">3.7. Modelos lineales para clasificación</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-lineales-para-la-clasificacion-multiclase">3.8. Modelos lineales para la clasificación multiclase</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios">3.6. Ejercicios</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-regresion-lasso">3.7. Aplicación: Regresión Lasso</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-lineales-para-clasificacion">3.8. Modelos lineales para clasificación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-lineales-para-la-clasificacion-multiclase">3.9. Modelos lineales para la clasificación multiclase</a></li>
 </ul>
   </nav></div>
 

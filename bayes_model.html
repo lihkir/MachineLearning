@@ -367,28 +367,28 @@ document.write(`
 <div class="admonition-observacion admonition">
 <p class="admonition-title">Observación</p>
 <ul class="simple">
-<li><p>Los <code class="docutils literal notranslate"><span class="pre">clasificadores</span> <span class="pre">Naive</span> <span class="pre">Bayes</span></code> son una familia de clasificadores que <code class="docutils literal notranslate"><span class="pre">son</span> <span class="pre">bastante</span> <span class="pre">similares</span> <span class="pre">a</span> <span class="pre">los</span> <span class="pre">modelos</span> <span class="pre">lineales</span> <span class="pre">discutidos</span> <span class="pre">en</span> <span class="pre">la</span> <span class="pre">sección</span> <span class="pre">anterior.</span> <span class="pre">Sin</span> <span class="pre">embargo,</span> <span class="pre">tienden</span> <span class="pre">a</span> <span class="pre">ser</span> <span class="pre">incluso</span> <span class="pre">más</span> <span class="pre">rápidos</span> <span class="pre">en</span> <span class="pre">entrenamiento</span></code>. El precio que se paga por esta eficiencia es que los modelos de Naive Bayes <code class="docutils literal notranslate"><span class="pre">suelen</span> <span class="pre">proporcionar</span> <span class="pre">rendimiento</span> <span class="pre">de</span> <span class="pre">generalización</span> <span class="pre">que</span> <span class="pre">es</span> <span class="pre">ligeramente</span> <span class="pre">inferior</span> <span class="pre">al</span> <span class="pre">de</span> <span class="pre">los</span> <span class="pre">clasificadores</span> <span class="pre">lineales</span> <span class="pre">como</span> <span class="pre">LogisticRegression</span> <span class="pre">y</span> <span class="pre">LinearSVC</span></code>.</p></li>
-<li><p>La razón por la que los modelos de Naive Bayes son tan eficientes es que <code class="docutils literal notranslate"><span class="pre">aprenden</span> <span class="pre">los</span> <span class="pre">parámetros</span> <span class="pre">observando</span> <span class="pre">cada</span> <span class="pre">característica</span> <span class="pre">individualmente</span> <span class="pre">y</span> <span class="pre">recogen</span> <span class="pre">estadísticas</span> <span class="pre">simples</span> <span class="pre">por</span> <span class="pre">clase</span> <span class="pre">de</span> <span class="pre">cada</span> <span class="pre">característica</span></code>. Hay tres tipos de clasificadores Naive Bayes implementados en <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>: <code class="docutils literal notranslate"><span class="pre">GaussianNB,</span> <span class="pre">BernoulliNB</span> <span class="pre">y</span> <span class="pre">MultinomialNB</span></code>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">GaussianNB</span> <span class="pre">puede</span> <span class="pre">aplicarse</span> <span class="pre">a</span> <span class="pre">cualquier</span> <span class="pre">dato</span> <span class="pre">continuo</span></code>, mientras que <code class="docutils literal notranslate"><span class="pre">BernoulliNB</span> <span class="pre">asume</span> <span class="pre">datos</span> <span class="pre">binarios</span></code> y <code class="docutils literal notranslate"><span class="pre">MultinomialNB</span> <span class="pre">supone</span> <span class="pre">datos</span> <span class="pre">de</span> <span class="pre">recuento</span></code> (es decir, que <code class="docutils literal notranslate"><span class="pre">cada</span> <span class="pre">característica</span> <span class="pre">representa</span> <span class="pre">un</span> <span class="pre">recuento</span> <span class="pre">entero</span></code>, como por ejemplo la frecuencia de aparición de una palabra). <code class="docutils literal notranslate"><span class="pre">BernoulliNB</span></code> y <code class="docutils literal notranslate"><span class="pre">MultinomialNB</span></code> se utilizan sobre todo en la <code class="docutils literal notranslate"><span class="pre">clasificación</span> <span class="pre">de</span> <span class="pre">datos</span> <span class="pre">de</span> <span class="pre">texto</span></code>. El clasificador <code class="docutils literal notranslate"><span class="pre">BernoulliNB</span></code> cuenta la frecuencia con la que cada característica de cada clase es distinta de cero.</p></li>
+<li><p>Los <em><strong>clasificadores Naive Bayes</strong></em> son una familia de clasificadores que <em><strong>son bastante similares a los modelos lineales discutidos en la sección anterior. Sin embargo, tienden a ser incluso más rápidos en entrenamiento</strong></em>. El precio que se paga por esta eficiencia es que los modelos de Naive Bayes <em><strong>suelen proporcionar rendimiento de generalización que es ligeramente inferior al de los clasificadores lineales como LogisticRegression y LinearSVC</strong></em>.</p></li>
+<li><p>La razón por la que los modelos de Naive Bayes son tan eficientes es que <em><strong>aprenden los parámetros observando cada característica individualmente y recogen estadísticas simples por clase de cada característica</strong></em>. Hay tres tipos de clasificadores Naive Bayes implementados en <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>: <code class="docutils literal notranslate"><span class="pre">GaussianNB,</span> <span class="pre">BernoulliNB</span> <span class="pre">y</span> <span class="pre">MultinomialNB</span></code>.</p></li>
+<li><p><em><strong>GaussianNB puede aplicarse a cualquier dato continuo</strong></em>, mientras que <em><strong>BernoulliNB asume datos binarios</strong></em> y <em><strong>MultinomialNB supone datos de recuento</strong></em> (es decir, que <em><strong>cada característica representa un recuento entero</strong></em>, como por ejemplo la frecuencia de aparición de una palabra). <code class="docutils literal notranslate"><span class="pre">BernoulliNB</span></code> y <code class="docutils literal notranslate"><span class="pre">MultinomialNB</span></code> se utilizan sobre todo en la <em><strong>clasificación de datos de texto</strong></em>. El clasificador <code class="docutils literal notranslate"><span class="pre">BernoulliNB</span></code> cuenta la frecuencia con la que cada característica de cada clase es distinta de cero.</p></li>
 </ul>
 </div>
 <section id="formulacion">
 <h2><span class="section-number">4.1. </span>Formulación<a class="headerlink" href="#formulacion" title="Link to this heading">#</a></h2>
-<p>En la clasificación mediante el <code class="docutils literal notranslate"><span class="pre">enfoque</span> <span class="pre">Bayesiano</span></code>, el concepto básico está plasmado en el <code class="docutils literal notranslate"><span class="pre">Teorema</span> <span class="pre">de</span> <span class="pre">Bayes</span></code>. Como ejemplo, <code class="docutils literal notranslate"><span class="pre">supongamos</span> <span class="pre">que</span> <span class="pre">hemos</span> <span class="pre">observado</span> <span class="pre">la</span> <span class="pre">aparición</span> <span class="pre">de</span> <span class="pre">un</span> <span class="pre">síntoma</span> <span class="pre">en</span> <span class="pre">un</span> <span class="pre">determinado</span> <span class="pre">paciente</span> <span class="pre">en</span> <span class="pre">forma</span> <span class="pre">de</span> <span class="pre">fiebre</span> <span class="pre">y</span> <span class="pre">necesitamos</span> <span class="pre">evaluar</span> <span class="pre">si</span> <span class="pre">ha</span> <span class="pre">sido</span> <span class="pre">causado</span> <span class="pre">por</span> <span class="pre">un</span> <span class="pre">resfriado</span> <span class="pre">o</span> <span class="pre">por</span> <span class="pre">la</span> <span class="pre">inﬂuenza</span></code>. <strong>Si la probabilidad de que un resfriado sea la causa de la fiebre es mayor que la de la inﬂuenza, entonces podemos atribuir, al menos tentativamente, la fiebre de este paciente a un resfriado</strong>.</p>
-<p>Este es el concepto subyacente de la <code class="docutils literal notranslate"><span class="pre">clasificación</span> <span class="pre">de</span> <span class="pre">Bayes</span></code>. El <code class="docutils literal notranslate"><span class="pre">Teorema</span> <span class="pre">de</span> <span class="pre">Bayes</span></code> da la <code class="docutils literal notranslate"><span class="pre">relación</span> <span class="pre">entre</span> <span class="pre">la</span> <span class="pre">probabilidad</span> <span class="pre">condicional</span> <span class="pre">de</span> <span class="pre">un</span> <span class="pre">evento</span> <span class="pre">basado</span> <span class="pre">en</span> <span class="pre">la</span> <span class="pre">información</span> <span class="pre">adquirida</span></code>, que en este caso puede <code class="docutils literal notranslate"><span class="pre">describirse</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">siguiente</span> <span class="pre">manera</span></code></p>
-<p>En primer lugar, denotamos la probabilidad de <code class="docutils literal notranslate"><span class="pre">fiebre</span></code> (<span class="math notranslate nohighlight">\(D\)</span>) como síntoma de un <code class="docutils literal notranslate"><span class="pre">resfriado</span></code> (<span class="math notranslate nohighlight">\(G1\)</span> ) y de la <code class="docutils literal notranslate"><span class="pre">inﬂuenza</span></code> (<span class="math notranslate nohighlight">\(G2\)</span>) por</p>
+<p>En la clasificación mediante el <em><strong>enfoque Bayesiano</strong></em>, el concepto básico está plasmado en el <em><strong>Teorema de Bayes</strong></em>. Como ejemplo, <em><strong>supongamos que hemos observado la aparición de un síntoma en un determinado paciente en forma de fiebre y necesitamos evaluar si ha sido causado por un resfriado o por la inﬂuenza</strong></em>. <strong>Si la probabilidad de que un resfriado sea la causa de la fiebre es mayor que la de la inﬂuenza, entonces podemos atribuir, al menos tentativamente, la fiebre de este paciente a un resfriado</strong>.</p>
+<p>Este es el concepto subyacente de la <em><strong>clasificación de Bayes</strong></em>. El <em><strong>Teorema de Bayes</strong></em> da la <em><strong>relación entre la probabilidad condicional de un evento basado en la información adquirida</strong></em>, que en este caso puede <em><strong>describirse de la siguiente manera</strong></em></p>
+<p>En primer lugar, denotamos la probabilidad de <em><strong>fiebre</strong></em> (<span class="math notranslate nohighlight">\(D\)</span>) como síntoma de un <em><strong>resfriado</strong></em> (<span class="math notranslate nohighlight">\(G1\)</span> ) y de la <em><strong>inﬂuenza</strong></em> (<span class="math notranslate nohighlight">\(G2\)</span>) por</p>
 <div class="math notranslate nohighlight">
 \[
 P(D|G_{1})=\frac{P(D\cap G_{1})}{P(G_{1})},\quad P(D|G_{2})=\frac{P(D\cap G_{2})}{P(G_{2})},
 \]</div>
-<p>respectivamente. <span class="math notranslate nohighlight">\(P(D|G_{1})\)</span> y <span class="math notranslate nohighlight">\(P(D|G_{2})\)</span> representan las <code class="docutils literal notranslate"><span class="pre">probabilidades</span> <span class="pre">de</span> <span class="pre">que</span> <span class="pre">la</span> <span class="pre">fiebre</span> <span class="pre">sea</span> <span class="pre">el</span> <span class="pre">resultado</span> <span class="pre">de</span> <span class="pre">un</span> <span class="pre">resfriado</span> <span class="pre">y</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">inﬂuenza,</span> <span class="pre">respectivamente,</span> <span class="pre">y</span> <span class="pre">se</span> <span class="pre">denominan</span> <span class="pre">probabilidades</span> <span class="pre">condicionales</span></code>. Aquí, <span class="math notranslate nohighlight">\(P(G_{1})\)</span> y <span class="math notranslate nohighlight">\(P(G_{2})\)</span> <span class="math notranslate nohighlight">\((P(G_{1})+P(G_{2}) =
-1)\)</span>, son las <code class="docutils literal notranslate"><span class="pre">incidencias</span> <span class="pre">relativas</span> <span class="pre">de</span> <span class="pre">los</span> <span class="pre">resfriados</span> <span class="pre">y</span> <span class="pre">la</span> <span class="pre">inﬂuenza</span></code>, y se denominan probabilidades a priori. Se supone que estas <code class="docutils literal notranslate"><span class="pre">probabilidades</span> <span class="pre">condicionales</span> <span class="pre">y</span> <span class="pre">a</span> <span class="pre">priori</span> <span class="pre">pueden</span> <span class="pre">estimarse</span> <span class="pre">a</span> <span class="pre">partir</span> <span class="pre">de</span> <span class="pre">las</span> <span class="pre">observaciones</span> <span class="pre">y</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">información</span> <span class="pre">acumulada</span></code>. Entonces la probabilidad <span class="math notranslate nohighlight">\(P(D)\)</span> viene dada por</p>
+<p>respectivamente. <span class="math notranslate nohighlight">\(P(D|G_{1})\)</span> y <span class="math notranslate nohighlight">\(P(D|G_{2})\)</span> representan las <em><strong>probabilidades de que la fiebre sea el resultado de un resfriado y de la inﬂuenza, respectivamente, y se denominan probabilidades condicionales</strong></em>. Aquí, <span class="math notranslate nohighlight">\(P(G_{1})\)</span> y <span class="math notranslate nohighlight">\(P(G_{2})\)</span> <span class="math notranslate nohighlight">\((P(G_{1})+P(G_{2}) =
+1)\)</span>, son las <em><strong>incidencias relativas de los resfriados y la inﬂuenza</strong></em>, y se denominan probabilidades a priori. Se supone que estas <em><strong>probabilidades condicionales y a priori pueden estimarse a partir de las observaciones y de la información acumulada</strong></em>. Entonces la probabilidad <span class="math notranslate nohighlight">\(P(D)\)</span> viene dada por</p>
 <div class="math notranslate nohighlight" id="equation-eq-prob-total">
 <span class="eqno">(4.1)<a class="headerlink" href="#equation-eq-prob-total" title="Link to this equation">#</a></span>\[
 P(D)=P(G_{1})P(D|G_{1})+P(G_{2})P(D|G_{2}),
 \]</div>
-<p>la <code class="docutils literal notranslate"><span class="pre">probabilidad</span> <span class="pre">de</span> <span class="pre">que</span> <span class="pre">la</span> <span class="pre">fiebre</span> <span class="pre">sea</span> <span class="pre">el</span> <span class="pre">resultado</span> <span class="pre">de</span> <span class="pre">un</span> <span class="pre">resfriado</span> <span class="pre">o</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">inﬂuenza</span></code>, llamada la ley de la <code class="docutils literal notranslate"><span class="pre">probabilidad</span> <span class="pre">total</span></code>.</p>
-<p>En nuestro ejemplo, <code class="docutils literal notranslate"><span class="pre">queremos</span> <span class="pre">conocer</span> <span class="pre">las</span> <span class="pre">probabilidades</span> <span class="pre">de</span> <span class="pre">que</span> <span class="pre">la</span> <span class="pre">fiebre</span> <span class="pre">que</span> <span class="pre">se</span> <span class="pre">ha</span> <span class="pre">producido,</span> <span class="pre">haya</span> <span class="pre">sido</span> <span class="pre">causada</span> <span class="pre">por</span> <span class="pre">un</span> <span class="pre">resfriado</span> <span class="pre">o</span> <span class="pre">por</span> <span class="pre">la</span> <span class="pre">inﬂuenza,</span> <span class="pre">respectivamente,</span> <span class="pre">representadas</span> <span class="pre">por</span> <span class="pre">las</span> <span class="pre">probabilidades</span> <span class="pre">condicionales</span></code> <span class="math notranslate nohighlight">\(P(G_{1}|D)\)</span> y <span class="math notranslate nohighlight">\(P(G_{2}|D)\)</span>. El <code class="docutils literal notranslate"><span class="pre">Teorema</span> <span class="pre">de</span> <span class="pre">Bayes</span></code> proporciona estas probabilidades sobre la base de las probabilidades concocidas a priori <span class="math notranslate nohighlight">\(P(G_{i})\)</span> y las probabilidades condicionales <span class="math notranslate nohighlight">\(P(D|G_{i})\)</span>. Es decir, las <code class="docutils literal notranslate"><span class="pre">probabilidades</span> <span class="pre">condicionales</span></code> <span class="math notranslate nohighlight">\(P(G_{i}|D)\)</span> vienen dadas por</p>
+<p>la <em><strong>probabilidad de que la fiebre sea el resultado de un resfriado o de la inﬂuenza</strong></em>, llamada la ley de la <em><strong>probabilidad total</strong></em>.</p>
+<p>En nuestro ejemplo, <em><strong>queremos conocer las probabilidades de que la fiebre que se ha producido, haya sido causada por un resfriado o por la inﬂuenza, respectivamente, representadas por las probabilidades condicionales</strong></em> <span class="math notranslate nohighlight">\(P(G_{1}|D)\)</span> y <span class="math notranslate nohighlight">\(P(G_{2}|D)\)</span>. El <em><strong>Teorema de Bayes</strong></em> proporciona estas probabilidades sobre la base de las probabilidades concocidas a priori <span class="math notranslate nohighlight">\(P(G_{i})\)</span> y las probabilidades condicionales <span class="math notranslate nohighlight">\(P(D|G_{i})\)</span>. Es decir, las <em><strong>probabilidades condicionales</strong></em> <span class="math notranslate nohighlight">\(P(G_{i}|D)\)</span> vienen dadas por</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{align*}
@@ -396,26 +396,26 @@ P(G_{i}|D)&amp;=\frac{P(G_{i}\cap D)}{P(D)}\\
 &amp;=\frac{P(G_{i})P(D|G_{i})}{P(G_{1})P(D|G_{1})+P(G_{1})P(D|G_{2})},\quad i=1,2,
 \end{align*}
 \end{split}\]</div>
-<p>donde <span class="math notranslate nohighlight">\(P(D)\)</span> es la <code class="docutils literal notranslate"><span class="pre">probabilidad</span> <span class="pre">total</span></code> Ecuación <a class="reference internal" href="#equation-eq-prob-total">(4.1)</a>. Tras la aparición del resultado <span class="math notranslate nohighlight">\(D\)</span>, las probabilidades condicionales <span class="math notranslate nohighlight">\(P(G_{i}|D)\)</span> se convierten en <code class="docutils literal notranslate"><span class="pre">probabilidades</span> <span class="pre">posteriores</span></code>. En general, el <code class="docutils literal notranslate"><span class="pre">Teorema</span> <span class="pre">de</span> <span class="pre">Bayes</span></code> se formula como sigue.</p>
+<p>donde <span class="math notranslate nohighlight">\(P(D)\)</span> es la <em><strong>probabilidad total</strong></em> Ecuación <a class="reference internal" href="#equation-eq-prob-total">(4.1)</a>. Tras la aparición del resultado <span class="math notranslate nohighlight">\(D\)</span>, las probabilidades condicionales <span class="math notranslate nohighlight">\(P(G_{i}|D)\)</span> se convierten en <em><strong>probabilidades posteriores</strong></em>. En general, el <em><strong>Teorema de Bayes</strong></em> se formula como sigue.</p>
 <div class="proof theorem admonition" id="bayes_theorem">
 <p class="admonition-title"><span class="caption-number">Theorem 4.1 </span> (Teorema de Bayes)</p>
 <section class="theorem-content" id="proof-content">
-<p>Suponga que el espacio muestral <span class="math notranslate nohighlight">\(\Omega\)</span> es divido en <span class="math notranslate nohighlight">\(r\)</span> <code class="docutils literal notranslate"><span class="pre">eventos</span> <span class="pre">mutuamente</span> <span class="pre">disyuntos</span></code> <span class="math notranslate nohighlight">\(G_{j}\)</span> como <span class="math notranslate nohighlight">\(\Omega=G_{1}\cup G_{2}\cup\cdots\cup G_{r}~(G_{i}\cap G_{j}=\emptyset)\)</span>. Entonces, para cualquier evento <span class="math notranslate nohighlight">\(D\)</span>, la <code class="docutils literal notranslate"><span class="pre">probabilidad</span> <span class="pre">condicional</span></code> <span class="math notranslate nohighlight">\(P(G_{i}|D)\)</span> esta dada por</p>
+<p>Suponga que el espacio muestral <span class="math notranslate nohighlight">\(\Omega\)</span> es divido en <span class="math notranslate nohighlight">\(r\)</span> <em><strong>eventos mutuamente disyuntos</strong></em> <span class="math notranslate nohighlight">\(G_{j}\)</span> como <span class="math notranslate nohighlight">\(\Omega=G_{1}\cup G_{2}\cup\cdots\cup G_{r}~(G_{i}\cap G_{j}=\emptyset)\)</span>. Entonces, para cualquier evento <span class="math notranslate nohighlight">\(D\)</span>, la <em><strong>probabilidad condicional</strong></em> <span class="math notranslate nohighlight">\(P(G_{i}|D)\)</span> esta dada por</p>
 <div class="math notranslate nohighlight" id="equation-eq-bayes-theorem">
 <span class="eqno">(4.2)<a class="headerlink" href="#equation-eq-bayes-theorem" title="Link to this equation">#</a></span>\[
 P(G_{i}|D)=\frac{P(G_{i}\cap D)}{P(D)}=\frac{P(G_{i})P(D|G_{i})}{\displaystyle{\sum_{j=1}^{r}P(G_{j})P(D|G_{j})}},~i=1,2,\dots,r,
 \]</div>
 <p>donde <span class="math notranslate nohighlight">\(~\displaystyle{\sum_{j=1}^{r}P(G_{j})=1}\)</span>.</p>
 </section>
-</div><p>En esta sección, el propósito es realizar <code class="docutils literal notranslate"><span class="pre">clasificación</span> <span class="pre">para</span> <span class="pre">la</span> <span class="pre">asignación</span> <span class="pre">de</span> <span class="pre">clases</span> <span class="pre">de</span> <span class="pre">datos</span></code> <span class="math notranslate nohighlight">\(p\)</span><code class="docutils literal notranslate"><span class="pre">-dimensionales</span> <span class="pre">recién</span> <span class="pre">observados,</span> <span class="pre">basándose</span> <span class="pre">en</span> <span class="pre">la</span> <span class="pre">probabilidad</span> <span class="pre">posterior</span> <span class="pre">de</span> <span class="pre">su</span> <span class="pre">pertenencia</span> <span class="pre">a</span> <span class="pre">cada</span> <span class="pre">clase</span></code>. Discutimos la aplicación del <code class="docutils literal notranslate"><span class="pre">Teorema</span> <span class="pre">de</span> <span class="pre">Bayes</span></code> y la expresión de la probabilidad posterior mediante un modelo de de probabilidad, y el método de formulación de <code class="docutils literal notranslate"><span class="pre">análisis</span> <span class="pre">discriminante</span> <span class="pre">y</span> <span class="pre">cuadrático</span></code>, para la asignación de clases.</p>
+</div><p>En esta sección, el propósito es realizar <em><strong>clasificación para la asignación de clases de datos</strong></em> <span class="math notranslate nohighlight">\(p\)</span><em><strong>-dimensionales recién observados, basándose en la probabilidad posterior de su pertenencia a cada clase</strong></em>. Discutimos la aplicación del <em><strong>Teorema de Bayes</strong></em> y la expresión de la probabilidad posterior mediante un modelo de de probabilidad, y el método de formulación de <em><strong>análisis discriminante y cuadrático</strong></em>, para la asignación de clases.</p>
 <div class="admonition-distribuciones-de-probabilidad-y-verosimilitud admonition">
 <p class="admonition-title">Distribuciones de probabilidad y verosimilitud</p>
-<p>Supongamos que tenemos <span class="math notranslate nohighlight">\(n_{1}\)</span> datos <span class="math notranslate nohighlight">\(p\)</span>-dimensionales de la clase <span class="math notranslate nohighlight">\(G_{1}\)</span> y <span class="math notranslate nohighlight">\(n_{2}\)</span> datos <span class="math notranslate nohighlight">\(p\)</span>-dimensionales de la clase <span class="math notranslate nohighlight">\(G_{2}\)</span>, y representamos el total <span class="math notranslate nohighlight">\(n=(n_{1}+n_{2})\)</span> <code class="docutils literal notranslate"><span class="pre">datos</span> <span class="pre">de</span> <span class="pre">entrenamiento</span></code> como</p>
+<p>Supongamos que tenemos <span class="math notranslate nohighlight">\(n_{1}\)</span> datos <span class="math notranslate nohighlight">\(p\)</span>-dimensionales de la clase <span class="math notranslate nohighlight">\(G_{1}\)</span> y <span class="math notranslate nohighlight">\(n_{2}\)</span> datos <span class="math notranslate nohighlight">\(p\)</span>-dimensionales de la clase <span class="math notranslate nohighlight">\(G_{2}\)</span>, y representamos el total <span class="math notranslate nohighlight">\(n=(n_{1}+n_{2})\)</span> <em><strong>datos de entrenamiento</strong></em> como</p>
 <div class="math notranslate nohighlight">
 \[
 G_{1}:~\boldsymbol{x}_{1}^{(1)}, \boldsymbol{x}_{2}^{(1)},\dots, \boldsymbol{x}_{n_{1}}^{(1)},\quad G_{2}:~\boldsymbol{x}_{1}^{(2)}, \boldsymbol{x}_{2}^{(2)},\dots, \boldsymbol{x}_{n_{2}}^{(2)}
 \]</div>
-<p>Supongamos que los datos de entrenamiento para las clases <span class="math notranslate nohighlight">\(G_{i}~(i=1,2)\)</span> han sido <code class="docutils literal notranslate"><span class="pre">observados</span> <span class="pre">de</span> <span class="pre">acuerdo</span> <span class="pre">a</span> <span class="pre">una</span> <span class="pre">distribución</span> <span class="pre">normal</span></code> <span class="math notranslate nohighlight">\(p\)</span>-dimensional <span class="math notranslate nohighlight">\(N_{p}(\boldsymbol{\mu}_{i},\Sigma_{i})\)</span> con vector de medias <span class="math notranslate nohighlight">\(\boldsymbol{\mu}_{i}\)</span> y matrices de varianza-covarianza <span class="math notranslate nohighlight">\(\Sigma_{i}\)</span> como sigue:</p>
+<p>Supongamos que los datos de entrenamiento para las clases <span class="math notranslate nohighlight">\(G_{i}~(i=1,2)\)</span> han sido <em><strong>observados de acuerdo a una distribución normal</strong></em> <span class="math notranslate nohighlight">\(p\)</span>-dimensional <span class="math notranslate nohighlight">\(N_{p}(\boldsymbol{\mu}_{i},\Sigma_{i})\)</span> con vector de medias <span class="math notranslate nohighlight">\(\boldsymbol{\mu}_{i}\)</span> y matrices de varianza-covarianza <span class="math notranslate nohighlight">\(\Sigma_{i}\)</span> como sigue:</p>
 <div class="math notranslate nohighlight" id="equation-eq-mean-cov-bayes">
 <span class="eqno">(4.3)<a class="headerlink" href="#equation-eq-mean-cov-bayes" title="Link to this equation">#</a></span>\[\begin{split}
 \begin{align*}
@@ -423,27 +423,27 @@ G_{1}&amp;: N_{p}(\boldsymbol{\mu}_{1}, \Sigma_{1})\sim\boldsymbol{x}_{1}^{(1)},
 G_{2}&amp;: N_{p}(\boldsymbol{\mu}_{2}, \Sigma_{2})\sim\boldsymbol{x}_{1}^{(2)},\boldsymbol{x}_{2}^{(2)},\dots, \boldsymbol{x}_{n_{2}}^{(1)}.
 \end{align*}
 \end{split}\]</div>
-<p>Dado este tipo de modelo de distribución de probabilidad, entonces, si suponemos que cierto dato <span class="math notranslate nohighlight">\(\boldsymbol{x}_{0}\)</span> pertenece a la clase <span class="math notranslate nohighlight">\(G_{1}\)</span> o <span class="math notranslate nohighlight">\(G_{2}\)</span>, el <code class="docutils literal notranslate"><span class="pre">nivel</span> <span class="pre">relativo</span> <span class="pre">de</span> <span class="pre">ocurrencia</span></code> de ese dato en cada clase (la <code class="docutils literal notranslate"><span class="pre">verosimilitud</span></code> o grado de certeza) puede ser cuantificado por <span class="math notranslate nohighlight">\(f(\boldsymbol{x}_{0}|\boldsymbol{\mu}_{i},\Sigma_{i})\)</span>, usando la <code class="docutils literal notranslate"><span class="pre">distribución</span> <span class="pre">normal</span></code> <span class="math notranslate nohighlight">\(p\)</span><code class="docutils literal notranslate"><span class="pre">-dimensional</span></code>. Esta corresponde a la probabilidad condicional <span class="math notranslate nohighlight">\(P(D|G_{i})\)</span> descrita por el <code class="docutils literal notranslate"><span class="pre">Teorema</span> <span class="pre">de</span> <span class="pre">Bayes</span></code> y puede ser denominada la <code class="docutils literal notranslate"><span class="pre">verosimilitud</span></code> del dato <span class="math notranslate nohighlight">\(\boldsymbol{x}_{0}\)</span>.</p>
+<p>Dado este tipo de modelo de distribución de probabilidad, entonces, si suponemos que cierto dato <span class="math notranslate nohighlight">\(\boldsymbol{x}_{0}\)</span> pertenece a la clase <span class="math notranslate nohighlight">\(G_{1}\)</span> o <span class="math notranslate nohighlight">\(G_{2}\)</span>, el <em><strong>nivel relativo de ocurrencia</strong></em> de ese dato en cada clase (la <em><strong>verosimilitud</strong></em> o grado de certeza) puede ser cuantificado por <span class="math notranslate nohighlight">\(f(\boldsymbol{x}_{0}|\boldsymbol{\mu}_{i},\Sigma_{i})\)</span>, usando la <em><strong>distribución normal</strong></em> <span class="math notranslate nohighlight">\(p\)</span><em><strong>-dimensional</strong></em>. Esta corresponde a la probabilidad condicional <span class="math notranslate nohighlight">\(P(D|G_{i})\)</span> descrita por el <em><strong>Teorema de Bayes</strong></em> y puede ser denominada la <em><strong>verosimilitud</strong></em> del dato <span class="math notranslate nohighlight">\(\boldsymbol{x}_{0}\)</span>.</p>
 </div>
-<p>Por ejemplo, consideremos una observación, extraida de una distribución normal <span class="math notranslate nohighlight">\(N(170, 6^2)\)</span> asociada con <code class="docutils literal notranslate"><span class="pre">alturas</span> <span class="pre">de</span> <span class="pre">hombres</span></code>. Entonces, usando la función de densidad de probabilidad, el <code class="docutils literal notranslate"><span class="pre">nivel</span> <span class="pre">relativo</span> <span class="pre">de</span> <span class="pre">ocurrencia</span> <span class="pre">de</span> <span class="pre">hombres</span> <span class="pre">de</span> <span class="pre">178</span> <span class="pre">cm</span> <span class="pre">de</span> <span class="pre">altura</span></code>, puede ser determinado como <span class="math notranslate nohighlight">\(f(178|170, 6^2)\)</span> (ver <a class="reference internal" href="#fig-heights-bayes"><span class="std std-numref">Fig. 4.1</span></a>).</p>
+<p>Por ejemplo, consideremos una observación, extraida de una distribución normal <span class="math notranslate nohighlight">\(N(170, 6^2)\)</span> asociada con <em><strong>alturas de hombres</strong></em>. Entonces, usando la función de densidad de probabilidad, el <em><strong>nivel relativo de ocurrencia de hombres de 178 cm de altura</strong></em>, puede ser determinado como <span class="math notranslate nohighlight">\(f(178|170, 6^2)\)</span> (ver <a class="reference internal" href="#fig-heights-bayes"><span class="std std-numref">Fig. 4.1</span></a>).</p>
 <figure class="align-center" id="fig-heights-bayes">
 <a class="reference internal image-reference" href="_images/heights_bayes.png"><img alt="_images/heights_bayes.png" src="_images/heights_bayes.png" style="width: 405.20000000000005px; height: 310.8px;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 4.1 </span><span class="caption-text">Nivel relativo de ocurrencia <span class="math notranslate nohighlight">\(f(178|170, 6^{2})\)</span>. Fuente <span id="id1">[<a class="reference internal" href="biblio.html#id20" title="S. Konishi. Introduction to Multivariate Analysis: Linear and Nonlinear Modeling. Chapman &amp; Hall/CRC Texts in Statistical Science. Taylor &amp; Francis, 2014. ISBN 9781466567283. URL: https://books.google.com.co/books?id=fcuuAwAAQBAJ.">Konishi, 2014</a>]</span>.</span><a class="headerlink" href="#fig-heights-bayes" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
-<p>Para obtener los datos de verosimilitud, reemplazamos los <code class="docutils literal notranslate"><span class="pre">parametros</span> <span class="pre">desconocidos</span></code>, <span class="math notranslate nohighlight">\(\boldsymbol{\mu}_{i}\)</span> y <span class="math notranslate nohighlight">\(\Sigma_{i}\)</span> en Eq. <a class="reference internal" href="#equation-eq-mean-cov-bayes">(4.3)</a> con sus respectivas <code class="docutils literal notranslate"><span class="pre">estimaciones</span> <span class="pre">de</span> <span class="pre">máxima</span> <span class="pre">verosimilitud</span></code></p>
+<p>Para obtener los datos de verosimilitud, reemplazamos los <em><strong>parametros desconocidos</strong></em>, <span class="math notranslate nohighlight">\(\boldsymbol{\mu}_{i}\)</span> y <span class="math notranslate nohighlight">\(\Sigma_{i}\)</span> en Eq. <a class="reference internal" href="#equation-eq-mean-cov-bayes">(4.3)</a> con sus respectivas <em><strong>estimaciones de máxima verosimilitud</strong></em></p>
 <div class="math notranslate nohighlight">
 \[
 \overline{\boldsymbol{x}}_{i}=\frac{1}{n_{i}}\sum_{j=1}^{n_{i}}\boldsymbol{x}_{j}^{(i)},\quad
 S_{i}=\frac{1}{n_{i}}\sum_{j=1}^{n_{i}}(\boldsymbol{x}_{j}^{(i)}-\overline{\boldsymbol{x}}_{i})(\boldsymbol{x}_{j}^{(i)}-\overline{\boldsymbol{x}}_{i})^{T},\quad i=1,2,
 \]</div>
-<p>respectivamente. Aplicando el <code class="docutils literal notranslate"><span class="pre">Teorema</span> <span class="pre">de</span> <span class="pre">Bayes</span></code> y utilizando la probabilidad posterior, expresada como una distribución de probabilidad, formulamos la <code class="docutils literal notranslate"><span class="pre">clasificación</span> <span class="pre">Bayesiana</span></code> y derivamos las <code class="docutils literal notranslate"><span class="pre">funciones</span> <span class="pre">de</span> <span class="pre">discriminación</span> <span class="pre">cuadrática</span> <span class="pre">y</span> <span class="pre">lineal,</span> <span class="pre">para</span> <span class="pre">la</span> <span class="pre">asignación</span> <span class="pre">de</span> <span class="pre">clases</span></code>.</p>
+<p>respectivamente. Aplicando el <em><strong>Teorema de Bayes</strong></em> y utilizando la probabilidad posterior, expresada como una distribución de probabilidad, formulamos la <em><strong>clasificación Bayesiana</strong></em> y derivamos las <em><strong>funciones de discriminación cuadrática y lineal, para la asignación de clases</strong></em>.</p>
 <div class="admonition-funciones-discriminantes admonition">
 <p class="admonition-title">Funciones discriminantes</p>
-<p>El proposito esencial del <strong>análisis discriminante</strong> es <code class="docutils literal notranslate"><span class="pre">construir</span> <span class="pre">una</span> <span class="pre">regla</span> <span class="pre">de</span> <span class="pre">clasificación</span> <span class="pre">basada</span> <span class="pre">en</span> <span class="pre">datos</span> <span class="pre">de</span> <span class="pre">entrenamiento,</span> <span class="pre">y</span> <span class="pre">predecir</span> <span class="pre">la</span> <span class="pre">pertenencia</span> <span class="pre">de</span> <span class="pre">datos</span> <span class="pre">futuros</span></code> <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">dos</span> <span class="pre">o</span> <span class="pre">mas</span> <span class="pre">clases</span> <span class="pre">predeterminadas</span></code>.</p>
+<p>El proposito esencial del <strong>análisis discriminante</strong> es <em><strong>construir una regla de clasificación basada en datos de entrenamiento, y predecir la pertenencia de datos futuros</strong></em> <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> <em><strong>a dos o mas clases predeterminadas</strong></em>.</p>
 </div>
-<p>Pongamos ahora esto en un <code class="docutils literal notranslate"><span class="pre">marco</span> <span class="pre">Bayesiano</span></code> considerando las dos clases <span class="math notranslate nohighlight">\(G_{1}\)</span> y <span class="math notranslate nohighlight">\(G_{2}\)</span>. Nuestro objetivo es obtener la <code class="docutils literal notranslate"><span class="pre">probabilidad</span> <span class="pre">posterior</span></code> <span class="math notranslate nohighlight">\(P(G_{i}|D) = P(G_{i}|x)\)</span> cuando el dato <span class="math notranslate nohighlight">\(D = \{x\}\)</span> es observado. Para ello, aplicamos el <code class="docutils literal notranslate"><span class="pre">Teorema</span> <span class="pre">de</span> <span class="pre">Bayes</span></code> para obtener la probabilidad posterior, y <code class="docutils literal notranslate"><span class="pre">asignamos</span> <span class="pre">los</span> <span class="pre">datos</span> <span class="pre">futuros</span></code> <span class="math notranslate nohighlight">\(x\)</span> <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">la</span> <span class="pre">clase</span> <span class="pre">con</span> <span class="pre">la</span> <span class="pre">probabilidad</span> <span class="pre">más</span> <span class="pre">alta</span></code>. Así, realizamos una <code class="docutils literal notranslate"><span class="pre">clasificación</span> <span class="pre">Bayesiana</span></code> basada en la <code class="docutils literal notranslate"><span class="pre">razón</span> <span class="pre">de</span> <span class="pre">las</span> <span class="pre">probabilidades</span> <span class="pre">posteriores</span></code></p>
+<p>Pongamos ahora esto en un <em><strong>marco Bayesiano</strong></em> considerando las dos clases <span class="math notranslate nohighlight">\(G_{1}\)</span> y <span class="math notranslate nohighlight">\(G_{2}\)</span>. Nuestro objetivo es obtener la <em><strong>probabilidad posterior</strong></em> <span class="math notranslate nohighlight">\(P(G_{i}|D) = P(G_{i}|x)\)</span> cuando el dato <span class="math notranslate nohighlight">\(D = \{x\}\)</span> es observado. Para ello, aplicamos el <em><strong>Teorema de Bayes</strong></em> para obtener la probabilidad posterior, y <em><strong>asignamos los datos futuros</strong></em> <span class="math notranslate nohighlight">\(x\)</span> <em><strong>a la clase con la probabilidad más alta</strong></em>. Así, realizamos una <em><strong>clasificación Bayesiana</strong></em> basada en la <em><strong>razón de las probabilidades posteriores</strong></em></p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \frac{P(G_{1}|\boldsymbol{x})}{P(G_{2}|\boldsymbol{x})}\quad
@@ -452,7 +452,7 @@ S_{i}=\frac{1}{n_{i}}\sum_{j=1}^{n_{i}}(\boldsymbol{x}_{j}^{(i)}-\overline{\bold
 &lt; 1 &amp; \Rightarrow~\boldsymbol{x}\in G_{2}.
 \end{cases}
 \end{split}\]</div>
-<p>Tomando <code class="docutils literal notranslate"><span class="pre">logaritmo</span></code> en ambos lados obtenemos</p>
+<p>Tomando <em><strong>logaritmo</strong></em> en ambos lados obtenemos</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \log\frac{P(G_{1}|\boldsymbol{x})}{P(G_{2}|\boldsymbol{x})}\quad
@@ -461,31 +461,31 @@ S_{i}=\frac{1}{n_{i}}\sum_{j=1}^{n_{i}}(\boldsymbol{x}_{j}^{(i)}-\overline{\bold
 &lt; 0 &amp; \Rightarrow~\boldsymbol{x}\in G_{2}.
 \end{cases}
 \end{split}\]</div>
-<p>Por el <code class="docutils literal notranslate"><span class="pre">Teorema</span> <span class="pre">de</span> <span class="pre">Bayes</span></code> Eq. <a class="reference internal" href="#equation-eq-bayes-theorem">(4.2)</a>, las probabilidades posteriores están dadas por</p>
+<p>Por el <em><strong>Teorema de Bayes</strong></em> Eq. <a class="reference internal" href="#equation-eq-bayes-theorem">(4.2)</a>, las probabilidades posteriores están dadas por</p>
 <div class="math notranslate nohighlight" id="equation-eq-bayes-normal">
 <span class="eqno">(4.4)<a class="headerlink" href="#equation-eq-bayes-normal" title="Link to this equation">#</a></span>\[
 P(G_{i}|\boldsymbol{x})=\frac{P(G_{i})P(\boldsymbol{x}|G_{i})}{P(G_{1})P(\boldsymbol{x}|G_{1})+P(G_{1})P(\boldsymbol{x}|G_{2})},\quad i=1,2.
 \]</div>
-<p>Usando las <code class="docutils literal notranslate"><span class="pre">distribuciones</span> <span class="pre">normales</span></code> <span class="math notranslate nohighlight">\(p\)</span><code class="docutils literal notranslate"><span class="pre">-dimensionales</span> <span class="pre">estimadas</span></code> <span class="math notranslate nohighlight">\(f(\boldsymbol{x}|\overline{\boldsymbol{x}}_{i}, S_{i})~(i=1,2)\)</span>, la <code class="docutils literal notranslate"><span class="pre">probabilidad</span> <span class="pre">condicional</span></code> puede ser escrita como</p>
+<p>Usando las <em><strong>distribuciones normales</strong></em> <span class="math notranslate nohighlight">\(p\)</span><em><strong>-dimensionales estimadas</strong></em> <span class="math notranslate nohighlight">\(f(\boldsymbol{x}|\overline{\boldsymbol{x}}_{i}, S_{i})~(i=1,2)\)</span>, la <em><strong>probabilidad condicional</strong></em> puede ser escrita como</p>
 <div class="math notranslate nohighlight">
 \[
 P(\boldsymbol{x}|G_{i})=\frac{f(\boldsymbol{x}|\overline{\boldsymbol{x}}_{i}, S_{i})}{f(\boldsymbol{x}|\overline{\boldsymbol{x}}_{1}, S_{1})+f(\boldsymbol{x}|\overline{\boldsymbol{x}}_{2}, S_{2})},\quad i=1,2,
 \]</div>
-<p>(ver <a class="reference internal" href="#fig-bayes-normal"><span class="std std-numref">Fig. 4.2</span></a>) representación del <code class="docutils literal notranslate"><span class="pre">nivel</span> <span class="pre">relativo</span> <span class="pre">de</span> <span class="pre">ocurrencia</span></code>.</p>
+<p>(ver <a class="reference internal" href="#fig-bayes-normal"><span class="std std-numref">Fig. 4.2</span></a>) representación del <em><strong>nivel relativo de ocurrencia</strong></em>.</p>
 <figure class="align-center" id="fig-bayes-normal">
 <a class="reference internal image-reference" href="_images/bayes_normal.png"><img alt="_images/bayes_normal.png" src="_images/bayes_normal.png" style="width: 394.0px; height: 303.6px;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 4.2 </span><span class="caption-text"><span class="math notranslate nohighlight">\(P(\boldsymbol{x}|G_{i})\)</span>. Nivel relativo de ocurrencia del dato <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> en cada clase. Fuente <span id="id2">[<a class="reference internal" href="biblio.html#id20" title="S. Konishi. Introduction to Multivariate Analysis: Linear and Nonlinear Modeling. Chapman &amp; Hall/CRC Texts in Statistical Science. Taylor &amp; Francis, 2014. ISBN 9781466567283. URL: https://books.google.com.co/books?id=fcuuAwAAQBAJ.">Konishi, 2014</a>]</span>.</span><a class="headerlink" href="#fig-bayes-normal" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
-<p>Sustituyendo estas ecuaciones en <a class="reference internal" href="#equation-eq-bayes-normal">(4.4)</a>, el radio de <code class="docutils literal notranslate"><span class="pre">probabilidades</span> <span class="pre">posteriores</span></code> es expresado como</p>
+<p>Sustituyendo estas ecuaciones en <a class="reference internal" href="#equation-eq-bayes-normal">(4.4)</a>, el radio de <em><strong>probabilidades posteriores</strong></em> es expresado como</p>
 <div class="math notranslate nohighlight">
 \[
 \frac{P(G_{1}|\boldsymbol{x})}{P(G_{2}|\boldsymbol{x})}=
 \frac{P(G_{1})P(\boldsymbol{x}|G_{1})}{P(G_{2})P(\boldsymbol{x}|G_{2})}=
 \frac{P(G_{1})f(\boldsymbol{x}|\overline{\boldsymbol{x}}_{1}, S_{1})}{P(G_{2})f(\boldsymbol{x}|\overline{\boldsymbol{x}}_{2}, S_{2})}
 \]</div>
-<p><code class="docutils literal notranslate"><span class="pre">Tomando</span> <span class="pre">el</span> <span class="pre">logaritmo</span></code> de esta expresión, <code class="docutils literal notranslate"><span class="pre">bajo</span> <span class="pre">el</span> <span class="pre">supuesto</span> <span class="pre">de</span> <span class="pre">que</span> <span class="pre">las</span> <span class="pre">probabilidades</span> <span class="pre">a</span> <span class="pre">priori</span> <span class="pre">son</span> <span class="pre">iguales</span></code>, obtenemos la <code class="docutils literal notranslate"><span class="pre">clasificación</span> <span class="pre">Bayesiana</span></code> basada en la distribución de probabilidad</p>
+<p><em><strong>Tomando el logaritmo</strong></em> de esta expresión, <em><strong>bajo el supuesto de que las probabilidades a priori son iguales</strong></em>, obtenemos la <em><strong>clasificación Bayesiana</strong></em> basada en la distribución de probabilidad</p>
 <div class="math notranslate nohighlight" id="equation-bayes-class-rule">
 <span class="eqno">(4.5)<a class="headerlink" href="#equation-bayes-class-rule" title="Link to this equation">#</a></span>\[\begin{split}
 h(\boldsymbol{x})=\log\frac{f(\boldsymbol{x}|\overline{\boldsymbol{x}}_{1}, S_{1})}{f(\boldsymbol{x}|\overline{\boldsymbol{x}}_{2}, S_{2})}\quad
@@ -494,12 +494,12 @@ h(\boldsymbol{x})=\log\frac{f(\boldsymbol{x}|\overline{\boldsymbol{x}}_{1}, S_{1
 &lt; 0 &amp;\Rightarrow~\boldsymbol{x}\in G_{2}
 \end{cases}
 \end{split}\]</div>
-<p>Dada la <code class="docutils literal notranslate"><span class="pre">distribución</span> <span class="pre">normal</span></code> <span class="math notranslate nohighlight">\(p-\)</span>dimensional estimada <span class="math notranslate nohighlight">\(N_{p}(\overline{\boldsymbol{x}}_{i}, S_{i})~(i=1,2)\)</span>, se tiene que:</p>
+<p>Dada la <em><strong>distribución normal</strong></em> <span class="math notranslate nohighlight">\(p-\)</span>dimensional estimada <span class="math notranslate nohighlight">\(N_{p}(\overline{\boldsymbol{x}}_{i}, S_{i})~(i=1,2)\)</span>, se tiene que:</p>
 <div class="math notranslate nohighlight">
 \[
 f(\boldsymbol{x}|\boldsymbol{x}_{i}, S_{i})=\frac{1}{(2\pi)^{p/2}|S_{i}|^{1/2}}\exp\left[-\frac{1}{2}(\boldsymbol{x}-\overline{\boldsymbol{x}}_{i})^{T}S_{i}^{-1}(\boldsymbol{x}-\overline{\boldsymbol{x}}_{i})\right]
 \]</div>
-<p>Entonces, la <code class="docutils literal notranslate"><span class="pre">función</span> <span class="pre">discriminante</span></code> <span class="math notranslate nohighlight">\(h(\boldsymbol{x})\)</span> esta dada por:</p>
+<p>Entonces, la <em><strong>función discriminante</strong></em> <span class="math notranslate nohighlight">\(h(\boldsymbol{x})\)</span> esta dada por:</p>
 <div class="math notranslate nohighlight" id="equation-quad-disc-eq">
 <span class="eqno">(4.6)<a class="headerlink" href="#equation-quad-disc-eq" title="Link to this equation">#</a></span>\[\begin{split}
 \begin{align*}
@@ -509,7 +509,7 @@ h(\boldsymbol{x})&amp;=\log f(\boldsymbol{x}|\overline{\boldsymbol{x}}_{1}, S_{1
 &amp;=\frac{1}{2}\left\{(\boldsymbol{x}-\overline{\boldsymbol{x}}_{2})^{T}S_{2}^{-1}(\boldsymbol{x}-\overline{\boldsymbol{x}}_{2})-(\boldsymbol{x}-\overline{\boldsymbol{x}}_{1})^{T}S_{1}^{-1}(\boldsymbol{x}-\overline{\boldsymbol{x}}_{1})-\log\left(\frac{|S_{1}|}{|S_{2}|}\right)\right\}.
 \end{align*}
 \end{split}\]</div>
-<p>La función <span class="math notranslate nohighlight">\(h(\boldsymbol{x})\)</span> de la Eq. <a class="reference internal" href="#equation-quad-disc-eq">(4.6)</a> es conocida como <code class="docutils literal notranslate"><span class="pre">función</span> <span class="pre">discriminante</span> <span class="pre">cuadratica</span></code>. Reemplazando <span class="math notranslate nohighlight">\(S_{i}\)</span> con la <code class="docutils literal notranslate"><span class="pre">matriz</span> <span class="pre">de</span> <span class="pre">varianza-covarianza</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">muestra</span> <span class="pre">conjunta</span></code> <span class="math notranslate nohighlight">\(S=(n_{1}S_{1}+n_{2}S_{2})/(n_{1}+n_{2})\)</span>, la función discriminante es además reducida a la <code class="docutils literal notranslate"><span class="pre">función</span> <span class="pre">discriminante</span> <span class="pre">lineal</span></code> (<em>verifíquelo</em>)</p>
+<p>La función <span class="math notranslate nohighlight">\(h(\boldsymbol{x})\)</span> de la Eq. <a class="reference internal" href="#equation-quad-disc-eq">(4.6)</a> es conocida como <em><strong>función discriminante cuadratica</strong></em>. Reemplazando <span class="math notranslate nohighlight">\(S_{i}\)</span> con la <em><strong>matriz de varianza-covarianza de la muestra conjunta</strong></em> <span class="math notranslate nohighlight">\(S=(n_{1}S_{1}+n_{2}S_{2})/(n_{1}+n_{2})\)</span>, la función discriminante es además reducida a la <em><strong>función discriminante lineal</strong></em> (<em>verifíquelo</em>)</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{align*}
@@ -517,7 +517,7 @@ h(\boldsymbol{x})&amp;=\frac{1}{2}(\boldsymbol{x}-\overline{\boldsymbol{x}}_{2})
 &amp;=(\boldsymbol{x}_{1}-\overline{\boldsymbol{x}}_{2})^{T}S^{-1}\boldsymbol{x}-\frac{1}{2}(\overline{\boldsymbol{x}}_{1}^{T}S^{-1}\overline{\boldsymbol{x}}_{1}-\overline{\boldsymbol{x}}_{2}^{T}S^{-1}\overline{\boldsymbol{x}}_{2})
 \end{align*}
 \end{split}\]</div>
-<p>De esta forma, obtenemos la <code class="docutils literal notranslate"><span class="pre">regla</span> <span class="pre">de</span> <span class="pre">clasificación</span> <span class="pre">de</span> <span class="pre">Bayes</span></code> <a class="reference internal" href="#equation-bayes-class-rule">(4.5)</a> basada en el <code class="docutils literal notranslate"><span class="pre">signo</span> <span class="pre">del</span> <span class="pre">logaritmo</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">razón</span> <span class="pre">entre</span> <span class="pre">la</span> <span class="pre">distribución</span> <span class="pre">de</span> <span class="pre">probabilidad</span> <span class="pre">estimada</span> <span class="pre">que</span> <span class="pre">caracteriza</span> <span class="pre">la</span> <span class="pre">clase</span></code>. La función <span class="math notranslate nohighlight">\(h(\boldsymbol{x})\)</span> expresada por la distribución normal <span class="math notranslate nohighlight">\(p\)</span>-dimensional entrega las <code class="docutils literal notranslate"><span class="pre">funciones</span> <span class="pre">discriminantes</span> <span class="pre">lineales</span> <span class="pre">y</span> <span class="pre">cuadráticas</span></code>.</p>
+<p>De esta forma, obtenemos la <em><strong>regla de clasificación de Bayes</strong></em> <a class="reference internal" href="#equation-bayes-class-rule">(4.5)</a> basada en el <em><strong>signo del logaritmo de la razón entre la distribución de probabilidad estimada que caracteriza la clase</strong></em>. La función <span class="math notranslate nohighlight">\(h(\boldsymbol{x})\)</span> expresada por la distribución normal <span class="math notranslate nohighlight">\(p\)</span>-dimensional entrega las <em><strong>funciones discriminantes lineales y cuadráticas</strong></em>.</p>
 </section>
 <section id="aplicacion-titanic-dataset">
 <h2><span class="section-number">4.2. </span>Aplicación: Titanic Dataset<a class="headerlink" href="#aplicacion-titanic-dataset" title="Link to this heading">#</a></h2>
@@ -525,8 +525,8 @@ h(\boldsymbol{x})&amp;=\frac{1}{2}(\boldsymbol{x}-\overline{\boldsymbol{x}}_{2})
 <img alt="_images/titanic_pic.jpeg" src="_images/titanic_pic.jpeg" />
 </figure>
 <ul class="simple">
-<li><p>El <code class="docutils literal notranslate"><span class="pre">Titanic</span></code>, barco británico de la <code class="docutils literal notranslate"><span class="pre">White</span> <span class="pre">Star</span> <span class="pre">Line</span></code>, se hundió en el <code class="docutils literal notranslate"><span class="pre">Atlántico</span> <span class="pre">Norte</span> <span class="pre">el</span> <span class="pre">15</span> <span class="pre">de</span> <span class="pre">abril</span> <span class="pre">de</span> <span class="pre">1912</span></code> después de <code class="docutils literal notranslate"><span class="pre">golpear</span> <span class="pre">un</span> <span class="pre">iceberg</span></code> en su <code class="docutils literal notranslate"><span class="pre">viaje</span> <span class="pre">de</span> <span class="pre">Southampton</span> <span class="pre">a</span> <span class="pre">Nueva</span> <span class="pre">York</span></code>. A bordo había <code class="docutils literal notranslate"><span class="pre">2,224</span> <span class="pre">personas</span></code>, incluyendo pasajeros y tripulación, y <code class="docutils literal notranslate"><span class="pre">1,514</span> <span class="pre">murieron</span></code>.</p></li>
-<li><p>El Titanic tenía <code class="docutils literal notranslate"><span class="pre">16</span> <span class="pre">botes</span> <span class="pre">salvavidas</span> <span class="pre">de</span> <span class="pre">madera</span> <span class="pre">y</span> <span class="pre">cuatro</span> <span class="pre">plegables,</span> <span class="pre">suficientes</span> <span class="pre">para</span> <span class="pre">solo</span> <span class="pre">1,178</span> <span class="pre">personas</span></code>, un tercio de su capacidad total y el <code class="docutils literal notranslate"><span class="pre">53%</span> <span class="pre">de</span> <span class="pre">los</span> <span class="pre">pasajeros</span> <span class="pre">reales</span></code>. En ese momento, <code class="docutils literal notranslate"><span class="pre">los</span> <span class="pre">botes</span> <span class="pre">salvavidas</span> <span class="pre">se</span> <span class="pre">usaban</span> <span class="pre">para</span> <span class="pre">trasladar</span> <span class="pre">a</span> <span class="pre">los</span> <span class="pre">sobrevivientes</span> <span class="pre">a</span> <span class="pre">otros</span> <span class="pre">barcos</span></code>, no para mantener a flote o llevar a todos a la costa.</p></li>
+<li><p>El <em><strong>Titanic</strong></em>, barco británico de la <em><strong>White Star Line</strong></em>, se hundió en el <em><strong>Atlántico Norte el 15 de abril de 1912</strong></em> después de <em><strong>golpear un iceberg</strong></em> en su <em><strong>viaje de Southampton a Nueva York</strong></em>. A bordo había <em><strong>2,224 personas</strong></em>, incluyendo pasajeros y tripulación, y <em><strong>1,514 murieron</strong></em>.</p></li>
+<li><p>El Titanic tenía <em><strong>16 botes salvavidas de madera y cuatro plegables, suficientes para solo 1,178 personas</strong></em>, un tercio de su capacidad total y el <em><strong>53% de los pasajeros reales</strong></em>. En ese momento, <em><strong>los botes salvavidas se usaban para trasladar a los sobrevivientes a otros barcos</strong></em>, no para mantener a flote o llevar a todos a la costa.</p></li>
 <li><p>La pregunta principal es <strong><code class="docutils literal notranslate"><span class="pre">¿quiénes</span> <span class="pre">tenían</span> <span class="pre">más</span> <span class="pre">probabilidades</span> <span class="pre">de</span> <span class="pre">sobrevivir</span> <span class="pre">en</span> <span class="pre">esta</span> <span class="pre">tragedia?</span></code></strong>.</p></li>
 </ul>
 <div class="cell docutils container">
@@ -1394,7 +1394,7 @@ Name: count, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/bff127fec32bf175210109713eab194f71f4ef0f9d4dda843a960c093ac39a27.png" src="_images/bff127fec32bf175210109713eab194f71f4ef0f9d4dda843a960c093ac39a27.png" />
+<img alt="_images/877802c2b06c378352b7db4f97cbf0b71cd64e0b7f167e6c85c2c6bcf52a22fa.png" src="_images/877802c2b06c378352b7db4f97cbf0b71cd64e0b7f167e6c85c2c6bcf52a22fa.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1427,7 +1427,7 @@ Name: proportion, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ac09d7c7dce48e392227c8c6b8de6b2a142689d1a4e6aed24091ebd409aba160.png" src="_images/ac09d7c7dce48e392227c8c6b8de6b2a142689d1a4e6aed24091ebd409aba160.png" />
+<img alt="_images/4f69a3ebb53d826f81789d68211b5359f8a36270c4c733c068e9c351786e6957.png" src="_images/4f69a3ebb53d826f81789d68211b5359f8a36270c4c733c068e9c351786e6957.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1498,7 +1498,7 @@ Name: proportion, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/19b6c80d2024a8505b970a2702a6184ca03ca1c486c8e2d5fa4ee721c2c739ef.png" src="_images/19b6c80d2024a8505b970a2702a6184ca03ca1c486c8e2d5fa4ee721c2c739ef.png" />
+<img alt="_images/cc6115f218afe6b65fa0f383df2c726ad30d1a49953aac83854967a17fdc55f7.png" src="_images/cc6115f218afe6b65fa0f383df2c726ad30d1a49953aac83854967a17fdc55f7.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1761,7 +1761,7 @@ Name: proportion, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/30cc24a4434faa291ef3db071ac85567a0a5b7076707b28607fe3c8e1de6113d.png" src="_images/30cc24a4434faa291ef3db071ac85567a0a5b7076707b28607fe3c8e1de6113d.png" />
+<img alt="_images/9d8e29fd1a1201d9c9f5ea4d839882f8d249500db19f0f3f561852bf665fba32.png" src="_images/9d8e29fd1a1201d9c9f5ea4d839882f8d249500db19f0f3f561852bf665fba32.png" />
 </div>
 </div>
 <ul class="simple">
@@ -1816,7 +1816,128 @@ Name: proportion, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ad6de9350aa3d088713c5d38011112cabb72498660e63a68c86249fb86a969b5.png" src="_images/ad6de9350aa3d088713c5d38011112cabb72498660e63a68c86249fb86a969b5.png" />
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">24</span><span class="p">],</span> <span class="n">line</span> <span class="mi">5</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">131</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">palette</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">cubehelix_palette</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">start</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">5</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">all_data</span><span class="p">[</span><span class="s1">&#39;Embarked&#39;</span><span class="p">],</span> <span class="n">palette</span> <span class="o">=</span> <span class="n">palette</span><span class="p">,</span> <span class="n">order</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;Q&#39;</span><span class="p">,</span> <span class="s1">&#39;S&#39;</span><span class="p">],</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">ax1</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Number of passengers by Embarked&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Number of passengers&#39;</span><span class="p">);</span>
+
+<span class="nn">File ~/.local/lib/python3.10/site-packages/seaborn/categorical.py:2651,</span> in <span class="ni">countplot</span><span class="nt">(data, x, y, hue, order, hue_order, orient, color, palette, saturation, fill, hue_norm, stat, width, dodge, gap, log_scale, native_scale, formatter, legend, ax, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2648</span>     <span class="n">dodge</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">_dodge_needed</span><span class="p">()</span>
+<span class="g g-Whitespace">   </span><span class="mi">2650</span> <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">var_types</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">orient</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;categorical&quot;</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">native_scale</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">2651</span>     <span class="n">p</span><span class="o">.</span><span class="n">scale_categorical</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">orient</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">,</span> <span class="n">formatter</span><span class="o">=</span><span class="n">formatter</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2653</span> <span class="n">p</span><span class="o">.</span><span class="n">_attach</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">log_scale</span><span class="o">=</span><span class="n">log_scale</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2655</span> <span class="c1"># Deprecations to remove in v0.14.0.</span>
+
+<span class="nn">File ~/.local/lib/python3.10/site-packages/seaborn/_base.py:1447,</span> in <span class="ni">VectorPlotter.scale_categorical</span><span class="nt">(self, axis, order, formatter)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1444</span> <span class="bp">self</span><span class="o">.</span><span class="n">var_types</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;categorical&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1446</span> <span class="c1"># Put the string-typed categorical vector back into the plot_data structure</span>
+<span class="ne">-&gt; </span><span class="mi">1447</span> <span class="bp">self</span><span class="o">.</span><span class="n">plot_data</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span> <span class="o">=</span> <span class="n">cat_data</span>
+<span class="g g-Whitespace">   </span><span class="mi">1449</span> <span class="k">return</span> <span class="bp">self</span>
+
+<span class="nn">File ~/.local/lib/python3.10/site-packages/pandas/core/frame.py:4311,</span> in <span class="ni">DataFrame.__setitem__</span><span class="nt">(self, key, value)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4308</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_setitem_array</span><span class="p">([</span><span class="n">key</span><span class="p">],</span> <span class="n">value</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4309</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">4310</span>     <span class="c1"># set column</span>
+<span class="ne">-&gt; </span><span class="mi">4311</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_set_item</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+
+<span class="nn">File ~/.local/lib/python3.10/site-packages/pandas/core/frame.py:4524,</span> in <span class="ni">DataFrame._set_item</span><span class="nt">(self, key, value)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4514</span> <span class="k">def</span> <span class="nf">_set_item</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">4515</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">4516</span><span class="sd">     Add series to DataFrame in specified column.</span>
+<span class="g g-Whitespace">   </span><span class="mi">4517</span><span class="sd"> </span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4522</span><span class="sd">     ensure homogeneity.</span>
+<span class="g g-Whitespace">   </span><span class="mi">4523</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">4524</span>     <span class="n">value</span><span class="p">,</span> <span class="n">refs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sanitize_column</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4526</span>     <span class="k">if</span> <span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">4527</span>         <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">columns</span>
+<span class="g g-Whitespace">   </span><span class="mi">4528</span>         <span class="ow">and</span> <span class="n">value</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span>
+<span class="g g-Whitespace">   </span><span class="mi">4529</span>         <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">ExtensionDtype</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4530</span>     <span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">4531</span>         <span class="c1"># broadcast across multiple columns if necessary</span>
+<span class="g g-Whitespace">   </span><span class="mi">4532</span>         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">is_unique</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">MultiIndex</span><span class="p">):</span>
+
+<span class="nn">File ~/.local/lib/python3.10/site-packages/pandas/core/frame.py:5263,</span> in <span class="ni">DataFrame._sanitize_column</span><span class="nt">(self, value)</span>
+<span class="g g-Whitespace">   </span><span class="mi">5261</span>     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">Series</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">5262</span>         <span class="n">value</span> <span class="o">=</span> <span class="n">Series</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">5263</span>     <span class="k">return</span> <span class="n">_reindex_for_setitem</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">5265</span> <span class="k">if</span> <span class="n">is_list_like</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">5266</span>     <span class="n">com</span><span class="o">.</span><span class="n">require_length_match</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+
+<span class="nn">File ~/.local/lib/python3.10/site-packages/pandas/core/frame.py:12692,</span> in <span class="ni">_reindex_for_setitem</span><span class="nt">(value, index)</span>
+<span class="g g-Whitespace">  </span><span class="mi">12688</span> <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+<span class="g g-Whitespace">  </span><span class="mi">12689</span>     <span class="c1"># raised in MultiIndex.from_tuples, see test_insert_error_msmgs</span>
+<span class="g g-Whitespace">  </span><span class="mi">12690</span>     <span class="k">if</span> <span class="ow">not</span> <span class="n">value</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">is_unique</span><span class="p">:</span>
+<span class="g g-Whitespace">  </span><span class="mi">12691</span>         <span class="c1"># duplicate axis</span>
+<span class="ne">&gt; </span><span class="mi">12692</span>         <span class="k">raise</span> <span class="n">err</span>
+<span class="g g-Whitespace">  </span><span class="mi">12694</span>     <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+<span class="g g-Whitespace">  </span><span class="mi">12695</span>         <span class="s2">&quot;incompatible index of inserted column with frame index&quot;</span>
+<span class="g g-Whitespace">  </span><span class="mi">12696</span>     <span class="p">)</span> <span class="kn">from</span> <span class="nn">err</span>
+<span class="g g-Whitespace">  </span><span class="mi">12697</span> <span class="k">return</span> <span class="n">reindexed_value</span><span class="p">,</span> <span class="kc">None</span>
+
+<span class="nn">File ~/.local/lib/python3.10/site-packages/pandas/core/frame.py:12687,</span> in <span class="ni">_reindex_for_setitem</span><span class="nt">(value, index)</span>
+<span class="g g-Whitespace">  </span><span class="mi">12685</span> <span class="c1"># GH#4107</span>
+<span class="g g-Whitespace">  </span><span class="mi">12686</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">&gt; </span><span class="mi">12687</span>     <span class="n">reindexed_value</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">index</span><span class="p">)</span><span class="o">.</span><span class="n">_values</span>
+<span class="g g-Whitespace">  </span><span class="mi">12688</span> <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+<span class="g g-Whitespace">  </span><span class="mi">12689</span>     <span class="c1"># raised in MultiIndex.from_tuples, see test_insert_error_msmgs</span>
+<span class="g g-Whitespace">  </span><span class="mi">12690</span>     <span class="k">if</span> <span class="ow">not</span> <span class="n">value</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">is_unique</span><span class="p">:</span>
+<span class="g g-Whitespace">  </span><span class="mi">12691</span>         <span class="c1"># duplicate axis</span>
+
+<span class="nn">File ~/.local/lib/python3.10/site-packages/pandas/core/series.py:5153,</span> in <span class="ni">Series.reindex</span><span class="nt">(self, index, axis, method, copy, level, fill_value, limit, tolerance)</span>
+<span class="g g-Whitespace">   </span><span class="mi">5136</span> <span class="nd">@doc</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">5137</span>     <span class="n">NDFrame</span><span class="o">.</span><span class="n">reindex</span><span class="p">,</span>  <span class="c1"># type: ignore[has-type]</span>
+<span class="g g-Whitespace">   </span><span class="mi">5138</span>     <span class="n">klass</span><span class="o">=</span><span class="n">_shared_doc_kwargs</span><span class="p">[</span><span class="s2">&quot;klass&quot;</span><span class="p">],</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">5151</span>     <span class="n">tolerance</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">5152</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Series</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">5153</span>     <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">5154</span>         <span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">5155</span>         <span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">5156</span>         <span class="n">copy</span><span class="o">=</span><span class="n">copy</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">5157</span>         <span class="n">level</span><span class="o">=</span><span class="n">level</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">5158</span>         <span class="n">fill_value</span><span class="o">=</span><span class="n">fill_value</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">5159</span>         <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">5160</span>         <span class="n">tolerance</span><span class="o">=</span><span class="n">tolerance</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">5161</span>     <span class="p">)</span>
+
+<span class="nn">File ~/.local/lib/python3.10/site-packages/pandas/core/generic.py:5610,</span> in <span class="ni">NDFrame.reindex</span><span class="nt">(self, labels, index, columns, axis, method, copy, level, fill_value, limit, tolerance)</span>
+<span class="g g-Whitespace">   </span><span class="mi">5607</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reindex_multi</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="n">copy</span><span class="p">,</span> <span class="n">fill_value</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">5609</span> <span class="c1"># perform the reindex on the axes</span>
+<span class="ne">-&gt; </span><span class="mi">5610</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reindex_axes</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">5611</span>     <span class="n">axes</span><span class="p">,</span> <span class="n">level</span><span class="p">,</span> <span class="n">limit</span><span class="p">,</span> <span class="n">tolerance</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">fill_value</span><span class="p">,</span> <span class="n">copy</span>
+<span class="g g-Whitespace">   </span><span class="mi">5612</span> <span class="p">)</span><span class="o">.</span><span class="n">__finalize__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;reindex&quot;</span><span class="p">)</span>
+
+<span class="nn">File ~/.local/lib/python3.10/site-packages/pandas/core/generic.py:5633,</span> in <span class="ni">NDFrame._reindex_axes</span><span class="nt">(self, axes, level, limit, tolerance, method, fill_value, copy)</span>
+<span class="g g-Whitespace">   </span><span class="mi">5630</span>     <span class="k">continue</span>
+<span class="g g-Whitespace">   </span><span class="mi">5632</span> <span class="n">ax</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_axis</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">5633</span> <span class="n">new_index</span><span class="p">,</span> <span class="n">indexer</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">5634</span>     <span class="n">labels</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="n">level</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">,</span> <span class="n">tolerance</span><span class="o">=</span><span class="n">tolerance</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="n">method</span>
+<span class="g g-Whitespace">   </span><span class="mi">5635</span> <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">5637</span> <span class="n">axis</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_axis_number</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">5638</span> <span class="n">obj</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">_reindex_with_indexers</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">5639</span>     <span class="p">{</span><span class="n">axis</span><span class="p">:</span> <span class="p">[</span><span class="n">new_index</span><span class="p">,</span> <span class="n">indexer</span><span class="p">]},</span>
+<span class="g g-Whitespace">   </span><span class="mi">5640</span>     <span class="n">fill_value</span><span class="o">=</span><span class="n">fill_value</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">5641</span>     <span class="n">copy</span><span class="o">=</span><span class="n">copy</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">5642</span>     <span class="n">allow_dups</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">5643</span> <span class="p">)</span>
+
+<span class="nn">File ~/.local/lib/python3.10/site-packages/pandas/core/indexes/base.py:4429,</span> in <span class="ni">Index.reindex</span><span class="nt">(self, target, method, level, limit, tolerance)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4426</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;cannot handle a non-unique multi-index!&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4427</span> <span class="k">elif</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_unique</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">4428</span>     <span class="c1"># GH#42568</span>
+<span class="ne">-&gt; </span><span class="mi">4429</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;cannot reindex on an axis with duplicate labels&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4430</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">4431</span>     <span class="n">indexer</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_indexer_non_unique</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
+
+<span class="ne">ValueError</span>: cannot reindex on an axis with duplicate labels
+</pre></div>
+</div>
+<img alt="_images/68670bbe9c92632190954ebeb7e10cd2b8d2d11af8b01055a7353f990ed2bdb0.png" src="_images/68670bbe9c92632190954ebeb7e10cd2b8d2d11af8b01055a7353f990ed2bdb0.png" />
 </div>
 </div>
 <ul class="simple">
@@ -1839,118 +1960,6 @@ Name: proportion, dtype: float64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>PassengerId</th>
-      <th>Survived</th>
-      <th>Pclass</th>
-      <th>Name</th>
-      <th>Sex</th>
-      <th>Age</th>
-      <th>SibSp</th>
-      <th>Parch</th>
-      <th>Ticket</th>
-      <th>Fare</th>
-      <th>Cabin</th>
-      <th>Embarked</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>1</td>
-      <td>0</td>
-      <td>3</td>
-      <td>Braund, Mr. Owen Harris</td>
-      <td>male</td>
-      <td>22.0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>A/5 21171</td>
-      <td>7.2500</td>
-      <td>NaN</td>
-      <td>S</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2</td>
-      <td>1</td>
-      <td>1</td>
-      <td>Cumings, Mrs. John Bradley (Florence Briggs Th...</td>
-      <td>female</td>
-      <td>38.0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>PC 17599</td>
-      <td>71.2833</td>
-      <td>C85</td>
-      <td>C</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>3</td>
-      <td>1</td>
-      <td>3</td>
-      <td>Heikkinen, Miss. Laina</td>
-      <td>female</td>
-      <td>26.0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>STON/O2. 3101282</td>
-      <td>7.9250</td>
-      <td>NaN</td>
-      <td>S</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>4</td>
-      <td>1</td>
-      <td>1</td>
-      <td>Futrelle, Mrs. Jacques Heath (Lily May Peel)</td>
-      <td>female</td>
-      <td>35.0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>113803</td>
-      <td>53.1000</td>
-      <td>C123</td>
-      <td>S</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>5</td>
-      <td>0</td>
-      <td>3</td>
-      <td>Allen, Mr. William Henry</td>
-      <td>male</td>
-      <td>35.0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>373450</td>
-      <td>8.0500</td>
-      <td>NaN</td>
-      <td>S</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1966,149 +1975,6 @@ Name: proportion, dtype: float64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Survived</th>
-      <th>Pclass</th>
-      <th>Sex</th>
-      <th>Age</th>
-      <th>SibSp</th>
-      <th>Parch</th>
-      <th>Fare</th>
-      <th>Embarked</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>0</td>
-      <td>3</td>
-      <td>male</td>
-      <td>22.0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>7.2500</td>
-      <td>S</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>1</td>
-      <td>1</td>
-      <td>female</td>
-      <td>38.0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>71.2833</td>
-      <td>C</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>1</td>
-      <td>3</td>
-      <td>female</td>
-      <td>26.0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>7.9250</td>
-      <td>S</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>1</td>
-      <td>1</td>
-      <td>female</td>
-      <td>35.0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>53.1000</td>
-      <td>S</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>0</td>
-      <td>3</td>
-      <td>male</td>
-      <td>35.0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>8.0500</td>
-      <td>S</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>0</td>
-      <td>1</td>
-      <td>male</td>
-      <td>54.0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>51.8625</td>
-      <td>S</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>0</td>
-      <td>3</td>
-      <td>male</td>
-      <td>2.0</td>
-      <td>3</td>
-      <td>1</td>
-      <td>21.0750</td>
-      <td>S</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>1</td>
-      <td>3</td>
-      <td>female</td>
-      <td>27.0</td>
-      <td>0</td>
-      <td>2</td>
-      <td>11.1333</td>
-      <td>S</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>1</td>
-      <td>2</td>
-      <td>female</td>
-      <td>14.0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>30.0708</td>
-      <td>C</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>1</td>
-      <td>3</td>
-      <td>female</td>
-      <td>4.0</td>
-      <td>1</td>
-      <td>1</td>
-      <td>16.7000</td>
-      <td>S</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2124,138 +1990,6 @@ Name: proportion, dtype: float64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Pclass</th>
-      <th>Sex</th>
-      <th>Age</th>
-      <th>SibSp</th>
-      <th>Parch</th>
-      <th>Fare</th>
-      <th>Embarked</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>3</td>
-      <td>male</td>
-      <td>34.5</td>
-      <td>0</td>
-      <td>0</td>
-      <td>7.8292</td>
-      <td>Q</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>3</td>
-      <td>female</td>
-      <td>47.0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>7.0000</td>
-      <td>S</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>2</td>
-      <td>male</td>
-      <td>62.0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>9.6875</td>
-      <td>Q</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>3</td>
-      <td>male</td>
-      <td>27.0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>8.6625</td>
-      <td>S</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>3</td>
-      <td>female</td>
-      <td>22.0</td>
-      <td>1</td>
-      <td>1</td>
-      <td>12.2875</td>
-      <td>S</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>3</td>
-      <td>male</td>
-      <td>14.0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>9.2250</td>
-      <td>S</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>3</td>
-      <td>female</td>
-      <td>30.0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>7.6292</td>
-      <td>Q</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>2</td>
-      <td>male</td>
-      <td>26.0</td>
-      <td>1</td>
-      <td>1</td>
-      <td>29.0000</td>
-      <td>S</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>3</td>
-      <td>female</td>
-      <td>18.0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>7.2292</td>
-      <td>C</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>3</td>
-      <td>male</td>
-      <td>21.0</td>
-      <td>2</td>
-      <td>0</td>
-      <td>24.1500</td>
-      <td>S</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 <ul class="simple">
 <li><p>Con el objetivo de evitar (<code class="docutils literal notranslate"><span class="pre">dummy</span> <span class="pre">variable</span> <span class="pre">trap</span></code>), <code class="docutils literal notranslate"><span class="pre">eliminamos</span> <span class="pre">la</span> <span class="pre">primera</span> <span class="pre">columna</span></code> (<em>puede ser cualquier otra</em>).</p></li>
@@ -2288,171 +2022,6 @@ Name: proportion, dtype: float64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Survived</th>
-      <th>Age</th>
-      <th>SibSp</th>
-      <th>Parch</th>
-      <th>Fare</th>
-      <th>Sex_male</th>
-      <th>Embarked_Q</th>
-      <th>Embarked_S</th>
-      <th>Pclass_2</th>
-      <th>Pclass_3</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>0</td>
-      <td>22.0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>7.2500</td>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>1</td>
-      <td>38.0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>71.2833</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>1</td>
-      <td>26.0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>7.9250</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>1</td>
-      <td>35.0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>53.1000</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>0</td>
-      <td>35.0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>8.0500</td>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>0</td>
-      <td>54.0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>51.8625</td>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>0</td>
-      <td>2.0</td>
-      <td>3</td>
-      <td>1</td>
-      <td>21.0750</td>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>1</td>
-      <td>27.0</td>
-      <td>0</td>
-      <td>2</td>
-      <td>11.1333</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>1</td>
-      <td>14.0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>30.0708</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>1</td>
-      <td>4.0</td>
-      <td>1</td>
-      <td>1</td>
-      <td>16.7000</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2468,160 +2037,6 @@ Name: proportion, dtype: float64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Age</th>
-      <th>SibSp</th>
-      <th>Parch</th>
-      <th>Fare</th>
-      <th>Sex_male</th>
-      <th>Embarked_Q</th>
-      <th>Embarked_S</th>
-      <th>Pclass_2</th>
-      <th>Pclass_3</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>34.5</td>
-      <td>0</td>
-      <td>0</td>
-      <td>7.8292</td>
-      <td>1</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>47.0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>7.0000</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>62.0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>9.6875</td>
-      <td>1</td>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>27.0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>8.6625</td>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>22.0</td>
-      <td>1</td>
-      <td>1</td>
-      <td>12.2875</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>14.0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>9.2250</td>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>30.0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>7.6292</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>26.0</td>
-      <td>1</td>
-      <td>1</td>
-      <td>29.0000</td>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>18.0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>7.2292</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>21.0</td>
-      <td>2</td>
-      <td>0</td>
-      <td>24.1500</td>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2629,51 +2044,10 @@ Name: proportion, dtype: float64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
-Index: 712 entries, 0 to 890
-Data columns (total 10 columns):
- #   Column      Non-Null Count  Dtype  
----  ------      --------------  -----  
- 0   Survived    712 non-null    int64  
- 1   Age         712 non-null    float64
- 2   SibSp       712 non-null    int64  
- 3   Parch       712 non-null    int64  
- 4   Fare        712 non-null    float64
- 5   Sex_male    712 non-null    int64  
- 6   Embarked_Q  712 non-null    int64  
- 7   Embarked_S  712 non-null    int64  
- 8   Pclass_2    712 non-null    int64  
- 9   Pclass_3    712 non-null    int64  
-dtypes: float64(2), int64(8)
-memory usage: 61.2 KB
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_test_ml</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
-Index: 331 entries, 0 to 415
-Data columns (total 9 columns):
- #   Column      Non-Null Count  Dtype  
----  ------      --------------  -----  
- 0   Age         331 non-null    float64
- 1   SibSp       331 non-null    int64  
- 2   Parch       331 non-null    int64  
- 3   Fare        331 non-null    float64
- 4   Sex_male    331 non-null    int64  
- 5   Embarked_Q  331 non-null    int64  
- 6   Embarked_S  331 non-null    int64  
- 7   Pclass_2    331 non-null    int64  
- 8   Pclass_3    331 non-null    int64  
-dtypes: float64(2), int64(7)
-memory usage: 25.9 KB
 </pre></div>
 </div>
 </div>
@@ -2690,9 +2064,6 @@ memory usage: 25.9 KB
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/1cc68a30d71065ea71528de4af0057daa58e7eb5804568cf25cea9d507196cc3.png" src="_images/1cc68a30d71065ea71528de4af0057daa58e7eb5804568cf25cea9d507196cc3.png" />
 </div>
 </div>
 <ul class="simple">
@@ -2741,8 +2112,6 @@ memory usage: 25.9 KB
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><style>#sk-container-id-1 {color: black;}#sk-container-id-1 pre{padding: 0;}#sk-container-id-1 div.sk-toggleable {background-color: white;}#sk-container-id-1 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-1 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-1 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-1 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-1 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-1 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-1 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-1 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-1 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-1 div.sk-item {position: relative;z-index: 1;}#sk-container-id-1 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-1 div.sk-item::before, #sk-container-id-1 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-1 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-1 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-1 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-1 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-1 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-1 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-1 div.sk-label-container {text-align: center;}#sk-container-id-1 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-1 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>BernoulliNB()</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked><label for="sk-estimator-id-1" class="sk-toggleable__label sk-toggleable__label-arrow">BernoulliNB</label><div class="sk-toggleable__content"><pre>BernoulliNB()</pre></div></div></div></div></div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2755,11 +2124,6 @@ memory usage: 25.9 KB
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_pred</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_sc</span><span class="p">)</span>
 <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7429906542056075
 </pre></div>
 </div>
 </div>
@@ -2781,26 +2145,6 @@ memory usage: 25.9 KB
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_pred_df</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 1, 0, 1,
-       1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0,
-       1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1,
-       0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0,
-       0, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-       0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1,
-       1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0,
-       0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1, 1, 1, 0,
-       1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1,
-       1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0,
-       0, 1, 1, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0,
-       0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0,
-       0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1,
-       0, 1, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0,
-       0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 1, 1, 0, 1,
-       0], dtype=int64)
 </pre></div>
 </div>
 </div>
@@ -2827,60 +2171,6 @@ memory usage: 25.9 KB
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>label</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Label1</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Label4</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Label2</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>Label2</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Label1</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>Label3</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>Label3</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2892,33 +2182,11 @@ memory usage: 25.9 KB
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1. 0. 0. 0.]
- [0. 0. 0. 1.]
- [0. 1. 0. 0.]
- [0. 1. 0. 0.]
- [1. 0. 0. 0.]
- [0. 0. 1. 0.]
- [0. 0. 1. 0.]]
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">enc</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[&#39;Label1&#39;]
- [&#39;Label4&#39;]
- [&#39;Label2&#39;]
- [&#39;Label2&#39;]
- [&#39;Label1&#39;]
- [&#39;Label3&#39;]
- [&#39;Label3&#39;]]
 </pre></div>
 </div>
 </div>
@@ -2929,84 +2197,6 @@ memory usage: 25.9 KB
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>label_Label1</th>
-      <th>label_Label2</th>
-      <th>label_Label3</th>
-      <th>label_Label4</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3014,91 +2204,10 @@ memory usage: 25.9 KB
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>label_Label2</th>
-      <th>label_Label3</th>
-      <th>label_Label4</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">values</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[&#39;Label1&#39;],
-       [&#39;Label4&#39;],
-       [&#39;Label2&#39;],
-       [&#39;Label2&#39;],
-       [&#39;Label1&#39;],
-       [&#39;Label3&#39;],
-       [&#39;Label3&#39;]], dtype=object)
 </pre></div>
 </div>
 </div>
@@ -3121,27 +2230,11 @@ memory usage: 25.9 KB
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0 3 1 1 0 2 2]
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">encoded</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">to_categorical</span><span class="p">(</span><span class="n">integer_encoded</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">encoded</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1. 0. 0. 0.]
- [0. 0. 0. 1.]
- [0. 1. 0. 0.]
- [0. 1. 0. 0.]
- [1. 0. 0. 0.]
- [0. 0. 1. 0.]
- [0. 0. 1. 0.]]
 </pre></div>
 </div>
 </div>
@@ -3154,21 +2247,10 @@ memory usage: 25.9 KB
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0 3 1 1 0 2 2]
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">le</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">inverted</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;Label1&#39;, &#39;Label4&#39;, &#39;Label2&#39;, &#39;Label2&#39;, &#39;Label1&#39;, &#39;Label3&#39;,
-       &#39;Label3&#39;], dtype=object)
 </pre></div>
 </div>
 </div>

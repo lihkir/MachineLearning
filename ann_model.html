@@ -601,7 +601,6 @@ J(\boldsymbol{\theta})=\left(-\sum_{n:\boldsymbol{x}_{n}\in\mathcal{Y}}y_{n}\bol
 <li><p>La <a class="reference internal" href="#perceptron-rule"><span class="std std-numref">Fig. 8.5</span></a> ofrece una interpretación geométrica de la <em><strong>regla del perceptrón</strong></em>. Supongamos que la muestra <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> está mal clasificada por el hiperplano, <span class="math notranslate nohighlight">\(\boldsymbol{\theta}^{(i-1)}\)</span>. Como sabemos, por geometría analítica, <span class="math notranslate nohighlight">\(\boldsymbol{\theta}^{(i-1)}\)</span> <em><strong>corresponde a un vector que es perpendicular al hiperplano que está definido por este vector</strong></em>. Como <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> se encuentra en el lado <span class="math notranslate nohighlight">\((-)\)</span> del hiperplano y está mal clasificado, pertenece a la clase <span class="math notranslate nohighlight">\(\omega_{1}\)</span>; asumiendo <span class="math notranslate nohighlight">\(\mu = 1\)</span>, la corrección aplicada por el algoritmo es</p>
 <div class="math notranslate nohighlight">
 \[
-    \$$1mm]
     \boldsymbol{\theta}^{(i)}=\boldsymbol{\theta}^{(i-1)}+\boldsymbol{x},
     \]</div>
 <p>y su efecto es <em><strong>girar el hiperplano en dirección a</strong></em> <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> para colocarlo en el lado <span class="math notranslate nohighlight">\((+)\)</span> del nuevo hiperplano, que está definido por la estimación actualizada <span class="math notranslate nohighlight">\(\boldsymbol{\theta^{(i)}}\)</span>. El <em><strong>algoritmo perceptrón</strong></em> en su modo de funcionamiento patrón por patrón (<em><strong>pattern-by-pattern</strong></em>) se resume en el siguiente algoritmo:</p>
@@ -678,7 +677,6 @@ f(z)=
 <li><p><em><strong>Una sola neurona está asociada a un hiperplano</strong></em></p>
 <div class="math notranslate nohighlight">
 \[
-    \$$1mm]
     H: \theta_{1}x_{1}+\theta_{2}x_{2}+\cdots+\theta_{l}x_{l}+\theta_{0}=0,
     \]</div>
 <p>en el espacio de entrada, y la <em><strong>clasificación se basa en una función no lineal</strong></em> que produce un resultado de uno o cero según en qué lado del hiperplano <span class="math notranslate nohighlight">\(H\)</span> se encuentre un punto. A continuación, se mostrará cómo <em><strong>combinar varias neuronas en capas para crear clasificadores no lineales</strong></em>. Seguiremos un enfoque constructivo simple que será útil al abordar aspectos de las redes neuronales, especialmente en el contexto de arquitecturas profundas de aprendizaje profundo (<em><strong>deep learning</strong></em>).</p>
@@ -839,7 +837,6 @@ f(z)=\sigma(z):=\frac{1}{1+\exp(-az)}.
 <li><p>Recordemos que la regla de <em><strong>actualización del algoritmo gradiente descendente</strong></em>, en su versión unidimensional se convierte en</p>
 <div class="math notranslate nohighlight">
 \[
-    \$$1mm]
     \theta(new)=\theta(old)-\mu\left.\frac{d J}{d\theta}\right|_{\theta(old)},
     \]</div>
 <p>y las iteraciones parten de un punto inicial arbitrario, <span class="math notranslate nohighlight">\(\theta^{(0)}\)</span>.</p>
@@ -987,7 +984,6 @@ b &amp;= b-\textsf{lr}\cdot\frac{\partial\textsf{Loss}}{\partial b}=(0)-(0.01)(-
 <li><p>De acuerdo con lo anterior, la salida de la <span class="math notranslate nohighlight">\(j\)</span>-th neurona en la siguiente capa viene dada por</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-    \$$1mm]
     y_{j}^{r+1}=f(\boldsymbol{\theta}_{j}^{r+1^T}\boldsymbol{y}^{r})=
     f\left(\boldsymbol{\theta}_{j}^{r+1^{T}}
     \begin{bmatrix}
@@ -1126,7 +1122,6 @@ b &amp;= b-\textsf{lr}\cdot\frac{\partial\textsf{Loss}}{\partial b}=(0)-(0.01)(-
 <li><p>Manteniendo la misma notación en la Ecuación <a class="reference internal" href="#equation-eq-delta-njl">(8.7)</a>, definimos</p>
 <div class="math notranslate nohighlight">
 \[
-    \$$1mm]
     e_{nj}^{r-1}:=\sum_{k=1}^{k_{r}}\delta_{nk}^{r}\theta_{kj}^{r},
     \]</div>
 <p>y finalmente obtenemos,</p>
