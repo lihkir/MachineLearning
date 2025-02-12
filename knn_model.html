@@ -871,23 +871,23 @@ h^{\star}(\boldsymbol{x})=\mathbb{1}_{\left[\eta(\boldsymbol{x})&gt;1/2\right]}.
 <div class="proof theorem admonition" id="theorem-10">
 <p class="admonition-title"><span class="caption-number">Theorem 2.2 </span></p>
 <section class="theorem-content" id="proof-content">
-<p>Sea <span class="math notranslate nohighlight">\(X = [0,1]^d\)</span>, <span class="math notranslate nohighlight">\(Y = \{0,1\}\)</span> y <span class="math notranslate nohighlight">\(D\)</span> una distribución sobre <span class="math notranslate nohighlight">\(X \times Y\)</span> tal que la función de probabilidad condicional <span class="math notranslate nohighlight">\(\eta\)</span> es una función <span class="math notranslate nohighlight">\(c\)</span>-Lipschitz. Sea <span class="math notranslate nohighlight">\(h_S\)</span> el resultado de aplicar la regla de los <span class="math notranslate nohighlight">\(k\)</span>-vecinos más cercanos (k-NN) a una muestra <span class="math notranslate nohighlight">\(S \sim D^m\)</span>, donde <span class="math notranslate nohighlight">\(k \geq 10\)</span>. Sea <span class="math notranslate nohighlight">\(h^*\)</span> la hipótesis óptima de Bayes. Entonces,</p>
+<p>Sea <span class="math notranslate nohighlight">\(\mathcal{X} = [0,1]^d\)</span>, <span class="math notranslate nohighlight">\(\mathcal{Y} = \{0,1\}\)</span> y <span class="math notranslate nohighlight">\(D\)</span> una distribución sobre <span class="math notranslate nohighlight">\(\mathcal{X} \times \mathcal{Y}\)</span> tal que la función de probabilidad condicional <span class="math notranslate nohighlight">\(\eta\)</span> es una función <span class="math notranslate nohighlight">\(c\)</span>-Lipschitz. Sea <span class="math notranslate nohighlight">\(h_S\)</span> el resultado de aplicar la regla de los <span class="math notranslate nohighlight">\(k\)</span>-vecinos más cercanos (<span class="math notranslate nohighlight">\(k\)</span>-NN) a una muestra <span class="math notranslate nohighlight">\(S \sim \mathcal{D}^m\)</span>, donde <span class="math notranslate nohighlight">\(k \geq 10\)</span>. Sea <span class="math notranslate nohighlight">\(h^*\)</span> la hipótesis óptima de Bayes. Entonces,</p>
 <div class="math notranslate nohighlight">
 \[
-\mathbb{E}_S\left[ L_D(h_S) \right] \leq \left(1 + \frac{8}{k}\right) L_D(h^*) + \frac{6c\sqrt{d} + k}{m^{1/(d+1)}}.
+\mathbb{E}_S\left[ L_\mathcal{D}(h_S) \right] \leq \left(1 + \sqrt{\frac{8}{k}}\right)L_D(h^*) + (6c\sqrt{d} + k)m^{-1/(d+1)}.
 \]</div>
 </section>
 </div><ul class="simple">
 <li><p><strong>Parte 1</strong>: Demuestre el siguiente Lema</p></li>
 </ul>
-<div class="proof lemma admonition" id="lemma-11">
+<div class="proof lemma admonition" id="lemma_bound_exp_pci">
 <p class="admonition-title"><span class="caption-number">Lemma 2.3 </span></p>
 <section class="lemma-content" id="proof-content">
 <ul>
-<li><p>Sea <span class="math notranslate nohighlight">\(C_1, \dots, C_r\)</span> una colección de subconjuntos de un conjunto dominio <span class="math notranslate nohighlight">\(X\)</span>. Sea <span class="math notranslate nohighlight">\(S\)</span> una secuencia de <span class="math notranslate nohighlight">\(m\)</span> puntos muestreados de manera independiente e idénticamente distribuida (i.i.d.) según alguna distribución de probabilidad <span class="math notranslate nohighlight">\(D\)</span> sobre <span class="math notranslate nohighlight">\(X\)</span>. Entonces, para todo <span class="math notranslate nohighlight">\(k \geq 2\)</span>, se cumple que:</p>
+<li><p>Sea <span class="math notranslate nohighlight">\(C_1, \dots, C_r\)</span> una colección de subconjuntos de un conjunto dominio <span class="math notranslate nohighlight">\(\mathcal{X}\)</span>. Sea <span class="math notranslate nohighlight">\(S\)</span> una secuencia de <span class="math notranslate nohighlight">\(m\)</span> puntos muestreados de manera independiente e idénticamente distribuida (i.i.d.) según alguna distribución de probabilidad <span class="math notranslate nohighlight">\(\mathcal{D}\)</span> sobre <span class="math notranslate nohighlight">\(\mathcal{X}\)</span>. Entonces, para todo <span class="math notranslate nohighlight">\(k \geq 2\)</span>, se cumple que:</p>
 <div class="math notranslate nohighlight">
 \[
-    \mathbb{E}_{S \sim D^m} \left[ \sum_{i : |C_i \cap S| &lt; k} P[C_i] \right] \leq \frac{2rk}{m}.
+    \mathbb{E}_{S \sim \mathcal{D}^m} \left[ \sum_{i : |C_i \cap S| &lt; k} \mathbb{P}[C_i] \right] \leq \frac{2rk}{m}.
     \]</div>
 </li>
 </ul>
@@ -899,67 +899,65 @@ h^{\star}(\boldsymbol{x})=\mathbb{1}_{\left[\eta(\boldsymbol{x})&gt;1/2\right]}.
 </ul>
 <div class="math notranslate nohighlight">
 \[
-    \mathbb{E}\left[\sum_{i:|C_i \cap S| &lt; k} P[C_i]\right] = \sum_{i=1}^r P[C_i] \mathbb{P}_S[|C_i \cap S| &lt; k].
+    \mathbb{E}\left[\sum_{i:|C_i \cap S| &lt; k} \mathbb{P}[C_i]\right] = \sum_{i=1}^r \mathbb{P}[C_i] \mathbb{P}_S[|C_i \cap S| &lt; k].
     \]</div>
 <ul class="simple">
-<li><p>Fijar algún <span class="math notranslate nohighlight">\(i\)</span> y suponer que <span class="math notranslate nohighlight">\(k &lt; P[C_i] \frac{m}{2}\)</span>. Usar el límite de Chernoff para demostrar que</p></li>
+<li><p>Fijar algún <span class="math notranslate nohighlight">\(i\)</span> y suponer que <span class="math notranslate nohighlight">\(k &lt; \mathbb{P}[C_i] m/2\)</span>. Usar el <a class="reference internal" href="#chernoff_lemma">Lemma 2.5</a> para demostrar que</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[
-    \mathbb{P}_S[|C_i \cap S| &lt; k] \leq \mathbb{P}_S\left[|C_i \cap S| &lt; P[C_i] \frac{m}{2}\right] \leq e^{-\frac{P[C_i] m}{8}}.
+    \mathbb{P}_S[|C_i \cap S| &lt; k] \leq \mathbb{P}_S\left[|C_i \cap S| &lt; \mathbb{P}[C_i] m/2\right] \leq e^{-\mathbb{P}[C_i]m/8}.
     \]</div>
 <ul class="simple">
-<li><p>Usar la desigualdad <span class="math notranslate nohighlight">\(\max_a a e^{-ma} \leq \frac{1}{me}\)</span> para demostrar que, para tal <span class="math notranslate nohighlight">\(i\)</span>, tenemos</p></li>
+<li><p>Usar la desigualdad <span class="math notranslate nohighlight">\(\max_a a e^{-ma} \leq 1/me\)</span> para demostrar que, para tal <span class="math notranslate nohighlight">\(i\)</span>, tenemos</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[
-    P[C_i] \mathbb{P}_S[|C_i \cap S| &lt; k] \leq P[C_i] e^{-\frac{P[C_i] m}{8}} \leq \frac{8}{me}.
+    \mathbb{P}[C_i] \mathbb{P}_S[|C_i \cap S| &lt; k] \leq \mathbb{P}[C_i] e^{-\mathbb{P}[C_i]m/8} \leq \frac{8}{me}.
     \]</div>
 <ul class="simple">
-<li><p>Concluir la demostración utilizando el hecho de que, en el caso de <span class="math notranslate nohighlight">\(k \geq P[C_i] \frac{m}{2}\)</span>, claramente tenemos:</p></li>
+<li><p>Concluir la demostración utilizando el hecho de que, en el caso de <span class="math notranslate nohighlight">\(k \geq \mathbb{P}[C_i]m/2\)</span>, claramente tenemos:</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[
-    P[C_i] \mathbb{P}_S[|C_i \cap S| &lt; k] \leq P[C_i] \leq \frac{2k}{m}.
+    \mathbb{P}[C_i] \mathbb{P}_S[|C_i \cap S| &lt; k] \leq \mathbb{P}[C_i] \leq \frac{2k}{m}.
     \]</div>
 </li>
 </ul>
 <ul class="simple">
 <li><p><strong>Parte 2</strong>: Utilizamos la notación <span class="math notranslate nohighlight">\(y \sim p\)</span> como una abreviatura para indicar que “<span class="math notranslate nohighlight">\(y\)</span> es una variable aleatoria de Bernoulli con valor esperado <span class="math notranslate nohighlight">\(p\)</span>”. Demuestre el siguiente lema:</p></li>
 </ul>
-<div class="proof lemma admonition" id="lemma-12">
+<div class="proof lemma admonition" id="bernoulli_bound_lemma">
 <p class="admonition-title"><span class="caption-number">Lemma 2.4 </span></p>
 <section class="lemma-content" id="proof-content">
-<p>Sea <span class="math notranslate nohighlight">\(k \geq 10\)</span> y sean <span class="math notranslate nohighlight">\(Z_1, \dots, Z_k\)</span> variables aleatorias independientes de Bernoulli con <span class="math notranslate nohighlight">\(P[Z_i = 1] = p_i\)</span>. Denotemos por <span class="math notranslate nohighlight">\(p = \frac{1}{k} \sum_{i} p_i\)</span> y <span class="math notranslate nohighlight">\(p^* = \frac{1}{k} \sum_{i=1}^k Z_i\)</span>. Se debe demostrar que:</p>
+<p>Sea <span class="math notranslate nohighlight">\(k \geq 10\)</span> y sean <span class="math notranslate nohighlight">\(Z_1, \dots, Z_k\)</span> variables aleatorias independientes de Bernoulli con <span class="math notranslate nohighlight">\(\mathbb{P}[Z_i = 1] = p_i\)</span>. Denotemos por <span class="math notranslate nohighlight">\(p = \frac{1}{k} \sum_{i} p_i\)</span> y <span class="math notranslate nohighlight">\(p' = \frac{1}{k} \sum_{i=1}^k Z_i\)</span>. Se debe demostrar que:</p>
 <div class="math notranslate nohighlight">
 \[
-\mathbb{E}_{Z_1, \dots, Z_k} \left[ P_{y \sim p} \left[ y \neq 1 \mid p^* &gt; \frac{1}{2} \right] \right] \leq \left( 1 + \frac{8}{k} \right) \mathbb{P}_{y \sim p} \left[ y \neq 1 \mid p &gt; \frac{1}{2} \right].
+\mathbb{E}_{Z_1, \dots, Z_k} \left[ \mathbb{P}_{y \sim p} \left[ y \neq \mathbb{1}_{[p' &gt; 1/2]} \right] \right] \leq \left( 1 + \sqrt{\frac{8}{k}} \right) \mathbb{P}_{y \sim p} \left[ y \neq \mathbb{1}_{[p &gt; 1/2]}\right].
 \]</div>
 </section>
-</div><ul class="simple">
-<li><p><strong>Sugerencia</strong></p></li>
-</ul>
+</div><p><strong>Sugerencia</strong></p>
 <ul class="simple">
-<li><p>Sin pérdida de generalidad, supongamos que <span class="math notranslate nohighlight">\(p \leq \frac{1}{2}\)</span>. Entonces, tenemos que <span class="math notranslate nohighlight">\(P_{y \sim p} [y = 1 \mid p &gt; \frac{1}{2}] = p\)</span>. Definimos <span class="math notranslate nohighlight">\(y^* = 1[p^* &gt; \frac{1}{2}]\)</span>.</p></li>
+<li><p>Sin pérdida de generalidad, supongamos que <span class="math notranslate nohighlight">\(p \leq 1/2\)</span>. Entonces, tenemos que <span class="math notranslate nohighlight">\(\mathbb{P}_{y \sim p} [y \neq \mathbb{1}_{[p &gt; 1/2]}] = p\)</span>. Definimos <span class="math notranslate nohighlight">\(y^* = \mathbb{1}_{[p' &gt; 1/2]}\)</span>.</p></li>
 <li><p>A continuación, demuestre que:</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[
-\mathbb{E}_{Z_1, \dots, Z_k} P_{y \sim p} [y = y^*] - p = P_{Z_1, \dots, Z_k} [p^* &gt; \frac{1}{2}] (1 - 2p).
+\mathbb{E}_{Z_1, \dots, Z_k} \mathbb{P}_{y \sim p} [y \neq y^*] - p = \mathbb{P}_{Z_1, \dots, Z_k} [p' &gt; 1/2] (1 - 2p).
 \]</div>
 <ul>
-<li><p>Utilizando el límite de Chernoff, podemos demostrar que:</p>
+<li><p>Utilizando el <a class="reference internal" href="#chernoff_lemma">Lemma 2.5</a>, podemos demostrar que:</p>
 <div class="math notranslate nohighlight">
 \[
-    P[p^* &gt; \frac{1}{2}] \leq e^{-k p \left(\frac{1}{2p} - 1\right)},
+    \mathbb{P}[p' &gt; 1/2] \leq e^{-k p h\left(\frac{1}{2p} - 1\right)},
     \]</div>
 <p>donde <span class="math notranslate nohighlight">\(h(a) = (1 + a) \log(1 + a) - a\)</span>.</p>
 </li>
-<li><p>Para concluir la demostración del lema, podemos apoyarnos en la siguiente desigualdad (sin necesidad de demostrarla): Para todo <span class="math notranslate nohighlight">\(p \in [0, \frac{1}{2}]\)</span> y <span class="math notranslate nohighlight">\(k \geq 10\)</span>:</p></li>
+<li><p>Para concluir la demostración del lema, podemos apoyarnos en la siguiente desigualdad (sin necesidad de demostrarla): Para todo <span class="math notranslate nohighlight">\(p \in [0, 1/2]\)</span> y <span class="math notranslate nohighlight">\(k \geq 10\)</span>:</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[
-(1 - 2p) e^{-k p + k^2 (\log(2p) + 1)} \leq \frac{8}{k p}.
+(1 - 2p) e^{-k p + \frac{k}{2}(\log(2p) + 1)} \leq \sqrt{\frac{8}{k}}p.
 \]</div>
 <ul class="simple">
 <li><p><strong>Parte 3</strong></p></li>
@@ -969,32 +967,89 @@ h^{\star}(\boldsymbol{x})=\mathbb{1}_{\left[\eta(\boldsymbol{x})&gt;1/2\right]}.
 </ul>
 <div class="math notranslate nohighlight">
 \[
-P_{y \sim p}[y \neq y'] \leq P_{y \sim p'}[y \neq y'] + |p - p'|.
+\mathbb{P}_{y \sim p}[y \neq y'] \leq \mathbb{P}_{y \sim p'}[y \neq y'] + |p - p'|.
 \]</div>
 <ul class="simple">
 <li><p><strong>Parte 4</strong></p></li>
 </ul>
 <ul>
 <li><p>Concluya la demostración del teorema de acuerdo con los siguientes pasos:</p></li>
-<li><p>Tal como en la demostración del <a class="reference internal" href="#knn_theorem1">Theorem 2.1</a>, sea <span class="math notranslate nohighlight">\(\delta &gt; 0\)</span> y sea <span class="math notranslate nohighlight">\(\{C_1, \dots, C_r\}\)</span> la cubierta del conjunto <span class="math notranslate nohighlight">\(X\)</span> utilizando cajas de longitud <span class="math notranslate nohighlight">\(\delta\)</span>. Para cada par de puntos <span class="math notranslate nohighlight">\(x, x' \in C_i\)</span>, tenemos que</p>
-<div class="math notranslate nohighlight">
-\[
-  \|x - x'\| \leq \sqrt{d} \delta.
-  \]</div>
-<p>En caso contrario, se cumple que</p>
-<div class="math notranslate nohighlight">
-\[
-  \|x - x'\| \leq 2\sqrt{d}.
-  \]</div>
-</li>
+<li><p>Tal como en la demostración del <a class="reference internal" href="#knn_theorem1">Theorem 2.1</a>, sea <span class="math notranslate nohighlight">\(\varepsilon &gt; 0\)</span> y sea <span class="math notranslate nohighlight">\(\{C_1, \dots, C_r\}\)</span> la cubierta del conjunto <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> utilizando cajas de longitud <span class="math notranslate nohighlight">\(\varepsilon\)</span>. Para cada par de puntos <span class="math notranslate nohighlight">\(x, x' \in C_i\)</span>, tenemos que <span class="math notranslate nohighlight">\(\|x - x'\| \leq \sqrt{d} \varepsilon\)</span>. En caso contrario, se cumple que <span class="math notranslate nohighlight">\(\|x - x'\| \leq 2\sqrt{d}\)</span>.</p></li>
 <li><p>Demostrar que</p>
-<div class="math notranslate nohighlight">
-\[
-  \mathbb{E}_S[LD(h_S)] \leq \mathbb{E}_S\left[\sum_{i : |C_i \cap S| &lt; k} P[C_i]\right] + \max_i P_S, (x, y)\left( h_S(x) = y \mid \forall j \in [k], \|x - x_{\pi_j(x)}\| \leq \delta \sqrt{d} \right).
-  \]</div>
+<div class="math notranslate nohighlight" id="equation-expect-ld-hs-eq">
+<span class="eqno">(2.5)<a class="headerlink" href="#equation-expect-ld-hs-eq" title="Link to this equation">#</a></span>\[\begin{split}
+  \begin{align*}
+  \mathbb{E}_S[L_{\mathcal{D}}(h_S)] &amp;\leq \mathbb{E}_S\left[\sum_{i : |C_i \cap S| &lt; k} \mathbb{P}[C_i]\right] \\
+  &amp;+ \max_i \mathbb{P}_S, (x, y)\left( h_S(x) \neq y \mid \forall j \in [k], \|x - x_{\pi_j(x)}\| \leq \varepsilon \sqrt{d} \right).
+  \end{align*}
+  \end{split}\]</div>
 </li>
 </ul>
+<ul class="simple">
+<li><p>Acotemos el primer sumando usando el <a class="reference internal" href="#lemma_bound_exp_pci">Lemma 2.3</a>.</p></li>
+<li><p>Para acotar el segundo sumando, fijemos <span class="math notranslate nohighlight">\(S|x\)</span> y <span class="math notranslate nohighlight">\(x\)</span> de manera que todos los <span class="math notranslate nohighlight">\(k\)</span> vecinos de <span class="math notranslate nohighlight">\(x\)</span> en <span class="math notranslate nohighlight">\(S|x\)</span> estén a una distancia de a lo sumo <span class="math notranslate nohighlight">\(\varepsilon\sqrt{d}\)</span> de <span class="math notranslate nohighlight">\(x\)</span>. Sin pérdida de generalidad, asumamos que los <span class="math notranslate nohighlight">\(k\)</span> vecinos más cercanos son <span class="math notranslate nohighlight">\(x_1, \dots, x_k\)</span>. Denotemos <span class="math notranslate nohighlight">\(p_i = \eta(x_i)\)</span> y definamos <span class="math notranslate nohighlight">\(p = \frac{1}{k} \sum_{i} p_i\)</span>. Utilizando el Ejercicio <a class="reference internal" href="#equation-expect-ld-hs-eq">(2.5)</a>, mostramos que</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\mathbb{E}_{y_1, \dots, y_j} \mathbb{P}_{y \sim \eta(x)} [h_S(x) \neq y] \leq \mathbb{E}_{y_1, \dots, y_j} \mathbb{P}_{y \sim p} [h_S(x) \neq y] + |p - \eta(x)|.
+\]</div>
+<ul class="simple">
+<li><p>Sin pérdida de generalidad, asumamos que <span class="math notranslate nohighlight">\(p \leq 1/2\)</span>. Ahora, utilizamos el <a class="reference internal" href="#bernoulli_bound_lemma">Lemma 2.4</a> para demostrar que</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\mathbb{P}_{y_1, \dots, y_j} \mathbb{P}_{y \sim p} [h_S(x) \neq y] \leq \left( 1 + \sqrt{\frac{8}{k}} \right) \mathbb{P}_{y \sim p} [\mathbb{1}_{[p &gt; 1/2]} \neq y].
+\]</div>
+<ul class="simple">
+<li><p>Además, se puede demostrar que</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\mathbb{P}_{y \sim p} [\mathbb{1}_{[p &gt; 1/2]} \neq y] = p = \min\{p, 1 - p\} \leq \min\{\eta(x), 1 - \eta(x)\} + |p - \eta(x)|.
+\]</div>
+<ul class="simple">
+<li><p>Combinando todos los resultados anteriores, obtenemos que el segundo sumando en la Ecuación <a class="reference internal" href="#equation-expect-ld-hs-eq">(2.5)</a> está acotado por</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\left( 1 + \sqrt{\frac{8}{k}}\right) L_{\mathcal{D}}(h^\star) + 3c\varepsilon\sqrt{d}.
+\]</div>
+<ul class="simple">
+<li><p>Usando <span class="math notranslate nohighlight">\(r = (2/\epsilon)^{d}\)</span>, obtenemos</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\mathbb{E}_S [L_{\mathcal{D}}(h_S)] \leq \left( 1 + \sqrt{\frac{8}{k}} \right) L_{\mathcal{D}}(h^\star) + 3c\varepsilon\sqrt{d} + \frac{2 (2/\epsilon)^d k}{m}.
+\]</div>
+<ul>
+<li><p>Finalmente, fijando <span class="math notranslate nohighlight">\(\epsilon = 2m^{-1/(d+1)}\)</span> y utilizando</p>
+<div class="math notranslate nohighlight">
+\[
+    6c m^{-1/(d+1)} \sqrt{d} + \frac{2k}{e} m^{-1/(d+1)} \leq \left( 6c \sqrt{d} + k \right) m^{-1/(d+1)},
+    \]</div>
+<p>se concluye la demostración.</p>
+</li>
+</ul>
+<div class="proof lemma admonition" id="chernoff_lemma">
+<p class="admonition-title"><span class="caption-number">Lemma 2.5 </span> (Límite de Chernoff)</p>
+<section class="lemma-content" id="proof-content">
+<p>Sea <span class="math notranslate nohighlight">\(Z_1, \dots, Z_m\)</span> un conjunto de variables de Bernoulli independientes, donde para cada <span class="math notranslate nohighlight">\(i\)</span> se cumple que</p>
+<div class="math notranslate nohighlight">
+\[
+P(Z_i = 1) = p_i \quad \text{y} \quad P(Z_i = 0) = 1 - p_i.
+\]</div>
+<p>Definimos <span class="math notranslate nohighlight">\(p = \sum_{i=1}^{m} p_i\)</span> y <span class="math notranslate nohighlight">\(Z = \sum_{i=1}^{m} Z_i\)</span>. Entonces, para cualquier <span class="math notranslate nohighlight">\(\delta &gt; 0\)</span>, se tiene que</p>
+<div class="math notranslate nohighlight">
+\[
+P(Z &gt; (1+\delta)p) \leq e^{-h(\delta) p},
+\]</div>
+<p>donde</p>
+<div class="math notranslate nohighlight">
+\[
+h(\delta) = (1+\delta) \log(1+\delta) - \delta.
+\]</div>
 </section>
+</div></section>
 <section id="implementacion">
 <h2><span class="section-number">2.3. </span>Implementación<a class="headerlink" href="#implementacion" title="Link to this heading">#</a></h2>
 <ul class="simple">
@@ -2709,7 +2764,7 @@ La variable worst fractal dimension tiene una relación significativa con la var
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/22a0c850a966086ff8dc42669f10a4b76ea506eec818446e4bf01e54925428ce.png" src="_images/22a0c850a966086ff8dc42669f10a4b76ea506eec818446e4bf01e54925428ce.png" />
+<img alt="_images/69a8a295f6934d727b59f487229930f71bcfee2dffba527c7c6c97012e0a159c.png" src="_images/69a8a295f6934d727b59f487229930f71bcfee2dffba527c7c6c97012e0a159c.png" />
 </div>
 </div>
 <section id="multicolinealidad">
