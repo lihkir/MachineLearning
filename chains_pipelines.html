@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>11. Cadenas de Algoritmos y Pipelines &#8212; Machine Learning</title>
+    <title>16. Cadenas de Algoritmos y Pipelines &#8212; Machine Learning</title>
   
   
   
@@ -68,8 +68,8 @@
     <script src="_static/.ipynb_checkpoints/custom-checkpoint.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="12. Apéndice" href="appendix.html" />
-    <link rel="prev" title="10. Evaluación de modelos" href="model_evaluation.html" />
+    <link rel="next" title="17. Apéndice" href="appendix.html" />
+    <link rel="prev" title="15. Evaluación de modelos" href="model_evaluation.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -196,11 +196,16 @@
 
 <li class="toctree-l1"><a class="reference internal" href="svm_model.html">7. Máquinas de vectores de soporte</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ann_model.html">8. Redes Neuronales y Deep Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="practical_pca.html">9. Análisis de Componentes Principales</a></li>
-<li class="toctree-l1"><a class="reference internal" href="model_evaluation.html">10. Evaluación de modelos</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">11. Cadenas de Algoritmos y Pipelines</a></li>
-<li class="toctree-l1"><a class="reference internal" href="appendix.html">12. Apéndice</a></li>
-<li class="toctree-l1"><a class="reference internal" href="biblio.html">13. Bibliografía</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dl_computer_vision.html">9. Computer vision</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="practical_pca.html">14. Análisis de Componentes Principales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_evaluation.html">15. Evaluación de modelos</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">16. Cadenas de Algoritmos y Pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix.html">17. Apéndice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="biblio.html">18. Bibliografía</a></li>
 </ul>
 
     </div>
@@ -349,18 +354,18 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-de-parametros-con-preprocesamiento">11.1. Selección de parámetros con preprocesamiento</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#construyendo-pipelines">11.2. Construyendo Pipelines</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#utilizando-pipeline-en-gridsearch">11.3. Utilizando Pipeline en GridSearch</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-leakage">11.4. Data Leakage</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ilustracion-de-la-fuga-de-datos">11.5. Ilustración de la fuga de datos</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-interfaz-general-del-pipeline">11.6. La interfaz general del Pipeline</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-comoda-de-pipelines-con-make-pipeline">11.7. Creación cómoda de pipelines con make_pipeline</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#acceso-a-los-atributos-de-los-pasos">11.8. Acceso a los atributos de los pasos</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#acceso-a-los-atributos-en-un-pipeline-con-gridsearch">11.9. Acceso a los atributos en un Pipeline con GridSearch</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pasos-de-preprocesamiento-gridsearch-y-parametros-del-modelo">11.10. Pasos de preprocesamiento GridSearch y Parámetros del Modelo</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grid-searching-que-modelo-usar">11.11. Grid-Searching Qué Modelo Usar</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen-y-conclusiones">11.12. Resumen y conclusiones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-de-parametros-con-preprocesamiento">16.1. Selección de parámetros con preprocesamiento</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#construyendo-pipelines">16.2. Construyendo Pipelines</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#utilizando-pipeline-en-gridsearch">16.3. Utilizando Pipeline en GridSearch</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-leakage">16.4. Data Leakage</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ilustracion-de-la-fuga-de-datos">16.5. Ilustración de la fuga de datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-interfaz-general-del-pipeline">16.6. La interfaz general del Pipeline</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-comoda-de-pipelines-con-make-pipeline">16.7. Creación cómoda de pipelines con make_pipeline</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#acceso-a-los-atributos-de-los-pasos">16.8. Acceso a los atributos de los pasos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#acceso-a-los-atributos-en-un-pipeline-con-gridsearch">16.9. Acceso a los atributos en un Pipeline con GridSearch</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pasos-de-preprocesamiento-gridsearch-y-parametros-del-modelo">16.10. Pasos de preprocesamiento GridSearch y Parámetros del Modelo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grid-searching-que-modelo-usar">16.11. Grid-Searching Qué Modelo Usar</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen-y-conclusiones">16.12. Resumen y conclusiones</a></li>
 </ul>
             </nav>
         </div>
@@ -373,7 +378,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="cadenas-de-algoritmos-y-pipelines">
-<h1><span class="section-number">11. </span>Cadenas de Algoritmos y Pipelines<a class="headerlink" href="#cadenas-de-algoritmos-y-pipelines" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">16. </span>Cadenas de Algoritmos y Pipelines<a class="headerlink" href="#cadenas-de-algoritmos-y-pipelines" title="Link to this heading">#</a></h1>
 <ul class="simple">
 <li><p>Para muchos algoritmos de aprendizaje automático, la representación particular de los datos que proporciona es muy importante, como ya comentamos anterioremente. Esto comienza con el escalado de los datos y la combinación de características a mano y llega hasta el aprendizaje de características utilizando el aprendizaje automático no supervisado. En consecuencia, <code class="docutils literal notranslate"><span class="pre">la</span> <span class="pre">mayoría</span> <span class="pre">de</span> <span class="pre">las</span> <span class="pre">aplicaciones</span> <span class="pre">de</span> <span class="pre">aprendizaje</span> <span class="pre">automático</span> <span class="pre">requieren</span> <span class="pre">no</span> <span class="pre">sólo</span> <span class="pre">la</span> <span class="pre">aplicación</span> <span class="pre">de</span> <span class="pre">un</span> <span class="pre">único</span> <span class="pre">algoritmo</span> <span class="pre">sino</span> <span class="pre">el</span> <span class="pre">encadenamiento</span> <span class="pre">de</span> <span class="pre">muchos</span> <span class="pre">pasos</span> <span class="pre">de</span> <span class="pre">procesamiento</span> <span class="pre">y</span> <span class="pre">modelos</span> <span class="pre">de</span> <span class="pre">aprendizaje</span> <span class="pre">automático</span> <span class="pre">diferentes</span></code>. En este capítulo, veremos cómo utilizar la clase <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code> para simplificar el proceso de construcción de cadenas de transformaciones y modelos. En particular, veremos cómo podemos <code class="docutils literal notranslate"><span class="pre">combinar</span> <span class="pre">Pipeline</span> <span class="pre">y</span> <span class="pre">GridSearchCV</span> <span class="pre">para</span> <span class="pre">buscar</span> <span class="pre">sobre</span> <span class="pre">los</span> <span class="pre">parámetros</span> <span class="pre">de</span> <span class="pre">todos</span> <span class="pre">los</span> <span class="pre">pasos</span> <span class="pre">de</span> <span class="pre">procesamiento</span> <span class="pre">a</span> <span class="pre">la</span> <span class="pre">vez</span></code>. Como ejemplo de la importancia de encadenar modelos, observamos que podemos mejorar en gran medida el rendimiento de un kernel <code class="docutils literal notranslate"><span class="pre">SVM</span></code> en el conjunto de datos <code class="docutils literal notranslate"><span class="pre">cancer</span></code> utilizando el <code class="docutils literal notranslate"><span class="pre">MinMaxScaler</span></code> para el preprocesamiento.</p></li>
 </ul>
@@ -427,7 +432,7 @@ document.write(`
 </div>
 </div>
 <section id="seleccion-de-parametros-con-preprocesamiento">
-<h2><span class="section-number">11.1. </span>Selección de parámetros con preprocesamiento<a class="headerlink" href="#seleccion-de-parametros-con-preprocesamiento" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">16.1. </span>Selección de parámetros con preprocesamiento<a class="headerlink" href="#seleccion-de-parametros-con-preprocesamiento" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Ahora digamos que queremos encontrar mejores parámetros para el <code class="docutils literal notranslate"><span class="pre">SVC</span></code> usando <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code>, como se ha discutido en secciones anteriores. ¿Cómo podemos hacerlo? Un enfoque ingenuo podría ser el siguiente</p></li>
 </ul>
@@ -490,7 +495,7 @@ Best parameters:  {&#39;C&#39;: 1, &#39;gamma&#39;: 1}
 </div>
 </section>
 <section id="construyendo-pipelines">
-<h2><span class="section-number">11.2. </span>Construyendo Pipelines<a class="headerlink" href="#construyendo-pipelines" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">16.2. </span>Construyendo Pipelines<a class="headerlink" href="#construyendo-pipelines" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Veamos cómo podemos utilizar la clase <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code> para expresar el flujo de trabajo para entrenar una <code class="docutils literal notranslate"><span class="pre">SVM</span></code> después de escalar los datos con <code class="docutils literal notranslate"><span class="pre">MinMaxScaler</span></code> (por ahora sin grid-search). Primero, <code class="docutils literal notranslate"><span class="pre">construimos</span> <span class="pre">un</span> <span class="pre">objeto</span> <span class="pre">pipeline</span> <span class="pre">proporcionándole</span> <span class="pre">una</span> <span class="pre">lista</span> <span class="pre">de</span> <span class="pre">pasos.</span> <span class="pre">Cada</span> <span class="pre">paso</span> <span class="pre">es</span> <span class="pre">una</span> <span class="pre">tupla</span> <span class="pre">que</span> <span class="pre">contiene</span> <span class="pre">un</span> <span class="pre">nombre</span> <span class="pre">(cualquier</span> <span class="pre">cadena</span> <span class="pre">de</span> <span class="pre">su</span> <span class="pre">elección)</span> <span class="pre">y</span> <span class="pre">una</span> <span class="pre">instancia</span> <span class="pre">de</span> <span class="pre">un</span> <span class="pre">estimador</span></code></p></li>
 </ul>
@@ -542,7 +547,7 @@ capítulo, al hacer las transformaciones a mano. <code class="docutils literal n
 </ul>
 </section>
 <section id="utilizando-pipeline-en-gridsearch">
-<h2><span class="section-number">11.3. </span>Utilizando Pipeline en GridSearch<a class="headerlink" href="#utilizando-pipeline-en-gridsearch" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">16.3. </span>Utilizando Pipeline en GridSearch<a class="headerlink" href="#utilizando-pipeline-en-gridsearch" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>El uso de una tubería <code class="docutils literal notranslate"><span class="pre">(pipeline)</span></code> en una búsqueda de red <code class="docutils literal notranslate"><span class="pre">(grid-search)</span></code> funciona de la misma manera que el uso de cualquier otro estimador. <code class="docutils literal notranslate"><span class="pre">Definimos</span> <span class="pre">una</span> <span class="pre">red</span> <span class="pre">de</span> <span class="pre">parámetros</span> <span class="pre">en</span> <span class="pre">la</span> <span class="pre">que</span> <span class="pre">buscar,</span> <span class="pre">y</span> <span class="pre">construimos</span> <span class="pre">un</span> <span class="pre">GridSearchCV</span> <span class="pre">a</span> <span class="pre">partir</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">tubería</span> <span class="pre">y</span> <span class="pre">la</span> <span class="pre">red</span> <span class="pre">de</span> <span class="pre">parámetros</span></code>. Al especificar la red de parámetros, hay un ligero cambio, sin embargo. Tenemos que especificar para cada parámetro, a qué paso de la tubería pertenece. Los dos parámetros que queremos ajustar, <code class="docutils literal notranslate"><span class="pre">C</span></code> y <code class="docutils literal notranslate"><span class="pre">gamma</span></code>, son parámetros de <code class="docutils literal notranslate"><span class="pre">SVC</span></code>, el segundo paso. A este paso le hemos dado el nombre de <code class="docutils literal notranslate"><span class="pre">&quot;svm&quot;</span></code>. La sintaxis para definir una red de parámetros para una tubería es especificar, para cada parámetro, el nombre del paso, seguido de <code class="docutils literal notranslate"><span class="pre">__</span></code> (un doble guión bajo), seguido del nombre del parámetro. <code class="docutils literal notranslate"><span class="pre">Para</span> <span class="pre">buscar</span> <span class="pre">en</span> <span class="pre">los</span> <span class="pre">parámetros</span> <span class="pre">de</span> <span class="pre">C</span> <span class="pre">de</span> <span class="pre">SVC</span> <span class="pre">tenemos</span> <span class="pre">que</span> <span class="pre">usar</span> <span class="pre">&quot;svm__C&quot;</span> <span class="pre">como</span> <span class="pre">clave</span> <span class="pre">en</span> <span class="pre">el</span> <span class="pre">diccionario</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">red</span> <span class="pre">de</span> <span class="pre">parámetros,</span> <span class="pre">y</span> <span class="pre">lo</span> <span class="pre">mismo</span> <span class="pre">para</span> <span class="pre">gamma</span></code>.</p></li>
 </ul>
@@ -593,7 +598,7 @@ Best parameters: {&#39;svm__C&#39;: 1, &#39;svm__gamma&#39;: 1}
 </ul>
 </section>
 <section id="data-leakage">
-<h2><span class="section-number">11.4. </span>Data Leakage<a class="headerlink" href="#data-leakage" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">16.4. </span>Data Leakage<a class="headerlink" href="#data-leakage" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>La fuga de datos (<strong><code class="docutils literal notranslate"><span class="pre">data</span> <span class="pre">leakage</span></code></strong>) <code class="docutils literal notranslate"><span class="pre">se</span> <span class="pre">produce</span> <span class="pre">cuando</span> <span class="pre">al</span> <span class="pre">construir</span> <span class="pre">el</span> <span class="pre">modelo</span> <span class="pre">se</span> <span class="pre">utiliza</span> <span class="pre">información</span> <span class="pre">que</span> <span class="pre">no</span> <span class="pre">estaría</span> <span class="pre">disponible</span> <span class="pre">en</span> <span class="pre">el</span> <span class="pre">momento</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">predicción</span></code>. Esto da lugar a estimaciones de rendimiento demasiado optimistas, por ejemplo, a partir de la validación cruzada, y, por tanto, a un peor rendimiento cuando el modelo se utiliza con datos realmente nuevo, por ejemplo, durante la producción.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">Una</span> <span class="pre">causa</span> <span class="pre">común</span> <span class="pre">es</span> <span class="pre">no</span> <span class="pre">mantener</span> <span class="pre">separados</span> <span class="pre">los</span> <span class="pre">subconjuntos</span> <span class="pre">de</span> <span class="pre">datos</span> <span class="pre">de</span> <span class="pre">prueba</span> <span class="pre">y</span> <span class="pre">de</span> <span class="pre">entrenamiento.</span> <span class="pre">Los</span> <span class="pre">datos</span> <span class="pre">de</span> <span class="pre">prueba</span> <span class="pre">nunca</span> <span class="pre">deben</span> <span class="pre">utilizarse</span> <span class="pre">para</span> <span class="pre">tomar</span> <span class="pre">decisiones</span> <span class="pre">sobre</span> <span class="pre">el</span> <span class="pre">modelo</span></code>. La regla general es no llamar nunca al ajuste en los datos de prueba. Aunque esto puede parecer obvio, es fácil que se pase por alto en algunos casos, por ejemplo al aplicar ciertos pasos de preprocesamiento.</p></li>
@@ -702,7 +707,7 @@ Best parameters: {&#39;svm__C&#39;: 1, &#39;svm__gamma&#39;: 1}
 </div>
 </section>
 <section id="ilustracion-de-la-fuga-de-datos">
-<h2><span class="section-number">11.5. </span>Ilustración de la fuga de datos<a class="headerlink" href="#ilustracion-de-la-fuga-de-datos" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">16.5. </span>Ilustración de la fuga de datos<a class="headerlink" href="#ilustracion-de-la-fuga-de-datos" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Un gran ejemplo de fuga de información en la validación cruzada se da en el libro de <em><code class="docutils literal notranslate"><span class="pre">Hastie,</span> <span class="pre">Tibshirani</span> <span class="pre">y</span> <span class="pre">Friedman:</span> <span class="pre">The</span> <span class="pre">Elements</span> <span class="pre">of</span> <span class="pre">Statistical</span> <span class="pre">Learning</span></code></em>, y aquí reproducimos una versión adaptada. Consideremos una tarea de regresión sintética con 100 muestras y 1.000 características que se muestrean independientemente de una distribución gaussiana. También muestreamos la respuesta a partir de una distribución gaussiana</p></li>
 </ul>
@@ -934,7 +939,7 @@ Best parameters: {&#39;svm__C&#39;: 1, &#39;svm__gamma&#39;: 1}
 </div>
 </section>
 <section id="la-interfaz-general-del-pipeline">
-<h2><span class="section-number">11.6. </span>La interfaz general del Pipeline<a class="headerlink" href="#la-interfaz-general-del-pipeline" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">16.6. </span>La interfaz general del Pipeline<a class="headerlink" href="#la-interfaz-general-del-pipeline" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>La clase <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code> no se limita al preprocesamiento y la clasificación, sino que puede unir cualquier número de estimadores. Por ejemplo, se puede construir una tubería que contenga la <code class="docutils literal notranslate"><span class="pre">extracción</span> <span class="pre">de</span> <span class="pre">características,</span> <span class="pre">la</span> <span class="pre">selección</span> <span class="pre">de</span> <span class="pre">características,</span> <span class="pre">el</span> <span class="pre">escalado</span> <span class="pre">y</span> <span class="pre">la</span> <span class="pre">clasificación</span></code>, para un total de cuatro pasos. Del mismo modo, el último paso podría ser la regresión o la agrupación en lugar de la clasificación. El único requisito para los estimadores en una línea de producción es que <code class="docutils literal notranslate"><span class="pre">todos</span> <span class="pre">los</span> <span class="pre">pasos,</span> <span class="pre">excepto</span> <span class="pre">el</span> <span class="pre">último,</span> <span class="pre">deben</span> <span class="pre">tener</span> <span class="pre">un</span> <span class="pre">método</span> <span class="pre">de</span> <span class="pre">transformación,</span> <span class="pre">de</span> <span class="pre">modo</span> <span class="pre">que</span> <span class="pre">puedan</span> <span class="pre">ser</span> <span class="pre">utilizados</span> <span class="pre">en</span> <span class="pre">el</span> <span class="pre">siguiente</span> <span class="pre">paso</span></code>.</p></li>
 <li><p>Internamente, durante la llamada a <code class="docutils literal notranslate"><span class="pre">Pipeline.fit</span></code>, la tubería llama a <code class="docutils literal notranslate"><span class="pre">fit</span></code> y luego a <code class="docutils literal notranslate"><span class="pre">transform</span></code> en cada paso, con la entrada dada por la salida del método de transformación del paso anterior. Para el último paso de la tubería, sólo se llama a fit. Repasando algunos detalles más finos, esto se implementa como sigue. Recuerde que la tubería <code class="docutils literal notranslate"><span class="pre">line.steps</span></code> es una lista de tuplas, por lo que <code class="docutils literal notranslate"><span class="pre">pipeline.steps[0][1]</span></code> es el primer estimador, <code class="docutils literal notranslate"><span class="pre">pipeline.steps[1][1]</span></code> es el segundo estimador, y así sucesivamente</p></li>
@@ -972,12 +977,12 @@ Best parameters: {&#39;svm__C&#39;: 1, &#39;svm__gamma&#39;: 1}
 </div>
 </div>
 <ul class="simple">
-<li><p>El proceso se ilustra en la <a class="reference internal" href="#pipeline-predict"><span class="std std-numref">Fig. 11.1</span></a> para dos transformadores, <code class="docutils literal notranslate"><span class="pre">T1</span></code>, <code class="docutils literal notranslate"><span class="pre">T2</span></code>, y un <code class="docutils literal notranslate"><span class="pre">classifier</span></code> (llamado <code class="docutils literal notranslate"><span class="pre">Classifier</span></code>)</p></li>
+<li><p>El proceso se ilustra en la <a class="reference internal" href="#pipeline-predict"><span class="std std-numref">Fig. 16.1</span></a> para dos transformadores, <code class="docutils literal notranslate"><span class="pre">T1</span></code>, <code class="docutils literal notranslate"><span class="pre">T2</span></code>, y un <code class="docutils literal notranslate"><span class="pre">classifier</span></code> (llamado <code class="docutils literal notranslate"><span class="pre">Classifier</span></code>)</p></li>
 </ul>
 <figure class="align-center" id="pipeline-predict">
 <a class="reference internal image-reference" href="_images/pipeline_predict.png"><img alt="_images/pipeline_predict.png" src="_images/pipeline_predict.png" style="width: 625.1999999999999px; height: 445.8px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 11.1 </span><span class="caption-text">Visión general del proceso de entrenamiento y predicción de la tubería.</span><a class="headerlink" href="#pipeline-predict" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 16.1 </span><span class="caption-text">Visión general del proceso de entrenamiento y predicción de la tubería.</span><a class="headerlink" href="#pipeline-predict" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <ul class="simple">
@@ -985,7 +990,7 @@ Best parameters: {&#39;svm__C&#39;: 1, &#39;svm__gamma&#39;: 1}
 </ul>
 </section>
 <section id="creacion-comoda-de-pipelines-con-make-pipeline">
-<h2><span class="section-number">11.7. </span>Creación cómoda de pipelines con make_pipeline<a class="headerlink" href="#creacion-comoda-de-pipelines-con-make-pipeline" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">16.7. </span>Creación cómoda de pipelines con make_pipeline<a class="headerlink" href="#creacion-comoda-de-pipelines-con-make-pipeline" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>La creación de un <code class="docutils literal notranslate"><span class="pre">pipeline</span></code> utilizando la sintaxis descrita anteriormente es a veces un poco engorrosa, y a menudo no necesitamos nombres especificados por el usuario para cada paso. <code class="docutils literal notranslate"><span class="pre">Existe</span> <span class="pre">una</span> <span class="pre">función</span> <span class="pre">conveniente</span> <span class="pre">make_pipeline,</span> <span class="pre">que</span> <span class="pre">creará</span> <span class="pre">una</span> <span class="pre">tubería</span> <span class="pre">por</span> <span class="pre">nosotros</span> <span class="pre">y</span> <span class="pre">nombrará</span> <span class="pre">automáticamente</span> <span class="pre">cada</span> <span class="pre">paso</span> <span class="pre">basándose</span> <span class="pre">en</span> <span class="pre">su</span> <span class="pre">clase</span></code>. La sintaxis de <code class="docutils literal notranslate"><span class="pre">make_pipeline</span></code> es la siguiente</p></li>
 </ul>
@@ -1050,7 +1055,7 @@ Best parameters: {&#39;svm__C&#39;: 1, &#39;svm__gamma&#39;: 1}
 </ul>
 </section>
 <section id="acceso-a-los-atributos-de-los-pasos">
-<h2><span class="section-number">11.8. </span>Acceso a los atributos de los pasos<a class="headerlink" href="#acceso-a-los-atributos-de-los-pasos" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">16.8. </span>Acceso a los atributos de los pasos<a class="headerlink" href="#acceso-a-los-atributos-de-los-pasos" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>A menudo querrá inspeccionar los atributos de uno de los pasos de la tubería, por ejemplo, los coeficientes de un modelo lineal o los componentes extraídos por <code class="docutils literal notranslate"><span class="pre">PCA</span></code>. <code class="docutils literal notranslate"><span class="pre">La</span> <span class="pre">forma</span> <span class="pre">más</span> <span class="pre">fácil</span> <span class="pre">de</span> <span class="pre">acceder</span> <span class="pre">a</span> <span class="pre">los</span> <span class="pre">pasos</span> <span class="pre">de</span> <span class="pre">un</span> <span class="pre">pipeline</span> <span class="pre">es</span> <span class="pre">a</span> <span class="pre">través</span> <span class="pre">del</span> <span class="pre">atributo</span> <span class="pre">named_steps</span></code>, que es un diccionario de los nombres de los pasos a los estimadores. A continuación, se ajusta el <code class="docutils literal notranslate"><span class="pre">pipeline</span></code> definido anteriormente, al conjunto de datos <code class="docutils literal notranslate"><span class="pre">cancer</span></code> y extrae las dos primeros componentes principales del paso <code class="docutils literal notranslate"><span class="pre">pca</span></code>.</p></li>
 </ul>
@@ -1070,7 +1075,7 @@ Best parameters: {&#39;svm__C&#39;: 1, &#39;svm__gamma&#39;: 1}
 </div>
 </section>
 <section id="acceso-a-los-atributos-en-un-pipeline-con-gridsearch">
-<h2><span class="section-number">11.9. </span>Acceso a los atributos en un Pipeline con GridSearch<a class="headerlink" href="#acceso-a-los-atributos-en-un-pipeline-con-gridsearch" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">16.9. </span>Acceso a los atributos en un Pipeline con GridSearch<a class="headerlink" href="#acceso-a-los-atributos-en-un-pipeline-con-gridsearch" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Como hemos comentado anteriormente en este capítulo, una de las principales razones para utilizar <code class="docutils literal notranslate"><span class="pre">pipelines</span></code>, es para realizar búsquedas en la red. Una tarea común es acceder a algunos de los pasos de una tubería dentro de dentro de una búsqueda en red. Busquemos en la red un clasificador <code class="docutils literal notranslate"><span class="pre">LogisticRegression</span></code> en el conjunto de datos <code class="docutils literal notranslate"><span class="pre">cancer</span></code>, utilizando <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code>. Usamos <code class="docutils literal notranslate"><span class="pre">StandardScaler</span></code>, para escalar los datos antes de pasarlos al clasificador <code class="docutils literal notranslate"><span class="pre">LogisticRegresión</span></code>. Primero creamos una instancia de nuestro <code class="docutils literal notranslate"><span class="pre">pipeline</span></code> usando la función <code class="docutils literal notranslate"><span class="pre">make_pipeline</span></code>.</p></li>
 </ul>
@@ -1176,7 +1181,7 @@ LogisticRegression(C=1)
 </div>
 </section>
 <section id="pasos-de-preprocesamiento-gridsearch-y-parametros-del-modelo">
-<h2><span class="section-number">11.10. </span>Pasos de preprocesamiento GridSearch y Parámetros del Modelo<a class="headerlink" href="#pasos-de-preprocesamiento-gridsearch-y-parametros-del-modelo" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">16.10. </span>Pasos de preprocesamiento GridSearch y Parámetros del Modelo<a class="headerlink" href="#pasos-de-preprocesamiento-gridsearch-y-parametros-del-modelo" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Usando <code class="docutils literal notranslate"><span class="pre">pipelines</span></code>, podemos encapsular todos los pasos de procesamiento en nuestro flujo de trabajo de aprendizaje automático en un único estimador de <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>. Otro beneficio de hacer esto es que ahora podemos <code class="docutils literal notranslate"><span class="pre">ajustar</span> <span class="pre">los</span> <span class="pre">parámetros</span> <span class="pre">de</span> <span class="pre">preprocesamiento</span></code> usando el output de una tarea supervisada, como la regresión o la clasificación. En los capítulos anteriores, utilizamos las funciones polinómicas en el dataset <code class="docutils literal notranslate"><span class="pre">boston</span></code> antes de aplicar el <code class="docutils literal notranslate"><span class="pre">regresor</span> <span class="pre">ridge</span></code>. Vamos a modelar esto usando un pipeline en su lugar. El proceso contiene tres pasos: <code class="docutils literal notranslate"><span class="pre">escalar</span> <span class="pre">los</span> <span class="pre">datos,</span> <span class="pre">calcular</span> <span class="pre">las</span> <span class="pre">características</span> <span class="pre">polinómicas</span> <span class="pre">y</span> <span class="pre">la</span> <span class="pre">regresión</span> <span class="pre">ridge</span></code></p></li>
 </ul>
@@ -1338,7 +1343,7 @@ LogisticRegression(C=1)
 </ul>
 </section>
 <section id="grid-searching-que-modelo-usar">
-<h2><span class="section-number">11.11. </span>Grid-Searching Qué Modelo Usar<a class="headerlink" href="#grid-searching-que-modelo-usar" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">16.11. </span>Grid-Searching Qué Modelo Usar<a class="headerlink" href="#grid-searching-que-modelo-usar" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Se puede ir más allá al combinar <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> y <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code>: también es posible buscar sobre los pasos reales que se están realizando en el <code class="docutils literal notranslate"><span class="pre">pipeline</span></code> (por ejemplo, si se debe utilizar <code class="docutils literal notranslate"><span class="pre">StandardScaler</span></code> o <code class="docutils literal notranslate"><span class="pre">MinMaxScaler</span></code>). Esto conduce a un espacio de búsqueda aún mayor y debe considerarse cuidadosamente. Probar todas las soluciones posibles no suele ser una estrategia viable de aprendizaje automático. Sin embargo, aquí hay un ejemplo que compara un clasificador <code class="docutils literal notranslate"><span class="pre">RandomForest</span></code> y un <code class="docutils literal notranslate"><span class="pre">SVC</span></code> en el conjunto de datos <code class="docutils literal notranslate"><span class="pre">iris</span></code>. Sabemos que <code class="docutils literal notranslate"><span class="pre">SVC</span></code> podría necesitar que los datos sean escalados, por lo que también buscamos si se utiliza <code class="docutils literal notranslate"><span class="pre">StandardScaler</span></code> o no preprocesamiento. Para el <code class="docutils literal notranslate"><span class="pre">RandomForestClassifier</span></code>, sabemos que no es necesario el preprocesamiento. Comenzamos definiendo el <code class="docutils literal notranslate"><span class="pre">pipeline</span></code>. Aquí, nombramos explícitamente los pasos. Queremos dos pasos, uno para el preprocesamiento y luego un clasificador. Podemos instanciar esto utilizando <code class="docutils literal notranslate"><span class="pre">SVC</span></code> y <code class="docutils literal notranslate"><span class="pre">StandardScaler</span></code></p></li>
 </ul>
@@ -1401,7 +1406,7 @@ Test-set score: 0.98
 </ul>
 </section>
 <section id="resumen-y-conclusiones">
-<h2><span class="section-number">11.12. </span>Resumen y conclusiones<a class="headerlink" href="#resumen-y-conclusiones" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">16.12. </span>Resumen y conclusiones<a class="headerlink" href="#resumen-y-conclusiones" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>En este capítulo hemos introducido la clase <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code>, una herramienta de propósito general para <code class="docutils literal notranslate"><span class="pre">encadenar</span> <span class="pre">múltiples</span> <span class="pre">pasos</span> <span class="pre">de</span> <span class="pre">procesamiento</span> <span class="pre">en</span> <span class="pre">un</span> <span class="pre">flujo</span> <span class="pre">de</span> <span class="pre">trabajo</span> <span class="pre">de</span> <span class="pre">aprendizaje</span> <span class="pre">automático</span></code>. Las aplicaciones del mundo real del aprendizaje automático rara vez implican el uso aislado de un modelo, y en su lugar son una secuencia de pasos de procesamiento. El uso de <code class="docutils literal notranslate"><span class="pre">pipelines</span></code> nos permite encapsular múltiples pasos en un solo objeto de <code class="docutils literal notranslate"><span class="pre">Python</span></code> que se adhiere a la interfaz familiar de <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> de <code class="docutils literal notranslate"><span class="pre">ajustar,</span> <span class="pre">predecir</span> <span class="pre">y</span> <span class="pre">transformar</span></code>. En particular, cuando se realiza la evaluación del modelo mediante la validación cruzada y la selección de parámetros mediante la búsqueda en red, el uso de la clase <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code> para captar todos los pasos de procesamiento es esencial para una evaluación adecuada.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">La</span> <span class="pre">clase</span> <span class="pre">Pipeline</span> <span class="pre">también</span> <span class="pre">permite</span> <span class="pre">escribir</span> <span class="pre">un</span> <span class="pre">código</span> <span class="pre">más</span> <span class="pre">resumido,</span> <span class="pre">y</span> <span class="pre">reduce</span> <span class="pre">la</span> <span class="pre">probabilidad</span> <span class="pre">de</span> <span class="pre">errores</span> <span class="pre">que</span> <span class="pre">pueden</span> <span class="pre">ocurrir</span> <span class="pre">al</span> <span class="pre">construir</span> <span class="pre">cadenas</span> <span class="pre">de</span> <span class="pre">procesamiento</span> <span class="pre">sin</span> <span class="pre">la</span> <span class="pre">clase</span> <span class="pre">Pipeline</span></code> (como olvidar de aplicar todos los transformadores en el conjunto de prueba, o no aplicarlos en el orden correcto). La elección de la combinación correcta de extracción de características, preprocesamiento y modelos, es un arte, y a menudo requiere un poco de ensayo y error.  Sin embargo, utilizando <code class="docutils literal notranslate"><span class="pre">pipelines</span></code>, este “ensayo” de muchos pasos de procesamiento diferentes es bastante sencillo. <code class="docutils literal notranslate"><span class="pre">Cuando</span> <span class="pre">experimenta</span> <span class="pre">su</span> <span class="pre">uso,</span> <span class="pre">tenga</span> <span class="pre">cuidado</span> <span class="pre">de</span> <span class="pre">no</span> <span class="pre">complicar</span> <span class="pre">demasiado</span> <span class="pre">sus</span> <span class="pre">procesos</span> <span class="pre">y</span> <span class="pre">asegúrese</span> <span class="pre">de</span> <span class="pre">evaluar</span> <span class="pre">si</span> <span class="pre">todos</span> <span class="pre">los</span> <span class="pre">componentes</span> <span class="pre">que</span> <span class="pre">se</span> <span class="pre">incluyen</span> <span class="pre">en</span> <span class="pre">el</span> <span class="pre">modelo</span> <span class="pre">son</span> <span class="pre">necesarios</span></code>.</p></li>
@@ -1446,7 +1451,7 @@ Test-set score: 0.98
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">10. </span>Evaluación de modelos</p>
+        <p class="prev-next-title"><span class="section-number">15. </span>Evaluación de modelos</p>
       </div>
     </a>
     <a class="right-next"
@@ -1454,7 +1459,7 @@ Test-set score: 0.98
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">12. </span>Apéndice</p>
+        <p class="prev-next-title"><span class="section-number">17. </span>Apéndice</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1474,18 +1479,18 @@ Test-set score: 0.98
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-de-parametros-con-preprocesamiento">11.1. Selección de parámetros con preprocesamiento</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#construyendo-pipelines">11.2. Construyendo Pipelines</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#utilizando-pipeline-en-gridsearch">11.3. Utilizando Pipeline en GridSearch</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-leakage">11.4. Data Leakage</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ilustracion-de-la-fuga-de-datos">11.5. Ilustración de la fuga de datos</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-interfaz-general-del-pipeline">11.6. La interfaz general del Pipeline</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-comoda-de-pipelines-con-make-pipeline">11.7. Creación cómoda de pipelines con make_pipeline</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#acceso-a-los-atributos-de-los-pasos">11.8. Acceso a los atributos de los pasos</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#acceso-a-los-atributos-en-un-pipeline-con-gridsearch">11.9. Acceso a los atributos en un Pipeline con GridSearch</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pasos-de-preprocesamiento-gridsearch-y-parametros-del-modelo">11.10. Pasos de preprocesamiento GridSearch y Parámetros del Modelo</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grid-searching-que-modelo-usar">11.11. Grid-Searching Qué Modelo Usar</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen-y-conclusiones">11.12. Resumen y conclusiones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-de-parametros-con-preprocesamiento">16.1. Selección de parámetros con preprocesamiento</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#construyendo-pipelines">16.2. Construyendo Pipelines</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#utilizando-pipeline-en-gridsearch">16.3. Utilizando Pipeline en GridSearch</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-leakage">16.4. Data Leakage</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ilustracion-de-la-fuga-de-datos">16.5. Ilustración de la fuga de datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-interfaz-general-del-pipeline">16.6. La interfaz general del Pipeline</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-comoda-de-pipelines-con-make-pipeline">16.7. Creación cómoda de pipelines con make_pipeline</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#acceso-a-los-atributos-de-los-pasos">16.8. Acceso a los atributos de los pasos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#acceso-a-los-atributos-en-un-pipeline-con-gridsearch">16.9. Acceso a los atributos en un Pipeline con GridSearch</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pasos-de-preprocesamiento-gridsearch-y-parametros-del-modelo">16.10. Pasos de preprocesamiento GridSearch y Parámetros del Modelo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grid-searching-que-modelo-usar">16.11. Grid-Searching Qué Modelo Usar</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen-y-conclusiones">16.12. Resumen y conclusiones</a></li>
 </ul>
   </nav></div>
 
