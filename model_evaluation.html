@@ -915,8 +915,8 @@ Mean accuracy: 0.97
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Cross-validation scores:
-[0.98666667 0.96       0.98666667 0.97333333 0.94666667 0.94666667
- 0.96       0.96       0.97333333 0.97333333]
+[0.97333333 0.93333333 0.98666667 0.96       0.92       0.94666667
+ 0.98666667 0.96       0.96       0.98666667]
 </pre></div>
 </div>
 </div>
@@ -2215,46 +2215,46 @@ SVC(C=10, gamma=0.1)
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.000393</td>
-      <td>0.000043</td>
-      <td>0.000223</td>
-      <td>0.000015</td>
+      <td>0.000426</td>
+      <td>0.000063</td>
+      <td>0.000230</td>
+      <td>0.000017</td>
       <td>0.001</td>
       <td>0.001</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.000370</td>
-      <td>0.000024</td>
-      <td>0.000222</td>
-      <td>0.000018</td>
+      <td>0.000374</td>
+      <td>0.000030</td>
+      <td>0.000217</td>
+      <td>0.000007</td>
       <td>0.001</td>
       <td>0.010</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.000361</td>
-      <td>0.000010</td>
-      <td>0.000217</td>
-      <td>0.000017</td>
+      <td>0.000418</td>
+      <td>0.000068</td>
+      <td>0.000224</td>
+      <td>0.000015</td>
       <td>0.001</td>
       <td>0.100</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.000364</td>
-      <td>0.000018</td>
-      <td>0.000209</td>
-      <td>0.000005</td>
+      <td>0.000431</td>
+      <td>0.000090</td>
+      <td>0.000260</td>
+      <td>0.000059</td>
       <td>0.001</td>
       <td>1.000</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.000388</td>
-      <td>0.000040</td>
-      <td>0.000219</td>
-      <td>0.000005</td>
+      <td>0.000368</td>
+      <td>0.000006</td>
+      <td>0.000221</td>
+      <td>0.000012</td>
       <td>0.001</td>
       <td>10.000</td>
     </tr>
@@ -2311,7 +2311,14 @@ SVC(C=10, gamma=0.1)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">param_grid_linear</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="s1">&#39;gamma&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">)}</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
+<span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
+
+<span class="c1"># Definir los grids de hiperparámetros</span>
+<span class="n">param_grid_linear</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="s1">&#39;gamma&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">)}</span>
 <span class="n">param_grid_one_log</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="s1">&#39;gamma&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">)}</span>
 <span class="n">param_grid_range</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="s1">&#39;gamma&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">)}</span>
 
@@ -2322,13 +2329,17 @@ SVC(C=10, gamma=0.1)
     <span class="n">grid_search</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
     <span class="n">scores</span> <span class="o">=</span> <span class="n">grid_search</span><span class="o">.</span><span class="n">cv_results_</span><span class="p">[</span><span class="s1">&#39;mean_test_score&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
 
-    <span class="n">xticklabels</span> <span class="o">=</span> <span class="p">[</span><span class="nb">round</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">param_grid</span><span class="p">[</span><span class="s1">&#39;gamma&#39;</span><span class="p">]]</span>
-    <span class="n">yticklabels</span> <span class="o">=</span> <span class="p">[</span><span class="nb">round</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">param_grid</span><span class="p">[</span><span class="s1">&#39;C&#39;</span><span class="p">]]</span>
+    <span class="k">def</span> <span class="nf">format_tick</span><span class="p">(</span><span class="n">val</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Formatea el número con notación científica si tiene más de 4 cifras decimales&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">val</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mf">0.001</span> <span class="k">else</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">val</span><span class="si">:</span><span class="s2">.1e</span><span class="si">}</span><span class="s2">&quot;</span>
+
+    <span class="n">xticklabels</span> <span class="o">=</span> <span class="p">[</span><span class="n">format_tick</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">param_grid</span><span class="p">[</span><span class="s1">&#39;gamma&#39;</span><span class="p">]]</span>
+    <span class="n">yticklabels</span> <span class="o">=</span> <span class="p">[</span><span class="n">format_tick</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">param_grid</span><span class="p">[</span><span class="s1">&#39;C&#39;</span><span class="p">]]</span>
 
     <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;.2f&quot;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;viridis&quot;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
 
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">val</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">xticklabels</span><span class="p">])</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">val</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">yticklabels</span><span class="p">])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">xticklabels</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">(</span><span class="n">yticklabels</span><span class="p">)</span>
 
     <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;gamma&quot;</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;C&quot;</span><span class="p">)</span>
@@ -2339,7 +2350,7 @@ SVC(C=10, gamma=0.1)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/80bcc22c41dc56eb438312b4634e34cea75383b07cfdf66e0747e2794f25941c.png" src="_images/80bcc22c41dc56eb438312b4634e34cea75383b07cfdf66e0747e2794f25941c.png" />
+<img alt="_images/6d98b0e248786ef6be1df2c7800e8f341ee0c5ec480bdf2ca33718a48a2d9fcb.png" src="_images/6d98b0e248786ef6be1df2c7800e8f341ee0c5ec480bdf2ca33718a48a2d9fcb.png" />
 </div>
 </div>
 <ul class="simple">
@@ -2434,39 +2445,39 @@ Best cross-validation score: 0.97
   <tbody>
     <tr>
       <th>mean_fit_time</th>
-      <td>0.000428</td>
-      <td>0.000367</td>
-      <td>0.000372</td>
+      <td>0.000407</td>
+      <td>0.000398</td>
       <td>0.000359</td>
-      <td>0.000366</td>
-      <td>0.000428</td>
+      <td>0.000364</td>
+      <td>0.000408</td>
+      <td>0.000429</td>
     </tr>
     <tr>
       <th>std_fit_time</th>
-      <td>0.000109</td>
-      <td>0.000011</td>
-      <td>0.000023</td>
-      <td>0.000006</td>
-      <td>0.000016</td>
-      <td>0.000016</td>
+      <td>0.000074</td>
+      <td>0.000047</td>
+      <td>0.000001</td>
+      <td>0.000005</td>
+      <td>0.000056</td>
+      <td>0.00002</td>
     </tr>
     <tr>
       <th>mean_score_time</th>
+      <td>0.000236</td>
       <td>0.000227</td>
-      <td>0.00023</td>
       <td>0.000213</td>
-      <td>0.000212</td>
-      <td>0.000249</td>
-      <td>0.00023</td>
+      <td>0.000211</td>
+      <td>0.000235</td>
+      <td>0.000232</td>
     </tr>
     <tr>
       <th>std_score_time</th>
-      <td>0.00002</td>
-      <td>0.000032</td>
-      <td>0.000004</td>
-      <td>0.000012</td>
-      <td>0.000068</td>
+      <td>0.000021</td>
+      <td>0.00001</td>
       <td>0.000006</td>
+      <td>0.000003</td>
+      <td>0.000025</td>
+      <td>0.000011</td>
     </tr>
     <tr>
       <th>param_C</th>
