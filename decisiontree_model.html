@@ -68,7 +68,7 @@
     <script src="_static/.ipynb_checkpoints/custom-checkpoint.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="7. Máquinas de vectores de soporte" href="svm_model.html" />
+    <link rel="next" title="8. Máquinas de vectores de soporte" href="svm_model.html" />
     <link rel="prev" title="4. Clasificador Bayesiano" href="bayes_model.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -194,18 +194,19 @@
 <li class="toctree-l1"><a class="reference internal" href="bayes_model.html">4. Clasificador Bayesiano</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">5. Random Forest y XGBoost</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="svm_model.html">7. Máquinas de vectores de soporte</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ann_model.html">8. Redes Neuronales y Deep Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dl_computer_vision.html">9. Computer vision</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="svm_model.html">8. Máquinas de vectores de soporte</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ann_model.html">9. Redes Neuronales y Deep Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dl_computer_vision.html">10. Computer vision</a></li>
 
 
 
 
-<li class="toctree-l1"><a class="reference internal" href="practical_pca.html">14. Análisis de Componentes Principales</a></li>
-<li class="toctree-l1"><a class="reference internal" href="model_evaluation.html">15. Evaluación de modelos</a></li>
-<li class="toctree-l1"><a class="reference internal" href="chains_pipelines.html">16. Cadenas de Algoritmos y Pipelines</a></li>
-<li class="toctree-l1"><a class="reference internal" href="appendix.html">17. Apéndice</a></li>
-<li class="toctree-l1"><a class="reference internal" href="biblio.html">18. Bibliografía</a></li>
+<li class="toctree-l1"><a class="reference internal" href="practical_pca.html">15. Análisis de Componentes Principales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_evaluation.html">16. Evaluación de modelos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chains_pipelines.html">17. Cadenas de Algoritmos y Pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix.html">18. Apéndice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="biblio.html">19. Bibliografía</a></li>
 </ul>
 
     </div>
@@ -362,11 +363,12 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arboles-boosting">5.5. Arboles Boosting</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion">6. Implementación</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#control-de-complejidad">6.1. Control de complejidad</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-los-arboles-de-decision">6.2. Análisis de los árboles de decisión</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#caracteristicas-importantes-en-los-arboles">6.3. Características importantes en los árboles</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ensamble-de-arboles-de-decision">6.4. Ensamble de árboles de decisión</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios-para-el-estudiante">6. Ejercicios para el estudiante</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion">7. Implementación</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#control-de-complejidad">7.1. Control de complejidad</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-los-arboles-de-decision">7.2. Análisis de los árboles de decisión</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#caracteristicas-importantes-en-los-arboles">7.3. Características importantes en los árboles</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ensamble-de-arboles-de-decision">7.4. Ensamble de árboles de decisión</a></li>
 </ul>
 </li>
 </ul>
@@ -974,10 +976,32 @@ F_{i}(\cdot)=F_{i-1}(\cdot)+\nu T(\cdot; \boldsymbol{\theta}_{i}).
 </ul>
 </section>
 </section>
+<section class="tex2jax_ignore mathjax_ignore" id="ejercicios-para-el-estudiante">
+<h1><span class="section-number">6. </span>Ejercicios para el estudiante<a class="headerlink" href="#ejercicios-para-el-estudiante" title="Link to this heading">#</a></h1>
+<ol class="arabic">
+<li><p>Considere el <em><strong>cociente de Rayleigh</strong></em>,</p>
+<div class="math notranslate nohighlight">
+\[
+    R = \frac{\theta^T A \theta}{\|\theta\|^2}
+    \]</div>
+<p>donde <span class="math notranslate nohighlight">\(A\)</span> es una matriz <em><strong>simétrica definida positiva</strong></em>. Demuestre que <span class="math notranslate nohighlight">\(R\)</span> se maximiza con respecto a <span class="math notranslate nohighlight">\(\theta\)</span> si <span class="math notranslate nohighlight">\(\theta\)</span> es el <em><strong>autovector</strong></em> correspondiente al <em><strong>mayor autovalor</strong></em> de <span class="math notranslate nohighlight">\(A\)</span>.</p>
+</li>
+<li><p>Considere el <em><strong>cociente de Rayleigh generalizado</strong></em>,</p>
+<div class="math notranslate nohighlight">
+\[
+   R_g = \frac{\theta^T B \theta}{\theta^T A \theta}
+   \]</div>
+<p>donde <span class="math notranslate nohighlight">\(A\)</span> y <span class="math notranslate nohighlight">\(B\)</span> son matrices <em><strong>simétricas definidas positivas</strong></em>. Demuestre que <span class="math notranslate nohighlight">\(R_g\)</span> se maximiza con respecto a <span class="math notranslate nohighlight">\(\theta\)</span> si <span class="math notranslate nohighlight">\(\theta\)</span> es el <em><strong>autovector</strong></em> correspondiente al <em><strong>mayor autovalor</strong></em> de <span class="math notranslate nohighlight">\(A^{-1}B\)</span>, suponiendo que la inversión de <span class="math notranslate nohighlight">\(A\)</span> es posible.</p>
+</li>
+<li><p>Derive la <em><strong>regla de la media aritmética</strong></em> para la combinación minimizando la divergencia de Kullback–Leibler promedio.</p></li>
+<li><p>Derive la regla del <em><strong>promedio geométrico</strong></em> mediante la minimización de la divergencia de Kullback–Leibler.</p></li>
+<li><p>Demuestre que la tasa de error en el conjunto de entrenamiento del clasificador final, obtenido mediante boosting, tiende a cero de manera exponencialmente rápida.</p></li>
+</ol>
+</section>
 <section class="tex2jax_ignore mathjax_ignore" id="implementacion">
-<h1><span class="section-number">6. </span>Implementación<a class="headerlink" href="#implementacion" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">7. </span>Implementación<a class="headerlink" href="#implementacion" title="Link to this heading">#</a></h1>
 <section id="control-de-complejidad">
-<h2><span class="section-number">6.1. </span>Control de complejidad<a class="headerlink" href="#control-de-complejidad" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">7.1. </span>Control de complejidad<a class="headerlink" href="#control-de-complejidad" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Al <em><strong>construir un árbol hasta que todas las hojas sean puras, se obtienen modelos complejos y ajustados al conjunto de entrenamiento, lo que resulta en un 100% de precisión</strong></em>. Para evitar el overfitting, se pueden emplear dos estrategias: la <em><strong>prepoda, que detiene la creación del árbol antes de tiempo, o la poda posterior, que elimina nodos poco informativos</strong></em>. La prepoda puede incluir limitar la profundidad del árbol, el número máximo de hojas o exigir un mínimo de puntos en un nodo para seguir dividiéndolo.</p></li>
 <li><p>En <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>, los árboles de decisión se implementan en las clases <code class="docutils literal notranslate"><span class="pre">DecisionTreeRegressor</span></code> y <code class="docutils literal notranslate"><span class="pre">DecisionTreeClassifier</span></code>, y <em><strong>solo se ofrece la prepoda</strong></em>. Para ilustrar el efecto de esta técnica, se utiliza el conjunto de datos <code class="docutils literal notranslate"><span class="pre">breast_cancer</span></code>, que se divide en partes de entrenamiento y prueba. Se construye un modelo con la configuración por defecto, extendiendo el árbol hasta que todas las hojas sean puras, estableciendo un <code class="docutils literal notranslate"><span class="pre">random_state</span></code> para la separación de datos y usando <code class="docutils literal notranslate"><span class="pre">stratify=cancer.target</span></code> para una división estratificada.</p></li>
@@ -1039,7 +1063,7 @@ Accuracy on test set: 0.951
 </div>
 </section>
 <section id="analisis-de-los-arboles-de-decision">
-<h2><span class="section-number">6.2. </span>Análisis de los árboles de decisión<a class="headerlink" href="#analisis-de-los-arboles-de-decision" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">7.2. </span>Análisis de los árboles de decisión<a class="headerlink" href="#analisis-de-los-arboles-de-decision" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Podemos visualizar un árbol de decisión con la función <code class="docutils literal notranslate"><span class="pre">export_graphviz</span></code> del módulo <code class="docutils literal notranslate"><span class="pre">tree</span></code>, que genera un archivo en formato <code class="docutils literal notranslate"><span class="pre">.dot</span></code> para gráficos. Configuramos la opción de <em><strong>colorear los nodos según la clase mayoritaria y proporcionamos nombres de clases y características para etiquetar el árbol correctamente</strong></em>. El argumento <code class="docutils literal notranslate"><span class="pre">impurity</span></code> se relaciona con la probabilidad de clasificar incorrectamente un nuevo dato, <em><strong>calculada normalmente mediante la métrica de entropía de Gini</strong></em>, discutida en la sección anterior.</p></li>
 </ul>
@@ -1101,7 +1125,7 @@ Accuracy on test set: 0.951
 </ul>
 </section>
 <section id="caracteristicas-importantes-en-los-arboles">
-<h2><span class="section-number">6.3. </span>Características importantes en los árboles<a class="headerlink" href="#caracteristicas-importantes-en-los-arboles" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">7.3. </span>Características importantes en los árboles<a class="headerlink" href="#caracteristicas-importantes-en-los-arboles" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>En lugar de mirar todo el árbol, lo que puede ser agotador, hay algunas <em><strong>propiedades útiles que podemos derivar para resumir el funcionamiento del árbol</strong></em>. El resumen más utilizado es el de las <em><strong>características importantes, que califica la importancia de cada característica para la decisión que toma el árbol</strong></em>. Es un número entre 0 y 1 para cada característica, donde <em><strong>0 significa “no se utiliza en absoluto”</strong></em> y <em><strong>1 significa “predice perfectamente el objetivo”</strong></em>. Las características siempre suman 1</p></li>
 </ul>
@@ -1284,7 +1308,7 @@ Accuracy on test set: 0.951
 </div>
 </section>
 <section id="ensamble-de-arboles-de-decision">
-<h2><span class="section-number">6.4. </span>Ensamble de árboles de decisión<a class="headerlink" href="#ensamble-de-arboles-de-decision" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">7.4. </span>Ensamble de árboles de decisión<a class="headerlink" href="#ensamble-de-arboles-de-decision" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><em><strong>Los ensambles son métodos que combinan múltiples modelos de aprendizaje automático para crear modelos más potentes</strong></em>. Hay muchos modelos en la literatura de aprendizaje automático que pertenecen a esta categoría, pero hay dos modelos de ensamble que han demostrado su eficacia en una amplia gama de conjuntos de datos de clasificación y regresión, ambos utilizan árboles de decisión como bloques de construcción: los <code class="docutils literal notranslate"><span class="pre">random</span> <span class="pre">forest</span></code> y los <code class="docutils literal notranslate"><span class="pre">gradient</span> <span class="pre">boosted</span> <span class="pre">decision</span> <span class="pre">trees.</span></code></p></li>
 </ul>
@@ -76362,7 +76386,7 @@ Modelo guardado como best_xgboost_model.pkl
 <figure class="align-center" id="gpu-xgboost-fig">
 <a class="reference internal image-reference" href="_images/gpu_xgboost.png"><img alt="_images/gpu_xgboost.png" src="_images/gpu_xgboost.png" style="width: 672.0px; height: 356.29999999999995px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 6.1 </span><span class="caption-text">Uso de GPU durante la fase de entrenamiento usando <code class="docutils literal notranslate"><span class="pre">XGBoost</span> <span class="pre">GPU</span> <span class="pre">Support</span></code>.</span><a class="headerlink" href="#gpu-xgboost-fig" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 7.1 </span><span class="caption-text">Uso de GPU durante la fase de entrenamiento usando <code class="docutils literal notranslate"><span class="pre">XGBoost</span> <span class="pre">GPU</span> <span class="pre">Support</span></code>.</span><a class="headerlink" href="#gpu-xgboost-fig" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <div class="important admonition">
@@ -76420,7 +76444,7 @@ Modelo guardado como best_xgboost_model.pkl
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">7. </span>Máquinas de vectores de soporte</p>
+        <p class="prev-next-title"><span class="section-number">8. </span>Máquinas de vectores de soporte</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -76448,11 +76472,12 @@ Modelo guardado como best_xgboost_model.pkl
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arboles-boosting">5.5. Arboles Boosting</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion">6. Implementación</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#control-de-complejidad">6.1. Control de complejidad</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-los-arboles-de-decision">6.2. Análisis de los árboles de decisión</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#caracteristicas-importantes-en-los-arboles">6.3. Características importantes en los árboles</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ensamble-de-arboles-de-decision">6.4. Ensamble de árboles de decisión</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios-para-el-estudiante">6. Ejercicios para el estudiante</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion">7. Implementación</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#control-de-complejidad">7.1. Control de complejidad</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-los-arboles-de-decision">7.2. Análisis de los árboles de decisión</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#caracteristicas-importantes-en-los-arboles">7.3. Características importantes en los árboles</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ensamble-de-arboles-de-decision">7.4. Ensamble de árboles de decisión</a></li>
 </ul>
 </li>
 </ul>
