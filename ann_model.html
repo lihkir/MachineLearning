@@ -369,18 +369,20 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#redes-neuronales-convolucionales">9.12. Redes Neuronales Convolucionales</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-necesidad-de-convoluciones">9.12.1. La necesidad de convoluciones</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-etapa-de-convolucion">9.12.2. La etapa de convolución</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#el-paso-de-la-no-linealidad">9.12.3. El paso de la no linealidad</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-etapa-de-agrupacion">9.12.4. La etapa de agrupación</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convolucion-sobre-volumenes">9.12.5. Convolución sobre volúmenes</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#red-en-red-y-convolucion-1-1">9.12.6. Red en red y convolución 1 × 1</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arquitectura-cnn-completa">9.12.7. Arquitectura CNN completa</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arquitecturas-de-redes-neuronales-convolucionales">9.12.8. Arquitecturas de Redes Neuronales Convolucionales</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lenet-5">9.12.9. LeNet-5</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alexnet">9.12.10. AlexNet</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vgg-16">9.12.11. VGG-16</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#googlenet-y-la-red-inception">9.12.12. GoogleNet y la red Inception</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#redes-residuales-resnets">9.12.13. Redes residuales (ResNets)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reconocimiento-facial-de-emociones">9.12.14. Reconocimiento facial de emociones</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-uso-de-multiples-kernels-en-una-cnn">9.12.3. Ejemplo de uso de Múltiples <em>Kernels</em> en una CNN</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#el-paso-de-la-no-linealidad">9.12.4. El paso de la no linealidad</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-etapa-de-agrupacion">9.12.5. La etapa de agrupación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convolucion-sobre-volumenes">9.12.6. Convolución sobre volúmenes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#red-en-red-y-convolucion-1-1">9.12.7. Red en red y convolución 1 × 1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arquitectura-cnn-completa">9.12.8. Arquitectura CNN completa</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#caracteristicas-en-una-cnn">9.12.9. Características en una CNN</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arquitecturas-de-redes-neuronales-convolucionales">9.12.10. Arquitecturas de Redes Neuronales Convolucionales</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lenet-5">9.12.11. LeNet-5</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alexnet">9.12.12. AlexNet</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vgg-16">9.12.13. VGG-16</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#googlenet-y-la-red-inception">9.12.14. GoogleNet y la red Inception</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#redes-residuales-resnets">9.12.15. Redes residuales (ResNets)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reconocimiento-facial-de-emociones">9.12.16. Reconocimiento facial de emociones</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#redes-neuronales-recurrentes">9.13. Redes Neuronales Recurrentes</a><ul class="nav section-nav flex-column">
@@ -4822,6 +4824,21 @@ H=
 <li><p>La <a class="reference internal" href="#feature-maps-inp-img-numref"><span class="std std-numref">Fig. 9.24</span></a> ilustra la entrada y la primera capa oculta de una CNN. La entrada comprende una matriz imagen. La <em><strong>capa oculta consta de tres matrices de filtrado, a saber,</strong></em> <span class="math notranslate nohighlight">\(H_{1}, H_{2}, H_{3}\)</span>. Nótese que cada matriz es el resultado de <em><strong>convolucionar una matriz de filtros diferente sobre la imagen de entrada</strong></em>. Cuantos <em><strong>más filtros se empleen, más mapas de características se extraerán y, en principio, mejor será el rendimiento de la red</strong></em>.</p></li>
 <li><p>Sin embargo, cuantos más filtros utilicemos, más parámetros habrá que aprender, lo que plantea <em><strong>problemas computacionales y de sobreajuste</strong></em>. Nótese que <em><strong>cada píxel de una matriz de mapeo de características de salida codifica información dentro del área de la ventana</strong></em> que está definida por la <em><strong>posición correspondiente de la respectiva matriz de filtro</strong></em>.</p></li>
 </ul>
+</section>
+<section id="ejemplo-de-uso-de-multiples-kernels-en-una-cnn">
+<h3><span class="section-number">9.12.3. </span>Ejemplo de uso de Múltiples <em>Kernels</em> en una CNN<a class="headerlink" href="#ejemplo-de-uso-de-multiples-kernels-en-una-cnn" title="Link to this heading">#</a></h3>
+<p>En una Red Neuronal Convolucional (CNN), cada <em>kernel</em> se aplica <strong>simultáneamente</strong> a la imagen de entrada, generando un mapa de características (<em>feature map</em>).</p>
+<p><strong>Proceso de Aplicación</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Cada <em>kernel</em></strong> detecta distintos patrones como bordes o texturas.</p></li>
+<li><p><strong>Cada filtro genera su propio mapa de características</strong>, reduciendo dimensiones según el tamaño del <em>kernel</em>, <em>stride</em> y <em>padding</em>.</p></li>
+<li><p><strong>El resultado es un volumen de salida</strong> de tamaño <span class="math notranslate nohighlight">\(H' \times W' \times N\)</span>, donde <span class="math notranslate nohighlight">\(N\)</span> es el número de filtros (kernels).</p></li>
+</ol>
+<p><strong>Ejemplo con Tres <em>Kernels</em></strong>: Si una imagen RGB de <span class="math notranslate nohighlight">\(32 \times 32 \times 3\)</span> se procesa con tres <em>kernels</em> de <span class="math notranslate nohighlight">\(3 \times 3 \times 3\)</span>, la salida será:  <strong><span class="math notranslate nohighlight">\(30 \times 30 \times 3\)</span></strong></p>
+<p><strong><code class="docutils literal notranslate"><span class="pre">Conclusión</span></code></strong></p>
+<p>✔ <strong>Cada <em>kernel</em> opera en paralelo, generando su propio mapa de características.</strong><br />
+✔ <strong>El número de filtros define la profundidad de la salida.</strong><br />
+✔ <strong>Las dimensiones dependen de los hiperparámetros de convolución.</strong></p>
 <div class="proof observation admonition" id="observation_ann3">
 <p class="admonition-title"><span class="caption-number">Observation 9.2 </span></p>
 <section class="observation-content" id="proof-content">
@@ -4874,7 +4891,7 @@ esté contenida dentro de</strong></em> <span class="math notranslate nohighligh
 </ul>
 </section>
 <section id="el-paso-de-la-no-linealidad">
-<h3><span class="section-number">9.12.3. </span>El paso de la no linealidad<a class="headerlink" href="#el-paso-de-la-no-linealidad" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">9.12.4. </span>El paso de la no linealidad<a class="headerlink" href="#el-paso-de-la-no-linealidad" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Una vez que <em><strong>se han realizado las convoluciones y se ha añadido el término de sesgo</strong></em> a todos los valores del mapa de características, el siguiente paso es <em><strong><code class="docutils literal notranslate"><span class="pre">aplicar</span> <span class="pre">una</span> <span class="pre">no</span> <span class="pre">linealidad</span> <span class="pre">(función</span> <span class="pre">de</span> <span class="pre">activación)</span> <span class="pre">a</span> <span class="pre">cada</span> <span class="pre">uno</span> <span class="pre">de</span> <span class="pre">los</span> <span class="pre">píxeles</span> <span class="pre">de</span> <span class="pre">cada</span> <span class="pre">matriz</span></code></strong></em> de mapas de características.</p></li>
 <li><p>Se puede emplear cualquiera de las no linealidades que se han comentado anteriormente. Actualmente, la <em><strong>función de activación lineal rectificada, <code class="docutils literal notranslate"><span class="pre">ReLU</span></code>, parece ser la más popular</strong></em>. La <a class="reference internal" href="#relu-activ-fn-numref"><span class="std std-numref">Fig. 9.27</span></a>A muestra la imagen obtenida después de <em><strong>filtrar la imagen original del barco con el detector de bordes en la</strong></em> <a class="reference internal" href="#equation-h-filter-conv-eq">(9.12)</a> y la <a class="reference internal" href="#relu-activ-fn-numref"><span class="std std-numref">Fig. 9.27</span></a>B muestra el resultado que se obtiene tras la <em><strong>aplicación de la no linealidad en cada píxel individual</strong></em>.</p></li>
@@ -4887,7 +4904,7 @@ esté contenida dentro de</strong></em> <span class="math notranslate nohighligh
 </figure>
 </section>
 <section id="la-etapa-de-agrupacion">
-<h3><span class="section-number">9.12.4. </span>La etapa de agrupación<a class="headerlink" href="#la-etapa-de-agrupacion" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">9.12.5. </span>La etapa de agrupación<a class="headerlink" href="#la-etapa-de-agrupacion" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>El objetivo de este paso es <em><strong>reducir la dimensionalidad de cada matriz de “mapas de características” (representaciones intermedias)</strong></em>. A veces, el paso también se denomina <em><strong><code class="docutils literal notranslate"><span class="pre">pooling</span> <span class="pre">espacial</span></code></strong></em>. Para ello, <em><strong>se define una ventana y se desliza sobre la matriz correspondiente</strong></em>. El deslizamiento puede realizarse <em><strong>adoptando un valor para el respectivo parámetro stride,</strong></em> <span class="math notranslate nohighlight">\(s\)</span>. La operación de pooling consiste en <em><strong>elegir un único valor para representar todos los píxeles que se encuentran dentro de la ventana</strong></em>.</p></li>
 <li><p>La operación más utilizada es la <em><strong>agrupación máxima (<code class="docutils literal notranslate"><span class="pre">max</span> <span class="pre">pooling</span></code>); es decir, entre todos los píxeles que se encuentran dentro de la ventana, el que tiene el valor más alto es seleccionado</strong></em>. Otra posibilidad es la <em><strong>agrupación en la que se selecciona el valor medio de todos los píxeles (<code class="docutils literal notranslate"><span class="pre">average</span> <span class="pre">pooling</span></code>)</strong></em>; a veces se denomina pooling de suma. La operación de pooling se ilustra en la <a class="reference internal" href="#pooling-step-conv-numref"><span class="std std-numref">Fig. 9.28</span></a>. La matriz de la <em><strong>imagen original es de 6 × 6 y la ventana es de tamaño 2 × 2</strong></em>. Hemos elegido que el stride sea igual a <span class="math notranslate nohighlight">\(s = 2\)</span>.</p></li>
@@ -4917,7 +4934,7 @@ esté contenida dentro de</strong></em> <span class="math notranslate nohighligh
 </div>
 </section>
 <section id="convolucion-sobre-volumenes">
-<h3><span class="section-number">9.12.5. </span>Convolución sobre volúmenes<a class="headerlink" href="#convolucion-sobre-volumenes" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">9.12.6. </span>Convolución sobre volúmenes<a class="headerlink" href="#convolucion-sobre-volumenes" title="Link to this heading">#</a></h3>
 <div class="important admonition">
 <p class="admonition-title">Observación</p>
 <ul class="simple">
@@ -4981,7 +4998,7 @@ O_{r}=I_{r}\star H_{r},\quad r=1,2,\dots,d.
 </ul>
 </section>
 <section id="red-en-red-y-convolucion-1-1">
-<h3><span class="section-number">9.12.6. </span>Red en red y convolución 1 × 1<a class="headerlink" href="#red-en-red-y-convolucion-1-1" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">9.12.7. </span>Red en red y convolución 1 × 1<a class="headerlink" href="#red-en-red-y-convolucion-1-1" title="Link to this heading">#</a></h3>
 <div class="important admonition">
 <p class="admonition-title">Observación</p>
 <ul class="simple">
@@ -5033,7 +5050,7 @@ O_{r}=I_{r}\star H_{r},\quad r=1,2,\dots,d.
 </figure>
 </section>
 <section id="arquitectura-cnn-completa">
-<h3><span class="section-number">9.12.7. </span>Arquitectura CNN completa<a class="headerlink" href="#arquitectura-cnn-completa" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">9.12.8. </span>Arquitectura CNN completa<a class="headerlink" href="#arquitectura-cnn-completa" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>La forma típica de una red convolucional completa consiste en una <em><strong><code class="docutils literal notranslate"><span class="pre">secuencia</span> <span class="pre">de</span> <span class="pre">capas</span> <span class="pre">convolucionales</span></code>, cada una de las cuales que comprende los tres pasos básicos</strong></em>, a saber, <em><strong><code class="docutils literal notranslate"><span class="pre">convolución</span> <span class="pre">(Conv.),</span> <span class="pre">no</span> <span class="pre">linealidad</span> <span class="pre">(ReLU)</span> <span class="pre">y</span> <span class="pre">agrupación</span> <span class="pre">(Pooling)</span></code></strong></em>, como se describe al principio de esta sección. <em><strong>Dependiendo de la aplicación, <code class="docutils literal notranslate"><span class="pre">se</span> <span class="pre">pueden</span> <span class="pre">apilar</span> <span class="pre">tantas</span> <span class="pre">capas</span> <span class="pre">como</span> <span class="pre">sea</span> <span class="pre">necesario</span></code></strong></em>, donde la salida de una capa se convierte en la entrada de la siguiente. Las <em><strong>entradas y salidas de cada capa son volúmenes</strong></em>, como se ha descrito anteriormente.</p></li>
 </ul>
@@ -5064,8 +5081,50 @@ O_{r}=I_{r}\star H_{r},\quad r=1,2,\dots,d.
 </ul>
 </div>
 </section>
+<section id="caracteristicas-en-una-cnn">
+<h3><span class="section-number">9.12.9. </span>Características en una CNN<a class="headerlink" href="#caracteristicas-en-una-cnn" title="Link to this heading">#</a></h3>
+<p><em><strong>Las características</strong></em> (<em>features</em>) en una Red Neuronal Convolucional (CNN) <em><strong>son patrones visuales que la red aprende a reconocer en las imágenes</strong></em>. Se extraen automáticamente a través de capas convolucionales aplicadas en diferentes niveles de abstracción. <strong>¿Cuáles son las características en una CNN?</strong> Las características son <em><strong>representaciones numéricas que describen el contenido visual de una imagen</strong></em>. Se generan a través de filtros convolucionales que detectan patrones en distintos niveles:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Características</span> <span class="pre">de</span> <span class="pre">bajo</span> <span class="pre">nivel</span></code> (Primeras capas)</p></li>
+</ol>
+<p>🔸 Se detectan patrones simples como:</p>
+<ul class="simple">
+<li><p>✔ Bordes</p></li>
+<li><p>✔ Texturas</p></li>
+<li><p>✔ Esquinas</p></li>
+<li><p>✔ Gradientes de color</p></li>
+</ul>
+<p>💡 <strong>Ejemplo:</strong> Un filtro Sobel detecta los bordes en una imagen.</p>
+<ol class="arabic simple" start="2">
+<li><p>Características de nivel intermedio (Capas medias)
+🔸 Se combinan los bordes y texturas detectados antes para formar estructuras más complejas, como:</p></li>
+</ol>
+<ul class="simple">
+<li><p>✔ Formas básicas (círculos, líneas curvas)</p></li>
+<li><p>✔ Contornos de objetos</p></li>
+<li><p>✔ Partes de objetos (ojos, nariz, ruedas)</p></li>
+</ul>
+<p>💡 <strong>Ejemplo:</strong> En una CNN que detecta rostros, esta capa podría identificar una nariz o un ojo.</p>
+<ol class="arabic simple" start="3">
+<li><p>Características de alto nivel (Últimas capas)
+🔸 Se forman representaciones abstractas y semánticas de la imagen, como:</p></li>
+</ol>
+<ul class="simple">
+<li><p>✔ Objetos completos (caras, coches, animales)</p></li>
+<li><p>✔ Relaciones espaciales entre partes</p></li>
+<li><p>✔ Categorización (perro vs. gato)</p></li>
+</ul>
+<p>💡 <strong>Ejemplo:</strong> En una CNN entrenada para clasificar animales, las capas profundas pueden reconocer la silueta completa de un gato.</p>
+<p>🔹 Ejemplo Visual</p>
+<p>Si la CNN clasifica gatos y perros:</p>
+<ul class="simple">
+<li><p><strong>Bordes</strong> → Detecta líneas y curvas.</p></li>
+<li><p><strong>Formas intermedias</strong> → Identifica orejas, ojos y hocico.</p></li>
+<li><p><strong>Características de alto nivel</strong> → Distingue un gato de un perro.</p></li>
+</ul>
+</section>
 <section id="arquitecturas-de-redes-neuronales-convolucionales">
-<h3><span class="section-number">9.12.8. </span>Arquitecturas de Redes Neuronales Convolucionales<a class="headerlink" href="#arquitecturas-de-redes-neuronales-convolucionales" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">9.12.10. </span>Arquitecturas de Redes Neuronales Convolucionales<a class="headerlink" href="#arquitecturas-de-redes-neuronales-convolucionales" title="Link to this heading">#</a></h3>
 <div class="information admonition">
 <p class="admonition-title">Introducción</p>
 <ul class="simple">
@@ -5075,7 +5134,7 @@ O_{r}=I_{r}\star H_{r},\quad r=1,2,\dots,d.
 </div>
 </section>
 <section id="lenet-5">
-<h3><span class="section-number">9.12.9. </span>LeNet-5<a class="headerlink" href="#lenet-5" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">9.12.11. </span>LeNet-5<a class="headerlink" href="#lenet-5" title="Link to this heading">#</a></h3>
 <div class="tip admonition">
 <p class="admonition-title">LeNet-5</p>
 <ul class="simple">
@@ -5092,7 +5151,7 @@ O_{r}=I_{r}\star H_{r},\quad r=1,2,\dots,d.
 </figure>
 </section>
 <section id="alexnet">
-<h3><span class="section-number">9.12.10. </span>AlexNet<a class="headerlink" href="#alexnet" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">9.12.12. </span>AlexNet<a class="headerlink" href="#alexnet" title="Link to this heading">#</a></h3>
 <div class="tip admonition">
 <p class="admonition-title">AlexNet</p>
 <ul class="simple">
@@ -5108,12 +5167,12 @@ O_{r}=I_{r}\star H_{r},\quad r=1,2,\dots,d.
 </figure>
 </section>
 <section id="vgg-16">
-<h3><span class="section-number">9.12.11. </span>VGG-16<a class="headerlink" href="#vgg-16" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">9.12.13. </span>VGG-16<a class="headerlink" href="#vgg-16" title="Link to this heading">#</a></h3>
 <div class="admonition-vgg-16 admonition">
 <p class="admonition-title">VGG-16</p>
 <ul class="simple">
 <li><p>Esta red <span id="id27">[<a class="reference internal" href="biblio.html#id33" title="Karen Simonyan and Andrew Zisserman. Very deep convolutional networks for large-scale image recognition. arXiv preprint arXiv:1409.1556, 2014.">Simonyan and Zisserman, 2014</a>]</span> es <em><strong>mucho mayor que AlexNet</strong></em>. Implica un total de aproximadamente <em><strong>140 millones de parámetros</strong></em>. La principal característica de esta red es su <em><strong>regularidad</strong></em>. Involucra <em><strong>filtros 3 × 3 para realizar las mismas convoluciones utilizando padding y stride</strong></em> <span class="math notranslate nohighlight">\(s = 1\)</span> y <em><strong>ventanas 2 × 2 para maxpooling</strong></em> con stride <span class="math notranslate nohighlight">\(s = 2\)</span>. <em><strong>Cada vez que se realiza un pooling, la altura y la anchura de los volúmenes se reducen a la mitad y la profundidad se multiplica por dos</strong></em>.</p></li>
-<li><p>Partiendo de <em><strong>224 × 224 × 3 imagen de entrada</strong></em> y después de <em><strong>13 capas</strong></em> el <em><strong>volumen final tiene un tamaño de 7 × 7 × 512, un total de 7168 elementos</strong></em>, que tras su vectorización <em><strong>alimenta a una red totalmente conectada con 2 capas ocultas de 4096 nodos cada una</strong></em>. Los <em><strong>1000 nodos de salida están construidos en torno a la no linealidad softmax y se ha utilizado ReLU para las unidades ocultas en toda la red</strong></em>.</p></li>
+<li><p>Partiendo de <em><strong>224 × 224 × 3 imagen de entrada</strong></em> y después de <em><strong>13 capas</strong></em> el <em><strong>volumen final tiene un tamaño de 7 × 7 × 512, un total de 25088 elementos</strong></em>, que tras su vectorización <em><strong>alimenta a una red totalmente conectada con 2 capas ocultas de 4096 nodos cada una</strong></em>. Los <em><strong>1000 nodos de salida están construidos en torno a la no linealidad softmax y se ha utilizado ReLU para las unidades ocultas en toda la red</strong></em>.</p></li>
 </ul>
 </div>
 <figure class="align-center" id="vgg16-architecture-numref">
@@ -5133,7 +5192,7 @@ O_{r}=I_{r}\star H_{r},\quad r=1,2,\dots,d.
 </ul>
 </section>
 <section id="googlenet-y-la-red-inception">
-<h3><span class="section-number">9.12.12. </span>GoogleNet y la red Inception<a class="headerlink" href="#googlenet-y-la-red-inception" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">9.12.14. </span>GoogleNet y la red Inception<a class="headerlink" href="#googlenet-y-la-red-inception" title="Link to this heading">#</a></h3>
 <div class="tip admonition">
 <p class="admonition-title">GoogleNet y la red Inception</p>
 <ul class="simple">
@@ -5150,7 +5209,7 @@ O_{r}=I_{r}\star H_{r},\quad r=1,2,\dots,d.
 </figure>
 </section>
 <section id="redes-residuales-resnets">
-<h3><span class="section-number">9.12.13. </span>Redes residuales (ResNets)<a class="headerlink" href="#redes-residuales-resnets" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">9.12.15. </span>Redes residuales (ResNets)<a class="headerlink" href="#redes-residuales-resnets" title="Link to this heading">#</a></h3>
 <div class="seealso admonition">
 <p class="admonition-title"><em><strong>Redes residuales (ResNets)</strong></em></p>
 <ul class="simple">
@@ -5196,7 +5255,7 @@ F(\boldsymbol{y}^{r})=H(\boldsymbol{y}^{r-1})-\boldsymbol{y}^{r-1}.
 </ul>
 </section>
 <section id="reconocimiento-facial-de-emociones">
-<h3><span class="section-number">9.12.14. </span>Reconocimiento facial de emociones<a class="headerlink" href="#reconocimiento-facial-de-emociones" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">9.12.16. </span>Reconocimiento facial de emociones<a class="headerlink" href="#reconocimiento-facial-de-emociones" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Los datos para el siguiente ejemplo pueden ser descargados del siguiente link: <a class="reference external" href="https://github.com/lihkir/Data/tree/main/face_sentiment_detection">Face Sentiment Detection</a></p></li>
 </ul>
@@ -10177,18 +10236,20 @@ Z=\sum_{v}\sum_{h}\exp(-E(\boldsymbol{v}, \boldsymbol{h})).
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#redes-neuronales-convolucionales">9.12. Redes Neuronales Convolucionales</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-necesidad-de-convoluciones">9.12.1. La necesidad de convoluciones</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-etapa-de-convolucion">9.12.2. La etapa de convolución</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#el-paso-de-la-no-linealidad">9.12.3. El paso de la no linealidad</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-etapa-de-agrupacion">9.12.4. La etapa de agrupación</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convolucion-sobre-volumenes">9.12.5. Convolución sobre volúmenes</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#red-en-red-y-convolucion-1-1">9.12.6. Red en red y convolución 1 × 1</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arquitectura-cnn-completa">9.12.7. Arquitectura CNN completa</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arquitecturas-de-redes-neuronales-convolucionales">9.12.8. Arquitecturas de Redes Neuronales Convolucionales</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lenet-5">9.12.9. LeNet-5</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alexnet">9.12.10. AlexNet</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vgg-16">9.12.11. VGG-16</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#googlenet-y-la-red-inception">9.12.12. GoogleNet y la red Inception</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#redes-residuales-resnets">9.12.13. Redes residuales (ResNets)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reconocimiento-facial-de-emociones">9.12.14. Reconocimiento facial de emociones</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-uso-de-multiples-kernels-en-una-cnn">9.12.3. Ejemplo de uso de Múltiples <em>Kernels</em> en una CNN</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#el-paso-de-la-no-linealidad">9.12.4. El paso de la no linealidad</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-etapa-de-agrupacion">9.12.5. La etapa de agrupación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convolucion-sobre-volumenes">9.12.6. Convolución sobre volúmenes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#red-en-red-y-convolucion-1-1">9.12.7. Red en red y convolución 1 × 1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arquitectura-cnn-completa">9.12.8. Arquitectura CNN completa</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#caracteristicas-en-una-cnn">9.12.9. Características en una CNN</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arquitecturas-de-redes-neuronales-convolucionales">9.12.10. Arquitecturas de Redes Neuronales Convolucionales</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lenet-5">9.12.11. LeNet-5</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alexnet">9.12.12. AlexNet</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vgg-16">9.12.13. VGG-16</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#googlenet-y-la-red-inception">9.12.14. GoogleNet y la red Inception</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#redes-residuales-resnets">9.12.15. Redes residuales (ResNets)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reconocimiento-facial-de-emociones">9.12.16. Reconocimiento facial de emociones</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#redes-neuronales-recurrentes">9.13. Redes Neuronales Recurrentes</a><ul class="nav section-nav flex-column">
