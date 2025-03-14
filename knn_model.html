@@ -32,9 +32,9 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=b4b7a797" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=530fe47d" />
     <link rel="stylesheet" type="text/css" href="_static/.ipynb_checkpoints/custom-checkpoint.css" />
@@ -426,49 +426,45 @@ document.write(`
 </figcaption>
 </figure>
 <ul class="simple">
-<li><p><em><strong><code class="docutils literal notranslate"><span class="pre">Desempate</span> <span class="pre">en</span> <span class="pre">la</span> <span class="pre">clasificación</span></code> <span class="math notranslate nohighlight">\(k\)</span>-NN</strong></em>: En ocasiones ocurren <em>empates a la hora de seleccionar la clase mayoritaria</em>. Existen varias formas de abordar este problema, las siguientes son las tres más frecuentes</p></li>
+<li><p><em><strong><code class="docutils literal notranslate"><span class="pre">Desempate</span> <span class="pre">en</span> <span class="pre">la</span> <span class="pre">clasificación</span></code> <span class="math notranslate nohighlight">\(k\)</span>-NN</strong></em>: En ocasiones ocurren <em>empates a la hora de seleccionar la clase mayoritaria</em>. Existen varias formas de abordar este problema, las siguientes son las más frecuentes.</p></li>
 </ul>
 <div class="tip admonition">
 <p class="admonition-title"><em><strong>1. Elija un <em><strong><span class="math notranslate nohighlight">\(k\)</span></strong></em> diferente</strong></em></p>
-<ul class="simple">
-<li><p>Aunque un método de clasificación de tres vecinos más cercanos soluciona el problema de la selección de vecinos en las <a class="reference internal" href="#knn-ties"><span class="std std-numref">Fig. 2.2</span></a> i) y ii), pero, no resuelve el problema de la <a class="reference internal" href="#knn-ties"><span class="std std-numref">Fig. 2.2</span></a> iii).</p></li>
-<li><p>De hecho, sigue existiendo la posibilidad de que se produzcan empates de selección en el conjunto de datos mayor, independientemente del valor de <span class="math notranslate nohighlight">\(k\)</span>.</p></li>
-</ul>
+<p>Nótese que, aunque un método de clasificación de tres vecinos más cercanos soluciona el problema de la selección de vecinos en las <a class="reference internal" href="#knn-ties"><span class="std std-numref">Fig. 2.2</span></a> i) y ii), el problema de la <a class="reference internal" href="#knn-ties"><span class="std std-numref">Fig. 2.2</span></a> iii) no es resuelto cuando se consideran por ejemplo cuatro. Elegir un <span class="math notranslate nohighlight">\(k\)</span> diferente, no siempre es la mejor solución.</p>
 </div>
+<figure class="align-center" id="knn-ties">
+<a class="reference internal image-reference" href="_images/knn_ties.png"><img alt="_images/knn_ties.png" src="_images/knn_ties.png" style="width: 702.0px; height: 197.4px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 2.2 </span><span class="caption-text">k-NN: Empates respecto a distancia, en la selección de clase con mayor frecuencia.</span><a class="headerlink" href="#knn-ties" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
 <div class="stretched-link admonition">
 <p class="admonition-title"><em><strong>2. Elija al azar entre los valores empatados</strong></em></p>
 <ul class="simple">
-<li><p>Aplicando este enfoque a la <a class="reference internal" href="#knn-ties"><span class="std std-numref">Fig. 2.2</span></a> ii), cada una de las tres observaciones tendría la misma probabilidad de ser seleccionada como uno de los dos vecinos.</p></li>
-<li><p>En la <a class="reference internal" href="#knn-ties"><span class="std std-numref">Fig. 2.2</span></a> iii), se seleccionaría el <span class="math notranslate nohighlight">\(A\)</span> más cercano a <span class="math notranslate nohighlight">\(N\)</span>, y uno de los tres puntos observados restantes se seleccionaría al azar.</p></li>
+<li><p>Aplicando este enfoque a la <a class="reference internal" href="#knn-ties"><span class="std std-numref">Fig. 2.2</span></a> ii), cada una de las tres observaciones tendría la misma probabilidad de ser seleccionada como uno de los vecinos más cercanos.</p></li>
+<li><p>En la <a class="reference internal" href="#knn-ties"><span class="std std-numref">Fig. 2.2</span></a> iii), se seleccionaría <span class="math notranslate nohighlight">\(A\)</span> como el vecino más cercano a <span class="math notranslate nohighlight">\(N\)</span>, y uno de los tres puntos observados restantes se seleccionaría al azar.</p></li>
 <li><p>Dependiendo de cuáles de los valores empatados se permitan en el modelo, podría tener un efecto significativo en cómo se clasifica <span class="math notranslate nohighlight">\(N\)</span>.</p></li>
 </ul>
 </div>
 <div class="tip admonition">
 <p class="admonition-title"><em><strong>3. Permitir observaciones hasta el punto de parada natural</strong></em></p>
-<p>La idea aquí es <em>elegir el valor de <span class="math notranslate nohighlight">\(k\geq 2\)</span> más pequeño tal que, no existan empates</em></p>
+<p>La idea aquí es <strong>elegir el valor de <span class="math notranslate nohighlight">\(k\geq 2\)</span> más pequeño tal que, no existan empates</strong></p>
 <ul class="simple">
-<li><p>Para la <a class="reference internal" href="#knn-ties"><span class="std std-numref">Fig. 2.2</span></a> i), se seleccionarían las dos observaciones más cercanas para <span class="math notranslate nohighlight">\(k=3\)</span> (igual que en los dos métodos anteriores).</p></li>
-<li><p>Para la <a class="reference internal" href="#knn-ties"><span class="std std-numref">Fig. 2.2</span></a> ii), como hay un empate para <span class="math notranslate nohighlight">\(k=3\)</span>, se consideran los tres vecinos más cercanos. La restricción de solo dos vecinos se elimina para esta observación en particular.</p></li>
-<li><p>Del mismo modo, en la <a class="reference internal" href="#knn-ties"><span class="std std-numref">Fig. 2.2</span></a> iii) se seleccionan las cuatro observaciones. Observe que <em>este método elegiría tantos valores como fuera necesario para evitar el empate</em>. Si en la <a class="reference internal" href="#knn-ties"><span class="std std-numref">Fig. 2.2</span></a> ii) hubiera ocho puntos equidistantes, se incluirían los ocho en el modelo.</p></li>
+<li><p>Para la <a class="reference internal" href="#knn-ties"><span class="std std-numref">Fig. 2.2</span></a> i), se seleccionarían las dos observaciones más cercanas, nótese que, para <span class="math notranslate nohighlight">\(k=3\)</span> se tiene un empate. Para la <a class="reference internal" href="#knn-ties"><span class="std std-numref">Fig. 2.2</span></a> ii), como hay un empate para <span class="math notranslate nohighlight">\(k=3\)</span>, se consideran los tres vecinos más cercanos. La restricción de solo dos vecinos se elimina para esta observación en particular.</p></li>
+<li><p>Del mismo modo, en la <a class="reference internal" href="#knn-ties"><span class="std std-numref">Fig. 2.2</span></a> iii) se seleccionan las cuatro observaciones. Observe que <em><strong>este método elegiría tantos valores como fuera necesario para evitar el empate</strong></em>. <em>Si en la <a class="reference internal" href="#knn-ties"><span class="std std-numref">Fig. 2.2</span></a> ii) hubiera ocho puntos equidistantes, se incluirían los ocho en el modelo</em>.</p></li>
 </ul>
 </div>
 <div class="stretched-link admonition">
 <p class="admonition-title"><strong><strong>4. Con base en vecinos seleccionados</strong></strong></p>
-<p>Supongamos que nos hemos decidido por el tercer método y que ya tenemos nuestros vecinos seleccionados</p>
+<p>Supongamos que <em><strong>nos hemos decidido por el tercer método</strong></em> y que ya tenemos nuestros vecinos seleccionados</p>
 <ul class="simple">
-<li><p><em><strong>Elegir un <em><strong><span class="math notranslate nohighlight">\(k\)</span></strong></em> impar</strong></em>: Algunos sugieren simplemente <em>elegir un valor impar para</em> <span class="math notranslate nohighlight">\(k\)</span>. Este método no siempre funciona, ya que los estados de clasificación también podrían ser impares <span class="math notranslate nohighlight">\((A, B, C)\)</span>.</p></li>
-<li><p><em><strong>Elegir al azar entre vecinos empatados</strong></em>. Con este método, <span class="math notranslate nohighlight">\(L\)</span> y <span class="math notranslate nohighlight">\(N\)</span> tienen la misma probabilidad de ser clasificados como <span class="math notranslate nohighlight">\(A\)</span> o <span class="math notranslate nohighlight">\(B\)</span>. Pero, ¿es justo el azar? ¿Tiene sentido que <span class="math notranslate nohighlight">\(N\)</span>, que está muy cerca de <span class="math notranslate nohighlight">\(A\)</span>, tenga la misma probabilidad de ser <span class="math notranslate nohighlight">\(B\)</span>?</p></li>
-<li><p><em><strong>Ponderación por distancia</strong></em>. Para resolver el problema planteado por el método anterior, es posible <em>ponderar los vecinos de modo que los más cercanos al punto no observado tengan un “mayor voto”</em>. Este método daría lugar a que tanto <span class="math notranslate nohighlight">\(L\)</span> como <span class="math notranslate nohighlight">\(N\)</span> se clasificaran como <span class="math notranslate nohighlight">\(A\)</span>, ya que los vecinos <span class="math notranslate nohighlight">\(A\)</span> están más cerca que los demás en comparación.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">Elegir</span> <span class="pre">un</span></code></strong> <span class="math notranslate nohighlight">\(k\)</span> <strong><code class="docutils literal notranslate"><span class="pre">impar</span></code></strong>: Algunos sugieren simplemente <em>elegir un valor impar para</em> <span class="math notranslate nohighlight">\(k\)</span>. Este método no siempre funciona, ya que los estados de clasificación también podrían ser impares <span class="math notranslate nohighlight">\((A, B, C)\)</span>.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">Elegir</span> <span class="pre">al</span> <span class="pre">azar</span> <span class="pre">entre</span> <span class="pre">vecinos</span> <span class="pre">empatados</span></code></strong>. Con este método, <span class="math notranslate nohighlight">\(L\)</span> (<em>considerando <span class="math notranslate nohighlight">\(k=2\)</span></em>) y <span class="math notranslate nohighlight">\(N\)</span> (<em>considerando <span class="math notranslate nohighlight">\(k=4\)</span></em>) tienen la misma probabilidad de ser clasificados como <span class="math notranslate nohighlight">\(A\)</span> o <span class="math notranslate nohighlight">\(B\)</span>. Pero, ¿es justo el azar? ¿Tiene sentido que <span class="math notranslate nohighlight">\(N\)</span>, que está muy cerca de <span class="math notranslate nohighlight">\(A\)</span>, tenga la misma probabilidad de ser <span class="math notranslate nohighlight">\(B\)</span>?</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">Ponderación</span> <span class="pre">por</span> <span class="pre">distancia</span></code></strong>. Para resolver el problema planteado por el método anterior, es posible <em><strong>ponderar los vecinos de modo que los más cercanos al punto no observado tengan un “mayor voto”</strong></em>. Este método daría lugar a que tanto <span class="math notranslate nohighlight">\(L\)</span> como <span class="math notranslate nohighlight">\(N\)</span> se clasificaran como <span class="math notranslate nohighlight">\(A\)</span>, ya que los vecinos <span class="math notranslate nohighlight">\(A\)</span> están más cerca que los demás en comparación.</p></li>
 </ul>
 </div>
-<figure class="align-center" id="knn-ties">
-<a class="reference internal image-reference" href="_images/knn_ties.png"><img alt="_images/knn_ties.png" src="_images/knn_ties.png" style="width: 702.0px; height: 197.4px;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 2.2 </span><span class="caption-text">k-NN: Empates en la selección de clase con mayor frecuencia.</span><a class="headerlink" href="#knn-ties" title="Link to this image">#</a></p>
-</figcaption>
-</figure>
 <ul class="simple">
-<li><p><em><strong><code class="docutils literal notranslate"><span class="pre">Predictor</span></code></strong></em>: Definamos por <span class="math notranslate nohighlight">\(h_{S}(\boldsymbol{x})\)</span> la <em><strong>regla de predicción</strong></em> (el subíndice <span class="math notranslate nohighlight">\(S\)</span> hace hincapié en el hecho de que <em><strong>el predictor de salida depende de</strong></em> <span class="math notranslate nohighlight">\(S\)</span>). Esta función también se denomina <em><strong>predictor, hipótesis o clasificador</strong></em>. El <em><strong>predictor</strong></em> puede utilizarse para predecir la etiqueta de nuevos puntos de dominio. Cuando <span class="math notranslate nohighlight">\(k=1\)</span> (ver <a class="reference internal" href="#def_knn">Definition 2.1</a>), tenemos la regla <span class="math notranslate nohighlight">\(1\)</span>-NN:</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">Predictor</span></code></strong>: Definamos por <span class="math notranslate nohighlight">\(h_{S}(\boldsymbol{x})\)</span> la <em><strong>regla de predicción</strong></em> (el subíndice <span class="math notranslate nohighlight">\(S\)</span> hace hincapié en el hecho de que <em><strong>el predictor de salida depende de</strong></em> <span class="math notranslate nohighlight">\(S\)</span>). Esta función también se denomina <em><strong>predictor, hipótesis o clasificador</strong></em>. El <em><strong>predictor</strong></em> puede utilizarse para predecir la etiqueta de nuevos puntos de dominio. Cuando <span class="math notranslate nohighlight">\(k=1\)</span> (ver <a class="reference internal" href="#def_knn">Definition 2.1</a>), tenemos la regla <span class="math notranslate nohighlight">\(1\)</span>-NN:</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[
@@ -2347,158 +2343,24 @@ dtype: int64
 <span class="n">scaler_params</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="n">significant_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;diagnosis&#39;</span><span class="p">]</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--------------------------------------------------------------------------------------------&quot;</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
     <span class="n">D</span><span class="p">,</span> <span class="n">p_value</span> <span class="o">=</span> <span class="n">kstest</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">column</span><span class="p">],</span> <span class="n">norm</span><span class="o">.</span><span class="n">cdf</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">df</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()))</span>
     
     <span class="k">if</span> <span class="n">p_value</span> <span class="o">&lt;</span> <span class="mf">0.05</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;La columna </span><span class="si">{</span><span class="n">column</span><span class="si">}</span><span class="s2"> no es normal (p-value = </span><span class="si">{</span><span class="n">p_value</span><span class="si">}</span><span class="s2">). Normalizando...&quot;</span><span class="p">)</span>
         <span class="n">scaler</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> 
         <span class="n">scaler_params</span><span class="p">[</span><span class="n">column</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">scaler</span><span class="o">.</span><span class="n">mean_</span><span class="p">,</span> <span class="n">scaler</span><span class="o">.</span><span class="n">scale_</span><span class="p">)</span>  <span class="c1"># Guardar la media y la desviación estándar</span>
         <span class="n">df</span><span class="p">[</span><span class="n">column</span><span class="p">]</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;La columna </span><span class="si">{</span><span class="n">column</span><span class="si">}</span><span class="s2"> es normal (p-value = </span><span class="si">{</span><span class="n">p_value</span><span class="si">}</span><span class="s2">). No es necesario normalizar.&quot;</span><span class="p">)</span>
     
     <span class="n">corr</span><span class="p">,</span> <span class="n">p_value</span> <span class="o">=</span> <span class="n">pointbiserialr</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">column</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;diagnosis&#39;</span><span class="p">])</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Correlación de Point-Biserial entre </span><span class="si">{</span><span class="n">column</span><span class="si">}</span><span class="s2"> y la respuesta: </span><span class="si">{</span><span class="n">corr</span><span class="si">}</span><span class="s2">, p-value: </span><span class="si">{</span><span class="n">p_value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     
     <span class="k">if</span> <span class="n">p_value</span> <span class="o">&lt;</span> <span class="mf">0.05</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;La variable </span><span class="si">{</span><span class="n">column</span><span class="si">}</span><span class="s2"> tiene una relación significativa con la variable binaria (p-value &lt; 0.05).&quot;</span><span class="p">)</span>
         <span class="n">significant_columns</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">column</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;La variable </span><span class="si">{</span><span class="n">column</span><span class="si">}</span><span class="s2"> no tiene una relación significativa con la variable binaria (p-value &gt;= 0.05).&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--------------------------------------------------------------------------------------------&quot;</span><span class="p">)</span>
 
 <span class="n">df_significant</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">significant_columns</span><span class="p">]</span>
 
 <span class="k">for</span> <span class="n">column</span><span class="p">,</span> <span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">scale</span><span class="p">)</span> <span class="ow">in</span> <span class="n">scaler_params</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
     <span class="k">if</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">df_significant</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>  <span class="c1"># Solo revertir las columnas que están en df_significant</span>
         <span class="n">df_significant</span><span class="p">[</span><span class="n">column</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_significant</span><span class="p">[</span><span class="n">column</span><span class="p">]</span> <span class="o">*</span> <span class="n">scale</span> <span class="o">+</span> <span class="n">mean</span>  <span class="c1"># Revertir la normalización</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--------------------------------------------------------------------------------------------
-La columna mean radius no es normal (p-value = 9.434722179367813e-07). Normalizando...
-Correlación de Point-Biserial entre mean radius y la respuesta: -0.7300285113754564, p-value: 8.465940572262058e-96
-La variable mean radius tiene una relación significativa con la variable binaria (p-value &lt; 0.05).
---------------------------------------------------------------------------------------------
-La columna mean texture es normal (p-value = 0.12480764422989987). No es necesario normalizar.
-Correlación de Point-Biserial entre mean texture y la respuesta: -0.41518529984520447, p-value: 4.058636047898184e-25
-La variable mean texture tiene una relación significativa con la variable binaria (p-value &lt; 0.05).
---------------------------------------------------------------------------------------------
-La columna mean perimeter no es normal (p-value = 1.1143832966254483e-07). Normalizando...
-Correlación de Point-Biserial entre mean perimeter y la respuesta: -0.7426355297258332, p-value: 8.436251036171083e-101
-La variable mean perimeter tiene una relación significativa con la variable binaria (p-value &lt; 0.05).
---------------------------------------------------------------------------------------------
-La columna mean area no es normal (p-value = 1.4710298241216018e-12). Normalizando...
-Correlación de Point-Biserial entre mean area y la respuesta: -0.7089838365853899, p-value: 4.734564310308153e-88
-La variable mean area tiene una relación significativa con la variable binaria (p-value &lt; 0.05).
---------------------------------------------------------------------------------------------
-La columna mean smoothness es normal (p-value = 0.4430402363664647). No es necesario normalizar.
-Correlación de Point-Biserial entre mean smoothness y la respuesta: -0.35855996508593213, p-value: 1.051850359203252e-18
-La variable mean smoothness tiene una relación significativa con la variable binaria (p-value &lt; 0.05).
---------------------------------------------------------------------------------------------
-La columna mean compactness no es normal (p-value = 1.618756865847793e-05). Normalizando...
-Correlación de Point-Biserial entre mean compactness y la respuesta: -0.5965336775082531, p-value: 3.9382631058874824e-56
-La variable mean compactness tiene una relación significativa con la variable binaria (p-value &lt; 0.05).
---------------------------------------------------------------------------------------------
-La columna mean concavity no es normal (p-value = 3.874879795391135e-10). Normalizando...
-Correlación de Point-Biserial entre mean concavity y la respuesta: -0.6963597071719058, p-value: 9.966555755073879e-84
-La variable mean concavity tiene una relación significativa con la variable binaria (p-value &lt; 0.05).
---------------------------------------------------------------------------------------------
-La columna mean concave points no es normal (p-value = 8.238371888592353e-13). Normalizando...
-Correlación de Point-Biserial entre mean concave points y la respuesta: -0.7766138400204355, p-value: 7.101150161056301e-116
-La variable mean concave points tiene una relación significativa con la variable binaria (p-value &lt; 0.05).
---------------------------------------------------------------------------------------------
-La columna mean symmetry es normal (p-value = 0.09236216723225088). No es necesario normalizar.
-Correlación de Point-Biserial entre mean symmetry y la respuesta: -0.3304985542625471, p-value: 5.733384028466858e-16
-La variable mean symmetry tiene una relación significativa con la variable binaria (p-value &lt; 0.05).
---------------------------------------------------------------------------------------------
-La columna mean fractal dimension no es normal (p-value = 6.747054882728451e-05). Normalizando...
-Correlación de Point-Biserial entre mean fractal dimension y la respuesta: 0.012837602698432394, p-value: 0.7599368037256286
-La variable mean fractal dimension no tiene una relación significativa con la variable binaria (p-value &gt;= 0.05).
---------------------------------------------------------------------------------------------
-La columna radius error no es normal (p-value = 1.363837673511485e-14). Normalizando...
-Correlación de Point-Biserial entre radius error y la respuesta: -0.5671338208247177, p-value: 9.738948656461133e-50
-La variable radius error tiene una relación significativa con la variable binaria (p-value &lt; 0.05).
---------------------------------------------------------------------------------------------
-La columna texture error no es normal (p-value = 0.00022846734473565305). Normalizando...
-Correlación de Point-Biserial entre texture error y la respuesta: 0.008303332973877421, p-value: 0.8433320287670163
-La variable texture error no tiene una relación significativa con la variable binaria (p-value &gt;= 0.05).
---------------------------------------------------------------------------------------------
-La columna perimeter error no es normal (p-value = 3.594174288374989e-14). Normalizando...
-Correlación de Point-Biserial entre perimeter error y la respuesta: -0.5561407034314831, p-value: 1.651905175849837e-47
-La variable perimeter error tiene una relación significativa con la variable binaria (p-value &lt; 0.05).
---------------------------------------------------------------------------------------------
-La columna area error no es normal (p-value = 1.225906990710084e-27). Normalizando...
-Correlación de Point-Biserial entre area error y la respuesta: -0.5482359402780242, p-value: 5.895521392605789e-46
-La variable area error tiene una relación significativa con la variable binaria (p-value &lt; 0.05).
---------------------------------------------------------------------------------------------
-La columna smoothness error no es normal (p-value = 1.0198857454622576e-07). Normalizando...
-Correlación de Point-Biserial entre smoothness error y la respuesta: 0.06701601057948736, p-value: 0.11029660865789274
-La variable smoothness error no tiene una relación significativa con la variable binaria (p-value &gt;= 0.05).
---------------------------------------------------------------------------------------------
-La columna compactness error no es normal (p-value = 1.1639374196139711e-08). Normalizando...
-Correlación de Point-Biserial entre compactness error y la respuesta: -0.2929992442488583, p-value: 9.975994654074714e-13
-La variable compactness error tiene una relación significativa con la variable binaria (p-value &lt; 0.05).
---------------------------------------------------------------------------------------------
-La columna concavity error no es normal (p-value = 5.90653134572409e-11). Normalizando...
-Correlación de Point-Biserial entre concavity error y la respuesta: -0.2537297659808304, p-value: 8.260176167969738e-10
-La variable concavity error tiene una relación significativa con la variable binaria (p-value &lt; 0.05).
---------------------------------------------------------------------------------------------
-La columna concave points error no es normal (p-value = 0.0012783662688849434). Normalizando...
-Correlación de Point-Biserial entre concave points error y la respuesta: -0.40804233271650464, p-value: 3.072308768818229e-24
-La variable concave points error tiene una relación significativa con la variable binaria (p-value &lt; 0.05).
---------------------------------------------------------------------------------------------
-La columna symmetry error no es normal (p-value = 1.7288228644971113e-09). Normalizando...
-Correlación de Point-Biserial entre symmetry error y la respuesta: 0.006521755870647937, p-value: 0.8766418183858831
-La variable symmetry error no tiene una relación significativa con la variable binaria (p-value &gt;= 0.05).
---------------------------------------------------------------------------------------------
-La columna fractal dimension error no es normal (p-value = 1.483276615865449e-12). Normalizando...
-Correlación de Point-Biserial entre fractal dimension error y la respuesta: -0.07797241739025612, p-value: 0.063073550822394
-La variable fractal dimension error no tiene una relación significativa con la variable binaria (p-value &gt;= 0.05).
---------------------------------------------------------------------------------------------
-La columna worst radius no es normal (p-value = 6.422703376551973e-10). Normalizando...
-Correlación de Point-Biserial entre worst radius y la respuesta: -0.7764537785950394, p-value: 8.48229192168656e-116
-La variable worst radius tiene una relación significativa con la variable binaria (p-value &lt; 0.05).
---------------------------------------------------------------------------------------------
-La columna worst texture es normal (p-value = 0.28890427791016304). No es necesario normalizar.
-Correlación de Point-Biserial entre worst texture y la respuesta: -0.45690282139679816, p-value: 1.0780574879493886e-30
-La variable worst texture tiene una relación significativa con la variable binaria (p-value &lt; 0.05).
---------------------------------------------------------------------------------------------
-La columna worst perimeter no es normal (p-value = 1.3465668442384491e-08). Normalizando...
-Correlación de Point-Biserial entre worst perimeter y la respuesta: -0.7829141371737594, p-value: 5.771397139669278e-119
-La variable worst perimeter tiene una relación significativa con la variable binaria (p-value &lt; 0.05).
---------------------------------------------------------------------------------------------
-La columna worst area no es normal (p-value = 2.795802548418841e-18). Normalizando...
-Correlación de Point-Biserial entre worst area y la respuesta: -0.7338250349210509, p-value: 2.828847704287123e-97
-La variable worst area tiene una relación significativa con la variable binaria (p-value &lt; 0.05).
---------------------------------------------------------------------------------------------
-La columna worst smoothness es normal (p-value = 0.4607808012319947). No es necesario normalizar.
-Correlación de Point-Biserial entre worst smoothness y la respuesta: -0.42146486106640263, p-value: 6.575143633984215e-26
-La variable worst smoothness tiene una relación significativa con la variable binaria (p-value &lt; 0.05).
---------------------------------------------------------------------------------------------
-La columna worst compactness no es normal (p-value = 4.6073614736031885e-07). Normalizando...
-Correlación de Point-Biserial entre worst compactness y la respuesta: -0.590998237841792, p-value: 7.069816352538506e-55
-La variable worst compactness tiene una relación significativa con la variable binaria (p-value &lt; 0.05).
---------------------------------------------------------------------------------------------
-La columna worst concavity no es normal (p-value = 1.04752000000205e-05). Normalizando...
-Correlación de Point-Biserial entre worst concavity y la respuesta: -0.6596102103692331, p-value: 2.46466395678308e-72
-La variable worst concavity tiene una relación significativa con la variable binaria (p-value &lt; 0.05).
---------------------------------------------------------------------------------------------
-La columna worst concave points no es normal (p-value = 5.346005097809177e-05). Normalizando...
-Correlación de Point-Biserial entre worst concave points y la respuesta: -0.7935660171412698, p-value: 1.969099707216595e-124
-La variable worst concave points tiene una relación significativa con la variable binaria (p-value &lt; 0.05).
---------------------------------------------------------------------------------------------
-La columna worst symmetry no es normal (p-value = 0.00018446615021517932). Normalizando...
-Correlación de Point-Biserial entre worst symmetry y la respuesta: -0.4162943110486191, p-value: 2.951120577153906e-25
-La variable worst symmetry tiene una relación significativa con la variable binaria (p-value &lt; 0.05).
---------------------------------------------------------------------------------------------
-La columna worst fractal dimension no es normal (p-value = 2.649963819888568e-07). Normalizando...
-Correlación de Point-Biserial entre worst fractal dimension y la respuesta: -0.323872188720824, p-value: 2.3164324499827378e-15
-La variable worst fractal dimension tiene una relación significativa con la variable binaria (p-value &lt; 0.05).
---------------------------------------------------------------------------------------------
 </pre></div>
 </div>
 </div>
@@ -2770,8 +2632,15 @@ La variable worst fractal dimension tiene una relación significativa con la var
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/69a8a295f6934d727b59f487229930f71bcfee2dffba527c7c6c97012e0a159c.png" src="_images/69a8a295f6934d727b59f487229930f71bcfee2dffba527c7c6c97012e0a159c.png" />
+<img alt="_images/1bc3fe92f03a2ed283185c220b54523c38e0352a73a48dba28e2b0758a63879b.png" src="_images/1bc3fe92f03a2ed283185c220b54523c38e0352a73a48dba28e2b0758a63879b.png" />
 </div>
+</div>
+<div class="warning admonition">
+<p class="admonition-title">¿Debo siempre eliminar variables explicativas no correlacionadas con mi variable respuesta?</p>
+<ul class="simple">
+<li><p>No es obligatorio eliminar variables sin correlación con la variable respuesta. <em><strong>La correlación mide solo relaciones lineales, y algunas variables pueden ser útiles en modelos no lineales</strong></em>. Además, algoritmos como <em><strong>Lasso, Random Forest o Gradient Boosting, SVM, ANNs manejan variables irrelevantes automáticamente</strong></em>.</p></li>
+<li><p>Eliminar prematuramente puede descartar información valiosa. Sin embargo, un análisis de importancia de características sigue siendo recomendable para mejorar eficiencia y evitar ruido innecesario. En su lugar, <em><strong>es mejor aplicar técnicas como SHAP, Permutation Importance, RFE o transformaciones como PCA para evaluar la relevancia</strong></em> de las variables antes de eliminarlas.</p></li>
+</ul>
 </div>
 <section id="multicolinealidad">
 <h3><span class="section-number">2.6.1. </span>Multicolinealidad<a class="headerlink" href="#multicolinealidad" title="Link to this heading">#</a></h3>
@@ -3019,6 +2888,27 @@ La variable worst fractal dimension tiene una relación significativa con la var
 <div class="cell_output docutils container">
 <img alt="_images/99c07c570d5e8aada0244befef924a93216e0a3750b92155e5e8b210baf9b665.png" src="_images/99c07c570d5e8aada0244befef924a93216e0a3750b92155e5e8b210baf9b665.png" />
 </div>
+</div>
+<div class="warning admonition">
+<p class="admonition-title">¿Debo siempre eliminar variables que presentan multicolinealidad?</p>
+<p>La multicolinealidad <em><strong>afecta modelos lineales e interpretativos</strong></em>, pero <em><strong>no es un problema en modelos más complejos</strong></em></p>
+<ol class="arabic simple">
+<li><p><strong>Debe eliminarse (afecta estabilidad e interpretación)</strong>:</p>
+<ul class="simple">
+<li><p>Regresión Lineal y Logística → Inestabilidad en coeficientes, detectada con VIF.</p></li>
+<li><p>Linear Discriminant Analysis (LDA) → Depende de matrices de covarianza, afectadas por multicolinealidad.</p></li>
+<li><p>Ridge y Lasso → Ridge la mitiga, Lasso selecciona algunas variables.</p></li>
+</ul>
+</li>
+<li><p><strong>No es un problema grave (modelos robustos)</strong>:</p>
+<ul class="simple">
+<li><p>Árboles de Decisión (Random Forest, XGBoost) → Seleccionan variables jerárquicamente.</p></li>
+<li><p>SVM (kernels no lineales) → Puede aumentar costo computacional, pero no afecta resultados.</p></li>
+<li><p>Redes Neuronales → No dependen de relaciones lineales, pero pueden sobreajustar con muchas variables redundantes.</p></li>
+<li><p>KNN → No usa coeficientes, multicolinealidad irrelevante.</p></li>
+</ul>
+</li>
+</ol>
 </div>
 </section>
 </section>
