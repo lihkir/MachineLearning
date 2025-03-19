@@ -5272,6 +5272,12 @@ F(\boldsymbol{y}^{r})=H(\boldsymbol{y}^{r-1})-\boldsymbol{y}^{r-1}.
 <li><p>Al final se aplican 2 convoluciones de <code class="docutils literal notranslate"><span class="pre">1x1x64</span></code> (<em>tubos</em>) como las vistas en secciones anteriores, para obtener el último kernel de <code class="docutils literal notranslate"><span class="pre">388x388x2</span></code> en el que, cada canal representaria una clase diferente a segmentar, y despues de aplicar funciones de activación, lo que resulta en el mapeo de características es, la <strong>probabilidad de que un pixel en una respectiva posición pertenezca a la clase representada por cada canal</strong>, por ejemplo a la clase (<code class="docutils literal notranslate"><span class="pre">black</span></code>) o la clase (<code class="docutils literal notranslate"><span class="pre">blue</span></code>) (<em>clasificación binaria</em>).</p></li>
 </ul>
 </div>
+<p>La arquitectura <strong>U-Net</strong> <em><strong>aprende a segmentar imágenes asignando cada píxel a una clase específica</strong></em>.</p>
+<ul class="simple">
+<li><p><strong>Entrada (X):</strong> Imagen original (ej. un gato en fondo blanco).</p></li>
+<li><p><strong>Salida esperada (Y):</strong> Máscara binaria (1 = gato, 0 = fondo).</p></li>
+</ul>
+<p>El modelo <em><strong>ajusta sus parámetros hasta que pueda predecir correctamente la máscara a partir de una nueva imagen</strong></em>.</p>
 </section>
 <section id="reconocimiento-facial-de-emociones">
 <h3><span class="section-number">9.12.17. </span>Reconocimiento facial de emociones<a class="headerlink" href="#reconocimiento-facial-de-emociones" title="Link to this heading">#</a></h3>
@@ -6772,6 +6778,9 @@ F1 Score = 0.743
 \[
 IoU = \frac{\text{Área de intersección}}{\text{Área de unión}}
 \]</div>
+<p>Donde:</p>
+<p><strong>Área de intersección</strong>: Es la cantidad de píxeles correctamente segmentados en la imagen, es decir, los píxeles que coinciden entre la predicción y la verdad (ground truth). <em>Ejemplo: Si la segmentación real marca 40 píxeles como “gato” y la segmentación predicha marca 50 píxeles, pero 30 de ellos coinciden, entonces la intersección es 30 píxeles</em>.</p>
+<p><strong>Área de unión</strong>: Es la cantidad total de píxeles marcados como objeto en cualquiera de las dos máscaras (predicha o real). <em>Ejemplo: Siguiendo el caso anterior: 40 píxeles están en la máscara real. 50 píxeles están en la máscara predicha. 30 píxeles coinciden (intersección). La unión es: 40 + 50 − 30 = 60 píxeles</em></p>
 <ul class="simple">
 <li><p>Un <strong>IoU de 0.7593</strong> indica que, en promedio, el <strong>75.93% del área segmentada</strong> coincide con la verdad.</p></li>
 </ul>
@@ -6817,7 +6826,6 @@ F1 = 2 \times \frac{\text{Precisión} \times \text{Recall}}{\text{Precisión} + 
 <li><p><strong>El recall es mayor que la precisión</strong>, lo que indica que el modelo <strong>detecta la mayoría de los píxeles relevantes</strong>, pero a costa de generar algunos falsos positivos.</p></li>
 <li><p><strong>El F1-score de 0.738</strong> sugiere que el modelo tiene un rendimiento sólido pero puede mejorarse.</p></li>
 </ul>
-<p>Si se busca aumentar precision sin afectar demasiado el recall, se pueden ajustar umbrales o aplicar técnicas como <strong>posprocesamiento con filtros morfológicos o CRFs</strong>.</p>
 </section>
 </section>
 <section id="redes-neuronales-recurrentes">
