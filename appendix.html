@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>18. Apéndice &#8212; Machine Learning</title>
+    <title>13. Apéndice &#8212; Machine Learning</title>
   
   
   
@@ -68,8 +68,8 @@
     <script src="_static/.ipynb_checkpoints/custom-checkpoint.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="19. Bibliografía" href="biblio.html" />
-    <link rel="prev" title="17. Cadenas de Algoritmos y Pipelines" href="chains_pipelines.html" />
+    <link rel="next" title="14. Bibliografía" href="biblio.html" />
+    <link rel="prev" title="12. Cadenas de Algoritmos y Pipelines" href="chains_pipelines.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -197,16 +197,11 @@
 
 <li class="toctree-l1"><a class="reference internal" href="svm_model.html">8. Máquinas de vectores de soporte</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ann_model.html">9. Redes Neuronales y Deep Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dl_computer_vision.html">10. Computer vision</a></li>
-
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="practical_pca.html">15. Análisis de Componentes Principales</a></li>
-<li class="toctree-l1"><a class="reference internal" href="model_evaluation.html">16. Evaluación de modelos</a></li>
-<li class="toctree-l1"><a class="reference internal" href="chains_pipelines.html">17. Cadenas de Algoritmos y Pipelines</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">18. Apéndice</a></li>
-<li class="toctree-l1"><a class="reference internal" href="biblio.html">19. Bibliografía</a></li>
+<li class="toctree-l1"><a class="reference internal" href="practical_pca.html">10. Análisis de Componentes Principales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_evaluation.html">11. Evaluación de modelos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chains_pipelines.html">12. Cadenas de Algoritmos y Pipelines</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">13. Apéndice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="biblio.html">14. Bibliografía</a></li>
 </ul>
 
     </div>
@@ -358,12 +353,12 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="apendice">
-<h1><span class="section-number">18. </span>Apéndice<a class="headerlink" href="#apendice" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">13. </span>Apéndice<a class="headerlink" href="#apendice" title="Link to this heading">#</a></h1>
 <ul class="simple">
 <li><p>En este apéndice, resumimos algunas definiciones y teoremas básicos sobre los <code class="docutils literal notranslate"><span class="pre">espacios</span> <span class="pre">de</span> <span class="pre">Hilbert</span></code> y el <code class="docutils literal notranslate"><span class="pre">análisis</span> <span class="pre">convexo</span></code>. No se proporcionan pruebas, el lector interesado puede consultar libros más especializados, que se indican en las referencias.</p></li>
 </ul>
 <div class="proof definition admonition" id="def_linear_spaces">
-<p class="admonition-title"><span class="caption-number">Definition 18.1 </span> (Espacios lineales)</p>
+<p class="admonition-title"><span class="caption-number">Definition 13.1 </span> (Espacios lineales)</p>
 <section class="definition-content" id="proof-content">
 <p>Un conjunto no vacío de elementos, <span class="math notranslate nohighlight">\(V\)</span>, se llama espacio lineal si hay definidas dos operaciones, adición y multiplicación escalar, de modo que se cumplen las siguientes propiedades:</p>
 <ul class="simple">
@@ -384,7 +379,7 @@ document.write(`
 <li><p>Los espacios lineales se denominan a veces espacios vectoriales y los elementos de <span class="math notranslate nohighlight">\(V\)</span> vectores. Si los escalares <span class="math notranslate nohighlight">\(\alpha, \beta\)</span> están restringidos en <span class="math notranslate nohighlight">\(\mathbb{R}\)</span>, entonces el espacio lineal se conoce como espacio lineal real; de lo contrario, si <span class="math notranslate nohighlight">\(\alpha, \beta \in\mathbb{C}\)</span>, el espacio lineal se conoce como espacio lineal complejo.</p></li>
 </ul>
 <div class="proof example admonition" id="ej_vector_space">
-<p class="admonition-title"><span class="caption-number">Example 18.1 </span> (El espacio vectorial <span class="math notranslate nohighlight">\(\mathbb{R}^{l}\)</span>)</p>
+<p class="admonition-title"><span class="caption-number">Example 13.1 </span> (El espacio vectorial <span class="math notranslate nohighlight">\(\mathbb{R}^{l}\)</span>)</p>
 <section class="example-content" id="proof-content">
 <p>El conjunto de <span class="math notranslate nohighlight">\(l-\)</span>tuplas <span class="math notranslate nohighlight">\(\boldsymbol{x}:=(x_{1}, x_{2},\dots, x_{l}),~x_{i}\in\mathbb{R},~i=1,2,\dots,l\)</span>, es un espacio vectorial real, donde la adición y la multiplicación están definidas como</p>
 <div class="math notranslate nohighlight">
@@ -394,7 +389,7 @@ a\boldsymbol{x}&amp;=(ax_{1}, ax_{2},\dots, ax_{l}),\quad a\in\mathbb{R}.
 \end{align}\end{split}\]</div>
 </section>
 </div><div class="proof example admonition" id="ej_real_functions">
-<p class="admonition-title"><span class="caption-number">Example 18.2 </span></p>
+<p class="admonition-title"><span class="caption-number">Example 13.2 </span></p>
 <section class="example-content" id="proof-content">
 <p>Sea el conjunto de todas las funciones reales</p>
 <div class="math notranslate nohighlight">
@@ -407,7 +402,7 @@ a\boldsymbol{x}&amp;=(ax_{1}, ax_{2},\dots, ax_{l}),\quad a\in\mathbb{R}.
 \end{align}\end{split}\]</div>
 </section>
 </div><div class="proof definition admonition" id="def_subspace">
-<p class="admonition-title"><span class="caption-number">Definition 18.2 </span></p>
+<p class="admonition-title"><span class="caption-number">Definition 13.2 </span></p>
 <section class="definition-content" id="proof-content">
 <p>Sea <span class="math notranslate nohighlight">\(V\)</span> un espacio lineal y <span class="math notranslate nohighlight">\(S\)</span> un conjunto no vacio, <span class="math notranslate nohighlight">\(S\subseteq V\)</span>. Entonces <span class="math notranslate nohighlight">\(S\)</span> es llamado un subespacio de <span class="math notranslate nohighlight">\(V\)</span> si</p>
 <ul class="simple">
@@ -416,7 +411,7 @@ a\boldsymbol{x}&amp;=(ax_{1}, ax_{2},\dots, ax_{l}),\quad a\in\mathbb{R}.
 </ul>
 </section>
 </div><div class="proof definition admonition" id="def_linear_ind">
-<p class="admonition-title"><span class="caption-number">Definition 18.3 </span> (Independencia Lineal)</p>
+<p class="admonition-title"><span class="caption-number">Definition 13.3 </span> (Independencia Lineal)</p>
 <section class="definition-content" id="proof-content">
 <p>Sea <span class="math notranslate nohighlight">\(V\)</span> un subespacio lineal y <span class="math notranslate nohighlight">\(S\subseteq V\)</span>. Decimo que <span class="math notranslate nohighlight">\(S\)</span> es <strong>linealmente independiente</strong> si existe un número finito de elementos distintos, <span class="math notranslate nohighlight">\(x_{k}\in S,~i=1,2,\dots,K\)</span>, tal que</p>
 <div class="math notranslate nohighlight">
@@ -424,7 +419,7 @@ a\boldsymbol{x}&amp;=(ax_{1}, ax_{2},\dots, ax_{l}),\quad a\in\mathbb{R}.
 <p>para alguna combinación de escalares <span class="math notranslate nohighlight">\(a_{k}\in\mathbb{C},~k=1,2,\dots,K\)</span>, los cuales no son todos ceros. Si este no es el caso, el conjunto <span class="math notranslate nohighlight">\(S\)</span> es <strong>linealmente independiente</strong></p>
 </section>
 </div><div class="proof definition admonition" id="def_generado">
-<p class="admonition-title"><span class="caption-number">Definition 18.4 </span> (Subespacio generado)</p>
+<p class="admonition-title"><span class="caption-number">Definition 13.4 </span> (Subespacio generado)</p>
 <section class="definition-content" id="proof-content">
 <p>Sea <span class="math notranslate nohighlight">\(S\)</span> un subconjunto no vacio <span class="math notranslate nohighlight">\(S\subseteq V\)</span>. El conjunto de todas las combinaciones lineales posibles, denotado como <span class="math notranslate nohighlight">\(\text{span}\{S\}\)</span>,</p>
 <div class="math notranslate nohighlight">
@@ -434,7 +429,7 @@ a\boldsymbol{x}&amp;=(ax_{1}, ax_{2},\dots, ax_{l}),\quad a\in\mathbb{R}.
 <p>y es conocido como el <span class="math notranslate nohighlight">\(\textbf{generado}\)</span> de <span class="math notranslate nohighlight">\(S\)</span>. Note que <span class="math notranslate nohighlight">\(\text{span}\{S\}\)</span> es siempre un subespacio de <span class="math notranslate nohighlight">\(V\)</span>. Además si <span class="math notranslate nohighlight">\(\text{span}\{S\}=V\)</span>, decimos que <span class="math notranslate nohighlight">\(S\)</span> genera al espacio <span class="math notranslate nohighlight">\(V\)</span>.</p>
 </section>
 </div><div class="proof definition admonition" id="def_bases">
-<p class="admonition-title"><span class="caption-number">Definition 18.5 </span> (Bases)</p>
+<p class="admonition-title"><span class="caption-number">Definition 13.5 </span> (Bases)</p>
 <section class="definition-content" id="proof-content">
 <p>Sea <span class="math notranslate nohighlight">\(V\)</span> un subespacio lineal y <span class="math notranslate nohighlight">\(S\subseteq V\)</span>. El conjunto <span class="math notranslate nohighlight">\(S\)</span> es conocido como <strong>base</strong> de <span class="math notranslate nohighlight">\(V\)</span>, si y solo si:</p>
 <ul class="simple">
@@ -456,7 +451,7 @@ a\boldsymbol{x}&amp;=(ax_{1}, ax_{2},\dots, ax_{l}),\quad a\in\mathbb{R}.
 </ul>
 </div>
 <div class="proof definition admonition" id="def_prod_interno">
-<p class="admonition-title"><span class="caption-number">Definition 18.6 </span> (Espacio con producto interno)</p>
+<p class="admonition-title"><span class="caption-number">Definition 13.6 </span> (Espacio con producto interno)</p>
 <section class="definition-content" id="proof-content">
 <p>Sea <span class="math notranslate nohighlight">\(V\)</span> un espacio lineal. El producto interno es una función</p>
 <div class="math notranslate nohighlight">
@@ -471,7 +466,7 @@ a\boldsymbol{x}&amp;=(ax_{1}, ax_{2},\dots, ax_{l}),\quad a\in\mathbb{R}.
 <p>donde <span class="math notranslate nohighlight">\(\star\)</span> denota la conjugación compleja. Un espacio donde un producto interno a sido definido es conocido como un <strong>espacio con producto interno</strong>.</p>
 </section>
 </div><div class="proof definition admonition" id="ej_inner_prod">
-<p class="admonition-title"><span class="caption-number">Definition 18.7 </span></p>
+<p class="admonition-title"><span class="caption-number">Definition 13.7 </span></p>
 <section class="definition-content" id="proof-content">
 <p>Consideremos el espacio vectorial <span class="math notranslate nohighlight">\(\mathbb{C}^{l}\)</span>. Entonces la operación</p>
 <div class="math notranslate nohighlight">
@@ -479,7 +474,7 @@ a\boldsymbol{x}&amp;=(ax_{1}, ax_{2},\dots, ax_{l}),\quad a\in\mathbb{R}.
 <p>es un producto interno con <span class="math notranslate nohighlight">\(\boldsymbol{x}, \boldsymbol{y}\in\mathbb{C}^{l}\)</span>.</p>
 </section>
 </div><div class="proof definition admonition" id="def_norm_spaces">
-<p class="admonition-title"><span class="caption-number">Definition 18.8 </span> (Norma y espacios normados)</p>
+<p class="admonition-title"><span class="caption-number">Definition 13.8 </span> (Norma y espacios normados)</p>
 <section class="definition-content" id="proof-content">
 <p>Sea <span class="math notranslate nohighlight">\(V\)</span> un espacio lineal. Una norma es una función</p>
 <div class="math notranslate nohighlight">
@@ -498,7 +493,7 @@ a\boldsymbol{x}&amp;=(ax_{1}, ax_{2},\dots, ax_{l}),\quad a\in\mathbb{R}.
 \]</div>
 <p>Se puede demostrar que la definición anterior cumple con todas las propiedades requeridas para que una función sea una norma. Para <span class="math notranslate nohighlight">\(p = 1\)</span>, nos referimos a la norma <span class="math notranslate nohighlight">\(l_{1}\)</span> y para <span class="math notranslate nohighlight">\(p = 2\)</span> se conoce como \textbf{norma euclidiana} o norma <span class="math notranslate nohighlight">\(l_{2}\)</span>. Nótese que esta última resulta de la operación de producto interior, es decir,</p>
 <div class="math notranslate nohighlight" id="equation-eucl-norm">
-<span class="eqno">(18.1)<a class="headerlink" href="#equation-eucl-norm" title="Link to this equation">#</a></span>\[
+<span class="eqno">(13.1)<a class="headerlink" href="#equation-eucl-norm" title="Link to this equation">#</a></span>\[
 \|\boldsymbol{x}\|_{2}=\sqrt{\boldsymbol{x}^{H}\boldsymbol{x}}.
 \]</div>
 <p>Esto es válido para cualquier espacio lineal de producto interno. Es decir, dado un espacio lineal con producto interno, <span class="math notranslate nohighlight">\(V\)</span>, con <span class="math notranslate nohighlight">\(\langle\cdot,\cdot\rangle\)</span>, entonces la operación de producto interior induce una norma, es decir</p>
@@ -507,7 +502,7 @@ a\boldsymbol{x}&amp;=(ax_{1}, ax_{2},\dots, ax_{l}),\quad a\in\mathbb{R}.
 \|\boldsymbol{x}\|=\langle\boldsymbol{x}, \boldsymbol{x}\rangle,\quad\boldsymbol{x}\in V.
 \]</div>
 <div class="proof theorem admonition" id="theorem-10">
-<p class="admonition-title"><span class="caption-number">Theorem 18.1 </span> (Desigualdad de Cauchy-Schwarz)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 13.1 </span> (Desigualdad de Cauchy-Schwarz)</p>
 <section class="theorem-content" id="proof-content">
 <p>Sea <span class="math notranslate nohighlight">\(V\)</span> un espacio de producto interno y el reproductor por la norma del producto interior. Entonces</p>
 <div class="math notranslate nohighlight">
@@ -520,7 +515,7 @@ a\boldsymbol{x}&amp;=(ax_{1}, ax_{2},\dots, ax_{l}),\quad a\in\mathbb{R}.
 <p>Esta última se conoce como la ley del paralelogramo. Nótese que, todas estas propiedades, que pueden conocerse a partir de la geometría básica, son válidas para cualquier espacio lineal, incluso para los de dimensión infinita.</p>
 </section>
 </div><div class="proof example admonition" id="de_l2_space">
-<p class="admonition-title"><span class="caption-number">Example 18.3 </span> (El espacio <span class="math notranslate nohighlight">\(l^{2}\)</span>)</p>
+<p class="admonition-title"><span class="caption-number">Example 13.3 </span> (El espacio <span class="math notranslate nohighlight">\(l^{2}\)</span>)</p>
 <section class="example-content" id="proof-content">
 <p>Este es el espacio lineal de todas las sucesiones</p>
 <div class="math notranslate nohighlight">
@@ -533,7 +528,7 @@ a\boldsymbol{x}&amp;=(ax_{1}, ax_{2},\dots, ax_{l}),\quad a\in\mathbb{R}.
 \[\|\boldsymbol{x}\|:=\sqrt{\sum_{n=1}^{\infty}|x_{n}|^{2}}&lt;\infty\]</div>
 </section>
 </div><div class="proof example admonition" id="def_L2_space">
-<p class="admonition-title"><span class="caption-number">Example 18.4 </span> (El espacio <span class="math notranslate nohighlight">\(L^{2}\)</span>)</p>
+<p class="admonition-title"><span class="caption-number">Example 13.4 </span> (El espacio <span class="math notranslate nohighlight">\(L^{2}\)</span>)</p>
 <section class="example-content" id="proof-content">
 <p>Este es el espacio lineal de todas las funciones integrables</p>
 <div class="math notranslate nohighlight">
@@ -546,7 +541,7 @@ a\boldsymbol{x}&amp;=(ax_{1}, ax_{2},\dots, ax_{l}),\quad a\in\mathbb{R}.
 \[\|\boldsymbol{f}\|:=\sqrt{\int_{-\infty}^{\infty}|f(x)|^{2}dx}&lt;+\infty.\]</div>
 </section>
 </div><div class="proof definition admonition" id="def_complete_spaces">
-<p class="admonition-title"><span class="caption-number">Definition 18.9 </span> (Convergencia, Sucesiones de Cauchy y Espacios Completos)</p>
+<p class="admonition-title"><span class="caption-number">Definition 13.9 </span> (Convergencia, Sucesiones de Cauchy y Espacios Completos)</p>
 <section class="definition-content" id="proof-content">
 <p>Sea <span class="math notranslate nohighlight">\(V\)</span> un espacio lineal normado y sea <span class="math notranslate nohighlight">\(\boldsymbol{x}_{1}, \boldsymbol{x}_{2},\dots,\boldsymbol{x}_{n},\dots\)</span> una sucesión de elementos en <span class="math notranslate nohighlight">\(V\)</span>. Decimos que la sucesión converge a <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> si</p>
 <div class="math notranslate nohighlight">
@@ -559,23 +554,23 @@ a\boldsymbol{x}&amp;=(ax_{1}, ax_{2},\dots, ax_{l}),\quad a\in\mathbb{R}.
 <p>Un espacio lineal normado <span class="math notranslate nohighlight">\(V\)</span>, en el que cada sucesión de Cauchy converge en <span class="math notranslate nohighlight">\(V\)</span> se dice que es <strong>completo</strong>. Nótese que cualquier espacio lineal de dimensión finita es completo. Sin embargo, esto no es siempre verdadero para espacios de dimensión infinita.</p>
 </section>
 </div><div class="proof definition admonition" id="def_hilbert_space">
-<p class="admonition-title"><span class="caption-number">Definition 18.10 </span> (Espacios de Hilbert)</p>
+<p class="admonition-title"><span class="caption-number">Definition 13.10 </span> (Espacios de Hilbert)</p>
 <section class="definition-content" id="proof-content">
 <p>Un espacio con producto interno, el cual es completo con respecto a la norma inducida por el producto interno es llamado un <strong>espacio de Hilbert</strong>.</p>
 </section>
-</div><p>Ejemplos de espacios de Hilbert son <span class="math notranslate nohighlight">\(l^{2}\)</span> y <span class="math notranslate nohighlight">\(L^{2}\)</span>. También los espacios vectoriales <span class="math notranslate nohighlight">\(\mathbb{C}^{l}\)</span> y <span class="math notranslate nohighlight">\(\mathbb{R}^{l}\)</span>, equipados con la operación de producto interno <a class="reference internal" href="#ej_inner_prod">Definition 18.7</a> y la norma Euclideana definida por <a class="reference internal" href="#equation-eucl-norm">(18.1)</a>, conocidos como espacios Euclidianos son casos especiales de espacios de Hilbert de dimensión finita. Los espacios <span class="math notranslate nohighlight">\(l^{2}\)</span> y <span class="math notranslate nohighlight">\(L^{2}\)</span> son de dimensión infinita. Nótese que <span class="math notranslate nohighlight">\(\mathbb{C}^{l}\)</span>, equipado con la norma <span class="math notranslate nohighlight">\(l_{p},~ p\neq2\)</span>, no es un espacio de Hilbert, debido a que esta norma no es inducida por un producto interno.</p>
+</div><p>Ejemplos de espacios de Hilbert son <span class="math notranslate nohighlight">\(l^{2}\)</span> y <span class="math notranslate nohighlight">\(L^{2}\)</span>. También los espacios vectoriales <span class="math notranslate nohighlight">\(\mathbb{C}^{l}\)</span> y <span class="math notranslate nohighlight">\(\mathbb{R}^{l}\)</span>, equipados con la operación de producto interno <a class="reference internal" href="#ej_inner_prod">Definition 13.7</a> y la norma Euclideana definida por <a class="reference internal" href="#equation-eucl-norm">(13.1)</a>, conocidos como espacios Euclidianos son casos especiales de espacios de Hilbert de dimensión finita. Los espacios <span class="math notranslate nohighlight">\(l^{2}\)</span> y <span class="math notranslate nohighlight">\(L^{2}\)</span> son de dimensión infinita. Nótese que <span class="math notranslate nohighlight">\(\mathbb{C}^{l}\)</span>, equipado con la norma <span class="math notranslate nohighlight">\(l_{p},~ p\neq2\)</span>, no es un espacio de Hilbert, debido a que esta norma no es inducida por un producto interno.</p>
 <div class="proof definition admonition" id="def_closed_subspace">
-<p class="admonition-title"><span class="caption-number">Definition 18.11 </span> (Subsespacio cerrado)</p>
+<p class="admonition-title"><span class="caption-number">Definition 13.11 </span> (Subsespacio cerrado)</p>
 <section class="definition-content" id="proof-content">
 <p>Sea <span class="math notranslate nohighlight">\(H\)</span> un espacio de Hilbert y <span class="math notranslate nohighlight">\(S\subseteq H\)</span>. Decimos que <span class="math notranslate nohighlight">\(S\)</span> es un subespacio cerrado de <span class="math notranslate nohighlight">\(H\)</span>, si para toda <span class="math notranslate nohighlight">\(\{x_{n}\}\subseteq S\)</span>, esto es, cualquier sucesión de elementos de <span class="math notranslate nohighlight">\(S\)</span>, que converge a un elemento <span class="math notranslate nohighlight">\(x\in H\)</span>, se tiene que <span class="math notranslate nohighlight">\(x\in S\)</span>.</p>
 </section>
 </div><div class="proof theorem admonition" id="th_closed_span">
-<p class="admonition-title"><span class="caption-number">Theorem 18.2 </span></p>
+<p class="admonition-title"><span class="caption-number">Theorem 13.2 </span></p>
 <section class="theorem-content" id="proof-content">
 <p>Sea <span class="math notranslate nohighlight">\(H\)</span> un espacio de Hilbert y <span class="math notranslate nohighlight">\(\varphi_{1}, \varphi_{2},\dots, \varphi_{m}\in H\)</span> donde <span class="math notranslate nohighlight">\(m&lt;\infty\)</span>. Entonces el espacio lineal generado <span class="math notranslate nohighlight">\(\text{span}\{\varphi_{1}, \varphi_{2},\dots, \varphi_{m}\}\)</span> es un subespacio cerrado de <span class="math notranslate nohighlight">\(H\)</span>.</p>
 </section>
 </div><div class="proof definition admonition" id="orthogonal_complement">
-<p class="admonition-title"><span class="caption-number">Definition 18.12 </span></p>
+<p class="admonition-title"><span class="caption-number">Definition 13.12 </span></p>
 <section class="definition-content" id="proof-content">
 <p>Sea <span class="math notranslate nohighlight">\(A\)</span> un subconjunto no vacio de un espacio de Hilbert <span class="math notranslate nohighlight">\(H\)</span>. Entonces, el conjunto de todos los vectores ortogonales a <span class="math notranslate nohighlight">\(A\)</span>, dentoado por <span class="math notranslate nohighlight">\(A^{\perp}\)</span>, es llamado el complemento ortogonal de <span class="math notranslate nohighlight">\(A\)</span> y se define de las siguiente manera</p>
 <div class="math notranslate nohighlight">
@@ -584,7 +579,7 @@ A^{\perp}=\{x\in H:~\langle x, y\rangle=0,~\forall~y\in A\}.
 \]</div>
 </section>
 </div><div class="proof theorem admonition" id="th_proy_ort">
-<p class="admonition-title"><span class="caption-number">Theorem 18.3 </span> (Descomposición ortogonal)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 13.3 </span> (Descomposición ortogonal)</p>
 <section class="theorem-content" id="proof-content">
 <p>Si <span class="math notranslate nohighlight">\(M\)</span> es un subespacio cerrado de un espacio de Hilbert <span class="math notranslate nohighlight">\(H\)</span>, entonces</p>
 <div class="math notranslate nohighlight">
@@ -593,16 +588,16 @@ H=M\oplus M^{T}.
 \]</div>
 </section>
 </div><div class="proof definition admonition" id="def_convex_subset">
-<p class="admonition-title"><span class="caption-number">Definition 18.13 </span></p>
+<p class="admonition-title"><span class="caption-number">Definition 13.13 </span></p>
 <section class="definition-content" id="proof-content">
 <p>Un subconjunto no vacio <span class="math notranslate nohighlight">\(C\)</span> de un espacio de Hilbert <span class="math notranslate nohighlight">\(H\)</span>, esto es <span class="math notranslate nohighlight">\(C\subseteq H\)</span>, es llamado <code class="docutils literal notranslate"><span class="pre">convexo</span></code>, si <span class="math notranslate nohighlight">\(\forall~\boldsymbol{x}_{1}, \boldsymbol{x}_{2}\in C\)</span> y <span class="math notranslate nohighlight">\(\forall\lambda\in [0,1]\)</span> se tiene que</p>
 <div class="math notranslate nohighlight" id="equation-eq-convex-line">
-<span class="eqno">(18.2)<a class="headerlink" href="#equation-eq-convex-line" title="Link to this equation">#</a></span>\[
+<span class="eqno">(13.2)<a class="headerlink" href="#equation-eq-convex-line" title="Link to this equation">#</a></span>\[
 \boldsymbol{x}:=\lambda\boldsymbol{x}_{1}+(1-\lambda)\boldsymbol{x}_{2}\in C
 \]</div>
 </section>
 </div><ul class="simple">
-<li><p>Nótese que si <span class="math notranslate nohighlight">\(\lambda=1\)</span> entonces <span class="math notranslate nohighlight">\(\boldsymbol{x}=\boldsymbol{x}_{1}\)</span>, y si <span class="math notranslate nohighlight">\(\lambda=0\)</span> entonces <span class="math notranslate nohighlight">\(\boldsymbol{x}=\boldsymbol{x}_{2}\)</span>. para cualquier otro <span class="math notranslate nohighlight">\(\lambda\in[0, 1]\)</span> se tiene que <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> cae dentro de la línea que conecta <span class="math notranslate nohighlight">\(\boldsymbol{x}_{1}\)</span> con <span class="math notranslate nohighlight">\(\boldsymbol{x}_{2}\)</span>. La ecuación <a class="reference internal" href="#equation-eq-convex-line">(18.2)</a> puede escribirse como</p></li>
+<li><p>Nótese que si <span class="math notranslate nohighlight">\(\lambda=1\)</span> entonces <span class="math notranslate nohighlight">\(\boldsymbol{x}=\boldsymbol{x}_{1}\)</span>, y si <span class="math notranslate nohighlight">\(\lambda=0\)</span> entonces <span class="math notranslate nohighlight">\(\boldsymbol{x}=\boldsymbol{x}_{2}\)</span>. para cualquier otro <span class="math notranslate nohighlight">\(\lambda\in[0, 1]\)</span> se tiene que <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> cae dentro de la línea que conecta <span class="math notranslate nohighlight">\(\boldsymbol{x}_{1}\)</span> con <span class="math notranslate nohighlight">\(\boldsymbol{x}_{2}\)</span>. La ecuación <a class="reference internal" href="#equation-eq-convex-line">(13.2)</a> puede escribirse como</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[
@@ -621,7 +616,7 @@ f(\lambda x_{1}+(1-\lambda)x_{2})&amp;=|\lambda x_{1}+(1-\lambda)x_{2}|\\[2mm]
 \end{align*}
 \end{split}\]</div>
 <div class="proof definition admonition" id="def_convex_function">
-<p class="admonition-title"><span class="caption-number">Definition 18.14 </span></p>
+<p class="admonition-title"><span class="caption-number">Definition 13.14 </span></p>
 <section class="definition-content" id="proof-content">
 <p>Una función <span class="math notranslate nohighlight">\(f:\mathcal{X}\subset\mathbb{R}^{l}\longrightarrow\mathbb{R}^{l}\)</span> es llamada convexa si <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> es convexo y si <span class="math notranslate nohighlight">\(\forall~\boldsymbol{x}_{1}, \boldsymbol{x}_{2}\in\mathcal{X}\)</span> se tiene que:</p>
 <div class="math notranslate nohighlight">
@@ -633,17 +628,17 @@ f(\lambda\boldsymbol{x}_{1}+(1-\lambda)\boldsymbol{x}_{2})\leq\lambda f(\boldsym
 <li><p>Si la desigualdad se mantiene estrica decimos que <span class="math notranslate nohighlight">\(f\)</span> es estrictamente convexa. Además, en este caso el gráfico de la línea queda por encima de <span class="math notranslate nohighlight">\(f(\boldsymbol{x})\)</span></p></li>
 </ul>
 <div class="proof theorem admonition" id="th_afin_convex">
-<p class="admonition-title"><span class="caption-number">Theorem 18.4 </span></p>
+<p class="admonition-title"><span class="caption-number">Theorem 13.4 </span></p>
 <section class="theorem-content" id="proof-content">
 <ul class="simple">
 <li><p>Sea <span class="math notranslate nohighlight">\(\mathcal{X}\subset\mathbb{R}^{l}\)</span> convexo y <span class="math notranslate nohighlight">\(f:\mathcal{X}\longrightarrow\mathbb{R}\)</span> diferenciable. Entonces <span class="math notranslate nohighlight">\(f(\cdot)\)</span> es convexa si y solo si, <span class="math notranslate nohighlight">\(\forall~\boldsymbol{x}, \boldsymbol{y}\in\mathcal{X}\)</span>,</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-subgradientf">
-<span class="eqno">(18.3)<a class="headerlink" href="#equation-subgradientf" title="Link to this equation">#</a></span>\[
+<span class="eqno">(13.3)<a class="headerlink" href="#equation-subgradientf" title="Link to this equation">#</a></span>\[
 f(\boldsymbol{y})\geq f(\boldsymbol{x})+\nabla^{T}f(\boldsymbol{x})(\boldsymbol{y}-\boldsymbol{x}).
 \]</div>
 <ul class="simple">
-<li><p>Decimos que el vector <span class="math notranslate nohighlight">\(\nabla^{T}f(\boldsymbol{x})\)</span> es el <strong><code class="docutils literal notranslate"><span class="pre">subgradiente</span> <span class="pre">de</span></code></strong> <span class="math notranslate nohighlight">\(f\)</span> <strong><code class="docutils literal notranslate"><span class="pre">en</span></code></strong> <span class="math notranslate nohighlight">\(x\)</span> si satisface la desigualdad <a class="reference internal" href="#equation-subgradientf">(18.3)</a>.</p></li>
+<li><p>Decimos que el vector <span class="math notranslate nohighlight">\(\nabla^{T}f(\boldsymbol{x})\)</span> es el <strong><code class="docutils literal notranslate"><span class="pre">subgradiente</span> <span class="pre">de</span></code></strong> <span class="math notranslate nohighlight">\(f\)</span> <strong><code class="docutils literal notranslate"><span class="pre">en</span></code></strong> <span class="math notranslate nohighlight">\(x\)</span> si satisface la desigualdad <a class="reference internal" href="#equation-subgradientf">(13.3)</a>.</p></li>
 </ul>
 </section>
 </div><ul>
@@ -657,7 +652,7 @@ f(\boldsymbol{y})\geq f(\boldsymbol{x})+\nabla^{T}f(\boldsymbol{x})(\boldsymbol{
 </li>
 </ul>
 <div class="proof theorem admonition" id="th_strict_convex">
-<p class="admonition-title"><span class="caption-number">Theorem 18.5 </span></p>
+<p class="admonition-title"><span class="caption-number">Theorem 13.5 </span></p>
 <section class="theorem-content" id="proof-content">
 <p>Sea <span class="math notranslate nohighlight">\(\mathcal{X}\subset\mathbb{R}^{l}\)</span> convexo. Entonces una función doblemente diferenciable <span class="math notranslate nohighlight">\(f:\mathcal{X}\longrightarrow\mathbb{R}\)</span>, es convexa (estrictamente convexa) si y solo si la matriz Hessian es semi definida positiva (definida positiva).</p>
 </section>
@@ -680,7 +675,7 @@ f(\boldsymbol{y})\geq f(\boldsymbol{x})+\nabla^{T}f(\boldsymbol{x})(\boldsymbol{
 <figure class="align-center" id="def-convex-function">
 <a class="reference internal image-reference" href="_images/convex_function.png"><img alt="_images/convex_function.png" src="_images/convex_function.png" style="width: 518.6999999999999px; height: 278.59999999999997px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 18.1 </span><span class="caption-text">Gráfica de una función convexa.</span><a class="headerlink" href="#def-convex-function" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 13.1 </span><span class="caption-text">Gráfica de una función convexa.</span><a class="headerlink" href="#def-convex-function" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
@@ -721,7 +716,7 @@ f(\boldsymbol{y})\geq f(\boldsymbol{x})+\nabla^{T}f(\boldsymbol{x})(\boldsymbol{
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">17. </span>Cadenas de Algoritmos y Pipelines</p>
+        <p class="prev-next-title"><span class="section-number">12. </span>Cadenas de Algoritmos y Pipelines</p>
       </div>
     </a>
     <a class="right-next"
@@ -729,7 +724,7 @@ f(\boldsymbol{y})\geq f(\boldsymbol{x})+\nabla^{T}f(\boldsymbol{x})(\boldsymbol{
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">19. </span>Bibliografía</p>
+        <p class="prev-next-title"><span class="section-number">14. </span>Bibliografía</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

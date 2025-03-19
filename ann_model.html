@@ -68,7 +68,7 @@
     <script src="_static/.ipynb_checkpoints/custom-checkpoint.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="10. Computer vision" href="dl_computer_vision.html" />
+    <link rel="next" title="10. Análisis de Componentes Principales" href="practical_pca.html" />
     <link rel="prev" title="8. Máquinas de vectores de soporte" href="svm_model.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -197,16 +197,11 @@
 
 <li class="toctree-l1"><a class="reference internal" href="svm_model.html">8. Máquinas de vectores de soporte</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">9. Redes Neuronales y Deep Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dl_computer_vision.html">10. Computer vision</a></li>
-
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="practical_pca.html">15. Análisis de Componentes Principales</a></li>
-<li class="toctree-l1"><a class="reference internal" href="model_evaluation.html">16. Evaluación de modelos</a></li>
-<li class="toctree-l1"><a class="reference internal" href="chains_pipelines.html">17. Cadenas de Algoritmos y Pipelines</a></li>
-<li class="toctree-l1"><a class="reference internal" href="appendix.html">18. Apéndice</a></li>
-<li class="toctree-l1"><a class="reference internal" href="biblio.html">19. Bibliografía</a></li>
+<li class="toctree-l1"><a class="reference internal" href="practical_pca.html">10. Análisis de Componentes Principales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_evaluation.html">11. Evaluación de modelos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chains_pipelines.html">12. Cadenas de Algoritmos y Pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix.html">13. Apéndice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="biblio.html">14. Bibliografía</a></li>
 </ul>
 
     </div>
@@ -382,7 +377,9 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vgg-16">9.12.13. VGG-16</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#googlenet-y-la-red-inception">9.12.14. GoogleNet y la red Inception</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#redes-residuales-resnets">9.12.15. Redes residuales (ResNets)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reconocimiento-facial-de-emociones">9.12.16. Reconocimiento facial de emociones</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#u-net-redes-convolucionales-para-la-segmentacion-de-imagenes-biomedicas">9.12.16. U-Net: Redes Convolucionales para la Segmentación de Imágenes Biomédicas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reconocimiento-facial-de-emociones">9.12.17. Reconocimiento facial de emociones</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#segmentacion-de-imagenes-biomedicas-con-u-net">9.12.18. Segmentación de Imágenes Biomédicas con U-Net</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#redes-neuronales-recurrentes">9.13. Redes Neuronales Recurrentes</a><ul class="nav section-nav flex-column">
@@ -5254,8 +5251,25 @@ F(\boldsymbol{y}^{r})=H(\boldsymbol{y}^{r-1})-\boldsymbol{y}^{r-1}.
 <li><p>De esta manera, un número de capas, digamos, dos, como en el caso de la <a class="reference internal" href="#residual-architecture-cnn-numref"><span class="std std-numref">Fig. 9.40</span></a>, <em><strong>se apilan</strong></em> y dejamos que estas capas se <em><strong>ajusten explícitamente al mapeo residual, a través de las llamadas conexiones de atajo u omisión</strong></em>. Cada capa de pesos realiza una transformación sobre su entrada, por ejemplo, convoluciones. Si <span class="math notranslate nohighlight">\(\boldsymbol{y}^{r}\)</span> e <span class="math notranslate nohighlight">\(\boldsymbol{y}^{r-1}\)</span> son de dimensiones diferentes, el <em><strong>atajo de mapeo de identidad se modifica a</strong></em> <span class="math notranslate nohighlight">\(W\boldsymbol{y}^{r-1}\)</span>, donde <span class="math notranslate nohighlight">\(W\)</span> es una matriz de dimensiones apropiadas.</p></li>
 </ul>
 </section>
+<section id="u-net-redes-convolucionales-para-la-segmentacion-de-imagenes-biomedicas">
+<h3><span class="section-number">9.12.16. </span>U-Net: Redes Convolucionales para la Segmentación de Imágenes Biomédicas<a class="headerlink" href="#u-net-redes-convolucionales-para-la-segmentacion-de-imagenes-biomedicas" title="Link to this heading">#</a></h3>
+<figure class="align-center" id="id55">
+<img alt="_images/unet_segmentation.png" src="_images/unet_segmentation.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 9.41 </span><span class="caption-text">La arquitectura U-Net representa mapas de características con cajas, indicando canales y tamaño, mientras que las flechas señalan las operaciones.</span><a class="headerlink" href="#id55" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>La arquitectura <strong>U-Net</strong> es una red neuronal convolucional diseñada para la segmentación de imágenes biomédicas. Se basa en una estructura de <strong>encoder-decoder</strong> con una forma en “U”.</p>
+<ol class="arabic simple">
+<li><p><strong>Encoder (contracción)</strong>: Extrae características mediante convoluciones y capas de pooling para reducir la dimensionalidad.</p></li>
+<li><p><strong>Bottleneck</strong>: Conecta el encoder con el decoder, capturando la información más relevante.</p></li>
+<li><p><strong>Decoder (expansión)</strong>: Usa convoluciones transpuestas para recuperar la resolución original de la imagen y refinar la segmentación.</p></li>
+<li><p><strong>Skip connections</strong>: Conectan capas del encoder con el decoder, permitiendo una mejor preservación de detalles.</p></li>
+</ol>
+<p>Esta arquitectura es eficiente con pocos datos y logra segmentaciones precisas, lo que la hace ideal para aplicaciones médicas.</p>
+</section>
 <section id="reconocimiento-facial-de-emociones">
-<h3><span class="section-number">9.12.16. </span>Reconocimiento facial de emociones<a class="headerlink" href="#reconocimiento-facial-de-emociones" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">9.12.17. </span>Reconocimiento facial de emociones<a class="headerlink" href="#reconocimiento-facial-de-emociones" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Los datos para el siguiente ejemplo pueden ser descargados del siguiente link: <a class="reference external" href="https://github.com/lihkir/Data/tree/main/face_sentiment_detection">Face Sentiment Detection</a></p></li>
 </ul>
@@ -6073,6 +6087,733 @@ weighted avg       0.17      0.18      0.17      7178
 </div>
 </div>
 </section>
+<section id="segmentacion-de-imagenes-biomedicas-con-u-net">
+<h3><span class="section-number">9.12.18. </span>Segmentación de Imágenes Biomédicas con U-Net<a class="headerlink" href="#segmentacion-de-imagenes-biomedicas-con-u-net" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>El cáncer de mama es una de las principales causas de mortalidad en mujeres, y su detección temprana reduce muertes prematuras. Este conjunto de datos de <strong>ultrasonido mamario</strong> incluye <strong>780 imágenes</strong> de <strong>600 pacientes (25-75 años)</strong>, recopiladas en <strong>2018</strong>, clasificadas en <strong>normales, benignas y malignas</strong>. Las imágenes, en <strong>formato PNG (500×500 píxeles)</strong>, incluyen referencias (<strong>ground truth</strong>) para mejorar su análisis mediante aprendizaje automático en clasificación, detección y segmentación (ver <a class="reference external" href="https://www.kaggle.com/datasets/aryashah2k/breast-ultrasound-images-dataset/data">Breast Ultrasound Images Dataset</a>).</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<span class="kn">from</span> <span class="nn">glob</span> <span class="kn">import</span> <span class="n">glob</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">import</span> <span class="nn">cv2</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">keras.models</span> <span class="kn">import</span> <span class="n">Model</span>
+<span class="kn">from</span> <span class="nn">keras.layers</span> <span class="kn">import</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Conv2D</span><span class="p">,</span> <span class="n">MaxPooling2D</span><span class="p">,</span> <span class="n">Conv2DTranspose</span><span class="p">,</span> <span class="n">concatenate</span>
+<span class="kn">from</span> <span class="nn">keras.optimizers</span> <span class="kn">import</span> <span class="n">Adam</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.metrics</span> <span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-03-18 21:14:42.262119: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-03-18 21:14:42.534674: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:485] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2025-03-18 21:14:42.635125: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:8454] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2025-03-18 21:14:42.663016: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1452] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2025-03-18 21:14:42.834720: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2025-03-18 21:14:44.051401: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">paths</span> <span class="o">=</span> <span class="n">glob</span><span class="p">(</span><span class="s1">&#39;/home/lihkir/datasets/Dataset_BUSI_with_GT/*/*&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\033</span><span class="s1">[92m&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&#39;normal&#39; class has </span><span class="si">{</span><span class="nb">len</span><span class="p">([</span><span class="n">i</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">paths</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="s1">&#39;normal&#39;</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="s1">&#39;mask&#39;</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">i</span><span class="p">])</span><span class="si">}</span><span class="s2"> images and </span><span class="si">{</span><span class="nb">len</span><span class="p">([</span><span class="n">i</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">paths</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="s1">&#39;normal&#39;</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="s1">&#39;mask&#39;</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">i</span><span class="p">])</span><span class="si">}</span><span class="s2"> masks.&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&#39;benign&#39; class has </span><span class="si">{</span><span class="nb">len</span><span class="p">([</span><span class="n">i</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">paths</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="s1">&#39;benign&#39;</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="s1">&#39;mask&#39;</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">i</span><span class="p">])</span><span class="si">}</span><span class="s2"> images and </span><span class="si">{</span><span class="nb">len</span><span class="p">([</span><span class="n">i</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">paths</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="s1">&#39;benign&#39;</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="s1">&#39;mask&#39;</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">i</span><span class="p">])</span><span class="si">}</span><span class="s2"> masks.&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&#39;malignant&#39; class has </span><span class="si">{</span><span class="nb">len</span><span class="p">([</span><span class="n">i</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">paths</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="s1">&#39;malignant&#39;</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="s1">&#39;mask&#39;</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">i</span><span class="p">])</span><span class="si">}</span><span class="s2"> images and </span><span class="si">{</span><span class="nb">len</span><span class="p">([</span><span class="n">i</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">paths</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="s1">&#39;malignant&#39;</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="s1">&#39;mask&#39;</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">i</span><span class="p">])</span><span class="si">}</span><span class="s2"> masks.&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">There are total of </span><span class="si">{</span><span class="nb">len</span><span class="p">([</span><span class="n">i</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">paths</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="s1">&#39;mask&#39;</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">i</span><span class="p">])</span><span class="si">}</span><span class="s2"> images and </span><span class="si">{</span><span class="nb">len</span><span class="p">([</span><span class="n">i</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">paths</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="s1">&#39;mask&#39;</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">i</span><span class="p">])</span><span class="si">}</span><span class="s2"> masks.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+&#39;normal&#39; class has 133 images and 133 masks.
+&#39;benign&#39; class has 437 images and 454 masks.
+&#39;malignant&#39; class has 210 images and 211 masks.
+
+There are total of 780 images and 798 masks.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;/home/lihkir/datasets/Dataset_BUSI_with_GT/benign/*&#39;</span><span class="p">))[</span><span class="mi">4</span><span class="p">:</span><span class="mi">7</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;/home/lihkir/datasets/Dataset_BUSI_with_GT/benign/benign (100).png&#39;,
+ &#39;/home/lihkir/datasets/Dataset_BUSI_with_GT/benign/benign (100)_mask.png&#39;,
+ &#39;/home/lihkir/datasets/Dataset_BUSI_with_GT/benign/benign (100)_mask_1.png&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong><code class="docutils literal notranslate"><span class="pre">Cargue</span> <span class="pre">de</span> <span class="pre">datos</span></code></strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">load_image</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">size</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Carga una imagen desde la ruta especificada, la redimensiona y la convierte a escala de grises.</span>
+
+<span class="sd">    Parámetros:</span>
+<span class="sd">    path (str): Ruta de la imagen.</span>
+<span class="sd">    size (int): Tamaño deseado para la imagen (size x size).</span>
+
+<span class="sd">    Retorna:</span>
+<span class="sd">    np.array: Imagen en escala de grises normalizada.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>  <span class="c1"># Cargar la imagen</span>
+    <span class="n">image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">))</span>  <span class="c1"># Redimensionar la imagen</span>
+    <span class="n">image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_RGB2GRAY</span><span class="p">)</span>  <span class="c1"># Convertir a escala de grises (shape: (size, size, 3) -&gt; (size, size, 1))</span>
+    <span class="n">image</span> <span class="o">=</span> <span class="n">image</span> <span class="o">/</span> <span class="mf">255.</span>  <span class="c1"># Normalizar la imagen (valores entre 0 y 1)</span>
+    <span class="k">return</span> <span class="n">image</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">load_data</span><span class="p">(</span><span class="n">root_path</span><span class="p">,</span> <span class="n">size</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Carga imágenes y máscaras desde una carpeta, asegurando que múltiples máscaras para una misma imagen se combinen correctamente.</span>
+
+<span class="sd">    Parámetros:</span>
+<span class="sd">    root_path (str): Ruta donde se encuentran las imágenes y máscaras.</span>
+<span class="sd">    size (int): Tamaño deseado para las imágenes y máscaras.</span>
+
+<span class="sd">    Retorna:</span>
+<span class="sd">    tuple: Dos arrays de NumPy, uno con las imágenes y otro con las máscaras.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">images</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># Lista para almacenar las imágenes</span>
+    <span class="n">masks</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># Lista para almacenar las máscaras</span>
+    
+    <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># Variable auxiliar para identificar imágenes con más de una máscara</span>
+    
+    <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="p">(</span><span class="n">root_path</span><span class="p">)):</span>  <span class="c1"># Iterar sobre las imágenes y máscaras en la carpeta</span>
+        <span class="n">img</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>  <span class="c1"># Cargar la imagen o máscara</span>
+        
+        <span class="k">if</span> <span class="s1">&#39;mask&#39;</span> <span class="ow">in</span> <span class="n">path</span><span class="p">:</span>  <span class="c1"># Verificar si el archivo es una máscara</span>
+            <span class="k">if</span> <span class="n">x</span><span class="p">:</span>  <span class="c1"># Si la imagen ya tiene una máscara previa</span>
+                <span class="n">masks</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="n">img</span>  <span class="c1"># Sumar la nueva máscara a la última almacenada</span>
+                
+                <span class="c1"># Al sumar dos máscaras, los valores pueden variar entre 0 y 2, por lo que se normaliza nuevamente al rango 0-1.</span>
+                <span class="n">masks</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">masks</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;float64&#39;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">masks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>  <span class="c1"># Agregar la máscara a la lista</span>
+                <span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># Marcar que esta imagen tiene una máscara</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">images</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>  <span class="c1"># Agregar la imagen a la lista</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># Reiniciar el indicador para la siguiente imagen</span>
+            
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">images</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">masks</span><span class="p">)</span>  <span class="c1"># Convertir listas a arrays de NumPy y retornar</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">load_data</span><span class="p">(</span><span class="n">root_path</span><span class="o">=</span><span class="s1">&#39;/home/lihkir/datasets/Dataset_BUSI_with_GT/*/*&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">128</span><span class="p">)</span>  
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong><code class="docutils literal notranslate"><span class="pre">EDA</span></code></strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="c1"># Rango de índices para cada categoría de imágenes en el conjunto de datos:</span>
+<span class="c1"># X[0:437] - Benigno</span>
+<span class="c1"># X[437:647] - Maligno</span>
+<span class="c1"># X[647:780] - Normal</span>
+
+<span class="c1"># Selecciona un índice aleatorio dentro del rango de imágenes normales</span>
+<span class="n">i</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">647</span><span class="p">,</span> <span class="mi">780</span><span class="p">)</span>
+
+<span class="c1"># Muestra la imagen original en escala de grises</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Imagen&#39;</span><span class="p">)</span>
+
+<span class="c1"># Muestra la máscara correspondiente</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Máscara&#39;</span><span class="p">)</span>
+
+<span class="c1"># Superpone la máscara sobre la imagen original con transparencia</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;jet&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Superposición&#39;</span><span class="p">)</span>
+
+<span class="c1"># Título general de la figura</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Clase Normal&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+
+<span class="c1"># Muestra la figura con las imágenes</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1742351308.174658    1910 cuda_executor.cc:1001] could not open file to read NUMA node: /sys/bus/pci/devices/0000:01:00.0/numa_node
+Your kernel may have been built without NUMA support.
+I0000 00:00:1742351308.925600    1910 cuda_executor.cc:1001] could not open file to read NUMA node: /sys/bus/pci/devices/0000:01:00.0/numa_node
+Your kernel may have been built without NUMA support.
+I0000 00:00:1742351308.925692    1910 cuda_executor.cc:1001] could not open file to read NUMA node: /sys/bus/pci/devices/0000:01:00.0/numa_node
+Your kernel may have been built without NUMA support.
+I0000 00:00:1742351308.934129    1910 cuda_executor.cc:1001] could not open file to read NUMA node: /sys/bus/pci/devices/0000:01:00.0/numa_node
+Your kernel may have been built without NUMA support.
+I0000 00:00:1742351308.934177    1910 cuda_executor.cc:1001] could not open file to read NUMA node: /sys/bus/pci/devices/0000:01:00.0/numa_node
+Your kernel may have been built without NUMA support.
+I0000 00:00:1742351308.934196    1910 cuda_executor.cc:1001] could not open file to read NUMA node: /sys/bus/pci/devices/0000:01:00.0/numa_node
+Your kernel may have been built without NUMA support.
+I0000 00:00:1742351309.072419    1910 cuda_executor.cc:1001] could not open file to read NUMA node: /sys/bus/pci/devices/0000:01:00.0/numa_node
+Your kernel may have been built without NUMA support.
+I0000 00:00:1742351309.072509    1910 cuda_executor.cc:1001] could not open file to read NUMA node: /sys/bus/pci/devices/0000:01:00.0/numa_node
+Your kernel may have been built without NUMA support.
+2025-03-18 21:28:29.072547: I tensorflow/core/common_runtime/gpu/gpu_device.cc:2112] Could not identify NUMA node of platform GPU id 0, defaulting to 0.  Your kernel may not have been built with NUMA support.
+I0000 00:00:1742351309.072612    1910 cuda_executor.cc:1001] could not open file to read NUMA node: /sys/bus/pci/devices/0000:01:00.0/numa_node
+Your kernel may have been built without NUMA support.
+2025-03-18 21:28:29.073281: I tensorflow/core/common_runtime/gpu/gpu_device.cc:2021] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 9558 MB memory:  -&gt; device: 0, name: NVIDIA GeForce RTX 4070, pci bus id: 0000:01:00.0, compute capability: 8.9
+</pre></div>
+</div>
+<img alt="_images/c14f0285e6dffd5133dfd1fb749a9674786d2cc80938877007088e344bf1c7af.png" src="_images/c14f0285e6dffd5133dfd1fb749a9674786d2cc80938877007088e344bf1c7af.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+
+<span class="n">i</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">437</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Image&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Mask&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;jet&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Union&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Benign class&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/7d539561c89921ade9702789875a497d82d92fc2c30c48fe418a6b096f3e1048.png" src="_images/7d539561c89921ade9702789875a497d82d92fc2c30c48fe418a6b096f3e1048.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+
+<span class="n">i</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">437</span><span class="p">,</span><span class="mi">647</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Image&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Mask&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;jet&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Union&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Malignant class&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/c578dcb6b302c6d61aeb6e22dad90fb6fd2600b3dcf2fcf5771f29bdc5a0f85c.png" src="_images/c578dcb6b302c6d61aeb6e22dad90fb6fd2600b3dcf2fcf5771f29bdc5a0f85c.png" />
+</div>
+</div>
+<p><strong><code class="docutils literal notranslate"><span class="pre">Preprocesamiento</span></code></strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Eliminar la clase &quot;normal&quot; porque no tiene máscara</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:</span><span class="mi">647</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="p">[:</span><span class="mi">647</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Forma de X: </span><span class="si">{</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">     |  Forma de y: </span><span class="si">{</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Preparar los datos para el modelado</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Forma de X: </span><span class="si">{</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">  |  Forma de y: </span><span class="si">{</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Forma de X: (647, 128, 128)     |  Forma de y: (647, 128, 128)
+
+Forma de X: (647, 128, 128, 1)  |  Forma de y: (647, 128, 128, 1)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\033</span><span class="s1">[92m&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;X_train shape:&#39;</span><span class="p">,</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;y_train shape:&#39;</span><span class="p">,</span><span class="n">y_train</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;X_test shape:&#39;</span><span class="p">,</span><span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;y_test shape:&#39;</span><span class="p">,</span><span class="n">y_test</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+X_train shape: (582, 128, 128, 1)
+y_train shape: (582, 128, 128, 1)
+X_test shape: (65, 128, 128, 1)
+y_test shape: (65, 128, 128, 1)
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Construcción de la Arquitectura U-Net</strong></p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">Conv</span> <span class="pre">block</span></code></strong></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">conv_block</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">num_filters</span><span class="p">):</span>
+    <span class="n">conv</span> <span class="o">=</span> <span class="n">Conv2D</span><span class="p">(</span><span class="n">num_filters</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">activation</span><span class="o">=</span><span class="s2">&quot;relu&quot;</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s2">&quot;same&quot;</span><span class="p">,</span> <span class="n">kernel_initializer</span><span class="o">=</span><span class="s1">&#39;he_normal&#39;</span><span class="p">)(</span><span class="nb">input</span><span class="p">)</span>
+    <span class="n">conv</span> <span class="o">=</span> <span class="n">Conv2D</span><span class="p">(</span><span class="n">num_filters</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">activation</span><span class="o">=</span><span class="s2">&quot;relu&quot;</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s2">&quot;same&quot;</span><span class="p">,</span> <span class="n">kernel_initializer</span><span class="o">=</span><span class="s1">&#39;he_normal&#39;</span><span class="p">)(</span><span class="n">conv</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">conv</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">Encoder</span> <span class="pre">block</span></code></strong></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">encoder_block</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">num_filters</span><span class="p">):</span>
+    <span class="n">conv</span> <span class="o">=</span> <span class="n">conv_block</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">num_filters</span><span class="p">)</span>
+    <span class="n">pool</span> <span class="o">=</span> <span class="n">MaxPooling2D</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">))(</span><span class="n">conv</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">conv</span><span class="p">,</span> <span class="n">pool</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">Decoder</span> <span class="pre">block</span></code></strong></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">decoder_block</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">skip_features</span><span class="p">,</span> <span class="n">num_filters</span><span class="p">):</span>
+    <span class="n">uconv</span> <span class="o">=</span> <span class="n">Conv2DTranspose</span><span class="p">(</span><span class="n">num_filters</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">strides</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s2">&quot;same&quot;</span><span class="p">)(</span><span class="nb">input</span><span class="p">)</span>
+    <span class="n">con</span> <span class="o">=</span> <span class="n">concatenate</span><span class="p">([</span><span class="n">uconv</span><span class="p">,</span> <span class="n">skip_features</span><span class="p">])</span>
+    <span class="n">conv</span> <span class="o">=</span> <span class="n">conv_block</span><span class="p">(</span><span class="n">con</span><span class="p">,</span> <span class="n">num_filters</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">conv</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">Modelo</span> <span class="pre">U-Net</span></code></strong></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">build_model</span><span class="p">(</span><span class="n">input_shape</span><span class="p">):</span>
+    <span class="n">input_layer</span> <span class="o">=</span> <span class="n">Input</span><span class="p">(</span><span class="n">input_shape</span><span class="p">)</span>
+    
+    <span class="n">s1</span><span class="p">,</span> <span class="n">p1</span> <span class="o">=</span> <span class="n">encoder_block</span><span class="p">(</span><span class="n">input_layer</span><span class="p">,</span> <span class="mi">64</span><span class="p">)</span>
+    <span class="n">s2</span><span class="p">,</span> <span class="n">p2</span> <span class="o">=</span> <span class="n">encoder_block</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="mi">128</span><span class="p">)</span>
+    <span class="n">s3</span><span class="p">,</span> <span class="n">p3</span> <span class="o">=</span> <span class="n">encoder_block</span><span class="p">(</span><span class="n">p2</span><span class="p">,</span> <span class="mi">256</span><span class="p">)</span>
+    <span class="n">s4</span><span class="p">,</span> <span class="n">p4</span> <span class="o">=</span> <span class="n">encoder_block</span><span class="p">(</span><span class="n">p3</span><span class="p">,</span> <span class="mi">512</span><span class="p">)</span>
+
+    <span class="n">b1</span> <span class="o">=</span> <span class="n">conv_block</span><span class="p">(</span><span class="n">p4</span><span class="p">,</span> <span class="mi">1024</span><span class="p">)</span>
+
+    <span class="n">d1</span> <span class="o">=</span> <span class="n">decoder_block</span><span class="p">(</span><span class="n">b1</span><span class="p">,</span> <span class="n">s4</span><span class="p">,</span> <span class="mi">512</span><span class="p">)</span>
+    <span class="n">d2</span> <span class="o">=</span> <span class="n">decoder_block</span><span class="p">(</span><span class="n">d1</span><span class="p">,</span> <span class="n">s3</span><span class="p">,</span> <span class="mi">256</span><span class="p">)</span>
+    <span class="n">d3</span> <span class="o">=</span> <span class="n">decoder_block</span><span class="p">(</span><span class="n">d2</span><span class="p">,</span> <span class="n">s2</span><span class="p">,</span> <span class="mi">128</span><span class="p">)</span>
+    <span class="n">d4</span> <span class="o">=</span> <span class="n">decoder_block</span><span class="p">(</span><span class="n">d3</span><span class="p">,</span> <span class="n">s1</span><span class="p">,</span> <span class="mi">64</span><span class="p">)</span>
+    
+    <span class="n">output_layer</span> <span class="o">=</span> <span class="n">Conv2D</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s2">&quot;same&quot;</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s2">&quot;sigmoid&quot;</span><span class="p">)(</span><span class="n">d4</span><span class="p">)</span>
+    
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span><span class="n">input_layer</span><span class="p">,</span> <span class="n">output_layer</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;U-Net&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">model</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">build_model</span><span class="p">(</span><span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="s2">&quot;binary_crossentropy&quot;</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">=</span><span class="s2">&quot;Adam&quot;</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;accuracy&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">plot_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">show_shapes</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/46cc10ceee216ba4e5a39f79a7c3d3a08be9636cfdce59775d5e65e41ac59960.png" src="_images/46cc10ceee216ba4e5a39f79a7c3d3a08be9636cfdce59775d5e65e41ac59960.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">Model: "U-Net"</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">┏━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┓
+┃<span style="font-weight: bold"> Layer (type)        </span>┃<span style="font-weight: bold"> Output Shape      </span>┃<span style="font-weight: bold">    Param # </span>┃<span style="font-weight: bold"> Connected to      </span>┃
+┡━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━┩
+│ input_layer         │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>,  │          <span style="color: #00af00; text-decoration-color: #00af00">0</span> │ -                 │
+│ (<span style="color: #0087ff; text-decoration-color: #0087ff">InputLayer</span>)        │ <span style="color: #00af00; text-decoration-color: #00af00">1</span>)                │            │                   │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ conv2d (<span style="color: #0087ff; text-decoration-color: #0087ff">Conv2D</span>)     │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>,  │        <span style="color: #00af00; text-decoration-color: #00af00">640</span> │ input_layer[<span style="color: #00af00; text-decoration-color: #00af00">0</span>][<span style="color: #00af00; text-decoration-color: #00af00">0</span>] │
+│                     │ <span style="color: #00af00; text-decoration-color: #00af00">64</span>)               │            │                   │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ conv2d_1 (<span style="color: #0087ff; text-decoration-color: #0087ff">Conv2D</span>)   │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>,  │     <span style="color: #00af00; text-decoration-color: #00af00">36,928</span> │ conv2d[<span style="color: #00af00; text-decoration-color: #00af00">0</span>][<span style="color: #00af00; text-decoration-color: #00af00">0</span>]      │
+│                     │ <span style="color: #00af00; text-decoration-color: #00af00">64</span>)               │            │                   │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ max_pooling2d       │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">64</span>, <span style="color: #00af00; text-decoration-color: #00af00">64</span>,    │          <span style="color: #00af00; text-decoration-color: #00af00">0</span> │ conv2d_1[<span style="color: #00af00; text-decoration-color: #00af00">0</span>][<span style="color: #00af00; text-decoration-color: #00af00">0</span>]    │
+│ (<span style="color: #0087ff; text-decoration-color: #0087ff">MaxPooling2D</span>)      │ <span style="color: #00af00; text-decoration-color: #00af00">64</span>)               │            │                   │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ conv2d_2 (<span style="color: #0087ff; text-decoration-color: #0087ff">Conv2D</span>)   │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">64</span>, <span style="color: #00af00; text-decoration-color: #00af00">64</span>,    │     <span style="color: #00af00; text-decoration-color: #00af00">73,856</span> │ max_pooling2d[<span style="color: #00af00; text-decoration-color: #00af00">0</span>]… │
+│                     │ <span style="color: #00af00; text-decoration-color: #00af00">128</span>)              │            │                   │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ conv2d_3 (<span style="color: #0087ff; text-decoration-color: #0087ff">Conv2D</span>)   │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">64</span>, <span style="color: #00af00; text-decoration-color: #00af00">64</span>,    │    <span style="color: #00af00; text-decoration-color: #00af00">147,584</span> │ conv2d_2[<span style="color: #00af00; text-decoration-color: #00af00">0</span>][<span style="color: #00af00; text-decoration-color: #00af00">0</span>]    │
+│                     │ <span style="color: #00af00; text-decoration-color: #00af00">128</span>)              │            │                   │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ max_pooling2d_1     │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">32</span>, <span style="color: #00af00; text-decoration-color: #00af00">32</span>,    │          <span style="color: #00af00; text-decoration-color: #00af00">0</span> │ conv2d_3[<span style="color: #00af00; text-decoration-color: #00af00">0</span>][<span style="color: #00af00; text-decoration-color: #00af00">0</span>]    │
+│ (<span style="color: #0087ff; text-decoration-color: #0087ff">MaxPooling2D</span>)      │ <span style="color: #00af00; text-decoration-color: #00af00">128</span>)              │            │                   │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ conv2d_4 (<span style="color: #0087ff; text-decoration-color: #0087ff">Conv2D</span>)   │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">32</span>, <span style="color: #00af00; text-decoration-color: #00af00">32</span>,    │    <span style="color: #00af00; text-decoration-color: #00af00">295,168</span> │ max_pooling2d_1[<span style="color: #00af00; text-decoration-color: #00af00">…</span> │
+│                     │ <span style="color: #00af00; text-decoration-color: #00af00">256</span>)              │            │                   │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ conv2d_5 (<span style="color: #0087ff; text-decoration-color: #0087ff">Conv2D</span>)   │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">32</span>, <span style="color: #00af00; text-decoration-color: #00af00">32</span>,    │    <span style="color: #00af00; text-decoration-color: #00af00">590,080</span> │ conv2d_4[<span style="color: #00af00; text-decoration-color: #00af00">0</span>][<span style="color: #00af00; text-decoration-color: #00af00">0</span>]    │
+│                     │ <span style="color: #00af00; text-decoration-color: #00af00">256</span>)              │            │                   │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ max_pooling2d_2     │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">16</span>, <span style="color: #00af00; text-decoration-color: #00af00">16</span>,    │          <span style="color: #00af00; text-decoration-color: #00af00">0</span> │ conv2d_5[<span style="color: #00af00; text-decoration-color: #00af00">0</span>][<span style="color: #00af00; text-decoration-color: #00af00">0</span>]    │
+│ (<span style="color: #0087ff; text-decoration-color: #0087ff">MaxPooling2D</span>)      │ <span style="color: #00af00; text-decoration-color: #00af00">256</span>)              │            │                   │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ conv2d_6 (<span style="color: #0087ff; text-decoration-color: #0087ff">Conv2D</span>)   │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">16</span>, <span style="color: #00af00; text-decoration-color: #00af00">16</span>,    │  <span style="color: #00af00; text-decoration-color: #00af00">1,180,160</span> │ max_pooling2d_2[<span style="color: #00af00; text-decoration-color: #00af00">…</span> │
+│                     │ <span style="color: #00af00; text-decoration-color: #00af00">512</span>)              │            │                   │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ conv2d_7 (<span style="color: #0087ff; text-decoration-color: #0087ff">Conv2D</span>)   │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">16</span>, <span style="color: #00af00; text-decoration-color: #00af00">16</span>,    │  <span style="color: #00af00; text-decoration-color: #00af00">2,359,808</span> │ conv2d_6[<span style="color: #00af00; text-decoration-color: #00af00">0</span>][<span style="color: #00af00; text-decoration-color: #00af00">0</span>]    │
+│                     │ <span style="color: #00af00; text-decoration-color: #00af00">512</span>)              │            │                   │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ max_pooling2d_3     │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">8</span>, <span style="color: #00af00; text-decoration-color: #00af00">8</span>, <span style="color: #00af00; text-decoration-color: #00af00">512</span>) │          <span style="color: #00af00; text-decoration-color: #00af00">0</span> │ conv2d_7[<span style="color: #00af00; text-decoration-color: #00af00">0</span>][<span style="color: #00af00; text-decoration-color: #00af00">0</span>]    │
+│ (<span style="color: #0087ff; text-decoration-color: #0087ff">MaxPooling2D</span>)      │                   │            │                   │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ conv2d_8 (<span style="color: #0087ff; text-decoration-color: #0087ff">Conv2D</span>)   │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">8</span>, <span style="color: #00af00; text-decoration-color: #00af00">8</span>,      │  <span style="color: #00af00; text-decoration-color: #00af00">4,719,616</span> │ max_pooling2d_3[<span style="color: #00af00; text-decoration-color: #00af00">…</span> │
+│                     │ <span style="color: #00af00; text-decoration-color: #00af00">1024</span>)             │            │                   │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ conv2d_9 (<span style="color: #0087ff; text-decoration-color: #0087ff">Conv2D</span>)   │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">8</span>, <span style="color: #00af00; text-decoration-color: #00af00">8</span>,      │  <span style="color: #00af00; text-decoration-color: #00af00">9,438,208</span> │ conv2d_8[<span style="color: #00af00; text-decoration-color: #00af00">0</span>][<span style="color: #00af00; text-decoration-color: #00af00">0</span>]    │
+│                     │ <span style="color: #00af00; text-decoration-color: #00af00">1024</span>)             │            │                   │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ conv2d_transpose    │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">16</span>, <span style="color: #00af00; text-decoration-color: #00af00">16</span>,    │  <span style="color: #00af00; text-decoration-color: #00af00">2,097,664</span> │ conv2d_9[<span style="color: #00af00; text-decoration-color: #00af00">0</span>][<span style="color: #00af00; text-decoration-color: #00af00">0</span>]    │
+│ (<span style="color: #0087ff; text-decoration-color: #0087ff">Conv2DTranspose</span>)   │ <span style="color: #00af00; text-decoration-color: #00af00">512</span>)              │            │                   │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ concatenate         │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">16</span>, <span style="color: #00af00; text-decoration-color: #00af00">16</span>,    │          <span style="color: #00af00; text-decoration-color: #00af00">0</span> │ conv2d_transpose… │
+│ (<span style="color: #0087ff; text-decoration-color: #0087ff">Concatenate</span>)       │ <span style="color: #00af00; text-decoration-color: #00af00">1024</span>)             │            │ conv2d_7[<span style="color: #00af00; text-decoration-color: #00af00">0</span>][<span style="color: #00af00; text-decoration-color: #00af00">0</span>]    │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ conv2d_10 (<span style="color: #0087ff; text-decoration-color: #0087ff">Conv2D</span>)  │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">16</span>, <span style="color: #00af00; text-decoration-color: #00af00">16</span>,    │  <span style="color: #00af00; text-decoration-color: #00af00">4,719,104</span> │ concatenate[<span style="color: #00af00; text-decoration-color: #00af00">0</span>][<span style="color: #00af00; text-decoration-color: #00af00">0</span>] │
+│                     │ <span style="color: #00af00; text-decoration-color: #00af00">512</span>)              │            │                   │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ conv2d_11 (<span style="color: #0087ff; text-decoration-color: #0087ff">Conv2D</span>)  │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">16</span>, <span style="color: #00af00; text-decoration-color: #00af00">16</span>,    │  <span style="color: #00af00; text-decoration-color: #00af00">2,359,808</span> │ conv2d_10[<span style="color: #00af00; text-decoration-color: #00af00">0</span>][<span style="color: #00af00; text-decoration-color: #00af00">0</span>]   │
+│                     │ <span style="color: #00af00; text-decoration-color: #00af00">512</span>)              │            │                   │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ conv2d_transpose_1  │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">32</span>, <span style="color: #00af00; text-decoration-color: #00af00">32</span>,    │    <span style="color: #00af00; text-decoration-color: #00af00">524,544</span> │ conv2d_11[<span style="color: #00af00; text-decoration-color: #00af00">0</span>][<span style="color: #00af00; text-decoration-color: #00af00">0</span>]   │
+│ (<span style="color: #0087ff; text-decoration-color: #0087ff">Conv2DTranspose</span>)   │ <span style="color: #00af00; text-decoration-color: #00af00">256</span>)              │            │                   │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ concatenate_1       │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">32</span>, <span style="color: #00af00; text-decoration-color: #00af00">32</span>,    │          <span style="color: #00af00; text-decoration-color: #00af00">0</span> │ conv2d_transpose… │
+│ (<span style="color: #0087ff; text-decoration-color: #0087ff">Concatenate</span>)       │ <span style="color: #00af00; text-decoration-color: #00af00">512</span>)              │            │ conv2d_5[<span style="color: #00af00; text-decoration-color: #00af00">0</span>][<span style="color: #00af00; text-decoration-color: #00af00">0</span>]    │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ conv2d_12 (<span style="color: #0087ff; text-decoration-color: #0087ff">Conv2D</span>)  │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">32</span>, <span style="color: #00af00; text-decoration-color: #00af00">32</span>,    │  <span style="color: #00af00; text-decoration-color: #00af00">1,179,904</span> │ concatenate_1[<span style="color: #00af00; text-decoration-color: #00af00">0</span>]… │
+│                     │ <span style="color: #00af00; text-decoration-color: #00af00">256</span>)              │            │                   │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ conv2d_13 (<span style="color: #0087ff; text-decoration-color: #0087ff">Conv2D</span>)  │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">32</span>, <span style="color: #00af00; text-decoration-color: #00af00">32</span>,    │    <span style="color: #00af00; text-decoration-color: #00af00">590,080</span> │ conv2d_12[<span style="color: #00af00; text-decoration-color: #00af00">0</span>][<span style="color: #00af00; text-decoration-color: #00af00">0</span>]   │
+│                     │ <span style="color: #00af00; text-decoration-color: #00af00">256</span>)              │            │                   │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ conv2d_transpose_2  │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">64</span>, <span style="color: #00af00; text-decoration-color: #00af00">64</span>,    │    <span style="color: #00af00; text-decoration-color: #00af00">131,200</span> │ conv2d_13[<span style="color: #00af00; text-decoration-color: #00af00">0</span>][<span style="color: #00af00; text-decoration-color: #00af00">0</span>]   │
+│ (<span style="color: #0087ff; text-decoration-color: #0087ff">Conv2DTranspose</span>)   │ <span style="color: #00af00; text-decoration-color: #00af00">128</span>)              │            │                   │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ concatenate_2       │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">64</span>, <span style="color: #00af00; text-decoration-color: #00af00">64</span>,    │          <span style="color: #00af00; text-decoration-color: #00af00">0</span> │ conv2d_transpose… │
+│ (<span style="color: #0087ff; text-decoration-color: #0087ff">Concatenate</span>)       │ <span style="color: #00af00; text-decoration-color: #00af00">256</span>)              │            │ conv2d_3[<span style="color: #00af00; text-decoration-color: #00af00">0</span>][<span style="color: #00af00; text-decoration-color: #00af00">0</span>]    │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ conv2d_14 (<span style="color: #0087ff; text-decoration-color: #0087ff">Conv2D</span>)  │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">64</span>, <span style="color: #00af00; text-decoration-color: #00af00">64</span>,    │    <span style="color: #00af00; text-decoration-color: #00af00">295,040</span> │ concatenate_2[<span style="color: #00af00; text-decoration-color: #00af00">0</span>]… │
+│                     │ <span style="color: #00af00; text-decoration-color: #00af00">128</span>)              │            │                   │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ conv2d_15 (<span style="color: #0087ff; text-decoration-color: #0087ff">Conv2D</span>)  │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">64</span>, <span style="color: #00af00; text-decoration-color: #00af00">64</span>,    │    <span style="color: #00af00; text-decoration-color: #00af00">147,584</span> │ conv2d_14[<span style="color: #00af00; text-decoration-color: #00af00">0</span>][<span style="color: #00af00; text-decoration-color: #00af00">0</span>]   │
+│                     │ <span style="color: #00af00; text-decoration-color: #00af00">128</span>)              │            │                   │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ conv2d_transpose_3  │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>,  │     <span style="color: #00af00; text-decoration-color: #00af00">32,832</span> │ conv2d_15[<span style="color: #00af00; text-decoration-color: #00af00">0</span>][<span style="color: #00af00; text-decoration-color: #00af00">0</span>]   │
+│ (<span style="color: #0087ff; text-decoration-color: #0087ff">Conv2DTranspose</span>)   │ <span style="color: #00af00; text-decoration-color: #00af00">64</span>)               │            │                   │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ concatenate_3       │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>,  │          <span style="color: #00af00; text-decoration-color: #00af00">0</span> │ conv2d_transpose… │
+│ (<span style="color: #0087ff; text-decoration-color: #0087ff">Concatenate</span>)       │ <span style="color: #00af00; text-decoration-color: #00af00">128</span>)              │            │ conv2d_1[<span style="color: #00af00; text-decoration-color: #00af00">0</span>][<span style="color: #00af00; text-decoration-color: #00af00">0</span>]    │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ conv2d_16 (<span style="color: #0087ff; text-decoration-color: #0087ff">Conv2D</span>)  │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>,  │     <span style="color: #00af00; text-decoration-color: #00af00">73,792</span> │ concatenate_3[<span style="color: #00af00; text-decoration-color: #00af00">0</span>]… │
+│                     │ <span style="color: #00af00; text-decoration-color: #00af00">64</span>)               │            │                   │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ conv2d_17 (<span style="color: #0087ff; text-decoration-color: #0087ff">Conv2D</span>)  │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>,  │     <span style="color: #00af00; text-decoration-color: #00af00">36,928</span> │ conv2d_16[<span style="color: #00af00; text-decoration-color: #00af00">0</span>][<span style="color: #00af00; text-decoration-color: #00af00">0</span>]   │
+│                     │ <span style="color: #00af00; text-decoration-color: #00af00">64</span>)               │            │                   │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ conv2d_18 (<span style="color: #0087ff; text-decoration-color: #0087ff">Conv2D</span>)  │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>,  │         <span style="color: #00af00; text-decoration-color: #00af00">65</span> │ conv2d_17[<span style="color: #00af00; text-decoration-color: #00af00">0</span>][<span style="color: #00af00; text-decoration-color: #00af00">0</span>]   │
+│                     │ <span style="color: #00af00; text-decoration-color: #00af00">1</span>)                │            │                   │
+└─────────────────────┴───────────────────┴────────────┴───────────────────┘
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold"> Total params: </span><span style="color: #00af00; text-decoration-color: #00af00">31,030,593</span> (118.37 MB)
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold"> Trainable params: </span><span style="color: #00af00; text-decoration-color: #00af00">31,030,593</span> (118.37 MB)
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold"> Non-trainable params: </span><span style="color: #00af00; text-decoration-color: #00af00">0</span> (0.00 B)
+</pre>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tensorflow.keras.callbacks</span> <span class="kn">import</span> <span class="n">EarlyStopping</span><span class="p">,</span> <span class="n">ModelCheckpoint</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">joblib</span> <span class="kn">import</span> <span class="n">dump</span><span class="p">,</span> <span class="n">load</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">checkpointer</span> <span class="o">=</span> <span class="p">[</span> 
+    <span class="n">EarlyStopping</span><span class="p">(</span><span class="n">monitor</span><span class="o">=</span><span class="s1">&#39;val_accuracy&#39;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">restore_best_weights</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;max&#39;</span><span class="p">,</span> <span class="n">patience</span><span class="o">=</span><span class="mi">10</span><span class="p">),</span>
+    <span class="n">ModelCheckpoint</span><span class="p">(</span>
+        <span class="n">filepath</span><span class="o">=</span><span class="s1">&#39;model.weights.best.keras&#39;</span><span class="p">,</span> 
+        <span class="n">monitor</span><span class="o">=</span><span class="s1">&#39;val_accuracy&#39;</span><span class="p">,</span>
+        <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">save_best_only</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;max&#39;</span>
+    <span class="p">)</span>
+<span class="p">]</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">history_unet</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s1">&#39;history_unet.joblib&#39;</span><span class="p">):</span>
+    <span class="n">history_unet</span> <span class="o">=</span> <span class="n">load</span><span class="p">(</span><span class="s1">&#39;history_unet.joblib&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;El archivo &#39;history_unet.joblib&#39; ya existe. Se ha cargado el historial del entrenamiento.&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">history_unet</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+        <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> 
+        <span class="n">epochs</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> 
+        <span class="n">validation_data</span><span class="o">=</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">),</span>
+        <span class="n">callbacks</span><span class="o">=</span><span class="n">checkpointer</span><span class="p">,</span>
+        <span class="n">verbose</span><span class="o">=</span><span class="mi">2</span>
+    <span class="p">)</span>
+    <span class="n">dump</span><span class="p">(</span><span class="n">history_unet</span><span class="o">.</span><span class="n">history</span><span class="p">,</span> <span class="s1">&#39;history_unet.joblib&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;El entrenamiento se ha completado y el historial ha sido guardado en &#39;history_unet.joblib&#39;.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 1/100
+
+Epoch 1: val_accuracy improved from -inf to 0.94092, saving model to model.weights.best.keras
+19/19 - 4s - 213ms/step - accuracy: 0.9921 - loss: 0.0152 - val_accuracy: 0.9409 - val_loss: 0.4926
+Epoch 2/100
+
+Epoch 2: val_accuracy did not improve from 0.94092
+19/19 - 2s - 118ms/step - accuracy: 0.9921 - loss: 0.0153 - val_accuracy: 0.9372 - val_loss: 0.4994
+Epoch 3/100
+
+Epoch 3: val_accuracy did not improve from 0.94092
+19/19 - 2s - 118ms/step - accuracy: 0.9925 - loss: 0.0143 - val_accuracy: 0.9393 - val_loss: 0.5038
+Epoch 4/100
+
+Epoch 4: val_accuracy did not improve from 0.94092
+19/19 - 2s - 119ms/step - accuracy: 0.9929 - loss: 0.0132 - val_accuracy: 0.9393 - val_loss: 0.5313
+Epoch 5/100
+
+Epoch 5: val_accuracy did not improve from 0.94092
+19/19 - 2s - 119ms/step - accuracy: 0.9929 - loss: 0.0132 - val_accuracy: 0.9401 - val_loss: 0.5307
+Epoch 6/100
+
+Epoch 6: val_accuracy did not improve from 0.94092
+19/19 - 2s - 118ms/step - accuracy: 0.9930 - loss: 0.0134 - val_accuracy: 0.9386 - val_loss: 0.5150
+Epoch 7/100
+
+Epoch 7: val_accuracy did not improve from 0.94092
+19/19 - 2s - 118ms/step - accuracy: 0.9929 - loss: 0.0136 - val_accuracy: 0.9378 - val_loss: 0.4967
+Epoch 8/100
+
+Epoch 8: val_accuracy did not improve from 0.94092
+19/19 - 2s - 118ms/step - accuracy: 0.9928 - loss: 0.0133 - val_accuracy: 0.9387 - val_loss: 0.4966
+Epoch 9/100
+
+Epoch 9: val_accuracy did not improve from 0.94092
+19/19 - 2s - 118ms/step - accuracy: 0.9934 - loss: 0.0122 - val_accuracy: 0.9389 - val_loss: 0.5372
+Epoch 10/100
+
+Epoch 10: val_accuracy did not improve from 0.94092
+19/19 - 2s - 118ms/step - accuracy: 0.9933 - loss: 0.0124 - val_accuracy: 0.9394 - val_loss: 0.5180
+Epoch 11/100
+
+Epoch 11: val_accuracy did not improve from 0.94092
+19/19 - 2s - 118ms/step - accuracy: 0.9934 - loss: 0.0121 - val_accuracy: 0.9396 - val_loss: 0.5614
+Epoch 11: early stopping
+Restoring model weights from the end of the best epoch: 1.
+El entrenamiento se ha completado y el historial ha sido guardado en &#39;history_unet.joblib&#39;.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">history</span><span class="o">.</span><span class="n">epoch</span><span class="p">,</span> <span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s2">&quot;loss&quot;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Train loss&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">history</span><span class="o">.</span><span class="n">epoch</span><span class="p">,</span> <span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s2">&quot;val_loss&quot;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Validation loss&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">history</span><span class="o">.</span><span class="n">epoch</span><span class="p">,</span> <span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s2">&quot;accuracy&quot;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Train accuracy&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">history</span><span class="o">.</span><span class="n">epoch</span><span class="p">,</span> <span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s2">&quot;val_accuracy&quot;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Validation accuracy&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Loss and Accuracy&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/cb7db0b9e79e0008855e10f12b687e8c9106a0a50e4fd2de7cd5c6a3a3104876.png" src="_images/cb7db0b9e79e0008855e10f12b687e8c9106a0a50e4fd2de7cd5c6a3a3104876.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">Evaluación</span></code></strong></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">18</span><span class="p">))</span>
+
+<span class="n">j</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">5</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">X_test</span><span class="p">[</span><span class="n">j</span><span class="p">[</span><span class="n">i</span><span class="p">]],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Image&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">y_test</span><span class="p">[</span><span class="n">j</span><span class="p">[</span><span class="n">i</span><span class="p">]],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Mask&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">X_test</span><span class="p">[</span><span class="n">j</span><span class="p">[</span><span class="n">i</span><span class="p">]],</span><span class="mi">0</span><span class="p">),</span><span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Prediction&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Results&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/c24e72c6c9ee9f35a6750798a0030f945076fa931a3e5ff7b8b42d6f5079e577.png" src="_images/c24e72c6c9ee9f35a6750798a0030f945076fa931a3e5ff7b8b42d6f5079e577.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\033</span><span class="s1">[93m&#39;</span><span class="p">)</span>
+<span class="n">y_pred</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span><span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">y_pred_thresholded</span> <span class="o">=</span> <span class="n">y_pred</span> <span class="o">&gt;</span> <span class="mf">0.5</span>
+
+<span class="c1"># mean Intersection-Over-Union metric</span>
+<span class="n">IOU_keras</span> <span class="o">=</span> <span class="n">MeanIoU</span><span class="p">(</span><span class="n">num_classes</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">IOU_keras</span><span class="o">.</span><span class="n">update_state</span><span class="p">(</span><span class="n">y_pred_thresholded</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mean IoU =&quot;</span><span class="p">,</span> <span class="n">IOU_keras</span><span class="o">.</span><span class="n">result</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">())</span>
+
+<span class="n">prec_score</span> <span class="o">=</span> <span class="n">Precision</span><span class="p">()</span>
+<span class="n">prec_score</span><span class="o">.</span><span class="n">update_state</span><span class="p">(</span><span class="n">y_pred_thresholded</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">prec_score</span><span class="o">.</span><span class="n">result</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Precision Score = </span><span class="si">%.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">p</span><span class="p">)</span>
+
+<span class="n">recall_score</span> <span class="o">=</span> <span class="n">Recall</span><span class="p">()</span>
+<span class="n">recall_score</span><span class="o">.</span><span class="n">update_state</span><span class="p">(</span><span class="n">y_pred_thresholded</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">recall_score</span><span class="o">.</span><span class="n">result</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Recall Score = </span><span class="si">%.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">r</span><span class="p">)</span>
+
+<span class="n">f1_score</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">p</span><span class="o">*</span><span class="n">r</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">p</span><span class="o">+</span><span class="n">r</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;F1 Score = </span><span class="si">%.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">f1_score</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+Mean IoU = 0.7645979
+Precision Score = 0.680
+Recall Score = 0.818
+F1 Score = 0.743
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong><code class="docutils literal notranslate"><span class="pre">Evaluación</span> <span class="pre">del</span> <span class="pre">Algoritmo</span> <span class="pre">de</span> <span class="pre">Segmentación</span></code></strong></p>
+<ul class="simple">
+<li><p>En un algoritmo de segmentación, estas métricas <em><strong>evalúan la calidad de la segmentación comparando la máscara predicha con la máscara real</strong></em> (<em>ground truth</em>).</p></li>
+</ul>
+<p><strong>1. Mean IoU (Intersection over Union) = 0.7593</strong></p>
+<ul class="simple">
+<li><p>Mide la superposición entre la segmentación predicha y la real.</p></li>
+<li><p>Se calcula como:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+IoU = \frac{\text{Área de intersección}}{\text{Área de unión}}
+\]</div>
+<ul class="simple">
+<li><p>Un <strong>IoU de 0.7593</strong> indica que, en promedio, el <strong>75.93% del área segmentada</strong> coincide con la verdad.</p></li>
+</ul>
+<p><strong>2. Precision Score = 0.695</strong></p>
+<ul class="simple">
+<li><p>Evalúa cuántos de los píxeles predichos como positivos realmente lo son.</p></li>
+<li><p>Se calcula como:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\text{Precisión} = \frac{\text{TP}}{\text{TP} + \text{FP}}
+\]</div>
+<ul class="simple">
+<li><p>Un <strong>valor de 0.695</strong> significa que el <strong>69.5% de las predicciones positivas</strong> fueron correctas.</p></li>
+</ul>
+<p><strong>3. Recall Score = 0.786</strong></p>
+<ul class="simple">
+<li><p>Mide cuántos de los píxeles verdaderamente positivos fueron detectados.</p></li>
+<li><p>Se calcula como:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\text{Recall} = \frac{\text{TP}}{\text{TP} + \text{FN}}
+\]</div>
+<ul class="simple">
+<li><p>Un <strong>recall de 0.786</strong> indica que el <strong>78.6% de los píxeles reales</strong> fueron correctamente detectados.</p></li>
+</ul>
+<p><strong>4. F1 Score = 0.738</strong></p>
+<ul class="simple">
+<li><p>Es la media armónica entre precisión y recall, equilibrando ambos valores.</p></li>
+<li><p>Se calcula como:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+F1 = 2 \times \frac{\text{Precisión} \times \text{Recall}}{\text{Precisión} + \text{Recall}}
+\]</div>
+<ul class="simple">
+<li><p>Un <strong>F1 de 0.738</strong> indica un buen equilibrio entre <strong>precisión y recall</strong>.</p></li>
+</ul>
+<p><strong>Interpretación Global</strong></p>
+<ul class="simple">
+<li><p><strong>El modelo segmenta bien las imágenes (IoU alto).</strong></p></li>
+<li><p><strong>El recall es mayor que la precisión</strong>, lo que indica que el modelo <strong>detecta la mayoría de los píxeles relevantes</strong>, pero a costa de generar algunos falsos positivos.</p></li>
+<li><p><strong>El F1-score de 0.738</strong> sugiere que el modelo tiene un rendimiento sólido pero puede mejorarse.</p></li>
+</ul>
+<p>Si se busca aumentar precision sin afectar demasiado el recall, se pueden ajustar umbrales o aplicar técnicas como <strong>posprocesamiento con filtros morfológicos o CRFs</strong>.</p>
+</section>
 </section>
 <section id="redes-neuronales-recurrentes">
 <h2><span class="section-number">9.13. </span>Redes Neuronales Recurrentes<a class="headerlink" href="#redes-neuronales-recurrentes" title="Link to this heading">#</a></h2>
@@ -6112,12 +6853,12 @@ weighted avg       0.17      0.18      0.17      7178
 <figure class="align-center" id="recurrent-neural-network-arch-numref">
 <a class="reference internal image-reference" href="_images/recurrent_neural_network_arch.png"><img alt="_images/recurrent_neural_network_arch.png" src="_images/recurrent_neural_network_arch.png" style="width: 552.0px; height: 304.8px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 9.41 </span><span class="caption-text">Arquitectura de una <em><strong>Red Neuronal Recurrente</strong></em>. Fuente <span id="id34">[<a class="reference internal" href="biblio.html#id17" title="S. Theodoridis. Machine Learning: A Bayesian and Optimization Perspective. Elsevier Science, 2020. ISBN 9780128188040. URL: https://books.google.com.co/books?id=l-nEDwAAQBAJ.">Theodoridis, 2020</a>]</span>.</span><a class="headerlink" href="#recurrent-neural-network-arch-numref" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 9.42 </span><span class="caption-text">Arquitectura de una <em><strong>Red Neuronal Recurrente</strong></em>. Fuente <span id="id34">[<a class="reference internal" href="biblio.html#id17" title="S. Theodoridis. Machine Learning: A Bayesian and Optimization Perspective. Elsevier Science, 2020. ISBN 9780128188040. URL: https://books.google.com.co/books?id=l-nEDwAAQBAJ.">Theodoridis, 2020</a>]</span>.</span><a class="headerlink" href="#recurrent-neural-network-arch-numref" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <ul class="simple">
 <li><p>De las ecuaciones anteriores se deduce que las <em><strong>matrices y vectores de parámetros se comparten en todos los instantes temporales</strong></em>. Durante el entrenamiento, <em><strong>se inicializan mediante números aleatorios</strong></em>. El modelo gráfico
-asociado con Eq. <a class="reference internal" href="#equation-rnn-system-eq">(9.14)</a> se muestra en la <a class="reference internal" href="#recurrent-neural-network-arch-numref"><span class="std std-numref">Fig. 9.41</span></a>A. En la <a class="reference internal" href="#recurrent-neural-network-arch-numref"><span class="std std-numref">Fig. 9.41</span></a>B, <em><strong>el gráfico se despliega sobre los distintos instantes de tiempo</strong></em> para los que se dispone de observaciones. Por ejemplo, <em><strong>si la secuencia de interés es una frase de 10 palabras</strong></em>, entonces <span class="math notranslate nohighlight">\(N\)</span> se establece igual a 10, mientras que <span class="math notranslate nohighlight">\(\boldsymbol{x}_{n}\)</span> es el <em><strong>vector que codifica las respectivas palabras de entrada</strong></em>.</p></li>
+asociado con Eq. <a class="reference internal" href="#equation-rnn-system-eq">(9.14)</a> se muestra en la <a class="reference internal" href="#recurrent-neural-network-arch-numref"><span class="std std-numref">Fig. 9.42</span></a>A. En la <a class="reference internal" href="#recurrent-neural-network-arch-numref"><span class="std std-numref">Fig. 9.42</span></a>B, <em><strong>el gráfico se despliega sobre los distintos instantes de tiempo</strong></em> para los que se dispone de observaciones. Por ejemplo, <em><strong>si la secuencia de interés es una frase de 10 palabras</strong></em>, entonces <span class="math notranslate nohighlight">\(N\)</span> se establece igual a 10, mientras que <span class="math notranslate nohighlight">\(\boldsymbol{x}_{n}\)</span> es el <em><strong>vector que codifica las respectivas palabras de entrada</strong></em>.</p></li>
 </ul>
 <section id="backpropagation-en-tiempo">
 <h3><span class="section-number">9.13.1. </span>Backpropagation en tiempo<a class="headerlink" href="#backpropagation-en-tiempo" title="Link to this heading">#</a></h3>
@@ -6454,12 +7195,12 @@ Usamos la retropropagación a través del tiempo (BPTT). Los gradientes para <sp
 </section>
 </div><ul class="simple">
 <li><p>En otras palabras, <em><strong>la ponderación (control) de la información</strong></em> tiene lugar en el contexto. Según este razonamiento, <em><strong>la red tiene la agilidad de olvidar la información que ya ha sido utilizada y ya no es necesaria</strong></em>. La <em><strong>célula/unidad LSTM básica</strong></em> se
-se muestra en la <a class="reference internal" href="#lstm-arch-rnn-numref"><span class="std std-numref">Fig. 9.42</span></a>. Se construye en torno a <em><strong>dos conjuntos de variables, apiladas en el vector</strong></em> <span class="math notranslate nohighlight">\(\boldsymbol{s}\)</span>, que se conoce como el <em><strong>estado de la célula o unidad</strong></em>, y el vector <span class="math notranslate nohighlight">\(\boldsymbol{h}\)</span>, que se conoce como el <em><strong>vector de variables ocultas</strong></em>. Una <em><strong>red LSTM</strong></em> se construye a partir de la <em><strong>concatenación sucesiva de esta unidad básica</strong></em>. La unidad correspondiente al tiempo <span class="math notranslate nohighlight">\(n\)</span>, además del vector de entrada, <span class="math notranslate nohighlight">\(\boldsymbol{x}_{n}\)</span>, recibe <span class="math notranslate nohighlight">\(\boldsymbol{s}_{n-1}\)</span> y <span class="math notranslate nohighlight">\(\boldsymbol{h}_{n-1}\)</span> de la etapa anterior y pasa <span class="math notranslate nohighlight">\(\boldsymbol{s}_{n}\)</span> y <span class="math notranslate nohighlight">\(\boldsymbol{h}_{n}\)</span> a la siguiente. A continuación se resumen las <em><strong>ecuaciones de actualización asociadas</strong></em></p></li>
+se muestra en la <a class="reference internal" href="#lstm-arch-rnn-numref"><span class="std std-numref">Fig. 9.43</span></a>. Se construye en torno a <em><strong>dos conjuntos de variables, apiladas en el vector</strong></em> <span class="math notranslate nohighlight">\(\boldsymbol{s}\)</span>, que se conoce como el <em><strong>estado de la célula o unidad</strong></em>, y el vector <span class="math notranslate nohighlight">\(\boldsymbol{h}\)</span>, que se conoce como el <em><strong>vector de variables ocultas</strong></em>. Una <em><strong>red LSTM</strong></em> se construye a partir de la <em><strong>concatenación sucesiva de esta unidad básica</strong></em>. La unidad correspondiente al tiempo <span class="math notranslate nohighlight">\(n\)</span>, además del vector de entrada, <span class="math notranslate nohighlight">\(\boldsymbol{x}_{n}\)</span>, recibe <span class="math notranslate nohighlight">\(\boldsymbol{s}_{n-1}\)</span> y <span class="math notranslate nohighlight">\(\boldsymbol{h}_{n-1}\)</span> de la etapa anterior y pasa <span class="math notranslate nohighlight">\(\boldsymbol{s}_{n}\)</span> y <span class="math notranslate nohighlight">\(\boldsymbol{h}_{n}\)</span> a la siguiente. A continuación se resumen las <em><strong>ecuaciones de actualización asociadas</strong></em></p></li>
 </ul>
 <figure class="align-center" id="lstm-arch-rnn-numref">
 <a class="reference internal image-reference" href="_images/lstm_arch_rnn.png"><img alt="_images/lstm_arch_rnn.png" src="_images/lstm_arch_rnn.png" style="width: 623.25px; height: 311.25px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 9.42 </span><span class="caption-text">Arquitectura de unidad LSTM. Fuente <span id="id38">[<a class="reference internal" href="biblio.html#id17" title="S. Theodoridis. Machine Learning: A Bayesian and Optimization Perspective. Elsevier Science, 2020. ISBN 9780128188040. URL: https://books.google.com.co/books?id=l-nEDwAAQBAJ.">Theodoridis, 2020</a>]</span>.</span><a class="headerlink" href="#lstm-arch-rnn-numref" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 9.43 </span><span class="caption-text">Arquitectura de unidad LSTM. Fuente <span id="id38">[<a class="reference internal" href="biblio.html#id17" title="S. Theodoridis. Machine Learning: A Bayesian and Optimization Perspective. Elsevier Science, 2020. ISBN 9780128188040. URL: https://books.google.com.co/books?id=l-nEDwAAQBAJ.">Theodoridis, 2020</a>]</span>.</span><a class="headerlink" href="#lstm-arch-rnn-numref" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <div class="math notranslate nohighlight">
@@ -7707,26 +8448,26 @@ y_{t}=f(y_{t-1}, y_{t-2}, \dots, y_{t-p}).
 <figure class="align-center" id="twoinput-single-hidden-layer">
 <a class="reference internal image-reference" href="_images/twoinput_single_hidden_layer.png"><img alt="_images/twoinput_single_hidden_layer.png" src="_images/twoinput_single_hidden_layer.png" style="width: 300.0px; height: 207.60000000000002px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 9.43 </span><span class="caption-text">Red neuronal con una sola capa oculta y dos entradas.</span><a class="headerlink" href="#twoinput-single-hidden-layer" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 9.44 </span><span class="caption-text">Red neuronal con una sola capa oculta y dos entradas.</span><a class="headerlink" href="#twoinput-single-hidden-layer" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <ul class="simple">
-<li><p>La red realiza una serie de <em><strong>sumas, multiplicaciones y un par evaluaciones de funciones sigmoidales para transformar la entrada en una predicción</strong></em>. La transformación de la entrada en una predicción se denomina paso hacia delante de la red neuronal. La <a class="reference internal" href="#forwardprop-single-hidden-layer"><span class="std std-numref">Fig. 9.44</span></a> muestra cómo se consigue un pase hacia adelante mediante un grafo computacional para un par de entrada <span class="math notranslate nohighlight">\([-1, 2]\)</span>. Cada cálculo da como resultado una salida intermedia <span class="math notranslate nohighlight">\(p_{i}\)</span>. <em><strong>Los resultados intermedios</strong></em> <span class="math notranslate nohighlight">\(p_{7}\)</span> <em><strong>y</strong></em> <span class="math notranslate nohighlight">\(p_{8}\)</span> <em><strong>son la salida de las neuronas ocultas</strong></em> <span class="math notranslate nohighlight">\(g_{1}\)</span> y <span class="math notranslate nohighlight">\(g_{2}\)</span>. Durante el entrenamiento, la función de pérdida <span class="math notranslate nohighlight">\(L\)</span> también se calcula en el paso hacia delante</p></li>
+<li><p>La red realiza una serie de <em><strong>sumas, multiplicaciones y un par evaluaciones de funciones sigmoidales para transformar la entrada en una predicción</strong></em>. La transformación de la entrada en una predicción se denomina paso hacia delante de la red neuronal. La <a class="reference internal" href="#forwardprop-single-hidden-layer"><span class="std std-numref">Fig. 9.45</span></a> muestra cómo se consigue un pase hacia adelante mediante un grafo computacional para un par de entrada <span class="math notranslate nohighlight">\([-1, 2]\)</span>. Cada cálculo da como resultado una salida intermedia <span class="math notranslate nohighlight">\(p_{i}\)</span>. <em><strong>Los resultados intermedios</strong></em> <span class="math notranslate nohighlight">\(p_{7}\)</span> <em><strong>y</strong></em> <span class="math notranslate nohighlight">\(p_{8}\)</span> <em><strong>son la salida de las neuronas ocultas</strong></em> <span class="math notranslate nohighlight">\(g_{1}\)</span> y <span class="math notranslate nohighlight">\(g_{2}\)</span>. Durante el entrenamiento, la función de pérdida <span class="math notranslate nohighlight">\(L\)</span> también se calcula en el paso hacia delante</p></li>
 </ul>
 <figure class="align-center" id="forwardprop-single-hidden-layer">
 <img alt="_images/forwardprop_single_hidden_layer.png" src="_images/forwardprop_single_hidden_layer.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 9.44 </span><span class="caption-text">Gráfico computacional de un perceptrón con una capa y dos neuronas ocultas.</span><a class="headerlink" href="#forwardprop-single-hidden-layer" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 9.45 </span><span class="caption-text">Gráfico computacional de un perceptrón con una capa y dos neuronas ocultas.</span><a class="headerlink" href="#forwardprop-single-hidden-layer" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <ul class="simple">
 <li><p>En este punto, <em><strong>se aplica el algoritmo de backpropagation para calcular las derivadas parciales entre dos nodos conectados por una arista</strong></em>. El recorrido hacia atrás en el grafo para calcular la derivada parcial también se conoce como paso hacia atrás (<em><strong>backward pass</strong></em>). <em><strong>El operador de diferenciación parcial se aplica en cada nodo y las derivadas parciales se asignan a las respectivas aristas que conectan el nodo descendente a lo largo del grafo computacional</strong></em>.</p></li>
-<li><p>Siguiendo la regla de la cadena la derivada parcial <span class="math notranslate nohighlight">\(\partial_{\omega} L\)</span> se calcula <em><strong>multiplicando las derivadas parciales en todas las aristas que conectan el nodo de peso y el nodo de pérdida</strong></em>. Si existen varios caminos entre un nodo de peso y el nodo de pérdida, las derivadas parciales a lo largo de cada camino se suman para obtener la <em><strong>derivada parcial total de la pérdida con respecto al peso</strong></em>. Esta técnica gráfica de implementar los pasos hacia delante y hacia atrás es la técnica computacional subyacente utilizada en potentes bibliotecas de aprendizaje profundo. El paso hacia atrás se ilustra en <a class="reference internal" href="#partialderivates-single-hidden-layer"><span class="std std-numref">Fig. 9.45</span></a></p></li>
+<li><p>Siguiendo la regla de la cadena la derivada parcial <span class="math notranslate nohighlight">\(\partial_{\omega} L\)</span> se calcula <em><strong>multiplicando las derivadas parciales en todas las aristas que conectan el nodo de peso y el nodo de pérdida</strong></em>. Si existen varios caminos entre un nodo de peso y el nodo de pérdida, las derivadas parciales a lo largo de cada camino se suman para obtener la <em><strong>derivada parcial total de la pérdida con respecto al peso</strong></em>. Esta técnica gráfica de implementar los pasos hacia delante y hacia atrás es la técnica computacional subyacente utilizada en potentes bibliotecas de aprendizaje profundo. El paso hacia atrás se ilustra en <a class="reference internal" href="#partialderivates-single-hidden-layer"><span class="std std-numref">Fig. 9.46</span></a></p></li>
 </ul>
 <figure class="align-center" id="partialderivates-single-hidden-layer">
 <img alt="_images/partialderivates_single_hidden_layer.png" src="_images/partialderivates_single_hidden_layer.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 9.45 </span><span class="caption-text">Cálculo de derivadas parciales en un grafo computacional.</span><a class="headerlink" href="#partialderivates-single-hidden-layer" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 9.46 </span><span class="caption-text">Cálculo de derivadas parciales en un grafo computacional.</span><a class="headerlink" href="#partialderivates-single-hidden-layer" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <ul class="simple">
@@ -7750,7 +8491,7 @@ y_{t}=f(y_{t-1}, y_{t-2}, \dots, y_{t-p}).
 <figure class="align-center" id="forward-backward-single-hidden-layer">
 <img alt="_images/forward_backward_single_hidden_layer.png" src="_images/forward_backward_single_hidden_layer.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 9.46 </span><span class="caption-text">Pasos hacia delante (en azul) y hacia atrás (en rojo) sobre un grafo computacional.</span><a class="headerlink" href="#forward-backward-single-hidden-layer" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 9.47 </span><span class="caption-text">Pasos hacia delante (en azul) y hacia atrás (en rojo) sobre un grafo computacional.</span><a class="headerlink" href="#forward-backward-single-hidden-layer" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <ul class="simple">
@@ -9930,14 +10671,14 @@ El entrenamiento se ha completado y el historial ha sido guardado en &#39;histor
 <figure class="align-center" id="attention-weights-grayscale-numref">
 <a class="reference internal image-reference" href="_images/attention_weights_grayscale.png"><img alt="_images/attention_weights_grayscale.png" src="_images/attention_weights_grayscale.png" style="width: 381.6px; height: 434.40000000000003px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 9.47 </span><span class="caption-text">Valores de los pesos de atención en escala de grises. <a class="reference internal" href="#attention_example_grayscale">Example 9.1</a></span><a class="headerlink" href="#attention-weights-grayscale-numref" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 9.48 </span><span class="caption-text">Valores de los pesos de atención en escala de grises. <a class="reference internal" href="#attention_example_grayscale">Example 9.1</a></span><a class="headerlink" href="#attention-weights-grayscale-numref" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <div class="proof example admonition" id="attention_example_grayscale">
 <p class="admonition-title"><span class="caption-number">Example 9.1 </span></p>
 <section class="example-content" id="proof-content">
 <ul class="simple">
-<li><p>La <a class="reference internal" href="#attention-weights-grayscale-numref"><span class="std std-numref">Fig. 9.47</span></a> demuestra el razonamiento que subyace a la <em><strong>utilización de un mecanismo de ponderación</strong></em>. La <em><strong>entrada</strong></em> está representada por las <em><strong>palabras en francés</strong></em>, mientras que las secuencias de <em><strong>salida</strong></em> correspondientes están representadas por las <em><strong>palabras en inglés</strong></em>.</p></li>
+<li><p>La <a class="reference internal" href="#attention-weights-grayscale-numref"><span class="std std-numref">Fig. 9.48</span></a> demuestra el razonamiento que subyace a la <em><strong>utilización de un mecanismo de ponderación</strong></em>. La <em><strong>entrada</strong></em> está representada por las <em><strong>palabras en francés</strong></em>, mientras que las secuencias de <em><strong>salida</strong></em> correspondientes están representadas por las <em><strong>palabras en inglés</strong></em>.</p></li>
 <li><p><em><strong>La visualización representa los pesos de atención como píxeles</strong></em>, donde los <em><strong>pesos más altos se representan como píxeles más blancos</strong></em>. En particular, el <em><strong>término</strong></em> <code class="docutils literal notranslate"><span class="pre">&quot;produce&quot;</span></code> <em><strong>en la salida</strong></em> es consecuencia de <em><strong>asignar peso a la información de tres puntos temporales consecutivos</strong></em>, vinculados con las palabras <code class="docutils literal notranslate"><span class="pre">&quot;peut</span> <span class="pre">plus</span> <span class="pre">produire&quot;</span></code>, mientras que el término <code class="docutils literal notranslate"><span class="pre">&quot;destruction&quot;</span></code> está <em><strong>asociado con dos palabras</strong></em>, a saber, <code class="docutils literal notranslate"><span class="pre">&quot;La</span> <span class="pre">destruction&quot;</span></code>.</p></li>
 </ul>
 </section>
@@ -9959,12 +10700,12 @@ El entrenamiento se ha completado y el historial ha sido guardado en &#39;histor
 </ul>
 </div>
 <ul class="simple">
-<li><p>La <a class="reference internal" href="#wrong-image-classification-numref"><span class="std std-numref">Fig. 9.48</span></a> muestra una serie de <em><strong>nueve imágenes</strong></em>. Se ha entrenado una <em><strong>red neuronal (AlexNet)</strong></em> para <em><strong>discernir los contenidos de las imágenes</strong></em>. El trío <em><strong>izquierdo de imágenes</strong></em>, tomadas del respectivo conjunto de pruebas, fueron <em><strong>identificadas con precisión</strong></em>. Las imágenes en el <em><strong>centro son versiones ruidosas</strong></em> añadidas a las originales de la izquierda. Las composiciones <em><strong>resultantes se presentan a la derecha</strong></em>. Mientras los seres <em><strong>humanos anticipan sin dificultad las etiquetas correctas</strong></em>, <em><strong>AlexNet catalogó de forma errónea las tres imágenes como “<code class="docutils literal notranslate"><span class="pre">avestruz,</span> <span class="pre">struthio</span> <span class="pre">camelus</span></code>”</strong></em>.</p></li>
+<li><p>La <a class="reference internal" href="#wrong-image-classification-numref"><span class="std std-numref">Fig. 9.49</span></a> muestra una serie de <em><strong>nueve imágenes</strong></em>. Se ha entrenado una <em><strong>red neuronal (AlexNet)</strong></em> para <em><strong>discernir los contenidos de las imágenes</strong></em>. El trío <em><strong>izquierdo de imágenes</strong></em>, tomadas del respectivo conjunto de pruebas, fueron <em><strong>identificadas con precisión</strong></em>. Las imágenes en el <em><strong>centro son versiones ruidosas</strong></em> añadidas a las originales de la izquierda. Las composiciones <em><strong>resultantes se presentan a la derecha</strong></em>. Mientras los seres <em><strong>humanos anticipan sin dificultad las etiquetas correctas</strong></em>, <em><strong>AlexNet catalogó de forma errónea las tres imágenes como “<code class="docutils literal notranslate"><span class="pre">avestruz,</span> <span class="pre">struthio</span> <span class="pre">camelus</span></code>”</strong></em>.</p></li>
 </ul>
 <figure class="align-center" id="wrong-image-classification-numref">
 <a class="reference internal image-reference" href="_images/wrong_image_classification.png"><img alt="_images/wrong_image_classification.png" src="_images/wrong_image_classification.png" style="width: 672.0px; height: 661.6px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 9.48 </span><span class="caption-text">Imágenes de la <em><strong>izquierda</strong></em> se han <em><strong>clasificado correctamente</strong></em>. Todas las <em><strong>imágenes de la derecha</strong></em> han sido <em><strong>clasificadas como “avestruz, Struthio camelus”</strong></em>. Fuente <span id="id47">[<a class="reference internal" href="biblio.html#id17" title="S. Theodoridis. Machine Learning: A Bayesian and Optimization Perspective. Elsevier Science, 2020. ISBN 9780128188040. URL: https://books.google.com.co/books?id=l-nEDwAAQBAJ.">Theodoridis, 2020</a>]</span>.</span><a class="headerlink" href="#wrong-image-classification-numref" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 9.49 </span><span class="caption-text">Imágenes de la <em><strong>izquierda</strong></em> se han <em><strong>clasificado correctamente</strong></em>. Todas las <em><strong>imágenes de la derecha</strong></em> han sido <em><strong>clasificadas como “avestruz, Struthio camelus”</strong></em>. Fuente <span id="id47">[<a class="reference internal" href="biblio.html#id17" title="S. Theodoridis. Machine Learning: A Bayesian and Optimization Perspective. Elsevier Science, 2020. ISBN 9780128188040. URL: https://books.google.com.co/books?id=l-nEDwAAQBAJ.">Theodoridis, 2020</a>]</span>.</span><a class="headerlink" href="#wrong-image-classification-numref" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <ul>
@@ -10029,7 +10770,7 @@ El entrenamiento se ha completado y el historial ha sido guardado en &#39;histor
 </ul>
 </div>
 <ul>
-<li><p>El modelo gráfico de la <a class="reference internal" href="#rboltzmann-model-numref"><span class="std std-numref">Fig. 9.49</span></a> ilustra una <em><strong>máquina de Boltzmann restringida (RBM)</strong></em>. La máquina de Boltzmann utiliza la siguiente <em><strong>distribución de probabilidad conjunta de Boltzmann</strong></em> definida como</p>
+<li><p>El modelo gráfico de la <a class="reference internal" href="#rboltzmann-model-numref"><span class="std std-numref">Fig. 9.50</span></a> ilustra una <em><strong>máquina de Boltzmann restringida (RBM)</strong></em>. La máquina de Boltzmann utiliza la siguiente <em><strong>distribución de probabilidad conjunta de Boltzmann</strong></em> definida como</p>
 <div class="math notranslate nohighlight">
 \[
     p(x_{1}, \dots, x_{l}):=p(\boldsymbol{x})=\frac{1}{Z}\exp\left(-\sum_{i}\left(\sum_{j&gt;i}\theta_{ij}x_{i}x_{j}+\theta_{i0}x_{i}\right)\right),
@@ -10051,7 +10792,7 @@ El entrenamiento se ha completado y el historial ha sido guardado en &#39;histor
 <figure class="align-center" id="rboltzmann-model-numref">
 <a class="reference internal image-reference" href="_images/rboltzmann_model.png"><img alt="_images/rboltzmann_model.png" src="_images/rboltzmann_model.png" style="width: 274.4px; height: 121.8px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 9.49 </span><span class="caption-text">Arquitectura de <em><strong>modelo (RBM)</strong></em>. Fuente <span id="id52">[<a class="reference internal" href="biblio.html#id17" title="S. Theodoridis. Machine Learning: A Bayesian and Optimization Perspective. Elsevier Science, 2020. ISBN 9780128188040. URL: https://books.google.com.co/books?id=l-nEDwAAQBAJ.">Theodoridis, 2020</a>]</span>.</span><a class="headerlink" href="#rboltzmann-model-numref" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 9.50 </span><span class="caption-text">Arquitectura de <em><strong>modelo (RBM)</strong></em>. Fuente <span id="id52">[<a class="reference internal" href="biblio.html#id17" title="S. Theodoridis. Machine Learning: A Bayesian and Optimization Perspective. Elsevier Science, 2020. ISBN 9780128188040. URL: https://books.google.com.co/books?id=l-nEDwAAQBAJ.">Theodoridis, 2020</a>]</span>.</span><a class="headerlink" href="#rboltzmann-model-numref" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <ul class="simple">
@@ -10198,11 +10939,11 @@ Z=\sum_{v}\sum_{h}\exp(-E(\boldsymbol{v}, \boldsymbol{h})).
       </div>
     </a>
     <a class="right-next"
-       href="dl_computer_vision.html"
+       href="practical_pca.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">10. </span>Computer vision</p>
+        <p class="prev-next-title"><span class="section-number">10. </span>Análisis de Componentes Principales</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -10249,7 +10990,9 @@ Z=\sum_{v}\sum_{h}\exp(-E(\boldsymbol{v}, \boldsymbol{h})).
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vgg-16">9.12.13. VGG-16</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#googlenet-y-la-red-inception">9.12.14. GoogleNet y la red Inception</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#redes-residuales-resnets">9.12.15. Redes residuales (ResNets)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reconocimiento-facial-de-emociones">9.12.16. Reconocimiento facial de emociones</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#u-net-redes-convolucionales-para-la-segmentacion-de-imagenes-biomedicas">9.12.16. U-Net: Redes Convolucionales para la Segmentación de Imágenes Biomédicas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reconocimiento-facial-de-emociones">9.12.17. Reconocimiento facial de emociones</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#segmentacion-de-imagenes-biomedicas-con-u-net">9.12.18. Segmentación de Imágenes Biomédicas con U-Net</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#redes-neuronales-recurrentes">9.13. Redes Neuronales Recurrentes</a><ul class="nav section-nav flex-column">
