@@ -4851,7 +4851,7 @@ H=
 <ol class="arabic simple">
 <li><p><em><strong><code class="docutils literal notranslate"><span class="pre">Profundidad</span></code></strong></em>: La <em><strong>profundidad de una capa</strong></em> es el <em><strong>número de matrices de filtro que se emplean en esta capa</strong></em>. No debe confundirse profundidad de la red, que corresponde al número total de capas ocultas utilizadas. <em><strong>A veces, nos referimos al número de filtros como el número de canales</strong></em>.</p></li>
 <li><p><em><strong><code class="docutils literal notranslate"><span class="pre">Campo</span> <span class="pre">receptivo</span></code></strong></em>: Cada <em><strong>píxel de una matriz de características de salida</strong></em> resulta como una <em><strong>media ponderada de los píxeles dentro de un área específica de la matriz imagen de entrada</strong></em> (o de la salida de la capa anterior). <em><strong>El área específica que corresponde a un píxel se conoce como su campo receptivo</strong></em> (ver <a class="reference internal" href="#feature-maps-inp-img-numref"><span class="std std-numref">Fig. 9.24</span></a>).</p></li>
-<li><p><em><strong><code class="docutils literal notranslate"><span class="pre">Deslizamiento</span></code></strong></em>: En la práctica, <em><strong>en lugar de deslizar la matriz de filtros de píxel en píxel, se puede deslizar, por ejemplo,</strong></em> <span class="math notranslate nohighlight">\(s\)</span> <em><strong>píxeles</strong></em>. Este valor se conoce como <em><strong>stride</strong></em>. Para valores de <span class="math notranslate nohighlight">\(s &gt; 1\)</span>, se obtienen matrices de mapas de características de menor tamaño. Esto se ilustra en <a class="reference internal" href="#stride-conv-prop-numref"><span class="std std-numref">Fig. 9.25</span></a>A y B.</p></li>
+<li><p><em><strong><code class="docutils literal notranslate"><span class="pre">Deslizamiento</span></code> (stride)</strong></em>: En la práctica, <em><strong>en lugar de deslizar la matriz de filtros de píxel en píxel, se puede deslizar, por ejemplo,</strong></em> <span class="math notranslate nohighlight">\(s\)</span> <em><strong>píxeles</strong></em>. Este valor se conoce como <em><strong>stride</strong></em>. Para valores de <span class="math notranslate nohighlight">\(s &gt; 1\)</span>, se obtienen matrices de mapas de características de menor tamaño. Esto se ilustra en <a class="reference internal" href="#stride-conv-prop-numref"><span class="std std-numref">Fig. 9.25</span></a>A y B.</p></li>
 </ol>
 <figure class="align-center" id="stride-conv-prop-numref">
 <a class="reference internal image-reference" href="_images/stride_conv_prop.png"><img alt="_images/stride_conv_prop.png" src="_images/stride_conv_prop.png" style="width: 671.2px; height: 415.20000000000005px;" /></a>
@@ -4860,7 +4860,7 @@ H=
 </figcaption>
 </figure>
 <ol class="arabic simple" start="4">
-<li><p><em><strong><code class="docutils literal notranslate"><span class="pre">Relleno</span> <span class="pre">de</span> <span class="pre">ceros</span></code></strong></em>: A veces, <em><strong>se utilizan ceros para rellenar la matriz de entrada alrededor de los píxeles del borde</strong></em>. De esta forma, <em><strong>la dimensión de la matriz aumenta</strong></em>. Si la matriz original tiene dimensiones <span class="math notranslate nohighlight">\(l\times l\)</span>, <em><strong>después de expandirla con</strong></em> <span class="math notranslate nohighlight">\(p\)</span> <em><strong>columnas y filas, las nuevas dimensiones pasan a ser</strong></em> (<span class="math notranslate nohighlight">\(l + 2p\)</span>). Esto se muestra en la <a class="reference internal" href="#zero-fill-conv-numref"><span class="std std-numref">Fig. 9.26</span></a>.</p></li>
+<li><p><em><strong><code class="docutils literal notranslate"><span class="pre">Relleno</span> <span class="pre">de</span> <span class="pre">ceros</span></code> (padding)</strong></em>: A veces, <em><strong>se utilizan ceros para rellenar la matriz de entrada alrededor de los píxeles del borde</strong></em>. De esta forma, <em><strong>la dimensión de la matriz aumenta</strong></em>. Si la matriz original tiene dimensiones <span class="math notranslate nohighlight">\(l\times l\)</span>, <em><strong>después de expandirla con</strong></em> <span class="math notranslate nohighlight">\(p\)</span> <em><strong>columnas y filas, las nuevas dimensiones pasan a ser</strong></em> (<span class="math notranslate nohighlight">\(l + 2p\)</span>). Esto se muestra en la <a class="reference internal" href="#zero-fill-conv-numref"><span class="std std-numref">Fig. 9.26</span></a>.</p></li>
 </ol>
 <figure class="align-center" id="zero-fill-conv-numref">
 <a class="reference internal image-reference" href="_images/zero_fill_conv.png"><img alt="_images/zero_fill_conv.png" src="_images/zero_fill_conv.png" style="width: 182.4px; height: 180.8px;" /></a>
@@ -5084,36 +5084,35 @@ O_{r}=I_{r}\star H_{r},\quad r=1,2,\dots,d.
 <ol class="arabic simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">Características</span> <span class="pre">de</span> <span class="pre">bajo</span> <span class="pre">nivel</span></code> (Primeras capas)</p></li>
 </ol>
-<p>🔸 Se detectan patrones simples como:</p>
+<p><strong>Se detectan patrones simples como</strong>:</p>
 <ul class="simple">
-<li><p>✔ Bordes</p></li>
-<li><p>✔ Texturas</p></li>
-<li><p>✔ Esquinas</p></li>
-<li><p>✔ Gradientes de color</p></li>
+<li><p>Bordes</p></li>
+<li><p>Texturas</p></li>
+<li><p>Esquinas</p></li>
+<li><p>Gradientes de color</p></li>
 </ul>
-<p>💡 <strong>Ejemplo:</strong> Un filtro Sobel detecta los bordes en una imagen.</p>
+<p><strong>Ejemplo:</strong> Un filtro Sobel detecta los bordes en una imagen.</p>
 <ol class="arabic simple" start="2">
-<li><p>Características de nivel intermedio (Capas medias)
-🔸 Se combinan los bordes y texturas detectados antes para formar estructuras más complejas, como:</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Características</span> <span class="pre">de</span> <span class="pre">nivel</span> <span class="pre">intermedio</span> <span class="pre">(Capas</span> <span class="pre">medias)</span></code></p></li>
 </ol>
+<p><strong>Se combinan los bordes y texturas detectados antes para formar estructuras más complejas</strong>, como:</p>
 <ul class="simple">
-<li><p>✔ Formas básicas (círculos, líneas curvas)</p></li>
-<li><p>✔ Contornos de objetos</p></li>
-<li><p>✔ Partes de objetos (ojos, nariz, ruedas)</p></li>
+<li><p>Formas básicas (círculos, líneas curvas)</p></li>
+<li><p>Contornos de objetos</p></li>
+<li><p>Partes de objetos (ojos, nariz, ruedas)</p></li>
 </ul>
-<p>💡 <strong>Ejemplo:</strong> En una CNN que detecta rostros, esta capa podría identificar una nariz o un ojo.</p>
+<p><strong>Ejemplo:</strong> En una CNN que detecta rostros, esta capa podría identificar una nariz o un ojo.</p>
 <ol class="arabic simple" start="3">
-<li><p>Características de alto nivel (Últimas capas)
-🔸 Se forman representaciones abstractas y semánticas de la imagen, como:</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Características</span> <span class="pre">de</span> <span class="pre">alto</span> <span class="pre">nivel</span> <span class="pre">(Últimas</span> <span class="pre">capas)</span></code></p></li>
 </ol>
+<p><strong>Se forman representaciones abstractas y semánticas de la imagen</strong>, como:</p>
 <ul class="simple">
-<li><p>✔ Objetos completos (caras, coches, animales)</p></li>
-<li><p>✔ Relaciones espaciales entre partes</p></li>
-<li><p>✔ Categorización (perro vs. gato)</p></li>
+<li><p>Objetos completos (caras, coches, animales)</p></li>
+<li><p>Relaciones espaciales entre partes</p></li>
+<li><p>Categorización (perro vs. gato)</p></li>
 </ul>
-<p>💡 <strong>Ejemplo:</strong> En una CNN entrenada para clasificar animales, las capas profundas pueden reconocer la silueta completa de un gato.</p>
-<p>🔹 Ejemplo Visual</p>
-<p>Si la CNN clasifica gatos y perros:</p>
+<p><strong>Ejemplo:</strong> En una CNN entrenada para clasificar animales, las capas profundas pueden reconocer la silueta completa de un gato.</p>
+<p><em><strong>Ejemplo Visual</strong></em>: Si la CNN clasifica gatos y perros:</p>
 <ul class="simple">
 <li><p><strong>Bordes</strong> → Detecta líneas y curvas.</p></li>
 <li><p><strong>Formas intermedias</strong> → Identifica orejas, ojos y hocico.</p></li>
@@ -5259,6 +5258,8 @@ F(\boldsymbol{y}^{r})=H(\boldsymbol{y}^{r-1})-\boldsymbol{y}^{r-1}.
 <p><span class="caption-number">Fig. 9.41 </span><span class="caption-text">La arquitectura U-Net representa mapas de características con cajas, indicando canales y tamaño, mientras que las flechas señalan las operaciones.</span><a class="headerlink" href="#id55" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
+<div class="admonition-arquitectura-u-net admonition">
+<p class="admonition-title">Arquitectura U-Net</p>
 <p>La arquitectura <strong>U-Net</strong> es una red neuronal convolucional diseñada para la segmentación de imágenes biomédicas. Se basa en una estructura de <strong>encoder-decoder</strong> con una forma en “U”.</p>
 <ol class="arabic simple">
 <li><p><strong>Encoder (contracción)</strong>: Extrae características mediante convoluciones y capas de pooling para reducir la dimensionalidad.</p></li>
@@ -5266,7 +5267,11 @@ F(\boldsymbol{y}^{r})=H(\boldsymbol{y}^{r-1})-\boldsymbol{y}^{r-1}.
 <li><p><strong>Decoder (expansión)</strong>: Usa convoluciones transpuestas para recuperar la resolución original de la imagen y refinar la segmentación.</p></li>
 <li><p><strong>Skip connections</strong>: Conectan capas del encoder con el decoder, permitiendo una mejor preservación de detalles.</p></li>
 </ol>
-<p>Esta arquitectura es eficiente con pocos datos y logra segmentaciones precisas, lo que la hace ideal para aplicaciones médicas.</p>
+<ul class="simple">
+<li><p>Esta arquitectura es eficiente con pocos datos y logra segmentaciones precisas, lo que la hace ideal para aplicaciones médicas. Considera <code class="docutils literal notranslate"><span class="pre">conv</span> <span class="pre">3x3,</span> <span class="pre">max</span> <span class="pre">pool</span> <span class="pre">2x2,</span> <span class="pre">up-conv</span> <span class="pre">2x2,</span> <span class="pre">conv</span> <span class="pre">1x1,</span> <span class="pre">padding</span> <span class="pre">=</span> <span class="pre">0,</span> <span class="pre">stride</span> <span class="pre">=</span> <span class="pre">1</span></code> fijos. En el <code class="docutils literal notranslate"><span class="pre">encoder</span></code> se <em><strong>reduce alto y ancho de los mapeos de caracteristicas mientras que se aumenta la profundidad</strong></em>. Lo contrario ocurre en el <code class="docutils literal notranslate"><span class="pre">decoder</span></code>.</p></li>
+<li><p>Al final se aplican 2 convoluciones de <code class="docutils literal notranslate"><span class="pre">1x1x64</span></code> (<em>tubos</em>) como las vistas en secciones anteriores, para obtener el último kernel de <code class="docutils literal notranslate"><span class="pre">388x388x2</span></code> en el que, cada canal representaria una clase diferente a segmentar, y despues de aplicar funciones de activación, lo que resulta en el mapeo de características es, la <strong>probabilidad de que un pixel en una respectiva posición pertenezca a la clase representada por cada canal</strong>, por ejemplo a la clase (<code class="docutils literal notranslate"><span class="pre">black</span></code>) o la clase (<code class="docutils literal notranslate"><span class="pre">blue</span></code>) (<em>clasificación binaria</em>).</p></li>
+</ul>
+</div>
 </section>
 <section id="reconocimiento-facial-de-emociones">
 <h3><span class="section-number">9.12.17. </span>Reconocimiento facial de emociones<a class="headerlink" href="#reconocimiento-facial-de-emociones" title="Link to this heading">#</a></h3>
