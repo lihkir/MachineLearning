@@ -352,7 +352,7 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-de-regresion-lineal">3.1. Modelo de regresión lineal</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#minimos-cuadrados-ordinarios">3.2. Mínimos Cuadrados Ordinarios</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-regresion-ridge-y-ols">3.3. Aplicación: Regresión Ridge y OLS</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-linearregression">3.3. Aplicación: LinearRegression()</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-exploratorio-de-datos">3.3.1. Análisis Exploratorio de Datos</a></li>
 </ul>
 </li>
@@ -361,7 +361,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion">3.4.2. Implementación</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lasso">3.5. Lasso</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-lasso">3.5. Regresión Lasso</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios">3.6. Ejercicios</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-regresion-lasso">3.7. Aplicación: Regresión Lasso</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-lineales-para-clasificacion">3.8. Modelos lineales para clasificación</a></li>
@@ -520,7 +520,7 @@ y_{n}
 </div>
 </div>
 <div class="tip admonition">
-<p class="admonition-title">Observación</p>
+<p class="admonition-title">random_state=42 :)</p>
 <ul class="simple">
 <li><p>El número <code class="docutils literal notranslate"><span class="pre">42</span></code> es normalmente elegido en la literatura relacionadas con <code class="docutils literal notranslate"><span class="pre">AI</span></code>, como homenaje al libro de la <code class="docutils literal notranslate"><span class="pre">Douglas</span> <span class="pre">Adams</span></code> “<a class="reference external" href="https://en.wikipedia.org/wiki/Phrases_from_The_Hitchhiker%27s_Guide_to_the_Galaxy#The_number_42">The Hitchhiker’s Guide to the Galaxy</a>”, una serie de cómic de ciencia ficción creada por <code class="docutils literal notranslate"><span class="pre">Douglas</span> <span class="pre">Adams</span></code> que se ha hecho popular entre los aficionados al género y los <em><strong>miembros de la comunidad científica</strong></em>.</p></li>
 <li><p>El número 42 corresponde a la respuesta a la gran pregunta <code class="docutils literal notranslate"><span class="pre">&quot;Life,</span> <span class="pre">the</span> <span class="pre">universe,</span> <span class="pre">and</span> <span class="pre">everything&quot;</span></code>, calculada por un ordenador (llamado <code class="docutils literal notranslate"><span class="pre">&quot;Deep</span> <span class="pre">Thought&quot;</span></code>) creado específicamente para resolverla <code class="docutils literal notranslate"><span class="pre">:)</span></code>. Supuestamente, el pensamiento profundo (Deep Thought) tarda <span class="math notranslate nohighlight">\(7\frac{1}{2}\)</span> millones de años en calcular y comprobar la respuesta, que resulta ser 42.</p></li>
@@ -577,8 +577,8 @@ Test set score: 0.66
 <li><p><em><strong>En este tipo de casos, optamos por complejizar el modelo para obtener un modelo menos simple</strong></em>. Sin embargo, <em><strong>con conjuntos de datos de mayor dimensión</strong></em> (i.e dataset con un gran número de características), <em><strong>los modelos lineales son más potentes, y hay más posibilidades de que se ajusten en exceso</strong></em>.</p></li>
 </ul>
 </section>
-<section id="aplicacion-regresion-ridge-y-ols">
-<h2><span class="section-number">3.3. </span>Aplicación: Regresión Ridge y OLS<a class="headerlink" href="#aplicacion-regresion-ridge-y-ols" title="Link to this heading">#</a></h2>
+<section id="aplicacion-linearregression">
+<h2><span class="section-number">3.3. </span>Aplicación: LinearRegression()<a class="headerlink" href="#aplicacion-linearregression" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Veamos cómo se comporta <code class="docutils literal notranslate"><span class="pre">LinearRegression</span></code> en un conjunto de datos más complejo, como el conjunto de datos de <em><strong>viviendas de Boston</strong></em>. Recordemos que este conjunto de datos tiene <em><strong>506 muestras y 105 características</strong></em> derivadas. En primer lugar, <em><strong>cargamos el conjunto de datos</strong></em> y lo <em><strong>dividimos en un conjunto de entrenamiento y otro de prueba</strong></em>. A continuación, construimos el modelo de regresión lineal como antes. Iniciemos realizando un <em><strong>análisis exploratorio de datos</strong></em>.</p></li>
 </ul>
@@ -1614,8 +1614,8 @@ z_{ij}=\frac{x_{ij}-\bar x_{j}}{s_{j}},~i=1,2,\dots,n,~j=1,2,\dots,p.
 <div class="dropdown admonition">
 <p class="admonition-title">¿Por qué estandarizar?</p>
 <ul class="simple">
-<li><p>La <em><strong>regresión ridge</strong></em> regulariza la <em><strong>regresión lineal</strong></em> imponiendo una <em><strong>penalización al tamaño de los coeficientes</strong></em>. Así, los coeficientes se contraen hacia cero y entre sí. Cuando esto ocurre, si las <em><strong>variables independientes no tienen la misma escala, la contracción no es justa</strong></em>.</p></li>
-<li><p>Dos variables independientes con <em><strong>diferentes escalas tendrán diferentes contribuciones a los términos penalizados</strong></em>, porque el término penalizado es una suma de cuadrados de todos los coeficientes. Para evitar este tipo de problemas, muy a menudo, las <em><strong>variables independientes se centran y se escalan</strong></em> para que tengan varianza unitaria.</p></li>
+<li><p>La regresión Ridge <em><strong>penaliza los coeficientes, contrayéndolos hacia cero</strong></em>. Si las <em><strong>variables tienen escalas distintas, la penalización es desigual</strong></em>. Para evitarlo, se suelen escalar para tener varianza unitaria.</p></li>
+<li><p>Si las <em><strong>variables independientes tienen escalas muy diferentes</strong></em>, Ridge penaliza más las de mayor magnitud. Por ejemplo, <em><strong>ingresos (30-100)</strong></em> y <em><strong>edad (20-70)</strong></em>: al tener valores más grandes, ingresos dominará la penalización, afectando injustamente los coeficientes.</p></li>
 </ul>
 </div>
 <ul>
@@ -1818,8 +1818,9 @@ x_{p}
 <p><em><strong>Resolviendo las ecuaciones</strong></em> <a class="reference internal" href="#equation-eq-betaz">(3.8)</a> y <a class="reference internal" href="#equation-eq-betas">(3.10)</a> para <span class="math notranslate nohighlight">\(\beta_{0}^{\star}\)</span> y <span class="math notranslate nohighlight">\(\boldsymbol{\beta}_{s}\)</span>, se tienen <em><strong>estimadores ridge</strong></em> para el modelo de regresión <a class="reference internal" href="#equation-eq-reg-li-z">(3.5)</a></p>
 <div class="math notranslate nohighlight">
 \[
-\hat{\beta}_{0}^{\star}=\overline{y}\quad\text{y}\quad\hat{\boldsymbol{\beta}}_{s}=(Z^{T}Z+\lambda I_{p})^{-1}Z^{T}\boldsymbol{y}
+\hat{\beta}_{0}^{\star}=\overline{y}\quad\text{y}\quad\hat{\boldsymbol{\beta}}_{s}=(Z^{T}Z+\lambda I_{p})^{-1}Z^{T}\boldsymbol{y},~\lambda &gt;0.
 \]</div>
+<p>Si <span class="math notranslate nohighlight">\(\lambda &gt; 0\)</span>, reduce coeficientes y evita sobreajuste. Si <span class="math notranslate nohighlight">\(\lambda = 0\)</span>, es regresión lineal. Si <span class="math notranslate nohighlight">\(\lambda &lt; 0\)</span>, amplifica coeficientes y fomenta sobreajuste.</p>
 <p>Dado que <span class="math notranslate nohighlight">\(\beta_{0}^{\star}=\beta_{0}+\beta_{1}\bar x_{1}+\beta_{2}\bar x_{2}+\cdots+\beta_{p}\bar x_{p}\)</span> <em><strong>usando la estimación obtenida</strong></em> <span class="math notranslate nohighlight">\(\hat{\beta}_{0}^{\star}\)</span> se tiene que</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1850,7 +1851,7 @@ y=X\boldsymbol{\beta}+\boldsymbol{\varepsilon},
 <p>Por lo tanto <em><strong>minimizando el operador</strong></em> <span class="math notranslate nohighlight">\(S_{\lambda}(\boldsymbol{\beta})=(y-X\boldsymbol{\beta})^{T}(y-X\boldsymbol{\beta})+\lambda\boldsymbol{\beta}^{T}\boldsymbol{\beta}\)</span>, de <em><strong>forma análoga al procedimiento de optimización para</strong></em> Eq. <a class="reference internal" href="#equation-ridge-coeff-stand">(3.7)</a>, obtenemos el estimador de ridge:</p>
 <div class="math notranslate nohighlight">
 \[
-\hat{\boldsymbol{\beta}}_{R}=(X^{T}X+\lambda\boldsymbol{I}_{p})^{-1}X^{T}\boldsymbol{y}.
+\hat{\boldsymbol{\beta}}_{R}=(X^{T}X+\lambda\boldsymbol{I}_{p})^{-1}X^{T}\boldsymbol{y}, ~\lambda &gt;0.
 \]</div>
 <div class="admonition-propiedades-del-estimador-ridge admonition" id="prop-ridge-estimador">
 <p class="admonition-title">Propiedades del estimador ridge</p>
@@ -1998,8 +1999,8 @@ Test set score: 0.77
 </ul>
 </section>
 </section>
-<section id="lasso">
-<h2><span class="section-number">3.5. </span>Lasso<a class="headerlink" href="#lasso" title="Link to this heading">#</a></h2>
+<section id="regresion-lasso">
+<h2><span class="section-number">3.5. </span>Regresión Lasso<a class="headerlink" href="#regresion-lasso" title="Link to this heading">#</a></h2>
 <p><strong><code class="docutils literal notranslate"><span class="pre">Observación</span></code></strong></p>
 <ul class="simple">
 <li><p>Una alternativa a la <em><strong>regresión ridge</strong></em> para regularizar la <em><strong>regresión lineal</strong></em> es la <em><strong>regresión lasso</strong></em>. Al igual que con la regresión <em><strong>ridge</strong></em>, el uso de <em><strong>lasso</strong></em> también <em><strong>restringe los coeficientes para que sean cercanos a cero, pero de una forma ligeramente diferente, llamada regularización</strong></em> <span class="math notranslate nohighlight">\(L^1\)</span>.</p></li>
@@ -2425,15 +2426,15 @@ Test accuracy of l1 logreg with C=100.000: 0.98
 <section id="modelos-lineales-para-la-clasificacion-multiclase">
 <h2><span class="section-number">3.9. </span>Modelos lineales para la clasificación multiclase<a class="headerlink" href="#modelos-lineales-para-la-clasificacion-multiclase" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>Muchos modelos de clasificación lineal sólo sirven para la clasificación binaria y no se extienden de forma natural al caso multiclase (con la excepción de la <em><strong>regresión logística</strong></em>). Una técnica común para extender un algoritmo de clasificación binaria a un <em><strong>algoritmo de clasificación multiclase</strong></em> es el enfoque <code class="docutils literal notranslate"><span class="pre">one-vs.-rest</span></code>. En el enfoque <code class="docutils literal notranslate"><span class="pre">one-vs.-rest</span></code>, <em><strong>se aprende un modelo binario para cada clase fija, el cual intenta separar esa clase de todas las demás, lo cual da lugar a tantos modelos binarios como clases exista</strong></em>.</p></li>
-<li><p>Para hacer una predicción, se ejecutan todos los clasificadores binarios en un punto de prueba. <em><strong>El clasificador que tenga la mayor puntuación en su clase “gana”, y esta etiqueta de clase se devuelve como predicción</strong></em>. Al tener un clasificador binario por clase, se tiene un vector de coeficientes <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span> para cada clase. La clase para la que el resultado de la fórmula de clasificación dada aquí, es la más alta, es la etiqueta de clase asignada:</p></li>
+<li><p>Muchos modelos de clasificación lineal solo funcionan para **clasificación binaria. Una forma común de <em><strong>extenderlos al caso multiclase es el enfoque one-vs-rest</strong></em>, donde se entrena un <em><strong>clasificador binario por cada clase contra el resto</strong></em>. Para predecir, se ejecutan todos los modelos y se asigna la clase con la mayor puntuación.</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[
 \beta_{0}+\beta_{1}\cdot x_{1}+\beta_{2}\cdot x_{2}+\cdots+\beta_{p}\cdot x_{p}
 \]</div>
 <ul class="simple">
-<li><p>Las matemáticas que subyacen a la <em><strong>regresión logística multiclase</strong></em> difieren en cierta medida del enfoque de una sola clase, pero también dan como resultado un <em><strong>vector de coeficientes y un intercepto por clase, y se aplica el mismo método para hacer una predicción</strong></em>. Apliquemos el método de <em><strong>one-vs.-rest</strong></em> a un conjunto de datos de clasificación de tres clases. Utilizamos un <em><strong>conjunto de datos bidimensional, en el que cada clase viene dada por datos muestreados de una distribución gaussiana.</strong></em></p></li>
+<li><p>Las matemáticas que subyacen a la <em><strong>regresión logística multiclase</strong></em> difieren en cierta medida del enfoque de una sola clase, pero también dan como resultado un <em><strong>vector de coeficientes y un intercepto por clase, y se aplica el mismo método para hacer una predicción</strong></em>.</p></li>
+<li><p>Apliquemos el método de <em><strong>one-vs.-rest</strong></em> a un conjunto de datos de clasificación de tres clases. Utilizamos un <em><strong>conjunto de datos bidimensional, en el que cada clase viene dada por datos muestreados de una distribución gaussiana.</strong></em></p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2500,10 +2501,8 @@ Intercept shape:  (3,)
 </div>
 </div>
 <ul class="simple">
-<li><p>Se puede ver que <em><strong>todos los puntos que pertenecen a la clase 0 en los datos de entrenamiento están por encima de la línea correspondiente a la clase 0</strong></em>, lo que significa que están en el lado de la “clase 0” de este clasificador binario. Además, <em><strong>los puntos de la clase 0 están por encima de la línea correspondiente a la clase 2, lo que significa que son clasificados como “resto” por el clasificador binario de la clase 2</strong></em>.</p></li>
-<li><p>Los puntos que pertenecen a la clase 0 están a la izquierda de la línea correspondiente a la clase 1, lo que significa que el clasificador binario para la clase 1 también los clasifica como “resto”. Por tanto, cualquier punto de esta zona será clasificado como clase 0 por el clasificador final (<em><strong>el resultado de la fórmula de confianza de la clasificación para el clasificador 0 es mayor que cero, mientras que es menor que cero para las otras dos clases</strong></em>).</p></li>
-<li><p>Pero, <em><strong>¿qué ocurre con el triángulo del centro del gráfico? Los tres clasificadores binarios clasifican los puntos allí como “resto”</strong></em>. <em><strong>¿A qué clase se asignaría un punto allí?</strong></em> La respuesta es, la que tiene el valor más alto de la fórmula de clasificación: <em><strong>la clase de la línea más cercana</strong></em>.</p></li>
-<li><p>El siguiente ejemplo muestra las <em><strong>predicciones para todas las regiones del espacio 2D de la zona</strong></em></p></li>
+<li><p>Los puntos de la clase 0 están en el lado de “clase 0” de su clasificador y son clasificados como “resto” por los clasificadores de clase 1 y 2. Así, cualquier punto en esta región será asignado a la clase 0. <em><strong>En el triángulo central, todos los clasificadores lo marcan como “resto”</strong></em>. En este caso, <em><strong>el punto se asigna a la clase cuya línea esté más cerca, según la fórmula de clasificación</strong></em>.</p></li>
+<li><p>El ejemplo siguiente muestra las predicciones en el espacio 2D.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2603,7 +2602,7 @@ Intercept shape:  (3,)
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-de-regresion-lineal">3.1. Modelo de regresión lineal</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#minimos-cuadrados-ordinarios">3.2. Mínimos Cuadrados Ordinarios</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-regresion-ridge-y-ols">3.3. Aplicación: Regresión Ridge y OLS</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-linearregression">3.3. Aplicación: LinearRegression()</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-exploratorio-de-datos">3.3.1. Análisis Exploratorio de Datos</a></li>
 </ul>
 </li>
@@ -2612,7 +2611,7 @@ Intercept shape:  (3,)
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion">3.4.2. Implementación</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lasso">3.5. Lasso</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-lasso">3.5. Regresión Lasso</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios">3.6. Ejercicios</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-regresion-lasso">3.7. Aplicación: Regresión Lasso</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-lineales-para-clasificacion">3.8. Modelos lineales para clasificación</a></li>
