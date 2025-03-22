@@ -201,7 +201,8 @@
 <li class="toctree-l1"><a class="reference internal" href="model_evaluation.html">11. Evaluación de modelos</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">12. Cadenas de Algoritmos y Pipelines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="appendix.html">13. Apéndice</a></li>
-<li class="toctree-l1"><a class="reference internal" href="biblio.html">14. Bibliografía</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exercises_sols.html">14. Solución a ejercicios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="biblio.html">15. Bibliografía</a></li>
 </ul>
 
     </div>
@@ -361,7 +362,6 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#acceso-a-los-atributos-en-un-pipeline-con-gridsearch">12.9. Acceso a los atributos en un Pipeline con GridSearch</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pasos-de-preprocesamiento-gridsearch-y-parametros-del-modelo">12.10. Pasos de preprocesamiento GridSearch y Parámetros del Modelo</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grid-searching-que-modelo-usar">12.11. Grid-Searching Qué Modelo Usar</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen-y-conclusiones">12.12. Resumen y conclusiones</a></li>
 </ul>
             </nav>
         </div>
@@ -376,7 +376,8 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="cadenas-de-algoritmos-y-pipelines">
 <h1><span class="section-number">12. </span>Cadenas de Algoritmos y Pipelines<a class="headerlink" href="#cadenas-de-algoritmos-y-pipelines" title="Link to this heading">#</a></h1>
 <ul class="simple">
-<li><p>Para muchos algoritmos de aprendizaje automático, la representación particular de los datos que proporciona es muy importante, como ya comentamos anterioremente. Esto comienza con el escalado de los datos y la combinación de características a mano y llega hasta el aprendizaje de características utilizando el aprendizaje automático no supervisado. En consecuencia, <code class="docutils literal notranslate"><span class="pre">la</span> <span class="pre">mayoría</span> <span class="pre">de</span> <span class="pre">las</span> <span class="pre">aplicaciones</span> <span class="pre">de</span> <span class="pre">aprendizaje</span> <span class="pre">automático</span> <span class="pre">requieren</span> <span class="pre">no</span> <span class="pre">sólo</span> <span class="pre">la</span> <span class="pre">aplicación</span> <span class="pre">de</span> <span class="pre">un</span> <span class="pre">único</span> <span class="pre">algoritmo</span> <span class="pre">sino</span> <span class="pre">el</span> <span class="pre">encadenamiento</span> <span class="pre">de</span> <span class="pre">muchos</span> <span class="pre">pasos</span> <span class="pre">de</span> <span class="pre">procesamiento</span> <span class="pre">y</span> <span class="pre">modelos</span> <span class="pre">de</span> <span class="pre">aprendizaje</span> <span class="pre">automático</span> <span class="pre">diferentes</span></code>. En este capítulo, veremos cómo utilizar la clase <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code> para simplificar el proceso de construcción de cadenas de transformaciones y modelos. En particular, veremos cómo podemos <code class="docutils literal notranslate"><span class="pre">combinar</span> <span class="pre">Pipeline</span> <span class="pre">y</span> <span class="pre">GridSearchCV</span> <span class="pre">para</span> <span class="pre">buscar</span> <span class="pre">sobre</span> <span class="pre">los</span> <span class="pre">parámetros</span> <span class="pre">de</span> <span class="pre">todos</span> <span class="pre">los</span> <span class="pre">pasos</span> <span class="pre">de</span> <span class="pre">procesamiento</span> <span class="pre">a</span> <span class="pre">la</span> <span class="pre">vez</span></code>. Como ejemplo de la importancia de encadenar modelos, observamos que podemos mejorar en gran medida el rendimiento de un kernel <code class="docutils literal notranslate"><span class="pre">SVM</span></code> en el conjunto de datos <code class="docutils literal notranslate"><span class="pre">cancer</span></code> utilizando el <code class="docutils literal notranslate"><span class="pre">MinMaxScaler</span></code> para el preprocesamiento.</p></li>
+<li><p>El rendimiento de los algoritmos de aprendizaje automático depende de la representación de los datos, desde el escalado hasta el aprendizaje de características no supervisado. La mayoría de las aplicaciones requieren encadenar múltiples transformaciones y modelos.</p></li>
+<li><p>La clase <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code> simplifica este proceso, permitiendo combinar pasos de preprocesamiento y modelos en un solo flujo. Además, <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code> puede integrarse con <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> para optimizar todos los parámetros a la vez. Un ejemplo muestra que el uso de <code class="docutils literal notranslate"><span class="pre">MinMaxScaler</span></code> mejora significativamente el desempeño de un <code class="docutils literal notranslate"><span class="pre">SVM</span></code> en el conjunto de datos <code class="docutils literal notranslate"><span class="pre">cancer</span></code>.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -461,8 +462,8 @@ Best parameters:  {&#39;C&#39;: 1, &#39;gamma&#39;: 1}
 </div>
 </div>
 <ul class="simple">
-<li><p>En este caso, ejecutamos una búsqueda en red (<code class="docutils literal notranslate"><span class="pre">grid-search</span></code>) sobre los parámetros de <code class="docutils literal notranslate"><span class="pre">SVC</span></code> utilizando los <code class="docutils literal notranslate"><span class="pre">datos</span> <span class="pre">escalados</span></code>. Sin embargo, nótese que al escalar los datos, <code class="docutils literal notranslate"><span class="pre">utilizamos</span> <span class="pre">todos</span> <span class="pre">los</span> <span class="pre">datos</span> <span class="pre">del</span> <span class="pre">conjunto</span> <span class="pre">de</span> <span class="pre">entrenamiento</span></code>. Luego usamos los <code class="docutils literal notranslate"><span class="pre">datos</span> <span class="pre">de</span> <span class="pre">entrenamiento</span> <span class="pre">escalados</span> <span class="pre">para</span> <span class="pre">ejecutar</span> <span class="pre">nuestra</span> <span class="pre">búsqueda</span> <span class="pre">en</span> <span class="pre">red</span> <span class="pre">usando</span> <span class="pre">la</span> <span class="pre">validación</span> <span class="pre">cruzada</span></code>. Para cada división en la validación cruzada, recuerde que, dependiendo del número de folds, en este caso por defecto <code class="docutils literal notranslate"><span class="pre">cv=5</span></code>, alguna parte del conjunto de entrenamiento original, será declarada como la parte de entrenamiento de la división, y otra la parte de prueba. <code class="docutils literal notranslate"><span class="pre">La</span> <span class="pre">parte</span> <span class="pre">de</span> <span class="pre">prueba</span> <span class="pre">se</span> <span class="pre">utiliza</span> <span class="pre">para</span> <span class="pre">medir</span> <span class="pre">cómo</span> <span class="pre">el</span> <span class="pre">modelo</span> <span class="pre">clasificará</span> <span class="pre">nuevos</span> <span class="pre">datos</span> <span class="pre">cuando</span> <span class="pre">fué</span> <span class="pre">entrenado</span> <span class="pre">con</span> <span class="pre">datos</span> <span class="pre">de</span> <span class="pre">entrenamiento</span></code>.</p></li>
-<li><p>Recuerde que, la parte de prueba de cada división en la validación cruzada es parte del conjunto de entrenamiento, y utilizamos la información de todo el conjunto de entrenamiento para encontrar el escalado correcto de los datos. Esto es fundamentalmente diferente de cómo se ven los nuevos datos para el modelo. <code class="docutils literal notranslate"><span class="pre">Si</span> <span class="pre">observamos</span> <span class="pre">datos</span> <span class="pre">nuevos</span> <span class="pre">(por</span> <span class="pre">ejemplo,</span> <span class="pre">en</span> <span class="pre">forma</span> <span class="pre">de</span> <span class="pre">nuestro</span> <span class="pre">conjunto</span> <span class="pre">de</span> <span class="pre">prueba),</span> <span class="pre">estos</span> <span class="pre">datos</span> <span class="pre">no</span> <span class="pre">se</span> <span class="pre">habrán</span> <span class="pre">utilizado</span> <span class="pre">para</span> <span class="pre">escalar</span> <span class="pre">los</span> <span class="pre">datos</span> <span class="pre">de</span> <span class="pre">entrenamiento,</span> <span class="pre">y</span> <span class="pre">podrían</span> <span class="pre">tener</span> <span class="pre">un</span> <span class="pre">mínimo</span> <span class="pre">y</span> <span class="pre">un</span> <span class="pre">máximo</span> <span class="pre">diferente</span> <span class="pre">a</span> <span class="pre">los</span> <span class="pre">de</span> <span class="pre">los</span> <span class="pre">datos</span> <span class="pre">de</span> <span class="pre">entrenamiento</span></code>. El siguiente ejemplo muestra cómo se procesan los datos durante la la validación cruzada y la evaluación final</p></li>
+<li><p>Se realiza una <strong>búsqueda en red (<code class="docutils literal notranslate"><span class="pre">grid-search</span></code>)</strong> sobre los parámetros de <code class="docutils literal notranslate"><span class="pre">SVC</span></code> utilizando los <strong>datos escalados</strong>. Al escalar, se usa <strong>todo el conjunto de entrenamiento</strong>, y los datos escalados se emplean en la búsqueda en red con <strong>validación cruzada</strong> (<code class="docutils literal notranslate"><span class="pre">cv=5</span></code>). En cada división, una parte del conjunto de entrenamiento se usa para entrenar y otra para evaluar, simulando cómo el modelo clasificaría nuevos datos.</p></li>
+<li><p>Es clave notar que, en la validación cruzada, la parte de prueba sigue perteneciendo al conjunto de entrenamiento y el escalado se calcula con <strong>todos los datos de entrenamiento</strong>. Sin embargo, en la evaluación final con datos nuevos, estos pueden tener un mínimo y un máximo diferentes, afectando el escalado. El siguiente ejemplo ilustra este proceso en la validación cruzada y la evaluación final.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -478,22 +479,22 @@ Best parameters:  {&#39;C&#39;: 1, &#39;gamma&#39;: 1}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/6098c80b00aabe97a57bdc425e96d819d965d234c4703dcae2711f456367498b.png" src="_images/6098c80b00aabe97a57bdc425e96d819d965d234c4703dcae2711f456367498b.png" />
+<img alt="_images/a1b41286a25d60e4e204917a4bce51c8c79c59200849bd5db5c3974d677b9774.png" src="_images/a1b41286a25d60e4e204917a4bce51c8c79c59200849bd5db5c3974d677b9774.png" />
 </div>
 </div>
 <ul class="simple">
-<li><p>Así, las divisiones en la validación cruzada ya no reflejan correctamente cómo se verán los nuevos datos en el proceso de modelamiento, ya que hemos filtrado información de estas partes de los datos en este proceso. Esto conducirá a resultados excesivamente optimistas durante la validación cruzada, y posiblemente, a la selección de parámetros subóptimos. <code class="docutils literal notranslate"><span class="pre">Para</span> <span class="pre">evitar</span> <span class="pre">este</span> <span class="pre">problema,</span> <span class="pre">la</span> <span class="pre">división</span> <span class="pre">del</span> <span class="pre">conjunto</span> <span class="pre">de</span> <span class="pre">datos</span> <span class="pre">durante</span> <span class="pre">la</span> <span class="pre">validación</span> <span class="pre">cruzada</span> <span class="pre">debería</span> <span class="pre">hacerse</span> <span class="pre">antes</span> <span class="pre">de</span> <span class="pre">realizar</span> <span class="pre">cualquier</span> <span class="pre">preprocesamiento</span></code>. Cualquier proceso que extraiga conocimiento del conjunto de datos sólo debe aplicarse a la parte de entrenamiento, por lo que cualquier validación cruzada debe ser el <code class="docutils literal notranslate"><span class="pre">&quot;bucle</span> <span class="pre">más</span> <span class="pre">externo&quot;</span></code> de su procesamiento.</p></li>
-<li><p>Para lograr esto en <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> con la función <code class="docutils literal notranslate"><span class="pre">cross_val_score</span></code> y la función <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code>, podemos utilizar la clase <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code>. La clase <code class="docutils literal notranslate"><span class="pre">Pipeline</span> <span class="pre">es</span> <span class="pre">una</span> <span class="pre">clase</span> <span class="pre">que</span> <span class="pre">permite</span> <span class="pre">&quot;pegar&quot;</span> <span class="pre">múltiples</span> <span class="pre">pasos</span> <span class="pre">de</span> <span class="pre">procesamiento</span> <span class="pre">en</span> <span class="pre">un</span> <span class="pre">único</span> <span class="pre">estimador</span> <span class="pre">de</span> <span class="pre">scikit-learn</span></code>. La clase <code class="docutils literal notranslate"><span class="pre">Pipeline</span> <span class="pre">tiene</span> <span class="pre">métodos</span> <span class="pre">de</span> <span class="pre">ajuste,</span> <span class="pre">predicción</span> <span class="pre">y</span> <span class="pre">scoring,</span> <span class="pre">además</span> <span class="pre">se</span> <span class="pre">comporta</span> <span class="pre">como</span> <span class="pre">cualquier</span> <span class="pre">otro</span> <span class="pre">modelo</span> <span class="pre">en</span> <span class="pre">scikit-learn</span></code>. El caso de uso más común de la clase <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code> es encadenar pasos de preprocesamiento (como el escalado de los datos) junto con un modelo supervisado como un clasificador.</p></li>
+<li><p>La validación cruzada puede dar resultados demasiado optimistas si se filtra información antes de la división de los datos, lo que puede llevar a la selección de parámetros subóptimos. <strong>Para evitarlo, la división debe hacerse antes del preprocesamiento</strong>, asegurando que cualquier conocimiento extraído solo afecte el conjunto de entrenamiento. La validación cruzada debe ser el <strong>“bucle más externo”</strong> del proceso.</p></li>
+<li><p>En <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>, esto se maneja con <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code>, que permite combinar varios pasos de preprocesamiento y modelado en un solo estimador. <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code> facilita el ajuste, la predicción y la evaluación, integrando transformaciones como el escalado junto con modelos supervisados.</p></li>
 </ul>
 <div class="tip admonition">
 <p class="admonition-title">Observacion</p>
-<p>La <code class="docutils literal notranslate"><span class="pre">fuga</span> <span class="pre">de</span> <span class="pre">datos</span></code> es un problema para los modelos predictivos. Decimos que hay fuga de datos cuando se utilizan datos ajenos al conjunto de entrenamiento para desarrollar el modelo. <code class="docutils literal notranslate"><span class="pre">Hay</span> <span class="pre">fuga</span> <span class="pre">si</span> <span class="pre">se</span> <span class="pre">comparte</span> <span class="pre">información</span> <span class="pre">entre</span> <span class="pre">los</span> <span class="pre">conjuntos</span> <span class="pre">de</span> <span class="pre">entrenamiento</span> <span class="pre">y</span> <span class="pre">de</span> <span class="pre">prueba</span></code>. Si no detectamos esta forma de fuga, podemos tener resultados exagerados durante el entrenamiento. <code class="docutils literal notranslate"><span class="pre">Esto</span> <span class="pre">se</span> <span class="pre">debe</span> <span class="pre">a</span> <span class="pre">que</span> <span class="pre">el</span> <span class="pre">modelo</span> <span class="pre">ya</span> <span class="pre">está</span> <span class="pre">expuesto</span> <span class="pre">a</span> <span class="pre">los</span> <span class="pre">datos</span> <span class="pre">de</span> <span class="pre">prueba,</span> <span class="pre">ofreciendo</span> <span class="pre">así</span> <span class="pre">un</span> <span class="pre">rendimiento</span> <span class="pre">muy</span> <span class="pre">impresionante</span></code>.</p>
+<p>La <em>fuga de datos</em> ocurre cuando el modelo usa información ajena al conjunto de entrenamiento, afectando su evaluación. <em><strong>Si hay datos compartidos entre entrenamiento y prueba, los resultados pueden ser artificialmente altos, ya que el modelo ha sido expuesto previamente a los datos de prueba</strong></em>.</p>
 </div>
 </section>
 <section id="construyendo-pipelines">
 <h2><span class="section-number">12.2. </span>Construyendo Pipelines<a class="headerlink" href="#construyendo-pipelines" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>Veamos cómo podemos utilizar la clase <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code> para expresar el flujo de trabajo para entrenar una <code class="docutils literal notranslate"><span class="pre">SVM</span></code> después de escalar los datos con <code class="docutils literal notranslate"><span class="pre">MinMaxScaler</span></code> (por ahora sin grid-search). Primero, <code class="docutils literal notranslate"><span class="pre">construimos</span> <span class="pre">un</span> <span class="pre">objeto</span> <span class="pre">pipeline</span> <span class="pre">proporcionándole</span> <span class="pre">una</span> <span class="pre">lista</span> <span class="pre">de</span> <span class="pre">pasos.</span> <span class="pre">Cada</span> <span class="pre">paso</span> <span class="pre">es</span> <span class="pre">una</span> <span class="pre">tupla</span> <span class="pre">que</span> <span class="pre">contiene</span> <span class="pre">un</span> <span class="pre">nombre</span> <span class="pre">(cualquier</span> <span class="pre">cadena</span> <span class="pre">de</span> <span class="pre">su</span> <span class="pre">elección)</span> <span class="pre">y</span> <span class="pre">una</span> <span class="pre">instancia</span> <span class="pre">de</span> <span class="pre">un</span> <span class="pre">estimador</span></code></p></li>
+<li><p>Veamos cómo podemos utilizar la clase <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code> para expresar el flujo de trabajo para entrenar una <code class="docutils literal notranslate"><span class="pre">SVM</span></code> después de escalar los datos con <code class="docutils literal notranslate"><span class="pre">MinMaxScaler</span></code> (por ahora sin grid-search). Primero, <em><strong>construimos un objeto pipeline proporcionándole una lista de pasos. Cada paso es una tupla que contiene un nombre (cualquier cadena de su elección) y una instancia de un estimador</strong></em></p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -519,7 +520,411 @@ Best parameters:  {&#39;C&#39;: 1, &#39;gamma&#39;: 1}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><style>#sk-container-id-1 {color: black;}#sk-container-id-1 pre{padding: 0;}#sk-container-id-1 div.sk-toggleable {background-color: white;}#sk-container-id-1 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-1 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-1 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-1 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-1 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-1 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-1 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-1 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-1 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-1 div.sk-item {position: relative;z-index: 1;}#sk-container-id-1 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-1 div.sk-item::before, #sk-container-id-1 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-1 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-1 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-1 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-1 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-1 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-1 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-1 div.sk-label-container {text-align: center;}#sk-container-id-1 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-1 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>Pipeline(steps=[(&#x27;scaler&#x27;, MinMaxScaler()), (&#x27;svm&#x27;, SVC())])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" ><label for="sk-estimator-id-1" class="sk-toggleable__label sk-toggleable__label-arrow">Pipeline</label><div class="sk-toggleable__content"><pre>Pipeline(steps=[(&#x27;scaler&#x27;, MinMaxScaler()), (&#x27;svm&#x27;, SVC())])</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox" ><label for="sk-estimator-id-2" class="sk-toggleable__label sk-toggleable__label-arrow">MinMaxScaler</label><div class="sk-toggleable__content"><pre>MinMaxScaler()</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-3" type="checkbox" ><label for="sk-estimator-id-3" class="sk-toggleable__label sk-toggleable__label-arrow">SVC</label><div class="sk-toggleable__content"><pre>SVC()</pre></div></div></div></div></div></div></div></div></div>
+<div class="output text_html"><style>#sk-container-id-1 {
+  /* Definition of color scheme common for light and dark mode */
+  --sklearn-color-text: black;
+  --sklearn-color-line: gray;
+  /* Definition of color scheme for unfitted estimators */
+  --sklearn-color-unfitted-level-0: #fff5e6;
+  --sklearn-color-unfitted-level-1: #f6e4d2;
+  --sklearn-color-unfitted-level-2: #ffe0b3;
+  --sklearn-color-unfitted-level-3: chocolate;
+  /* Definition of color scheme for fitted estimators */
+  --sklearn-color-fitted-level-0: #f0f8ff;
+  --sklearn-color-fitted-level-1: #d4ebff;
+  --sklearn-color-fitted-level-2: #b3dbfd;
+  --sklearn-color-fitted-level-3: cornflowerblue;
+
+  /* Specific color for light theme */
+  --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
+  --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, white)));
+  --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
+  --sklearn-color-icon: #696969;
+
+  @media (prefers-color-scheme: dark) {
+    /* Redefinition of color scheme for dark theme */
+    --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
+    --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, #111)));
+    --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
+    --sklearn-color-icon: #878787;
+  }
+}
+
+#sk-container-id-1 {
+  color: var(--sklearn-color-text);
+}
+
+#sk-container-id-1 pre {
+  padding: 0;
+}
+
+#sk-container-id-1 input.sk-hidden--visually {
+  border: 0;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+#sk-container-id-1 div.sk-dashed-wrapped {
+  border: 1px dashed var(--sklearn-color-line);
+  margin: 0 0.4em 0.5em 0.4em;
+  box-sizing: border-box;
+  padding-bottom: 0.4em;
+  background-color: var(--sklearn-color-background);
+}
+
+#sk-container-id-1 div.sk-container {
+  /* jupyter's `normalize.less` sets `[hidden] { display: none; }`
+     but bootstrap.min.css set `[hidden] { display: none !important; }`
+     so we also need the `!important` here to be able to override the
+     default hidden behavior on the sphinx rendered scikit-learn.org.
+     See: https://github.com/scikit-learn/scikit-learn/issues/21755 */
+  display: inline-block !important;
+  position: relative;
+}
+
+#sk-container-id-1 div.sk-text-repr-fallback {
+  display: none;
+}
+
+div.sk-parallel-item,
+div.sk-serial,
+div.sk-item {
+  /* draw centered vertical line to link estimators */
+  background-image: linear-gradient(var(--sklearn-color-text-on-default-background), var(--sklearn-color-text-on-default-background));
+  background-size: 2px 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+/* Parallel-specific style estimator block */
+
+#sk-container-id-1 div.sk-parallel-item::after {
+  content: "";
+  width: 100%;
+  border-bottom: 2px solid var(--sklearn-color-text-on-default-background);
+  flex-grow: 1;
+}
+
+#sk-container-id-1 div.sk-parallel {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  background-color: var(--sklearn-color-background);
+  position: relative;
+}
+
+#sk-container-id-1 div.sk-parallel-item {
+  display: flex;
+  flex-direction: column;
+}
+
+#sk-container-id-1 div.sk-parallel-item:first-child::after {
+  align-self: flex-end;
+  width: 50%;
+}
+
+#sk-container-id-1 div.sk-parallel-item:last-child::after {
+  align-self: flex-start;
+  width: 50%;
+}
+
+#sk-container-id-1 div.sk-parallel-item:only-child::after {
+  width: 0;
+}
+
+/* Serial-specific style estimator block */
+
+#sk-container-id-1 div.sk-serial {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--sklearn-color-background);
+  padding-right: 1em;
+  padding-left: 1em;
+}
+
+
+/* Toggleable style: style used for estimator/Pipeline/ColumnTransformer box that is
+clickable and can be expanded/collapsed.
+- Pipeline and ColumnTransformer use this feature and define the default style
+- Estimators will overwrite some part of the style using the `sk-estimator` class
+*/
+
+/* Pipeline and ColumnTransformer style (default) */
+
+#sk-container-id-1 div.sk-toggleable {
+  /* Default theme specific background. It is overwritten whether we have a
+  specific estimator or a Pipeline/ColumnTransformer */
+  background-color: var(--sklearn-color-background);
+}
+
+/* Toggleable label */
+#sk-container-id-1 label.sk-toggleable__label {
+  cursor: pointer;
+  display: block;
+  width: 100%;
+  margin-bottom: 0;
+  padding: 0.5em;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+#sk-container-id-1 label.sk-toggleable__label-arrow:before {
+  /* Arrow on the left of the label */
+  content: "▸";
+  float: left;
+  margin-right: 0.25em;
+  color: var(--sklearn-color-icon);
+}
+
+#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {
+  color: var(--sklearn-color-text);
+}
+
+/* Toggleable content - dropdown */
+
+#sk-container-id-1 div.sk-toggleable__content {
+  max-height: 0;
+  max-width: 0;
+  overflow: hidden;
+  text-align: left;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content pre {
+  margin: 0.2em;
+  border-radius: 0.25em;
+  color: var(--sklearn-color-text);
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content.fitted pre {
+  /* unfitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {
+  /* Expand drop-down */
+  max-height: 200px;
+  max-width: 100%;
+  overflow: auto;
+}
+
+#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
+  content: "▾";
+}
+
+/* Pipeline/ColumnTransformer-specific style */
+
+#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator-specific style */
+
+/* Colorize estimator box */
+#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+#sk-container-id-1 div.sk-label label.sk-toggleable__label,
+#sk-container-id-1 div.sk-label label {
+  /* The background is the default theme color */
+  color: var(--sklearn-color-text-on-default-background);
+}
+
+/* On hover, darken the color of the background */
+#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+/* Label box, darken color on hover, fitted */
+#sk-container-id-1 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator label */
+
+#sk-container-id-1 div.sk-label label {
+  font-family: monospace;
+  font-weight: bold;
+  display: inline-block;
+  line-height: 1.2em;
+}
+
+#sk-container-id-1 div.sk-label-container {
+  text-align: center;
+}
+
+/* Estimator-specific */
+#sk-container-id-1 div.sk-estimator {
+  font-family: monospace;
+  border: 1px dotted var(--sklearn-color-border-box);
+  border-radius: 0.25em;
+  box-sizing: border-box;
+  margin-bottom: 0.5em;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+/* on hover */
+#sk-container-id-1 div.sk-estimator:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Specification for estimator info (e.g. "i" and "?") */
+
+/* Common style for "i" and "?" */
+
+.sk-estimator-doc-link,
+a:link.sk-estimator-doc-link,
+a:visited.sk-estimator-doc-link {
+  float: right;
+  font-size: smaller;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-background);
+  border-radius: 1em;
+  height: 1em;
+  width: 1em;
+  text-decoration: none !important;
+  margin-left: 1ex;
+  /* unfitted */
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+  color: var(--sklearn-color-unfitted-level-1);
+}
+
+.sk-estimator-doc-link.fitted,
+a:link.sk-estimator-doc-link.fitted,
+a:visited.sk-estimator-doc-link.fitted {
+  /* fitted */
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+div.sk-estimator:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover,
+div.sk-label-container:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+div.sk-estimator.fitted:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover,
+div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+/* Span, style for the box shown on hovering the info icon */
+.sk-estimator-doc-link span {
+  display: none;
+  z-index: 9999;
+  position: relative;
+  font-weight: normal;
+  right: .2ex;
+  padding: .5ex;
+  margin: .5ex;
+  width: min-content;
+  min-width: 20ex;
+  max-width: 50ex;
+  color: var(--sklearn-color-text);
+  box-shadow: 2pt 2pt 4pt #999;
+  /* unfitted */
+  background: var(--sklearn-color-unfitted-level-0);
+  border: .5pt solid var(--sklearn-color-unfitted-level-3);
+}
+
+.sk-estimator-doc-link.fitted span {
+  /* fitted */
+  background: var(--sklearn-color-fitted-level-0);
+  border: var(--sklearn-color-fitted-level-3);
+}
+
+.sk-estimator-doc-link:hover span {
+  display: block;
+}
+
+/* "?"-specific style due to the `<a>` HTML tag */
+
+#sk-container-id-1 a.estimator_doc_link {
+  float: right;
+  font-size: 1rem;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-background);
+  border-radius: 1rem;
+  height: 1rem;
+  width: 1rem;
+  text-decoration: none;
+  /* unfitted */
+  color: var(--sklearn-color-unfitted-level-1);
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+}
+
+#sk-container-id-1 a.estimator_doc_link.fitted {
+  /* fitted */
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+#sk-container-id-1 a.estimator_doc_link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+#sk-container-id-1 a.estimator_doc_link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+}
+</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>Pipeline(steps=[(&#x27;scaler&#x27;, MinMaxScaler()), (&#x27;svm&#x27;, SVC())])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" ><label for="sk-estimator-id-1" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;&nbsp;Pipeline<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.pipeline.Pipeline.html">?<span>Documentation for Pipeline</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></label><div class="sk-toggleable__content fitted"><pre>Pipeline(steps=[(&#x27;scaler&#x27;, MinMaxScaler()), (&#x27;svm&#x27;, SVC())])</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox" ><label for="sk-estimator-id-2" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;MinMaxScaler<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.preprocessing.MinMaxScaler.html">?<span>Documentation for MinMaxScaler</span></a></label><div class="sk-toggleable__content fitted"><pre>MinMaxScaler()</pre></div> </div></div><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-3" type="checkbox" ><label for="sk-estimator-id-3" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;SVC<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.svm.SVC.html">?<span>Documentation for SVC</span></a></label><div class="sk-toggleable__content fitted"><pre>SVC()</pre></div> </div></div></div></div></div></div></div></div>
 </div>
 <ul class="simple">
 <li><p>Aquí, <code class="docutils literal notranslate"><span class="pre">pipe.fit</span></code> primero llama a <code class="docutils literal notranslate"><span class="pre">fit</span></code> en el primer paso (el escalador), luego transforma los datos de entrenamiento usando el escalador, y finalmente ajusta la <code class="docutils literal notranslate"><span class="pre">SVM</span></code> con los datos escalados. <code class="docutils literal notranslate"><span class="pre">Para</span> <span class="pre">evaluar</span> <span class="pre">en</span> <span class="pre">los</span> <span class="pre">datos</span> <span class="pre">de</span> <span class="pre">prueba,</span> <span class="pre">simplemente</span> <span class="pre">llamamos</span> <span class="pre">a</span> <span class="pre">pipe.score</span></code></p></li>
@@ -537,15 +942,13 @@ Best parameters:  {&#39;C&#39;: 1, &#39;gamma&#39;: 1}
 </div>
 </div>
 <ul class="simple">
-<li><p>Al llamar al método de scoring en el pipeline, primero se transforman los datos de prueba utilizando el <code class="docutils literal notranslate"><span class="pre">scaler</span></code> y luego llama al método de scoring en la <code class="docutils literal notranslate"><span class="pre">SVM</span></code> utilizando los datos de prueba escalados. Como puede, el resultado es idéntico al que obtuvimos del código al principio del
-capítulo, al hacer las transformaciones a mano. <code class="docutils literal notranslate"><span class="pre">Usando</span> <span class="pre">el</span> <span class="pre">pipeline,</span> <span class="pre">hemos</span> <span class="pre">reducido</span> <span class="pre">el</span> <span class="pre">código</span> <span class="pre">necesario</span> <span class="pre">para</span> <span class="pre">nuestro</span> <span class="pre">proceso</span> <span class="pre">de</span> <span class="pre">&quot;preprocesamiento</span> <span class="pre">+</span> <span class="pre">clasificación&quot;</span></code>. Sin embargo, la principal ventaja de usar el <code class="docutils literal notranslate"><span class="pre">pipeline</span></code>, es que ahora podemos usar este único estimador en
-<code class="docutils literal notranslate"><span class="pre">cross_val_score</span></code> o <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code>.</p></li>
+<li><p>El <code class="docutils literal notranslate"><span class="pre">pipeline</span></code> primero transforma los datos de prueba con <code class="docutils literal notranslate"><span class="pre">scaler</span></code> y luego aplica <code class="docutils literal notranslate"><span class="pre">SVM</span></code> sobre los datos escalados, obteniendo el mismo resultado que al transformar manualmente. Su principal ventaja es simplificar el proceso de <strong>preprocesamiento + clasificación</strong> y permitir su uso directo en <code class="docutils literal notranslate"><span class="pre">cross_val_score</span></code> o <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code>.</p></li>
 </ul>
 </section>
 <section id="utilizando-pipeline-en-gridsearch">
 <h2><span class="section-number">12.3. </span>Utilizando Pipeline en GridSearch<a class="headerlink" href="#utilizando-pipeline-en-gridsearch" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>El uso de una tubería <code class="docutils literal notranslate"><span class="pre">(pipeline)</span></code> en una búsqueda de red <code class="docutils literal notranslate"><span class="pre">(grid-search)</span></code> funciona de la misma manera que el uso de cualquier otro estimador. <code class="docutils literal notranslate"><span class="pre">Definimos</span> <span class="pre">una</span> <span class="pre">red</span> <span class="pre">de</span> <span class="pre">parámetros</span> <span class="pre">en</span> <span class="pre">la</span> <span class="pre">que</span> <span class="pre">buscar,</span> <span class="pre">y</span> <span class="pre">construimos</span> <span class="pre">un</span> <span class="pre">GridSearchCV</span> <span class="pre">a</span> <span class="pre">partir</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">tubería</span> <span class="pre">y</span> <span class="pre">la</span> <span class="pre">red</span> <span class="pre">de</span> <span class="pre">parámetros</span></code>. Al especificar la red de parámetros, hay un ligero cambio, sin embargo. Tenemos que especificar para cada parámetro, a qué paso de la tubería pertenece. Los dos parámetros que queremos ajustar, <code class="docutils literal notranslate"><span class="pre">C</span></code> y <code class="docutils literal notranslate"><span class="pre">gamma</span></code>, son parámetros de <code class="docutils literal notranslate"><span class="pre">SVC</span></code>, el segundo paso. A este paso le hemos dado el nombre de <code class="docutils literal notranslate"><span class="pre">&quot;svm&quot;</span></code>. La sintaxis para definir una red de parámetros para una tubería es especificar, para cada parámetro, el nombre del paso, seguido de <code class="docutils literal notranslate"><span class="pre">__</span></code> (un doble guión bajo), seguido del nombre del parámetro. <code class="docutils literal notranslate"><span class="pre">Para</span> <span class="pre">buscar</span> <span class="pre">en</span> <span class="pre">los</span> <span class="pre">parámetros</span> <span class="pre">de</span> <span class="pre">C</span> <span class="pre">de</span> <span class="pre">SVC</span> <span class="pre">tenemos</span> <span class="pre">que</span> <span class="pre">usar</span> <span class="pre">&quot;svm__C&quot;</span> <span class="pre">como</span> <span class="pre">clave</span> <span class="pre">en</span> <span class="pre">el</span> <span class="pre">diccionario</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">red</span> <span class="pre">de</span> <span class="pre">parámetros,</span> <span class="pre">y</span> <span class="pre">lo</span> <span class="pre">mismo</span> <span class="pre">para</span> <span class="pre">gamma</span></code>.</p></li>
+<li><p>El uso de una tubería <code class="docutils literal notranslate"><span class="pre">(pipeline)</span></code> en una búsqueda de red <code class="docutils literal notranslate"><span class="pre">(grid-search)</span></code> es similar a cualquier otro estimador. Definimos una red de parámetros y creamos un <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> con la tubería y la red. Al especificar los parámetros, debemos indicar el paso al que pertenecen. En este caso, los parámetros <code class="docutils literal notranslate"><span class="pre">C</span></code> y <code class="docutils literal notranslate"><span class="pre">gamma</span></code> corresponden a <code class="docutils literal notranslate"><span class="pre">SVC</span></code>, nombrado <code class="docutils literal notranslate"><span class="pre">&quot;svm&quot;</span></code>. La sintaxis para definirlos en el diccionario de la red es <code class="docutils literal notranslate"><span class="pre">&quot;svm__C&quot;</span></code> y <code class="docutils literal notranslate"><span class="pre">&quot;svm__gamma&quot;</span></code>, usando <code class="docutils literal notranslate"><span class="pre">__</span></code> (doble guión bajo) para separar el nombre del paso y el parámetro.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -577,7 +980,7 @@ Best parameters: {&#39;svm__C&#39;: 1, &#39;svm__gamma&#39;: 1}
 </div>
 </div>
 <ul class="simple">
-<li><p>A diferencia de la búsqueda en red que hicimos antes, ahora <code class="docutils literal notranslate"><span class="pre">para</span> <span class="pre">cada</span> <span class="pre">división</span> <span class="pre">en</span> <span class="pre">la</span> <span class="pre">validación</span> <span class="pre">cruzada</span> <span class="pre">el</span> <span class="pre">MinMaxScaler</span> <span class="pre">se</span> <span class="pre">reajusta</span> <span class="pre">sólo</span> <span class="pre">con</span> <span class="pre">las</span> <span class="pre">divisiones</span> <span class="pre">de</span> <span class="pre">entrenamiento</span> <span class="pre">y</span> <span class="pre">no</span> <span class="pre">se</span> <span class="pre">filtra</span> <span class="pre">información</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">división</span> <span class="pre">de</span> <span class="pre">prueba</span> <span class="pre">en</span> <span class="pre">la</span> <span class="pre">búsqueda</span> <span class="pre">de</span> <span class="pre">parámetros</span></code></p></li>
+<li><p>A diferencia de la búsqueda en red que hicimos antes, ahora <em><strong>para cada división en la validación cruzada el MinMaxScaler se reajusta sólo con las divisiones de entrenamiento y no se filtra información de la división de prueba en la búsqueda de parámetros</strong></em></p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -586,20 +989,20 @@ Best parameters: {&#39;svm__C&#39;: 1, &#39;svm__gamma&#39;: 1}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/6a4edc09c44ce4948619cf36e77d547b634392c5301219d31b15f290e977989a.png" src="_images/6a4edc09c44ce4948619cf36e77d547b634392c5301219d31b15f290e977989a.png" />
+<img alt="_images/d1dcf2fda5f9f88977acc506f13827838447508306759b260d38989c688c7ee5.png" src="_images/d1dcf2fda5f9f88977acc506f13827838447508306759b260d38989c688c7ee5.png" />
 </div>
 </div>
 <ul class="simple">
-<li><p>El impacto de la fuga de información en la validación cruzada varía en función de la naturaleza del paso de preprocesamiento. <code class="docutils literal notranslate"><span class="pre">La</span> <span class="pre">estimación</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">escala</span> <span class="pre">de</span> <span class="pre">los</span> <span class="pre">datos</span> <span class="pre">mediante</span> <span class="pre">el</span> <span class="pre">pliegue</span> <span class="pre">de</span> <span class="pre">prueba</span> <span class="pre">no</span> <span class="pre">suele</span> <span class="pre">tener</span> <span class="pre">un</span> <span class="pre">impacto</span> <span class="pre">terrible,</span> <span class="pre">mientras</span> <span class="pre">que,</span> <span class="pre">el</span> <span class="pre">uso</span> <span class="pre">del</span> <span class="pre">pliegue</span> <span class="pre">de</span> <span class="pre">prueba</span> <span class="pre">en</span> <span class="pre">la</span> <span class="pre">extracción</span> <span class="pre">de</span> <span class="pre">características</span> <span class="pre">y</span> <span class="pre">la</span> <span class="pre">selección</span> <span class="pre">de</span> <span class="pre">características</span> <span class="pre">puede</span> <span class="pre">dar</span> <span class="pre">lugar</span> <span class="pre">a</span> <span class="pre">diferencias</span> <span class="pre">sustanciales</span> <span class="pre">en</span> <span class="pre">los</span> <span class="pre">resultados</span></code>.</p></li>
+<li><p>El impacto de la fuga de información en la validación cruzada depende del preprocesamiento. <strong>La estimación de escala en el pliegue de prueba tiene un impacto menor</strong>, pero <strong>usarlo en la extracción o selección de características puede distorsionar significativamente los resultados</strong>.</p></li>
 </ul>
 </section>
 <section id="data-leakage">
 <h2><span class="section-number">12.4. </span>Data Leakage<a class="headerlink" href="#data-leakage" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>La fuga de datos (<strong><code class="docutils literal notranslate"><span class="pre">data</span> <span class="pre">leakage</span></code></strong>) <code class="docutils literal notranslate"><span class="pre">se</span> <span class="pre">produce</span> <span class="pre">cuando</span> <span class="pre">al</span> <span class="pre">construir</span> <span class="pre">el</span> <span class="pre">modelo</span> <span class="pre">se</span> <span class="pre">utiliza</span> <span class="pre">información</span> <span class="pre">que</span> <span class="pre">no</span> <span class="pre">estaría</span> <span class="pre">disponible</span> <span class="pre">en</span> <span class="pre">el</span> <span class="pre">momento</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">predicción</span></code>. Esto da lugar a estimaciones de rendimiento demasiado optimistas, por ejemplo, a partir de la validación cruzada, y, por tanto, a un peor rendimiento cuando el modelo se utiliza con datos realmente nuevo, por ejemplo, durante la producción.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Una</span> <span class="pre">causa</span> <span class="pre">común</span> <span class="pre">es</span> <span class="pre">no</span> <span class="pre">mantener</span> <span class="pre">separados</span> <span class="pre">los</span> <span class="pre">subconjuntos</span> <span class="pre">de</span> <span class="pre">datos</span> <span class="pre">de</span> <span class="pre">prueba</span> <span class="pre">y</span> <span class="pre">de</span> <span class="pre">entrenamiento.</span> <span class="pre">Los</span> <span class="pre">datos</span> <span class="pre">de</span> <span class="pre">prueba</span> <span class="pre">nunca</span> <span class="pre">deben</span> <span class="pre">utilizarse</span> <span class="pre">para</span> <span class="pre">tomar</span> <span class="pre">decisiones</span> <span class="pre">sobre</span> <span class="pre">el</span> <span class="pre">modelo</span></code>. La regla general es no llamar nunca al ajuste en los datos de prueba. Aunque esto puede parecer obvio, es fácil que se pase por alto en algunos casos, por ejemplo al aplicar ciertos pasos de preprocesamiento.</p></li>
-<li><p><em>Aunque tanto los subconjuntos de datos de entrenamiento como los de prueba deben recibir la misma transformación de preprocesamiento, es importante que estas transformaciones sólo se aprendan de los datos de entrenamiento</em>. <code class="docutils literal notranslate"><span class="pre">Por</span> <span class="pre">ejemplo,</span> <span class="pre">si</span> <span class="pre">tiene</span> <span class="pre">un</span> <span class="pre">paso</span> <span class="pre">de</span> <span class="pre">normalización</span> <span class="pre">en</span> <span class="pre">el</span> <span class="pre">que</span> <span class="pre">se</span> <span class="pre">divide</span> <span class="pre">por</span> <span class="pre">el</span> <span class="pre">valor</span> <span class="pre">medio,</span> <span class="pre">la</span> <span class="pre">media</span> <span class="pre">debe</span> <span class="pre">ser</span> <span class="pre">la</span> <span class="pre">media</span> <span class="pre">del</span> <span class="pre">subconjunto</span> <span class="pre">de</span> <span class="pre">entrenamiento,</span> <span class="pre">no</span> <span class="pre">la</span> <span class="pre">media</span> <span class="pre">de</span> <span class="pre">todos</span> <span class="pre">los</span> <span class="pre">datos.</span> <span class="pre">Si</span> <span class="pre">el</span> <span class="pre">subconjunto</span> <span class="pre">de</span> <span class="pre">prueba</span> <span class="pre">se</span> <span class="pre">incluye</span> <span class="pre">en</span> <span class="pre">el</span> <span class="pre">cálculo</span> <span class="pre">del</span> <span class="pre">promedio,</span> <span class="pre">la</span> <span class="pre">información</span> <span class="pre">del</span> <span class="pre">subconjunto</span> <span class="pre">de</span> <span class="pre">prueba</span> <span class="pre">está</span> <span class="pre">influyendo</span> <span class="pre">en</span> <span class="pre">el</span> <span class="pre">modelo.</span></code></p></li>
-<li><p>Hay una serie de funciones de selección de características disponibles en scikit-learn. Pueden ayudar a eliminar características irrelevantes, redundantes y ruidosas, así como a mejorar el tiempo de construcción y el rendimiento del modelo. <code class="docutils literal notranslate"><span class="pre">Al</span> <span class="pre">igual</span> <span class="pre">que</span> <span class="pre">con</span> <span class="pre">cualquier</span> <span class="pre">otro</span> <span class="pre">tipo</span> <span class="pre">de</span> <span class="pre">preprocesamiento,</span> <span class="pre">la</span> <span class="pre">selección</span> <span class="pre">de</span> <span class="pre">características</span> <span class="pre">sólo</span> <span class="pre">debe</span> <span class="pre">utilizar</span> <span class="pre">los</span> <span class="pre">datos</span> <span class="pre">de</span> <span class="pre">entrenamiento.</span> <span class="pre">Incluir</span> <span class="pre">los</span> <span class="pre">datos</span> <span class="pre">de</span> <span class="pre">prueba</span> <span class="pre">en</span> <span class="pre">la</span> <span class="pre">selección</span> <span class="pre">de</span> <span class="pre">características</span> <span class="pre">sesgará</span> <span class="pre">su</span> <span class="pre">modelo</span> <span class="pre">de</span> <span class="pre">forma</span> <span class="pre">optimista.</span></code> Para demostrarlo, crearemos este problema de clasificación binaria con 10.000 características generadas aleatoriamente.</p></li>
+<li><p>La <strong>fuga de datos</strong> ocurre cuando se usa información en la construcción del modelo que no estaría disponible al predecir, lo que genera estimaciones optimistas y peor rendimiento en producción.</p></li>
+<li><p>Una causa común es no separar correctamente los datos de entrenamiento y prueba. <em><strong>Los datos de prueba nunca deben influir en el ajuste del modelo, ni directa ni indirectamente, como al aplicar transformaciones de preprocesamiento</strong></em>.</p></li>
+<li><p>Las transformaciones deben aprenderse solo de los datos de entrenamiento. Por ejemplo, <em><strong>si se normaliza dividiendo por la media, esta debe calcularse solo con el entrenamiento; incluir los datos de prueba introduciría sesgo</strong></em>.</p></li>
+<li><p>En la selección de características, solo deben usarse los datos de entrenamiento. Incluir los de prueba sesgaría el modelo. Se demostrará este efecto con un problema de clasificación binaria con 10,000 características aleatorias.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -614,8 +1017,8 @@ Best parameters: {&#39;svm__C&#39;: 1, &#39;svm__gamma&#39;: 1}
 </div>
 <p><strong><code class="docutils literal notranslate"><span class="pre">Forma</span> <span class="pre">incorrecta</span></code></strong></p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">El</span> <span class="pre">uso</span> <span class="pre">de</span> <span class="pre">todos</span> <span class="pre">los</span> <span class="pre">datos</span> <span class="pre">para</span> <span class="pre">realizar</span> <span class="pre">la</span> <span class="pre">selección</span> <span class="pre">de</span> <span class="pre">características</span> <span class="pre">da</span> <span class="pre">como</span> <span class="pre">resultado</span> <span class="pre">una</span> <span class="pre">puntuación</span> <span class="pre">de</span> <span class="pre">precisión</span> <span class="pre">muy</span> <span class="pre">superior</span> <span class="pre">a</span> <span class="pre">la</span> <span class="pre">del</span> <span class="pre">azar,</span> <span class="pre">a</span> <span class="pre">pesar</span> <span class="pre">de</span> <span class="pre">que</span> <span class="pre">nuestros</span> <span class="pre">objetivos</span> <span class="pre">son</span> <span class="pre">completamente</span> <span class="pre">aleatorios</span></code>. Esta aleatoriedad significa que nuestras <code class="docutils literal notranslate"><span class="pre">X</span></code> e <code class="docutils literal notranslate"><span class="pre">y</span></code> son independientes y, por tanto, esperamos que la precisión sea de alrededor de 0.5. <code class="docutils literal notranslate"><span class="pre">Sin</span> <span class="pre">embargo,</span> <span class="pre">como</span> <span class="pre">el</span> <span class="pre">paso</span> <span class="pre">de</span> <span class="pre">selección</span> <span class="pre">de</span> <span class="pre">características</span> <span class="pre">&quot;observa&quot;</span> <span class="pre">los</span> <span class="pre">datos</span> <span class="pre">de</span> <span class="pre">prueba,</span> <span class="pre">el</span> <span class="pre">modelo</span> <span class="pre">tiene</span> <span class="pre">una</span> <span class="pre">ventaja</span> <span class="pre">injusta</span></code>. En el ejemplo incorrecto que se muestra a continuación, primero utilizamos todos los datos para la selección de características y luego dividimos los datos en subconjuntos de entrenamiento y de prueba para el ajuste del modelo. El resultado es una puntuación de precisión mucho más alta de lo esperado.</p></li>
-<li><p>Aquí <code class="docutils literal notranslate"><span class="pre">SelectKBest</span></code> toma como parámetro una función de puntuación, que debe ser aplicable a un par <code class="docutils literal notranslate"><span class="pre">(X,</span> <span class="pre">y)</span></code>. La función de puntuación debe devolver una matriz de puntuaciones, una por cada característica <code class="docutils literal notranslate"><span class="pre">X[:,i]</span></code> de <code class="docutils literal notranslate"><span class="pre">X</span></code>. <code class="docutils literal notranslate"><span class="pre">SelectKBest</span></code> simplemente retiene las primeras <code class="docutils literal notranslate"><span class="pre">k</span></code> características de <code class="docutils literal notranslate"><span class="pre">X</span></code> con las puntuaciones más altas. Así, por ejemplo, si pasa <code class="docutils literal notranslate"><span class="pre">chi2</span></code> como función de puntuación, <code class="docutils literal notranslate"><span class="pre">SelectKBest</span> <span class="pre">calculará</span> <span class="pre">el</span> <span class="pre">estadístico</span> <span class="pre">chi2</span> <span class="pre">entre</span> <span class="pre">cada</span> <span class="pre">característica</span> <span class="pre">de</span> <span class="pre">X</span> <span class="pre">e</span> <span class="pre">y.</span> <span class="pre">Un</span> <span class="pre">valor</span> <span class="pre">pequeño</span> <span class="pre">significará</span> <span class="pre">que</span> <span class="pre">la</span> <span class="pre">característica</span> <span class="pre">es</span> <span class="pre">independiente</span> <span class="pre">de</span> <span class="pre">y.</span> <span class="pre">Un</span> <span class="pre">valor</span> <span class="pre">grande</span> <span class="pre">significará</span> <span class="pre">que</span> <span class="pre">la</span> <span class="pre">característica</span> <span class="pre">está</span> <span class="pre">relacionada</span> <span class="pre">de</span> <span class="pre">forma</span> <span class="pre">no</span> <span class="pre">aleatoria</span> <span class="pre">con</span> <span class="pre">y,</span> <span class="pre">por</span> <span class="pre">lo</span> <span class="pre">que</span> <span class="pre">es</span> <span class="pre">probable</span> <span class="pre">que</span> <span class="pre">proporcione</span> <span class="pre">información</span> <span class="pre">importante.</span> <span class="pre">Sólo</span> <span class="pre">se</span> <span class="pre">conservarán</span> <span class="pre">k</span> <span class="pre">características.</span></code> Por defecto <code class="docutils literal notranslate"><span class="pre">SelectKBest</span></code> usa <code class="docutils literal notranslate"><span class="pre">f_regression</span> <span class="pre">F-value</span></code> entre etiqueta/característica (label/feature).</p></li>
+<li><p>El uso de todos los datos para la selección de características <strong>genera una precisión artificialmente alta</strong>, incluso cuando <code class="docutils literal notranslate"><span class="pre">X</span></code> e <code class="docutils literal notranslate"><span class="pre">y</span></code> son independientes, lo que debería dar una precisión cercana a 0.5. Esto ocurre porque la selección de características <strong>“ve” los datos de prueba</strong>, otorgando una ventaja injusta.</p></li>
+<li><p>En el enfoque incorrecto, se seleccionan características antes de dividir los datos, lo que <strong>infla la precisión</strong> del modelo. <code class="docutils literal notranslate"><span class="pre">SelectKBest</span></code> elige las <code class="docutils literal notranslate"><span class="pre">k</span></code> mejores características según una función de puntuación <code class="docutils literal notranslate"><span class="pre">(X,</span> <span class="pre">y)</span></code>, reteniendo aquellas con <strong>mayor relación con <code class="docutils literal notranslate"><span class="pre">y</span></code></strong>. Si se usa <code class="docutils literal notranslate"><span class="pre">chi2</span></code>, se evalúa la dependencia entre cada característica e <code class="docutils literal notranslate"><span class="pre">y</span></code>: <strong>valores bajos indican independencia, valores altos sugieren relación no aleatoria</strong>. Por defecto, <code class="docutils literal notranslate"><span class="pre">SelectKBest</span></code> emplea <code class="docutils literal notranslate"><span class="pre">f_regression</span> <span class="pre">F-value</span></code> para medir la relevancia de cada característica.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -628,11 +1031,11 @@ Best parameters: {&#39;svm__C&#39;: 1, &#39;svm__gamma&#39;: 1}
 </div>
 </div>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">Preprocesamiento</span> <span class="pre">incorrecto:</span> <span class="pre">se</span> <span class="pre">transforman</span> <span class="pre">todos</span> <span class="pre">los</span> <span class="pre">datos</span></code></p></li>
+<li><p><em>Preprocesamiento incorrecto: se transforman todos los datos</em></p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_selected</span> <span class="o">=</span> <span class="n">SelectKBest</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_selected</span> <span class="o">=</span> <span class="n">SelectKBest</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="c1">#(Dependencia entre cada X[:,i] e y.) -&gt; Reg: F de ANOVA o Class: Chi-cuadrado </span>
 
 <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_selected</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
 <span class="n">gbc</span> <span class="o">=</span> <span class="n">GradientBoostingClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -651,7 +1054,7 @@ Best parameters: {&#39;svm__C&#39;: 1, &#39;svm__gamma&#39;: 1}
 </div>
 <p><strong><code class="docutils literal notranslate"><span class="pre">Forma</span> <span class="pre">correcta</span></code></strong></p>
 <ul class="simple">
-<li><p>Para evitar la fuga de datos, es una buena práctica dividir primero los datos en subconjuntos de entrenamiento y de prueba. <code class="docutils literal notranslate"><span class="pre">La</span> <span class="pre">selección</span> <span class="pre">de</span> <span class="pre">características</span> <span class="pre">puede</span> <span class="pre">entonces</span> <span class="pre">formarse</span> <span class="pre">usando</span> <span class="pre">sólo</span> <span class="pre">el</span> <span class="pre">conjunto</span> <span class="pre">de</span> <span class="pre">datos</span> <span class="pre">de</span> <span class="pre">entrenamiento</span></code>. Observe que siempre que usamos <code class="docutils literal notranslate"><span class="pre">fit</span></code> o <code class="docutils literal notranslate"><span class="pre">fit_transform</span></code>, <code class="docutils literal notranslate"><span class="pre">sólo</span> <span class="pre">usamos</span> <span class="pre">el</span> <span class="pre">conjunto</span> <span class="pre">de</span> <span class="pre">datos</span> <span class="pre">de</span> <span class="pre">entrenamiento</span></code>. La puntuación es ahora la que esperaríamos para los datos, cercana al azar</p></li>
+<li><p>Para evitar la fuga de datos, primero se deben dividir los datos en entrenamiento y prueba. La selección de características debe realizarse solo con el conjunto de entrenamiento. Al usar <code class="docutils literal notranslate"><span class="pre">fit</span></code> o <code class="docutils literal notranslate"><span class="pre">fit_transform</span></code>, se aplica exclusivamente al entrenamiento. Esto garantiza que la puntuación refleje el desempeño real del modelo.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -669,13 +1072,13 @@ Best parameters: {&#39;svm__C&#39;: 1, &#39;svm__gamma&#39;: 1}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.44
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.46
 </pre></div>
 </div>
 </div>
 </div>
 <ul class="simple">
-<li><p>También en este caso, <code class="docutils literal notranslate"><span class="pre">recomendamos</span> <span class="pre">utilizar</span> <span class="pre">un</span> <span class="pre">pipeline</span> <span class="pre">para</span> <span class="pre">encadenar</span> <span class="pre">la</span> <span class="pre">selección</span> <span class="pre">de</span> <span class="pre">características</span> <span class="pre">y</span> <span class="pre">los</span> <span class="pre">estimadores</span> <span class="pre">del</span> <span class="pre">modelo</span></code>. El <code class="docutils literal notranslate"><span class="pre">pipeline</span> <span class="pre">garantiza</span> <span class="pre">que</span> <span class="pre">sólo</span> <span class="pre">se</span> <span class="pre">utilicen</span> <span class="pre">los</span> <span class="pre">datos</span> <span class="pre">de</span> <span class="pre">entrenamiento</span> <span class="pre">al</span> <span class="pre">realizar</span> <span class="pre">el</span> <span class="pre">ajuste</span> <span class="pre">y</span> <span class="pre">que</span> <span class="pre">los</span> <span class="pre">datos</span> <span class="pre">de</span> <span class="pre">prueba</span> <span class="pre">se</span> <span class="pre">utilicen</span> <span class="pre">únicamente</span> <span class="pre">para</span> <span class="pre">calcular</span> <span class="pre">la</span> <span class="pre">puntuación</span> <span class="pre">de</span> <span class="pre">precisión</span></code></p></li>
+<li><p>Se recomienda usar un <strong>pipeline</strong> para encadenar la selección de características y los estimadores, asegurando que solo los datos de entrenamiento se usen en el ajuste y los de prueba solo para evaluar la precisión.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -696,7 +1099,7 @@ Best parameters: {&#39;svm__C&#39;: 1, &#39;svm__gamma&#39;: 1}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.44
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.46
 </pre></div>
 </div>
 </div>
@@ -705,7 +1108,7 @@ Best parameters: {&#39;svm__C&#39;: 1, &#39;svm__gamma&#39;: 1}
 <section id="ilustracion-de-la-fuga-de-datos">
 <h2><span class="section-number">12.5. </span>Ilustración de la fuga de datos<a class="headerlink" href="#ilustracion-de-la-fuga-de-datos" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>Un gran ejemplo de fuga de información en la validación cruzada se da en el libro de <em><code class="docutils literal notranslate"><span class="pre">Hastie,</span> <span class="pre">Tibshirani</span> <span class="pre">y</span> <span class="pre">Friedman:</span> <span class="pre">The</span> <span class="pre">Elements</span> <span class="pre">of</span> <span class="pre">Statistical</span> <span class="pre">Learning</span></code></em>, y aquí reproducimos una versión adaptada. Consideremos una tarea de regresión sintética con 100 muestras y 1.000 características que se muestrean independientemente de una distribución gaussiana. También muestreamos la respuesta a partir de una distribución gaussiana</p></li>
+<li><p>Un ejemplo clásico de fuga de información en validación cruzada se encuentra en <em>The Elements of Statistical Learning</em> de Hastie, Tibshirani y Friedman. Reproducimos una versión adaptada: en una tarea de regresión sintética con 100 muestras y 1.000 características, todas se generan de una distribución gaussiana independiente, al igual que la variable respuesta.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -724,7 +1127,7 @@ Best parameters: {&#39;svm__C&#39;: 1, &#39;svm__gamma&#39;: 1}
 </div>
 </div>
 <ul class="simple">
-<li><p>Dada la forma en que creamos el conjunto de datos, <code class="docutils literal notranslate"><span class="pre">no</span> <span class="pre">hay</span> <span class="pre">relación</span> <span class="pre">entre</span> <span class="pre">los</span> <span class="pre">datos,</span> <span class="pre">X,</span> <span class="pre">y</span> <span class="pre">el</span> <span class="pre">objetivo,</span> <span class="pre">y</span> <span class="pre">(son</span> <span class="pre">independientes),</span> <span class="pre">por</span> <span class="pre">lo</span> <span class="pre">que</span> <span class="pre">no</span> <span class="pre">debería</span> <span class="pre">ser</span> <span class="pre">posible</span> <span class="pre">aprender</span> <span class="pre">nada</span> <span class="pre">de</span> <span class="pre">este</span> <span class="pre">conjunto</span> <span class="pre">de</span> <span class="pre">datos</span></code>. Ahora haremos lo siguiente. En primer lugar, seleccionamos la más informativa de las 10 características utilizando la selección de características <code class="docutils literal notranslate"><span class="pre">SelectPercentile</span> <span class="pre">(selecciona</span> <span class="pre">variables</span> <span class="pre">independientes</span> <span class="pre">que</span> <span class="pre">están</span> <span class="pre">en</span> <span class="pre">el</span> <span class="pre">percentil</span> <span class="pre">de</span> <span class="pre">scores</span> <span class="pre">más</span> <span class="pre">altos)</span></code>, y luego evaluamos un regresor <code class="docutils literal notranslate"><span class="pre">Ridge</span></code> utilizando la validación cruzada</p></li>
+<li><p>No hay relación entre los datos <span class="math notranslate nohighlight">\(X\)</span> y el objetivo <span class="math notranslate nohighlight">\(y\)</span> (son independientes), por lo que <em><strong>no debería ser posible aprender nada del conjunto</strong></em>. Se selecciona la característica más informativa con <code class="docutils literal notranslate"><span class="pre">SelectPercentile</span></code> (elige variables en el percentil más alto de scores) y se evalúa un regresor <code class="docutils literal notranslate"><span class="pre">Ridge</span></code> mediante validación cruzada.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -780,7 +1183,7 @@ Best parameters: {&#39;svm__C&#39;: 1, &#39;svm__gamma&#39;: 1}
 </div>
 </div>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">El</span> <span class="pre">score</span> <span class="pre">calculado</span> <span class="pre">por</span> <span class="pre">validación</span> <span class="pre">cruzada</span> <span class="pre">es</span> <span class="pre">de</span> <span class="pre">0.91,</span> <span class="pre">lo</span> <span class="pre">que</span> <span class="pre">indica</span> <span class="pre">un</span> <span class="pre">modelo</span> <span class="pre">muy</span> <span class="pre">bueno.</span> <span class="pre">Está</span> <span class="pre">claro</span> <span class="pre">que</span> <span class="pre">esto</span> <span class="pre">no</span> <span class="pre">puede</span> <span class="pre">ser</span> <span class="pre">correcto,</span> <span class="pre">ya</span> <span class="pre">que</span> <span class="pre">nuestros</span> <span class="pre">datos</span> <span class="pre">son</span> <span class="pre">totalmente</span> <span class="pre">aleatorios</span></code>. Lo que ocurrió aquí es que nuestra selección de características escogió algunas características entre las 10.000 características aleatorias que están (por casualidad) muy bien correlacionadas con el objetivo. <code class="docutils literal notranslate"><span class="pre">Dado</span> <span class="pre">que</span> <span class="pre">ajustamos</span> <span class="pre">la</span> <span class="pre">selección</span> <span class="pre">de</span> <span class="pre">características</span> <span class="pre">fuera</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">validación</span> <span class="pre">cruzada,</span> <span class="pre">podría</span> <span class="pre">encontrar</span> <span class="pre">características</span> <span class="pre">que</span> <span class="pre">están</span> <span class="pre">correlacionadas</span> <span class="pre">tanto</span> <span class="pre">en</span> <span class="pre">los</span> <span class="pre">pliegues</span> <span class="pre">de</span> <span class="pre">entrenamiento</span> <span class="pre">y</span> <span class="pre">de</span> <span class="pre">prueba</span></code>. La información que filtramos de los pliegues de prueba fue muy informativa, conduciendo a resultados muy poco realistas. Comparemos esto con una adecuada validación cruzada usando una tubería</p></li>
+<li><p>El <em><strong>score de validación cruzada es 0.91, lo que sugiere un modelo excelente, pero esto es erróneo, ya que los datos son aleatorios</strong></em>. La selección de características eligió, por azar, algunas altamente correlacionadas con el objetivo. Como la selección ocurrió fuera de la validación cruzada, filtró información de los pliegues de prueba, generando resultados poco realistas. Para evitar esto, es necesario aplicar una validación cruzada adecuada con una tubería.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -815,8 +1218,8 @@ Best parameters: {&#39;svm__C&#39;: 1, &#39;svm__gamma&#39;: 1}
 </div>
 </div>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">El</span> <span class="pre">score</span> <span class="pre">real</span> <span class="pre">es</span> <span class="pre">simplemente</span> <span class="pre">la</span> <span class="pre">versión</span> <span class="pre">positiva</span> <span class="pre">del</span> <span class="pre">número</span> <span class="pre">que</span> <span class="pre">se</span> <span class="pre">obtiene</span></code>. La <code class="docutils literal notranslate"><span class="pre">API</span></code> de scoring unificada siempre maximiza la puntuación, por lo que las puntuaciones que deben minimizarse (MSE) se consideran negativas para que la API de puntuación unificada funcione correctamente. Por lo tanto, <code class="docutils literal notranslate"><span class="pre">la</span> <span class="pre">puntuación</span> <span class="pre">que</span> <span class="pre">se</span> <span class="pre">devuelve</span> <span class="pre">se</span> <span class="pre">coloca</span> <span class="pre">negativa,</span> <span class="pre">cuando</span> <span class="pre">es</span> <span class="pre">una</span> <span class="pre">puntuación</span> <span class="pre">que</span> <span class="pre">debe</span> <span class="pre">minimizarse</span> <span class="pre">y</span> <span class="pre">se</span> <span class="pre">deja</span> <span class="pre">en</span> <span class="pre">positivo</span> <span class="pre">si</span> <span class="pre">es</span> <span class="pre">una</span> <span class="pre">puntuación</span> <span class="pre">que</span> <span class="pre">debe</span> <span class="pre">maximizarse</span></code>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Utilizando</span> <span class="pre">Pipeline,</span> <span class="pre">la</span> <span class="pre">línea</span> <span class="pre">de</span> <span class="pre">selección</span> <span class="pre">de</span> <span class="pre">características</span> <span class="pre">está</span> <span class="pre">ahora</span> <span class="pre">dentro</span> <span class="pre">del</span> <span class="pre">bucle</span> <span class="pre">de</span> <span class="pre">validación</span> <span class="pre">cruzada.</span> <span class="pre">Esto</span> <span class="pre">significa</span> <span class="pre">que</span> <span class="pre">las</span> <span class="pre">características</span> <span class="pre">sólo</span> <span class="pre">pueden</span> <span class="pre">seleccionarse</span> <span class="pre">utilizando</span> <span class="pre">los</span> <span class="pre">pliegues</span> <span class="pre">de</span> <span class="pre">entrenamiento</span> <span class="pre">de</span> <span class="pre">los</span> <span class="pre">datos,</span> <span class="pre">no</span> <span class="pre">el</span> <span class="pre">pliegue</span> <span class="pre">de</span> <span class="pre">prueba</span></code>. La selección de características encuentra características que están correlacionadas con el objetivo en el conjunto de entrenamiento, pero como los datos son totalmente aleatorios, estas características no están correlacionadas con el objetivo en el conjunto de prueba. En este ejemplo, podemos rectificar que, el problema de fuga de datos en la selección de características, marca la diferencia entre concluir que un modelo funciona muy bien y concluir que un modelo no funciona en absoluto.</p></li>
+<li><p>La <strong>API de scoring</strong> siempre maximiza la puntuación. Por ello, las métricas a minimizar (como MSE) se devuelven en negativo, mientras que las que deben maximizarse se mantienen en positivo.</p></li>
+<li><p><strong>Pipeline</strong> garantiza que la selección de características ocurra dentro de la validación cruzada, evitando la fuga de datos. Esto impide que el modelo seleccione características basadas en información del conjunto de prueba, lo que podría generar resultados engañosos.</p></li>
 </ul>
 <ul class="simple">
 <li><p>Consideremos el siguiente ejemplo en el que aplicaremos la siguiente cadena al conjunto de datos <code class="docutils literal notranslate"><span class="pre">digits</span></code></p></li>
@@ -905,8 +1308,8 @@ Best parameters: {&#39;svm__C&#39;: 1, &#39;svm__gamma&#39;: 1}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best parameter (CV score=0.924):
-{&#39;logistic__C&#39;: 0.046415888336127774, &#39;pca__n_components&#39;: 60}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best parameter (CV score=0.874):
+{&#39;logistic__C&#39;: 21.54434690031882, &#39;pca__n_components&#39;: 60}
 </pre></div>
 </div>
 </div>
@@ -930,15 +1333,15 @@ Best parameters: {&#39;svm__C&#39;: 1, &#39;svm__gamma&#39;: 1}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/07091d9942dcfc9bdce948b720c81a166ca7f6acee3a59d973bf5ec23cf8914f.png" src="_images/07091d9942dcfc9bdce948b720c81a166ca7f6acee3a59d973bf5ec23cf8914f.png" />
+<img alt="_images/c1e1b1921dd4d42274314c200616c7cc9ef156b5ad8fcaa5dbc19a1c80479c4f.png" src="_images/c1e1b1921dd4d42274314c200616c7cc9ef156b5ad8fcaa5dbc19a1c80479c4f.png" />
 </div>
 </div>
 </section>
 <section id="la-interfaz-general-del-pipeline">
 <h2><span class="section-number">12.6. </span>La interfaz general del Pipeline<a class="headerlink" href="#la-interfaz-general-del-pipeline" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>La clase <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code> no se limita al preprocesamiento y la clasificación, sino que puede unir cualquier número de estimadores. Por ejemplo, se puede construir una tubería que contenga la <code class="docutils literal notranslate"><span class="pre">extracción</span> <span class="pre">de</span> <span class="pre">características,</span> <span class="pre">la</span> <span class="pre">selección</span> <span class="pre">de</span> <span class="pre">características,</span> <span class="pre">el</span> <span class="pre">escalado</span> <span class="pre">y</span> <span class="pre">la</span> <span class="pre">clasificación</span></code>, para un total de cuatro pasos. Del mismo modo, el último paso podría ser la regresión o la agrupación en lugar de la clasificación. El único requisito para los estimadores en una línea de producción es que <code class="docutils literal notranslate"><span class="pre">todos</span> <span class="pre">los</span> <span class="pre">pasos,</span> <span class="pre">excepto</span> <span class="pre">el</span> <span class="pre">último,</span> <span class="pre">deben</span> <span class="pre">tener</span> <span class="pre">un</span> <span class="pre">método</span> <span class="pre">de</span> <span class="pre">transformación,</span> <span class="pre">de</span> <span class="pre">modo</span> <span class="pre">que</span> <span class="pre">puedan</span> <span class="pre">ser</span> <span class="pre">utilizados</span> <span class="pre">en</span> <span class="pre">el</span> <span class="pre">siguiente</span> <span class="pre">paso</span></code>.</p></li>
-<li><p>Internamente, durante la llamada a <code class="docutils literal notranslate"><span class="pre">Pipeline.fit</span></code>, la tubería llama a <code class="docutils literal notranslate"><span class="pre">fit</span></code> y luego a <code class="docutils literal notranslate"><span class="pre">transform</span></code> en cada paso, con la entrada dada por la salida del método de transformación del paso anterior. Para el último paso de la tubería, sólo se llama a fit. Repasando algunos detalles más finos, esto se implementa como sigue. Recuerde que la tubería <code class="docutils literal notranslate"><span class="pre">line.steps</span></code> es una lista de tuplas, por lo que <code class="docutils literal notranslate"><span class="pre">pipeline.steps[0][1]</span></code> es el primer estimador, <code class="docutils literal notranslate"><span class="pre">pipeline.steps[1][1]</span></code> es el segundo estimador, y así sucesivamente</p></li>
+<li><p>La clase <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code> no se limita al preprocesamiento y la clasificación, sino que puede combinar múltiples estimadores, como <strong>extracción de características, selección, escalado y clasificación</strong>, en una secuencia de pasos. También puede incluir regresión o agrupación en lugar de clasificación. El único requisito es que <strong>todos los pasos, excepto el último, deben tener un método <code class="docutils literal notranslate"><span class="pre">transform</span></code></strong> para encadenar su salida con el siguiente paso.</p></li>
+<li><p>Durante <code class="docutils literal notranslate"><span class="pre">Pipeline.fit</span></code>, cada paso aplica <code class="docutils literal notranslate"><span class="pre">fit</span></code> y <code class="docutils literal notranslate"><span class="pre">transform</span></code>, excepto el último, que solo usa <code class="docutils literal notranslate"><span class="pre">fit</span></code>. Internamente, la tubería ejecuta los métodos en secuencia, con <code class="docutils literal notranslate"><span class="pre">pipeline.steps[i][1]</span></code> representando cada estimador en la lista de pasos.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1111,16 +1514,420 @@ Best parameters: {&#39;svm__C&#39;: 1, &#39;svm__gamma&#39;: 1}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><style>#sk-container-id-2 {color: black;}#sk-container-id-2 pre{padding: 0;}#sk-container-id-2 div.sk-toggleable {background-color: white;}#sk-container-id-2 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-2 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-2 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-2 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-2 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-2 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-2 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-2 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-2 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-2 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-2 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-2 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-2 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-2 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-2 div.sk-item {position: relative;z-index: 1;}#sk-container-id-2 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-2 div.sk-item::before, #sk-container-id-2 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-2 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-2 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-2 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-2 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-2 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-2 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-2 div.sk-label-container {text-align: center;}#sk-container-id-2 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-2 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-2" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>GridSearchCV(cv=5,
+<div class="output text_html"><style>#sk-container-id-2 {
+  /* Definition of color scheme common for light and dark mode */
+  --sklearn-color-text: black;
+  --sklearn-color-line: gray;
+  /* Definition of color scheme for unfitted estimators */
+  --sklearn-color-unfitted-level-0: #fff5e6;
+  --sklearn-color-unfitted-level-1: #f6e4d2;
+  --sklearn-color-unfitted-level-2: #ffe0b3;
+  --sklearn-color-unfitted-level-3: chocolate;
+  /* Definition of color scheme for fitted estimators */
+  --sklearn-color-fitted-level-0: #f0f8ff;
+  --sklearn-color-fitted-level-1: #d4ebff;
+  --sklearn-color-fitted-level-2: #b3dbfd;
+  --sklearn-color-fitted-level-3: cornflowerblue;
+
+  /* Specific color for light theme */
+  --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
+  --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, white)));
+  --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
+  --sklearn-color-icon: #696969;
+
+  @media (prefers-color-scheme: dark) {
+    /* Redefinition of color scheme for dark theme */
+    --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
+    --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, #111)));
+    --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
+    --sklearn-color-icon: #878787;
+  }
+}
+
+#sk-container-id-2 {
+  color: var(--sklearn-color-text);
+}
+
+#sk-container-id-2 pre {
+  padding: 0;
+}
+
+#sk-container-id-2 input.sk-hidden--visually {
+  border: 0;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+#sk-container-id-2 div.sk-dashed-wrapped {
+  border: 1px dashed var(--sklearn-color-line);
+  margin: 0 0.4em 0.5em 0.4em;
+  box-sizing: border-box;
+  padding-bottom: 0.4em;
+  background-color: var(--sklearn-color-background);
+}
+
+#sk-container-id-2 div.sk-container {
+  /* jupyter's `normalize.less` sets `[hidden] { display: none; }`
+     but bootstrap.min.css set `[hidden] { display: none !important; }`
+     so we also need the `!important` here to be able to override the
+     default hidden behavior on the sphinx rendered scikit-learn.org.
+     See: https://github.com/scikit-learn/scikit-learn/issues/21755 */
+  display: inline-block !important;
+  position: relative;
+}
+
+#sk-container-id-2 div.sk-text-repr-fallback {
+  display: none;
+}
+
+div.sk-parallel-item,
+div.sk-serial,
+div.sk-item {
+  /* draw centered vertical line to link estimators */
+  background-image: linear-gradient(var(--sklearn-color-text-on-default-background), var(--sklearn-color-text-on-default-background));
+  background-size: 2px 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+/* Parallel-specific style estimator block */
+
+#sk-container-id-2 div.sk-parallel-item::after {
+  content: "";
+  width: 100%;
+  border-bottom: 2px solid var(--sklearn-color-text-on-default-background);
+  flex-grow: 1;
+}
+
+#sk-container-id-2 div.sk-parallel {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  background-color: var(--sklearn-color-background);
+  position: relative;
+}
+
+#sk-container-id-2 div.sk-parallel-item {
+  display: flex;
+  flex-direction: column;
+}
+
+#sk-container-id-2 div.sk-parallel-item:first-child::after {
+  align-self: flex-end;
+  width: 50%;
+}
+
+#sk-container-id-2 div.sk-parallel-item:last-child::after {
+  align-self: flex-start;
+  width: 50%;
+}
+
+#sk-container-id-2 div.sk-parallel-item:only-child::after {
+  width: 0;
+}
+
+/* Serial-specific style estimator block */
+
+#sk-container-id-2 div.sk-serial {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--sklearn-color-background);
+  padding-right: 1em;
+  padding-left: 1em;
+}
+
+
+/* Toggleable style: style used for estimator/Pipeline/ColumnTransformer box that is
+clickable and can be expanded/collapsed.
+- Pipeline and ColumnTransformer use this feature and define the default style
+- Estimators will overwrite some part of the style using the `sk-estimator` class
+*/
+
+/* Pipeline and ColumnTransformer style (default) */
+
+#sk-container-id-2 div.sk-toggleable {
+  /* Default theme specific background. It is overwritten whether we have a
+  specific estimator or a Pipeline/ColumnTransformer */
+  background-color: var(--sklearn-color-background);
+}
+
+/* Toggleable label */
+#sk-container-id-2 label.sk-toggleable__label {
+  cursor: pointer;
+  display: block;
+  width: 100%;
+  margin-bottom: 0;
+  padding: 0.5em;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+#sk-container-id-2 label.sk-toggleable__label-arrow:before {
+  /* Arrow on the left of the label */
+  content: "▸";
+  float: left;
+  margin-right: 0.25em;
+  color: var(--sklearn-color-icon);
+}
+
+#sk-container-id-2 label.sk-toggleable__label-arrow:hover:before {
+  color: var(--sklearn-color-text);
+}
+
+/* Toggleable content - dropdown */
+
+#sk-container-id-2 div.sk-toggleable__content {
+  max-height: 0;
+  max-width: 0;
+  overflow: hidden;
+  text-align: left;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-2 div.sk-toggleable__content.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-2 div.sk-toggleable__content pre {
+  margin: 0.2em;
+  border-radius: 0.25em;
+  color: var(--sklearn-color-text);
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-2 div.sk-toggleable__content.fitted pre {
+  /* unfitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-2 input.sk-toggleable__control:checked~div.sk-toggleable__content {
+  /* Expand drop-down */
+  max-height: 200px;
+  max-width: 100%;
+  overflow: auto;
+}
+
+#sk-container-id-2 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
+  content: "▾";
+}
+
+/* Pipeline/ColumnTransformer-specific style */
+
+#sk-container-id-2 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-2 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator-specific style */
+
+/* Colorize estimator box */
+#sk-container-id-2 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-2 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+#sk-container-id-2 div.sk-label label.sk-toggleable__label,
+#sk-container-id-2 div.sk-label label {
+  /* The background is the default theme color */
+  color: var(--sklearn-color-text-on-default-background);
+}
+
+/* On hover, darken the color of the background */
+#sk-container-id-2 div.sk-label:hover label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+/* Label box, darken color on hover, fitted */
+#sk-container-id-2 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator label */
+
+#sk-container-id-2 div.sk-label label {
+  font-family: monospace;
+  font-weight: bold;
+  display: inline-block;
+  line-height: 1.2em;
+}
+
+#sk-container-id-2 div.sk-label-container {
+  text-align: center;
+}
+
+/* Estimator-specific */
+#sk-container-id-2 div.sk-estimator {
+  font-family: monospace;
+  border: 1px dotted var(--sklearn-color-border-box);
+  border-radius: 0.25em;
+  box-sizing: border-box;
+  margin-bottom: 0.5em;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-2 div.sk-estimator.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+/* on hover */
+#sk-container-id-2 div.sk-estimator:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-2 div.sk-estimator.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Specification for estimator info (e.g. "i" and "?") */
+
+/* Common style for "i" and "?" */
+
+.sk-estimator-doc-link,
+a:link.sk-estimator-doc-link,
+a:visited.sk-estimator-doc-link {
+  float: right;
+  font-size: smaller;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-background);
+  border-radius: 1em;
+  height: 1em;
+  width: 1em;
+  text-decoration: none !important;
+  margin-left: 1ex;
+  /* unfitted */
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+  color: var(--sklearn-color-unfitted-level-1);
+}
+
+.sk-estimator-doc-link.fitted,
+a:link.sk-estimator-doc-link.fitted,
+a:visited.sk-estimator-doc-link.fitted {
+  /* fitted */
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+div.sk-estimator:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover,
+div.sk-label-container:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+div.sk-estimator.fitted:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover,
+div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+/* Span, style for the box shown on hovering the info icon */
+.sk-estimator-doc-link span {
+  display: none;
+  z-index: 9999;
+  position: relative;
+  font-weight: normal;
+  right: .2ex;
+  padding: .5ex;
+  margin: .5ex;
+  width: min-content;
+  min-width: 20ex;
+  max-width: 50ex;
+  color: var(--sklearn-color-text);
+  box-shadow: 2pt 2pt 4pt #999;
+  /* unfitted */
+  background: var(--sklearn-color-unfitted-level-0);
+  border: .5pt solid var(--sklearn-color-unfitted-level-3);
+}
+
+.sk-estimator-doc-link.fitted span {
+  /* fitted */
+  background: var(--sklearn-color-fitted-level-0);
+  border: var(--sklearn-color-fitted-level-3);
+}
+
+.sk-estimator-doc-link:hover span {
+  display: block;
+}
+
+/* "?"-specific style due to the `<a>` HTML tag */
+
+#sk-container-id-2 a.estimator_doc_link {
+  float: right;
+  font-size: 1rem;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-background);
+  border-radius: 1rem;
+  height: 1rem;
+  width: 1rem;
+  text-decoration: none;
+  /* unfitted */
+  color: var(--sklearn-color-unfitted-level-1);
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+}
+
+#sk-container-id-2 a.estimator_doc_link.fitted {
+  /* fitted */
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+#sk-container-id-2 a.estimator_doc_link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+#sk-container-id-2 a.estimator_doc_link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+}
+</style><div id="sk-container-id-2" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>GridSearchCV(cv=5,
              estimator=Pipeline(steps=[(&#x27;standardscaler&#x27;, StandardScaler()),
                                        (&#x27;logisticregression&#x27;,
                                         LogisticRegression())]),
-             param_grid={&#x27;logisticregression__C&#x27;: [0.01, 0.1, 1, 10, 100]})</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-4" type="checkbox" ><label for="sk-estimator-id-4" class="sk-toggleable__label sk-toggleable__label-arrow">GridSearchCV</label><div class="sk-toggleable__content"><pre>GridSearchCV(cv=5,
+             param_grid={&#x27;logisticregression__C&#x27;: [0.01, 0.1, 1, 10, 100]})</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-4" type="checkbox" ><label for="sk-estimator-id-4" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;&nbsp;GridSearchCV<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.model_selection.GridSearchCV.html">?<span>Documentation for GridSearchCV</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></label><div class="sk-toggleable__content fitted"><pre>GridSearchCV(cv=5,
              estimator=Pipeline(steps=[(&#x27;standardscaler&#x27;, StandardScaler()),
                                        (&#x27;logisticregression&#x27;,
                                         LogisticRegression())]),
-             param_grid={&#x27;logisticregression__C&#x27;: [0.01, 0.1, 1, 10, 100]})</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-5" type="checkbox" ><label for="sk-estimator-id-5" class="sk-toggleable__label sk-toggleable__label-arrow">estimator: Pipeline</label><div class="sk-toggleable__content"><pre>Pipeline(steps=[(&#x27;standardscaler&#x27;, StandardScaler()),
-                (&#x27;logisticregression&#x27;, LogisticRegression())])</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-6" type="checkbox" ><label for="sk-estimator-id-6" class="sk-toggleable__label sk-toggleable__label-arrow">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-7" type="checkbox" ><label for="sk-estimator-id-7" class="sk-toggleable__label sk-toggleable__label-arrow">LogisticRegression</label><div class="sk-toggleable__content"><pre>LogisticRegression()</pre></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
+             param_grid={&#x27;logisticregression__C&#x27;: [0.01, 0.1, 1, 10, 100]})</pre></div> </div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-5" type="checkbox" ><label for="sk-estimator-id-5" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">best_estimator_: Pipeline</label><div class="sk-toggleable__content fitted"><pre>Pipeline(steps=[(&#x27;standardscaler&#x27;, StandardScaler()),
+                (&#x27;logisticregression&#x27;, LogisticRegression(C=1))])</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-6" type="checkbox" ><label for="sk-estimator-id-6" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;StandardScaler<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.preprocessing.StandardScaler.html">?<span>Documentation for StandardScaler</span></a></label><div class="sk-toggleable__content fitted"><pre>StandardScaler()</pre></div> </div></div><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-7" type="checkbox" ><label for="sk-estimator-id-7" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;LogisticRegression<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.linear_model.LogisticRegression.html">?<span>Documentation for LogisticRegression</span></a></label><div class="sk-toggleable__content fitted"><pre>LogisticRegression(C=1)</pre></div> </div></div></div></div></div></div></div></div></div></div></div></div></div>
 </div>
 <ul class="simple">
 <li><p>Entonces, ¿cómo accedemos a los coeficientes del mejor modelo <code class="docutils literal notranslate"><span class="pre">LogisticRegression</span></code> que fue encontrado por <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code>? De los capítulos anteriores sabemos que el mejor modelo encontrado por <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code>, entrenado con todos los datos de entrenamiento, se almacena en <code class="docutils literal notranslate"><span class="pre">grid.best_estimator_</span></code></p></li>
@@ -1166,11 +1973,11 @@ LogisticRegression(C=1)
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Logistic regression coefficients:
-[[-0.43570655 -0.34266946 -0.40809443 -0.5344574  -0.14971847  0.61034122
-  -0.72634347 -0.78538827  0.03886087  0.27497198 -1.29780109  0.04926005
-  -0.67336941 -0.93447426 -0.13939555  0.45032641 -0.13009864 -0.10144273
-   0.43432027  0.71596578 -1.09068862 -1.09463976 -0.85183755 -1.06406198
-  -0.74316099  0.07252425 -0.82323903 -0.65321239 -0.64379499 -0.42026013]]
+[[-0.4475566  -0.34609376 -0.41703843 -0.52889408 -0.15784407  0.60271339
+  -0.71771325 -0.78367478  0.04847448  0.27478533 -1.29504052  0.05314385
+  -0.69103766 -0.91925087 -0.14791795  0.46138699 -0.1264859  -0.10289486
+   0.42812714  0.71492797 -1.08532414 -1.09273614 -0.85133685 -1.04104568
+  -0.72839683  0.07656216 -0.83641023 -0.64928603 -0.6491432  -0.42968125]]
 </pre></div>
 </div>
 </div>
@@ -1220,7 +2027,7 @@ LogisticRegression(C=1)
 </div>
 </div>
 <ul class="simple">
-<li><p>La clase <code class="docutils literal notranslate"><span class="pre">PolynomialFeatures</span></code>, se encarga de generar características polinómicas y de interacción. <code class="docutils literal notranslate"><span class="pre">Genera</span> <span class="pre">una</span> <span class="pre">nueva</span> <span class="pre">matriz</span> <span class="pre">de</span> <span class="pre">características</span> <span class="pre">que</span> <span class="pre">consiste</span> <span class="pre">en</span> <span class="pre">todas</span> <span class="pre">las</span> <span class="pre">combinaciones</span> <span class="pre">polinómicas</span> <span class="pre">de</span> <span class="pre">las</span> <span class="pre">características</span> <span class="pre">con</span> <span class="pre">grado</span> <span class="pre">menor</span> <span class="pre">o</span> <span class="pre">igual</span> <span class="pre">al</span> <span class="pre">grado</span> <span class="pre">especificado</span></code>. Por ejemplo, si una muestra de entrada es bidimensional y de la forma <code class="docutils literal notranslate"><span class="pre">[a,</span> <span class="pre">b]</span></code>, las características polinómicas de grado 2 son <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">a,</span> <span class="pre">b,</span> <span class="pre">a^2,</span> <span class="pre">ab,</span> <span class="pre">b^2]</span></code>. ¿Cómo sabemos qué grados de polinomios elegir, o si hay que elegir algún polinomio o interacciones? <code class="docutils literal notranslate"><span class="pre">Lo</span> <span class="pre">ideal</span> <span class="pre">es</span> <span class="pre">seleccionar</span> <span class="pre">el</span> <span class="pre">parámetro</span> <span class="pre">de</span> <span class="pre">grado</span> <span class="pre">basado</span> <span class="pre">en</span> <span class="pre">el</span> <span class="pre">resultado</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">clasificación</span></code>. Utilizando nuestro pipeline, podemos buscar sobre el parámetro <code class="docutils literal notranslate"><span class="pre">degree</span></code> junto con el parámetro <code class="docutils literal notranslate"><span class="pre">alpha</span></code> de <code class="docutils literal notranslate"><span class="pre">Ridge</span></code>. Para ello, definimos un <code class="docutils literal notranslate"><span class="pre">param_grid</span></code> que contenga ambos, debidamente prefijados por los nombres de los pasos</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PolynomialFeatures</span></code> genera características polinómicas e interacciones hasta un grado especificado. Por ejemplo, para una entrada <code class="docutils literal notranslate"><span class="pre">[a,</span> <span class="pre">b]</span></code> y grado 2, se obtiene <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">a,</span> <span class="pre">b,</span> <span class="pre">a²,</span> <span class="pre">ab,</span> <span class="pre">b²]</span></code>. La elección del grado adecuado depende del desempeño del modelo. Se puede optimizar junto con <code class="docutils literal notranslate"><span class="pre">alpha</span></code> de <code class="docutils literal notranslate"><span class="pre">Ridge</span></code> usando un <code class="docutils literal notranslate"><span class="pre">param_grid</span></code> en un pipeline.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1241,23 +2048,427 @@ LogisticRegression(C=1)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><style>#sk-container-id-3 {color: black;}#sk-container-id-3 pre{padding: 0;}#sk-container-id-3 div.sk-toggleable {background-color: white;}#sk-container-id-3 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-3 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-3 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-3 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-3 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-3 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-3 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-3 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-3 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-3 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-3 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-3 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-3 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-3 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-3 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-3 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-3 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-3 div.sk-item {position: relative;z-index: 1;}#sk-container-id-3 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-3 div.sk-item::before, #sk-container-id-3 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-3 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-3 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-3 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-3 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-3 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-3 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-3 div.sk-label-container {text-align: center;}#sk-container-id-3 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-3 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-3" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>GridSearchCV(cv=5,
+<div class="output text_html"><style>#sk-container-id-3 {
+  /* Definition of color scheme common for light and dark mode */
+  --sklearn-color-text: black;
+  --sklearn-color-line: gray;
+  /* Definition of color scheme for unfitted estimators */
+  --sklearn-color-unfitted-level-0: #fff5e6;
+  --sklearn-color-unfitted-level-1: #f6e4d2;
+  --sklearn-color-unfitted-level-2: #ffe0b3;
+  --sklearn-color-unfitted-level-3: chocolate;
+  /* Definition of color scheme for fitted estimators */
+  --sklearn-color-fitted-level-0: #f0f8ff;
+  --sklearn-color-fitted-level-1: #d4ebff;
+  --sklearn-color-fitted-level-2: #b3dbfd;
+  --sklearn-color-fitted-level-3: cornflowerblue;
+
+  /* Specific color for light theme */
+  --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
+  --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, white)));
+  --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
+  --sklearn-color-icon: #696969;
+
+  @media (prefers-color-scheme: dark) {
+    /* Redefinition of color scheme for dark theme */
+    --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
+    --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, #111)));
+    --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
+    --sklearn-color-icon: #878787;
+  }
+}
+
+#sk-container-id-3 {
+  color: var(--sklearn-color-text);
+}
+
+#sk-container-id-3 pre {
+  padding: 0;
+}
+
+#sk-container-id-3 input.sk-hidden--visually {
+  border: 0;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+#sk-container-id-3 div.sk-dashed-wrapped {
+  border: 1px dashed var(--sklearn-color-line);
+  margin: 0 0.4em 0.5em 0.4em;
+  box-sizing: border-box;
+  padding-bottom: 0.4em;
+  background-color: var(--sklearn-color-background);
+}
+
+#sk-container-id-3 div.sk-container {
+  /* jupyter's `normalize.less` sets `[hidden] { display: none; }`
+     but bootstrap.min.css set `[hidden] { display: none !important; }`
+     so we also need the `!important` here to be able to override the
+     default hidden behavior on the sphinx rendered scikit-learn.org.
+     See: https://github.com/scikit-learn/scikit-learn/issues/21755 */
+  display: inline-block !important;
+  position: relative;
+}
+
+#sk-container-id-3 div.sk-text-repr-fallback {
+  display: none;
+}
+
+div.sk-parallel-item,
+div.sk-serial,
+div.sk-item {
+  /* draw centered vertical line to link estimators */
+  background-image: linear-gradient(var(--sklearn-color-text-on-default-background), var(--sklearn-color-text-on-default-background));
+  background-size: 2px 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+/* Parallel-specific style estimator block */
+
+#sk-container-id-3 div.sk-parallel-item::after {
+  content: "";
+  width: 100%;
+  border-bottom: 2px solid var(--sklearn-color-text-on-default-background);
+  flex-grow: 1;
+}
+
+#sk-container-id-3 div.sk-parallel {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  background-color: var(--sklearn-color-background);
+  position: relative;
+}
+
+#sk-container-id-3 div.sk-parallel-item {
+  display: flex;
+  flex-direction: column;
+}
+
+#sk-container-id-3 div.sk-parallel-item:first-child::after {
+  align-self: flex-end;
+  width: 50%;
+}
+
+#sk-container-id-3 div.sk-parallel-item:last-child::after {
+  align-self: flex-start;
+  width: 50%;
+}
+
+#sk-container-id-3 div.sk-parallel-item:only-child::after {
+  width: 0;
+}
+
+/* Serial-specific style estimator block */
+
+#sk-container-id-3 div.sk-serial {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--sklearn-color-background);
+  padding-right: 1em;
+  padding-left: 1em;
+}
+
+
+/* Toggleable style: style used for estimator/Pipeline/ColumnTransformer box that is
+clickable and can be expanded/collapsed.
+- Pipeline and ColumnTransformer use this feature and define the default style
+- Estimators will overwrite some part of the style using the `sk-estimator` class
+*/
+
+/* Pipeline and ColumnTransformer style (default) */
+
+#sk-container-id-3 div.sk-toggleable {
+  /* Default theme specific background. It is overwritten whether we have a
+  specific estimator or a Pipeline/ColumnTransformer */
+  background-color: var(--sklearn-color-background);
+}
+
+/* Toggleable label */
+#sk-container-id-3 label.sk-toggleable__label {
+  cursor: pointer;
+  display: block;
+  width: 100%;
+  margin-bottom: 0;
+  padding: 0.5em;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+#sk-container-id-3 label.sk-toggleable__label-arrow:before {
+  /* Arrow on the left of the label */
+  content: "▸";
+  float: left;
+  margin-right: 0.25em;
+  color: var(--sklearn-color-icon);
+}
+
+#sk-container-id-3 label.sk-toggleable__label-arrow:hover:before {
+  color: var(--sklearn-color-text);
+}
+
+/* Toggleable content - dropdown */
+
+#sk-container-id-3 div.sk-toggleable__content {
+  max-height: 0;
+  max-width: 0;
+  overflow: hidden;
+  text-align: left;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-3 div.sk-toggleable__content.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-3 div.sk-toggleable__content pre {
+  margin: 0.2em;
+  border-radius: 0.25em;
+  color: var(--sklearn-color-text);
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-3 div.sk-toggleable__content.fitted pre {
+  /* unfitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-3 input.sk-toggleable__control:checked~div.sk-toggleable__content {
+  /* Expand drop-down */
+  max-height: 200px;
+  max-width: 100%;
+  overflow: auto;
+}
+
+#sk-container-id-3 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
+  content: "▾";
+}
+
+/* Pipeline/ColumnTransformer-specific style */
+
+#sk-container-id-3 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-3 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator-specific style */
+
+/* Colorize estimator box */
+#sk-container-id-3 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-3 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+#sk-container-id-3 div.sk-label label.sk-toggleable__label,
+#sk-container-id-3 div.sk-label label {
+  /* The background is the default theme color */
+  color: var(--sklearn-color-text-on-default-background);
+}
+
+/* On hover, darken the color of the background */
+#sk-container-id-3 div.sk-label:hover label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+/* Label box, darken color on hover, fitted */
+#sk-container-id-3 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator label */
+
+#sk-container-id-3 div.sk-label label {
+  font-family: monospace;
+  font-weight: bold;
+  display: inline-block;
+  line-height: 1.2em;
+}
+
+#sk-container-id-3 div.sk-label-container {
+  text-align: center;
+}
+
+/* Estimator-specific */
+#sk-container-id-3 div.sk-estimator {
+  font-family: monospace;
+  border: 1px dotted var(--sklearn-color-border-box);
+  border-radius: 0.25em;
+  box-sizing: border-box;
+  margin-bottom: 0.5em;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-3 div.sk-estimator.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+/* on hover */
+#sk-container-id-3 div.sk-estimator:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-3 div.sk-estimator.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Specification for estimator info (e.g. "i" and "?") */
+
+/* Common style for "i" and "?" */
+
+.sk-estimator-doc-link,
+a:link.sk-estimator-doc-link,
+a:visited.sk-estimator-doc-link {
+  float: right;
+  font-size: smaller;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-background);
+  border-radius: 1em;
+  height: 1em;
+  width: 1em;
+  text-decoration: none !important;
+  margin-left: 1ex;
+  /* unfitted */
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+  color: var(--sklearn-color-unfitted-level-1);
+}
+
+.sk-estimator-doc-link.fitted,
+a:link.sk-estimator-doc-link.fitted,
+a:visited.sk-estimator-doc-link.fitted {
+  /* fitted */
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+div.sk-estimator:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover,
+div.sk-label-container:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+div.sk-estimator.fitted:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover,
+div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+/* Span, style for the box shown on hovering the info icon */
+.sk-estimator-doc-link span {
+  display: none;
+  z-index: 9999;
+  position: relative;
+  font-weight: normal;
+  right: .2ex;
+  padding: .5ex;
+  margin: .5ex;
+  width: min-content;
+  min-width: 20ex;
+  max-width: 50ex;
+  color: var(--sklearn-color-text);
+  box-shadow: 2pt 2pt 4pt #999;
+  /* unfitted */
+  background: var(--sklearn-color-unfitted-level-0);
+  border: .5pt solid var(--sklearn-color-unfitted-level-3);
+}
+
+.sk-estimator-doc-link.fitted span {
+  /* fitted */
+  background: var(--sklearn-color-fitted-level-0);
+  border: var(--sklearn-color-fitted-level-3);
+}
+
+.sk-estimator-doc-link:hover span {
+  display: block;
+}
+
+/* "?"-specific style due to the `<a>` HTML tag */
+
+#sk-container-id-3 a.estimator_doc_link {
+  float: right;
+  font-size: 1rem;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-background);
+  border-radius: 1rem;
+  height: 1rem;
+  width: 1rem;
+  text-decoration: none;
+  /* unfitted */
+  color: var(--sklearn-color-unfitted-level-1);
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+}
+
+#sk-container-id-3 a.estimator_doc_link.fitted {
+  /* fitted */
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+#sk-container-id-3 a.estimator_doc_link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+#sk-container-id-3 a.estimator_doc_link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+}
+</style><div id="sk-container-id-3" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>GridSearchCV(cv=5,
              estimator=Pipeline(steps=[(&#x27;standardscaler&#x27;, StandardScaler()),
                                        (&#x27;polynomialfeatures&#x27;,
                                         PolynomialFeatures()),
                                        (&#x27;ridge&#x27;, Ridge())]),
              n_jobs=-1,
              param_grid={&#x27;polynomialfeatures__degree&#x27;: [1, 2, 3],
-                         &#x27;ridge__alpha&#x27;: [0.001, 0.01, 0.1, 1, 10, 100]})</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-8" type="checkbox" ><label for="sk-estimator-id-8" class="sk-toggleable__label sk-toggleable__label-arrow">GridSearchCV</label><div class="sk-toggleable__content"><pre>GridSearchCV(cv=5,
+                         &#x27;ridge__alpha&#x27;: [0.001, 0.01, 0.1, 1, 10, 100]})</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-8" type="checkbox" ><label for="sk-estimator-id-8" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;&nbsp;GridSearchCV<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.model_selection.GridSearchCV.html">?<span>Documentation for GridSearchCV</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></label><div class="sk-toggleable__content fitted"><pre>GridSearchCV(cv=5,
              estimator=Pipeline(steps=[(&#x27;standardscaler&#x27;, StandardScaler()),
                                        (&#x27;polynomialfeatures&#x27;,
                                         PolynomialFeatures()),
                                        (&#x27;ridge&#x27;, Ridge())]),
              n_jobs=-1,
              param_grid={&#x27;polynomialfeatures__degree&#x27;: [1, 2, 3],
-                         &#x27;ridge__alpha&#x27;: [0.001, 0.01, 0.1, 1, 10, 100]})</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-9" type="checkbox" ><label for="sk-estimator-id-9" class="sk-toggleable__label sk-toggleable__label-arrow">estimator: Pipeline</label><div class="sk-toggleable__content"><pre>Pipeline(steps=[(&#x27;standardscaler&#x27;, StandardScaler()),
+                         &#x27;ridge__alpha&#x27;: [0.001, 0.01, 0.1, 1, 10, 100]})</pre></div> </div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-9" type="checkbox" ><label for="sk-estimator-id-9" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">best_estimator_: Pipeline</label><div class="sk-toggleable__content fitted"><pre>Pipeline(steps=[(&#x27;standardscaler&#x27;, StandardScaler()),
                 (&#x27;polynomialfeatures&#x27;, PolynomialFeatures()),
-                (&#x27;ridge&#x27;, Ridge())])</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-10" type="checkbox" ><label for="sk-estimator-id-10" class="sk-toggleable__label sk-toggleable__label-arrow">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-11" type="checkbox" ><label for="sk-estimator-id-11" class="sk-toggleable__label sk-toggleable__label-arrow">PolynomialFeatures</label><div class="sk-toggleable__content"><pre>PolynomialFeatures()</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-12" type="checkbox" ><label for="sk-estimator-id-12" class="sk-toggleable__label sk-toggleable__label-arrow">Ridge</label><div class="sk-toggleable__content"><pre>Ridge()</pre></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
+                (&#x27;ridge&#x27;, Ridge(alpha=10))])</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-10" type="checkbox" ><label for="sk-estimator-id-10" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;StandardScaler<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.preprocessing.StandardScaler.html">?<span>Documentation for StandardScaler</span></a></label><div class="sk-toggleable__content fitted"><pre>StandardScaler()</pre></div> </div></div><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-11" type="checkbox" ><label for="sk-estimator-id-11" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;PolynomialFeatures<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.preprocessing.PolynomialFeatures.html">?<span>Documentation for PolynomialFeatures</span></a></label><div class="sk-toggleable__content fitted"><pre>PolynomialFeatures()</pre></div> </div></div><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-12" type="checkbox" ><label for="sk-estimator-id-12" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;Ridge<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.linear_model.Ridge.html">?<span>Documentation for Ridge</span></a></label><div class="sk-toggleable__content fitted"><pre>Ridge(alpha=10)</pre></div> </div></div></div></div></div></div></div></div></div></div></div></div></div>
 </div>
 <ul class="simple">
 <li><p>Podemos visualizar el resultado de la validación cruzada utilizando un mapa de calor (ver <a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.matshow.html">matshow</a>), como ya se hizo en anteriores secciones</p></li>
@@ -1282,7 +2493,7 @@ LogisticRegression(C=1)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/bd60a7fbecad7f5cc5b37d09a6cbdc84c934992728a512dffef131d10a4f2261.png" src="_images/bd60a7fbecad7f5cc5b37d09a6cbdc84c934992728a512dffef131d10a4f2261.png" />
+<img alt="_images/baa06a8b76e7cf2266f4c5268990e3e5c273482bc361252c943d5884cfb4dd8f.png" src="_images/baa06a8b76e7cf2266f4c5268990e3e5c273482bc361252c943d5884cfb4dd8f.png" />
 </div>
 </div>
 <ul class="simple">
@@ -1335,13 +2546,14 @@ LogisticRegression(C=1)
 </div>
 </div>
 <ul class="simple">
-<li><p>Como era de esperar al ver los resultados de la búsqueda en red visualizados, <code class="docutils literal notranslate"><span class="pre">el</span> <span class="pre">no</span> <span class="pre">uso</span> <span class="pre">de</span> <span class="pre">características</span> <span class="pre">polinómicas</span> <span class="pre">conduce</span> <span class="pre">a</span> <span class="pre">resultados</span> <span class="pre">decididamente</span> <span class="pre">peores.</span> <span class="pre">La</span> <span class="pre">búsqueda</span> <span class="pre">sobre</span> <span class="pre">los</span> <span class="pre">parámetros</span> <span class="pre">de</span> <span class="pre">preprocesamiento</span> <span class="pre">junto</span> <span class="pre">con</span> <span class="pre">los</span> <span class="pre">parámetros</span> <span class="pre">del</span> <span class="pre">modelo</span> <span class="pre">es</span> <span class="pre">una</span> <span class="pre">estrategia</span> <span class="pre">muy</span> <span class="pre">poderosa</span></code>. Sin embargo, hay que tener en cuenta que <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> prueba todas las combinaciones posibles de los parámetros especificados. Por lo tanto, si se añaden más parámetros a la red aumenta exponencialmente el número de modelos que hay que construir</p></li>
+<li><p>El no usar características polinómicas empeora los resultados. Buscar simultáneamente los parámetros del preprocesamiento y del modelo es una estrategia poderosa. Sin embargo, <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> evalúa todas las combinaciones posibles, por lo que añadir más parámetros incrementa exponencialmente el número de modelos a construir.</p></li>
 </ul>
 </section>
 <section id="grid-searching-que-modelo-usar">
 <h2><span class="section-number">12.11. </span>Grid-Searching Qué Modelo Usar<a class="headerlink" href="#grid-searching-que-modelo-usar" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>Se puede ir más allá al combinar <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> y <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code>: también es posible buscar sobre los pasos reales que se están realizando en el <code class="docutils literal notranslate"><span class="pre">pipeline</span></code> (por ejemplo, si se debe utilizar <code class="docutils literal notranslate"><span class="pre">StandardScaler</span></code> o <code class="docutils literal notranslate"><span class="pre">MinMaxScaler</span></code>). Esto conduce a un espacio de búsqueda aún mayor y debe considerarse cuidadosamente. Probar todas las soluciones posibles no suele ser una estrategia viable de aprendizaje automático. Sin embargo, aquí hay un ejemplo que compara un clasificador <code class="docutils literal notranslate"><span class="pre">RandomForest</span></code> y un <code class="docutils literal notranslate"><span class="pre">SVC</span></code> en el conjunto de datos <code class="docutils literal notranslate"><span class="pre">iris</span></code>. Sabemos que <code class="docutils literal notranslate"><span class="pre">SVC</span></code> podría necesitar que los datos sean escalados, por lo que también buscamos si se utiliza <code class="docutils literal notranslate"><span class="pre">StandardScaler</span></code> o no preprocesamiento. Para el <code class="docutils literal notranslate"><span class="pre">RandomForestClassifier</span></code>, sabemos que no es necesario el preprocesamiento. Comenzamos definiendo el <code class="docutils literal notranslate"><span class="pre">pipeline</span></code>. Aquí, nombramos explícitamente los pasos. Queremos dos pasos, uno para el preprocesamiento y luego un clasificador. Podemos instanciar esto utilizando <code class="docutils literal notranslate"><span class="pre">SVC</span></code> y <code class="docutils literal notranslate"><span class="pre">StandardScaler</span></code></p></li>
+<li><p>Se puede ampliar <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> combinándolo con <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code> para optimizar no solo los hiperparámetros, sino también los pasos del preprocesamiento, como elegir entre <code class="docutils literal notranslate"><span class="pre">StandardScaler</span></code> o <code class="docutils literal notranslate"><span class="pre">MinMaxScaler</span></code>. Esto aumenta el espacio de búsqueda y debe usarse con precaución.</p></li>
+<li><p>Por ejemplo, al comparar <code class="docutils literal notranslate"><span class="pre">RandomForestClassifier</span></code> y <code class="docutils literal notranslate"><span class="pre">SVC</span></code> en el conjunto <code class="docutils literal notranslate"><span class="pre">iris</span></code>, sabemos que <code class="docutils literal notranslate"><span class="pre">SVC</span></code> puede requerir escalado, por lo que buscamos si usar <code class="docutils literal notranslate"><span class="pre">StandardScaler</span></code> o prescindir de preprocesamiento. <code class="docutils literal notranslate"><span class="pre">RandomForestClassifier</span></code>, en cambio, no lo necesita. Definimos un <code class="docutils literal notranslate"><span class="pre">pipeline</span></code> con dos pasos: preprocesamiento y clasificación, usando <code class="docutils literal notranslate"><span class="pre">SVC</span></code> con <code class="docutils literal notranslate"><span class="pre">StandardScaler</span></code>.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1351,7 +2563,7 @@ LogisticRegression(C=1)
 </div>
 </div>
 <ul class="simple">
-<li><p>Ahora podemos definir el <code class="docutils literal notranslate"><span class="pre">parameter_grid</span></code> para buscar sobre él. Queremos que el clasificador sea <code class="docutils literal notranslate"><span class="pre">RandomForestClassifier</span></code> o <code class="docutils literal notranslate"><span class="pre">SVC</span></code>. Debido a que tienen diferentes parámetros y necesitan un preprocesamiento diferente, podemos utilizar la lista de red de busqueda que discutimos en el capítulo anterior. Para asignar una estimación a un paso, utilizamos el nombre del paso como nombre del parámetro. Cuando queramos omitir un paso en la tubería (por ejemplo, porque no necesitamos el preprocesamiento para el <code class="docutils literal notranslate"><span class="pre">RandomForest</span></code>), podemos establecer ese paso como <code class="docutils literal notranslate"><span class="pre">None</span></code></p></li>
+<li><p>Definimos <code class="docutils literal notranslate"><span class="pre">parameter_grid</span></code> para buscar entre <code class="docutils literal notranslate"><span class="pre">RandomForestClassifier</span></code> y <code class="docutils literal notranslate"><span class="pre">SVC</span></code>, ajustando sus parámetros y preprocesamiento según el modelo. Usamos una lista de búsqueda para gestionar configuraciones distintas. Para asignar un estimador a un paso, usamos su nombre como parámetro. Si un modelo no requiere preprocesamiento (como <code class="docutils literal notranslate"><span class="pre">RandomForest</span></code>), configuramos ese paso como <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1389,7 +2601,7 @@ LogisticRegression(C=1)
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best params:
-{&#39;classifier&#39;: SVC(C=10, gamma=0.01), &#39;classifier__C&#39;: 10, &#39;classifier__gamma&#39;: 0.01, &#39;preprocessing&#39;: StandardScaler()}
+{&#39;classifier&#39;: SVC(), &#39;classifier__C&#39;: 10, &#39;classifier__gamma&#39;: 0.01, &#39;preprocessing&#39;: StandardScaler()}
 
 Best cross-validation score: 0.99
 Test-set score: 0.98
@@ -1400,14 +2612,13 @@ Test-set score: 0.98
 <ul class="simple">
 <li><p>El resultado de la búsqueda en la red es que el <code class="docutils literal notranslate"><span class="pre">SVC</span></code> con el preprocesamiento <code class="docutils literal notranslate"><span class="pre">StandardScaler</span></code>, <code class="docutils literal notranslate"><span class="pre">C=10</span></code> y <code class="docutils literal notranslate"><span class="pre">gamma=0.01</span></code> dio el mejor resultado de clasificación, en comparación del el <code class="docutils literal notranslate"><span class="pre">RandomForestClassifier</span></code>.</p></li>
 </ul>
-</section>
-<section id="resumen-y-conclusiones">
-<h2><span class="section-number">12.12. </span>Resumen y conclusiones<a class="headerlink" href="#resumen-y-conclusiones" title="Link to this heading">#</a></h2>
+<div class="important admonition">
+<p class="admonition-title">Resumen y conclusiones</p>
 <ul class="simple">
-<li><p>En este capítulo hemos introducido la clase <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code>, una herramienta de propósito general para <code class="docutils literal notranslate"><span class="pre">encadenar</span> <span class="pre">múltiples</span> <span class="pre">pasos</span> <span class="pre">de</span> <span class="pre">procesamiento</span> <span class="pre">en</span> <span class="pre">un</span> <span class="pre">flujo</span> <span class="pre">de</span> <span class="pre">trabajo</span> <span class="pre">de</span> <span class="pre">aprendizaje</span> <span class="pre">automático</span></code>. Las aplicaciones del mundo real del aprendizaje automático rara vez implican el uso aislado de un modelo, y en su lugar son una secuencia de pasos de procesamiento. El uso de <code class="docutils literal notranslate"><span class="pre">pipelines</span></code> nos permite encapsular múltiples pasos en un solo objeto de <code class="docutils literal notranslate"><span class="pre">Python</span></code> que se adhiere a la interfaz familiar de <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> de <code class="docutils literal notranslate"><span class="pre">ajustar,</span> <span class="pre">predecir</span> <span class="pre">y</span> <span class="pre">transformar</span></code>. En particular, cuando se realiza la evaluación del modelo mediante la validación cruzada y la selección de parámetros mediante la búsqueda en red, el uso de la clase <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code> para captar todos los pasos de procesamiento es esencial para una evaluación adecuada.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">La</span> <span class="pre">clase</span> <span class="pre">Pipeline</span> <span class="pre">también</span> <span class="pre">permite</span> <span class="pre">escribir</span> <span class="pre">un</span> <span class="pre">código</span> <span class="pre">más</span> <span class="pre">resumido,</span> <span class="pre">y</span> <span class="pre">reduce</span> <span class="pre">la</span> <span class="pre">probabilidad</span> <span class="pre">de</span> <span class="pre">errores</span> <span class="pre">que</span> <span class="pre">pueden</span> <span class="pre">ocurrir</span> <span class="pre">al</span> <span class="pre">construir</span> <span class="pre">cadenas</span> <span class="pre">de</span> <span class="pre">procesamiento</span> <span class="pre">sin</span> <span class="pre">la</span> <span class="pre">clase</span> <span class="pre">Pipeline</span></code> (como olvidar de aplicar todos los transformadores en el conjunto de prueba, o no aplicarlos en el orden correcto). La elección de la combinación correcta de extracción de características, preprocesamiento y modelos, es un arte, y a menudo requiere un poco de ensayo y error.  Sin embargo, utilizando <code class="docutils literal notranslate"><span class="pre">pipelines</span></code>, este “ensayo” de muchos pasos de procesamiento diferentes es bastante sencillo. <code class="docutils literal notranslate"><span class="pre">Cuando</span> <span class="pre">experimenta</span> <span class="pre">su</span> <span class="pre">uso,</span> <span class="pre">tenga</span> <span class="pre">cuidado</span> <span class="pre">de</span> <span class="pre">no</span> <span class="pre">complicar</span> <span class="pre">demasiado</span> <span class="pre">sus</span> <span class="pre">procesos</span> <span class="pre">y</span> <span class="pre">asegúrese</span> <span class="pre">de</span> <span class="pre">evaluar</span> <span class="pre">si</span> <span class="pre">todos</span> <span class="pre">los</span> <span class="pre">componentes</span> <span class="pre">que</span> <span class="pre">se</span> <span class="pre">incluyen</span> <span class="pre">en</span> <span class="pre">el</span> <span class="pre">modelo</span> <span class="pre">son</span> <span class="pre">necesarios</span></code>.</p></li>
-<li><p>Con este capítulo, hemos completado nuestro estudio de las herramientas de propósito general y los algoritmos proporcionados por <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>. <code class="docutils literal notranslate"><span class="pre">Ahora</span> <span class="pre">posee</span> <span class="pre">todas</span> <span class="pre">las</span> <span class="pre">habilidades</span> <span class="pre">requeridas</span> <span class="pre">y</span> <span class="pre">conoce</span> <span class="pre">los</span> <span class="pre">mecanismos</span> <span class="pre">necesarios</span> <span class="pre">para</span> <span class="pre">aplicar</span> <span class="pre">el</span> <span class="pre">aprendizaje</span> <span class="pre">automático</span> <span class="pre">en</span> <span class="pre">la</span> <span class="pre">práctica</span></code>. En la siguiente sección resolveremos un problema de aplicación, en el que pongamos en practica, algunas de las técnicas abordadas a traves del curso.</p></li>
+<li><p>La clase <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code> permite encadenar múltiples pasos de procesamiento en un flujo de trabajo de aprendizaje automático, encapsulándolos en un solo objeto que sigue la interfaz de <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> (<code class="docutils literal notranslate"><span class="pre">fit</span></code>, <code class="docutils literal notranslate"><span class="pre">predict</span></code>, <code class="docutils literal notranslate"><span class="pre">transform</span></code>). Su uso es clave para una evaluación adecuada mediante validación cruzada y búsqueda en red.</p></li>
+<li><p>Además, <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code> simplifica el código y minimiza errores, como olvidar aplicar transformaciones en el conjunto de prueba o desordenar los pasos. La elección de preprocesamiento y modelos requiere ensayo y error, pero <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code> facilita la experimentación sin excesiva complejidad.</p></li>
 </ul>
+</div>
 </section>
 </section>
 
@@ -1486,7 +2697,6 @@ Test-set score: 0.98
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#acceso-a-los-atributos-en-un-pipeline-con-gridsearch">12.9. Acceso a los atributos en un Pipeline con GridSearch</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pasos-de-preprocesamiento-gridsearch-y-parametros-del-modelo">12.10. Pasos de preprocesamiento GridSearch y Parámetros del Modelo</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grid-searching-que-modelo-usar">12.11. Grid-Searching Qué Modelo Usar</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen-y-conclusiones">12.12. Resumen y conclusiones</a></li>
 </ul>
   </nav></div>
 
