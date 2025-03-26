@@ -1,0 +1,784 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Árboles de decisión usando el índice de Gini &#8212; Machine Learning</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=b4b7a797" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=530fe47d" />
+    <link rel="stylesheet" type="text/css" href="_static/.ipynb_checkpoints/custom-checkpoint.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Explicación_GINI';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/custom.js?v=14184634"></script>
+    <script src="_static/.ipynb_checkpoints/custom-checkpoint.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/fotolihki.jpg" class="logo__image only-light" alt="Machine Learning - Home"/>
+    <script>document.write(`<img src="_static/fotolihki.jpg" class="logo__image only-dark" alt="Machine Learning - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Profesor: Dr. Lihki Rubio
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="supervised_intro.html">1. Aprendizaje supervisado</a></li>
+<li class="toctree-l1"><a class="reference internal" href="knn_model.html">2. <span class="math notranslate nohighlight">\(k\)</span>-vecinos más cercanos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linear_model.html">3. Regresión Ridge y Lasso</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bayes_model.html">4. Clasificador Bayesiano</a></li>
+<li class="toctree-l1"><a class="reference internal" href="decisiontree_model.html">5. Random Forest y XGBoost</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="svm_model.html">8. Máquinas de vectores de soporte</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ann_model.html">9. Redes Neuronales y Deep Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="practical_pca.html">10. Análisis de Componentes Principales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_evaluation.html">11. Evaluación de modelos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chains_pipelines.html">12. Cadenas de Algoritmos y Pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix.html">13. Apéndice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exercises_sols.html">14. Soluciones a ejercicios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="biblio.html">15. Bibliografía</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Explicación_GINI.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Árboles de decisión usando el índice de Gini</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formulas"><strong>Fórmulas</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo"><strong>Ejemplo</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-1-evaluacion-del-cambio-de-impureza-para-cada-caracteristica-variable"><strong>Paso 1: Evaluación del cambio de impureza para cada característica (variable)</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-1-age"><strong>Variable 1: Age</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-2-like-dogs"><strong>Variable 2: Like Dogs</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-3-like-gravity"><strong>Variable 3: Like gravity</strong></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-2-construccion-del-arbol-luego-de-haber-encontrado-el-nodo-padre"><strong>Paso 2: Construcción del árbol luego de haber encontrado el nodo padre</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><strong>Variable 1: Age</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2"><strong>Variable 2: Like dogs</strong></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-3-construccion-del-arbol-final"><strong>Paso 3: Construcción del árbol final</strong></a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="arboles-de-decision-usando-el-indice-de-gini">
+<h1><strong>Árboles de decisión usando el índice de Gini</strong><a class="headerlink" href="#arboles-de-decision-usando-el-indice-de-gini" title="Link to this heading">#</a></h1>
+<section id="formulas">
+<h2><strong>Fórmulas</strong><a class="headerlink" href="#formulas" title="Link to this heading">#</a></h2>
+<p>En esta sección se presenta un ejercicio cuyo objetivo es ilustrar, paso a paso, la construcción de árboles de decisión utilizando el índice de Gini como criterio de partición. Para comenzar, se introducirán las fórmulas clave necesarias para desarrollar el ejercicio de manera clara y estructurada.</p>
+<ol class="arabic">
+<li><p><strong>Índice de Gini para una clase en particular:</strong></p>
+<div class="math notranslate nohighlight">
+\[Gini(p) = 1 - \sum_{i=1}^n p_i^2\]</div>
+<p>Donde <span class="math notranslate nohighlight">\( p_i\)</span> es la proporción de observaciones de la clase ( i ) en el nodo.</p>
+</li>
+<li><p><strong>Índice de Gini para una partición (nodo con varias clases):</strong></p>
+<div class="math notranslate nohighlight">
+\[Gini(\text{Nodo}) = 1 - \sum_{i=1}^C \left( \frac{n_i}{N} \right)^2\]</div>
+<p>Donde:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\( C \)</span> es el número de clases.</p></li>
+<li><p><span class="math notranslate nohighlight">\( n_i \)</span> es el número de observaciones de la clase ( i ) en el nodo.</p></li>
+<li><p><span class="math notranslate nohighlight">\(N\)</span> es el número total de observaciones en el nodo.</p></li>
+</ul>
+</li>
+<li><p><strong>Ganancia de información para el índice de Gini :</strong></p>
+<div class="math notranslate nohighlight">
+\[Gini_{\text{split}} = \frac{N_{\text{1}}}{N} \cdot Gini(\text{Nodo}_{\text{1}}) + \frac{N_{\text{2}}}{N} \cdot Gini(\text{Nodo}_{\text{2}})\]</div>
+<p>Donde:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\( Gini(\text{Nodo}_{\text{1}})\)</span> y <span class="math notranslate nohighlight">\( Gini(\text{Nodo}_{\text{2}}) \)</span> son los índices de Gini de las diferentes categorías perteneceintes a la clase.</p></li>
+<li><p><span class="math notranslate nohighlight">\(N_{\text{1}}\)</span> y <span class="math notranslate nohighlight">\(N_{\text{2}}\)</span> son las cantidades de observaciones de cada categoría.</p></li>
+<li><p><span class="math notranslate nohighlight">\(N\)</span> es el número total de observaciones en el nodo padre.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="ejemplo">
+<h2><strong>Ejemplo</strong><a class="headerlink" href="#ejemplo" title="Link to this heading">#</a></h2>
+<p>Para el ejemplo, consideremos la Tabla 1, que representa una muestra de 10 observaciones. El objetivo es determinar si un individuo tiene la posibilidad de convertirse en astronauta, basándonos en las características(variables) disponibles.</p>
+<div align="center">
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p><code class="docutils literal notranslate"><span class="pre">Age</span></code></p></th>
+<th class="head text-center"><p><code class="docutils literal notranslate"><span class="pre">Like</span> <span class="pre">Dogs</span></code></p></th>
+<th class="head text-center"><p><code class="docutils literal notranslate"><span class="pre">Like</span> <span class="pre">Gravity</span></code></p></th>
+<th class="head text-center"><p><code class="docutils literal notranslate"><span class="pre">Gonna</span> <span class="pre">Be</span> <span class="pre">an</span> <span class="pre">Astronaut</span></code></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>24</p></td>
+<td class="text-center"><p>0</p></td>
+<td class="text-center"><p>0</p></td>
+<td class="text-center"><p>0</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>30</p></td>
+<td class="text-center"><p>1</p></td>
+<td class="text-center"><p>1</p></td>
+<td class="text-center"><p>1</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>36</p></td>
+<td class="text-center"><p>0</p></td>
+<td class="text-center"><p>1</p></td>
+<td class="text-center"><p>1</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>36</p></td>
+<td class="text-center"><p>0</p></td>
+<td class="text-center"><p>0</p></td>
+<td class="text-center"><p>0</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>42</p></td>
+<td class="text-center"><p>0</p></td>
+<td class="text-center"><p>0</p></td>
+<td class="text-center"><p>0</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>44</p></td>
+<td class="text-center"><p>1</p></td>
+<td class="text-center"><p>1</p></td>
+<td class="text-center"><p>1</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>46</p></td>
+<td class="text-center"><p>1</p></td>
+<td class="text-center"><p>0</p></td>
+<td class="text-center"><p>0</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>47</p></td>
+<td class="text-center"><p>1</p></td>
+<td class="text-center"><p>1</p></td>
+<td class="text-center"><p>1</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>47</p></td>
+<td class="text-center"><p>0</p></td>
+<td class="text-center"><p>1</p></td>
+<td class="text-center"><p>1</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>51</p></td>
+<td class="text-center"><p>1</p></td>
+<td class="text-center"><p>1</p></td>
+<td class="text-center"><p>0</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><em>Tabla 1: Muestra de datos para determinar si un individuo será astronauta.</em></p>
+</div>
+<p>En este caso, <strong><code class="docutils literal notranslate"><span class="pre">Gonna</span> <span class="pre">Be</span> <span class="pre">an</span> <span class="pre">Astronaut</span></code></strong> es la variable dependiente (objetivo), mientras que las demás variables son independientes (explicativas). Cabe destacar que la variable objetivo es de tipo binario, mientras que entre las variables explicativas tenemos dos de tipo binario (<strong><code class="docutils literal notranslate"><span class="pre">Like</span> <span class="pre">Dogs</span></code></strong> y <strong><code class="docutils literal notranslate"><span class="pre">Like</span> <span class="pre">Gravity</span></code></strong>) y una de tipo numérico (<strong><code class="docutils literal notranslate"><span class="pre">Age</span></code></strong>). En total, hay 10 observaciones.
+El paso a seguir es encontrar el índice de Gini para cada de una de las variables explicativas.</p>
+<p><strong>Nota</strong>: Aunque el ejercicio utiliza valores binarios (0 y 1), para facilitar la explicación y mejorar la claridad, emplearemos las etiquetas <strong>SI</strong> y <strong>NO</strong>, donde <strong>SI</strong> representa el valor 1 y <strong>NO</strong> representa el valor 0.</p>
+<section id="paso-1-evaluacion-del-cambio-de-impureza-para-cada-caracteristica-variable">
+<h3><strong>Paso 1: Evaluación del cambio de impureza para cada característica (variable)</strong><a class="headerlink" href="#paso-1-evaluacion-del-cambio-de-impureza-para-cada-caracteristica-variable" title="Link to this heading">#</a></h3>
+<section id="variable-1-age">
+<h4><strong>Variable 1: Age</strong><a class="headerlink" href="#variable-1-age" title="Link to this heading">#</a></h4>
+<p>Nótese que esta variable es de tipo numérico. Por lo tanto, antes de calcular los índices correspondientes, es necesario definir los umbrales que representarán las condiciones o categorías que caracterizan esta variable.</p>
+<p>Para esto, aplicaremos la siguiente fórmula (La cual está asociada a la mediana)</p>
+<div class="math notranslate nohighlight">
+\[ Umbral = \frac{x_i + x_{(i+1)}}{2} \]</div>
+<p>Así, obtenemos entonces los siguientes valores: $<span class="math notranslate nohighlight">\(27, 33, 36, 39, 43, 45, 46.5, 47, 49\)</span>$</p>
+<p>Para calcular el índice de Gini en función de cada umbral, seguiremos una serie de pasos estructurados para determinar cuál umbral minimiza la impureza. Los pasos son los siguientes:</p>
+<ol class="arabic simple">
+<li><p><strong>Definir el umbral</strong>: Seleccionar un valor que sirva como punto de partición para dividir las observaciones en dos grupos.</p></li>
+<li><p><strong>Dividir los datos en dos grupos según el umbral</strong>:</p>
+<ul class="simple">
+<li><p>Grupo 1: Observaciones donde la edad es menor que el umbral.</p></li>
+<li><p>Grupo 2: Observaciones donde la edad es mayor o igual al umbral.</p></li>
+</ul>
+</li>
+<li><p><strong>Contar las observaciones en cada grupo</strong>:</p>
+<ul class="simple">
+<li><p>Determinar cuántas observaciones pertenecen a cada grupo.</p></li>
+</ul>
+</li>
+<li><p><strong>Clasificar las observaciones por clase en cada grupo</strong>:</p>
+<ul class="simple">
+<li><p>Contar cuántas observaciones tienen la clase <strong>SI (1)</strong> y cuántas tienen la clase <strong>NO (0)</strong> en la variable objetivo binaria.</p></li>
+</ul>
+</li>
+<li><p><strong>Calcular el índice de Gini para cada grupo</strong>:</p>
+<ul class="simple">
+<li><p>Aplicar la fórmula del índice de Gini en cada grupo considerando las proporciones de las clases <strong>SI</strong> y <strong>NO</strong>.</p></li>
+</ul>
+</li>
+<li><p><strong>Calcular el índice de Gini ponderado para el umbral</strong>:</p>
+<ul class="simple">
+<li><p>Combinar los índices de Gini de ambos grupos ponderándolos por el número de observaciones en cada grupo.</p></li>
+</ul>
+</li>
+</ol>
+<p>Este procedimiento se aplica para cada posible umbral, y el umbral con la mayor reducción de impureza será el seleccionado para dividir los datos. Veamos a continuación el desarrollo para cada umbral.</p>
+<p><img alt="TREE DECISION.png" src="attachment:TREE%20DECISION.png" /></p>
+<p>En este caso el umbral con el menor índice de Gini es <strong>27</strong>. En caso de un empate entre varios umbrales, se seleccionará el primero que alcance dicho valor. Sigamos con las demás variables.</p>
+</section>
+<section id="variable-2-like-dogs">
+<h4><strong>Variable 2: Like Dogs</strong><a class="headerlink" href="#variable-2-like-dogs" title="Link to this heading">#</a></h4>
+<p>Ahora, continuamos con la segunda característica/variable (<strong><code class="docutils literal notranslate"><span class="pre">Like</span> <span class="pre">Dogs</span></code></strong>), la cual es de tipo binario. El procedimiento es similar al utilizado con la variable numérica, pero en este caso trabajamos directamente con los dos posibles valores: <strong>SI</strong> (1) y <strong>NO</strong> (0). Los pasos son los siguientes:</p>
+<ol class="arabic simple">
+<li><p><strong>Dividir los datos según los valores de la variable binaria</strong>:</p>
+<ul class="simple">
+<li><p>Grupo 1: Observaciones donde <strong><code class="docutils literal notranslate"><span class="pre">Like</span> <span class="pre">Dogs</span></code></strong> es <strong>SI</strong> (1).</p></li>
+<li><p>Grupo 2: Observaciones donde <strong><code class="docutils literal notranslate"><span class="pre">Like</span> <span class="pre">Dogs</span></code></strong> es <strong>NO</strong> (0).</p></li>
+</ul>
+</li>
+<li><p><strong>Contar las observaciones en cada grupo</strong>:</p>
+<ul class="simple">
+<li><p>Determinar cuántas observaciones pertenecen a cada grupo.</p></li>
+</ul>
+</li>
+<li><p><strong>Clasificar las observaciones por clase en cada grupo</strong>:</p>
+<ul class="simple">
+<li><p>Contar cuántas observaciones tienen la clase objetivo <strong>SI (1)</strong> y cuántas tienen la clase <strong>NO (0)</strong> en cada grupo.</p></li>
+</ul>
+</li>
+<li><p><strong>Calcular el índice de Gini para cada grupo</strong>:</p>
+<ul class="simple">
+<li><p>Aplicar la fórmula del índice de Gini en cada grupo considerando las proporciones de las clases <strong>SI</strong> y <strong>NO</strong> en la variable objetivo.</p></li>
+</ul>
+</li>
+<li><p><strong>Calcular el índice de Gini ponderado</strong>:</p>
+<ul class="simple">
+<li><p>Combinar los índices de Gini de ambos grupos, ponderándolos por el número de observaciones en cada grupo.</p></li>
+</ul>
+</li>
+<li><p><strong>Seleccionar la división óptima</strong>:</p>
+<ul class="simple">
+<li><p>La división que genere el menor índice de Gini representará la partición más pura basada en la variable <strong><code class="docutils literal notranslate"><span class="pre">Like</span> <span class="pre">Dogs</span></code></strong>.</p></li>
+</ul>
+</li>
+</ol>
+<p>Con este análisis, evaluamos cómo la variable binaria <strong><code class="docutils literal notranslate"><span class="pre">Like</span> <span class="pre">Dogs</span></code></strong> contribuye a reducir la impureza en comparación con otras características.</p>
+<p><img alt="uno.png" src="attachment:uno.png" /></p>
+</section>
+<section id="variable-3-like-gravity">
+<h4><strong>Variable 3: Like gravity</strong><a class="headerlink" href="#variable-3-like-gravity" title="Link to this heading">#</a></h4>
+<p>Ahora, para la última variable (<code class="docutils literal notranslate"><span class="pre">Like</span> <span class="pre">gravity</span></code>) procedemos de la misma manera que con la anterior variable.</p>
+<p><img alt="dos.png" src="attachment:dos.png" /></p>
+<p>Después de analizar el cambio de impureza para cada variable, se observa que el menor valor corresponde a la variable <strong><code class="docutils literal notranslate"><span class="pre">Like</span> <span class="pre">Gravity</span></code></strong> (0,17). Por lo tanto, esta será seleccionada como nuestro nodo padre. Además, dentro de este nodo padre, identificamos un nodo puro, que se caracteriza por tener un índice de Gini igual a 0. Esto significa que, del lado de la clase <strong>NO</strong>, se puede establecer directamente que <strong><code class="docutils literal notranslate"><span class="pre">Gonna</span> <span class="pre">Be</span> <span class="pre">an</span> <span class="pre">Astronaut</span></code></strong> es igual a <strong>NO</strong>. Es decir, si no te gusta la gravedad, no serás astronauta.</p>
+</section>
+</section>
+<section id="paso-2-construccion-del-arbol-luego-de-haber-encontrado-el-nodo-padre">
+<h3><strong>Paso 2: Construcción del árbol luego de haber encontrado el nodo padre</strong><a class="headerlink" href="#paso-2-construccion-del-arbol-luego-de-haber-encontrado-el-nodo-padre" title="Link to this heading">#</a></h3>
+<p>Para continuar con la construcción del árbol, seguimos estos pasos:</p>
+<ol class="arabic simple">
+<li><p><strong>Filtrar las observaciones correspondientes a la clase <strong>SI</strong> en la variable <code class="docutils literal notranslate"><span class="pre">Like</span> <span class="pre">Gravity</span></code></strong>:</p>
+<ul class="simple">
+<li><p>Esto crea un subconjunto de datos (nodo no nulo) donde solo se consideran las observaciones en las que <strong><code class="docutils literal notranslate"><span class="pre">Like</span> <span class="pre">Gravity</span></code></strong> es <strong>SI</strong>.</p></li>
+</ul>
+</li>
+<li><p><strong>Repetir el proceso de partición</strong>:</p>
+<ul class="simple">
+<li><p>Aplicar los mismos pasos que en la etapa anterior: evaluar el cambio de impureza para las variables restantes y seleccionar la mejor partición para dividir aún más el nodo actual.</p></li>
+</ul>
+</li>
+</ol>
+<p>Este enfoque iterativo garantiza que el árbol se construya de manera óptima, dividiendo en cada nivel de acuerdo con la variable que maximice la pureza del nodo resultante.</p>
+<p>Teniendo en cuenta lo anterior, la nueva tabla para realizar los cálculos queda de la siguiente manera:</p>
+<div align="center">
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p><code class="docutils literal notranslate"><span class="pre">Age</span></code></p></th>
+<th class="head text-center"><p><code class="docutils literal notranslate"><span class="pre">Like</span> <span class="pre">Dogs</span></code></p></th>
+<th class="head text-center"><p><code class="docutils literal notranslate"><span class="pre">Gonna</span> <span class="pre">Be</span> <span class="pre">an</span> <span class="pre">Astronaut</span></code></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>30</p></td>
+<td class="text-center"><p>1</p></td>
+<td class="text-center"><p>1</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>36</p></td>
+<td class="text-center"><p>0</p></td>
+<td class="text-center"><p>1</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>44</p></td>
+<td class="text-center"><p>1</p></td>
+<td class="text-center"><p>1</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>47</p></td>
+<td class="text-center"><p>1</p></td>
+<td class="text-center"><p>1</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>47</p></td>
+<td class="text-center"><p>0</p></td>
+<td class="text-center"><p>1</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>51</p></td>
+<td class="text-center"><p>1</p></td>
+<td class="text-center"><p>0</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><em>Tabla 2: Muestra filtrada por observaciones donde <strong>SI (1)</strong> les gusta la gravedad.</em></p>
+</div>
+<section id="id1">
+<h4><strong>Variable 1: Age</strong><a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
+<p>Procedemos de manera similar al <strong>Paso 1</strong>, con la diferencia de que los umbrales cambian debido a que ahora trabajamos únicamente con las 6 observaciones filtradas del nodo anterior. Este ajuste garantiza que los cálculos sean específicos para el subconjunto de datos resultante y continúen optimizando la partición en función del índice de Gini.</p>
+<p><img alt="cuatro.png" src="attachment:cuatro.png" /></p>
+<p>En este caso, el umbral con el índice de Gini más bajo es <code class="docutils literal notranslate"><span class="pre">Umbral</span> <span class="pre">45,5</span></code> (<strong>0,22</strong>)</p>
+</section>
+<section id="id2">
+<h4><strong>Variable 2: Like dogs</strong><a class="headerlink" href="#id2" title="Link to this heading">#</a></h4>
+<p>Ahora, analizaremos la variable <strong><code class="docutils literal notranslate"><span class="pre">Like</span> <span class="pre">Dogs</span></code></strong> tras la filtración realizada en el nodo padre.</p>
+<p><img alt="tres.png" src="attachment:tres.png" /></p>
+<p>Nótese que el índice de Gini para esta variable es igual a <strong>0,17</strong></p>
+<p>En este paso, observamos que la variable con el menor índice de Gini es <strong><code class="docutils literal notranslate"><span class="pre">Like</span> <span class="pre">Dogs</span></code></strong>. Por lo tanto, esta variable se selecciona como el siguiente nodo del árbol, ya que permite una mayor reducción en la impureza del nodo actual y contribuye a una partición más pura en el árbol de decisión.</p>
+</section>
+</section>
+<section id="paso-3-construccion-del-arbol-final">
+<h3><strong>Paso 3: Construcción del árbol final</strong><a class="headerlink" href="#paso-3-construccion-del-arbol-final" title="Link to this heading">#</a></h3>
+<p>Ahora, al filtrar los datos según la variable <strong><code class="docutils literal notranslate"><span class="pre">Like</span> <span class="pre">Dogs</span></code></strong>, observamos que solo queda una característica disponible, la cual es la <strong>edad</strong>. Por lo tanto, esta se convierte en el siguiente nodo del árbol. Este nodo se genera a partir de la clase <strong>NO</strong> de la variable <strong><code class="docutils literal notranslate"><span class="pre">Like</span> <span class="pre">Dogs</span></code></strong>, dado que la clase <strong>SI</strong> es un nodo hoja. En este caso, se define que si <strong>te gusta la gravedad</strong> y <strong>te gustan los perros</strong>, entonces <strong>sí vas a ser astronauta</strong>.</p>
+<p>Finalmente, dado que el umbral con el menor índice de Gini es <strong>45,5</strong>, la edad se utiliza como criterio de partición. La edad menor a <strong>45,5</strong> se convierte en el siguiente nodo, donde ambas clases derivadas se convierten en nodos hoja:</p>
+<ol class="arabic simple">
+<li><p><strong>Clase SI (Nodo hoja)</strong>:</p>
+<ul class="simple">
+<li><p>Si <strong>te gusta la gravedad</strong>, <strong>no te gustan los perros</strong>, pero <strong>tienes menos de 45,5 años</strong>, entonces <strong>vas a ser astronauta</strong>.</p></li>
+</ul>
+</li>
+<li><p><strong>Clase NO (Nodo hoja)</strong>:</p>
+<ul class="simple">
+<li><p>Si <strong>te gusta la gravedad</strong>, <strong>no te gustan los perros</strong>, pero <strong>tienes más de 45,5 años</strong>, entonces <strong>no vas a ser astronauta</strong>.</p></li>
+</ul>
+</li>
+</ol>
+<p><img alt="cinco.png" src="attachment:cinco.png" /></p>
+<p>Finalmente, así se completa la construcción del árbol de decisión, asegurando que cada nodo optimice la pureza en función de las variables disponibles.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formulas"><strong>Fórmulas</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo"><strong>Ejemplo</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-1-evaluacion-del-cambio-de-impureza-para-cada-caracteristica-variable"><strong>Paso 1: Evaluación del cambio de impureza para cada característica (variable)</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-1-age"><strong>Variable 1: Age</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-2-like-dogs"><strong>Variable 2: Like Dogs</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-3-like-gravity"><strong>Variable 3: Like gravity</strong></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-2-construccion-del-arbol-luego-de-haber-encontrado-el-nodo-padre"><strong>Paso 2: Construcción del árbol luego de haber encontrado el nodo padre</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><strong>Variable 1: Age</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2"><strong>Variable 2: Like dogs</strong></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-3-construccion-del-arbol-final"><strong>Paso 3: Construcción del árbol final</strong></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Lihki Rubio, Ph.D.
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>Lihki Rubio, Ph.D. All rights reserved.</p>
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
