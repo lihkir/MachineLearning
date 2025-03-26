@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>10. Análisis de Componentes Principales &#8212; Machine Learning</title>
+    <title>11. Análisis de Componentes Principales &#8212; Machine Learning</title>
   
   
   
@@ -32,9 +32,9 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=b4b7a797" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=530fe47d" />
     <link rel="stylesheet" type="text/css" href="_static/.ipynb_checkpoints/custom-checkpoint.css" />
@@ -68,8 +68,8 @@
     <script src="_static/.ipynb_checkpoints/custom-checkpoint.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="11. Evaluación de modelos" href="model_evaluation.html" />
-    <link rel="prev" title="9. Redes Neuronales y Deep Learning" href="ann_model.html" />
+    <link rel="next" title="12. Evaluación de modelos" href="model_evaluation.html" />
+    <link rel="prev" title="10. Redes Neuronales y Deep Learning" href="ann_model.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -196,13 +196,14 @@
 
 
 <li class="toctree-l1"><a class="reference internal" href="svm_model.html">8. Máquinas de vectores de soporte</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ann_model.html">9. Redes Neuronales y Deep Learning</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">10. Análisis de Componentes Principales</a></li>
-<li class="toctree-l1"><a class="reference internal" href="model_evaluation.html">11. Evaluación de modelos</a></li>
-<li class="toctree-l1"><a class="reference internal" href="chains_pipelines.html">12. Cadenas de Algoritmos y Pipelines</a></li>
-<li class="toctree-l1"><a class="reference internal" href="appendix.html">13. Apéndice</a></li>
-<li class="toctree-l1"><a class="reference internal" href="exercises_sols.html">14. Solución a ejercicios</a></li>
-<li class="toctree-l1"><a class="reference internal" href="biblio.html">15. Bibliografía</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="ann_model.html">10. Redes Neuronales y Deep Learning</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">11. Análisis de Componentes Principales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_evaluation.html">12. Evaluación de modelos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chains_pipelines.html">13. Cadenas de Algoritmos y Pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix.html">14. Apéndice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exercises_sols.html">15. Soluciones a ejercicios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="biblio.html">16. Bibliografía</a></li>
 </ul>
 
     </div>
@@ -351,23 +352,23 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis">10.1. Análisis</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concepto-basico">10.2. Concepto básico</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autovalores-autovectores-y-componentes-principales">10.3. Autovalores, Autovectores y Componentes Principales</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proceso-de-derivacion-de-componentes-principales-y-propiedades">10.4. Proceso de Derivación de Componentes Principales y Propiedades</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#el-problema-de-los-autovalores-de-la-matriz-de-varianza-covarianza-muestral-y-los-componentes-principales">10.4.1. El problema de los autovalores de la matriz de varianza-covarianza muestral y los componentes principales</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis">11.1. Análisis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concepto-basico">11.2. Concepto básico</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autovalores-autovectores-y-componentes-principales">11.3. Autovalores, Autovectores y Componentes Principales</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proceso-de-derivacion-de-componentes-principales-y-propiedades">11.4. Proceso de Derivación de Componentes Principales y Propiedades</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#el-problema-de-los-autovalores-de-la-matriz-de-varianza-covarianza-muestral-y-los-componentes-principales">11.4.1. El problema de los autovalores de la matriz de varianza-covarianza muestral y los componentes principales</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autovalores-y-autovectores-de-una-matriz-simetrica">10.5. Autovalores y autovectores de una matriz simétrica</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estandarizacion-y-matriz-de-correlacion-muestral">10.6. Estandarización y matriz de correlación muestral</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reduccion-de-dimension-y-perdida-de-informacion">10.7. Reducción de dimensión y pérdida de información</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion">10.8. Implementación</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion-al-analisis-de-componentes-principales">10.9. Introducción al análisis de componentes principales</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-para-reduccion-de-dimension">10.9.1. PCA para reducción de dimensión</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-para-visualizacion-digitos-escritos-a-mano">10.9.2. PCA para visualización: Dígitos escritos a mano</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-del-numero-de-componentes">10.9.3. Selección del número de componentes</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-como-filtro-de-ruido">10.9.4. PCA como filtro de ruido</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-eigenfaces">10.9.5. Ejemplo Eigenfaces</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autovalores-y-autovectores-de-una-matriz-simetrica">11.5. Autovalores y autovectores de una matriz simétrica</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estandarizacion-y-matriz-de-correlacion-muestral">11.6. Estandarización y matriz de correlación muestral</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reduccion-de-dimension-y-perdida-de-informacion">11.7. Reducción de dimensión y pérdida de información</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion">11.8. Implementación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion-al-analisis-de-componentes-principales">11.9. Introducción al análisis de componentes principales</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-para-reduccion-de-dimension">11.9.1. PCA para reducción de dimensión</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-para-visualizacion-digitos-escritos-a-mano">11.9.2. PCA para visualización: Dígitos escritos a mano</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-del-numero-de-componentes">11.9.3. Selección del número de componentes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-como-filtro-de-ruido">11.9.4. PCA como filtro de ruido</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-eigenfaces">11.9.5. Ejemplo Eigenfaces</a></li>
 </ul>
 </li>
 </ul>
@@ -382,9 +383,9 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="analisis-de-componentes-principales">
-<h1><span class="section-number">10. </span>Análisis de Componentes Principales<a class="headerlink" href="#analisis-de-componentes-principales" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">11. </span>Análisis de Componentes Principales<a class="headerlink" href="#analisis-de-componentes-principales" title="Link to this heading">#</a></h1>
 <section id="analisis">
-<h2><span class="section-number">10.1. </span>Análisis<a class="headerlink" href="#analisis" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">11.1. </span>Análisis<a class="headerlink" href="#analisis" title="Link to this heading">#</a></h2>
 <div class="admonition-introduccion admonition">
 <p class="admonition-title">Introducción</p>
 <ul class="simple">
@@ -395,15 +396,15 @@ document.write(`
 </div>
 </section>
 <section id="concepto-basico">
-<h2><span class="section-number">10.2. </span>Concepto básico<a class="headerlink" href="#concepto-basico" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">11.2. </span>Concepto básico<a class="headerlink" href="#concepto-basico" title="Link to this heading">#</a></h2>
 <figure class="align-center" id="pca-3projections-fig">
 <a class="reference internal image-reference" href="_images/pca_3projections.png"><img alt="_images/pca_3projections.png" src="_images/pca_3projections.png" style="width: 420.0px; height: 297.59999999999997px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 10.1 </span><span class="caption-text">Proyección en tres ejes diferentes, (a), (b) y (c), y la dispersión de los datos. Fuente <span id="id1">[<a class="reference internal" href="biblio.html#id20" title="S. Konishi. Introduction to Multivariate Analysis: Linear and Nonlinear Modeling. Chapman &amp; Hall/CRC Texts in Statistical Science. Taylor &amp; Francis, 2014. ISBN 9781466567283. URL: https://books.google.com.co/books?id=fcuuAwAAQBAJ.">Konishi, 2014</a>]</span>.</span><a class="headerlink" href="#pca-3projections-fig" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 11.1 </span><span class="caption-text">Proyección en tres ejes diferentes, (a), (b) y (c), y la dispersión de los datos. Fuente <span id="id1">[<a class="reference internal" href="biblio.html#id20" title="S. Konishi. Introduction to Multivariate Analysis: Linear and Nonlinear Modeling. Chapman &amp; Hall/CRC Texts in Statistical Science. Taylor &amp; Francis, 2014. ISBN 9781466567283. URL: https://books.google.com.co/books?id=fcuuAwAAQBAJ.">Konishi, 2014</a>]</span>.</span><a class="headerlink" href="#pca-3projections-fig" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <ul>
-<li><p>La <a class="reference internal" href="#pca-3projections-fig"><span class="std std-numref">Fig. 10.1</span></a> muestra un gráfico de las puntuaciones de los exámenes de matemáticas (<span class="math notranslate nohighlight">\(x_{1}\)</span>) e inglés (<span class="math notranslate nohighlight">\(x_{2}\)</span>) de 25 estudiantes. <em><strong>Proyectando estos datos bidimensionales en un solo eje mediante la sustitución de las puntuaciones de ambas materias en la siguiente ecuación, se transforman en datos unidimensionales</strong></em>.</p>
+<li><p>La <a class="reference internal" href="#pca-3projections-fig"><span class="std std-numref">Fig. 11.1</span></a> muestra un gráfico de las puntuaciones de los exámenes de matemáticas (<span class="math notranslate nohighlight">\(x_{1}\)</span>) e inglés (<span class="math notranslate nohighlight">\(x_{2}\)</span>) de 25 estudiantes. <em><strong>Proyectando estos datos bidimensionales en un solo eje mediante la sustitución de las puntuaciones de ambas materias en la siguiente ecuación, se transforman en datos unidimensionales</strong></em>.</p>
 <div class="math notranslate nohighlight">
 \[
   y=w_{1}x_{1}+w_{2}x_{2}.
@@ -411,7 +412,7 @@ document.write(`
 </li>
 </ul>
 <ul class="simple">
-<li><p>La <a class="reference internal" href="#pca-3projections-fig"><span class="std std-numref">Fig. 10.1</span></a> muestra la <em><strong>proyección en tres ejes diferentes, (a), (b) y (c)</strong></em>. La <em><strong>dispersión de los datos</strong></em> (como medida de la varianza) para cada eje se indica mediante una <em><strong>flecha de doble cabeza</strong></em> (<span class="math notranslate nohighlight">\(\boldsymbol{\leftarrow-\rightarrow}\)</span>).</p></li>
+<li><p>La <a class="reference internal" href="#pca-3projections-fig"><span class="std std-numref">Fig. 11.1</span></a> muestra la <em><strong>proyección en tres ejes diferentes, (a), (b) y (c)</strong></em>. La <em><strong>dispersión de los datos</strong></em> (como medida de la varianza) para cada eje se indica mediante una <em><strong>flecha de doble cabeza</strong></em> (<span class="math notranslate nohighlight">\(\boldsymbol{\leftarrow-\rightarrow}\)</span>).</p></li>
 </ul>
 <div class="tip admonition">
 <p class="admonition-title">Observación</p>
@@ -430,7 +431,7 @@ document.write(`
 <li><p>Apliquemos lo mencionado en la anterior observación a datos bidimensionales. Denotamos los <span class="math notranslate nohighlight">\(n\)</span> <em><strong>datos observados bidimensionales</strong></em> <span class="math notranslate nohighlight">\(\boldsymbol{x}=(x_{1}, x_{2})^{T}\)</span> como</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-bidimentional-data-pca">
-<span class="eqno">(10.1)<a class="headerlink" href="#equation-bidimentional-data-pca" title="Link to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(11.1)<a class="headerlink" href="#equation-bidimentional-data-pca" title="Link to this equation">#</a></span>\[\begin{split}
 \boldsymbol{x}_{1}=\begin{pmatrix}x_{11}\\x_{12}\end{pmatrix},~\boldsymbol{x}_{2}=\begin{pmatrix}x_{21}\\x_{22}\end{pmatrix},\dots,\boldsymbol{x}_{n}=\begin{pmatrix}x_{n1}\\x_{n2}\end{pmatrix}.
 \end{split}\]</div>
 <ul>
@@ -445,7 +446,7 @@ document.write(`
 <figure class="align-center" id="id4">
 <img alt="_images/Principal20Analysis20principal.gif" src="_images/Principal20Analysis20principal.gif" />
 <figcaption>
-<p><span class="caption-number">Fig. 10.2 </span><span class="caption-text">Simulación de <em><strong>múltiples ejes de proyección</strong></em> <span class="math notranslate nohighlight">\(y=w_{1}x_{1}+w_{2}x_{2}\)</span> en el PCA.</span><a class="headerlink" href="#id4" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 11.2 </span><span class="caption-text">Simulación de <em><strong>múltiples ejes de proyección</strong></em> <span class="math notranslate nohighlight">\(y=w_{1}x_{1}+w_{2}x_{2}\)</span> en el PCA.</span><a class="headerlink" href="#id4" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <div class="dropdown admonition">
@@ -473,7 +474,7 @@ document.write(`
 <ul>
 <li><p>La <em><strong>varianza</strong></em> puede ser expresada como</p>
 <div class="math notranslate nohighlight" id="equation-variance-quad-error">
-<span class="eqno">(10.2)<a class="headerlink" href="#equation-variance-quad-error" title="Link to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(11.2)<a class="headerlink" href="#equation-variance-quad-error" title="Link to this equation">#</a></span>\[\begin{split}
     \begin{align*}
     s_{y}^{2} &amp;= \frac{1}{n}\sum_{i=1}^{n}(y_{i}-\overline{y})^{2}\\
     &amp;= \frac{1}{n}\sum_{i=1}^{n}\left\{w_{1}(x_{i1}-\overline{x}_{1})+w_{2}(x_{i2}-\overline{x}_{2})\right\}^{2}\\
@@ -484,7 +485,7 @@ document.write(`
     \end{split}\]</div>
 <p>donde <span class="math notranslate nohighlight">\(S\)</span> es la <em><strong>matriz de covarianza muestral</strong></em>, definida por (<code class="docutils literal notranslate"><span class="pre">verifíquelo</span></code>)</p>
 <div class="math notranslate nohighlight" id="equation-sample-covariance-matrix">
-<span class="eqno">(10.3)<a class="headerlink" href="#equation-sample-covariance-matrix" title="Link to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(11.3)<a class="headerlink" href="#equation-sample-covariance-matrix" title="Link to this equation">#</a></span>\[\begin{split}
     S=\begin{pmatrix}s_{11} &amp; s_{12}\\s_{21} &amp; s_{22}\end{pmatrix},~s_{jk}=\frac{1}{n}\sum_{i=1}^{n}(x_{ij}-\overline{x}_{j})(x_{ik}-\overline{x}_{k}),~j,k=1,2. 
     \end{split}\]</div>
 </li>
@@ -492,7 +493,7 @@ document.write(`
 <div class="admonition-maximizacion-de-la-varianza admonition">
 <p class="admonition-title">Maximización de la varianza</p>
 <ul class="simple">
-<li><p>El problema de encontrar el vector de coeficientes <span class="math notranslate nohighlight">\(\boldsymbol{w}=(w_{1}, w_{2})^{T}\)</span>, <em><strong>que corresponde a la máxima varianza</strong></em> para los <span class="math notranslate nohighlight">\(n\)</span> datos bidimensionales proyectados sobre <span class="math notranslate nohighlight">\(y=w_{1}x_{1}+w_{2}x_{2}\)</span>, se convierte en el <em><strong>problema de maximización de la varianza</strong></em> <span class="math notranslate nohighlight">\(S_{y}=\boldsymbol{w}^{T}S\boldsymbol{w}\)</span> en la Ecuación <a class="reference internal" href="#equation-variance-quad-error">(10.2)</a> <em><strong>bajo la restricción</strong></em> <span class="math notranslate nohighlight">\(\boldsymbol{w}^{T}\boldsymbol{w}=1\)</span>. Esta restricción se aplica porque <span class="math notranslate nohighlight">\(\|\boldsymbol{w}\|\)</span> <em><strong>sería infinitamente grande sin ella y la varianza divergiría</strong></em>.</p></li>
+<li><p>El problema de encontrar el vector de coeficientes <span class="math notranslate nohighlight">\(\boldsymbol{w}=(w_{1}, w_{2})^{T}\)</span>, <em><strong>que corresponde a la máxima varianza</strong></em> para los <span class="math notranslate nohighlight">\(n\)</span> datos bidimensionales proyectados sobre <span class="math notranslate nohighlight">\(y=w_{1}x_{1}+w_{2}x_{2}\)</span>, se convierte en el <em><strong>problema de maximización de la varianza</strong></em> <span class="math notranslate nohighlight">\(S_{y}=\boldsymbol{w}^{T}S\boldsymbol{w}\)</span> en la Ecuación <a class="reference internal" href="#equation-variance-quad-error">(11.2)</a> <em><strong>bajo la restricción</strong></em> <span class="math notranslate nohighlight">\(\boldsymbol{w}^{T}\boldsymbol{w}=1\)</span>. Esta restricción se aplica porque <span class="math notranslate nohighlight">\(\|\boldsymbol{w}\|\)</span> <em><strong>sería infinitamente grande sin ella y la varianza divergiría</strong></em>.</p></li>
 </ul>
 </div>
 <ul class="simple">
@@ -505,7 +506,7 @@ L(\boldsymbol{w}, \lambda)=\boldsymbol{w}^{T}S\boldsymbol{w}+\lambda(1-\boldsymb
 <ul>
 <li><p>Dado que <span class="math notranslate nohighlight">\(\partial(\boldsymbol{w}^{T}S\boldsymbol{w})/\partial\boldsymbol{w}=2S\boldsymbol{w}\)</span> (ver Ecuación <a class="reference internal" href="linear_model.html#equation-quadratic-form-dedrivate">(3.9)</a>) y <span class="math notranslate nohighlight">\(\partial(\boldsymbol{w}^{T}\boldsymbol{w})/\partial\boldsymbol{w}=2\boldsymbol{w}\)</span>, entonces <span class="math notranslate nohighlight">\(\partial L(\boldsymbol{w}, \lambda)/\partial\boldsymbol{w}=0\)</span> sii</p>
 <div class="math notranslate nohighlight" id="equation-eigen-valuesvector-problem">
-<span class="eqno">(10.4)<a class="headerlink" href="#equation-eigen-valuesvector-problem" title="Link to this equation">#</a></span>\[
+<span class="eqno">(11.4)<a class="headerlink" href="#equation-eigen-valuesvector-problem" title="Link to this equation">#</a></span>\[
   S\boldsymbol{w}=\lambda\boldsymbol{w}.
   \]</div>
 </li>
@@ -519,15 +520,15 @@ L(\boldsymbol{w}, \lambda)=\boldsymbol{w}^{T}S\boldsymbol{w}+\lambda(1-\boldsymb
 </li>
 </ul>
 <ul>
-<li><p>La varianza del <em><strong>primer componente principal</strong></em> <span class="math notranslate nohighlight">\(y_{1}\)</span> se alcanza con <span class="math notranslate nohighlight">\(\boldsymbol{w}=\boldsymbol{w}_{1}\)</span>, el cual maximiza la varianza de la Ecuación <a class="reference internal" href="#equation-variance-quad-error">(10.2)</a>, y es, por lo tanto,</p>
+<li><p>La varianza del <em><strong>primer componente principal</strong></em> <span class="math notranslate nohighlight">\(y_{1}\)</span> se alcanza con <span class="math notranslate nohighlight">\(\boldsymbol{w}=\boldsymbol{w}_{1}\)</span>, el cual maximiza la varianza de la Ecuación <a class="reference internal" href="#equation-variance-quad-error">(11.2)</a>, y es, por lo tanto,</p>
 <div class="math notranslate nohighlight" id="equation-variance-firstpc">
-<span class="eqno">(10.5)<a class="headerlink" href="#equation-variance-firstpc" title="Link to this equation">#</a></span>\[
+<span class="eqno">(11.5)<a class="headerlink" href="#equation-variance-firstpc" title="Link to this equation">#</a></span>\[
   s_{y_{1}}^{2}=\boldsymbol{w}_{1}^{T}S\boldsymbol{w}_{1}=\lambda_{1}.
   \]</div>
 </li>
 </ul>
 <ul class="simple">
-<li><p>Nótese que, la <a class="reference internal" href="#equation-variance-firstpc">(10.5)</a> es obtenida gracias a la relación entre autovalor-autovector <span class="math notranslate nohighlight">\(S\boldsymbol{w}_{1}=\lambda_{1}\boldsymbol{w}_{1}\)</span> de la matriz simétrica <span class="math notranslate nohighlight">\(S\)</span>, y que el vector <span class="math notranslate nohighlight">\(\boldsymbol{w}_{1}\)</span> es normalizado a longitud 1 (<code class="docutils literal notranslate"><span class="pre">verifíquelo</span></code>).</p></li>
+<li><p>Nótese que, la <a class="reference internal" href="#equation-variance-firstpc">(11.5)</a> es obtenida gracias a la relación entre autovalor-autovector <span class="math notranslate nohighlight">\(S\boldsymbol{w}_{1}=\lambda_{1}\boldsymbol{w}_{1}\)</span> de la matriz simétrica <span class="math notranslate nohighlight">\(S\)</span>, y que el vector <span class="math notranslate nohighlight">\(\boldsymbol{w}_{1}\)</span> es normalizado a longitud 1 (<code class="docutils literal notranslate"><span class="pre">verifíquelo</span></code>).</p></li>
 </ul>
 <ul>
 <li><p>El <em><strong>segundo componente principal</strong></em>, al proyectar los datos bidimensionales en <span class="math notranslate nohighlight">\(y=w_{1}x_{1}+w_{2}x_{2}\)</span> bajo la <em><strong>restricción de normalización</strong></em> <span class="math notranslate nohighlight">\(\boldsymbol{w}\boldsymbol{w}^{T}=1\)</span> junto con la <em><strong>ortogonalidad al primer componente principal</strong></em>, se define como el vector de coeficientes que <em><strong>maximiza la varianza</strong></em> <span class="math notranslate nohighlight">\(S_{y_{2}}^{2}=\boldsymbol{w}^{T}S\boldsymbol{w}\)</span> con <span class="math notranslate nohighlight">\(\boldsymbol{w}_{1}^{T}\boldsymbol{w}=0\)</span>.</p></li>
@@ -542,7 +543,7 @@ L(\boldsymbol{w}, \lambda)=\boldsymbol{w}^{T}S\boldsymbol{w}+\lambda(1-\boldsymb
 <ul>
 <li><p>Cuando <em><strong>diferenciamos parcialmente</strong></em> la ecuación anterior respecto a <span class="math notranslate nohighlight">\(\boldsymbol{w}\)</span> y establecemos el <em><strong>resultado igual a 0</strong></em> (<span class="math notranslate nohighlight">\(\partial_{\boldsymbol{w}}L=\boldsymbol{0}\)</span>), obtenemos la ecuación</p>
 <div class="math notranslate nohighlight" id="equation-system-2nd-pc">
-<span class="eqno">(10.6)<a class="headerlink" href="#equation-system-2nd-pc" title="Link to this equation">#</a></span>\[
+<span class="eqno">(11.6)<a class="headerlink" href="#equation-system-2nd-pc" title="Link to this equation">#</a></span>\[
   \frac{\partial L(\boldsymbol{w},\lambda, \gamma)}{\partial\boldsymbol{w}}=0\Leftrightarrow 2S\boldsymbol{w}-2\lambda w+\gamma\boldsymbol{w}_{1}=\boldsymbol{0}.
   \]</div>
 </li>
@@ -561,15 +562,15 @@ L(\boldsymbol{w}, \lambda)=\boldsymbol{w}^{T}S\boldsymbol{w}+\lambda(1-\boldsymb
 </li>
 </ul>
 <ul>
-<li><p>Entonces la Ecuación <a class="reference internal" href="#equation-system-2nd-pc">(10.6)</a> se convierte en</p>
+<li><p>Entonces la Ecuación <a class="reference internal" href="#equation-system-2nd-pc">(11.6)</a> se convierte en</p>
 <div class="math notranslate nohighlight" id="equation-eigenvalue-problema-system-2nd-pc">
-<span class="eqno">(10.7)<a class="headerlink" href="#equation-eigenvalue-problema-system-2nd-pc" title="Link to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(11.7)<a class="headerlink" href="#equation-eigenvalue-problema-system-2nd-pc" title="Link to this equation">#</a></span>\[\begin{split}
   2Sw-2\lambda\boldsymbol{w}+\gamma\boldsymbol{w}_{1}=2S\boldsymbol{w}-2\lambda\boldsymbol{2}=0\Leftrightarrow S\boldsymbol{w}=\lambda\boldsymbol{w},~\text{donde}~\begin{cases}\boldsymbol{w}_{1}^{T}\boldsymbol{w}&amp;=0\\\boldsymbol{w}_{1}^{T}\boldsymbol{w}_{1}&amp;=1\end{cases}
   \end{split}\]</div>
 </li>
 </ul>
 <ul>
-<li><p>La solución del problema de <em><strong>autovalores y autovectores</strong></em> asociado a la Ecuación <a class="reference internal" href="#equation-eigenvalue-problema-system-2nd-pc">(10.7)</a> entrega el par autovector/autovalor <span class="math notranslate nohighlight">\((\lambda_{2}, \boldsymbol{w}_{2})\)</span>, donde <span class="math notranslate nohighlight">\(\boldsymbol{w}_{2}=(w_{21}, w_{22})^{T}\)</span>.</p></li>
+<li><p>La solución del problema de <em><strong>autovalores y autovectores</strong></em> asociado a la Ecuación <a class="reference internal" href="#equation-eigenvalue-problema-system-2nd-pc">(11.7)</a> entrega el par autovector/autovalor <span class="math notranslate nohighlight">\((\lambda_{2}, \boldsymbol{w}_{2})\)</span>, donde <span class="math notranslate nohighlight">\(\boldsymbol{w}_{2}=(w_{21}, w_{22})^{T}\)</span>.</p></li>
 <li><p>El <em><strong>segundo componente principal</strong></em> puede ser dado por la siguiente ecuación</p>
 <div class="math notranslate nohighlight">
 \[
@@ -578,8 +579,8 @@ L(\boldsymbol{w}, \lambda)=\boldsymbol{w}^{T}S\boldsymbol{w}+\lambda(1-\boldsymb
 </li>
 </ul>
 <ul class="simple">
-<li><p>De la relación entre el <em><strong>autovalor y el autovector de la matriz simétrica</strong></em> <span class="math notranslate nohighlight">\(S\)</span>, la varianza del segundo componente principal <span class="math notranslate nohighlight">\(y_{2}\)</span> se convierte en <span class="math notranslate nohighlight">\(s_{y_{2}}^{2}=\boldsymbol{w}_{2}S\boldsymbol{w}_{2}=\lambda_{2}\)</span> de la misma manera que en la Ecuación <a class="reference internal" href="#equation-variance-firstpc">(10.5)</a>.</p></li>
-<li><p>El <em><strong>PCA basado en los datos bidimensionales</strong></em> en Ecuación <a class="reference internal" href="#equation-bidimentional-data-pca">(10.1)</a> es esencialmente un <em><strong>problema de encontrar los autovalores y autovectores de la matriz de varianza-covarianza muestral</strong></em> <span class="math notranslate nohighlight">\(S\)</span>.</p></li>
+<li><p>De la relación entre el <em><strong>autovalor y el autovector de la matriz simétrica</strong></em> <span class="math notranslate nohighlight">\(S\)</span>, la varianza del segundo componente principal <span class="math notranslate nohighlight">\(y_{2}\)</span> se convierte en <span class="math notranslate nohighlight">\(s_{y_{2}}^{2}=\boldsymbol{w}_{2}S\boldsymbol{w}_{2}=\lambda_{2}\)</span> de la misma manera que en la Ecuación <a class="reference internal" href="#equation-variance-firstpc">(11.5)</a>.</p></li>
+<li><p>El <em><strong>PCA basado en los datos bidimensionales</strong></em> en Ecuación <a class="reference internal" href="#equation-bidimentional-data-pca">(11.1)</a> es esencialmente un <em><strong>problema de encontrar los autovalores y autovectores de la matriz de varianza-covarianza muestral</strong></em> <span class="math notranslate nohighlight">\(S\)</span>.</p></li>
 </ul>
 <div class="tip admonition">
 <p class="admonition-title">Observación</p>
@@ -589,7 +590,7 @@ L(\boldsymbol{w}, \lambda)=\boldsymbol{w}^{T}S\boldsymbol{w}+\lambda(1-\boldsymb
 </div>
 </section>
 <section id="autovalores-autovectores-y-componentes-principales">
-<h2><span class="section-number">10.3. </span>Autovalores, Autovectores y Componentes Principales<a class="headerlink" href="#autovalores-autovectores-y-componentes-principales" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">11.3. </span>Autovalores, Autovectores y Componentes Principales<a class="headerlink" href="#autovalores-autovectores-y-componentes-principales" title="Link to this heading">#</a></h2>
 <ul>
 <li><p>Denotamos los <em><strong>autovalores de la matriz de varianza-covarianza muestral</strong></em> <span class="math notranslate nohighlight">\(S\)</span> en orden descendente según su magnitud como <span class="math notranslate nohighlight">\(\lambda_{1}\geq\lambda_{2}\geq0\)</span>, y los <em><strong>correspondientes autovectores</strong></em> mutuamente <em><strong>ortogonales normalizados a longitud 1</strong></em> como <span class="math notranslate nohighlight">\(\boldsymbol{w}_{1}=(w_{11}, w_{12})^{T}\)</span> y <span class="math notranslate nohighlight">\(\boldsymbol{w}_{2}=(w_{21}, w_{22})^{T}\)</span>.</p></li>
 <li><p>Los <em><strong>primeros y segundos componentes principales</strong></em> y sus respectivas <em><strong>varianzas</strong></em> se dan entonces de la siguiente manera</p>
@@ -605,7 +606,7 @@ L(\boldsymbol{w}, \lambda)=\boldsymbol{w}^{T}S\boldsymbol{w}+\lambda(1-\boldsymb
 <figure class="align-center" id="id5">
 <a class="reference internal image-reference" href="_images/first_second_pca_bidimentional.png"><img alt="_images/first_second_pca_bidimentional.png" src="_images/first_second_pca_bidimentional.png" style="width: 496.29999999999995px; height: 386.4px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 10.3 </span><span class="caption-text"><em><strong>Valores propios</strong></em>, <em><strong>primeros y segundos componentes principales</strong></em>. Fuente <span id="id2">[<a class="reference internal" href="biblio.html#id20" title="S. Konishi. Introduction to Multivariate Analysis: Linear and Nonlinear Modeling. Chapman &amp; Hall/CRC Texts in Statistical Science. Taylor &amp; Francis, 2014. ISBN 9781466567283. URL: https://books.google.com.co/books?id=fcuuAwAAQBAJ.">Konishi, 2014</a>]</span>.</span><a class="headerlink" href="#id5" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 11.3 </span><span class="caption-text"><em><strong>Valores propios</strong></em>, <em><strong>primeros y segundos componentes principales</strong></em>. Fuente <span id="id2">[<a class="reference internal" href="biblio.html#id20" title="S. Konishi. Introduction to Multivariate Analysis: Linear and Nonlinear Modeling. Chapman &amp; Hall/CRC Texts in Statistical Science. Taylor &amp; Francis, 2014. ISBN 9781466567283. URL: https://books.google.com.co/books?id=fcuuAwAAQBAJ.">Konishi, 2014</a>]</span>.</span><a class="headerlink" href="#id5" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <ul class="simple">
@@ -613,11 +614,11 @@ L(\boldsymbol{w}, \lambda)=\boldsymbol{w}^{T}S\boldsymbol{w}+\lambda(1-\boldsymb
 </ul>
 </section>
 <section id="proceso-de-derivacion-de-componentes-principales-y-propiedades">
-<h2><span class="section-number">10.4. </span>Proceso de Derivación de Componentes Principales y Propiedades<a class="headerlink" href="#proceso-de-derivacion-de-componentes-principales-y-propiedades" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">11.4. </span>Proceso de Derivación de Componentes Principales y Propiedades<a class="headerlink" href="#proceso-de-derivacion-de-componentes-principales-y-propiedades" title="Link to this heading">#</a></h2>
 <ul>
 <li><p>En general, denotamos como <span class="math notranslate nohighlight">\(\boldsymbol{x}=(x_{1}, x_{2},\dots,x_{p})^{T}\)</span> las <span class="math notranslate nohighlight">\(p\)</span> <em><strong>variables representando las características individuales</strong></em>. Basados en los datos observados <span class="math notranslate nohighlight">\(\boldsymbol{x}_{1}, \boldsymbol{x}_{2},\dots, \boldsymbol{x}_{n}\)</span>; <span class="math notranslate nohighlight">\(p\)</span>-dimensionales, para las <span class="math notranslate nohighlight">\(p\)</span> variables, obtenemos la <em><strong>matriz de varianza-covarianza muestral</strong></em></p>
 <div class="math notranslate nohighlight" id="equation-covariance-variance-nobs-pdimentionals">
-<span class="eqno">(10.8)<a class="headerlink" href="#equation-covariance-variance-nobs-pdimentionals" title="Link to this equation">#</a></span>\[
+<span class="eqno">(11.8)<a class="headerlink" href="#equation-covariance-variance-nobs-pdimentionals" title="Link to this equation">#</a></span>\[
   S=(s_{jk})=\frac{1}{n}\sum_{i=1}^{n}(\boldsymbol{x}_{i}-\overline{\boldsymbol{x}})(\boldsymbol{x}_{i}-\boldsymbol{x})^{T}
   \]</div>
 <p>donde <span class="math notranslate nohighlight">\(\overline{\boldsymbol{x}}\)</span> es el vector de medias muestrales, <span class="math notranslate nohighlight">\(p\)</span>-dimensional, y <span class="math notranslate nohighlight">\(s_{jk}=\sum_{i=1}^{n}(x_{ij}-\overline{x}_{j})(x_{ik}-\overline{x}_{k})/n\)</span> (<code class="docutils literal notranslate"><span class="pre">escriba</span> <span class="pre">cada</span> <span class="pre">componente</span> <span class="pre">de</span></code> <span class="math notranslate nohighlight">\(S\)</span> <code class="docutils literal notranslate"><span class="pre">en</span> <span class="pre">forma</span> <span class="pre">matricial</span></code>).</p>
@@ -626,7 +627,7 @@ L(\boldsymbol{w}, \lambda)=\boldsymbol{w}^{T}S\boldsymbol{w}+\lambda(1-\boldsymb
 <ul>
 <li><p>Siguiendo el concepto básico de la <em><strong>derivación de componentes principales</strong></em>, como se describe para <em><strong>datos bidimensionales</strong></em> en la sección anterior, primero <em><strong>proyectamos los</strong></em> <span class="math notranslate nohighlight">\(n\)</span> <em><strong>datos observados</strong></em>, <span class="math notranslate nohighlight">\(p\)</span><em><strong>-dimensionales sobre el eje de proyección</strong></em></p>
 <div class="math notranslate nohighlight" id="equation-pdimensional-projection-pca">
-<span class="eqno">(10.9)<a class="headerlink" href="#equation-pdimensional-projection-pca" title="Link to this equation">#</a></span>\[
+<span class="eqno">(11.9)<a class="headerlink" href="#equation-pdimensional-projection-pca" title="Link to this equation">#</a></span>\[
   y=w_{1}x_{1}+w_{2}x_{2}+\cdots+w_{p}x_{p}=\boldsymbol{w}^{T}\boldsymbol{x},
   \]</div>
 <p>y obtenemos los <em><strong>datos unidimensionales</strong></em> <span class="math notranslate nohighlight">\(y_{i}=\boldsymbol{w}^{T}\boldsymbol{x}_{i}~(i=1,2,\dots,n;~\boldsymbol{x}_{i}~p\text{-dimensional})\)</span>.</p>
@@ -665,9 +666,9 @@ L(\boldsymbol{w}, \lambda)=\boldsymbol{w}^{T}S\boldsymbol{w}+\lambda(1-\boldsymb
 <li><p>Como resultado, <em><strong>PCA se convierte así en el problema de los autovalores de la matriz de varianza-covarianza muestral</strong></em> <span class="math notranslate nohighlight">\(S\)</span>, como se describe a continuación.</p></li>
 </ul>
 <section id="el-problema-de-los-autovalores-de-la-matriz-de-varianza-covarianza-muestral-y-los-componentes-principales">
-<h3><span class="section-number">10.4.1. </span>El problema de los autovalores de la matriz de varianza-covarianza muestral y los componentes principales<a class="headerlink" href="#el-problema-de-los-autovalores-de-la-matriz-de-varianza-covarianza-muestral-y-los-componentes-principales" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">11.4.1. </span>El problema de los autovalores de la matriz de varianza-covarianza muestral y los componentes principales<a class="headerlink" href="#el-problema-de-los-autovalores-de-la-matriz-de-varianza-covarianza-muestral-y-los-componentes-principales" title="Link to this heading">#</a></h3>
 <ul>
-<li><p>Denotemos <span class="math notranslate nohighlight">\(S\)</span> como una <em><strong>matriz de varianza-covarianza muestral</strong></em> basada en <span class="math notranslate nohighlight">\(n\)</span> <em><strong>datos observados</strong></em> <span class="math notranslate nohighlight">\(p\)</span>-dimensionales. Como se observa en la Ecuación <a class="reference internal" href="#equation-covariance-variance-nobs-pdimentionals">(10.8)</a>, es una <em><strong>matriz simétrica de orden</strong></em> <span class="math notranslate nohighlight">\(p\)</span>. Luego, denotamos los <span class="math notranslate nohighlight">\(p\)</span> autovalores</p>
+<li><p>Denotemos <span class="math notranslate nohighlight">\(S\)</span> como una <em><strong>matriz de varianza-covarianza muestral</strong></em> basada en <span class="math notranslate nohighlight">\(n\)</span> <em><strong>datos observados</strong></em> <span class="math notranslate nohighlight">\(p\)</span>-dimensionales. Como se observa en la Ecuación <a class="reference internal" href="#equation-covariance-variance-nobs-pdimentionals">(11.8)</a>, es una <em><strong>matriz simétrica de orden</strong></em> <span class="math notranslate nohighlight">\(p\)</span>. Luego, denotamos los <span class="math notranslate nohighlight">\(p\)</span> autovalores</p>
 <div class="math notranslate nohighlight">
 \[
   \lambda_{1}\geq\lambda_{2}\geq\cdots\lambda_{i}\geq\cdots\geq\lambda_{p}\geq0,
@@ -707,7 +708,7 @@ L(\boldsymbol{w}, \lambda)=\boldsymbol{w}^{T}S\boldsymbol{w}+\lambda(1-\boldsymb
 <li><p>Para estos autovectores, la <em><strong>normalización</strong></em> <span class="math notranslate nohighlight">\(\boldsymbol{w}_{i}^{T}\boldsymbol{w}_{i}=1\)</span> para longitud del vector 1 y la <em><strong>ortogonalidad</strong></em> <span class="math notranslate nohighlight">\(\boldsymbol{w}_{i}^{T}\boldsymbol{w}_{j}=0\)</span> (para <span class="math notranslate nohighlight">\(i\neq j\)</span>) quedan así establecidas.</p></li>
 <li><p>Los <span class="math notranslate nohighlight">\(p\)</span> <em><strong>componentes principales</strong></em> y su <em><strong>varianza expresada</strong></em> en términos de la <em><strong>combinación lineal de las variables originales</strong></em> pueden ser proporcionados en orden de la siguiente manera</p>
 <div class="math notranslate nohighlight" id="equation-systemof-variance-principal-components">
-<span class="eqno">(10.10)<a class="headerlink" href="#equation-systemof-variance-principal-components" title="Link to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(11.10)<a class="headerlink" href="#equation-systemof-variance-principal-components" title="Link to this equation">#</a></span>\[\begin{split}
   \begin{align*}
   y_{1} &amp;= w_{11}x_{1}+w_{12}x_{2}+\cdots+w_{1p}x_{p}=\boldsymbol{w}_{1}^{T}\boldsymbol{x},\quad\text{var}(y_{1})=\lambda_{1},\\
   y_{2} &amp;= w_{21}x_{1}+w_{22}x_{2}+\cdots+w_{2p}x_{p}=\boldsymbol{w}_{2}^{T}\boldsymbol{x},\quad\text{var}(y_{2})=\lambda_{2},\\
@@ -758,11 +759,11 @@ L(\boldsymbol{w}, \lambda)=\boldsymbol{w}^{T}S\boldsymbol{w}+\lambda(1-\boldsymb
 </section>
 </section>
 <section id="autovalores-y-autovectores-de-una-matriz-simetrica">
-<h2><span class="section-number">10.5. </span>Autovalores y autovectores de una matriz simétrica<a class="headerlink" href="#autovalores-y-autovectores-de-una-matriz-simetrica" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">11.5. </span>Autovalores y autovectores de una matriz simétrica<a class="headerlink" href="#autovalores-y-autovectores-de-una-matriz-simetrica" title="Link to this heading">#</a></h2>
 <ul>
-<li><p>La matriz de <em><strong>varianza-covarianza muestral</strong></em> <span class="math notranslate nohighlight">\(S\)</span> dada por la Ecuación <a class="reference internal" href="#equation-covariance-variance-nobs-pdimentionals">(10.8)</a> es una <em><strong>matriz simétrica de orden</strong></em> <span class="math notranslate nohighlight">\(p\)</span>, con la siguiente <em><strong>relación entre sus autovalores y autovectores</strong></em></p>
+<li><p>La matriz de <em><strong>varianza-covarianza muestral</strong></em> <span class="math notranslate nohighlight">\(S\)</span> dada por la Ecuación <a class="reference internal" href="#equation-covariance-variance-nobs-pdimentionals">(11.8)</a> es una <em><strong>matriz simétrica de orden</strong></em> <span class="math notranslate nohighlight">\(p\)</span>, con la siguiente <em><strong>relación entre sus autovalores y autovectores</strong></em></p>
 <div class="math notranslate nohighlight" id="equation-eigenvalue-eigenvector-relation">
-<span class="eqno">(10.11)<a class="headerlink" href="#equation-eigenvalue-eigenvector-relation" title="Link to this equation">#</a></span>\[
+<span class="eqno">(11.11)<a class="headerlink" href="#equation-eigenvalue-eigenvector-relation" title="Link to this equation">#</a></span>\[
    S\boldsymbol{w}_{i}=\lambda_{i}\boldsymbol{w}_{i},~\boldsymbol{w}_{i}^{T}\boldsymbol{w}_{i}=1,~\boldsymbol{w}_{i}^{T}\boldsymbol{w}_{j}=0~(i\neq j)
    \]</div>
 <p>para <span class="math notranslate nohighlight">\(i,j=1,2,\dots,p\)</span>.</p>
@@ -783,7 +784,7 @@ L(\boldsymbol{w}, \lambda)=\boldsymbol{w}^{T}S\boldsymbol{w}+\lambda(1-\boldsymb
 </li>
 </ul>
 <ul class="simple">
-<li><p>La <em><strong>relación entre los autovalores y autovectores de la matriz de varianza-covarianza muestral</strong></em> <span class="math notranslate nohighlight">\(S\)</span> dada por Ecuación <a class="reference internal" href="#equation-eigenvalue-eigenvector-relation">(10.11)</a> puede expresarse de la siguiente manera:</p>
+<li><p>La <em><strong>relación entre los autovalores y autovectores de la matriz de varianza-covarianza muestral</strong></em> <span class="math notranslate nohighlight">\(S\)</span> dada por Ecuación <a class="reference internal" href="#equation-eigenvalue-eigenvector-relation">(11.11)</a> puede expresarse de la siguiente manera:</p>
 <ol class="arabic simple">
 <li><p><span class="math notranslate nohighlight">\(SW=W\Lambda,\quad W^{T}W=I_{p}\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(W^{T}SW=\Lambda\)</span></p></li>
@@ -801,7 +802,7 @@ L(\boldsymbol{w}, \lambda)=\boldsymbol{w}^{T}S\boldsymbol{w}+\lambda(1-\boldsymb
 </div>
 </section>
 <section id="estandarizacion-y-matriz-de-correlacion-muestral">
-<h2><span class="section-number">10.6. </span>Estandarización y matriz de correlación muestral<a class="headerlink" href="#estandarizacion-y-matriz-de-correlacion-muestral" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">11.6. </span>Estandarización y matriz de correlación muestral<a class="headerlink" href="#estandarizacion-y-matriz-de-correlacion-muestral" title="Link to this heading">#</a></h2>
 <div class="tip admonition">
 <p class="admonition-title">Introducción</p>
 <ul class="simple">
@@ -812,10 +813,10 @@ L(\boldsymbol{w}, \lambda)=\boldsymbol{w}^{T}S\boldsymbol{w}+\lambda(1-\boldsymb
 <ul>
 <li><p>Para los <span class="math notranslate nohighlight">\(n\)</span> datos observados <span class="math notranslate nohighlight">\(p\)</span> dimensionales</p>
 <div class="math notranslate nohighlight" id="equation-vector-pvariables-ndimensionals">
-<span class="eqno">(10.12)<a class="headerlink" href="#equation-vector-pvariables-ndimensionals" title="Link to this equation">#</a></span>\[
+<span class="eqno">(11.12)<a class="headerlink" href="#equation-vector-pvariables-ndimensionals" title="Link to this equation">#</a></span>\[
   \boldsymbol{x}_{i}=(x_{i1}, x_{i2}, \dots, x_{ip})^{T},\quad i=1, 2, \dots, n,
   \]</div>
-<p>Primero obtenemos el <em><strong>vector de media muestral</strong></em> <span class="math notranslate nohighlight">\(\overline{\boldsymbol{x}}=(\overline{x}_{1}, \overline{x}_{2}, \dots, \overline{x}_{p})^{T}\)</span> y la <em><strong>matriz de varianza-covarianza muestral</strong></em> <span class="math notranslate nohighlight">\(S=(s_{jk})\)</span>. Estandarizamos los datos <span class="math notranslate nohighlight">\(p\)</span>-dimensionales en Ecuación <a class="reference internal" href="#equation-vector-pvariables-ndimensionals">(10.12)</a> de manera que</p>
+<p>Primero obtenemos el <em><strong>vector de media muestral</strong></em> <span class="math notranslate nohighlight">\(\overline{\boldsymbol{x}}=(\overline{x}_{1}, \overline{x}_{2}, \dots, \overline{x}_{p})^{T}\)</span> y la <em><strong>matriz de varianza-covarianza muestral</strong></em> <span class="math notranslate nohighlight">\(S=(s_{jk})\)</span>. Estandarizamos los datos <span class="math notranslate nohighlight">\(p\)</span>-dimensionales en Ecuación <a class="reference internal" href="#equation-vector-pvariables-ndimensionals">(11.12)</a> de manera que</p>
 <div class="math notranslate nohighlight">
 \[
   \boldsymbol{z}_{i}=(z_{i1}, z_{i2}, \dots, z_{ip})^{T},\quad z_{ij}=\frac{x_{ij}-\overline{x}_{j}}{\sqrt{s_{jj}}},\quad j=1, 2, \dots, p.
@@ -840,12 +841,12 @@ L(\boldsymbol{w}, \lambda)=\boldsymbol{w}^{T}S\boldsymbol{w}+\lambda(1-\boldsymb
 </div>
 </section>
 <section id="reduccion-de-dimension-y-perdida-de-informacion">
-<h2><span class="section-number">10.7. </span>Reducción de dimensión y pérdida de información<a class="headerlink" href="#reduccion-de-dimension-y-perdida-de-informacion" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">11.7. </span>Reducción de dimensión y pérdida de información<a class="headerlink" href="#reduccion-de-dimension-y-perdida-de-informacion" title="Link to this heading">#</a></h2>
 <div class="admonition-introduccion admonition">
 <p class="admonition-title">Introducción</p>
 <ul class="simple">
 <li><p>En <span class="math notranslate nohighlight">\(PCA\)</span>, <em><strong>la varianza proporciona una medida de información</strong></em>, y, por lo tanto, <em><strong>la pérdida de información puede ser estimada cuantitativamente a partir de los tamaños relativos de las varianzas de los componentes principales</strong></em>.</p></li>
-<li><p>Como se muestra en Ecuación <a class="reference internal" href="#equation-systemof-variance-principal-components">(10.10)</a>, la <em><strong>varianza del componente principal está dada por el autovalor de la matriz de varianza-covarianza muestral</strong></em>.</p></li>
+<li><p>Como se muestra en Ecuación <a class="reference internal" href="#equation-systemof-variance-principal-components">(11.10)</a>, la <em><strong>varianza del componente principal está dada por el autovalor de la matriz de varianza-covarianza muestral</strong></em>.</p></li>
 <li><p>En resumen, podemos utilizar <span class="math notranslate nohighlight">\(\lambda_{1}/(\lambda_{1}+\lambda_{2}+\cdots+\lambda_{p})\)</span> para evaluar <em><strong>qué proporción de la información contenida en las</strong></em> <span class="math notranslate nohighlight">\(p\)</span> <em><strong>variables originales está presente en el primer componente principal</strong></em> <span class="math notranslate nohighlight">\(y_{1}\)</span>.</p></li>
 </ul>
 </div>
@@ -871,7 +872,7 @@ L(\boldsymbol{w}, \lambda)=\boldsymbol{w}^{T}S\boldsymbol{w}+\lambda(1-\boldsymb
 </ul>
 </div>
 <div class="proof example admonition" id="example-0">
-<p class="admonition-title"><span class="caption-number">Example 10.1 </span> (Relación entre estructura de correlación y pérdida de información)</p>
+<p class="admonition-title"><span class="caption-number">Example 11.1 </span> (Relación entre estructura de correlación y pérdida de información)</p>
 <section class="example-content" id="proof-content">
 <ul>
 <li><p>Supongamos que tenemos la <em><strong>matriz de correlación muestral</strong></em> basada en datos observados bidimensionales para las variables <span class="math notranslate nohighlight">\(x_{1}, x_{2}\)</span></p>
@@ -903,17 +904,17 @@ L(\boldsymbol{w}, \lambda)=\boldsymbol{w}^{T}S\boldsymbol{w}+\lambda(1-\boldsymb
 </ul>
 </section>
 </div><ul class="simple">
-<li><p>Como se muestra en la Figura <a class="reference internal" href="#exercise-two-pca-rgiven-fig"><span class="std std-numref">Fig. 10.4</span></a>, la contribución del primer componente principal, y, por lo tanto, la <em><strong>proporción que puede ser explicada únicamente por el primer componente principal, aumenta con la correlación creciente entre las dos variables</strong></em>.</p></li>
+<li><p>Como se muestra en la Figura <a class="reference internal" href="#exercise-two-pca-rgiven-fig"><span class="std std-numref">Fig. 11.4</span></a>, la contribución del primer componente principal, y, por lo tanto, la <em><strong>proporción que puede ser explicada únicamente por el primer componente principal, aumenta con la correlación creciente entre las dos variables</strong></em>.</p></li>
 </ul>
 <figure class="align-center" id="exercise-two-pca-rgiven-fig">
 <a class="reference internal image-reference" href="_images/exercise_two_pca_rgiven.png"><img alt="_images/exercise_two_pca_rgiven.png" src="_images/exercise_two_pca_rgiven.png" style="width: 494.9px; height: 366.09999999999997px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 10.4 </span><span class="caption-text">Componentes principales basados en la <em><strong>matriz de correlación muestral y sus contribuciones</strong></em>. Fuente <span id="id3">[<a class="reference internal" href="biblio.html#id20" title="S. Konishi. Introduction to Multivariate Analysis: Linear and Nonlinear Modeling. Chapman &amp; Hall/CRC Texts in Statistical Science. Taylor &amp; Francis, 2014. ISBN 9781466567283. URL: https://books.google.com.co/books?id=fcuuAwAAQBAJ.">Konishi, 2014</a>]</span>.</span><a class="headerlink" href="#exercise-two-pca-rgiven-fig" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 11.4 </span><span class="caption-text">Componentes principales basados en la <em><strong>matriz de correlación muestral y sus contribuciones</strong></em>. Fuente <span id="id3">[<a class="reference internal" href="biblio.html#id20" title="S. Konishi. Introduction to Multivariate Analysis: Linear and Nonlinear Modeling. Chapman &amp; Hall/CRC Texts in Statistical Science. Taylor &amp; Francis, 2014. ISBN 9781466567283. URL: https://books.google.com.co/books?id=fcuuAwAAQBAJ.">Konishi, 2014</a>]</span>.</span><a class="headerlink" href="#exercise-two-pca-rgiven-fig" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="implementacion">
-<h2><span class="section-number">10.8. </span>Implementación<a class="headerlink" href="#implementacion" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">11.8. </span>Implementación<a class="headerlink" href="#implementacion" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Hasta este momento, hemos analizado en detalle <em><strong>estimadores de aprendizaje supervisado</strong></em>: aquellos estimadores que <em><strong>predicen etiquetas basadas en datos de entrenamiento etiquetados</strong></em>. Ahora, empezamos a examinar varios <em><strong>estimadores no supervisados</strong></em>, los cuales pueden resaltar aspectos interesantes de los datos sin hacer referencia a etiquetas conocidas.</p></li>
 <li><p>En esta sección, exploramos lo que posiblemente es uno de los <em><strong>algoritmos no supervisados más ampliamente utilizados</strong></em>: el <em><strong>análisis de componentes principales (PCA)</strong></em>. PCA es fundamentalmente un <em><strong>algoritmo de reducción de dimensionalidad</strong></em>, pero también puede ser útil como <em><strong>herramienta de visualización, para filtrado de ruido, extracción y construcción de características, y mucho más</strong></em>.</p></li>
@@ -938,7 +939,7 @@ L(\boldsymbol{w}, \lambda)=\boldsymbol{w}^{T}S\boldsymbol{w}+\lambda(1-\boldsymb
 </div>
 </section>
 <section id="introduccion-al-analisis-de-componentes-principales">
-<h2><span class="section-number">10.9. </span>Introducción al análisis de componentes principales<a class="headerlink" href="#introduccion-al-analisis-de-componentes-principales" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">11.9. </span>Introducción al análisis de componentes principales<a class="headerlink" href="#introduccion-al-analisis-de-componentes-principales" title="Link to this heading">#</a></h2>
 <p>El <code class="docutils literal notranslate"><span class="pre">análisis</span> <span class="pre">de</span> <span class="pre">componentes</span> <span class="pre">principales</span> <span class="pre">(PCA)</span></code> es una <code class="docutils literal notranslate"><span class="pre">técnica</span> <span class="pre">no</span> <span class="pre">supervisada,</span> <span class="pre">rápida</span> <span class="pre">y</span> <span class="pre">adaptable</span></code>, diseñada para <code class="docutils literal notranslate"><span class="pre">reducir</span> <span class="pre">la</span> <span class="pre">dimensionalidad</span> <span class="pre">de</span> <span class="pre">los</span> <span class="pre">datos</span></code>. La forma más sencilla de comprender su funcionamiento es a través del <code class="docutils literal notranslate"><span class="pre">examen</span> <span class="pre">de</span> <span class="pre">un</span> <span class="pre">conjunto</span> <span class="pre">de</span> <span class="pre">datos</span> <span class="pre">bidimensional</span></code>. Tomemos en consideración la <code class="docutils literal notranslate"><span class="pre">recopilación</span> <span class="pre">posterior</span> <span class="pre">de</span> <span class="pre">200</span> <span class="pre">puntos</span> <span class="pre">de</span> <span class="pre">datos</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1032,14 +1033,14 @@ L(\boldsymbol{w}, \lambda)=\boldsymbol{w}^{T}S\boldsymbol{w}+\lambda(1-\boldsymb
 </div>
 </div>
 <div class="proof observation admonition" id="observation-1">
-<p class="admonition-title"><span class="caption-number">Observation 10.1 </span></p>
+<p class="admonition-title"><span class="caption-number">Observation 11.1 </span></p>
 <section class="observation-content" id="proof-content">
 <ul class="simple">
 <li><p>Estos vectores simbolizan las <code class="docutils literal notranslate"><span class="pre">orientaciones</span> <span class="pre">primarias</span> <span class="pre">de</span> <span class="pre">los</span> <span class="pre">datos</span></code>, y <code class="docutils literal notranslate"><span class="pre">la</span> <span class="pre">longitud</span> <span class="pre">del</span> <span class="pre">vector</span></code> indica la <code class="docutils literal notranslate"><span class="pre">importancia</span> <span class="pre">de</span> <span class="pre">esa</span> <span class="pre">orientación</span> <span class="pre">para</span> <span class="pre">explicar</span> <span class="pre">la</span> <span class="pre">distribución</span> <span class="pre">de</span> <span class="pre">los</span> <span class="pre">datos</span></code>. Esta longitud <code class="docutils literal notranslate"><span class="pre">cuantifica</span> <span class="pre">la</span> <span class="pre">varianza</span> <span class="pre">de</span> <span class="pre">los</span> <span class="pre">datos</span> <span class="pre">cuando</span> <span class="pre">se</span> <span class="pre">proyectan</span> <span class="pre">sobre</span> <span class="pre">esa</span> <span class="pre">orientación</span></code>. La proyección de los puntos de datos sobre estas orientaciones principales se denomina <code class="docutils literal notranslate"><span class="pre">&quot;componentes</span> <span class="pre">principales&quot;</span></code> de los datos.</p></li>
 </ul>
 </section>
 </div><section id="pca-para-reduccion-de-dimension">
-<h3><span class="section-number">10.9.1. </span>PCA para reducción de dimensión<a class="headerlink" href="#pca-para-reduccion-de-dimension" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">11.9.1. </span>PCA para reducción de dimensión<a class="headerlink" href="#pca-para-reduccion-de-dimension" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>El <code class="docutils literal notranslate"><span class="pre">PCA</span></code> puede emplearse para <code class="docutils literal notranslate"><span class="pre">reducir</span> <span class="pre">la</span> <span class="pre">dimensionalidad</span> <span class="pre">anulando</span> <span class="pre">uno</span> <span class="pre">o</span> <span class="pre">varios</span> <span class="pre">de</span> <span class="pre">los</span> <span class="pre">componentes</span> <span class="pre">principales</span> <span class="pre">más</span> <span class="pre">pequeños</span></code>. De este modo se obtiene una <code class="docutils literal notranslate"><span class="pre">representación</span> <span class="pre">de</span> <span class="pre">los</span> <span class="pre">datos</span> <span class="pre">de</span> <span class="pre">menor</span> <span class="pre">dimensión,</span> <span class="pre">conservando</span> <span class="pre">al</span> <span class="pre">mismo</span> <span class="pre">tiempo</span> <span class="pre">la</span> <span class="pre">mayor</span> <span class="pre">varianza</span> <span class="pre">posible</span></code> de los datos. A continuación se muestra un ejemplo de utilización de <code class="docutils literal notranslate"><span class="pre">PCA</span> <span class="pre">com</span></code> transformación para la reducción de la dimensionalidad`</p></li>
 </ul>
@@ -1082,7 +1083,7 @@ transformed shape: (200, 1)
 </ul>
 </section>
 <section id="pca-para-visualizacion-digitos-escritos-a-mano">
-<h3><span class="section-number">10.9.2. </span>PCA para visualización: Dígitos escritos a mano<a class="headerlink" href="#pca-para-visualizacion-digitos-escritos-a-mano" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">11.9.2. </span>PCA para visualización: Dígitos escritos a mano<a class="headerlink" href="#pca-para-visualizacion-digitos-escritos-a-mano" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>El valor de <code class="docutils literal notranslate"><span class="pre">reducir</span> <span class="pre">la</span> <span class="pre">dimensionalidad</span> <span class="pre">puede</span> <span class="pre">no</span> <span class="pre">ser</span> <span class="pre">del</span> <span class="pre">todo</span> <span class="pre">evidente</span> <span class="pre">en</span> <span class="pre">sólo</span> <span class="pre">dos</span> <span class="pre">dimensiones</span></code>, pero se hace mucho más evidente cuando se trata de <code class="docutils literal notranslate"><span class="pre">datos</span> <span class="pre">de</span> <span class="pre">alta</span> <span class="pre">dimensionalidad</span></code>. Para ilustrarlo, examinaremos la aplicación de <code class="docutils literal notranslate"><span class="pre">PCA</span></code> al conjunto de datos de <code class="docutils literal notranslate"><span class="pre">dígitos</span> <span class="pre">escritos</span> <span class="pre">a</span> <span class="pre">mano</span></code> (imágenes <span class="math notranslate nohighlight">\(8\times8\)</span> (64-dimensional) de píxeles enteros en el rango <span class="math notranslate nohighlight">\(0,\dots,16\)</span>.).</p></li>
 </ul>
@@ -1636,7 +1637,7 @@ transformed shape: (200, 1)
 </div>
 </div>
 <div class="proof observation admonition" id="observation-2">
-<p class="admonition-title"><span class="caption-number">Observation 10.2 </span></p>
+<p class="admonition-title"><span class="caption-number">Observation 11.2 </span></p>
 <section class="observation-content" id="proof-content">
 <ul class="simple">
 <li><p>Consideremos la <code class="docutils literal notranslate"><span class="pre">importancia</span> <span class="pre">de</span> <span class="pre">estos</span> <span class="pre">componentes</span></code>: el conjunto completo de datos forma una <code class="docutils literal notranslate"><span class="pre">nube</span> <span class="pre">de</span> <span class="pre">puntos</span> <span class="pre">de</span> <span class="pre">64</span> <span class="pre">dimensiones</span></code>, y estos puntos concretos representan la <code class="docutils literal notranslate"><span class="pre">proyección</span> <span class="pre">de</span> <span class="pre">cada</span> <span class="pre">punto</span> <span class="pre">de</span> <span class="pre">datos</span> <span class="pre">a</span> <span class="pre">lo</span> <span class="pre">largo</span> <span class="pre">de</span> <span class="pre">las</span> <span class="pre">direcciones</span> <span class="pre">con</span> <span class="pre">mayor</span> <span class="pre">varianza</span></code>.</p></li>
@@ -1648,7 +1649,7 @@ transformed shape: (200, 1)
 </ul>
 </section>
 <section id="seleccion-del-numero-de-componentes">
-<h3><span class="section-number">10.9.3. </span>Selección del número de componentes<a class="headerlink" href="#seleccion-del-numero-de-componentes" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">11.9.3. </span>Selección del número de componentes<a class="headerlink" href="#seleccion-del-numero-de-componentes" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Un aspecto esencial de la aplicación práctica del <code class="docutils literal notranslate"><span class="pre">PCA</span></code> consiste en <code class="docutils literal notranslate"><span class="pre">determinar</span> <span class="pre">el</span> <span class="pre">número</span> <span class="pre">óptimo</span> <span class="pre">de</span> <span class="pre">componentes</span> <span class="pre">necesarios</span> <span class="pre">para</span> <span class="pre">caracterizar</span> <span class="pre">los</span> <span class="pre">datos</span></code>. Esto puede lograrse analizando la <code class="docutils literal notranslate"><span class="pre">proporción</span> <span class="pre">de</span> <span class="pre">varianza</span> <span class="pre">explicada</span> <span class="pre">acumulativa</span> <span class="pre">en</span> <span class="pre">relación</span> <span class="pre">con</span> <span class="pre">el</span> <span class="pre">número</span> <span class="pre">de</span> <span class="pre">componentes</span></code></p></li>
 </ul>
@@ -1671,7 +1672,7 @@ transformed shape: (200, 1)
 </ul>
 </section>
 <section id="pca-como-filtro-de-ruido">
-<h3><span class="section-number">10.9.4. </span>PCA como filtro de ruido<a class="headerlink" href="#pca-como-filtro-de-ruido" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">11.9.4. </span>PCA como filtro de ruido<a class="headerlink" href="#pca-como-filtro-de-ruido" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>El PCA puede servir como técnica para <code class="docutils literal notranslate"><span class="pre">filtrar</span> <span class="pre">el</span> <span class="pre">ruido</span> <span class="pre">de</span> <span class="pre">los</span> <span class="pre">datos</span></code>. El concepto fundamental es que los <em><strong><code class="docutils literal notranslate"><span class="pre">componentes</span> <span class="pre">con</span> <span class="pre">una</span> <span class="pre">varianza</span> <span class="pre">significativamente</span> <span class="pre">mayor</span> <span class="pre">que</span> <span class="pre">el</span> <span class="pre">impacto</span> <span class="pre">del</span> <span class="pre">ruido,</span> <span class="pre">están</span> <span class="pre">menos</span> <span class="pre">influidas</span> <span class="pre">por</span> <span class="pre">éste</span></code></strong></em>. Por consiguiente, si se reconstruyen los datos utilizando el <code class="docutils literal notranslate"><span class="pre">subconjunto</span> <span class="pre">primario</span> <span class="pre">de</span> <span class="pre">componentes</span> <span class="pre">principales</span> <span class="pre">con</span> <span class="pre">la</span> <span class="pre">mayor</span> <span class="pre">varianza,</span> <span class="pre">se</span> <span class="pre">conserva</span> <span class="pre">efectivamente</span> <span class="pre">la</span> <span class="pre">señal</span> <span class="pre">al</span> <span class="pre">tiempo</span> <span class="pre">que</span> <span class="pre">se</span> <span class="pre">elimina</span> <span class="pre">el</span> <span class="pre">ruido</span></code>.</p></li>
 <li><p>Para observar esto en acción con el conjunto de datos de <code class="docutils literal notranslate"><span class="pre">dígitos</span></code>, empezaremos generando <code class="docutils literal notranslate"><span class="pre">gráficos</span> <span class="pre">para</span> <span class="pre">varias</span> <span class="pre">instancias</span> <span class="pre">de</span> <span class="pre">los</span> <span class="pre">datos</span> <span class="pre">originales</span> <span class="pre">libres</span> <span class="pre">de</span> <span class="pre">ruido</span></code></p></li>
@@ -1757,7 +1758,7 @@ transformed shape: (200, 1)
 </ul>
 </section>
 <section id="ejemplo-eigenfaces">
-<h3><span class="section-number">10.9.5. </span>Ejemplo Eigenfaces<a class="headerlink" href="#ejemplo-eigenfaces" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">11.9.5. </span>Ejemplo Eigenfaces<a class="headerlink" href="#ejemplo-eigenfaces" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Examinamos la utilización de una <code class="docutils literal notranslate"><span class="pre">proyección</span> <span class="pre">PCA</span></code> como <code class="docutils literal notranslate"><span class="pre">selector</span> <span class="pre">de</span> <span class="pre">características</span></code> en el contexto del <code class="docutils literal notranslate"><span class="pre">reconocimiento</span> <span class="pre">facial</span></code>. Profundicemos en los detalles, trabajado con el conjunto de datos <code class="docutils literal notranslate"><span class="pre">Labeled</span> <span class="pre">Faces</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">Wild</span></code> proporcionado por <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code></p></li>
 </ul>
@@ -1901,7 +1902,7 @@ transformed shape: (200, 1)
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">9. </span>Redes Neuronales y Deep Learning</p>
+        <p class="prev-next-title"><span class="section-number">10. </span>Redes Neuronales y Deep Learning</p>
       </div>
     </a>
     <a class="right-next"
@@ -1909,7 +1910,7 @@ transformed shape: (200, 1)
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">11. </span>Evaluación de modelos</p>
+        <p class="prev-next-title"><span class="section-number">12. </span>Evaluación de modelos</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1929,23 +1930,23 @@ transformed shape: (200, 1)
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis">10.1. Análisis</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concepto-basico">10.2. Concepto básico</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autovalores-autovectores-y-componentes-principales">10.3. Autovalores, Autovectores y Componentes Principales</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proceso-de-derivacion-de-componentes-principales-y-propiedades">10.4. Proceso de Derivación de Componentes Principales y Propiedades</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#el-problema-de-los-autovalores-de-la-matriz-de-varianza-covarianza-muestral-y-los-componentes-principales">10.4.1. El problema de los autovalores de la matriz de varianza-covarianza muestral y los componentes principales</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis">11.1. Análisis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concepto-basico">11.2. Concepto básico</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autovalores-autovectores-y-componentes-principales">11.3. Autovalores, Autovectores y Componentes Principales</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proceso-de-derivacion-de-componentes-principales-y-propiedades">11.4. Proceso de Derivación de Componentes Principales y Propiedades</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#el-problema-de-los-autovalores-de-la-matriz-de-varianza-covarianza-muestral-y-los-componentes-principales">11.4.1. El problema de los autovalores de la matriz de varianza-covarianza muestral y los componentes principales</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autovalores-y-autovectores-de-una-matriz-simetrica">10.5. Autovalores y autovectores de una matriz simétrica</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estandarizacion-y-matriz-de-correlacion-muestral">10.6. Estandarización y matriz de correlación muestral</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reduccion-de-dimension-y-perdida-de-informacion">10.7. Reducción de dimensión y pérdida de información</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion">10.8. Implementación</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion-al-analisis-de-componentes-principales">10.9. Introducción al análisis de componentes principales</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-para-reduccion-de-dimension">10.9.1. PCA para reducción de dimensión</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-para-visualizacion-digitos-escritos-a-mano">10.9.2. PCA para visualización: Dígitos escritos a mano</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-del-numero-de-componentes">10.9.3. Selección del número de componentes</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-como-filtro-de-ruido">10.9.4. PCA como filtro de ruido</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-eigenfaces">10.9.5. Ejemplo Eigenfaces</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autovalores-y-autovectores-de-una-matriz-simetrica">11.5. Autovalores y autovectores de una matriz simétrica</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estandarizacion-y-matriz-de-correlacion-muestral">11.6. Estandarización y matriz de correlación muestral</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reduccion-de-dimension-y-perdida-de-informacion">11.7. Reducción de dimensión y pérdida de información</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion">11.8. Implementación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion-al-analisis-de-componentes-principales">11.9. Introducción al análisis de componentes principales</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-para-reduccion-de-dimension">11.9.1. PCA para reducción de dimensión</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-para-visualizacion-digitos-escritos-a-mano">11.9.2. PCA para visualización: Dígitos escritos a mano</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-del-numero-de-componentes">11.9.3. Selección del número de componentes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-como-filtro-de-ruido">11.9.4. PCA como filtro de ruido</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-eigenfaces">11.9.5. Ejemplo Eigenfaces</a></li>
 </ul>
 </li>
 </ul>
