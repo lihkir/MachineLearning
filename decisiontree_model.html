@@ -474,27 +474,27 @@ P(\omega_{m}|t)=\frac{N_{t}^{m}}{N_{t}},\quad m=1,2,\dots,M,
 <div class="tip admonition">
 <p class="admonition-title">Ejemplo: Cálculo de Entropía</p>
 <p>Calculemos el <em><strong>índice de entropía</strong></em> <span class="math notranslate nohighlight">\(I(t)\)</span> para <em><strong>3 casos diferentes</strong></em> de un conjunto con <em><strong>4 balotas</strong></em> de dos colores diferentes, <em><strong>rojo y azul</strong></em>:</p>
-<ul class="simple">
-<li><p>4 balotas rojas y 0 balotas azules:</p></li>
-</ul>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(I(t)\approx 0\)</span>: <strong>Baja incertidumbre</strong>. 4 balotas rojas y 0 balotas azules</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-\begin{align*}
-I(t)&amp;=-P(\text{rojo})\cdot\log_{2}(P(\text{rojo}))-P(\text{azul})\cdot\log_{2}(P(\text{azul}))\\
-&amp;=-\frac{4}{4}\cdot\log_{2}\frac{4}{4}-\frac{0}{4}\cdot\log_{2}\frac{0}{4}=0
-\end{align*}
-\end{split}\]</div>
-<ul class="simple">
-<li><p>2 balotas rojas y 2 balotas azules:</p></li>
-</ul>
+    \begin{align*}
+    I(t)&amp;=-P(\text{rojo})\cdot\log_{2}(P(\text{rojo}))-P(\text{azul})\cdot\log_{2}(P(\text{azul}))\\
+    &amp;=-\frac{4}{4}\cdot\log_{2}\frac{4}{4}-\frac{0}{4}\cdot\log_{2}\frac{0}{4}=0
+    \end{align*}
+    \end{split}\]</div>
+<p>Como el <em><strong>conjunto es completamente puro</strong></em> (una sola clase), la <em><strong>entropía es cero, indicando baja incertidumbre</strong></em>.</p>
+</li>
+<li><p><span class="math notranslate nohighlight">\(I(t)\approx 1\)</span>: <strong>Mucha incertidumbre</strong>. 2 balotas rojas y 2 balotas azules</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-\begin{align*}
-I(t)&amp;=-P(\text{rojo})\cdot\log_{2}(P(\text{rojo}))-P(\text{azul})\cdot\log_{2}(P(\text{azul}))\\
-&amp;=-\frac{2}{4}\cdot\log_{2}\frac{2}{4}-\frac{2}{4}\cdot\log_{2}\frac{2}{4}=1
-\end{align*}
-\end{split}\]</div>
-<ul class="simple">
+    \begin{align*}
+    I(t)&amp;=-P(\text{rojo})\cdot\log_{2}(P(\text{rojo}))-P(\text{azul})\cdot\log_{2}(P(\text{azul}))\\
+    &amp;=-\frac{2}{4}\cdot\log_{2}\frac{2}{4}-\frac{2}{4}\cdot\log_{2}\frac{2}{4}=1
+    \end{align*}
+    \end{split}\]</div>
+<p>Esto indica <em><strong>máxima incertidumbre</strong></em>, ya que las clases están balanceadas, y el modelo tiene dificultad para decidir una categoría dominante.</p>
+</li>
 <li><p>3 balotas rojas y 1 balota azul:</p></li>
 </ul>
 <div class="math notranslate nohighlight">
@@ -983,6 +983,8 @@ F_{i}(\cdot)=F_{i-1}(\cdot)+\nu T(\cdot; \boldsymbol{\theta}_{i}).
     \]</div>
 <p>donde <span class="math notranslate nohighlight">\(A\)</span> es una matriz <em><strong>simétrica definida positiva</strong></em>. Demuestre que <span class="math notranslate nohighlight">\(R\)</span> se maximiza con respecto a <span class="math notranslate nohighlight">\(\theta\)</span> si <span class="math notranslate nohighlight">\(\theta\)</span> es el <em><strong>autovector</strong></em> correspondiente al <em><strong>mayor autovalor</strong></em> de <span class="math notranslate nohighlight">\(A\)</span>.</p>
 </li>
+</ol>
+<ol class="arabic" start="2">
 <li><p>Considere el <em><strong>cociente de Rayleigh generalizado</strong></em>,</p>
 <div class="math notranslate nohighlight">
 \[
@@ -990,8 +992,14 @@ F_{i}(\cdot)=F_{i-1}(\cdot)+\nu T(\cdot; \boldsymbol{\theta}_{i}).
    \]</div>
 <p>donde <span class="math notranslate nohighlight">\(A\)</span> y <span class="math notranslate nohighlight">\(B\)</span> son matrices <em><strong>simétricas definidas positivas</strong></em>. Demuestre que <span class="math notranslate nohighlight">\(R_g\)</span> se maximiza con respecto a <span class="math notranslate nohighlight">\(\theta\)</span> si <span class="math notranslate nohighlight">\(\theta\)</span> es el <em><strong>autovector</strong></em> correspondiente al <em><strong>mayor autovalor</strong></em> de <span class="math notranslate nohighlight">\(A^{-1}B\)</span>, suponiendo que la inversión de <span class="math notranslate nohighlight">\(A\)</span> es posible.</p>
 </li>
+</ol>
+<ol class="arabic simple" start="3">
 <li><p>Derive la <em><strong>regla de la media aritmética</strong></em> para la combinación minimizando la divergencia de Kullback–Leibler promedio.</p></li>
+</ol>
+<ol class="arabic simple" start="4">
 <li><p>Derive la regla del <em><strong>promedio geométrico</strong></em> mediante la minimización de la divergencia de Kullback–Leibler.</p></li>
+</ol>
+<ol class="arabic simple" start="5">
 <li><p>Demuestre que la tasa de error en el conjunto de entrenamiento del clasificador final, obtenido mediante boosting, tiende a cero de manera exponencialmente rápida.</p></li>
 </ol>
 <ol class="arabic" start="6">
