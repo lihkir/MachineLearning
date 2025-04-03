@@ -45,7 +45,7 @@
   <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
-    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="_static/copybutton.js?v=f281be69"></script>
@@ -543,33 +543,29 @@ k(x_{N}, x_{1}) &amp; \cdots &amp; k(x_{N}, x_{N})\\
 <ul>
 <li><p>El <code class="docutils literal notranslate"><span class="pre">kernel</span> <span class="pre">gaussiano</span></code> está entre las más populares y está dado por la función</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-    \\[1mm]
+\[
     \kappa(\boldsymbol{x}, \boldsymbol{y})=\exp\left(-\frac{\|\boldsymbol{x}-\boldsymbol{y}\|^{2}}{2\sigma^2}\right),\quad\sigma&gt;0
-    \end{split}\]</div>
+    \]</div>
 </li>
 <li><p>El <code class="docutils literal notranslate"><span class="pre">kernel</span> <span class="pre">polinomial</span></code> homogéneo tiene la forma</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-    \\[1mm]
+\[
     \kappa(\boldsymbol{x}, \boldsymbol{y})=(\boldsymbol{x}^{T}\boldsymbol{y})^{r},
-    \end{split}\]</div>
+    \]</div>
 <p>donde <span class="math notranslate nohighlight">\(r\)</span> es un parámetro.</p>
 </li>
 <li><p>El <code class="docutils literal notranslate"><span class="pre">kernel</span> <span class="pre">polinómico</span> <span class="pre">no-homogéneo</span></code> tiene la forma</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-    \\[1mm]
+\[
     \kappa(\boldsymbol{x}, \boldsymbol{y})=(\boldsymbol{x}^{T}\boldsymbol{y}+c)^{r},
-    \end{split}\]</div>
+    \]</div>
 <p>donde <span class="math notranslate nohighlight">\(c\geq0,~r\)</span> son parámetros.</p>
 </li>
 <li><p>El <code class="docutils literal notranslate"><span class="pre">kernel</span> <span class="pre">laplaciano</span></code> está dado por</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-    \\[2mm]
+\[
     \kappa(\boldsymbol{x}, \boldsymbol{y})=\exp(-t\|\boldsymbol{x}-\boldsymbol{y}\|),
-    \end{split}\]</div>
+    \]</div>
 <p>donde <span class="math notranslate nohighlight">\(t&gt;0\)</span> es un parámetro.</p>
 </li>
 </ul>
@@ -639,10 +635,9 @@ k(x_{N}, x_{1}) &amp; \cdots &amp; k(x_{N}, x_{N})\\
 <ul>
 <li><p>Sea <span class="math notranslate nohighlight">\(A\)</span> una <code class="docutils literal notranslate"><span class="pre">matriz</span> <span class="pre">definida</span> <span class="pre">positiva</span></code> con dimensión <span class="math notranslate nohighlight">\(l\times l\)</span>. Entonces</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-    \\[1mm]
+\[
     \kappa(\boldsymbol{x}, \boldsymbol{y})=\boldsymbol{x}^{T}A\boldsymbol{y}
-    \end{split}\]</div>
+    \]</div>
 <p>es un kernel.</p>
 </li>
 </ul>
@@ -659,10 +654,9 @@ k(x_{N}, x_{1}) &amp; \cdots &amp; k(x_{N}, x_{N})\\
     \]</div>
 <p>es también un kernel, y si <span class="math notranslate nohighlight">\(p(\cdot)\)</span> es un polinomio con coeficientes no negativos,</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-    \\[1mm]
+\[
     \kappa(\boldsymbol{x}, \boldsymbol{y})=p(\kappa_{1}(\boldsymbol{x}, \boldsymbol{y}))
-    \end{split}\]</div>
+    \]</div>
 <p>también es un kernel.</p>
 </li>
 </ul>
@@ -786,10 +780,9 @@ f(\boldsymbol{x}_{m})&amp;=\langle f, \kappa(\cdot, \boldsymbol{x}_{m})\rangle\\
 <li><p>En esta sección abordaremos la tarea de <em><strong>regresión ridge en un espacio general RKHS</strong></em>. El camino a seguir es el usado típicamente para <em><strong>extender técnicas, las cuales han sido desarrolladas para modelos lineales, a espacios más generales RKSH</strong></em>.</p></li>
 <li><p>Sea <span class="math notranslate nohighlight">\((y_{n}, \boldsymbol{x}_{n})\in\mathbb{R}\times\mathbb{R}^{l}\)</span> la representación de un mecanismo de generación de datos, modelados vía tarea de <em><strong>regresión no lineal</strong></em></p>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-    \\[1mm]
+\[
     y_{n}=g(\boldsymbol{x}_{n})+\eta_{n},\quad n=1,2,\dots,N.
-    \end{split}\]</div>
+    \]</div>
 </li>
 <li><p>Denotemos por <span class="math notranslate nohighlight">\(f\)</span> es el <em><strong>estimador de la función</strong></em> <span class="math notranslate nohighlight">\(g\)</span> desconocida. <span class="math notranslate nohighlight">\(f\)</span> <em><strong>es llamada la hipótesis</strong></em> y <span class="math notranslate nohighlight">\(H\)</span> <em><strong>el espacio de hipótesis</strong></em>, donde <span class="math notranslate nohighlight">\(f\)</span> es buscada. Supongamos que <span class="math notranslate nohighlight">\(f\)</span> está en <em><strong>RKHS</strong></em> y está asociada con el kernel</p></li>
 </ul>
@@ -828,10 +821,9 @@ f(\boldsymbol{x})=\sum_{n=1}^{N}\theta_{n}\kappa(\boldsymbol{x}, \boldsymbol{x}_
 <ul>
 <li><p>Una vez <span class="math notranslate nohighlight">\(\hat{\theta}\)</span> es obtenido, dado un vector <span class="math notranslate nohighlight">\(\boldsymbol{x}\in\mathbb{R}^{l}\)</span> la correspondiente <em><strong>predicción de la variable dependiente</strong></em> está dada por:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-    \\[1mm]
+\[
     \hat{\boldsymbol{y}}=\sum_{n=1}^{N}\hat{\theta}_{n}\kappa(\boldsymbol{x}, \boldsymbol{x}_{n})=\theta^{T}\boldsymbol{\kappa}(\boldsymbol{x})=\boldsymbol{y}^{T}(K+CI)^{-1}\boldsymbol{\kappa}(\boldsymbol{x}),
-    \end{split}\]</div>
+    \]</div>
 <p>donde <span class="math notranslate nohighlight">\(\boldsymbol{\kappa}(\boldsymbol{x})=(\kappa(\boldsymbol{x},\boldsymbol{x}_{1}),\dots,\boldsymbol{\kappa}(\boldsymbol{x}, \boldsymbol{x}_{N}))^{T}\)</span>.</p>
 </li>
 </ul>
@@ -844,10 +836,9 @@ f(\boldsymbol{x})=\sum_{n=1}^{N}\theta_{n}\kappa(\boldsymbol{x}, \boldsymbol{x}_
 <li><p>El método de <em><strong>mínimos cuadrados no es siempre el mejor criterio de optimización</strong></em>, debido a que, <em><strong>en presencia de ruido no Gaussiano</strong></em> con colas largas y por lo tanto número creciente de outliers, <em><strong>la dependencia cuadrática de el método se sesga hacia valores asociados con presencia de outliers</strong></em></p></li>
 <li><p>Una manera de darle solución a este problema es escoger una <em><strong>función de pérdida que se ajuste mejor al modelo del ruido</strong></em> (ver Huber 1992, <span id="id4">[<a class="reference internal" href="biblio.html#id16" title="Peter J Huber. Robust estimation of a location parameter. In Breakthroughs in statistics, pages 492–518. Springer, 1992.">Huber, 1992</a>]</span>). Bajo el <em><strong>supuesto de que el ruido tiene función de densidad de probabilidad (fdp) simétrica</strong></em>, la tarea optima de regresión es obtenida minimizando la función de pérdida</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-    \\[2mm]
+\[
     \mathcal{L}(y, f(\boldsymbol{x}))=|y-f(\boldsymbol{x})|
-    \end{split}\]</div>
+    \]</div>
 <p>la cual es conocida como el <em><strong>método de mínimos módulos</strong></em>.</p>
 </li>
 </ul>
@@ -858,7 +849,6 @@ f(\boldsymbol{x})=\sum_{n=1}^{N}\theta_{n}\kappa(\boldsymbol{x}, \boldsymbol{x}_
 <li><p>Huber demostró que <em><strong>si el ruido tiene dos componentes: Gaussiana y otra fdp arbitraria (simétrica)</strong></em>, entonces la <em><strong>mejor función de pérdida en el sentido minimax</strong></em> está dada por:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-    \\[1mm]
     \mathcal{L}(y, f(\boldsymbol{x}))=
     \begin{cases}
     \displaystyle{\varepsilon|y-f(\boldsymbol{x})|-\varepsilon^{2}/2} &amp; \text{si}~|y-f(\boldsymbol{x})|&gt;\varepsilon,\\[2mm]
@@ -875,7 +865,6 @@ f(\boldsymbol{x})=\sum_{n=1}^{N}\theta_{n}\kappa(\boldsymbol{x}, \boldsymbol{x}_
 <li><p>Una <em><strong>función de pérdida que se aproxima a la de Huber</strong></em> y tiene excelentes propiedades computacionales es llamada <em><strong>función de pérdida lineal</strong></em> <span class="math notranslate nohighlight">\(\varepsilon\)</span>-<em><strong>insensible</strong></em> y está dada por</p>
 <div class="math notranslate nohighlight" id="equation-eq-lin-ins">
 <span class="eqno">(8.5)<a class="headerlink" href="#equation-eq-lin-ins" title="Link to this equation">#</a></span>\[\begin{split}
-    \\[1mm]
     \mathcal{L}(y, f(\boldsymbol{x}))=
     \begin{cases}
     |y-f(\boldsymbol{x})|-\varepsilon &amp; \text{si}~|y-f(\boldsymbol{x})|&gt;\varepsilon\\[2mm]
@@ -915,10 +904,9 @@ f(\boldsymbol{x})=\sum_{n=1}^{N}\theta_{n}\kappa(\boldsymbol{x}, \boldsymbol{x}_
 <li><p>Usaremos la <em><strong>función de pérdida lineal</strong></em> <span class="math notranslate nohighlight">\(\varepsilon\)</span>-insensible <a class="reference internal" href="#equation-eq-lin-ins">(8.5)</a> para <em><strong>cuantificar el error de desajuste del modelo</strong></em>. El valor de <span class="math notranslate nohighlight">\(\epsilon\)</span> <em>determina la cantidad de “slack” (grado de error) que se permite</em>.</p></li>
 <li><p>Trataremos la tarea de regresión</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-    \\[1mm]
+\[
     y=g(\boldsymbol{x})+\eta_{n},
-    \end{split}\]</div>
+    \]</div>
 <p>usando un model lineal de la forma:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -928,16 +916,14 @@ f(\boldsymbol{x})=\sum_{n=1}^{N}\theta_{n}\kappa(\boldsymbol{x}, \boldsymbol{x}_
 </li>
 <li><p>Introducimos ahora <em><strong>dos conjuntos de variables auxiliares</strong></em></p>
 <div class="math notranslate nohighlight" id="equation-eq-restric-1">
-<span class="eqno">(8.6)<a class="headerlink" href="#equation-eq-restric-1" title="Link to this equation">#</a></span>\[\begin{split}
-    \\[1mm]
+<span class="eqno">(8.6)<a class="headerlink" href="#equation-eq-restric-1" title="Link to this equation">#</a></span>\[
     \text{Si}~ y_{n}-\boldsymbol{\theta}^{T}\boldsymbol{x}_{n}-\theta_{0}\geq\varepsilon,~\text{definimos}~\tilde{\xi}_{n}~\text{tal que},\quad y_{n}-\boldsymbol{\theta}^{T}\boldsymbol{x}_{n}-\theta_{0}\leq\varepsilon+\tilde{\xi}_{n}.
-    \end{split}\]</div>
+    \]</div>
 <p>Nótese que <em><strong>idealmente, deseamos seleccionar</strong></em> <span class="math notranslate nohighlight">\(\boldsymbol{\theta}, \theta_{0}\)</span> <em><strong>tales que</strong></em> <span class="math notranslate nohighlight">\(\tilde{\xi}_{n}=0\)</span>, dado que este valor entregaría la <em><strong>contribución del respectivo término en la función de pérdida igual a cero</strong></em>, pues <span class="math notranslate nohighlight">\(\mathcal{L}(y, f(\boldsymbol{x}))=0\)</span> si <span class="math notranslate nohighlight">\(|y-f(\boldsymbol{x})|\leq\varepsilon\)</span>. Análogamente,</p>
 <div class="math notranslate nohighlight" id="equation-eq-restric-2">
-<span class="eqno">(8.7)<a class="headerlink" href="#equation-eq-restric-2" title="Link to this equation">#</a></span>\[\begin{split}
-    \\[1mm]
+<span class="eqno">(8.7)<a class="headerlink" href="#equation-eq-restric-2" title="Link to this equation">#</a></span>\[
     \text{Si}~ y_{n}-\boldsymbol{\theta}^{T}\boldsymbol{x}_{n}-\theta_{0}\leq-\varepsilon,~\text{definimos}~\xi_{n}~\text{tal que},\quad\boldsymbol{\theta}^{T}\boldsymbol{x}_{n}+\theta_{0}-y_{n}\leq\varepsilon+\xi_{n}.
-    \end{split}\]</div>
+    \]</div>
 </li>
 </ul>
 <ul class="simple">
@@ -974,10 +960,9 @@ f(\boldsymbol{x})=\sum_{n=1}^{N}\theta_{n}\kappa(\boldsymbol{x}, \boldsymbol{x}_
 <li><p>Las variables auxiliares, <span class="math notranslate nohighlight">\(\tilde{\xi}_{n}\)</span> y <span class="math notranslate nohighlight">\(\xi_{n},~ n=1,2,\dots,N\)</span> que <em><strong>miden el exceso de error con respecto a</strong></em> <span class="math notranslate nohighlight">\(\varepsilon\)</span>, son conocidas como <em><strong>variables de relajación</strong></em>. Nótese que cualquier contribución de la función de coste, para un error obtenido con un valor absoluto menor o igual que <span class="math notranslate nohighlight">\(\varepsilon\)</span> es cero. La tarea de optimización previa, intenta <em><strong>estimar</strong></em> <span class="math notranslate nohighlight">\(\boldsymbol{\theta}, \theta_{0}\)</span> <em><strong>tal que valores de error mayores que</strong></em> <span class="math notranslate nohighlight">\(\epsilon\)</span> <em><strong>y menores que</strong></em> <span class="math notranslate nohighlight">\(-\epsilon\)</span> <em><strong>sean minimizados</strong></em>.</p></li>
 <li><p>Por lo tanto, la tarea de optimización es equivalente a <em><strong>minimizar la función de pérdida empírica</strong></em></p>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-    \\[1mm]
+\[
     \frac{1}{2}\|\boldsymbol{\theta}\|^{2}+C\sum_{n=1}^{N}\mathcal{L}(y_{n}, \boldsymbol{\theta}^{T}\boldsymbol{x}_{n}+\theta_{0}),
-    \end{split}\]</div>
+    \]</div>
 <p>donde la función de pérdida <span class="math notranslate nohighlight">\(\mathcal{L}\)</span> es <span class="math notranslate nohighlight">\(\varepsilon\)</span>-insensible.</p>
 </li>
 <li><p>Nótese que debido a que el problema de optimización con restricción <em><strong>involucra las variables de relajación</strong></em> con valores históricos, empleamos el <em><strong>kernel trick</strong></em>.</p></li>
@@ -1038,7 +1023,6 @@ f(\boldsymbol{x})=\sum_{n=1}^{N}\theta_{n}\kappa(\boldsymbol{x}, \boldsymbol{x}_
 <li><p>La tarea de <em><strong>optimización con desigualdades de restricción</strong></em>, satisface las <em><strong>condiciones de Karush–Kuhn–Tucker (KKT)</strong></em></p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-    \\[1mm]
     \begin{align*}
     &amp;\frac{\partial L}{\partial\boldsymbol{\theta}}=\boldsymbol{0},~\frac{\partial L}{\partial\theta_{0}}=0,~\frac{\partial L}{\partial\tilde{\xi}_{n}}=0,~\frac{\partial L}{\partial\xi_{n}}=0,\\[2mm]
     &amp;\tilde{\lambda}_{n}(y_{n}-\boldsymbol{\theta}^{T}\boldsymbol{x}_{n}-\theta_{0}-\varepsilon-\tilde{\xi}_{n})=0,\quad n=1,2,\dots,N,\\[2mm]
@@ -1110,7 +1094,6 @@ f(\boldsymbol{x})=\sum_{n=1}^{N}\theta_{n}\kappa(\boldsymbol{x}, \boldsymbol{x}_
 <li><p>Un <em><strong>problema de programación convexa</strong></em> es equivalente a</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-    \\[1mm]
     \max_{\lambda\geq0}&amp;\quad L(\boldsymbol{\theta}, \boldsymbol{\lambda}),\\
     \text{sujeto a}&amp;\quad\frac{\partial}{\partial\boldsymbol{\theta}}L(\boldsymbol{\theta},\boldsymbol{\lambda})=\boldsymbol{0}.
     \end{split}\]</div>
@@ -1136,7 +1119,7 @@ f(\boldsymbol{x})=\sum_{n=1}^{N}\theta_{n}\kappa(\boldsymbol{x}, \boldsymbol{x}_
 <li><p><em><strong>Solucionando la tarea de optimización de Wolfe</strong></em> con respecto a <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span>, podemos <em><strong>escribir el problema dual involucrando solo multiplicadores de Lagrange</strong></em>. De esta forma obtenemos otro problema cuadrático, pero más simple</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-    \\[1mm]
+    
     \begin{align*}
     \max_{\lambda}&amp;\left\{\displaystyle{-\frac{1}{2}\boldsymbol{\lambda}^{T}AA^{T}\boldsymbol{\lambda}+\boldsymbol{\lambda}^{T}\boldsymbol{b}}\right\}\\
     \text{sujeto a:}&amp;\quad\lambda\geq0.
@@ -1362,14 +1345,13 @@ J(\boldsymbol{\theta}, \theta_{0})=\frac{1}{2}\|\boldsymbol{\theta}\|^{2}+C\sum_
 <ul>
 <li><p>Asumiendo que las <code class="docutils literal notranslate"><span class="pre">clases</span> <span class="pre">son</span> <span class="pre">linealmente</span> <span class="pre">separables</span></code>, hay un <code class="docutils literal notranslate"><span class="pre">número</span> <span class="pre">infinito</span> <span class="pre">de</span> <span class="pre">clasificadores</span> <span class="pre">que</span> <span class="pre">solucionan</span> <span class="pre">la</span> <span class="pre">tarea</span> <span class="pre">exactamente</span></code>, sin error, en el conjunto de entrenamiento. Se puede ver que de estos infinitos hiperplanos que solucionan la tarea, podemos identificar un subconjunto tal que</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-    \\[1mm]
+\[
+    
     y_{n}(\boldsymbol{\theta}^{T}\boldsymbol{x}_{n}+\theta_{0})\geq 1,\quad n=1,2,\dots,N,
-    \end{split}\]</div>
+    \]</div>
 <p>el cual garantiza que <span class="math notranslate nohighlight">\(\xi_{n}=0,~n=1,2,\dots,N\)</span>. Por lo tanto, para <code class="docutils literal notranslate"><span class="pre">clases</span> <span class="pre">linealmente</span> <span class="pre">separables,</span> <span class="pre">la</span> <span class="pre">tarea</span> <span class="pre">de</span> <span class="pre">optimización</span> <span class="pre">previa</span> <span class="pre">es</span> <span class="pre">equivalente</span> <span class="pre">a</span></code></p>
 <div class="math notranslate nohighlight" id="equation-eq-opt-task-linear-class-sep">
 <span class="eqno">(8.15)<a class="headerlink" href="#equation-eq-opt-task-linear-class-sep" title="Link to this equation">#</a></span>\[\begin{split}
-    \\[1mm]
     \begin{align*}
     \text{minimizar con respecto a}~\theta:&amp;\quad\frac{1}{2}\|\boldsymbol{\theta}\|^{2}\\
     \text{sujeto a:}&amp;\quad y_{n}(\boldsymbol{\theta}^{T}\boldsymbol{x}_{n}+\theta_{0})\geq 1,\quad n=1,2,\dots,N.
@@ -1380,10 +1362,10 @@ J(\boldsymbol{\theta}, \theta_{0})=\frac{1}{2}\|\boldsymbol{\theta}\|^{2}+C\sum_
 <ul>
 <li><p>En otras palabras, de este conjunto infinito de clasificadores lineales (ver <a class="reference internal" href="#inf-correct-classification"><span class="std std-numref">Fig. 8.8</span></a>), los cuales <code class="docutils literal notranslate"><span class="pre">solucionan</span> <span class="pre">la</span> <span class="pre">tarea</span> <span class="pre">de</span> <span class="pre">optimización</span></code>, y clasifican correctamente todos los patrones, <code class="docutils literal notranslate"><span class="pre">se</span> <span class="pre">selecciona</span> <span class="pre">aquel</span> <span class="pre">que</span> <span class="pre">tiene</span> <span class="pre">mínima</span> <span class="pre">norma</span></code>. Veremos mas adelante que, <code class="docutils literal notranslate"><span class="pre">la</span> <span class="pre">norma</span></code> <span class="math notranslate nohighlight">\(\|\boldsymbol{\theta}\|\)</span> <code class="docutils literal notranslate"><span class="pre">está</span> <span class="pre">directamente</span> <span class="pre">relacionada</span> <span class="pre">con</span> <span class="pre">el</span> <span class="pre">margen</span></code> formado por el respectivo clasificador. Cada hiperplano en el espacio está descrito por la ecuación</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-    \\[1mm]
+\[
+    
     f(\boldsymbol{x})=\boldsymbol{\theta}^{T}\boldsymbol{x}+\theta_{0}=0.
-    \end{split}\]</div>
+    \]</div>
 </li>
 </ul>
 <figure class="align-center" id="inf-correct-classification">
@@ -1404,10 +1386,10 @@ J(\boldsymbol{\theta}, \theta_{0})=\frac{1}{2}\|\boldsymbol{\theta}\|^{2}+C\sum_
 <ul>
 <li><p>De la <code class="docutils literal notranslate"><span class="pre">geometría</span> <span class="pre">básica</span></code> sabemos que la <code class="docutils literal notranslate"><span class="pre">distancia</span> <span class="pre">de</span> <span class="pre">un</span> <span class="pre">punto</span></code> <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> <code class="docutils literal notranslate"><span class="pre">al</span> <span class="pre">hiperplano</span></code> está dada por</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-    \\[1mm]
+\[
+    
     z=\frac{|\boldsymbol{\theta}^{T}\boldsymbol{x}+\theta_{0}|}{\|\boldsymbol{\theta}\|}
-    \end{split}\]</div>
+    \]</div>
 <p>la cual es claramente cero cuando <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> está dentro del hiperplano <span class="math notranslate nohighlight">\(\boldsymbol{\theta}^{T}\boldsymbol{x}+\theta_{0}=0\)</span>. Donde los <code class="docutils literal notranslate"><span class="pre">parámetros</span></code> <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span> <code class="docutils literal notranslate"><span class="pre">y</span></code> <span class="math notranslate nohighlight">\(\theta_{0}\)</span> <code class="docutils literal notranslate"><span class="pre">pueden</span> <span class="pre">ser</span> <span class="pre">escalados</span> <span class="pre">apropiadamente</span></code>, por ejemplo, usando un factor, digamos, <span class="math notranslate nohighlight">\(a\)</span>, sin afectar la geometría del plano.</p>
 </li>
 <li><p>De esta forma, podemos hacer la distancia del punto más cercano, de los puntos más cercanos entre las dos clases al hiperplano, igual a <span class="math notranslate nohighlight">\(1/\|\boldsymbol{\theta}\|\)</span>, donde <span class="math notranslate nohighlight">\(|\boldsymbol{\theta}^{T}\boldsymbol{x}+\theta_{0}|=1\)</span>.</p></li>
@@ -1432,20 +1414,20 @@ J(\boldsymbol{\theta}, \theta_{0})=\frac{1}{2}\|\boldsymbol{\theta}\|^{2}+C\sum_
 <ul>
 <li><p>Siguiendo <code class="docutils literal notranslate"><span class="pre">pasos</span> <span class="pre">similares</span> <span class="pre">a</span> <span class="pre">SVR</span></code>, la solución esta dada por, <code class="docutils literal notranslate"><span class="pre">combinación</span> <span class="pre">lineal</span> <span class="pre">de</span> <span class="pre">un</span> <span class="pre">subconjunto</span> <span class="pre">de</span> <span class="pre">muestras</span> <span class="pre">de</span> <span class="pre">entrenamiento</span></code>, esto es:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-    \\[1mm]
+\[
+    
     \hat{\boldsymbol{\theta}}=\sum_{n=1}^{N_{s}}\lambda_{n}y_{n}\boldsymbol{x}_{n},
-    \end{split}\]</div>
+    \]</div>
 <p>donde <span class="math notranslate nohighlight">\(N_{s}\)</span> es el número de multiplicadores de Lagrange distintos de cero. <code class="docutils literal notranslate"><span class="pre">Multiplicadores</span> <span class="pre">de</span> <span class="pre">Lagrange</span> <span class="pre">asociados</span> <span class="pre">a</span> <span class="pre">los</span> <span class="pre">puntos</span> <span class="pre">más</span> <span class="pre">cercanos</span> <span class="pre">al</span> <span class="pre">clasificador,</span> <span class="pre">esto</span> <span class="pre">es,</span> <span class="pre">puntos</span> <span class="pre">que</span> <span class="pre">satisfacen</span> <span class="pre">la</span> <span class="pre">restricción</span> <span class="pre">con</span> <span class="pre">igualdad</span></code> <span class="math notranslate nohighlight">\((y_{n}(\boldsymbol{\theta}^{T}\boldsymbol{x}_{n}+\theta_{0})=1)\)</span>, <code class="docutils literal notranslate"><span class="pre">son</span> <span class="pre">distintos</span> <span class="pre">de</span> <span class="pre">cero</span></code>. Estos son conocidos como <code class="docutils literal notranslate"><span class="pre">vectores</span> <span class="pre">de</span> <span class="pre">soporte</span></code>. Multiplicadores de Lagrange correspondientes a puntos tales que <span class="math notranslate nohighlight">\((y_{n}(\boldsymbol{\theta}^{T}\boldsymbol{x}_{n}+\theta_{0})&gt;1)\)</span>, son iguales a cero.</p>
 </li>
 </ul>
 <ul>
 <li><p>Para el caso mas general, <code class="docutils literal notranslate"><span class="pre">en</span> <span class="pre">el</span> <span class="pre">espacio</span> <span class="pre">RKHS</span></code>, tenemos que:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-    \\[1mm]
+\[
+    
     \hat{\theta}(\cdot)=\sum_{n=1}^{N_{s}}\lambda_{n}y_{n}\kappa(\cdot, \boldsymbol{x}_{n}),
-    \end{split}\]</div>
+    \]</div>
 <p>estimación la cual entrega la siguiente regla de predicción. <code class="docutils literal notranslate"><span class="pre">Dado</span> <span class="pre">un</span> <span class="pre">valor</span> <span class="pre">desconocido</span></code> <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span>, <code class="docutils literal notranslate"><span class="pre">su</span> <span class="pre">clase</span> <span class="pre">es</span> <span class="pre">predicha</span> <span class="pre">de</span> <span class="pre">acuerdo</span> <span class="pre">al</span> <span class="pre">signo</span> <span class="pre">de</span></code>:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1598,20 +1580,18 @@ L(\boldsymbol{\theta}, \theta_{0}, \xi, \lambda)=\frac{1}{2}\|\boldsymbol{\theta
 <ul>
 <li><p>Cuando se trabaja <code class="docutils literal notranslate"><span class="pre">en</span> <span class="pre">un</span> <span class="pre">espacio</span> <span class="pre">RKHS,</span> <span class="pre">la</span> <span class="pre">función</span> <span class="pre">de</span> <span class="pre">coste</span> <span class="pre">se</span> <span class="pre">convierte</span> <span class="pre">en</span></code></p>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-    \\[1mm]
+\[
     \sum_{n=1}^{N}\lambda_{n}-\frac{1}{2}\sum_{n=1}^{N}\sum_{m=1}^{N}\lambda_{n}\lambda_{m}y_{n}y_{m}\kappa(\boldsymbol{x}_{n}, \boldsymbol{x}_{m})
-    \end{split}\]</div>
+    \]</div>
 <p>Obsérvese que la única <code class="docutils literal notranslate"><span class="pre">diferencia</span> <span class="pre">con</span> <span class="pre">respecto</span> <span class="pre">a</span> <span class="pre">su</span> <span class="pre">contraparte</span> <span class="pre">linealmente</span> <span class="pre">separable</span></code> es la <code class="docutils literal notranslate"><span class="pre">existencia</span> <span class="pre">de</span></code> <span class="math notranslate nohighlight">\(C\)</span> <code class="docutils literal notranslate"><span class="pre">en</span> <span class="pre">las</span> <span class="pre">restricciones</span> <span class="pre">de</span> <span class="pre">desigualdad</span></code> para <span class="math notranslate nohighlight">\(\lambda_{n}\)</span>.</p>
 </li>
 </ul>
 <ul>
 <li><p>A partir de <a class="reference internal" href="#equation-eq-class-svm-nonsep">(8.18)</a> concluimos que para todos los <code class="docutils literal notranslate"><span class="pre">puntos</span> <span class="pre">fuera</span> <span class="pre">del</span> <span class="pre">margen,</span> <span class="pre">y</span> <span class="pre">en</span> <span class="pre">el</span> <span class="pre">lado</span> <span class="pre">correcto</span> <span class="pre">del</span> <span class="pre">clasificador</span></code>, que corresponden a <span class="math notranslate nohighlight">\(\xi_{n} = 0\)</span>, tenemos</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-    \\[1mm]
+\[
     y_{n}(\boldsymbol{\theta}\boldsymbol{x}_{n}+\theta_{0})&gt;1,
-    \end{split}\]</div>
+    \]</div>
 <p>por lo tanto, <span class="math notranslate nohighlight">\(\lambda_{n}=0\)</span>. Esto es, estos <code class="docutils literal notranslate"><span class="pre">puntos</span> <span class="pre">no</span> <span class="pre">participan</span> <span class="pre">en</span> <span class="pre">la</span> <span class="pre">formación</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">solución</span></code> <span class="math notranslate nohighlight">\(\hat{\boldsymbol{\theta}}\)</span> en <a class="reference internal" href="#equation-eq-class-svm-nonsep">(8.18)</a>.</p>
 </li>
 <li><p>Tenemos <span class="math notranslate nohighlight">\(\lambda_{n}\neq0\)</span> sólo para los <code class="docutils literal notranslate"><span class="pre">puntos</span> <span class="pre">en</span> <span class="pre">los</span> <span class="pre">hiperplanos</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">frontera,</span> <span class="pre">dentro</span> <span class="pre">o</span> <span class="pre">fuera</span> <span class="pre">del</span> <span class="pre">margen</span></code>, pero en el lado equivocado del clasificador. Estos son los <code class="docutils literal notranslate"><span class="pre">vectores</span> <span class="pre">de</span> <span class="pre">soporte</span></code>.</p></li>
