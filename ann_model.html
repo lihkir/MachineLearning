@@ -392,16 +392,18 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#red-de-memoria-a-largo-plazo-lstm">10.15. Red de memoria a largo plazo (LSTM)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-procesamiento-del-lenguaje-natural">10.16. Aplicación: Procesamiento del Lenguaje Natural</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#series-de-tiempo">10.17. Series de Tiempo</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-prediccion-de-series-temporales">10.18. Aplicación: Predicción de series temporales</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lstm-para-la-prediccion-de-series-de-tiempo">10.19. LSTM para la predicción de series de tiempo</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#atencion-y-memoria">10.20. Atención y Memoria</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entrenamiento-adversario">10.21. Entrenamiento adversario</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-generativos-profundos">10.22. Modelos Generativos Profundos</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#maquina-de-boltzmann-restringida">10.22.1. Máquina de Boltzmann Restringida</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-prediccion-de-series-temporales">10.17. Aplicación: Predicción de series temporales</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#series-de-tiempo">10.17.1. Series de Tiempo</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autoencoders">10.23. Autoencoders</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lstm-para-la-prediccion-de-series-de-tiempo">10.18. LSTM para la predicción de series de tiempo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#atencion-y-memoria">10.19. Atención y Memoria</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entrenamiento-adversario">10.20. Entrenamiento adversario</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-generativos-profundos">10.21. Modelos Generativos Profundos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#maquina-de-boltzmann-restringida">10.21.1. Máquina de Boltzmann Restringida</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autoencoders">10.22. Autoencoders</a></li>
 </ul>
             </nav>
         </div>
@@ -4688,10 +4690,10 @@ weighted avg       0.99      0.99      0.99     10969
 <a class="reference internal image-reference" href="_images/hex.jpg"><img alt="_images/hex.jpg" src="_images/hex.jpg" style="width: 540.0px; height: 445.6px;" /></a>
 </figure>
 <ul class="simple">
-<li><p>Tomemos, como ejemplo, el caso de una <em><strong>imagen, matriz de 256 × 256</strong></em>. Al <em><strong>vectorizarla se obtiene un vector de entrada</strong></em> <span class="math notranslate nohighlight">\(\boldsymbol{x}\in\mathbb{R}^{l}\)</span>, donde <span class="math notranslate nohighlight">\(l\approx 65000\)</span>. Supongamos que el <em><strong>número de nodos de la primera capa</strong></em> es <span class="math notranslate nohighlight">\(k_{1} = 1000\)</span>. Entonces, el número de los parámetros implicados, <span class="math notranslate nohighlight">\(\theta_{jk}, j = 1, 2,\dots, 65000\)</span>, <span class="math notranslate nohighlight">\(k = 1, 2,\dots,1000\)</span>, que <em><strong>conectan todos los nodos de entrada a todos los nodos de la primera capa en una red totalmente conectada</strong></em>, sería del orden de 65 millones. <em><strong>Este número se dispara aún más si la imagen de entrada es de alta resolución</strong></em> y tiene <em><strong>píxeles del orden de <span class="math notranslate nohighlight">\(1000\times 1000\)</span></strong></em>. Además, este número <em><strong>aumenta si tratamos, por ejemplo, con imágenes en color en las que la dimensionalidad de la entrada se multiplica por tres</strong></em> para un esquema de representación del <em><strong>color <code class="docutils literal notranslate"><span class="pre">RGB</span> <span class="pre">(red-green-blue)</span></code></strong></em>.</p></li>
+<li><p>Una imagen de <span class="math notranslate nohighlight">\(256 \times 256\)</span> se vectoriza como <span class="math notranslate nohighlight">\(\boldsymbol{x} \in \mathbb{R}^{65000}\)</span>. Si la primera capa tiene <span class="math notranslate nohighlight">\(k_1 = 1000\)</span> nodos, <em><strong>una red totalmente conectada requeriría aproximadamente 65 millones de parámetros</strong></em> <span class="math notranslate nohighlight">\(\theta_{jk}\)</span>, con <span class="math notranslate nohighlight">\(j = 1, \dots, 65000\)</span> y <span class="math notranslate nohighlight">\(k = 1, \dots, 1000\)</span>. Esta cantidad crece considerablemente con imágenes de mayor resolución (<span class="math notranslate nohighlight">\(1000 \times 1000\)</span>) o a color, donde la entrada se triplica al emplear el modelo RGB.</p></li>
 </ul>
 <ul class="simple">
-<li><p>Además, <em><strong>a medida que se añaden capas ocultas, el número de parámetros sigue aumentando</strong></em>. Asimismo los <em><strong>problemas de carga computacional asociados</strong></em>, sabemos que <em><strong>entrenar redes con un gran número de parámetros pone seriamente a prueba su rendimiento de generalización</strong></em>. Estas redes <em><strong>requerirían una enorme cantidad de datos de entrenamiento para hacer frente a la tendencia al sobreajuste</strong></em>. Además de la explosión del número de parámetros, la <em><strong>vectorización de una matriz de imágenes conlleva una pérdida de información</strong></em>, ya que desechamos información importante sobre <em><strong>cómo se interrelacionan los píxeles en una zona de la imagen</strong></em>. De hecho, el objetivo de los distintos métodos de generación de características, que se han desarrollado a lo largo de los años es exactamente eso. Es decir, <em><strong>extraer información que cuantifica las correlaciones u otras dependencias estadísticas que relacionan los valores de los píxeles dentro de la imagen</strong></em>. En este modo, se puede <em><strong>“codificar”</strong></em> eficazmente la información relacionada con el aprendizaje que reside en los datos brutos.</p></li>
+<li><p>A medida que se <em><strong>incrementan las capas ocultas, también crece el número de parámetros, lo que eleva la carga computacional y compromete la capacidad de generalización</strong></em>, requiriendo grandes volúmenes de datos para evitar el sobreajuste. Además, <em><strong>vectorizar matrices de imágenes implica pérdida de información, al ignorar relaciones espaciales entre píxeles</strong></em>. Por ello, los métodos de generación de características buscan extraer dependencias estadísticas que capturen dichas correlaciones y permitan codificar eficazmente la información relevante para el aprendizaje.</p></li>
 </ul>
 <ul class="simple">
 <li><p>Al emplear <em><strong>convoluciones</strong></em>, se pueden <em><strong>abordar simultáneamente ambos problemas</strong></em>, es decir, el de la <em><strong>explosión de parámetros</strong></em> y el de la <em><strong>extracción de información estadística útil</strong></em>. Los pasos básicos de cualquier red convolucional son:</p>
@@ -4918,12 +4920,7 @@ H=
 <li><p><strong>El resultado es un volumen de salida</strong> de tamaño <span class="math notranslate nohighlight">\(H' \times W' \times N\)</span>, donde <span class="math notranslate nohighlight">\(N\)</span> es el número de filtros (kernels).</p></li>
 </ol>
 <p><strong>Ejemplo con Tres <em>Kernels</em></strong>: Si una imagen RGB de <span class="math notranslate nohighlight">\(32 \times 32 \times 3\)</span> se procesa con tres <em>kernels</em> de <span class="math notranslate nohighlight">\(3 \times 3 \times 3\)</span>, la salida será:  <strong><span class="math notranslate nohighlight">\(30 \times 30 \times 3\)</span></strong></p>
-<p><strong>Conclusión</strong></p>
-<ul class="simple">
-<li><p>Cada <em>kernel</em> opera en paralelo, generando su propio mapa de características.</p></li>
-<li><p>El número de filtros define la profundidad de la salida.</p></li>
-<li><p>Las dimensiones dependen de los hiperparámetros de convolución.</p></li>
-</ul>
+<p><strong>Conclusión</strong>: Cada <em>kernel</em> opera en paralelo, generando su propio mapa de características. El número de filtros define la profundidad de la salida. Las dimensiones dependen de los hiperparámetros de convolución.</p>
 <div class="proof observation admonition" id="observation_ann3">
 <p class="admonition-title"><span class="caption-number">Observation 10.2 </span></p>
 <section class="observation-content" id="proof-content">
@@ -4937,9 +4934,9 @@ H=
 <li><p>A continuación, presentamos algunos <em><strong>términos de la jerga utilizada en relación con las CNN:</strong></em></p></li>
 </ul>
 <ol class="arabic simple">
-<li><p><em><strong><code class="docutils literal notranslate"><span class="pre">Profundidad</span></code></strong></em>: La <em><strong>profundidad de una capa</strong></em> es el <em><strong>número de matrices de filtro que se emplean en esta capa</strong></em>. No debe confundirse profundidad de la red, que corresponde al número total de capas ocultas utilizadas. <em><strong>A veces, nos referimos al número de filtros como el número de canales</strong></em>.</p></li>
-<li><p><em><strong><code class="docutils literal notranslate"><span class="pre">Campo</span> <span class="pre">receptivo</span></code></strong></em>: Cada <em><strong>píxel de una matriz de características de salida</strong></em> resulta como una <em><strong>media ponderada de los píxeles dentro de un área específica de la matriz imagen de entrada</strong></em> (o de la salida de la capa anterior). <em><strong>El área específica que corresponde a un píxel se conoce como su campo receptivo</strong></em> (ver <a class="reference internal" href="#feature-maps-inp-img-numref"><span class="std std-numref">Fig. 10.28</span></a>).</p></li>
-<li><p><em><strong><code class="docutils literal notranslate"><span class="pre">Deslizamiento</span></code> (stride)</strong></em>: En la práctica, <em><strong>en lugar de deslizar la matriz de filtros de píxel en píxel, se puede deslizar, por ejemplo,</strong></em> <span class="math notranslate nohighlight">\(s\)</span> <em><strong>píxeles</strong></em>. Este valor se conoce como <em><strong>stride</strong></em>. Para valores de <span class="math notranslate nohighlight">\(s &gt; 1\)</span>, se obtienen matrices de mapas de características de menor tamaño. Esto se ilustra en <a class="reference internal" href="#stride-conv-prop-numref"><span class="std std-numref">Fig. 10.29</span></a>A y B.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">Profundidad</span></code></strong>: La <em><strong>profundidad de una capa</strong></em> es el <em><strong>número de matrices de filtro que se emplean en esta capa</strong></em>. No debe confundirse profundidad de la red, que corresponde al número total de capas ocultas utilizadas. <em><strong>A veces, nos referimos al número de filtros como el número de canales</strong></em>.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">Campo</span> <span class="pre">receptivo</span></code></strong>: Cada <em><strong>píxel de una matriz de características de salida</strong></em> resulta como una <em><strong>media ponderada de los píxeles dentro de un área específica de la matriz imagen de entrada</strong></em> (o de la salida de la capa anterior). <em><strong>El área específica que corresponde a un píxel se conoce como su campo receptivo</strong></em> (ver <a class="reference internal" href="#feature-maps-inp-img-numref"><span class="std std-numref">Fig. 10.28</span></a>).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">Deslizamiento</span></code> (stride)</strong>: En la práctica, <em><strong>en lugar de deslizar la matriz de filtros de píxel en píxel, se puede deslizar, por ejemplo,</strong></em> <span class="math notranslate nohighlight">\(s\)</span> <em><strong>píxeles</strong></em>. Este valor se conoce como <em><strong>stride</strong></em>. Para valores de <span class="math notranslate nohighlight">\(s &gt; 1\)</span>, se obtienen matrices de mapas de características de menor tamaño. Esto se ilustra en <a class="reference internal" href="#stride-conv-prop-numref"><span class="std std-numref">Fig. 10.29</span></a>A y B.</p></li>
 </ol>
 <figure class="align-center" id="stride-conv-prop-numref">
 <a class="reference internal image-reference" href="_images/stride_conv_prop.png"><img alt="_images/stride_conv_prop.png" src="_images/stride_conv_prop.png" style="width: 671.2px; height: 415.20000000000005px;" /></a>
@@ -4948,7 +4945,7 @@ H=
 </figcaption>
 </figure>
 <ol class="arabic simple" start="4">
-<li><p><em><strong><code class="docutils literal notranslate"><span class="pre">Relleno</span> <span class="pre">de</span> <span class="pre">ceros</span></code> (padding)</strong></em>: A veces, <em><strong>se utilizan ceros para rellenar la matriz de entrada alrededor de los píxeles del borde</strong></em>. De esta forma, <em><strong>la dimensión de la matriz aumenta</strong></em>. Si la matriz original tiene dimensiones <span class="math notranslate nohighlight">\(l\times l\)</span>, <em><strong>después de expandirla con</strong></em> <span class="math notranslate nohighlight">\(p\)</span> <em><strong>columnas y filas, las nuevas dimensiones pasan a ser</strong></em> (<span class="math notranslate nohighlight">\(l + 2p\)</span>). Esto se muestra en la <a class="reference internal" href="#zero-fill-conv-numref"><span class="std std-numref">Fig. 10.30</span></a>.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">Relleno</span> <span class="pre">de</span> <span class="pre">ceros</span></code> (padding)</strong>: A veces, <em><strong>se utilizan ceros para rellenar la matriz de entrada alrededor de los píxeles del borde</strong></em>. De esta forma, <em><strong>la dimensión de la matriz aumenta</strong></em>. Si la matriz original tiene dimensiones <span class="math notranslate nohighlight">\(l\times l\)</span>, <em><strong>después de expandirla con</strong></em> <span class="math notranslate nohighlight">\(p\)</span> <em><strong>columnas y filas, las nuevas dimensiones pasan a ser</strong></em> (<span class="math notranslate nohighlight">\(l + 2p\)</span>). Esto se muestra en la <a class="reference internal" href="#zero-fill-conv-numref"><span class="std std-numref">Fig. 10.30</span></a>.</p></li>
 </ol>
 <figure class="align-center" id="zero-fill-conv-numref">
 <a class="reference internal image-reference" href="_images/zero_fill_conv.png"><img alt="_images/zero_fill_conv.png" src="_images/zero_fill_conv.png" style="width: 182.4px; height: 180.8px;" /></a>
@@ -4958,7 +4955,7 @@ H=
 </figcaption>
 </figure>
 <ol class="arabic simple" start="5">
-<li><p><em><strong><code class="docutils literal notranslate"><span class="pre">Término</span> <span class="pre">de</span> <span class="pre">sesgo</span></code></strong></em>: Tras cada convolución que genera un píxel en el mapa de características, <em><strong>se añade un sesgo común a todos los píxeles de dicho mapa, calculado durante el entrenamiento</strong></em>. Esto sigue la lógica de compartir parámetros, como ocurre con los filtros en la imagen de entrada..</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">Término</span> <span class="pre">de</span> <span class="pre">sesgo</span></code></strong>: Tras cada convolución que genera un píxel en el mapa de características, <em><strong>se añade un sesgo común a todos los píxeles de dicho mapa, calculado durante el entrenamiento</strong></em>. Esto sigue la lógica de compartir parámetros, como ocurre con los filtros en la imagen de entrada..</p></li>
 </ol>
 <ul>
 <li><p>Se puede <em><strong>ajustar el tamaño de una matriz de mapa de características</strong></em> de salida <em><strong>ajustando el valor del stride,</strong></em> <span class="math notranslate nohighlight">\(s\)</span>, y el
@@ -5015,7 +5012,7 @@ esté contenida dentro de</strong></em> <span class="math notranslate nohighligh
 <p class="admonition-title">Importancia de ReLU</p>
 <p>La función de activación más utilizada en CNN es <strong>ReLU (Rectified Linear Unit)</strong> por las siguientes razones:</p>
 <ol class="arabic simple">
-<li><p><strong>Evita el gradiente desapareciente</strong>: A diferencia de sigmoide o tangente hiperbólica, mantiene gradientes significativos en redes profundas, facilitando el entrenamiento.</p></li>
+<li><p><strong>Evita el gradiente desvaneciente</strong>: A diferencia de sigmoide o tangente hiperbólica, mantiene gradientes significativos en redes profundas, facilitando el entrenamiento.</p></li>
 <li><p><strong>Eficiencia computacional</strong>: Su cálculo <span class="math notranslate nohighlight">\(\max(0, x)\)</span> es más simple que funciones exponenciales, reduciendo la carga de procesamiento.</p></li>
 <li><p><strong>Favorece la esparsidad</strong>: Al asignar cero a valores negativos, desactiva neuronas, mejorando eficiencia y generalización.</p></li>
 <li><p><strong>Acelera el entrenamiento</strong>: Su linealidad en valores positivos y bajo costo computacional permiten una convergencia más rápida.</p></li>
@@ -5035,7 +5032,7 @@ esté contenida dentro de</strong></em> <span class="math notranslate nohighligh
 <section id="la-etapa-de-agrupacion">
 <h3><span class="section-number">10.13.5. </span>La etapa de agrupación<a class="headerlink" href="#la-etapa-de-agrupacion" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p><strong>Pooling espacial:</strong> Este proceso <em><strong>reduce la dimensionalidad de las matrices de mapas de características</strong></em>. Se emplea una ventana deslizante, cuyo desplazamiento se define mediante un parámetro <em>stride</em>. La operación selecciona un único valor que representa todos los píxeles dentro de la ventana.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">Pooling</span> <span class="pre">espacial</span></code></strong>: Este proceso <em><strong>reduce la dimensionalidad de las matrices de mapas de características</strong></em>. Se emplea una ventana deslizante, cuyo desplazamiento se define mediante un parámetro <em>stride</em>. La operación selecciona un único valor que representa todos los píxeles dentro de la ventana.</p></li>
 <li><p>La operación más común es la <strong>agrupación máxima (<em>max pooling</em>)</strong>, donde se selecciona el píxel de mayor valor dentro de la ventana. Otra opción es la <strong>agrupación promedio (<em>average pooling</em>)</strong>, que toma el valor medio de los píxeles, también conocida como <em>pooling</em> de suma. En la ilustración, una matriz de <strong>6 × 6</strong> se reduce aplicando una ventana de <strong>2 × 2</strong> con un <em>stride</em> de <strong>2</strong>.</p></li>
 </ul>
 <figure class="align-center" id="pooling-step-conv-numref">
@@ -5605,7 +5602,7 @@ TensorFlow is using GPU.
 GPU details: {&#39;compute_capability&#39;: (8, 9), &#39;device_name&#39;: &#39;NVIDIA GeForce RTX 4070&#39;}
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>I0000 00:00:1727226009.344075    2151 cuda_executor.cc:1001] could not open file to read NUMA node: /sys/bus/pci/devices/0000:01:00.0/numa_node
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>I0000 00:00:1743824747.984472    2101 cuda_executor.cc:1001] could not open file to read NUMA node: /sys/bus/pci/devices/0000:01:00.0/numa_node
 Your kernel may have been built without NUMA support.
 </pre></div>
 </div>
@@ -5618,7 +5615,8 @@ Your kernel may have been built without NUMA support.
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">from</span> <span class="nn">tensorflow.keras.preprocessing.image</span> <span class="kn">import</span> <span class="n">ImageDataGenerator</span>
 <span class="kn">from</span> <span class="nn">tensorflow.keras.utils</span> <span class="kn">import</span> <span class="n">load_img</span>
-<span class="kn">from</span> <span class="nn">keras.layers</span> <span class="kn">import</span> <span class="n">Conv2D</span><span class="p">,</span> <span class="n">Dense</span><span class="p">,</span> <span class="n">BatchNormalization</span><span class="p">,</span> <span class="n">Activation</span><span class="p">,</span> <span class="n">Dropout</span><span class="p">,</span> <span class="n">MaxPool2D</span><span class="p">,</span> <span class="n">Flatten</span>
+<span class="kn">from</span> <span class="nn">keras.layers</span> <span class="kn">import</span> <span class="n">Conv2D</span><span class="p">,</span> <span class="n">Dense</span><span class="p">,</span> <span class="n">BatchNormalization</span><span class="p">,</span> <span class="n">Activation</span><span class="p">,</span> <span class="n">Dropout</span><span class="p">,</span> <span class="n">MaxPool2D</span><span class="p">,</span> <span class="n">Flatten</span><span class="p">,</span> <span class="n">MaxPooling2D</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.metrics</span> <span class="kn">import</span> <span class="n">AUC</span>
 <span class="kn">from</span> <span class="nn">tensorflow.keras.optimizers</span> <span class="kn">import</span> <span class="n">Adam</span><span class="p">,</span> <span class="n">RMSprop</span><span class="p">,</span> <span class="n">SGD</span>
 <span class="kn">from</span> <span class="nn">keras.callbacks</span> <span class="kn">import</span> <span class="n">ModelCheckpoint</span><span class="p">,</span><span class="n">EarlyStopping</span>
 <span class="kn">import</span> <span class="nn">datetime</span>
@@ -5681,7 +5679,7 @@ test       831      111   1774  1024    958     1233  1247
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/488bf0db970f2930c91fda98bdf940aa38c6335e5c243cacc06b4d47c3bc7919.png" src="_images/488bf0db970f2930c91fda98bdf940aa38c6335e5c243cacc06b4d47c3bc7919.png" />
+<img alt="_images/414f00b7dab5f489f9ded01587bdfb318e0dbb1a7ebfcdcae703f6a3603c4bc6.png" src="_images/414f00b7dab5f489f9ded01587bdfb318e0dbb1a7ebfcdcae703f6a3603c4bc6.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -5691,7 +5689,7 @@ test       831      111   1774  1024    958     1233  1247
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/95610265aab81ebe715b69703acc2b155153d1469c8d1076f81b73d965441034.png" src="_images/95610265aab81ebe715b69703acc2b155153d1469c8d1076f81b73d965441034.png" />
+<img alt="_images/b6881d8e03cd64a1b63fd7ab60440e2b1d8afa620269d4dad4964af3f5d687e7.png" src="_images/b6881d8e03cd64a1b63fd7ab60440e2b1d8afa620269d4dad4964af3f5d687e7.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -5709,7 +5707,7 @@ test       831      111   1774  1024    958     1233  1247
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/d57a2cc2465f01f8b3ea24d299b8861cb1937942191fb364543279f9062ae749.png" src="_images/d57a2cc2465f01f8b3ea24d299b8861cb1937942191fb364543279f9062ae749.png" />
+<img alt="_images/a5728fa7db42221980f373d592088eebb275c56ea7b17864fbf1d0d5f0971541.png" src="_images/a5728fa7db42221980f373d592088eebb275c56ea7b17864fbf1d0d5f0971541.png" />
 </div>
 </div>
 <ul class="simple">
@@ -5821,7 +5819,7 @@ test       831      111   1774  1024    958     1233  1247
 </div>
 </div>
 <ul class="simple">
-<li><p>Arquitectura del modelo</p></li>
+<li><p>Arquitectura del modelo. En este caso, <code class="docutils literal notranslate"><span class="pre">padding='same'</span></code> indica que se realiza padding para que la salida tiene el mismo tamaño que la entrada.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -5863,7 +5861,7 @@ test       831      111   1774  1024    958     1233  1247
 <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Activation</span><span class="p">(</span><span class="s1">&#39;elu&#39;</span><span class="p">))</span>
 <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="n">num_classes</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;softmax&#39;</span><span class="p">))</span>
 
-<span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="s1">&#39;categorical_crossentropy&#39;</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">=</span><span class="n">Adam</span><span class="p">(</span><span class="mf">0.0001</span><span class="p">),</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">])</span>
+<span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="s1">&#39;categorical_crossentropy&#39;</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">=</span><span class="n">Adam</span><span class="p">(</span><span class="mf">0.0001</span><span class="p">),</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="n">AUC</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;auc&#39;</span><span class="p">)])</span>
 </pre></div>
 </div>
 </div>
@@ -5880,60 +5878,60 @@ test       831      111   1774  1024    958     1233  1247
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┓
 ┃<span style="font-weight: bold"> Layer (type)                    </span>┃<span style="font-weight: bold"> Output Shape           </span>┃<span style="font-weight: bold">       Param # </span>┃
 ┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━┩
-│ conv2d_32 (<span style="color: #0087ff; text-decoration-color: #0087ff">Conv2D</span>)              │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">48</span>, <span style="color: #00af00; text-decoration-color: #00af00">48</span>, <span style="color: #00af00; text-decoration-color: #00af00">64</span>)     │         <span style="color: #00af00; text-decoration-color: #00af00">1,088</span> │
+│ conv2d_24 (<span style="color: #0087ff; text-decoration-color: #0087ff">Conv2D</span>)              │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">48</span>, <span style="color: #00af00; text-decoration-color: #00af00">48</span>, <span style="color: #00af00; text-decoration-color: #00af00">64</span>)     │         <span style="color: #00af00; text-decoration-color: #00af00">1,088</span> │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ activation_18 (<span style="color: #0087ff; text-decoration-color: #0087ff">Activation</span>)      │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">48</span>, <span style="color: #00af00; text-decoration-color: #00af00">48</span>, <span style="color: #00af00; text-decoration-color: #00af00">64</span>)     │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+│ activation_28 (<span style="color: #0087ff; text-decoration-color: #0087ff">Activation</span>)      │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">48</span>, <span style="color: #00af00; text-decoration-color: #00af00">48</span>, <span style="color: #00af00; text-decoration-color: #00af00">64</span>)     │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ batch_normalization_34          │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">48</span>, <span style="color: #00af00; text-decoration-color: #00af00">48</span>, <span style="color: #00af00; text-decoration-color: #00af00">64</span>)     │           <span style="color: #00af00; text-decoration-color: #00af00">256</span> │
+│ batch_normalization_24          │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">48</span>, <span style="color: #00af00; text-decoration-color: #00af00">48</span>, <span style="color: #00af00; text-decoration-color: #00af00">64</span>)     │           <span style="color: #00af00; text-decoration-color: #00af00">256</span> │
 │ (<span style="color: #0087ff; text-decoration-color: #0087ff">BatchNormalization</span>)            │                        │               │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ conv2d_33 (<span style="color: #0087ff; text-decoration-color: #0087ff">Conv2D</span>)              │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">48</span>, <span style="color: #00af00; text-decoration-color: #00af00">48</span>, <span style="color: #00af00; text-decoration-color: #00af00">64</span>)     │        <span style="color: #00af00; text-decoration-color: #00af00">65,600</span> │
+│ conv2d_25 (<span style="color: #0087ff; text-decoration-color: #0087ff">Conv2D</span>)              │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">48</span>, <span style="color: #00af00; text-decoration-color: #00af00">48</span>, <span style="color: #00af00; text-decoration-color: #00af00">64</span>)     │        <span style="color: #00af00; text-decoration-color: #00af00">65,600</span> │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ activation_19 (<span style="color: #0087ff; text-decoration-color: #0087ff">Activation</span>)      │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">48</span>, <span style="color: #00af00; text-decoration-color: #00af00">48</span>, <span style="color: #00af00; text-decoration-color: #00af00">64</span>)     │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+│ activation_29 (<span style="color: #0087ff; text-decoration-color: #0087ff">Activation</span>)      │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">48</span>, <span style="color: #00af00; text-decoration-color: #00af00">48</span>, <span style="color: #00af00; text-decoration-color: #00af00">64</span>)     │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ batch_normalization_35          │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">48</span>, <span style="color: #00af00; text-decoration-color: #00af00">48</span>, <span style="color: #00af00; text-decoration-color: #00af00">64</span>)     │           <span style="color: #00af00; text-decoration-color: #00af00">256</span> │
+│ batch_normalization_25          │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">48</span>, <span style="color: #00af00; text-decoration-color: #00af00">48</span>, <span style="color: #00af00; text-decoration-color: #00af00">64</span>)     │           <span style="color: #00af00; text-decoration-color: #00af00">256</span> │
 │ (<span style="color: #0087ff; text-decoration-color: #0087ff">BatchNormalization</span>)            │                        │               │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ max_pooling2d_21 (<span style="color: #0087ff; text-decoration-color: #0087ff">MaxPooling2D</span>) │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">24</span>, <span style="color: #00af00; text-decoration-color: #00af00">24</span>, <span style="color: #00af00; text-decoration-color: #00af00">64</span>)     │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+│ max_pooling2d_12 (<span style="color: #0087ff; text-decoration-color: #0087ff">MaxPooling2D</span>) │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">24</span>, <span style="color: #00af00; text-decoration-color: #00af00">24</span>, <span style="color: #00af00; text-decoration-color: #00af00">64</span>)     │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ dropout_27 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dropout</span>)            │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">24</span>, <span style="color: #00af00; text-decoration-color: #00af00">24</span>, <span style="color: #00af00; text-decoration-color: #00af00">64</span>)     │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+│ dropout_19 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dropout</span>)            │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">24</span>, <span style="color: #00af00; text-decoration-color: #00af00">24</span>, <span style="color: #00af00; text-decoration-color: #00af00">64</span>)     │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ conv2d_34 (<span style="color: #0087ff; text-decoration-color: #0087ff">Conv2D</span>)              │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">24</span>, <span style="color: #00af00; text-decoration-color: #00af00">24</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)    │       <span style="color: #00af00; text-decoration-color: #00af00">131,200</span> │
+│ conv2d_26 (<span style="color: #0087ff; text-decoration-color: #0087ff">Conv2D</span>)              │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">24</span>, <span style="color: #00af00; text-decoration-color: #00af00">24</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)    │       <span style="color: #00af00; text-decoration-color: #00af00">131,200</span> │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ activation_20 (<span style="color: #0087ff; text-decoration-color: #0087ff">Activation</span>)      │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">24</span>, <span style="color: #00af00; text-decoration-color: #00af00">24</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)    │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+│ activation_30 (<span style="color: #0087ff; text-decoration-color: #0087ff">Activation</span>)      │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">24</span>, <span style="color: #00af00; text-decoration-color: #00af00">24</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)    │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ batch_normalization_36          │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">24</span>, <span style="color: #00af00; text-decoration-color: #00af00">24</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)    │           <span style="color: #00af00; text-decoration-color: #00af00">512</span> │
+│ batch_normalization_26          │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">24</span>, <span style="color: #00af00; text-decoration-color: #00af00">24</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)    │           <span style="color: #00af00; text-decoration-color: #00af00">512</span> │
 │ (<span style="color: #0087ff; text-decoration-color: #0087ff">BatchNormalization</span>)            │                        │               │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ max_pooling2d_22 (<span style="color: #0087ff; text-decoration-color: #0087ff">MaxPooling2D</span>) │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)    │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+│ max_pooling2d_13 (<span style="color: #0087ff; text-decoration-color: #0087ff">MaxPooling2D</span>) │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)    │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ dropout_28 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dropout</span>)            │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)    │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+│ dropout_20 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dropout</span>)            │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)    │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ conv2d_35 (<span style="color: #0087ff; text-decoration-color: #0087ff">Conv2D</span>)              │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)    │       <span style="color: #00af00; text-decoration-color: #00af00">262,272</span> │
+│ conv2d_27 (<span style="color: #0087ff; text-decoration-color: #0087ff">Conv2D</span>)              │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)    │       <span style="color: #00af00; text-decoration-color: #00af00">262,272</span> │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ activation_21 (<span style="color: #0087ff; text-decoration-color: #0087ff">Activation</span>)      │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)    │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+│ activation_31 (<span style="color: #0087ff; text-decoration-color: #0087ff">Activation</span>)      │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)    │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ batch_normalization_37          │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)    │           <span style="color: #00af00; text-decoration-color: #00af00">512</span> │
+│ batch_normalization_27          │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)    │           <span style="color: #00af00; text-decoration-color: #00af00">512</span> │
 │ (<span style="color: #0087ff; text-decoration-color: #0087ff">BatchNormalization</span>)            │                        │               │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ conv2d_36 (<span style="color: #0087ff; text-decoration-color: #0087ff">Conv2D</span>)              │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)    │       <span style="color: #00af00; text-decoration-color: #00af00">262,272</span> │
+│ conv2d_28 (<span style="color: #0087ff; text-decoration-color: #0087ff">Conv2D</span>)              │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)    │       <span style="color: #00af00; text-decoration-color: #00af00">262,272</span> │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ activation_22 (<span style="color: #0087ff; text-decoration-color: #0087ff">Activation</span>)      │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)    │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+│ activation_32 (<span style="color: #0087ff; text-decoration-color: #0087ff">Activation</span>)      │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)    │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ batch_normalization_38          │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)    │           <span style="color: #00af00; text-decoration-color: #00af00">512</span> │
+│ batch_normalization_28          │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>, <span style="color: #00af00; text-decoration-color: #00af00">12</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)    │           <span style="color: #00af00; text-decoration-color: #00af00">512</span> │
 │ (<span style="color: #0087ff; text-decoration-color: #0087ff">BatchNormalization</span>)            │                        │               │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ max_pooling2d_23 (<span style="color: #0087ff; text-decoration-color: #0087ff">MaxPooling2D</span>) │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">6</span>, <span style="color: #00af00; text-decoration-color: #00af00">6</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)      │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+│ max_pooling2d_14 (<span style="color: #0087ff; text-decoration-color: #0087ff">MaxPooling2D</span>) │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">6</span>, <span style="color: #00af00; text-decoration-color: #00af00">6</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)      │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ dropout_29 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dropout</span>)            │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">6</span>, <span style="color: #00af00; text-decoration-color: #00af00">6</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)      │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+│ dropout_21 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dropout</span>)            │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">6</span>, <span style="color: #00af00; text-decoration-color: #00af00">6</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)      │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ flatten_6 (<span style="color: #0087ff; text-decoration-color: #0087ff">Flatten</span>)             │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">4608</span>)           │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+│ flatten_4 (<span style="color: #0087ff; text-decoration-color: #0087ff">Flatten</span>)             │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">4608</span>)           │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ dense_15 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)            │       <span style="color: #00af00; text-decoration-color: #00af00">589,952</span> │
+│ dense_36 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)            │       <span style="color: #00af00; text-decoration-color: #00af00">589,952</span> │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ activation_23 (<span style="color: #0087ff; text-decoration-color: #0087ff">Activation</span>)      │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)            │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+│ activation_33 (<span style="color: #0087ff; text-decoration-color: #0087ff">Activation</span>)      │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)            │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ dense_16 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">7</span>)              │           <span style="color: #00af00; text-decoration-color: #00af00">903</span> │
+│ dense_37 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">7</span>)              │           <span style="color: #00af00; text-decoration-color: #00af00">903</span> │
 └─────────────────────────────────┴────────────────────────┴───────────────┘
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold"> Total params: </span><span style="color: #00af00; text-decoration-color: #00af00">1,315,335</span> (5.02 MB)
@@ -5951,12 +5949,12 @@ test       831      111   1774  1024    958     1233  1247
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/2630c8aae06bf565b34fa0f578053b9624587e37ff720ef4caa72bb818782ff1.png" src="_images/2630c8aae06bf565b34fa0f578053b9624587e37ff720ef4caa72bb818782ff1.png" />
+<img alt="_images/ef92fbc455a8789fc49b10bc3297d539cb7005ee666b25ea1e1526fb591490f1.png" src="_images/ef92fbc455a8789fc49b10bc3297d539cb7005ee666b25ea1e1526fb591490f1.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">epochs</span> <span class="o">=</span> <span class="mi">120</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">epochs</span> <span class="o">=</span> <span class="mi">60</span>
 </pre></div>
 </div>
 </div>
@@ -5964,10 +5962,16 @@ test       831      111   1774  1024    958     1233  1247
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">checkpointer</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="n">EarlyStopping</span><span class="p">(</span><span class="n">monitor</span><span class="o">=</span><span class="s1">&#39;val_accuracy&#39;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">restore_best_weights</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;max&#39;</span><span class="p">,</span> <span class="n">patience</span><span class="o">=</span><span class="mi">10</span><span class="p">),</span>
+    <span class="n">EarlyStopping</span><span class="p">(</span>
+        <span class="n">monitor</span><span class="o">=</span><span class="s1">&#39;val_auc&#39;</span><span class="p">,</span>  
+        <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">restore_best_weights</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;max&#39;</span><span class="p">,</span>
+        <span class="n">patience</span><span class="o">=</span><span class="mi">10</span>
+    <span class="p">),</span>
     <span class="n">ModelCheckpoint</span><span class="p">(</span>
-        <span class="n">filepath</span><span class="o">=</span><span class="s1">&#39;model.weights.best.keras&#39;</span><span class="p">,</span> 
-        <span class="n">monitor</span><span class="o">=</span><span class="s1">&#39;val_accuracy&#39;</span><span class="p">,</span>
+        <span class="n">filepath</span><span class="o">=</span><span class="s1">&#39;model.weights.best.keras&#39;</span><span class="p">,</span>
+        <span class="n">monitor</span><span class="o">=</span><span class="s1">&#39;val_auc&#39;</span><span class="p">,</span>
         <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
         <span class="n">save_best_only</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;max&#39;</span>
@@ -6003,152 +6007,216 @@ test       831      111   1774  1024    958     1233  1247
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 1/120
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 1/60
 
-Epoch 1: val_accuracy improved from -inf to 0.59502, saving model to model.weights.best.keras
-359/359 - 5s - 14ms/step - accuracy: 0.6683 - loss: 0.9239 - val_accuracy: 0.5950 - val_loss: 1.1575
-Epoch 2/120
+Epoch 1: val_auc improved from -inf to 0.67143, saving model to model.weights.best.keras
+359/359 - 11s - 29ms/step - auc: 0.6803 - loss: 1.9372 - val_auc: 0.6714 - val_loss: 2.0760
+Epoch 2/60
 
-Epoch 2: val_accuracy did not improve from 0.59502
-359/359 - 5s - 13ms/step - accuracy: 0.6782 - loss: 0.9027 - val_accuracy: 0.5945 - val_loss: 1.1356
-Epoch 3/120
+Epoch 2: val_auc improved from 0.67143 to 0.76404, saving model to model.weights.best.keras
+359/359 - 5s - 14ms/step - auc: 0.7530 - loss: 1.6691 - val_auc: 0.7640 - val_loss: 1.6854
+Epoch 3/60
 
-Epoch 3: val_accuracy improved from 0.59502 to 0.60321, saving model to model.weights.best.keras
-359/359 - 5s - 13ms/step - accuracy: 0.6866 - loss: 0.8813 - val_accuracy: 0.6032 - val_loss: 1.1336
-Epoch 4/120
+Epoch 3: val_auc improved from 0.76404 to 0.80314, saving model to model.weights.best.keras
+359/359 - 5s - 13ms/step - auc: 0.7803 - loss: 1.5911 - val_auc: 0.8031 - val_loss: 1.5313
+Epoch 4/60
 
-Epoch 4: val_accuracy did not improve from 0.60321
-359/359 - 5s - 13ms/step - accuracy: 0.6955 - loss: 0.8648 - val_accuracy: 0.5983 - val_loss: 1.1448
-Epoch 5/120
+Epoch 4: val_auc improved from 0.80314 to 0.81094, saving model to model.weights.best.keras
+359/359 - 5s - 13ms/step - auc: 0.8020 - loss: 1.5235 - val_auc: 0.8109 - val_loss: 1.5168
+Epoch 5/60
 
-Epoch 5: val_accuracy improved from 0.60321 to 0.60704, saving model to model.weights.best.keras
-359/359 - 5s - 13ms/step - accuracy: 0.7010 - loss: 0.8428 - val_accuracy: 0.6070 - val_loss: 1.1362
-Epoch 6/120
+Epoch 5: val_auc improved from 0.81094 to 0.83368, saving model to model.weights.best.keras
+359/359 - 5s - 13ms/step - auc: 0.8205 - loss: 1.4616 - val_auc: 0.8337 - val_loss: 1.4306
+Epoch 6/60
 
-Epoch 6: val_accuracy improved from 0.60704 to 0.60739, saving model to model.weights.best.keras
-359/359 - 5s - 13ms/step - accuracy: 0.7091 - loss: 0.8241 - val_accuracy: 0.6074 - val_loss: 1.1460
-Epoch 7/120
+Epoch 6: val_auc improved from 0.83368 to 0.84118, saving model to model.weights.best.keras
+359/359 - 5s - 13ms/step - auc: 0.8351 - loss: 1.4098 - val_auc: 0.8412 - val_loss: 1.3964
+Epoch 7/60
 
-Epoch 7: val_accuracy did not improve from 0.60739
-359/359 - 5s - 13ms/step - accuracy: 0.7149 - loss: 0.8101 - val_accuracy: 0.6034 - val_loss: 1.1287
-Epoch 8/120
+Epoch 7: val_auc improved from 0.84118 to 0.84737, saving model to model.weights.best.keras
+359/359 - 5s - 13ms/step - auc: 0.8458 - loss: 1.3690 - val_auc: 0.8474 - val_loss: 1.3709
+Epoch 8/60
 
-Epoch 8: val_accuracy did not improve from 0.60739
-359/359 - 5s - 13ms/step - accuracy: 0.7251 - loss: 0.7878 - val_accuracy: 0.6037 - val_loss: 1.1624
-Epoch 9/120
+Epoch 8: val_auc improved from 0.84737 to 0.85888, saving model to model.weights.best.keras
+359/359 - 5s - 13ms/step - auc: 0.8547 - loss: 1.3334 - val_auc: 0.8589 - val_loss: 1.3216
+Epoch 9/60
 
-Epoch 9: val_accuracy improved from 0.60739 to 0.60756, saving model to model.weights.best.keras
-359/359 - 5s - 13ms/step - accuracy: 0.7320 - loss: 0.7694 - val_accuracy: 0.6076 - val_loss: 1.1672
-Epoch 10/120
+Epoch 9: val_auc improved from 0.85888 to 0.86304, saving model to model.weights.best.keras
+359/359 - 5s - 13ms/step - auc: 0.8641 - loss: 1.2943 - val_auc: 0.8630 - val_loss: 1.3112
+Epoch 10/60
 
-Epoch 10: val_accuracy did not improve from 0.60756
-359/359 - 5s - 13ms/step - accuracy: 0.7368 - loss: 0.7529 - val_accuracy: 0.6037 - val_loss: 1.1993
-Epoch 11/120
+Epoch 10: val_auc improved from 0.86304 to 0.86898, saving model to model.weights.best.keras
+359/359 - 5s - 13ms/step - auc: 0.8712 - loss: 1.2645 - val_auc: 0.8690 - val_loss: 1.2803
+Epoch 11/60
 
-Epoch 11: val_accuracy improved from 0.60756 to 0.61557, saving model to model.weights.best.keras
-359/359 - 5s - 13ms/step - accuracy: 0.7456 - loss: 0.7368 - val_accuracy: 0.6156 - val_loss: 1.1559
-Epoch 12/120
+Epoch 11: val_auc improved from 0.86898 to 0.87462, saving model to model.weights.best.keras
+359/359 - 5s - 13ms/step - auc: 0.8779 - loss: 1.2349 - val_auc: 0.8746 - val_loss: 1.2529
+Epoch 12/60
 
-Epoch 12: val_accuracy improved from 0.61557 to 0.61906, saving model to model.weights.best.keras
-359/359 - 5s - 13ms/step - accuracy: 0.7498 - loss: 0.7164 - val_accuracy: 0.6191 - val_loss: 1.1780
-Epoch 13/120
+Epoch 12: val_auc did not improve from 0.87462
+359/359 - 5s - 13ms/step - auc: 0.8843 - loss: 1.2048 - val_auc: 0.8728 - val_loss: 1.2734
+Epoch 13/60
 
-Epoch 13: val_accuracy did not improve from 0.61906
-359/359 - 5s - 13ms/step - accuracy: 0.7571 - loss: 0.7013 - val_accuracy: 0.6131 - val_loss: 1.1891
-Epoch 14/120
+Epoch 13: val_auc improved from 0.87462 to 0.88140, saving model to model.weights.best.keras
+359/359 - 5s - 13ms/step - auc: 0.8893 - loss: 1.1819 - val_auc: 0.8814 - val_loss: 1.2270
+Epoch 14/60
 
-Epoch 14: val_accuracy did not improve from 0.61906
-359/359 - 5s - 13ms/step - accuracy: 0.7660 - loss: 0.6892 - val_accuracy: 0.6154 - val_loss: 1.1916
-Epoch 15/120
+Epoch 14: val_auc improved from 0.88140 to 0.88157, saving model to model.weights.best.keras
+359/359 - 5s - 13ms/step - auc: 0.8935 - loss: 1.1611 - val_auc: 0.8816 - val_loss: 1.2274
+Epoch 15/60
 
-Epoch 15: val_accuracy did not improve from 0.61906
-359/359 - 5s - 13ms/step - accuracy: 0.7711 - loss: 0.6719 - val_accuracy: 0.6128 - val_loss: 1.2086
-Epoch 16/120
+Epoch 15: val_auc improved from 0.88157 to 0.88174, saving model to model.weights.best.keras
+359/359 - 5s - 13ms/step - auc: 0.8993 - loss: 1.1305 - val_auc: 0.8817 - val_loss: 1.2370
+Epoch 16/60
 
-Epoch 16: val_accuracy did not improve from 0.61906
-359/359 - 5s - 13ms/step - accuracy: 0.7786 - loss: 0.6519 - val_accuracy: 0.6182 - val_loss: 1.1857
-Epoch 17/120
+Epoch 16: val_auc improved from 0.88174 to 0.88516, saving model to model.weights.best.keras
+359/359 - 5s - 13ms/step - auc: 0.9041 - loss: 1.1067 - val_auc: 0.8852 - val_loss: 1.2197
+Epoch 17/60
 
-Epoch 17: val_accuracy improved from 0.61906 to 0.62062, saving model to model.weights.best.keras
-359/359 - 5s - 13ms/step - accuracy: 0.7847 - loss: 0.6326 - val_accuracy: 0.6206 - val_loss: 1.1927
-Epoch 18/120
+Epoch 17: val_auc improved from 0.88516 to 0.89153, saving model to model.weights.best.keras
+359/359 - 5s - 13ms/step - auc: 0.9074 - loss: 1.0887 - val_auc: 0.8915 - val_loss: 1.1922
+Epoch 18/60
 
-Epoch 18: val_accuracy did not improve from 0.62062
-359/359 - 5s - 13ms/step - accuracy: 0.7913 - loss: 0.6176 - val_accuracy: 0.6159 - val_loss: 1.2088
-Epoch 19/120
+Epoch 18: val_auc improved from 0.89153 to 0.89536, saving model to model.weights.best.keras
+359/359 - 5s - 13ms/step - auc: 0.9117 - loss: 1.0657 - val_auc: 0.8954 - val_loss: 1.1660
+Epoch 19/60
 
-Epoch 19: val_accuracy did not improve from 0.62062
-359/359 - 5s - 13ms/step - accuracy: 0.7960 - loss: 0.6013 - val_accuracy: 0.6022 - val_loss: 1.2471
-Epoch 20/120
+Epoch 19: val_auc did not improve from 0.89536
+359/359 - 5s - 13ms/step - auc: 0.9145 - loss: 1.0491 - val_auc: 0.8946 - val_loss: 1.1730
+Epoch 20/60
 
-Epoch 20: val_accuracy did not improve from 0.62062
-359/359 - 5s - 13ms/step - accuracy: 0.8049 - loss: 0.5880 - val_accuracy: 0.6178 - val_loss: 1.2403
-Epoch 21/120
+Epoch 20: val_auc improved from 0.89536 to 0.89640, saving model to model.weights.best.keras
+359/359 - 5s - 13ms/step - auc: 0.9188 - loss: 1.0241 - val_auc: 0.8964 - val_loss: 1.1618
+Epoch 21/60
 
-Epoch 21: val_accuracy improved from 0.62062 to 0.62080, saving model to model.weights.best.keras
-359/359 - 5s - 13ms/step - accuracy: 0.8053 - loss: 0.5811 - val_accuracy: 0.6208 - val_loss: 1.2441
-Epoch 22/120
+Epoch 21: val_auc improved from 0.89640 to 0.89986, saving model to model.weights.best.keras
+359/359 - 5s - 13ms/step - auc: 0.9226 - loss: 1.0025 - val_auc: 0.8999 - val_loss: 1.1463
+Epoch 22/60
 
-Epoch 22: val_accuracy did not improve from 0.62080
-359/359 - 5s - 13ms/step - accuracy: 0.8128 - loss: 0.5603 - val_accuracy: 0.6194 - val_loss: 1.2741
-Epoch 23/120
+Epoch 22: val_auc did not improve from 0.89986
+359/359 - 5s - 13ms/step - auc: 0.9253 - loss: 0.9858 - val_auc: 0.8986 - val_loss: 1.1517
+Epoch 23/60
 
-Epoch 23: val_accuracy did not improve from 0.62080
-359/359 - 5s - 13ms/step - accuracy: 0.8172 - loss: 0.5489 - val_accuracy: 0.6081 - val_loss: 1.2811
-Epoch 24/120
+Epoch 23: val_auc improved from 0.89986 to 0.90138, saving model to model.weights.best.keras
+359/359 - 5s - 13ms/step - auc: 0.9287 - loss: 0.9642 - val_auc: 0.9014 - val_loss: 1.1429
+Epoch 24/60
 
-Epoch 24: val_accuracy did not improve from 0.62080
-359/359 - 5s - 13ms/step - accuracy: 0.8239 - loss: 0.5325 - val_accuracy: 0.6149 - val_loss: 1.2809
-Epoch 25/120
+Epoch 24: val_auc did not improve from 0.90138
+359/359 - 5s - 13ms/step - auc: 0.9319 - loss: 0.9433 - val_auc: 0.8994 - val_loss: 1.1586
+Epoch 25/60
 
-Epoch 25: val_accuracy did not improve from 0.62080
-359/359 - 5s - 13ms/step - accuracy: 0.8273 - loss: 0.5202 - val_accuracy: 0.6095 - val_loss: 1.3033
-Epoch 26/120
+Epoch 25: val_auc did not improve from 0.90138
+359/359 - 5s - 13ms/step - auc: 0.9343 - loss: 0.9273 - val_auc: 0.8987 - val_loss: 1.1773
+Epoch 26/60
 
-Epoch 26: val_accuracy improved from 0.62080 to 0.62341, saving model to model.weights.best.keras
-359/359 - 5s - 13ms/step - accuracy: 0.8366 - loss: 0.5051 - val_accuracy: 0.6234 - val_loss: 1.2804
-Epoch 27/120
+Epoch 26: val_auc improved from 0.90138 to 0.90340, saving model to model.weights.best.keras
+359/359 - 5s - 13ms/step - auc: 0.9376 - loss: 0.9059 - val_auc: 0.9034 - val_loss: 1.1351
+Epoch 27/60
 
-Epoch 27: val_accuracy did not improve from 0.62341
-359/359 - 5s - 13ms/step - accuracy: 0.8400 - loss: 0.4902 - val_accuracy: 0.6192 - val_loss: 1.3059
-Epoch 28/120
+Epoch 27: val_auc improved from 0.90340 to 0.90473, saving model to model.weights.best.keras
+359/359 - 5s - 13ms/step - auc: 0.9405 - loss: 0.8848 - val_auc: 0.9047 - val_loss: 1.1375
+Epoch 28/60
 
-Epoch 28: val_accuracy did not improve from 0.62341
-359/359 - 5s - 13ms/step - accuracy: 0.8427 - loss: 0.4788 - val_accuracy: 0.6185 - val_loss: 1.3307
-Epoch 29/120
+Epoch 28: val_auc did not improve from 0.90473
+359/359 - 5s - 13ms/step - auc: 0.9436 - loss: 0.8633 - val_auc: 0.9007 - val_loss: 1.1595
+Epoch 29/60
 
-Epoch 29: val_accuracy did not improve from 0.62341
-359/359 - 5s - 13ms/step - accuracy: 0.8483 - loss: 0.4682 - val_accuracy: 0.6210 - val_loss: 1.3316
-Epoch 30/120
+Epoch 29: val_auc did not improve from 0.90473
+359/359 - 5s - 13ms/step - auc: 0.9448 - loss: 0.8552 - val_auc: 0.9046 - val_loss: 1.1446
+Epoch 30/60
 
-Epoch 30: val_accuracy did not improve from 0.62341
-359/359 - 5s - 13ms/step - accuracy: 0.8526 - loss: 0.4578 - val_accuracy: 0.6170 - val_loss: 1.3451
-Epoch 31/120
+Epoch 30: val_auc did not improve from 0.90473
+359/359 - 5s - 13ms/step - auc: 0.9474 - loss: 0.8350 - val_auc: 0.9017 - val_loss: 1.1689
+Epoch 31/60
 
-Epoch 31: val_accuracy did not improve from 0.62341
-359/359 - 5s - 13ms/step - accuracy: 0.8553 - loss: 0.4512 - val_accuracy: 0.6204 - val_loss: 1.3681
-Epoch 32/120
+Epoch 31: val_auc did not improve from 0.90473
+359/359 - 5s - 13ms/step - auc: 0.9508 - loss: 0.8097 - val_auc: 0.9023 - val_loss: 1.1735
+Epoch 32/60
 
-Epoch 32: val_accuracy did not improve from 0.62341
-359/359 - 5s - 13ms/step - accuracy: 0.8600 - loss: 0.4382 - val_accuracy: 0.6196 - val_loss: 1.3851
-Epoch 33/120
+Epoch 32: val_auc did not improve from 0.90473
+359/359 - 5s - 13ms/step - auc: 0.9532 - loss: 0.7912 - val_auc: 0.8993 - val_loss: 1.1985
+Epoch 33/60
 
-Epoch 33: val_accuracy did not improve from 0.62341
-359/359 - 5s - 13ms/step - accuracy: 0.8678 - loss: 0.4172 - val_accuracy: 0.6185 - val_loss: 1.4119
-Epoch 34/120
+Epoch 33: val_auc did not improve from 0.90473
+359/359 - 5s - 13ms/step - auc: 0.9551 - loss: 0.7748 - val_auc: 0.9043 - val_loss: 1.1604
+Epoch 34/60
 
-Epoch 34: val_accuracy did not improve from 0.62341
-359/359 - 5s - 13ms/step - accuracy: 0.8692 - loss: 0.4122 - val_accuracy: 0.6178 - val_loss: 1.4180
-Epoch 35/120
+Epoch 34: val_auc did not improve from 0.90473
+359/359 - 5s - 13ms/step - auc: 0.9575 - loss: 0.7554 - val_auc: 0.9046 - val_loss: 1.1811
+Epoch 35/60
 
-Epoch 35: val_accuracy did not improve from 0.62341
-359/359 - 5s - 13ms/step - accuracy: 0.8726 - loss: 0.4043 - val_accuracy: 0.6171 - val_loss: 1.4173
-Epoch 36/120
+Epoch 35: val_auc improved from 0.90473 to 0.90527, saving model to model.weights.best.keras
+359/359 - 5s - 13ms/step - auc: 0.9586 - loss: 0.7457 - val_auc: 0.9053 - val_loss: 1.1777
+Epoch 36/60
 
-Epoch 36: val_accuracy did not improve from 0.62341
-359/359 - 5s - 13ms/step - accuracy: 0.8766 - loss: 0.3912 - val_accuracy: 0.6196 - val_loss: 1.4120
-Epoch 36: early stopping
-Restoring model weights from the end of the best epoch: 26.
+Epoch 36: val_auc did not improve from 0.90527
+359/359 - 5s - 13ms/step - auc: 0.9610 - loss: 0.7247 - val_auc: 0.9021 - val_loss: 1.2007
+Epoch 37/60
+
+Epoch 37: val_auc did not improve from 0.90527
+359/359 - 5s - 13ms/step - auc: 0.9627 - loss: 0.7094 - val_auc: 0.9047 - val_loss: 1.1869
+Epoch 38/60
+
+Epoch 38: val_auc did not improve from 0.90527
+359/359 - 5s - 13ms/step - auc: 0.9653 - loss: 0.6857 - val_auc: 0.9025 - val_loss: 1.2195
+Epoch 39/60
+
+Epoch 39: val_auc did not improve from 0.90527
+359/359 - 5s - 13ms/step - auc: 0.9662 - loss: 0.6781 - val_auc: 0.9027 - val_loss: 1.2086
+Epoch 40/60
+
+Epoch 40: val_auc did not improve from 0.90527
+359/359 - 5s - 13ms/step - auc: 0.9679 - loss: 0.6612 - val_auc: 0.9052 - val_loss: 1.2024
+Epoch 41/60
+
+Epoch 41: val_auc did not improve from 0.90527
+359/359 - 5s - 13ms/step - auc: 0.9701 - loss: 0.6400 - val_auc: 0.9039 - val_loss: 1.2260
+Epoch 42/60
+
+Epoch 42: val_auc improved from 0.90527 to 0.90562, saving model to model.weights.best.keras
+359/359 - 5s - 13ms/step - auc: 0.9715 - loss: 0.6244 - val_auc: 0.9056 - val_loss: 1.1978
+Epoch 43/60
+
+Epoch 43: val_auc did not improve from 0.90562
+359/359 - 5s - 13ms/step - auc: 0.9733 - loss: 0.6056 - val_auc: 0.9028 - val_loss: 1.2416
+Epoch 44/60
+
+Epoch 44: val_auc did not improve from 0.90562
+359/359 - 5s - 13ms/step - auc: 0.9744 - loss: 0.5929 - val_auc: 0.9024 - val_loss: 1.2413
+Epoch 45/60
+
+Epoch 45: val_auc did not improve from 0.90562
+359/359 - 5s - 13ms/step - auc: 0.9761 - loss: 0.5754 - val_auc: 0.9032 - val_loss: 1.2518
+Epoch 46/60
+
+Epoch 46: val_auc did not improve from 0.90562
+359/359 - 5s - 13ms/step - auc: 0.9772 - loss: 0.5634 - val_auc: 0.9013 - val_loss: 1.2659
+Epoch 47/60
+
+Epoch 47: val_auc did not improve from 0.90562
+359/359 - 5s - 13ms/step - auc: 0.9778 - loss: 0.5560 - val_auc: 0.9024 - val_loss: 1.2741
+Epoch 48/60
+
+Epoch 48: val_auc did not improve from 0.90562
+359/359 - 5s - 13ms/step - auc: 0.9796 - loss: 0.5339 - val_auc: 0.9046 - val_loss: 1.2549
+Epoch 49/60
+
+Epoch 49: val_auc did not improve from 0.90562
+359/359 - 5s - 13ms/step - auc: 0.9807 - loss: 0.5215 - val_auc: 0.9052 - val_loss: 1.2472
+Epoch 50/60
+
+Epoch 50: val_auc did not improve from 0.90562
+359/359 - 5s - 13ms/step - auc: 0.9813 - loss: 0.5111 - val_auc: 0.9037 - val_loss: 1.2770
+Epoch 51/60
+
+Epoch 51: val_auc did not improve from 0.90562
+359/359 - 5s - 13ms/step - auc: 0.9827 - loss: 0.4967 - val_auc: 0.9030 - val_loss: 1.2908
+Epoch 52/60
+
+Epoch 52: val_auc did not improve from 0.90562
+359/359 - 5s - 13ms/step - auc: 0.9833 - loss: 0.4875 - val_auc: 0.9029 - val_loss: 1.3039
+Epoch 52: early stopping
+Restoring model weights from the end of the best epoch: 42.
 El entrenamiento se ha completado y el historial ha sido guardado en &#39;history_cnn.joblib&#39;.
 </pre></div>
 </div>
@@ -6156,45 +6224,44 @@ El entrenamiento se ha completado y el historial ha sido guardado en &#39;histor
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">train_acc</span> <span class="o">=</span> <span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">]</span>
-<span class="n">train_loss</span> <span class="o">=</span> <span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;loss&#39;</span><span class="p">]</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
 
-<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">])</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;val_accuracy&#39;</span><span class="p">])</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Training Accuracy vs Validation Accuracy&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Accuracy&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Epoch&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Train&#39;</span><span class="p">,</span> <span class="s1">&#39;Validation&#39;</span><span class="p">],</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">history_cnn</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;auc&#39;</span><span class="p">])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">history_cnn</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;val_auc&#39;</span><span class="p">])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;AUC en Entrenamiento vs Validación&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;AUC&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Época&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Entrenamiento&#39;</span><span class="p">,</span> <span class="s1">&#39;Validación&#39;</span><span class="p">],</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower right&#39;</span><span class="p">)</span>
 
-<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;loss&#39;</span><span class="p">])</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;val_loss&#39;</span><span class="p">])</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Training Loss vs Validation Loss&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Loss&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Epoch&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Train&#39;</span><span class="p">,</span> <span class="s1">&#39;Validation&#39;</span><span class="p">],</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">history_cnn</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;loss&#39;</span><span class="p">])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">history_cnn</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;val_loss&#39;</span><span class="p">])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Pérdida en Entrenamiento vs Validación&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Pérdida&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Época&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Entrenamiento&#39;</span><span class="p">,</span> <span class="s1">&#39;Validación&#39;</span><span class="p">],</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">)</span>
 
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/814ea01dc9f77d905f314d11d475e508ab48a23b8f031cbb12e597a516f9722d.png" src="_images/814ea01dc9f77d905f314d11d475e508ab48a23b8f031cbb12e597a516f9722d.png" />
+<img alt="_images/280f723223f273c70c56505c4e5814a5e45045f36b2a64fd70b316ca9285ffd2.png" src="_images/280f723223f273c70c56505c4e5814a5e45045f36b2a64fd70b316ca9285ffd2.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_loss</span><span class="p">,</span> <span class="n">train_acc</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">training_set</span><span class="p">)</span>
-<span class="n">test_loss</span><span class="p">,</span> <span class="n">test_acc</span>   <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">validation_set</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;final train accuracy = </span><span class="si">{:.2f}</span><span class="s2"> , validation accuracy = </span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">train_acc</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span> <span class="n">test_acc</span><span class="o">*</span><span class="mi">100</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_loss</span><span class="p">,</span> <span class="n">train_auc</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">training_set</span><span class="p">)</span>
+<span class="n">test_loss</span><span class="p">,</span> <span class="n">test_auc</span>   <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">validation_set</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;final train accuracy = </span><span class="si">{:.2f}</span><span class="s2"> , validation accuracy = </span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">train_auc</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span> <span class="n">test_auc</span><span class="o">*</span><span class="mi">100</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">359/359</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">8s</span> 22ms/step - accuracy: 0.9346 - loss: 0.2856
-<span class=" -Color -Color-Bold">90/90</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">2s</span> 20ms/step - accuracy: 0.6201 - loss: 1.2962
-final train accuracy = 93.66 , validation accuracy = 61.94
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">359/359</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">2s</span> 7ms/step - auc: 0.9908 - loss: 0.4052
+<span class=" -Color -Color-Bold">90/90</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 6ms/step - auc: 0.9010 - loss: 1.2412
+final train accuracy = 99.03 , validation accuracy = 90.65
 </pre></div>
 </div>
 </div>
@@ -6227,32 +6294,32 @@ final train accuracy = 93.66 , validation accuracy = 61.94
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">359/359</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">8s</span> 21ms/step
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">359/359</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">2s</span> 7ms/step
 Confusion Matrix
-[[ 376   34  450  783  644  557  352]
- [  47   12   45   75   71   57   42]
- [ 451   44  456  829  605  556  337]
- [ 766   86  753 1467 1119  957  624]
- [ 543   60  550  997  748  654  420]
- [ 524   68  482  935  698  746  411]
- [ 357   32  324  627  458  415  324]]
+[[ 458   51  403  820  568  560  336]
+ [  43    6   37   79   71   80   33]
+ [ 461   45  366  814  635  601  356]
+ [ 776   68  699 1536 1113  961  619]
+ [ 519   68  495 1030  760  667  433]
+ [ 529   54  493  958  729  694  407]
+ [ 344   30  337  627  493  443  263]]
 Classification Report
               precision    recall  f1-score   support
 
-       angry       0.12      0.12      0.12      3196
-     disgust       0.04      0.03      0.04       349
-        fear       0.15      0.14      0.14      3278
-       happy       0.26      0.25      0.26      5772
+       angry       0.15      0.14      0.14      3196
+     disgust       0.02      0.02      0.02       349
+        fear       0.13      0.11      0.12      3278
+       happy       0.26      0.27      0.26      5772
      neutral       0.17      0.19      0.18      3972
-         sad       0.19      0.19      0.19      3864
-    surprise       0.13      0.13      0.13      2537
+         sad       0.17      0.18      0.18      3864
+    surprise       0.11      0.10      0.11      2537
 
     accuracy                           0.18     22968
-   macro avg       0.15      0.15      0.15     22968
+   macro avg       0.14      0.14      0.14     22968
 weighted avg       0.18      0.18      0.18     22968
 </pre></div>
 </div>
-<img alt="_images/8d4807ec39530ef3c728be2d95dc38d7cc28ed1ae0d10623027267078be474e4.png" src="_images/8d4807ec39530ef3c728be2d95dc38d7cc28ed1ae0d10623027267078be474e4.png" />
+<img alt="_images/8e3c7a5b7708bb78311b679121d082007e38fd9ccc4c65647898d72b71d56031.png" src="_images/8e3c7a5b7708bb78311b679121d082007e38fd9ccc4c65647898d72b71d56031.png" />
 </div>
 </div>
 <ul class="simple">
@@ -6279,32 +6346,32 @@ weighted avg       0.18      0.18      0.18     22968
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">90/90</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">2s</span> 21ms/step
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">90/90</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 9ms/step
 Confusion Matrix
-[[116   7  87 202 166 149  72]
- [  7   0   9  22  27   9  13]
- [ 87  14  83 217 185 141  92]
- [190  12 147 348 323 279 144]
- [130  13 120 237 223 159 111]
- [111   7 107 218 236 194  93]
- [ 74   7  78 162 154 102  57]]
+[[106   4  86 207 165 161  70]
+ [ 10   0  12  22  20  14   9]
+ [121  11  71 199 170 166  81]
+ [183  12 134 381 313 250 170]
+ [114   7 114 240 228 206  84]
+ [121  13 121 245 202 168  96]
+ [ 77  12  73 178 114 108  72]]
 Classification Report
               precision    recall  f1-score   support
 
-       angry       0.16      0.15      0.15       799
+       angry       0.14      0.13      0.14       799
      disgust       0.00      0.00      0.00        87
-        fear       0.13      0.10      0.11       819
-       happy       0.25      0.24      0.24      1443
-     neutral       0.17      0.22      0.19       993
-         sad       0.19      0.20      0.19       966
-    surprise       0.10      0.09      0.09       634
+        fear       0.12      0.09      0.10       819
+       happy       0.26      0.26      0.26      1443
+     neutral       0.19      0.23      0.21       993
+         sad       0.16      0.17      0.16       966
+    surprise       0.12      0.11      0.12       634
 
     accuracy                           0.18      5741
    macro avg       0.14      0.14      0.14      5741
-weighted avg       0.18      0.18      0.18      5741
+weighted avg       0.17      0.18      0.18      5741
 </pre></div>
 </div>
-<img alt="_images/8d4807ec39530ef3c728be2d95dc38d7cc28ed1ae0d10623027267078be474e4.png" src="_images/8d4807ec39530ef3c728be2d95dc38d7cc28ed1ae0d10623027267078be474e4.png" />
+<img alt="_images/8e3c7a5b7708bb78311b679121d082007e38fd9ccc4c65647898d72b71d56031.png" src="_images/8e3c7a5b7708bb78311b679121d082007e38fd9ccc4c65647898d72b71d56031.png" />
 </div>
 </div>
 <ul class="simple">
@@ -6332,32 +6399,32 @@ weighted avg       0.18      0.18      0.18      5741
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">113/113</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">2s</span> 20ms/step
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">113/113</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 7ms/step
 Confusion Matrix
-[[113   7 121 234 196 174 113]
- [ 11   0  15  25  25  26   9]
- [138  10 127 247 213 173 116]
- [217  15 200 417 392 342 191]
- [150  12 149 284 279 227 132]
- [144  19 142 311 260 234 137]
- [111   9  97 183 168 173  90]]
+[[139  10  96 227 189 194 103]
+ [ 17   0  15  25  20  24  10]
+ [116   9 109 260 212 204 114]
+ [234  21 175 437 383 328 196]
+ [176  10 115 326 258 218 130]
+ [176  10 133 319 249 225 135]
+ [125   8  77 230 169 142  80]]
 Classification Report
               precision    recall  f1-score   support
 
-       angry       0.13      0.12      0.12       958
+       angry       0.14      0.15      0.14       958
      disgust       0.00      0.00      0.00       111
-        fear       0.15      0.12      0.14      1024
-       happy       0.25      0.24      0.24      1774
-     neutral       0.18      0.23      0.20      1233
-         sad       0.17      0.19      0.18      1247
-    surprise       0.11      0.11      0.11       831
+        fear       0.15      0.11      0.12      1024
+       happy       0.24      0.25      0.24      1774
+     neutral       0.17      0.21      0.19      1233
+         sad       0.17      0.18      0.17      1247
+    surprise       0.10      0.10      0.10       831
 
-    accuracy                           0.18      7178
+    accuracy                           0.17      7178
    macro avg       0.14      0.14      0.14      7178
-weighted avg       0.17      0.18      0.17      7178
+weighted avg       0.17      0.17      0.17      7178
 </pre></div>
 </div>
-<img alt="_images/01967d9cf20448fd227b1828600231c6570879a5788b52166529aba161fad140.png" src="_images/01967d9cf20448fd227b1828600231c6570879a5788b52166529aba161fad140.png" />
+<img alt="_images/020eb310299efc2fbeb102dda6f64c200a82770caea437d94406fd4f3f6a9b22.png" src="_images/020eb310299efc2fbeb102dda6f64c200a82770caea437d94406fd4f3f6a9b22.png" />
 </div>
 </div>
 <ul class="simple">
@@ -6365,21 +6432,29 @@ weighted avg       0.17      0.18      0.17      7178
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">figure</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">test_set</span><span class="p">)</span>  
+<span class="n">predict</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_test</span><span class="p">)</span>
+
+<span class="n">figure</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">index</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">x_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="mi">24</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)):</span>
     <span class="n">ax</span> <span class="o">=</span> <span class="n">figure</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">xticks</span><span class="o">=</span><span class="p">[],</span> <span class="n">yticks</span><span class="o">=</span><span class="p">[])</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">x_test</span><span class="p">[</span><span class="n">index</span><span class="p">]))</span>
-    <span class="n">predict_index</span> <span class="o">=</span> <span class="n">class_labels</span><span class="p">[(</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">predict</span><span class="p">[</span><span class="n">index</span><span class="p">]))]</span>
-    <span class="n">true_index</span> <span class="o">=</span> <span class="n">class_labels</span><span class="p">[(</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">y_test</span><span class="p">[</span><span class="n">index</span><span class="p">]))]</span>
     
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> (</span><span class="si">{}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">((</span><span class="n">predict_index</span><span class="p">),</span> 
-                                  <span class="p">(</span><span class="n">true_index</span><span class="p">)),</span>
-                                  <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;green&quot;</span> <span class="k">if</span> <span class="n">predict_index</span> <span class="o">==</span> <span class="n">true_index</span> <span class="k">else</span> <span class="s2">&quot;red&quot;</span><span class="p">))</span>
+    <span class="n">predict_index</span> <span class="o">=</span> <span class="n">class_labels</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">predict</span><span class="p">[</span><span class="n">index</span><span class="p">])]</span>
+    <span class="n">true_index</span> <span class="o">=</span> <span class="n">class_labels</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">y_test</span><span class="p">[</span><span class="n">index</span><span class="p">])]</span>
+    
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">predict_index</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">true_index</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span>
+                 <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;green&quot;</span> <span class="k">if</span> <span class="n">predict_index</span> <span class="o">==</span> <span class="n">true_index</span> <span class="k">else</span> <span class="s2">&quot;red&quot;</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/0eb0cdecf85eced3a1795c50a6bf5543cecd16fd3b8bb56cb87dbe46f3ca4d6c.png" src="_images/0eb0cdecf85eced3a1795c50a6bf5543cecd16fd3b8bb56cb87dbe46f3ca4d6c.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">2/2</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 56ms/step
+</pre></div>
+</div>
+<img alt="_images/fce5b99b6ae18ec194e9c64f805aa9420dd6d8f7a75f5535d2aeb09f82d5d9b8.png" src="_images/fce5b99b6ae18ec194e9c64f805aa9420dd6d8f7a75f5535d2aeb09f82d5d9b8.png" />
 </div>
 </div>
 </section>
@@ -6632,13 +6707,13 @@ Your kernel may have been built without NUMA support.
 <p><strong><code class="docutils literal notranslate"><span class="pre">Preprocesamiento</span></code></strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Eliminar la clase &quot;normal&quot; porque no tiene máscara</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Eliminar la clase &quot;normal&quot; porque no tiene máscara (usar las primera 647)</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:</span><span class="mi">647</span><span class="p">]</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="p">[:</span><span class="mi">647</span><span class="p">]</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Forma de X: </span><span class="si">{</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">     |  Forma de y: </span><span class="si">{</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-<span class="c1"># Preparar los datos para el modelado</span>
+<span class="c1"># Preparar los datos para el modelado. Agregar número de canales</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 
@@ -8707,8 +8782,10 @@ acc: 0.98
 </div>
 </div>
 </section>
+<section id="aplicacion-prediccion-de-series-temporales">
+<h2><span class="section-number">10.17. </span>Aplicación: Predicción de series temporales<a class="headerlink" href="#aplicacion-prediccion-de-series-temporales" title="Link to this heading">#</a></h2>
 <section id="series-de-tiempo">
-<h2><span class="section-number">10.17. </span>Series de Tiempo<a class="headerlink" href="#series-de-tiempo" title="Link to this heading">#</a></h2>
+<h3><span class="section-number">10.17.1. </span>Series de Tiempo<a class="headerlink" href="#series-de-tiempo" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Exiten varios métodos para predecir una serie de tiempo en un momento futuro a partir de observaciones tomadas en el pasado. Uno de estos métodos para realizar predicciones es el <em><strong>modelo autorregresivo</strong></em> (<span class="math notranslate nohighlight">\(AR\)</span>), que expresa la serie en el tiempo <span class="math notranslate nohighlight">\(t\)</span> como una <em><strong>regresión lineal</strong></em> de <span class="math notranslate nohighlight">\(p\)</span> observaciones anteriores</p></li>
 </ul>
@@ -8726,9 +8803,6 @@ y_{t}=f(y_{t-1}, y_{t-2}, \dots, y_{t-p}).
 <ul class="simple">
 <li><p>En este capítulo, exploraremos tres <em><strong>métodos basados en redes neuronales para desarrollar la función</strong></em> <span class="math notranslate nohighlight">\(f\)</span>. Cada método incluye la definición de una <em><strong>arquitectura de red neuronal</strong></em> (en términos del <em><strong>número de capas ocultas, número de neuronas en cada capa oculta</strong></em>, etc.) y luego el algoritmo <em><strong>backpropagation</strong></em> o su variante adecuada para la arquitectura de red utilizada.</p></li>
 </ul>
-</section>
-<section id="aplicacion-prediccion-de-series-temporales">
-<h2><span class="section-number">10.18. </span>Aplicación: Predicción de series temporales<a class="headerlink" href="#aplicacion-prediccion-de-series-temporales" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>En esta sección, utilizaremos <code class="docutils literal notranslate"><span class="pre">MLP</span></code> para desarrollar <em><strong>modelos de predicción de series temporales</strong></em>. El conjunto de datos utilizado para estos ejemplos es sobre la <em><strong>contaminación atmosférica medida por la concentración de partículas (PM) de diámetro inferior o igual a 2.5 micrómetros</strong></em>.</p></li>
 <li><p>Hay otras variables, como la <em><strong>presión atmosférica, temperatura del aire, punto de rocío, etc</strong></em>. Se han desarrollado un par de modelos de series temporales, uno sobre la <em><strong>presión atmosférica</strong></em> <code class="docutils literal notranslate"><span class="pre">PRES</span></code> y otro sobre <code class="docutils literal notranslate"><span class="pre">pm</span> <span class="pre">2.5</span></code>. El conjunto de datos se ha descargado del repositorio de aprendizaje automático de la <a class="reference external" href="https://archive.ics.uci.edu/ml/datasets/Beijing+PM2.5+Data">UCI</a>.</p></li>
@@ -8799,14 +8873,7 @@ TensorFlow is using GPU.
 GPU details: {&#39;compute_capability&#39;: (8, 9), &#39;device_name&#39;: &#39;NVIDIA GeForce RTX 4070&#39;}
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
-I0000 00:00:1730770395.566067   23392 cuda_executor.cc:1001] could not open file to read NUMA node: /sys/bus/pci/devices/0000:01:00.0/numa_node
-Your kernel may have been built without NUMA support.
-I0000 00:00:1730770395.969825   23392 cuda_executor.cc:1001] could not open file to read NUMA node: /sys/bus/pci/devices/0000:01:00.0/numa_node
-Your kernel may have been built without NUMA support.
-I0000 00:00:1730770395.969865   23392 cuda_executor.cc:1001] could not open file to read NUMA node: /sys/bus/pci/devices/0000:01:00.0/numa_node
-Your kernel may have been built without NUMA support.
-I0000 00:00:1730770395.971992   23392 cuda_executor.cc:1001] could not open file to read NUMA node: /sys/bus/pci/devices/0000:01:00.0/numa_node
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>I0000 00:00:1743821500.567471    2101 cuda_executor.cc:1001] could not open file to read NUMA node: /sys/bus/pci/devices/0000:01:00.0/numa_node
 Your kernel may have been built without NUMA support.
 </pre></div>
 </div>
@@ -9084,8 +9151,8 @@ Your kernel may have been built without NUMA support.
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scaler</span> <span class="o">=</span> <span class="n">MinMaxScaler</span><span class="p">(</span><span class="n">feature_range</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">&#39;scaled_PRES&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;PRES&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># scaler = MinMaxScaler(feature_range=(0, 1))</span>
+<span class="c1"># df[&#39;scaled_PRES&#39;] = scaler.fit_transform(np.array(df[&#39;PRES&#39;]).reshape(-1, 1))</span>
 </pre></div>
 </div>
 </div>
@@ -9106,17 +9173,25 @@ Your kernel may have been built without NUMA support.
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">split_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="mi">2014</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">day</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">hour</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">df_train</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;datetime&#39;</span><span class="p">]</span><span class="o">&lt;</span><span class="n">split_date</span><span class="p">]</span>
-<span class="n">df_val</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;datetime&#39;</span><span class="p">]</span><span class="o">&gt;=</span><span class="n">split_date</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">MinMaxScaler</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+
+<span class="n">split_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="mi">2014</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">day</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">hour</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">df_train</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;datetime&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">split_date</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">df_val</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;datetime&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">split_date</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="n">scaler_pres</span> <span class="o">=</span> <span class="n">MinMaxScaler</span><span class="p">(</span><span class="n">feature_range</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">df_train</span><span class="p">[</span><span class="s1">&#39;scaled_PRES&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">scaler_pres</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df_train</span><span class="p">[[</span><span class="s1">&#39;PRES&#39;</span><span class="p">]])</span>
+<span class="n">df_val</span><span class="p">[</span><span class="s1">&#39;scaled_PRES&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">scaler_pres</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">df_val</span><span class="p">[[</span><span class="s1">&#39;PRES&#39;</span><span class="p">]])</span>
+
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Shape of train:&#39;</span><span class="p">,</span> <span class="n">df_train</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Shape of test:&#39;</span><span class="p">,</span> <span class="n">df_val</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Shape of val:&#39;</span><span class="p">,</span> <span class="n">df_val</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape of train: (35064, 9)
-Shape of test: (8760, 9)
+Shape of val: (8760, 9)
 </pre></div>
 </div>
 </div>
@@ -9442,13 +9517,13 @@ Shape of test: (8760, 9)
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> 
-<span class="n">g1</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">df_train</span><span class="p">[</span><span class="s1">&#39;scaled_PRES&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">g1</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">df_train</span><span class="p">[</span><span class="s1">&#39;PRES&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
 <span class="n">g1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Time series of scaled Air Pressure in train set&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">plot_fontsize</span><span class="p">)</span>
 <span class="n">g1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Index&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">plot_fontsize</span><span class="p">)</span>
 <span class="n">g1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Scaled Air Pressure readings&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">plot_fontsize</span><span class="p">);</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="n">g2</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">df_val</span><span class="p">[</span><span class="s1">&#39;scaled_PRES&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">g2</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">df_val</span><span class="p">[</span><span class="s1">&#39;PRES&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
 <span class="n">g2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Time series of scaled Air Pressure in validation set&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">plot_fontsize</span><span class="p">)</span>
 <span class="n">g2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Index&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">plot_fontsize</span><span class="p">)</span>
 <span class="n">g2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Scaled Air Pressure readings&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">plot_fontsize</span><span class="p">);</span>
@@ -9458,7 +9533,7 @@ Shape of test: (8760, 9)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/19330eb650f03e9112ad68929cd861acc2e523c138d97a3e7d9beb7c3b6debac.png" src="_images/19330eb650f03e9112ad68929cd861acc2e523c138d97a3e7d9beb7c3b6debac.png" />
+<img alt="_images/27879440dfd76fc0279ce3405b17b58fe966be5d05ebe66e10a372298adea97f.png" src="_images/27879440dfd76fc0279ce3405b17b58fe966be5d05ebe66e10a372298adea97f.png" />
 </div>
 </div>
 <div class="tip admonition">
@@ -9572,24 +9647,6 @@ Shape of test: (8760, 9)
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>I0000 00:00:1730770414.288495   23392 cuda_executor.cc:1001] could not open file to read NUMA node: /sys/bus/pci/devices/0000:01:00.0/numa_node
-Your kernel may have been built without NUMA support.
-I0000 00:00:1730770414.288551   23392 cuda_executor.cc:1001] could not open file to read NUMA node: /sys/bus/pci/devices/0000:01:00.0/numa_node
-Your kernel may have been built without NUMA support.
-I0000 00:00:1730770414.288570   23392 cuda_executor.cc:1001] could not open file to read NUMA node: /sys/bus/pci/devices/0000:01:00.0/numa_node
-Your kernel may have been built without NUMA support.
-I0000 00:00:1730770414.405222   23392 cuda_executor.cc:1001] could not open file to read NUMA node: /sys/bus/pci/devices/0000:01:00.0/numa_node
-Your kernel may have been built without NUMA support.
-I0000 00:00:1730770414.405266   23392 cuda_executor.cc:1001] could not open file to read NUMA node: /sys/bus/pci/devices/0000:01:00.0/numa_node
-Your kernel may have been built without NUMA support.
-2024-11-04 20:33:34.405282: I tensorflow/core/common_runtime/gpu/gpu_device.cc:2112] Could not identify NUMA node of platform GPU id 0, defaulting to 0.  Your kernel may not have been built with NUMA support.
-I0000 00:00:1730770414.405313   23392 cuda_executor.cc:1001] could not open file to read NUMA node: /sys/bus/pci/devices/0000:01:00.0/numa_node
-Your kernel may have been built without NUMA support.
-2024-11-04 20:33:34.405687: I tensorflow/core/common_runtime/gpu/gpu_device.cc:2021] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 9558 MB memory:  -&gt; device: 0, name: NVIDIA GeForce RTX 4070, pci bus id: 0000:01:00.0, compute capability: 8.9
-</pre></div>
-</div>
-</div>
 </div>
 <div class="tip admonition">
 <p class="admonition-title"><strong>Dense</strong> e <strong>input_layer</strong></p>
@@ -9640,22 +9697,22 @@ Your kernel may have been built without NUMA support.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">Model: "functional"</span>
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">Model: "functional_5"</span>
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┓
 ┃<span style="font-weight: bold"> Layer (type)                    </span>┃<span style="font-weight: bold"> Output Shape           </span>┃<span style="font-weight: bold">       Param # </span>┃
 ┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━┩
-│ input_layer (<span style="color: #0087ff; text-decoration-color: #0087ff">InputLayer</span>)        │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">7</span>)              │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+│ input_layer_5 (<span style="color: #0087ff; text-decoration-color: #0087ff">InputLayer</span>)      │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">7</span>)              │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ dense (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                   │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">32</span>)             │           <span style="color: #00af00; text-decoration-color: #00af00">256</span> │
+│ dense_20 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">32</span>)             │           <span style="color: #00af00; text-decoration-color: #00af00">256</span> │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ dense_1 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                 │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">16</span>)             │           <span style="color: #00af00; text-decoration-color: #00af00">528</span> │
+│ dense_21 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">16</span>)             │           <span style="color: #00af00; text-decoration-color: #00af00">528</span> │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ dense_2 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                 │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">16</span>)             │           <span style="color: #00af00; text-decoration-color: #00af00">272</span> │
+│ dense_22 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">16</span>)             │           <span style="color: #00af00; text-decoration-color: #00af00">272</span> │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ dropout (<span style="color: #0087ff; text-decoration-color: #0087ff">Dropout</span>)               │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">16</span>)             │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+│ dropout_5 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dropout</span>)             │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">16</span>)             │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ dense_3 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                 │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">1</span>)              │            <span style="color: #00af00; text-decoration-color: #00af00">17</span> │
+│ dense_23 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">1</span>)              │            <span style="color: #00af00; text-decoration-color: #00af00">17</span> │
 └─────────────────────────────────┴────────────────────────┴───────────────┘
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold"> Total params: </span><span style="color: #00af00; text-decoration-color: #00af00">1,073</span> (4.19 KB)
@@ -9713,57 +9770,7 @@ Your kernel may have been built without NUMA support.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 1/20
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
-I0000 00:00:1730770425.168888   23922 service.cc:146] XLA service 0x7f08a800b1e0 initialized for platform CUDA (this does not guarantee that XLA will be used). Devices:
-I0000 00:00:1730770425.168915   23922 service.cc:154]   StreamExecutor device (0): NVIDIA GeForce RTX 4070, Compute Capability 8.9
-2024-11-04 20:33:45.192961: I tensorflow/compiler/mlir/tensorflow/utils/dump_mlir_util.cc:268] disabling MLIR crash reproducer, set env var `MLIR_CRASH_REPRODUCER_DIRECTORY` to enable.
-2024-11-04 20:33:45.328797: I external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:531] Loaded cuDNN version 8907
-I0000 00:00:1730770426.010110   23922 device_compiler.h:188] Compiled cluster using XLA!  This line is logged at most once for the lifetime of the process.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2192/2192 - 4s - 2ms/step - loss: 0.0032 - val_loss: 2.6699e-04
-Epoch 2/20
-2192/2192 - 2s - 914us/step - loss: 0.0010 - val_loss: 1.8112e-04
-Epoch 3/20
-2192/2192 - 2s - 949us/step - loss: 8.4944e-04 - val_loss: 1.4265e-04
-Epoch 4/20
-2192/2192 - 2s - 1ms/step - loss: 8.1639e-04 - val_loss: 2.2312e-04
-Epoch 5/20
-2192/2192 - 2s - 938us/step - loss: 7.9729e-04 - val_loss: 4.8757e-04
-Epoch 6/20
-2192/2192 - 2s - 907us/step - loss: 7.9316e-04 - val_loss: 2.6552e-04
-Epoch 7/20
-2192/2192 - 2s - 953us/step - loss: 7.8042e-04 - val_loss: 4.9879e-04
-Epoch 8/20
-2192/2192 - 2s - 929us/step - loss: 7.6849e-04 - val_loss: 2.2045e-04
-Epoch 9/20
-2192/2192 - 2s - 972us/step - loss: 7.6913e-04 - val_loss: 2.0147e-04
-Epoch 10/20
-2192/2192 - 2s - 895us/step - loss: 7.6192e-04 - val_loss: 1.4133e-04
-Epoch 11/20
-2192/2192 - 2s - 938us/step - loss: 7.8227e-04 - val_loss: 1.6399e-04
-Epoch 12/20
-2192/2192 - 2s - 974us/step - loss: 7.6545e-04 - val_loss: 1.9245e-04
-Epoch 13/20
-2192/2192 - 2s - 910us/step - loss: 7.6275e-04 - val_loss: 4.8949e-04
-Epoch 14/20
-2192/2192 - 2s - 912us/step - loss: 7.7283e-04 - val_loss: 1.5735e-04
-Epoch 15/20
-2192/2192 - 2s - 895us/step - loss: 7.5505e-04 - val_loss: 1.4644e-04
-Epoch 16/20
-2192/2192 - 2s - 877us/step - loss: 7.4788e-04 - val_loss: 1.6131e-04
-Epoch 17/20
-2192/2192 - 2s - 902us/step - loss: 7.6902e-04 - val_loss: 1.6327e-04
-Epoch 18/20
-2192/2192 - 2s - 920us/step - loss: 7.4442e-04 - val_loss: 1.3830e-04
-Epoch 19/20
-2192/2192 - 2s - 895us/step - loss: 7.6910e-04 - val_loss: 1.5404e-04
-Epoch 20/20
-2192/2192 - 2s - 916us/step - loss: 7.5633e-04 - val_loss: 1.9311e-04
-El entrenamiento se ha completado y el historial ha sido guardado en &#39;history_airp.joblib&#39;.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>El archivo &#39;history_airp.joblib&#39; ya existe. Se ha cargado el historial del entrenamiento.
 </pre></div>
 </div>
 </div>
@@ -9820,13 +9827,13 @@ El entrenamiento se ha completado y el historial ha sido guardado en &#39;histor
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">preds</span> <span class="o">=</span> <span class="n">best_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_val</span><span class="p">)</span>
-<span class="n">pred_PRES</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">preds</span><span class="p">)</span>
+<span class="n">pred_PRES</span> <span class="o">=</span> <span class="n">scaler_pres</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">preds</span><span class="p">)</span>
 <span class="n">pred_PRES</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">pred_PRES</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">274/274</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 1ms/step
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">274/274</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 1ms/step
 </pre></div>
 </div>
 </div>
@@ -9861,7 +9868,7 @@ El entrenamiento se ha completado y el historial ha sido guardado en &#39;histor
 </div>
 </div>
 <ul class="simple">
-<li><p>Para <em><strong>predecir la variable</strong></em> <code class="docutils literal notranslate"><span class="pre">pm2.5</span></code> usando <code class="docutils literal notranslate"><span class="pre">MLP</span></code> usamos la implementación presentada a continuación</p></li>
+<li><p>Para <em><strong>predecir la variable</strong></em> <code class="docutils literal notranslate"><span class="pre">pm2.5</span></code> usando <code class="docutils literal notranslate"><span class="pre">MLP</span></code> usamos la implementación presentada a continuación. Las <em><strong>filas con valores NaN</strong></em> en la columna pm2.5 <em><strong>se eliminan</strong></em></p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -9971,9 +9978,14 @@ El entrenamiento se ha completado y el historial ha sido guardado en &#39;histor
 </table>
 </div></div></div>
 </div>
-<ul class="simple">
-<li><p>Las <em><strong>filas con valores NaN</strong></em> en la columna pm2.5 <em><strong>se eliminan</strong></em></p></li>
-</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;pm2.5&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;pm2.5&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -10042,14 +10054,6 @@ El entrenamiento se ha completado y el historial ha sido guardado en &#39;histor
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scaler</span> <span class="o">=</span> <span class="n">MinMaxScaler</span><span class="p">(</span><span class="n">feature_range</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">&#39;scaled_pm2.5&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;pm2.5&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">split_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="mi">2014</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">day</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">hour</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">df_train</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;datetime&#39;</span><span class="p">]</span><span class="o">&lt;</span><span class="n">split_date</span><span class="p">]</span>
 <span class="n">df_val</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;datetime&#39;</span><span class="p">]</span><span class="o">&gt;=</span><span class="n">split_date</span><span class="p">]</span>
@@ -10059,8 +10063,8 @@ El entrenamiento se ha completado y el historial ha sido guardado en &#39;histor
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape of train: (33096, 9)
-Shape of test: (8661, 9)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape of train: (33096, 8)
+Shape of test: (8661, 8)
 </pre></div>
 </div>
 </div>
@@ -10098,7 +10102,6 @@ Shape of test: (8661, 9)
       <th>pm2.5</th>
       <th>PRES</th>
       <th>datetime</th>
-      <th>scaled_pm2.5</th>
     </tr>
   </thead>
   <tbody>
@@ -10112,7 +10115,6 @@ Shape of test: (8661, 9)
       <td>129.0</td>
       <td>1020.0</td>
       <td>2010-01-02 00:00:00</td>
-      <td>0.129779</td>
     </tr>
     <tr>
       <th>1</th>
@@ -10124,7 +10126,6 @@ Shape of test: (8661, 9)
       <td>148.0</td>
       <td>1020.0</td>
       <td>2010-01-02 01:00:00</td>
-      <td>0.148893</td>
     </tr>
     <tr>
       <th>2</th>
@@ -10136,7 +10137,6 @@ Shape of test: (8661, 9)
       <td>159.0</td>
       <td>1021.0</td>
       <td>2010-01-02 02:00:00</td>
-      <td>0.159960</td>
     </tr>
     <tr>
       <th>3</th>
@@ -10148,7 +10148,6 @@ Shape of test: (8661, 9)
       <td>181.0</td>
       <td>1022.0</td>
       <td>2010-01-02 03:00:00</td>
-      <td>0.182093</td>
     </tr>
     <tr>
       <th>4</th>
@@ -10160,7 +10159,6 @@ Shape of test: (8661, 9)
       <td>138.0</td>
       <td>1022.0</td>
       <td>2010-01-02 04:00:00</td>
-      <td>0.138833</td>
     </tr>
   </tbody>
 </table>
@@ -10199,7 +10197,6 @@ Shape of test: (8661, 9)
       <th>pm2.5</th>
       <th>PRES</th>
       <th>datetime</th>
-      <th>scaled_pm2.5</th>
     </tr>
   </thead>
   <tbody>
@@ -10213,7 +10210,6 @@ Shape of test: (8661, 9)
       <td>24.0</td>
       <td>1014.0</td>
       <td>2014-01-01 00:00:00</td>
-      <td>0.024145</td>
     </tr>
     <tr>
       <th>33097</th>
@@ -10225,7 +10221,6 @@ Shape of test: (8661, 9)
       <td>53.0</td>
       <td>1013.0</td>
       <td>2014-01-01 01:00:00</td>
-      <td>0.053320</td>
     </tr>
     <tr>
       <th>33098</th>
@@ -10237,7 +10232,6 @@ Shape of test: (8661, 9)
       <td>65.0</td>
       <td>1013.0</td>
       <td>2014-01-01 02:00:00</td>
-      <td>0.065392</td>
     </tr>
     <tr>
       <th>33099</th>
@@ -10249,7 +10243,6 @@ Shape of test: (8661, 9)
       <td>70.0</td>
       <td>1013.0</td>
       <td>2014-01-01 03:00:00</td>
-      <td>0.070423</td>
     </tr>
     <tr>
       <th>33100</th>
@@ -10261,7 +10254,6 @@ Shape of test: (8661, 9)
       <td>79.0</td>
       <td>1012.0</td>
       <td>2014-01-01 04:00:00</td>
-      <td>0.079477</td>
     </tr>
   </tbody>
 </table>
@@ -10270,6 +10262,26 @@ Shape of test: (8661, 9)
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_val</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">MinMaxScaler</span>
+
+<span class="n">scaler_pm25</span> <span class="o">=</span> <span class="n">MinMaxScaler</span><span class="p">(</span><span class="n">feature_range</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">df_train</span><span class="p">[</span><span class="s1">&#39;scaled_pm2.5&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">scaler_pm25</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df_train</span><span class="p">[[</span><span class="s1">&#39;pm2.5&#39;</span><span class="p">]])</span>
+<span class="n">df_val</span><span class="p">[</span><span class="s1">&#39;scaled_pm2.5&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">scaler_pm25</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">df_val</span><span class="p">[[</span><span class="s1">&#39;pm2.5&#39;</span><span class="p">]])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Shape of train:&#39;</span><span class="p">,</span> <span class="n">df_train</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Shape of val:&#39;</span><span class="p">,</span> <span class="n">df_val</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape of train: (33096, 9)
+Shape of val: (8661, 9)
 </pre></div>
 </div>
 </div>
@@ -10396,22 +10408,22 @@ Shape of test: (8661, 9)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">Model: "functional_1"</span>
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">Model: "functional_6"</span>
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┓
 ┃<span style="font-weight: bold"> Layer (type)                    </span>┃<span style="font-weight: bold"> Output Shape           </span>┃<span style="font-weight: bold">       Param # </span>┃
 ┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━┩
-│ input_layer_1 (<span style="color: #0087ff; text-decoration-color: #0087ff">InputLayer</span>)      │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">7</span>)              │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+│ input_layer_6 (<span style="color: #0087ff; text-decoration-color: #0087ff">InputLayer</span>)      │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">7</span>)              │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ dense_4 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                 │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">32</span>)             │           <span style="color: #00af00; text-decoration-color: #00af00">256</span> │
+│ dense_24 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">32</span>)             │           <span style="color: #00af00; text-decoration-color: #00af00">256</span> │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ dense_5 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                 │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">16</span>)             │           <span style="color: #00af00; text-decoration-color: #00af00">528</span> │
+│ dense_25 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">16</span>)             │           <span style="color: #00af00; text-decoration-color: #00af00">528</span> │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ dense_6 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                 │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">16</span>)             │           <span style="color: #00af00; text-decoration-color: #00af00">272</span> │
+│ dense_26 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">16</span>)             │           <span style="color: #00af00; text-decoration-color: #00af00">272</span> │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ dropout_1 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dropout</span>)             │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">16</span>)             │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+│ dropout_6 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dropout</span>)             │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">16</span>)             │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ dense_7 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                 │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">1</span>)              │            <span style="color: #00af00; text-decoration-color: #00af00">17</span> │
+│ dense_27 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">1</span>)              │            <span style="color: #00af00; text-decoration-color: #00af00">17</span> │
 └─────────────────────────────────┴────────────────────────┴───────────────┘
 </pre>
 </div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold"> Total params: </span><span style="color: #00af00; text-decoration-color: #00af00">1,073</span> (4.19 KB)
@@ -10448,47 +10460,7 @@ Shape of test: (8661, 9)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 1/20
-2069/2069 - 3s - 2ms/step - loss: 0.0220 - val_loss: 0.0137
-Epoch 2/20
-2069/2069 - 2s - 1ms/step - loss: 0.0203 - val_loss: 0.0141
-Epoch 3/20
-2069/2069 - 2s - 997us/step - loss: 0.0201 - val_loss: 0.0150
-Epoch 4/20
-2069/2069 - 2s - 981us/step - loss: 0.0202 - val_loss: 0.0150
-Epoch 5/20
-2069/2069 - 2s - 971us/step - loss: 0.0203 - val_loss: 0.0146
-Epoch 6/20
-2069/2069 - 2s - 1ms/step - loss: 0.0200 - val_loss: 0.0175
-Epoch 7/20
-2069/2069 - 2s - 997us/step - loss: 0.0203 - val_loss: 0.0149
-Epoch 8/20
-2069/2069 - 2s - 1ms/step - loss: 0.0199 - val_loss: 0.0139
-Epoch 9/20
-2069/2069 - 2s - 1ms/step - loss: 0.0199 - val_loss: 0.0161
-Epoch 10/20
-2069/2069 - 2s - 1ms/step - loss: 0.0200 - val_loss: 0.0148
-Epoch 11/20
-2069/2069 - 2s - 1ms/step - loss: 0.0199 - val_loss: 0.0144
-Epoch 12/20
-2069/2069 - 2s - 975us/step - loss: 0.0199 - val_loss: 0.0141
-Epoch 13/20
-2069/2069 - 2s - 1ms/step - loss: 0.0200 - val_loss: 0.0137
-Epoch 14/20
-2069/2069 - 2s - 995us/step - loss: 0.0199 - val_loss: 0.0154
-Epoch 15/20
-2069/2069 - 2s - 985us/step - loss: 0.0201 - val_loss: 0.0136
-Epoch 16/20
-2069/2069 - 2s - 1ms/step - loss: 0.0200 - val_loss: 0.0121
-Epoch 17/20
-2069/2069 - 2s - 1ms/step - loss: 0.0199 - val_loss: 0.0134
-Epoch 18/20
-2069/2069 - 2s - 1ms/step - loss: 0.0198 - val_loss: 0.0131
-Epoch 19/20
-2069/2069 - 2s - 989us/step - loss: 0.0199 - val_loss: 0.0125
-Epoch 20/20
-2069/2069 - 2s - 978us/step - loss: 0.0192 - val_loss: 0.0150
-El entrenamiento se ha completado y el historial ha sido guardado en &#39;history_pm25.joblib&#39;.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>El archivo &#39;history_pm25.joblib&#39; ya existe. Se ha cargado el historial del entrenamiento.
 </pre></div>
 </div>
 </div>
@@ -10530,13 +10502,13 @@ El entrenamiento se ha completado y el historial ha sido guardado en &#39;histor
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">preds</span> <span class="o">=</span> <span class="n">best_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_val</span><span class="p">)</span>
-<span class="n">pred_pm25</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">preds</span><span class="p">)</span>
+<span class="n">pred_pm25</span> <span class="o">=</span> <span class="n">scaler_pm25</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">preds</span><span class="p">)</span>
 <span class="n">pred_pm25</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">pred_pm25</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">271/271</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 833us/step
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">271/271</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 946us/step
 </pre></div>
 </div>
 </div>
@@ -10574,8 +10546,9 @@ El entrenamiento se ha completado y el historial ha sido guardado en &#39;histor
 </div>
 </div>
 </section>
+</section>
 <section id="lstm-para-la-prediccion-de-series-de-tiempo">
-<h2><span class="section-number">10.19. </span>LSTM para la predicción de series de tiempo<a class="headerlink" href="#lstm-para-la-prediccion-de-series-de-tiempo" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">10.18. </span>LSTM para la predicción de series de tiempo<a class="headerlink" href="#lstm-para-la-prediccion-de-series-de-tiempo" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Continuaremos usando el conjunto de datos sobre contaminación del aire (pm2.5) usando LSTM. La lectura y el <em><strong>preprocesamiento de los datos se mantienen igual que en los ejemplos de <code class="docutils literal notranslate"><span class="pre">MLPs</span></code></strong></em>. El conjunto de datos original se divide en dos conjuntos: <em>entrenamiento y validación</em>, que se usan para el entrenamiento y validación del modelo respectivamente.</p></li>
 </ul>
@@ -10847,7 +10820,7 @@ El entrenamiento se ha completado y el historial ha sido guardado en &#39;histor
 </div>
 </section>
 <section id="atencion-y-memoria">
-<h2><span class="section-number">10.20. </span>Atención y Memoria<a class="headerlink" href="#atencion-y-memoria" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">10.19. </span>Atención y Memoria<a class="headerlink" href="#atencion-y-memoria" title="Link to this heading">#</a></h2>
 <div class="admonition-introduccion admonition">
 <p class="admonition-title">Introducción</p>
 <ul class="simple">
@@ -10898,7 +10871,7 @@ El entrenamiento se ha completado y el historial ha sido guardado en &#39;histor
 </section>
 </div></section>
 <section id="entrenamiento-adversario">
-<h2><span class="section-number">10.21. </span>Entrenamiento adversario<a class="headerlink" href="#entrenamiento-adversario" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">10.20. </span>Entrenamiento adversario<a class="headerlink" href="#entrenamiento-adversario" title="Link to this heading">#</a></h2>
 <div class="admonition-introduccion admonition">
 <p class="admonition-title">Introducción</p>
 <ul class="simple">
@@ -10966,9 +10939,9 @@ El entrenamiento se ha completado y el historial ha sido guardado en &#39;histor
 </ul>
 </section>
 <section id="modelos-generativos-profundos">
-<h2><span class="section-number">10.22. </span>Modelos Generativos Profundos<a class="headerlink" href="#modelos-generativos-profundos" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">10.21. </span>Modelos Generativos Profundos<a class="headerlink" href="#modelos-generativos-profundos" title="Link to this heading">#</a></h2>
 <section id="maquina-de-boltzmann-restringida">
-<h3><span class="section-number">10.22.1. </span>Máquina de Boltzmann Restringida<a class="headerlink" href="#maquina-de-boltzmann-restringida" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">10.21.1. </span>Máquina de Boltzmann Restringida<a class="headerlink" href="#maquina-de-boltzmann-restringida" title="Link to this heading">#</a></h3>
 <div class="admonition-introduccion admonition">
 <p class="admonition-title">Introducción</p>
 <ul class="simple">
@@ -11064,7 +11037,7 @@ Z=\sum_{v}\sum_{h}\exp(-E(\boldsymbol{v}, \boldsymbol{h})).
 </section>
 </section>
 <section id="autoencoders">
-<h2><span class="section-number">10.23. </span>Autoencoders<a class="headerlink" href="#autoencoders" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">10.22. </span>Autoencoders<a class="headerlink" href="#autoencoders" title="Link to this heading">#</a></h2>
 <ul>
 <li><p>Los <em><strong>autoencoders</strong></em> han sido propuestos como <em><strong>métodos para la reducción de dimensionalidad</strong></em>. Un <em><strong>autoencoder</strong></em> consta de dos partes, el <em><strong>codificador</strong></em> y el <em><strong>decodificador</strong></em>. La <em><strong>salida del codificador es la representación reducida del patrón de entrada</strong></em>, y se define en términos de una función vectorial</p>
 <div class="math notranslate nohighlight">
@@ -11210,16 +11183,18 @@ Z=\sum_{v}\sum_{h}\exp(-E(\boldsymbol{v}, \boldsymbol{h})).
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#red-de-memoria-a-largo-plazo-lstm">10.15. Red de memoria a largo plazo (LSTM)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-procesamiento-del-lenguaje-natural">10.16. Aplicación: Procesamiento del Lenguaje Natural</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#series-de-tiempo">10.17. Series de Tiempo</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-prediccion-de-series-temporales">10.18. Aplicación: Predicción de series temporales</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lstm-para-la-prediccion-de-series-de-tiempo">10.19. LSTM para la predicción de series de tiempo</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#atencion-y-memoria">10.20. Atención y Memoria</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entrenamiento-adversario">10.21. Entrenamiento adversario</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-generativos-profundos">10.22. Modelos Generativos Profundos</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#maquina-de-boltzmann-restringida">10.22.1. Máquina de Boltzmann Restringida</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-prediccion-de-series-temporales">10.17. Aplicación: Predicción de series temporales</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#series-de-tiempo">10.17.1. Series de Tiempo</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autoencoders">10.23. Autoencoders</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lstm-para-la-prediccion-de-series-de-tiempo">10.18. LSTM para la predicción de series de tiempo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#atencion-y-memoria">10.19. Atención y Memoria</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entrenamiento-adversario">10.20. Entrenamiento adversario</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-generativos-profundos">10.21. Modelos Generativos Profundos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#maquina-de-boltzmann-restringida">10.21.1. Máquina de Boltzmann Restringida</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autoencoders">10.22. Autoencoders</a></li>
 </ul>
   </nav></div>
 
