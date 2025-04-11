@@ -401,6 +401,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autoencoders">10.22. Autoencoders</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-autoencoders-para-mnist-data">10.23. Aplicación: Autoencoders para MNIST data</a></li>
 </ul>
             </nav>
         </div>
@@ -11072,30 +11073,33 @@ Z=\sum_{v}\sum_{h}\exp(-E(\boldsymbol{v}, \boldsymbol{h})).
 </section>
 <section id="autoencoders">
 <h2><span class="section-number">10.22. </span>Autoencoders<a class="headerlink" href="#autoencoders" title="Link to this heading">#</a></h2>
+<figure class="align-center">
+<img alt="_images/autoencoder-architecture.png" src="_images/autoencoder-architecture.png" />
+</figure>
 <ul>
-<li><p>Los <em><strong>autoencoders</strong></em> han sido propuestos como <em><strong>métodos para la reducción de dimensionalidad</strong></em>. Un <em><strong>autoencoder</strong></em> consta de dos partes, el <em><strong>codificador</strong></em> y el <em><strong>decodificador</strong></em>. La <em><strong>salida del codificador es la representación reducida del patrón de entrada</strong></em>, y se define en términos de una función vectorial</p>
+<li><p>Los <em><strong>autoencoders</strong></em> han sido propuestos como <em><strong>métodos para la reducción de dimensionalidad</strong></em>. Un <em><strong>autoencoder</strong></em> consta de dos partes, el <em><strong>codificador</strong></em> y el <em><strong>decodificador</strong></em>. La <em><strong>salida del <code class="docutils literal notranslate"><span class="pre">codificador</span> <span class="pre">es</span> <span class="pre">la</span> <span class="pre">representación</span> <span class="pre">reducida</span> <span class="pre">del</span> <span class="pre">patrón</span> <span class="pre">de</span> <span class="pre">entrada</span></code></strong></em>, y se define en términos de una función vectorial</p>
 <div class="math notranslate nohighlight">
 \[
-    \boldsymbol{f}:~\boldsymbol{x}\in\mathbb{R}^{l}\longmapsto\boldsymbol{h}\in\mathbb{R}^{m},
+    \boldsymbol{g}_{\phi}:~\boldsymbol{x}\in\mathbb{R}^{l}\longmapsto\boldsymbol{z}\in\mathbb{R}^{m},
     \]</div>
 <p>donde</p>
 <div class="math notranslate nohighlight">
 \[
-    h_{i}:=f_{i}(\boldsymbol{x})=\phi_{e}(\boldsymbol{\theta}_{i}^{T}\boldsymbol{x}+b_{i}),\quad i=1,2,\dots,m,
+    z_{i}:=g_{\phi, i}(\boldsymbol{x})=\phi_{e}(\boldsymbol{\theta}_{i}^{T}\boldsymbol{x}+b_{i}),\quad i=1,2,\dots,m,
     \]</div>
 <p>con <span class="math notranslate nohighlight">\(\phi_{e}\)</span> función de <em><strong>activación</strong></em>; esta última suele tomarse como la función <em><strong>sigmoidea logística</strong></em> <span class="math notranslate nohighlight">\(\phi_{e}(\cdot)=\sigma(\cdot)\)</span>. En otras palabras, el <em><strong>codificador es una red neuronal feed-forward de una sola capa oculta</strong></em></p>
 </li>
 </ul>
 <ul>
-<li><p>El <em><strong>decodificador</strong></em> es otra función <span class="math notranslate nohighlight">\(\boldsymbol{g}\)</span>.</p>
+<li><p>El <em><strong><code class="docutils literal notranslate"><span class="pre">decodificador</span></code></strong></em> es otra función <span class="math notranslate nohighlight">\(\boldsymbol{f}_{\theta}\)</span>.</p>
 <div class="math notranslate nohighlight">
 \[
-    \boldsymbol{g}:~\boldsymbol{h}\in\mathbb{R}^{m}\longmapsto\hat{\boldsymbol{x}}\in\mathbb{R}^{l},
+    \boldsymbol{f}_{\theta}:~\boldsymbol{z}\in\mathbb{R}^{m}\longmapsto\boldsymbol{x}'\in\mathbb{R}^{l},
     \]</div>
 <p>donde</p>
 <div class="math notranslate nohighlight">
 \[
-    \hat{x}_{j}=g_{j}(\boldsymbol{h})=\phi_{d}(\boldsymbol{\theta}'^{T}\boldsymbol{h}+b_{j}'),\quad j=1,\dots,l.
+    \hat{x}_{j}=f_{\theta, j}(\boldsymbol{z})=\phi_{d}(\boldsymbol{\theta}'^{T}\boldsymbol{z}+b_{j}'),\quad j=1,\dots,l.
     \]</div>
 <p>La función de <em><strong>activación</strong></em> <span class="math notranslate nohighlight">\(\phi_{d}\)</span> suele ser la identidad (<em><strong>reconstrucción lineal</strong></em>) o la <em><strong>sigmoidea logística</strong></em>.</p>
 </li>
@@ -11108,8 +11112,431 @@ Z=\sum_{v}\sum_{h}\exp(-E(\boldsymbol{v}, \boldsymbol{h})).
 \Theta:=[\boldsymbol{\theta}_{1},\dots,\boldsymbol{\theta}_{m}],~\boldsymbol{b},~\Theta':=[\boldsymbol{\theta}_{1}',\dots,\boldsymbol{\theta}_{l}'],~\boldsymbol{b}'.
 \]</div>
 <ul class="simple">
-<li><p>Es habitual suponer que <span class="math notranslate nohighlight">\(\Theta'=\Theta^{T}\)</span>. Los parámetros se estiman para que el <em><strong>error de reconstrucción</strong></em> <span class="math notranslate nohighlight">\(\boldsymbol{e}=\boldsymbol{x}-\hat{\boldsymbol{x}}\)</span>, sobre las muestras de entrada disponibles sea <em><strong>mínimo</strong></em>. Normalmente, se utiliza el <em><strong>coste por mínimos cuadrados</strong></em> pero también son posibles otras opciones. Las <em><strong>versiones regularizadas</strong></em>, que implican una norma de los parámetros, también es una posibilidad. Si se elige que la activación <span class="math notranslate nohighlight">\(\phi_{e}\)</span> sea la identidad (representación lineal) y <span class="math notranslate nohighlight">\(m &lt; l\)</span> (para evitar la trivialidad), el <em><strong>autoencoder es equivalente a la técnica PCA</strong></em>.</p></li>
+<li><p>Es habitual suponer que <span class="math notranslate nohighlight">\(\Theta'=\Theta^{T}\)</span>. Los parámetros se estiman para que el <em><strong>error de reconstrucción</strong></em> <span class="math notranslate nohighlight">\(\boldsymbol{e}=\boldsymbol{x}-\boldsymbol{x}'\)</span>, sobre las muestras de entrada disponibles sea <em><strong>mínimo</strong></em>. Normalmente, se utiliza el <em><strong>coste por mínimos cuadrados</strong></em> pero también son posibles otras opciones.</p></li>
+<li><p>Las <em><strong>versiones regularizadas</strong></em>, que implican una norma de los parámetros, también es una posibilidad. Si se elige que la activación <span class="math notranslate nohighlight">\(\phi_{e}\)</span> sea la identidad (representación lineal) y <span class="math notranslate nohighlight">\(m &lt; l\)</span> (para evitar la trivialidad), el <em><strong>autoencoder es equivalente a la técnica PCA</strong></em>.</p></li>
 </ul>
+</section>
+<section id="aplicacion-autoencoders-para-mnist-data">
+<h2><span class="section-number">10.23. </span>Aplicación: Autoencoders para MNIST data<a class="headerlink" href="#aplicacion-autoencoders-para-mnist-data" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.datasets</span> <span class="kn">import</span> <span class="n">mnist</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.models</span> <span class="kn">import</span> <span class="n">Model</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.layers</span> <span class="kn">import</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Dense</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<figure class="align-center">
+<a class="reference internal image-reference" href="_images/incode_decode_784to32to784.png"><img alt="_images/incode_decode_784to32to784.png" src="_images/incode_decode_784to32to784.png" style="width: 530.4px; height: 190.8px;" /></a>
+</figure>
+<ul class="simple">
+<li><p>A continuación</p>
+<ul>
+<li><p><em><strong>Se cargan los datos del conjunto MNIST</strong></em>, que contiene imágenes de dígitos escritos a mano.</p></li>
+<li><p><em><strong>Cada muestra es una imagen en escala de grises de 28×28 píxeles</strong></em>.</p></li>
+<li><p><em><strong>Se ignoran las etiquetas de clase</strong></em> (<code class="docutils literal notranslate"><span class="pre">_</span></code>) porque el objetivo es reconstruir las imágenes (no clasificarlas), tal como se requiere en tareas de autoencoders.</p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">_</span><span class="p">),</span> <span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="o">=</span> <span class="n">mnist</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Forma original de x_train:&quot;</span><span class="p">,</span> <span class="n">x_train</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Forma original de x_test:&quot;</span><span class="p">,</span> <span class="n">x_test</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Forma original de x_train: (60000, 28, 28)
+Forma original de x_test: (10000, 28, 28)
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><em><strong>Se normalizan los valores de los píxeles de las imágenes</strong></em>, originalmente en el rango [0, 255], para que estén en el intervalo [0, 1]. <em><strong>La normalización facilita el entrenamiento del modelo</strong></em> al mejorar la estabilidad numérica y acelerar la convergencia del optimizador. <em><strong>Se convierte el tipo de dato a <code class="docutils literal notranslate"><span class="pre">float32</span></code></strong></em> para asegurar compatibilidad con las operaciones en <code class="docutils literal notranslate"><span class="pre">TensorFlow/Keras</span></code>.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_train</span> <span class="o">=</span> <span class="n">x_train</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float32&#39;</span><span class="p">)</span> <span class="o">/</span> <span class="mf">255.</span>
+<span class="n">x_test</span> <span class="o">=</span> <span class="n">x_test</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float32&#39;</span><span class="p">)</span> <span class="o">/</span> <span class="mf">255.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><em><strong>Cada imagen del conjunto de datos MNIST tiene dimensiones 28×28</strong></em>, es decir, 784 píxeles. <em><strong>Estas imágenes se transforman en vectores unidimensionales de 784 elementos</strong></em> para que puedan ser procesadas por capas densas (<code class="docutils literal notranslate"><span class="pre">Dense</span></code>) del autoencoder. <em><strong>Esta transformación no altera la información de la imagen, solo su forma (reshape)</strong></em> para adaptarse a la entrada del modelo.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_train</span> <span class="o">=</span> <span class="n">x_train</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">x_train</span><span class="p">),</span> <span class="mi">784</span><span class="p">))</span>
+<span class="n">x_test</span> <span class="o">=</span> <span class="n">x_test</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">x_test</span><span class="p">),</span> <span class="mi">784</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Forma después del reshape de x_train:&quot;</span><span class="p">,</span> <span class="n">x_train</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Forma después del reshape de x_test:&quot;</span><span class="p">,</span> <span class="n">x_test</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Forma después del reshape de x_train: (60000, 784)
+Forma después del reshape de x_test: (10000, 784)
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">input_img</span> <span class="pre">=</span> <span class="pre">Input(shape=(784,))</span></code>:<br />
+<em><strong>Se define la capa de entrada del modelo, correspondiente a una imagen aplanada de 784 píxeles.</strong></em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">encoded</span> <span class="pre">=</span> <span class="pre">Dense(32,</span> <span class="pre">activation='relu')(input_img)</span></code>:<br />
+<em><strong>Esta capa es el codificador, que transforma la imagen de entrada en una representación latente de 32 dimensiones utilizando una función de activación ReLU.</strong></em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">decoded</span> <span class="pre">=</span> <span class="pre">Dense(784,</span> <span class="pre">activation='sigmoid')(encoded)</span></code>:<br />
+<em><strong>Esta capa actúa como decodificador, intentando reconstruir la imagen original a partir de la representación latente.</strong></em></p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">sigmoid</span></code></strong> se adapta bien cuando se usa la función de pérdida <code class="docutils literal notranslate"><span class="pre">binary_crossentropy</span></code>, ya que esa pérdida espera que la salida esté entre 0 y 1. Asegura que los <em><strong>valores de salida no sean negativos ni mayores a 1</strong></em>, lo que tendría poco sentido en términos de imágenes normalizadas.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">autoencoder</span> <span class="pre">=</span> <span class="pre">Model(input_img,</span> <span class="pre">decoded)</span></code>:<br />
+<em><strong>Se define el modelo completo del autoencoder, que aprende a mapear una imagen a su reconstrucción.</strong></em></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">input_img</span> <span class="o">=</span> <span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">784</span><span class="p">,))</span>
+<span class="n">encoded</span> <span class="o">=</span> <span class="n">Dense</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">)(</span><span class="n">input_img</span><span class="p">)</span>
+<span class="n">decoded</span> <span class="o">=</span> <span class="n">Dense</span><span class="p">(</span><span class="mi">784</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;sigmoid&#39;</span><span class="p">)(</span><span class="n">encoded</span><span class="p">)</span>
+<span class="n">autoencoder</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span><span class="n">input_img</span><span class="p">,</span> <span class="n">decoded</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">autoencoder.compile(...)</span></code>:<br />
+<em><strong>Se compila el modelo autoencoder</strong></em>, especificando el optimizador y la función de pérdida.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">optimizer='adam'</span></code>:<br />
+<em><strong>Se utiliza el optimizador Adam</strong></em>, ampliamente usado en redes neuronales por su eficiencia y capacidad de adaptación del aprendizaje.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">loss='binary_crossentropy'</span></code>:<br />
+<em><strong>Se emplea la entropía cruzada binaria como función de pérdida</strong></em>, apropiada en tareas de reconstrucción donde los valores de salida están en el rango [0, 1].</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">autoencoder</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s1">&#39;adam&#39;</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="s1">&#39;binary_crossentropy&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">autoencoder.fit(...)</span></code>:<br />
+<em><strong>Entrena el modelo autoencoder utilizando como entrada y objetivo los mismos datos</strong></em>, dado que la tarea es de reconstrucción.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">x_train,</span> <span class="pre">x_train</span></code>:<br />
+Se entrena el modelo para que aprenda a <em><strong>reproducir su entrada como salida</strong></em>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">epochs=50</span></code>:<br />
+<em><strong>El entrenamiento se realiza durante 50 épocas</strong></em> completas sobre el conjunto de datos.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">batch_size=256</span></code>:<br />
+El tamaño del <em><strong>mini-batch</strong></em> para cada actualización de parámetros es de <em><strong>256 muestras.</strong></em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">shuffle=True</span></code>:<br />
+Se <em><strong>mezclan aleatoriamente las muestras</strong></em> en cada época para <em><strong>mejorar la generalización.</strong></em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">validation_data=(x_test,</span> <span class="pre">x_test)</span></code>:<br />
+Se utiliza el conjunto de prueba para evaluar la pérdida de validación y así monitorear el sobreajuste.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">autoencoder</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">x_train</span><span class="p">,</span>
+                <span class="n">epochs</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+                <span class="n">batch_size</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span>
+                <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="n">validation_data</span><span class="o">=</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">x_test</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 1/50
+<span class=" -Color -Color-Bold">235/235</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">3s</span> 8ms/step - loss: 0.3830 - val_loss: 0.1906
+Epoch 2/50
+<span class=" -Color -Color-Bold">235/235</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 2ms/step - loss: 0.1813 - val_loss: 0.1540
+Epoch 3/50
+<span class=" -Color -Color-Bold">235/235</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step - loss: 0.1492 - val_loss: 0.1339
+Epoch 4/50
+<span class=" -Color -Color-Bold">235/235</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 1ms/step - loss: 0.1317 - val_loss: 0.1216
+Epoch 5/50
+<span class=" -Color -Color-Bold">235/235</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 1ms/step - loss: 0.1203 - val_loss: 0.1134
+Epoch 6/50
+<span class=" -Color -Color-Bold">235/235</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 1ms/step - loss: 0.1132 - val_loss: 0.1079
+Epoch 7/50
+<span class=" -Color -Color-Bold">235/235</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 1ms/step - loss: 0.1080 - val_loss: 0.1037
+Epoch 8/50
+<span class=" -Color -Color-Bold">235/235</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 1ms/step - loss: 0.1041 - val_loss: 0.1005
+Epoch 9/50
+<span class=" -Color -Color-Bold">235/235</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 1ms/step - loss: 0.1009 - val_loss: 0.0978
+Epoch 10/50
+<span class=" -Color -Color-Bold">235/235</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 1ms/step - loss: 0.0984 - val_loss: 0.0960
+Epoch 11/50
+<span class=" -Color -Color-Bold">235/235</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 1ms/step - loss: 0.0968 - val_loss: 0.0948
+Epoch 12/50
+<span class=" -Color -Color-Bold">235/235</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 1ms/step - loss: 0.0957 - val_loss: 0.0940
+Epoch 13/50
+<span class=" -Color -Color-Bold">235/235</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 1ms/step - loss: 0.0952 - val_loss: 0.0935
+Epoch 14/50
+<span class=" -Color -Color-Bold">235/235</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 1ms/step - loss: 0.0949 - val_loss: 0.0932
+Epoch 15/50
+<span class=" -Color -Color-Bold">235/235</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 1ms/step - loss: 0.0944 - val_loss: 0.0929
+Epoch 16/50
+<span class=" -Color -Color-Bold">235/235</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 1ms/step - loss: 0.0943 - val_loss: 0.0927
+Epoch 17/50
+<span class=" -Color -Color-Bold">235/235</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step - loss: 0.0938 - val_loss: 0.0926
+Epoch 18/50
+<span class=" -Color -Color-Bold">235/235</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 1ms/step - loss: 0.0937 - val_loss: 0.0924
+Epoch 19/50
+<span class=" -Color -Color-Bold">235/235</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 1ms/step - loss: 0.0937 - val_loss: 0.0923
+Epoch 20/50
+<span class=" -Color -Color-Bold">235/235</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step - loss: 0.0935 - val_loss: 0.0923
+Epoch 21/50
+<span class=" -Color -Color-Bold">235/235</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 1ms/step - loss: 0.0935 - val_loss: 0.0921
+Epoch 22/50
+<span class=" -Color -Color-Bold">235/235</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step - loss: 0.0933 - val_loss: 0.0921
+Epoch 23/50
+<span class=" -Color -Color-Bold">235/235</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step - loss: 0.0933 - val_loss: 0.0920
+Epoch 24/50
+<span class=" -Color -Color-Bold">235/235</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 1ms/step - loss: 0.0932 - val_loss: 0.0920
+Epoch 25/50
+<span class=" -Color -Color-Bold">235/235</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 1ms/step - loss: 0.0931 - val_loss: 0.0919
+Epoch 26/50
+<span class=" -Color -Color-Bold">235/235</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 1ms/step - loss: 0.0932 - val_loss: 0.0919
+Epoch 27/50
+<span class=" -Color -Color-Bold">235/235</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 1ms/step - loss: 0.0931 - val_loss: 0.0919
+Epoch 28/50
+<span class=" -Color -Color-Bold">235/235</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 1ms/step - loss: 0.0927 - val_loss: 0.0919
+Epoch 29/50
+<span class=" -Color -Color-Bold">235/235</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step - loss: 0.0930 - val_loss: 0.0919
+Epoch 30/50
+<span class=" -Color -Color-Bold">235/235</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 1ms/step - loss: 0.0931 - val_loss: 0.0918
+Epoch 31/50
+<span class=" -Color -Color-Bold">235/235</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 1ms/step - loss: 0.0928 - val_loss: 0.0918
+Epoch 32/50
+<span class=" -Color -Color-Bold">235/235</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 1ms/step - loss: 0.0930 - val_loss: 0.0917
+Epoch 33/50
+<span class=" -Color -Color-Bold">235/235</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 1ms/step - loss: 0.0931 - val_loss: 0.0917
+Epoch 34/50
+<span class=" -Color -Color-Bold">235/235</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 1ms/step - loss: 0.0929 - val_loss: 0.0917
+Epoch 35/50
+<span class=" -Color -Color-Bold">235/235</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 1ms/step - loss: 0.0928 - val_loss: 0.0917
+Epoch 36/50
+<span class=" -Color -Color-Bold">235/235</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 1ms/step - loss: 0.0928 - val_loss: 0.0917
+Epoch 37/50
+<span class=" -Color -Color-Bold">235/235</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 1ms/step - loss: 0.0929 - val_loss: 0.0917
+Epoch 38/50
+<span class=" -Color -Color-Bold">235/235</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 1ms/step - loss: 0.0930 - val_loss: 0.0917
+Epoch 39/50
+<span class=" -Color -Color-Bold">235/235</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 1ms/step - loss: 0.0927 - val_loss: 0.0917
+Epoch 40/50
+<span class=" -Color -Color-Bold">235/235</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 1ms/step - loss: 0.0927 - val_loss: 0.0916
+Epoch 41/50
+<span class=" -Color -Color-Bold">235/235</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 1ms/step - loss: 0.0926 - val_loss: 0.0917
+Epoch 42/50
+<span class=" -Color -Color-Bold">235/235</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 1ms/step - loss: 0.0929 - val_loss: 0.0916
+Epoch 43/50
+<span class=" -Color -Color-Bold">235/235</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 1ms/step - loss: 0.0927 - val_loss: 0.0916
+Epoch 44/50
+<span class=" -Color -Color-Bold">235/235</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 1ms/step - loss: 0.0929 - val_loss: 0.0916
+Epoch 45/50
+<span class=" -Color -Color-Bold">235/235</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 1ms/step - loss: 0.0927 - val_loss: 0.0917
+Epoch 46/50
+<span class=" -Color -Color-Bold">235/235</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 1ms/step - loss: 0.0928 - val_loss: 0.0916
+Epoch 47/50
+<span class=" -Color -Color-Bold">235/235</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 1ms/step - loss: 0.0928 - val_loss: 0.0916
+Epoch 48/50
+<span class=" -Color -Color-Bold">235/235</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 1ms/step - loss: 0.0927 - val_loss: 0.0916
+Epoch 49/50
+<span class=" -Color -Color-Bold">235/235</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 1ms/step - loss: 0.0926 - val_loss: 0.0916
+Epoch 50/50
+<span class=" -Color -Color-Bold">235/235</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 1ms/step - loss: 0.0928 - val_loss: 0.0916
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;keras.src.callbacks.history.History at 0x7fb01ba215a0&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><em><strong>Define el modelo encoder</strong></em> que transforma una imagen de entrada (784 dimensiones) en su representación latente de 32 dimensiones. Este modelo <em><strong>extrae la parte de codificación del autoencoder original</strong></em>.</p></li>
+<li><p><em><strong>Crea un nuevo modelo decoder</strong></em> tomando como entrada una representación latente de 32 dimensiones y aplicando la última capa del autoencoder (la capa de decodificación). Esto permite <em><strong>reconstruir imágenes directamente desde sus representaciones codificadas</strong></em>, de forma independiente.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">autoencoder.layers[-1]</span></code></strong> <em><strong>accede a la última capa del modelo autoencoder</strong></em> (el <code class="docutils literal notranslate"><span class="pre">Dense(784,</span> <span class="pre">activation='sigmoid')</span></code>)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">encoder</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span><span class="n">input_img</span><span class="p">,</span> <span class="n">encoded</span><span class="p">)</span>
+
+<span class="n">encoded_input</span> <span class="o">=</span> <span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">32</span><span class="p">,))</span>
+<span class="n">decoder_layer</span> <span class="o">=</span> <span class="n">autoencoder</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">decoder</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span><span class="n">encoded_input</span><span class="p">,</span> <span class="n">decoder_layer</span><span class="p">(</span><span class="n">encoded_input</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><em><strong>Codifica las imágenes de prueba</strong></em> transformándolas desde el espacio original (784 dimensiones) al espacio latente (64 dimensiones) mediante el modelo <code class="docutils literal notranslate"><span class="pre">encoder</span></code>.</p></li>
+<li><p><em><strong>Reconstruye las imágenes</strong></em> a partir de sus representaciones latentes usando el modelo <code class="docutils literal notranslate"><span class="pre">decoder</span></code>.</p></li>
+<li><p>Este paso permite evaluar qué tan bien el autoencoder logra aproximar las imágenes originales.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">encoded_imgs</span> <span class="o">=</span> <span class="n">encoder</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_test</span><span class="p">)</span>
+<span class="n">decoded_imgs</span> <span class="o">=</span> <span class="n">decoder</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">encoded_imgs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">313/313</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 632us/step
+<span class=" -Color -Color-Bold">313/313</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 607us/step
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><em><strong>Selecciona 10 imágenes</strong></em> del conjunto de prueba y configura el tamaño de la figura para mostrar una comparación clara entre las imágenes originales y sus reconstrucciones.</p></li>
+<li><p><em><strong>Primera fila: imágenes originales</strong></em>. Se toma la <span class="math notranslate nohighlight">\(i\)</span>-ésima imagen original, se remodela a su forma 2D (28×28) y se muestra en escala de grises sin ejes para mayor claridad.</p></li>
+<li><p><em><strong>Segunda fila: imágenes reconstruidas</strong></em>. Se visualiza la imagen generada por el autoencoder a partir de la codificación latente.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">x_test</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">n</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">decoded_imgs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/65a8a30923976ca24ee93ce357afa99872d5ee04c71a0a39c04fad51a94f089f.png" src="_images/65a8a30923976ca24ee93ce357afa99872d5ee04c71a0a39c04fad51a94f089f.png" />
+</div>
+</div>
+<ol class="arabic">
+<li><p><strong>Reconstrucción de imágenes</strong><br />
+Se utiliza el modelo entrenado para generar reconstrucciones del conjunto de prueba, es decir, aproximaciones de las imágenes originales.</p></li>
+<li><p><strong>Cálculo del Error Cuadrático Medio (MSE)</strong><br />
+Se calcula el error cuadrático medio entre las imágenes originales y sus reconstrucciones. Este valor indica qué tan lejos están, en promedio, las imágenes reconstruidas de las originales.</p></li>
+<li><p><strong>Estimación de la varianza total</strong><br />
+Se computa la varianza de los datos originales del conjunto de prueba. Representa la cantidad total de información (variabilidad) presente en los datos sin comprimir.</p></li>
+<li><p><strong>Cálculo de la variabilidad explicada</strong><br />
+Se emplea la fórmula:</p>
+<div class="math notranslate nohighlight">
+\[
+   \text{Variabilidad explicada} = 1 - \frac{\text{MSE}}{\text{Varianza total}}
+   \]</div>
+<p>Esta expresión indica qué fracción de la variación total en los datos originales ha sido retenida por el modelo de autoencoder. Es una métrica análoga al coeficiente de determinación (<span class="math notranslate nohighlight">\(R^2\)</span>) utilizado en modelos de regresión.</p>
+</li>
+<li><p><strong>Interpretación del resultado</strong><br />
+Un valor cercano a 1 sugiere que el autoencoder captura gran parte de la estructura de los datos. Un valor bajo indica que el modelo no ha logrado representar eficazmente la información original.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">decoded_imgs</span> <span class="o">=</span> <span class="n">autoencoder</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_test</span><span class="p">)</span>
+<span class="n">mse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">x_test</span> <span class="o">-</span> <span class="n">decoded_imgs</span><span class="p">))</span>
+<span class="n">var_total</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">x_test</span><span class="p">)</span>
+<span class="n">var_explicada</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="n">mse</span> <span class="o">/</span> <span class="n">var_total</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Variabilidad explicada por el autoencoder:&quot;</span><span class="p">,</span> <span class="n">var_explicada</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">313/313</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 705us/step
+Variabilidad explicada por el autoencoder: 0.8997409120202065
+</pre></div>
+</div>
+</div>
+</div>
+<ul>
+<li><p>En un autoencoder, <strong>el número de neuronas en la capa latente (bottleneck layer)</strong> representa la <strong>dimensión comprimida</strong> o el número de “componentes” aprendidos. Aunque no son componentes lineales como en PCA, son equivalentes en el sentido de que capturan una representación reducida de los datos. Por ejemplo, en el modelo:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">encoded</span> <span class="o">=</span> <span class="n">Dense</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">)(</span><span class="n">input_img</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Aquí el autoencoder utiliza <strong>32 dimensiones latentes</strong>, lo que se puede comparar directamente con <strong>las 32 primeras componentes principales</strong> en PCA.</p>
+</li>
+</ul>
+<p><strong>¿Cómo hacer una comparación justa con PCA?</strong></p>
+<ol class="arabic">
+<li><p><strong>Entrena un PCA con el mismo número de componentes</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+<span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">32</span><span class="p">)</span>
+<span class="n">X_pca</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">x_test</span><span class="p">)</span>
+<span class="n">X_reconstructed</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">X_pca</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Calcula el MSE y la variabilidad explicada del PCA</strong>, de la misma forma que hiciste con el autoencoder:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mse_pca</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">x_test</span> <span class="o">-</span> <span class="n">X_reconstructed</span><span class="p">))</span>
+<span class="n">var_total</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">x_test</span><span class="p">)</span>
+<span class="n">var_explicada_pca</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="n">mse_pca</span> <span class="o">/</span> <span class="n">var_total</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Compara valores</strong>:</p>
+<ul class="simple">
+<li><p>Variabilidad explicada por el Autoencoder</p></li>
+<li><p>Variabilidad explicada por el PCA</p></li>
+</ul>
+</li>
+</ol>
+<p>Esto te dirá cuál técnica <strong>preserva mejor la estructura</strong> de los datos bajo la misma cantidad de compresión (32 dimensiones, por ejemplo).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+<span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">32</span><span class="p">)</span>
+<span class="n">X_pca</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">x_test</span><span class="p">)</span>
+<span class="n">X_reconstructed</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">X_pca</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mse_pca</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">x_test</span> <span class="o">-</span> <span class="n">X_reconstructed</span><span class="p">))</span>
+<span class="n">var_total</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">x_test</span><span class="p">)</span>
+<span class="n">var_explicada_pca</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="n">mse_pca</span> <span class="o">/</span> <span class="n">var_total</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Variabilidad explicada por el PCA:&quot;</span><span class="p">,</span> <span class="n">var_explicada_pca</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Variabilidad explicada por el PCA: 0.8270216286182404
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 </section>
 
@@ -11226,6 +11653,7 @@ Z=\sum_{v}\sum_{h}\exp(-E(\boldsymbol{v}, \boldsymbol{h})).
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autoencoders">10.22. Autoencoders</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-autoencoders-para-mnist-data">10.23. Aplicación: Autoencoders para MNIST data</a></li>
 </ul>
   </nav></div>
 
