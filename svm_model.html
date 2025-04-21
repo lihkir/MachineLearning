@@ -1382,6 +1382,16 @@ J(\boldsymbol{\theta}, \theta_{0})=\frac{1}{2}\|\boldsymbol{\theta}\|^{2}+C\sum_
 <p><span class="caption-number">Fig. 8.9 </span><span class="caption-text">Las líneas punteadas, <span class="math notranslate nohighlight">\(\boldsymbol{\theta}^{T}\boldsymbol{x} + \theta_{0} =±1\)</span>, que pasan por los puntos más cercanos, son paralelas al clasificador respectivo y definen el margen (ancho de banda) <span class="math notranslate nohighlight">\(2/\|\boldsymbol{\theta}\|\)</span>.</span><a class="headerlink" href="#fig-svm-class-sep" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
+<ul>
+<li><p>De la <em><strong>geometría básica</strong></em> sabemos que la <em><strong>distancia de un punto</strong></em> <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> <em><strong>al hiperplano</strong></em> está dada por</p>
+<div class="math notranslate nohighlight">
+\[
+    z=\frac{|\boldsymbol{\theta}^{T}\boldsymbol{x}+\theta_{0}|}{\|\boldsymbol{\theta}\|}
+    \]</div>
+<p>la cual es claramente cero cuando <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> está dentro del hiperplano <span class="math notranslate nohighlight">\(\boldsymbol{\theta}^{T}\boldsymbol{x}+\theta_{0}=0\)</span>. Donde los <em><strong>parámetros</strong></em> <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span> <em><strong>y</strong></em> <span class="math notranslate nohighlight">\(\theta_{0}\)</span> <em><strong>pueden ser escalados apropiadamente</strong></em>, por ejemplo, usando un factor, digamos, <span class="math notranslate nohighlight">\(a\)</span>, sin afectar la geometría del plano.</p>
+</li>
+<li><p>De esta forma, podemos hacer la distancia del punto más cercano, de los puntos más cercanos entre las dos clases al hiperplano, igual a <span class="math notranslate nohighlight">\(1/\|\boldsymbol{\theta}\|\)</span>, donde <span class="math notranslate nohighlight">\(|\boldsymbol{\theta}^{T}\boldsymbol{x}+\theta_{0}|=1\)</span>.</p></li>
+</ul>
 <ul class="simple">
 <li><p>Equivalentemente, el <em><strong>escalamiento garantiza que</strong></em>: <span class="math notranslate nohighlight">\(f(\boldsymbol{x})=\pm 1\)</span>, <em><strong>si</strong></em> <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> <em><strong>es el punto más cercano al hiperplano</strong></em>, y dependiendo de si el punto <span class="math notranslate nohighlight">\(x\)</span> pertenece a <span class="math notranslate nohighlight">\(\omega_{1} (+1)\)</span> o <span class="math notranslate nohighlight">\(\omega_{2} (-1)\)</span>. Los dos hiperplanos se pueden visualizar en la <a class="reference internal" href="#fig-svm-class-sep"><span class="std std-numref">Fig. 8.9</span></a> <span class="math notranslate nohighlight">\((f(\boldsymbol{x})=\pm1)\)</span>. <em><strong>Estos dos hiperplanos definen el margen correspondiente de longitud</strong></em> <span class="math notranslate nohighlight">\(2/\|\boldsymbol{\theta}\|\)</span> para cada iteración.</p></li>
 </ul>
@@ -2144,16 +2154,6 @@ Accuracy on test set: 0.965
 <li><p>Los <em><strong>parámetros importantes en las SVM con kernel son el parámetro de regularización C, la elección del kernel, y los parámetros específicos del kernel</strong></em>. Aunque principalmente nos centramos en el núcleo <em><strong>RBF</strong></em>, hay otras opciones disponibles en <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>. El núcleo <code class="docutils literal notranslate"><span class="pre">RBF</span></code> tiene sólo un parámetro,<code class="docutils literal notranslate"> <span class="pre">gamma</span></code>, que es la inversa de la anchura del kernel de Gaus. <code class="docutils literal notranslate"><span class="pre">gamma</span></code> y <code class="docutils literal notranslate"><span class="pre">C</span></code> controlan la complejidad del modelo, <em><strong>con valores grandes en cualquiera de ellos obtenemos un modelo más complejo</strong></em>. Por lo tanto, los buenos ajustes para los dos parámetros suelen estar fuertemente correlacionados, y <code class="docutils literal notranslate"><span class="pre">C</span></code> y <code class="docutils literal notranslate"><span class="pre">gamma</span></code> deben ajustarse juntos.</p></li>
 </ul>
 </div>
-<ul>
-<li><p>De la <em><strong>geometría básica</strong></em> sabemos que la <em><strong>distancia de un punto</strong></em> <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> <em><strong>al hiperplano</strong></em> está dada por</p>
-<div class="math notranslate nohighlight">
-\[
-    z=\frac{|\boldsymbol{\theta}^{T}\boldsymbol{x}+\theta_{0}|}{\|\boldsymbol{\theta}\|}
-    \]</div>
-<p>la cual es claramente cero cuando <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> está dentro del hiperplano <span class="math notranslate nohighlight">\(\boldsymbol{\theta}^{T}\boldsymbol{x}+\theta_{0}=0\)</span>. Donde los <em><strong>parámetros</strong></em> <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span> <em><strong>y</strong></em> <span class="math notranslate nohighlight">\(\theta_{0}\)</span> <em><strong>pueden ser escalados apropiadamente</strong></em>, por ejemplo, usando un factor, digamos, <span class="math notranslate nohighlight">\(a\)</span>, sin afectar la geometría del plano.</p>
-</li>
-<li><p>De esta forma, podemos hacer la distancia del punto más cercano, de los puntos más cercanos entre las dos clases al hiperplano, igual a <span class="math notranslate nohighlight">\(1/\|\boldsymbol{\theta}\|\)</span>, donde <span class="math notranslate nohighlight">\(|\boldsymbol{\theta}^{T}\boldsymbol{x}+\theta_{0}|=1\)</span>.</p></li>
-</ul>
 </section>
 </section>
 
