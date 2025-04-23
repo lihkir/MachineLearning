@@ -9085,13 +9085,49 @@ Message: ham
 <ul class="simple">
 <li><p>La función de arriba, aplica una transformación a cada fila del <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> <code class="docutils literal notranslate"><span class="pre">train</span></code>, <em><strong>convirtiendo el contenido de cada mensaje en un objeto</strong></em> <code class="docutils literal notranslate"><span class="pre">TaggedDocument</span></code>, un <em><strong>formato utilizado en NLP para entrenar modelos de aprendizaje de texto como</strong></em> <code class="docutils literal notranslate"><span class="pre">Doc2Vec</span></code> de la librería <code class="docutils literal notranslate"><span class="pre">Gensim</span></code>.</p></li>
 </ul>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">max_features</span></code> depende de <em><strong>cuántas palabras únicas hay en todo el corpus</strong></em>, no de la longitud de cada mensaje. Puedes ver cuántas palabras únicas tienes así:</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
+
+<span class="n">all_words</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">chain</span><span class="o">.</span><span class="n">from_iterable</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Message&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">split</span><span class="p">())))</span>
+<span class="n">word_counts</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">all_words</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total de palabras únicas: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">word_counts</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Y luego decidir cuántas palabras mantener. Por ejemplo, si tienes 20.000 palabras únicas, puedes <em>limitar a las 5.000 más frecuentes</em> (<code class="docutils literal notranslate"><span class="pre">max_features</span> <span class="pre">=</span> <span class="pre">5000</span></code>), lo cual es típico. El resto son palabras raras, errores tipográficos, tecnicismos o formas muy específicas que <em>aportan poco al modelo y pueden introducir ruido¨</em>. De esta forma <em><strong>mejoramos la eficiencia, rendimiento, y además, evitamos overfitting</strong></em>.</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">max_fatures</span> <span class="o">=</span> <span class="mi">500000</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">max_features</span> <span class="o">=</span> <span class="mi">500000</span>
 </pre></div>
 </div>
 </div>
 </div>
+<ul class="simple">
+<li><p>Puede usar la siguiente función, para definir <code class="docutils literal notranslate"><span class="pre">MAX_SEQUENCE_LENGTH</span></code>:</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Message&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">split</span><span class="p">()))</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Por ejemplo, si el resultado del .describe() es algo como:</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">count</span>    <span class="mf">10000.000000</span>
+<span class="n">mean</span>        <span class="mf">12.340000</span>
+<span class="n">std</span>          <span class="mf">8.567890</span>
+<span class="nb">min</span>          <span class="mf">1.000000</span>
+<span class="mi">25</span><span class="o">%</span>          <span class="mf">6.000000</span>
+<span class="mi">50</span><span class="o">%</span>         <span class="mf">10.000000</span>
+<span class="mi">75</span><span class="o">%</span>         <span class="mf">15.000000</span>
+<span class="nb">max</span>         <span class="mf">78.000000</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Entonces podrías definir <code class="docutils literal notranslate"><span class="pre">MAX_SEQUENCE_LENGTH</span> <span class="pre">=</span> <span class="pre">20</span></code> o <code class="docutils literal notranslate"><span class="pre">MAX_SEQUENCE_LENGTH</span> <span class="pre">=</span> <span class="pre">25</span></code>, ya que se cubre más del 75% de tus datos (<em>percentil 75 = 15</em>), y evitas que muchos mensajes se recorten. Otra opción es escoger <code class="docutils literal notranslate"><span class="pre">MAX_SEQUENCE_LENGTH</span> <span class="pre">=</span> <span class="pre">50</span></code> se cubre más del 99% de los mensajes sin necesidad de truncamiento.</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">MAX_SEQUENCE_LENGTH</span> <span class="o">=</span> <span class="mi">50</span>
@@ -9101,7 +9137,7 @@ Message: ham
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tokenizer</span> <span class="o">=</span> <span class="n">Tokenizer</span><span class="p">(</span><span class="n">num_words</span><span class="o">=</span><span class="n">max_fatures</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">filters</span><span class="o">=</span><span class="s1">&#39;!&quot;#$%&amp;()*+,-./:;&lt;=&gt;?@[$$^_`{|}~&#39;</span><span class="p">,</span> <span class="n">lower</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tokenizer</span> <span class="o">=</span> <span class="n">Tokenizer</span><span class="p">(</span><span class="n">num_words</span><span class="o">=</span><span class="n">max_features</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">filters</span><span class="o">=</span><span class="s1">&#39;!&quot;#$%&amp;()*+,-./:;&lt;=&gt;?@[$$^_`{|}~&#39;</span><span class="p">,</span> <span class="n">lower</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">tokenizer</span><span class="o">.</span><span class="n">fit_on_texts</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Message&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">texts_to_sequences</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Message&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">pad_sequences</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">maxlen</span><span class="o">=</span><span class="n">MAX_SEQUENCE_LENGTH</span><span class="p">)</span>
@@ -9118,7 +9154,7 @@ Message: ham
 </div>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">Tokenizer</span></code>: Es un objeto de <code class="docutils literal notranslate"><span class="pre">Keras</span></code> que <em><strong>convierte texto en secuencias de números enteros, donde cada número representa un token</strong></em> (una palabra o símbolo) en el vocabulario.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">num_words=max_fatures</span></code>: Establece el <em><strong>número máximo de palabras que se considerarán</strong></em>. Solo se tomarán en cuenta las palabras más frecuentes hasta <code class="docutils literal notranslate"><span class="pre">max_fatures</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_words=max_features</span></code>: Establece el <em><strong>número máximo de palabras que se considerarán</strong></em>. Solo se tomarán en cuenta las palabras más frecuentes hasta <code class="docutils literal notranslate"><span class="pre">max_features</span></code>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">filters='!&quot;#$%&amp;()*+,-./:;&lt;=&gt;?&#64;[$$^_{|}~'</span></code>: Especifica los <em><strong>caracteres que se eliminarán del texto</strong></em>, como puntuación y símbolos.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">pad_sequences</span></code>: Este método se utiliza para <em><strong>hacer que todas las secuencias en <code class="docutils literal notranslate"><span class="pre">X</span></code> tengan la misma longitud</strong></em>. Si una <em><strong>secuencia es más corta que <code class="docutils literal notranslate"><span class="pre">MAX_SEQUENCE_LENGTH</span></code>, se rellenará con ceros (o con un valor especificado); si es más larga, se truncará</strong></em>.</p></li>
 </ul>
@@ -9358,7 +9394,7 @@ KeyedVectors&lt;vector_size=20, 2 keys&gt;
 </div>
 </div>
 <ul class="simple">
-<li><p>Modelo <code class="docutils literal notranslate"><span class="pre">LSTM</span></code></p></li>
+<li><p>Pasamos a implementar el modelo <code class="docutils literal notranslate"><span class="pre">LSTM</span></code></p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -9370,7 +9406,7 @@ KeyedVectors&lt;vector_size=20, 2 keys&gt;
 </div>
 </div>
 <ul class="simple">
-<li><p>Capa LSTM inicial</p></li>
+<li><p>Crear un modelo secuencial, es decir, un modelo LSTM donde <em><strong>las capas se apilan una detrás de otra, en orden</strong></em></p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -9393,7 +9429,7 @@ KeyedVectors&lt;vector_size=20, 2 keys&gt;
 <li><p><code class="docutils literal notranslate"><span class="pre">weights=[embedding_matrix]</span></code>: Al pasar esto como un argumento de <code class="docutils literal notranslate"><span class="pre">weights</span></code>, se le <em><strong>indica a <code class="docutils literal notranslate"><span class="pre">Keras</span></code> que use estos vectores iniciales para la capa de incrustación</strong></em>.</p></li>
 </ul>
 <ul class="simple">
-<li><p>Aprender las correlaciones</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LSTM(50)</span></code> agrega una <em><strong>capa LSTM con 50 unidades (neuronas)</strong></em>. <code class="docutils literal notranslate"><span class="pre">return_sequences=False</span></code>: Esto <em><strong>indica que la capa devuelve solo la última salida de la secuencia</strong></em>, no toda la secuencia de salidas.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -9410,7 +9446,7 @@ KeyedVectors&lt;vector_size=20, 2 keys&gt;
 </div>
 </div>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">summary()</span></code> del modelo de salida</p></li>
+<li><p>Usamos <code class="docutils literal notranslate"><span class="pre">summary()</span></code> para mostrar un resumen de la <em><strong>arquitectura del modelo</strong></em>.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -9448,6 +9484,9 @@ KeyedVectors&lt;vector_size=20, 2 keys&gt;
 </div>
 </div>
 </div>
+<ul class="simple">
+<li><p>Queda como ejercicio para el estudiante, <em><strong>cambiar la métrica de validación a AUC</strong></em>, tal como se hizo en el ejercicio de <em>reconocimiento facial de emociones</em> usando CNNs</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="n">Adam</span><span class="p">(),</span> <span class="n">loss</span><span class="o">=</span><span class="s2">&quot;binary_crossentropy&quot;</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">])</span>
@@ -9657,7 +9696,7 @@ Train: 1.000, Test: 0.9856
 </div>
 </div>
 <ul class="simple">
-<li><p>Las siguientes líneas están utilizando el modelo entrenado para <em><strong>predecir la probabilidad de que cada entrada en <code class="docutils literal notranslate"><span class="pre">X_test</span></code> pertenezca a cada clase</strong></em>. Luego, se <em><strong>determina la clase más probable para cada entrada</strong></em> y se imprime tanto las probabilidades como las clases predichas.</p></li>
+<li><p>Las siguientes líneas están utilizando el modelo entrenado para <em><strong>predecir la probabilidad de que cada entrada en <code class="docutils literal notranslate"><span class="pre">X_test</span></code> pertenezca a cada clase</strong></em>. Luego, se <em><strong>determina la clase más probable para cada entrada</strong></em> y se imprime tanto las probabilidades como las clases predichas. <code class="docutils literal notranslate"><span class="pre">np.argmax(yhat_probs,</span> <span class="pre">axis=1)</span></code> toma la <em><strong>clase con mayor probabilidad en cada fila</strong></em>.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
