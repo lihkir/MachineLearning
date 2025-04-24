@@ -1359,10 +1359,10 @@ J(\boldsymbol{\theta}, \theta_{0})=\frac{1}{2}\|\boldsymbol{\theta}\|^{2}+C\sum_
 </li>
 </ul>
 <ul>
-<li><p>En otras palabras, de este conjunto infinito de clasificadores lineales (ver <a class="reference internal" href="#inf-correct-classification"><span class="std std-numref">Fig. 8.8</span></a>), los cuales <em><strong>solucionan la tarea de optimización</strong></em>, y clasifican correctamente todos los patrones, <em><strong>se selecciona aquel que tiene mínima norma</strong></em>. Veremos mas adelante que, <em><strong>la norma</strong></em> <span class="math notranslate nohighlight">\(\|\boldsymbol{\theta}\|\)</span> <em><strong>está directamente relacionada con el margen</strong></em> formado por el respectivo clasificador. Cada hiperplano en el espacio está descrito por la ecuación</p>
+<li><p>En otras palabras, de este conjunto infinito de clasificadores lineales (ver <a class="reference internal" href="#inf-correct-classification"><span class="std std-numref">Fig. 8.8</span></a>), los cuales <em><strong>solucionan la tarea de optimización</strong></em>, y clasifican correctamente todos los patrones, <em><strong>se selecciona aquel que tiene mínima norma</strong></em>.</p></li>
+<li><p>Veremos mas adelante que, <em><strong>la norma</strong></em> <span class="math notranslate nohighlight">\(\|\boldsymbol{\theta}\|\)</span> <em><strong>está directamente relacionada con el margen</strong></em> formado por el respectivo clasificador. Cada hiperplano en el espacio está descrito por la ecuación</p>
 <div class="math notranslate nohighlight">
 \[
-    
     f(\boldsymbol{x})=\boldsymbol{\theta}^{T}\boldsymbol{x}+\theta_{0}=0.
     \]</div>
 </li>
@@ -1374,7 +1374,7 @@ J(\boldsymbol{\theta}, \theta_{0})=\frac{1}{2}\|\boldsymbol{\theta}\|^{2}+C\sum_
 </figcaption>
 </figure>
 <ul class="simple">
-<li><p>De la <em><strong>geometría analítica</strong></em> sabemos que la <em><strong>dirección en espacio es controlada por</strong></em> <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span> y su posición por <span class="math notranslate nohighlight">\(\theta_{0}\)</span>. De todos los hiperplanos que solucionan la tarea de optimización y tienen la misma dirección (comparten <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span>), seleccionamos <span class="math notranslate nohighlight">\(\theta_{0}\)</span> tal que, el <em><strong>hiperplano queda dentro de dos clases</strong></em>, de modo que su <em><strong>distancia a los puntos más cercanos es siempre la misma</strong></em> para las dos clases.</p></li>
+<li><p>De la <em><strong>geometría analítica</strong></em> sabemos que la <em><strong>dirección en espacio es controlada por</strong></em> <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span> y su posición por <span class="math notranslate nohighlight">\(\theta_{0}\)</span>. Además, de todos los hiperplanos que solucionan la tarea de optimización y tienen la misma dirección (i.e. comparten <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span>), seleccionamos <span class="math notranslate nohighlight">\(\theta_{0}\)</span> tal que, el <em><strong>hiperplano queda dentro de dos clases</strong></em>, de modo que su <em><strong>distancia a los puntos más cercanos es siempre la misma</strong></em> para las dos clases.</p></li>
 </ul>
 <figure class="align-center" id="fig-svm-class-sep">
 <a class="reference internal image-reference" href="_images/svm_class_sep.png"><img alt="_images/svm_class_sep.png" src="_images/svm_class_sep.png" style="width: 463.20000000000005px; height: 320.8px;" /></a>
@@ -1413,17 +1413,16 @@ J(\boldsymbol{\theta}, \theta_{0})=\frac{1}{2}\|\boldsymbol{\theta}\|^{2}+C\sum_
 <li><p>Siguiendo <em><strong>pasos similares a SVR</strong></em>, la solución esta dada por, <em><strong>combinación lineal de un subconjunto de muestras de entrenamiento</strong></em>, esto es:</p>
 <div class="math notranslate nohighlight">
 \[
-    
     \hat{\boldsymbol{\theta}}=\sum_{n=1}^{N_{s}}\lambda_{n}y_{n}\boldsymbol{x}_{n},
     \]</div>
-<p>donde <span class="math notranslate nohighlight">\(N_{s}\)</span> es el número de multiplicadores de Lagrange distintos de cero. <em><strong>Multiplicadores de Lagrange asociados a los puntos más cercanos al clasificador, esto es, puntos que satisfacen la restricción con igualdad</strong></em> <span class="math notranslate nohighlight">\((y_{n}(\boldsymbol{\theta}^{T}\boldsymbol{x}_{n}+\theta_{0})=1)\)</span>, <em><strong>son distintos de cero</strong></em>. Estos son conocidos como <em><strong>vectores de soporte</strong></em>. Multiplicadores de Lagrange correspondientes a puntos tales que <span class="math notranslate nohighlight">\((y_{n}(\boldsymbol{\theta}^{T}\boldsymbol{x}_{n}+\theta_{0})&gt;1)\)</span>, son iguales a cero.</p>
+<p>donde <span class="math notranslate nohighlight">\(N_{s}\)</span> es el número de multiplicadores de Lagrange distintos de cero.</p>
 </li>
+<li><p><em><strong>Multiplicadores de Lagrange asociados a los puntos más cercanos al clasificador, esto es, puntos que satisfacen la restricción con igualdad</strong></em> <span class="math notranslate nohighlight">\((y_{n}(\boldsymbol{\theta}^{T}\boldsymbol{x}_{n}+\theta_{0})=1)\)</span>, <em><strong>son distintos de cero</strong></em>. Estos son conocidos como <em><strong>vectores de soporte</strong></em>. Multiplicadores de Lagrange correspondientes a puntos tales que <span class="math notranslate nohighlight">\((y_{n}(\boldsymbol{\theta}^{T}\boldsymbol{x}_{n}+\theta_{0})&gt;1)\)</span>, son iguales a cero.</p></li>
 </ul>
 <ul>
 <li><p>Para el caso mas general, <em><strong>en el espacio RKHS</strong></em>, tenemos que:</p>
 <div class="math notranslate nohighlight">
 \[
-    
     \hat{\theta}(\cdot)=\sum_{n=1}^{N_{s}}\lambda_{n}y_{n}\kappa(\cdot, \boldsymbol{x}_{n}),
     \]</div>
 <p>estimación la cual entrega la siguiente regla de predicción. <em><strong>Dado un valor desconocido</strong></em> <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span>, <em><strong>su clase es predicha de acuerdo al signo de</strong></em>:</p>
@@ -1441,8 +1440,9 @@ J(\boldsymbol{\theta}, \theta_{0})=\frac{1}{2}\|\boldsymbol{\theta}\|^{2}+C\sum_
 <span class="eqno">(8.16)<a class="headerlink" href="#equation-mean-sol-fortheta0" title="Link to this equation">#</a></span>\[
     y_{n}\left(\sum_{m=1}^{N_{s}}\lambda_{m}y_{m}\kappa(\boldsymbol{x}_{m}, \boldsymbol{x}_{n})+\hat{\theta}_{0}\right)-1=0,\quad n=1,2,\dots,N_{s},
     \]</div>
-<p>donde <span class="math notranslate nohighlight">\(\hat{\theta}_{0}\)</span> <em><strong>es obtenido por medio del promedio entre las soluciones de</strong></em> <a class="reference internal" href="#equation-mean-sol-fortheta0">(8.16)</a>. Aunque la solución es única, los correspondientes multiplicadores <span class="math notranslate nohighlight">\(\lambda_{m}\)</span> pueden no ser únicos. Finalmente <em><strong>el número de vectores de soporte está relacionado con la capacidad de generalización del clasificador</strong></em>. Entre mas pequeño es el número de vectores de soporte, mejor será la generalización esperada (ver <span id="id7">[<a class="reference internal" href="biblio.html#id19" title="Konstantinos Koutroumbas and Sergios Theodoridis. Pattern recognition. Academic Press, 2008.">Koutroumbas and Theodoridis, 2008</a>, <a class="reference internal" href="biblio.html#id18" title="佐土原健. N. cristianini and j. shawe-taylor: an introduction to support vector machines, cambridge university press (2000). 人工知能, 16(2):337–337, 2001.">佐土原健, 2001</a>]</span>).</p>
+<p>donde <span class="math notranslate nohighlight">\(\hat{\theta}_{0}\)</span> <em><strong>es obtenido por medio del promedio entre las soluciones de</strong></em> <a class="reference internal" href="#equation-mean-sol-fortheta0">(8.16)</a>. Aunque la solución es única, los correspondientes multiplicadores <span class="math notranslate nohighlight">\(\lambda_{m}\)</span> pueden no ser únicos.</p>
 </li>
+<li><p>Finalmente <em><strong>el número de vectores de soporte está relacionado con la capacidad de generalización del clasificador</strong></em>. Entre mas pequeño es el número de vectores de soporte, mejor será la generalización esperada (ver <span id="id7">[<a class="reference internal" href="biblio.html#id19" title="Konstantinos Koutroumbas and Sergios Theodoridis. Pattern recognition. Academic Press, 2008.">Koutroumbas and Theodoridis, 2008</a>, <a class="reference internal" href="biblio.html#id18" title="佐土原健. N. cristianini and j. shawe-taylor: an introduction to support vector machines, cambridge university press (2000). 人工知能, 16(2):337–337, 2001.">佐土原健, 2001</a>]</span>).</p></li>
 </ul>
 <p><strong><code class="docutils literal notranslate"><span class="pre">Tarea</span> <span class="pre">de</span> <span class="pre">optimización</span></code></strong></p>
 <ul class="simple">
@@ -1476,7 +1476,7 @@ L(\boldsymbol{\theta}, \theta_{0}, \lambda)&amp;=\frac{1}{2}\left\langle\sum_{m=
 \end{align*}
 \end{split}\]</div>
 <ul class="simple">
-<li><p>En base a lo anterior, <em><strong>la siguiente es la representación dual de la tarea de optimización</strong></em></p></li>
+<li><p>Con base en lo anterior, <em><strong>la siguiente es la representación dual de la tarea de optimización</strong></em></p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -1493,7 +1493,8 @@ L(\boldsymbol{\theta}, \theta_{0}, \lambda)&amp;=\frac{1}{2}\left\langle\sum_{m=
 \sum_{n=1}^{N}\lambda_{n}-\frac{1}{2}\sum_{n=1}^{N}\sum_{m=1}^{N}\lambda_{n}\lambda_{m}y_{n}y_{m}\kappa(\boldsymbol{x}_{n}, \boldsymbol{x}_{m})
 \]</div>
 <ul class="simple">
-<li><p>De acuerdo con la restricción: <span class="math notranslate nohighlight">\(\lambda_{n}(y_{n}(\boldsymbol{\theta}^{T}\boldsymbol{x}_{n}+\theta_{0})-1)=0,~n=1,2,\dots,N\)</span>, si <span class="math notranslate nohighlight">\(\lambda_{n}\neq0\)</span>, entonces necesariamente <span class="math notranslate nohighlight">\(y_{n}(\boldsymbol{\theta}^{T}\boldsymbol{x}_{n}+\theta_{0})=1\)</span>. Estos son los <em><strong>puntos mas cercanos, desde cada clase al clasificador</strong></em> (distancia <span class="math notranslate nohighlight">\(1/\|\boldsymbol{\theta}\|\)</span>). Estos puntos caen en cualquiera de los hiperplanos formando el borde del margen. <em><strong>Estos puntos se conocen como los vectores de soporte</strong></em> y las respectivas restricciones son conocidas como <em><strong>restricciones activas</strong></em>. El resto de puntos asociados con <span class="math notranslate nohighlight">\(y_{n}(\boldsymbol{\theta}^{T}\boldsymbol{x}_{n}+\theta_{0})&gt;1\)</span>, los cuales quedan por fuera del margen corresponden a <span class="math notranslate nohighlight">\(\lambda_{n}=0\)</span>, y las restricciones asociadas son conocidas como las <em><strong>restricciones inactivas</strong></em>.</p></li>
+<li><p>De acuerdo con la restricción: <span class="math notranslate nohighlight">\(\lambda_{n}(y_{n}(\boldsymbol{\theta}^{T}\boldsymbol{x}_{n}+\theta_{0})-1)=0,~n=1,2,\dots,N\)</span>, si <span class="math notranslate nohighlight">\(\lambda_{n}\neq0\)</span>, entonces necesariamente <span class="math notranslate nohighlight">\(y_{n}(\boldsymbol{\theta}^{T}\boldsymbol{x}_{n}+\theta_{0})=1\)</span>. Estos son los <em><strong>puntos mas cercanos, desde cada clase al clasificador</strong></em> (distancia <span class="math notranslate nohighlight">\(1/\|\boldsymbol{\theta}\|\)</span>).</p></li>
+<li><p>Estos puntos caen en cualquiera de los hiperplanos formando el borde del margen. <em><strong>Estos puntos se conocen como los vectores de soporte</strong></em> y las respectivas restricciones son conocidas como <em><strong>restricciones activas</strong></em>. El resto de puntos asociados con <span class="math notranslate nohighlight">\(y_{n}(\boldsymbol{\theta}^{T}\boldsymbol{x}_{n}+\theta_{0})&gt;1\)</span>, los cuales quedan por fuera del margen corresponden a <span class="math notranslate nohighlight">\(\lambda_{n}=0\)</span>, y las restricciones asociadas son conocidas como las <em><strong>restricciones inactivas</strong></em>.</p></li>
 </ul>
 </section>
 <section id="clases-no-separables">
