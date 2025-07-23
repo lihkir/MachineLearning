@@ -193,17 +193,14 @@
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">3. Regresión Ridge y Lasso</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bayes_model.html">4. Clasificador Bayesiano</a></li>
 <li class="toctree-l1"><a class="reference internal" href="decisiontree_model.html">5. Random Forest y XGBoost</a></li>
-
-
-<li class="toctree-l1"><a class="reference internal" href="svm_model.html">8. Máquinas de vectores de soporte</a></li>
-
-<li class="toctree-l1"><a class="reference internal" href="ann_model.html">10. Redes Neuronales y Deep Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="practical_pca.html">11. Análisis de Componentes Principales</a></li>
-<li class="toctree-l1"><a class="reference internal" href="model_evaluation.html">12. Evaluación de modelos</a></li>
-<li class="toctree-l1"><a class="reference internal" href="chains_pipelines.html">13. Cadenas de Algoritmos y Pipelines</a></li>
-<li class="toctree-l1"><a class="reference internal" href="appendix.html">14. Apéndice</a></li>
-<li class="toctree-l1"><a class="reference internal" href="exercises_sols.html">15. Soluciones a ejercicios</a></li>
-<li class="toctree-l1"><a class="reference internal" href="biblio.html">16. Bibliografía</a></li>
+<li class="toctree-l1"><a class="reference internal" href="svm_model.html">6. Máquinas de vectores de soporte</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ann_model.html">7. Redes Neuronales y Deep Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="practical_pca.html">8. Análisis de Componentes Principales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_evaluation.html">9. Evaluación de modelos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chains_pipelines.html">10. Cadenas de Algoritmos y Pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix.html">11. Apéndice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exercises_sols.html">12. Soluciones a ejercicios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="biblio.html">13. Bibliografía</a></li>
 </ul>
 
     </div>
@@ -368,6 +365,22 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-regresion-lasso">3.7. Aplicación: Regresión Lasso</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-lineales-para-clasificacion">3.8. Modelos lineales para clasificación</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-lineales-para-la-clasificacion-multiclase">3.9. Modelos lineales para la clasificación multiclase</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proyecto-integrador-de-aprendizaje-automatico">3.10. Proyecto Integrador de Aprendizaje Automático</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prediccion-del-precio-y-clasificacion-de-autos-usados">3.10.1. Predicción del precio y clasificación de autos usados</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivo-general">3.10.1.1. Objetivo general</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#contexto-aplicado">3.10.1.2. Contexto aplicado</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-disponibles-ejemplo">3.10.1.3. Variables disponibles (ejemplo)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-sugerido">3.10.1.4. Dataset sugerido</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tareas">3.10.1.5. Tareas</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#restricciones-didacticas">3.10.1.6. Restricciones didácticas</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#herramientas-sugeridas">3.10.1.7. Herramientas sugeridas</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#resultado-esperado">3.10.1.8. Resultado esperado</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#diseno-sugerido-del-notebook">3.10.1.9. Diseño sugerido del notebook</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen">3.10.1.10. Resumen</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -585,7 +598,8 @@ Test set score: 0.66
 <li><p>Veamos cómo se comporta <code class="docutils literal notranslate"><span class="pre">LinearRegression</span></code> en un conjunto de datos más complejo, como el conjunto de datos de <em><strong>viviendas de Boston</strong></em>. Recordemos que este conjunto de datos tiene <em><strong>506 muestras y 105 características</strong></em> derivadas. En primer lugar, <em><strong>cargamos el conjunto de datos</strong></em> y lo <em><strong>dividimos en un conjunto de entrenamiento y otro de prueba</strong></em>. A continuación, construimos el modelo de regresión lineal como antes. Iniciemos realizando un <em><strong>análisis exploratorio de datos</strong></em>.</p></li>
 </ul>
 <figure class="align-center" id="boston-houses-ds-numref">
-<a class="reference internal image-reference" href="_images/boston_houses_ds.jpeg"><img alt="_images/boston_houses_ds.jpeg" src="_images/boston_houses_ds.jpeg" style="width: 672.0px; height: 448.7px;" /></a>
+<a class="reference internal image-reference" href="_images/boston_houses_ds.jpeg"><img alt="_images/boston_houses_ds.jpeg" src="_images/boston_houses_ds.jpeg" style="width: 672.0px; height: 448.7px;" />
+</a>
 </figure>
 <section id="analisis-exploratorio-de-datos">
 <h3><span class="section-number">3.3.1. </span>Análisis Exploratorio de Datos<a class="headerlink" href="#analisis-exploratorio-de-datos" title="Link to this heading">#</a></h3>
@@ -1581,7 +1595,8 @@ Test set score: 0.61
 </ul>
 </div>
 <figure class="align-default" id="ridge-lasso-ilustration-fig">
-<a class="reference internal image-reference" href="_images/ridge_lasso_ilustration.jpg"><img alt="_images/ridge_lasso_ilustration.jpg" src="_images/ridge_lasso_ilustration.jpg" style="width: 623.5px; height: 259.5px;" /></a>
+<a class="reference internal image-reference" href="_images/ridge_lasso_ilustration.jpg"><img alt="_images/ridge_lasso_ilustration.jpg" src="_images/ridge_lasso_ilustration.jpg" style="width: 623.5px; height: 259.5px;" />
+</a>
 <figcaption>
 <p><span class="caption-number">Fig. 3.1 </span><span class="caption-text">Ilustration del score de predicción en el conjunto de test para <em><strong>linear regression, ridge</strong></em> y <em><strong>lasso</strong></em>.</span><a class="headerlink" href="#ridge-lasso-ilustration-fig" title="Link to this image">#</a></p>
 </figcaption>
@@ -2024,7 +2039,8 @@ S_{\lambda}(\boldsymbol{\beta})=(y-X\boldsymbol{\beta})^{T}(y-X\boldsymbol{\beta
 </ul>
 </div>
 <figure class="align-center" id="fig-ridge-lasso">
-<a class="reference internal image-reference" href="_images/ridge_lasso.png"><img alt="_images/ridge_lasso.png" src="_images/ridge_lasso.png" style="width: 618.75px; height: 377.7px;" /></a>
+<a class="reference internal image-reference" href="_images/ridge_lasso.png"><img alt="_images/ridge_lasso.png" src="_images/ridge_lasso.png" style="width: 618.75px; height: 377.7px;" />
+</a>
 <figcaption>
 <p><span class="caption-number">Fig. 3.2 </span><span class="caption-text">Estimación ridge (izquierda) y estimación lasso (derecha).</span><a class="headerlink" href="#fig-ridge-lasso" title="Link to this image">#</a></p>
 </figcaption>
@@ -2536,6 +2552,186 @@ Intercept shape:  (3,)
 </ul>
 </div>
 </section>
+<section id="proyecto-integrador-de-aprendizaje-automatico">
+<h2><span class="section-number">3.10. </span>Proyecto Integrador de Aprendizaje Automático<a class="headerlink" href="#proyecto-integrador-de-aprendizaje-automatico" title="Link to this heading">#</a></h2>
+<section id="prediccion-del-precio-y-clasificacion-de-autos-usados">
+<h3><span class="section-number">3.10.1. </span>Predicción del precio y clasificación de autos usados<a class="headerlink" href="#prediccion-del-precio-y-clasificacion-de-autos-usados" title="Link to this heading">#</a></h3>
+<section id="objetivo-general">
+<h4><span class="section-number">3.10.1.1. </span>Objetivo general<a class="headerlink" href="#objetivo-general" title="Link to this heading">#</a></h4>
+<p>Diseñar modelos supervisados de <strong>regresión</strong> y <strong>clasificación binaria</strong> utilizando técnicas de <strong>regresión lineal regularizada</strong> (<code class="docutils literal notranslate"><span class="pre">Ridge</span></code>, <code class="docutils literal notranslate"><span class="pre">Lasso</span></code>) y <strong>regresión logística</strong>, integradas en un flujo completo con <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code> y búsqueda de hiperparámetros mediante <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code>, con el propósito de:</p>
+<ol class="arabic simple">
+<li><p>Estimar el <strong>precio de un auto usado</strong> a partir de sus características (tarea de regresión).</p></li>
+<li><p>Clasificar si un vehículo está en <strong>alta demanda o baja demanda</strong> (tarea de clasificación binaria).</p></li>
+</ol>
+</section>
+<section id="contexto-aplicado">
+<h4><span class="section-number">3.10.1.2. </span>Contexto aplicado<a class="headerlink" href="#contexto-aplicado" title="Link to this heading">#</a></h4>
+<p>Plataformas digitales de compra-venta de autos usados requieren modelos predictivos para evaluar rápidamente el precio justo de un vehículo y su demanda esperada. Usando datos históricos reales de ventas, es posible entrenar modelos que orienten a compradores y vendedores en decisiones informadas.</p>
+</section>
+<section id="variables-disponibles-ejemplo">
+<h4><span class="section-number">3.10.1.3. </span>Variables disponibles (ejemplo)<a class="headerlink" href="#variables-disponibles-ejemplo" title="Link to this heading">#</a></h4>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Tipo</p></th>
+<th class="head"><p>Variables</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Técnicas</p></td>
+<td><p>Marca, modelo, año, tipo de carrocería, transmisión, combustible, tipo de tracción</p></td>
+</tr>
+<tr class="row-odd"><td><p>Operativas</p></td>
+<td><p>Kilometraje, número de dueños anteriores, cilindrada, condición del motor</p></td>
+</tr>
+<tr class="row-even"><td><p>Mercado</p></td>
+<td><p>Precio (<code class="docutils literal notranslate"><span class="pre">Price</span></code> – variable continua)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Etiqueta extra</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">HighDemand</span></code> (variable binaria creada en esta tarea)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="dataset-sugerido">
+<h4><span class="section-number">3.10.1.4. </span>Dataset sugerido<a class="headerlink" href="#dataset-sugerido" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Nombre: <strong>Used Cars Dataset</strong></p></li>
+<li><p>Fuente recomendada: Kaggle o UCI (varias versiones disponibles)</p></li>
+<li><p>Tamaño típico: 15 000–30 000 registros</p></li>
+<li><p>Enlace de ejemplo: <a class="reference external" href="https://www.kaggle.com/datasets/austinreese/craigslist-carstrucks-data">https://www.kaggle.com/datasets/austinreese/craigslist-carstrucks-data</a></p></li>
+</ul>
+</section>
+<section id="tareas">
+<h4><span class="section-number">3.10.1.5. </span>Tareas<a class="headerlink" href="#tareas" title="Link to this heading">#</a></h4>
+<ol class="arabic">
+<li><p><strong>Preprocesamiento</strong></p>
+<ul>
+<li><p>Codificación categórica (<code class="docutils literal notranslate"><span class="pre">Brand</span></code>, <code class="docutils literal notranslate"><span class="pre">Model</span></code>, <code class="docutils literal notranslate"><span class="pre">Transmission</span></code>, etc.) con one-hot encoding</p></li>
+<li><p>Escalado de variables numéricas (<code class="docutils literal notranslate"><span class="pre">Mileage</span></code>, <code class="docutils literal notranslate"><span class="pre">Year</span></code>, <code class="docutils literal notranslate"><span class="pre">EngineSize</span></code>) usando <code class="docutils literal notranslate"><span class="pre">StandardScaler</span></code></p></li>
+<li><p>Eliminación o imputación de valores faltantes</p></li>
+<li><p><strong>Generar la variable binaria <code class="docutils literal notranslate"><span class="pre">HighDemand</span></code>:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;HighDemand&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Price&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Price&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">())</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p><strong>Construcción de Pipelines</strong></p>
+<ul class="simple">
+<li><p>Definir pipelines independientes para:</p>
+<ul>
+<li><p>Regresión (<code class="docutils literal notranslate"><span class="pre">Ridge</span></code>, <code class="docutils literal notranslate"><span class="pre">Lasso</span></code>)</p></li>
+<li><p>Clasificación (<code class="docutils literal notranslate"><span class="pre">LogisticRegression</span></code>)</p></li>
+</ul>
+</li>
+<li><p>Incluir en cada pipeline:</p>
+<ul>
+<li><p>Transformaciones (escalado + encoding)</p></li>
+<li><p>Modelo</p></li>
+<li><p>Validación cruzada con <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Entrenamiento y ajuste</strong></p>
+<ul class="simple">
+<li><p>Usar <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> para encontrar el mejor valor de:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">alpha</span></code> en <code class="docutils literal notranslate"><span class="pre">Ridge</span></code> y <code class="docutils literal notranslate"><span class="pre">Lasso</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">C</span></code> en <code class="docutils literal notranslate"><span class="pre">LogisticRegression</span></code></p></li>
+</ul>
+</li>
+<li><p>Validación cruzada estratificada (<code class="docutils literal notranslate"><span class="pre">cv=5</span></code>)</p></li>
+</ul>
+</li>
+<li><p><strong>Evaluación de desempeño</strong></p>
+<ul class="simple">
+<li><p><strong>Regresión</strong>:</p>
+<ul>
+<li><p>Métricas: MAE, RMSE, R²</p></li>
+<li><p>Gráfico: valores predichos vs. reales</p></li>
+</ul>
+</li>
+<li><p><strong>Clasificación</strong>:</p>
+<ul>
+<li><p>Métricas: matriz de confusión, accuracy, precision, recall, F1-score</p></li>
+<li><p>Curva ROC y cálculo del AUC</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Análisis y reporte</strong></p>
+<ul class="simple">
+<li><p>Comparar modelos y valores óptimos de regularización</p></li>
+<li><p>Discutir cuáles variables afectan más la demanda y el precio</p></li>
+<li><p>Evaluar si la regularización mejora la capacidad de generalización</p></li>
+<li><p>Presentar resultados en un notebook bien comentado</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="restricciones-didacticas">
+<h4><span class="section-number">3.10.1.6. </span>Restricciones didácticas<a class="headerlink" href="#restricciones-didacticas" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Se debe usar <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code> y <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> de <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code></p></li>
+<li><p>El código debe ser modular, reproducible y comentado</p></li>
+<li><p>No se permite usar AutoML o herramientas de automatización externa</p></li>
+<li><p>Incluir al menos 2 visualizaciones por tarea</p></li>
+</ul>
+</section>
+<section id="herramientas-sugeridas">
+<h4><span class="section-number">3.10.1.7. </span>Herramientas sugeridas<a class="headerlink" href="#herramientas-sugeridas" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pandas</span></code>, <code class="docutils literal notranslate"><span class="pre">numpy</span></code>, <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>, <code class="docutils literal notranslate"><span class="pre">seaborn</span></code></p></li>
+<li><p>Jupyter Notebook o Google Colab</p></li>
+</ul>
+</section>
+<section id="resultado-esperado">
+<h4><span class="section-number">3.10.1.8. </span>Resultado esperado<a class="headerlink" href="#resultado-esperado" title="Link to this heading">#</a></h4>
+<p>Un notebook o script completo que documente:</p>
+<ul class="simple">
+<li><p>Preprocesamiento y construcción de <code class="docutils literal notranslate"><span class="pre">HighDemand</span></code></p></li>
+<li><p>Diseño de pipelines</p></li>
+<li><p>Resultados de <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> para regresión y clasificación</p></li>
+<li><p>Evaluación visual y cuantitativa</p></li>
+<li><p>Conclusiones técnicas y reflexión crítica</p></li>
+</ul>
+</section>
+<section id="diseno-sugerido-del-notebook">
+<h4><span class="section-number">3.10.1.9. </span>Diseño sugerido del notebook<a class="headerlink" href="#diseno-sugerido-del-notebook" title="Link to this heading">#</a></h4>
+<ol class="arabic simple">
+<li><p>Carga y exploración de los datos</p></li>
+<li><p>Ingeniería de características (<code class="docutils literal notranslate"><span class="pre">HighDemand</span></code>)</p></li>
+<li><p>Definición de pipelines</p></li>
+<li><p>GridSearchCV con validación cruzada</p></li>
+<li><p>Evaluación con métricas y gráficas</p></li>
+<li><p>Conclusiones</p></li>
+</ol>
+</section>
+<section id="resumen">
+<h4><span class="section-number">3.10.1.10. </span>Resumen<a class="headerlink" href="#resumen" title="Link to this heading">#</a></h4>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Dataset</p></th>
+<th class="head"><p>Tareas</p></th>
+<th class="head"><p>Tamaño</p></th>
+<th class="head"><p>Ventajas clave</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Used Cars Dataset</p></td>
+<td><p>Clasificación y regresión</p></td>
+<td><p>~20 000</p></td>
+<td><p>Real, variado, con variables relevantes y limpias</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -2618,6 +2814,22 @@ Intercept shape:  (3,)
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-regresion-lasso">3.7. Aplicación: Regresión Lasso</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-lineales-para-clasificacion">3.8. Modelos lineales para clasificación</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-lineales-para-la-clasificacion-multiclase">3.9. Modelos lineales para la clasificación multiclase</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proyecto-integrador-de-aprendizaje-automatico">3.10. Proyecto Integrador de Aprendizaje Automático</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prediccion-del-precio-y-clasificacion-de-autos-usados">3.10.1. Predicción del precio y clasificación de autos usados</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivo-general">3.10.1.1. Objetivo general</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#contexto-aplicado">3.10.1.2. Contexto aplicado</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-disponibles-ejemplo">3.10.1.3. Variables disponibles (ejemplo)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-sugerido">3.10.1.4. Dataset sugerido</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tareas">3.10.1.5. Tareas</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#restricciones-didacticas">3.10.1.6. Restricciones didácticas</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#herramientas-sugeridas">3.10.1.7. Herramientas sugeridas</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#resultado-esperado">3.10.1.8. Resultado esperado</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#diseno-sugerido-del-notebook">3.10.1.9. Diseño sugerido del notebook</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen">3.10.1.10. Resumen</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

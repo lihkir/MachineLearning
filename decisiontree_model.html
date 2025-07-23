@@ -68,7 +68,7 @@
     <script src="_static/.ipynb_checkpoints/custom-checkpoint.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="8. Máquinas de vectores de soporte" href="svm_model.html" />
+    <link rel="next" title="6. Máquinas de vectores de soporte" href="svm_model.html" />
     <link rel="prev" title="4. Clasificador Bayesiano" href="bayes_model.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -193,17 +193,14 @@
 <li class="toctree-l1"><a class="reference internal" href="linear_model.html">3. Regresión Ridge y Lasso</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bayes_model.html">4. Clasificador Bayesiano</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">5. Random Forest y XGBoost</a></li>
-
-
-<li class="toctree-l1"><a class="reference internal" href="svm_model.html">8. Máquinas de vectores de soporte</a></li>
-
-<li class="toctree-l1"><a class="reference internal" href="ann_model.html">10. Redes Neuronales y Deep Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="practical_pca.html">11. Análisis de Componentes Principales</a></li>
-<li class="toctree-l1"><a class="reference internal" href="model_evaluation.html">12. Evaluación de modelos</a></li>
-<li class="toctree-l1"><a class="reference internal" href="chains_pipelines.html">13. Cadenas de Algoritmos y Pipelines</a></li>
-<li class="toctree-l1"><a class="reference internal" href="appendix.html">14. Apéndice</a></li>
-<li class="toctree-l1"><a class="reference internal" href="exercises_sols.html">15. Soluciones a ejercicios</a></li>
-<li class="toctree-l1"><a class="reference internal" href="biblio.html">16. Bibliografía</a></li>
+<li class="toctree-l1"><a class="reference internal" href="svm_model.html">6. Máquinas de vectores de soporte</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ann_model.html">7. Redes Neuronales y Deep Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="practical_pca.html">8. Análisis de Componentes Principales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_evaluation.html">9. Evaluación de modelos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chains_pipelines.html">10. Cadenas de Algoritmos y Pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix.html">11. Apéndice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exercises_sols.html">12. Soluciones a ejercicios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="biblio.html">13. Bibliografía</a></li>
 </ul>
 
     </div>
@@ -352,24 +349,39 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">5. Random Forest y XGBoost</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis">5.1. Análisis</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#combinacion-de-clasificadores">5.2. Combinación de clasificadores</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#enfoque-boosting">5.3. Enfoque Boosting</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-funcion-log-loss">5.4. La función Log-Loss</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arboles-boosting">5.5. Arboles Boosting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios-para-el-estudiante">5.6. Ejercicios para el estudiante</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion">5.7. Implementación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#control-de-complejidad">5.8. Control de complejidad</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-los-arboles-de-decision">5.9. Análisis de los árboles de decisión</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#caracteristicas-importantes-en-los-arboles">5.10. Características importantes en los árboles</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ensamble-de-arboles-de-decision">5.11. Ensamble de árboles de decisión</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proyecto-integrador-de-aprendizaje-automatico">5.12. Proyecto Integrador de Aprendizaje Automático</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prediccion-de-churn-en-telecomunicaciones-con-modelos-de-arboles-e-interpretabilidad">5.12.1. Predicción de churn en telecomunicaciones con modelos de árboles e interpretabilidad</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivo-general">5.12.2. Objetivo general</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contexto-aplicado">5.12.3. Contexto aplicado</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-recomendado-telco-customer-churn-kaggle">5.12.4. Dataset recomendado: “Telco Customer Churn” (Kaggle)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#actividades-a-desarrollar">5.12.5. Actividades a desarrollar</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#restricciones-didacticas">5.12.6. Restricciones didácticas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#herramientas-sugeridas">5.12.7. Herramientas sugeridas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#entregables-esperados">5.12.8. Entregables esperados</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diseno-sugerido-del-notebook">5.12.9. Diseño sugerido del notebook</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen">5.12.10. Resumen</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instrucciones-para-el-mlops">5.12.11. Instrucciones para el MLOps</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estructura-general-del-proyecto">5.12.12. Estructura general del proyecto</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#api-py-servicio-fastapi-para-predicciones">5.12.13. <code class="docutils literal notranslate"><span class="pre">api.py</span></code> — Servicio FastAPI para predicciones</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dockerfile-contenerizacion">5.12.14. <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code> — Contenerización</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#requirements-txt">5.12.15. <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#github-workflows-ci-yml-ci-cd-pipeline">5.12.16. <code class="docutils literal notranslate"><span class="pre">.github/workflows/ci.yml</span></code> — CI/CD Pipeline</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#readme-md-documentacion">5.12.17. <code class="docutils literal notranslate"><span class="pre">README.md</span></code> — Documentación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejecucion-de-pruebas">5.12.18. Ejecución de pruebas</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios-para-el-estudiante">6. Ejercicios para el estudiante</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion">7. Implementación</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#control-de-complejidad">7.1. Control de complejidad</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-los-arboles-de-decision">7.2. Análisis de los árboles de decisión</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#caracteristicas-importantes-en-los-arboles">7.3. Características importantes en los árboles</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ensamble-de-arboles-de-decision">7.4. Ensamble de árboles de decisión</a></li>
 </ul>
-</li>
-</ul>
-
             </nav>
         </div>
     </div>
@@ -394,7 +406,8 @@ document.write(`
 <li><p>La idea básica de los <em><strong>OBCT</strong></em> es <em><strong>dividir el espacio de características en (hiper)rectángulos</strong></em>; es decir, el espacio se divide mediante hiperplanos, que son paralelos a los ejes. Esto se ilustra en la <a class="reference internal" href="#fig-decision-hypplanes-obct"><span class="std std-numref">Fig. 5.1</span></a></p></li>
 </ul>
 <figure class="align-center" id="fig-decision-hypplanes-obct">
-<a class="reference internal image-reference" href="_images/decision_hypplanes_obct.png"><img alt="_images/decision_hypplanes_obct.png" src="_images/decision_hypplanes_obct.png" style="width: 400.8px; height: 413.4px;" /></a>
+<a class="reference internal image-reference" href="_images/decision_hypplanes_obct.png"><img alt="_images/decision_hypplanes_obct.png" src="_images/decision_hypplanes_obct.png" style="width: 400.8px; height: 413.4px;" />
+</a>
 <figcaption>
 <p><span class="caption-number">Fig. 5.1 </span><span class="caption-text">Partición de espacio de características. Árbol de clasificación (OBCT). Fuente <span id="id1">[<a class="reference internal" href="biblio.html#id17" title="S. Theodoridis. Machine Learning: A Bayesian and Optimization Perspective. Elsevier Science, 2020. ISBN 9780128188040. URL: https://books.google.com.co/books?id=l-nEDwAAQBAJ.">Theodoridis, 2020</a>]</span>.</span><a class="headerlink" href="#fig-decision-hypplanes-obct" title="Link to this image">#</a></p>
 </figcaption>
@@ -404,7 +417,8 @@ document.write(`
 en la <a class="reference internal" href="#fig-decision-hypplanes-obct"><span class="std std-numref">Fig. 5.1</span></a>.</p></li>
 </ul>
 <figure class="align-center" id="fig-decision-tree-obct">
-<a class="reference internal image-reference" href="_images/decision_tree_obct.png"><img alt="_images/decision_tree_obct.png" src="_images/decision_tree_obct.png" style="width: 405.59999999999997px; height: 362.4px;" /></a>
+<a class="reference internal image-reference" href="_images/decision_tree_obct.png"><img alt="_images/decision_tree_obct.png" src="_images/decision_tree_obct.png" style="width: 405.59999999999997px; height: 362.4px;" />
+</a>
 <figcaption>
 <p><span class="caption-number">Fig. 5.2 </span><span class="caption-text">Árbol de clasificación (OBCT). Partición del espacio para <a class="reference internal" href="#fig-decision-hypplanes-obct"><span class="std std-numref">Fig. 5.1</span></a>. Fuente <span id="id2">[<a class="reference internal" href="biblio.html#id17" title="S. Theodoridis. Machine Learning: A Bayesian and Optimization Perspective. Elsevier Science, 2020. ISBN 9780128188040. URL: https://books.google.com.co/books?id=l-nEDwAAQBAJ.">Theodoridis, 2020</a>]</span>.</span><a class="headerlink" href="#fig-decision-tree-obct" title="Link to this image">#</a></p>
 </figcaption>
@@ -450,7 +464,8 @@ X_{tY}\cup X_{tN}&amp;=X_{t}
 I(t)=-\sum_{m=1}^{M}P(\omega_{m}|t)\log_{2}P(\omega_{m}|t)
 \]</div>
 <figure class="align-center" id="entropy-function-fig">
-<a class="reference internal image-reference" href="_images/entropy_function.png"><img alt="_images/entropy_function.png" src="_images/entropy_function.png" style="width: 600.0px; height: 589.2px;" /></a>
+<a class="reference internal image-reference" href="_images/entropy_function.png"><img alt="_images/entropy_function.png" src="_images/entropy_function.png" style="width: 600.0px; height: 589.2px;" />
+</a>
 <figcaption>
 <p><span class="caption-number">Fig. 5.3 </span><span class="caption-text">Función de entropía <span class="math notranslate nohighlight">\(I(t)\)</span> para clasificación binaria.</span><a class="headerlink" href="#entropy-function-fig" title="Link to this image">#</a></p>
 </figcaption>
@@ -506,7 +521,8 @@ I(t)&amp;=-P(\text{rojo})\cdot\log_{2}(P(\text{rojo}))-P(\text{azul})\cdot\log_{
 \end{split}\]</div>
 </div>
 <figure class="align-center" id="trees-entropy-fig">
-<a class="reference internal image-reference" href="_images/entropy_decision_tree.png"><img alt="_images/entropy_decision_tree.png" src="_images/entropy_decision_tree.png" style="width: 624.8000000000001px; height: 754.8000000000001px;" /></a>
+<a class="reference internal image-reference" href="_images/entropy_decision_tree.png"><img alt="_images/entropy_decision_tree.png" src="_images/entropy_decision_tree.png" style="width: 624.8000000000001px; height: 754.8000000000001px;" />
+</a>
 <figcaption>
 <p><span class="caption-number">Fig. 5.4 </span><span class="caption-text">Pureza de nodos en un árbol de decisión. Fuente <em><strong>towardsdatascience</strong></em>.</span><a class="headerlink" href="#trees-entropy-fig" title="Link to this image">#</a></p>
 </figcaption>
@@ -703,7 +719,8 @@ l_{c}=
 <li><p>Dado un <em><strong>número suficiente de iteraciones, se puede mejorar significativamente lo (pobre) del aprendiz débil</strong></em>. Por ejemplo, en algunos casos de clasificación, el <em><strong>error de entrenamiento puede tender a cero a medida que aumenta el número de iteraciones</strong></em>. El entrenamiento de un clasificador <em><strong>mediante una manipulación adecuada de los datos de entrenamiento</strong></em> (de hecho, <em><strong>el mecanismo de ponderación identifica las muestras difíciles, las que siguen fallando, y pone más énfasis en ellas</strong></em>) <em><strong>se puede obtener un clasificador fuerte</strong></em>. Por supuesto, como veremos más adelante, el hecho de que el error de entrenamiento tienda a cero no significa necesariamente que el error de prueba llegue a cero.</p></li>
 </ul>
 <figure class="align-center" id="boosted-tree-numref">
-<a class="reference internal image-reference" href="_images/boosted_tree.jpg"><img alt="_images/boosted_tree.jpg" src="_images/boosted_tree.jpg" style="width: 508.5px; height: 210.6px;" /></a>
+<a class="reference internal image-reference" href="_images/boosted_tree.jpg"><img alt="_images/boosted_tree.jpg" src="_images/boosted_tree.jpg" style="width: 508.5px; height: 210.6px;" />
+</a>
 <figcaption>
 <p><span class="caption-number">Fig. 5.5 </span><span class="caption-text">Ilustración del <em><strong>Arbol Boosting</strong></em>: Fuente <span id="id11">[<a class="reference internal" href="biblio.html#id26" title="Sonia Kahiomba Kiangala and Zenghui Wang. An effective adaptive customization framework for small manufacturing plants using extreme gradient boosting-xgboost and random forest ensemble learning algorithms in an industry 4.0 environment. Machine Learning with Applications, 4:100024, 2021.">Kiangala and Wang, 2021</a>]</span>.</span><a class="headerlink" href="#boosted-tree-numref" title="Link to this image">#</a></p>
 </figcaption>
@@ -752,7 +769,8 @@ F_{i}(\cdot)=\sum_{k=1}^{i}a_{k}\phi(\cdot; \boldsymbol{\theta}_{k}).
 </li>
 </ul>
 <figure class="align-center" id="loss-fn-adaboost-fig">
-<a class="reference internal image-reference" href="_images/loss_fn_adaboost.png"><img alt="_images/loss_fn_adaboost.png" src="_images/loss_fn_adaboost.png" style="width: 430.40000000000003px; height: 262.40000000000003px;" /></a>
+<a class="reference internal image-reference" href="_images/loss_fn_adaboost.png"><img alt="_images/loss_fn_adaboost.png" src="_images/loss_fn_adaboost.png" style="width: 430.40000000000003px; height: 262.40000000000003px;" />
+</a>
 <figcaption>
 <p><span class="caption-number">Fig. 5.6 </span><span class="caption-text">Pérdida 0-1, exponencial, log-loss y error al cuadrado. Fuente <span id="id12">[<a class="reference internal" href="biblio.html#id17" title="S. Theodoridis. Machine Learning: A Bayesian and Optimization Perspective. Elsevier Science, 2020. ISBN 9780128188040. URL: https://books.google.com.co/books?id=l-nEDwAAQBAJ.">Theodoridis, 2020</a>]</span>.</span><a class="headerlink" href="#loss-fn-adaboost-fig" title="Link to this image">#</a></p>
 </figcaption>
@@ -972,9 +990,8 @@ F_{i}(\cdot)=F_{i-1}(\cdot)+\nu T(\cdot; \boldsymbol{\theta}_{i}).
 <li><p>El parámetro <span class="math notranslate nohighlight">\(\nu\)</span> toma valores pequeños y puede considerarse que <strong>controla la tasa de aprendizaje del procedimiento boosting</strong>. Se aconsejan valores inferiores a <span class="math notranslate nohighlight">\(\nu &lt; 0.1\)</span>. Sin embargo, <em>cuanto menor sea el valor de</em> <span class="math notranslate nohighlight">\(\nu\)</span>, <em>mayor deberá ser el valor de</em> <span class="math notranslate nohighlight">\(K\)</span> <em>para garantizar un buen rendimiento</em>.</p></li>
 </ul>
 </section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="ejercicios-para-el-estudiante">
-<h1><span class="section-number">6. </span>Ejercicios para el estudiante<a class="headerlink" href="#ejercicios-para-el-estudiante" title="Link to this heading">#</a></h1>
+<section id="ejercicios-para-el-estudiante">
+<h2><span class="section-number">5.6. </span>Ejercicios para el estudiante<a class="headerlink" href="#ejercicios-para-el-estudiante" title="Link to this heading">#</a></h2>
 <ol class="arabic">
 <li><p>Considere el <em><strong>cociente de Rayleigh</strong></em>,</p>
 <div class="math notranslate nohighlight">
@@ -1030,7 +1047,7 @@ F_{i}(\cdot)=F_{i-1}(\cdot)+\nu T(\cdot; \boldsymbol{\theta}_{i}).
 </li>
 </ol>
 <div class="pst-scrollable-table-container"><table class="table table-center" id="id14">
-<caption><span class="caption-number">Table 6.1 </span><span class="caption-text">Datos de muestra: Probabilidad de ser astronauta</span><a class="headerlink" href="#id14" title="Link to this table">#</a></caption>
+<caption><span class="caption-number">Table 5.1 </span><span class="caption-text">Datos de muestra: Probabilidad de ser astronauta</span><a class="headerlink" href="#id14" title="Link to this table">#</a></caption>
 <thead>
 <tr class="row-odd"><th class="head"><p>Age</p></th>
 <th class="head"><p>Like Dogs</p></th>
@@ -1093,10 +1110,11 @@ F_{i}(\cdot)=F_{i-1}(\cdot)+\nu T(\cdot; \boldsymbol{\theta}_{i}).
 </table>
 </div>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="implementacion">
-<h1><span class="section-number">7. </span>Implementación<a class="headerlink" href="#implementacion" title="Link to this heading">#</a></h1>
+<section id="implementacion">
+<h2><span class="section-number">5.7. </span>Implementación<a class="headerlink" href="#implementacion" title="Link to this heading">#</a></h2>
+</section>
 <section id="control-de-complejidad">
-<h2><span class="section-number">7.1. </span>Control de complejidad<a class="headerlink" href="#control-de-complejidad" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">5.8. </span>Control de complejidad<a class="headerlink" href="#control-de-complejidad" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Al <em><strong>construir un árbol hasta que todas las hojas sean puras, se obtienen modelos complejos y ajustados al conjunto de entrenamiento, lo que resulta en un 100% de precisión</strong></em>. Para evitar el overfitting, se pueden emplear dos estrategias: la <em><strong>prepoda, que detiene la creación del árbol antes de tiempo, o la poda posterior, que elimina nodos poco informativos</strong></em>. La prepoda puede incluir limitar la profundidad del árbol, el número máximo de hojas o exigir un mínimo de puntos en un nodo para seguir dividiéndolo.</p></li>
 <li><p>En <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>, los árboles de decisión se implementan en las clases <code class="docutils literal notranslate"><span class="pre">DecisionTreeRegressor</span></code> y <code class="docutils literal notranslate"><span class="pre">DecisionTreeClassifier</span></code>, y <em><strong>solo se ofrece la prepoda</strong></em>. Para ilustrar el efecto de esta técnica, se utiliza el conjunto de datos <code class="docutils literal notranslate"><span class="pre">breast_cancer</span></code>, que se divide en partes de entrenamiento y prueba. Se construye un modelo con la configuración por defecto, extendiendo el árbol hasta que todas las hojas sean puras, estableciendo un <code class="docutils literal notranslate"><span class="pre">random_state</span></code> para la separación de datos y usando <code class="docutils literal notranslate"><span class="pre">stratify=cancer.target</span></code> para una división estratificada.</p></li>
@@ -1158,7 +1176,7 @@ Accuracy on test set: 0.951
 </div>
 </section>
 <section id="analisis-de-los-arboles-de-decision">
-<h2><span class="section-number">7.2. </span>Análisis de los árboles de decisión<a class="headerlink" href="#analisis-de-los-arboles-de-decision" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">5.9. </span>Análisis de los árboles de decisión<a class="headerlink" href="#analisis-de-los-arboles-de-decision" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Podemos visualizar un árbol de decisión con la función <code class="docutils literal notranslate"><span class="pre">export_graphviz</span></code> del módulo <code class="docutils literal notranslate"><span class="pre">tree</span></code>, que genera un archivo en formato <code class="docutils literal notranslate"><span class="pre">.dot</span></code> para gráficos. Configuramos la opción de <em><strong>colorear los nodos según la clase mayoritaria y proporcionamos nombres de clases y características para etiquetar el árbol correctamente</strong></em>. El argumento <code class="docutils literal notranslate"><span class="pre">impurity</span></code> se relaciona con la probabilidad de clasificar incorrectamente un nuevo dato, <em><strong>calculada normalmente mediante la métrica de entropía de Gini</strong></em>, discutida en la sección anterior.</p></li>
 </ul>
@@ -1220,7 +1238,7 @@ Accuracy on test set: 0.951
 </ul>
 </section>
 <section id="caracteristicas-importantes-en-los-arboles">
-<h2><span class="section-number">7.3. </span>Características importantes en los árboles<a class="headerlink" href="#caracteristicas-importantes-en-los-arboles" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">5.10. </span>Características importantes en los árboles<a class="headerlink" href="#caracteristicas-importantes-en-los-arboles" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>En lugar de mirar todo el árbol, lo que puede ser agotador, hay algunas <em><strong>propiedades útiles que podemos derivar para resumir el funcionamiento del árbol</strong></em>. El resumen más utilizado es el de las <em><strong>características importantes, que califica la importancia de cada característica para la decisión que toma el árbol</strong></em>. Es un número entre 0 y 1 para cada característica, donde <em><strong>0 significa “no se utiliza en absoluto”</strong></em> y <em><strong>1 significa “predice perfectamente el objetivo”</strong></em>. Las características siempre suman 1</p></li>
 </ul>
@@ -1403,7 +1421,7 @@ Accuracy on test set: 0.951
 </div>
 </section>
 <section id="ensamble-de-arboles-de-decision">
-<h2><span class="section-number">7.4. </span>Ensamble de árboles de decisión<a class="headerlink" href="#ensamble-de-arboles-de-decision" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">5.11. </span>Ensamble de árboles de decisión<a class="headerlink" href="#ensamble-de-arboles-de-decision" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><em><strong>Los ensambles son métodos que combinan múltiples modelos de aprendizaje automático para crear modelos más potentes</strong></em>. Hay muchos modelos en la literatura de aprendizaje automático que pertenecen a esta categoría, pero hay dos modelos de ensamble que han demostrado su eficacia en una amplia gama de conjuntos de datos de clasificación y regresión, ambos utilizan árboles de decisión como bloques de construcción: los <code class="docutils literal notranslate"><span class="pre">random</span> <span class="pre">forest</span></code> y los <code class="docutils literal notranslate"><span class="pre">gradient</span> <span class="pre">boosted</span> <span class="pre">decision</span> <span class="pre">trees.</span></code></p></li>
 </ul>
@@ -76479,9 +76497,10 @@ Modelo guardado como best_xgboost_model.pkl
 <li><p>Para estar completamente seguro que utilizó su GPU durante la fase de entrenamiento, puede <em><strong>verificar que este dispositivo dedicado se encuentra activo en su administrador de tareas</strong></em></p></li>
 </ul>
 <figure class="align-center" id="gpu-xgboost-fig">
-<a class="reference internal image-reference" href="_images/gpu_xgboost.png"><img alt="_images/gpu_xgboost.png" src="_images/gpu_xgboost.png" style="width: 672.0px; height: 356.29999999999995px;" /></a>
+<a class="reference internal image-reference" href="_images/gpu_xgboost.png"><img alt="_images/gpu_xgboost.png" src="_images/gpu_xgboost.png" style="width: 672.0px; height: 356.29999999999995px;" />
+</a>
 <figcaption>
-<p><span class="caption-number">Fig. 7.1 </span><span class="caption-text">Uso de GPU durante la fase de entrenamiento usando <code class="docutils literal notranslate"><span class="pre">XGBoost</span> <span class="pre">GPU</span> <span class="pre">Support</span></code>.</span><a class="headerlink" href="#gpu-xgboost-fig" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 5.7 </span><span class="caption-text">Uso de GPU durante la fase de entrenamiento usando <code class="docutils literal notranslate"><span class="pre">XGBoost</span> <span class="pre">GPU</span> <span class="pre">Support</span></code>.</span><a class="headerlink" href="#gpu-xgboost-fig" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <div class="important admonition">
@@ -76492,6 +76511,416 @@ Modelo guardado como best_xgboost_model.pkl
 <li><p>Otro parámetro importante es <code class="docutils literal notranslate"><span class="pre">max_depth</span></code> (o alternativamente <code class="docutils literal notranslate"><span class="pre">max_leaf_nodes</span></code>), para reducir la complejidad de cada árbol. <em><strong>Por lo general, la profundidad máxima es muy baja para los modelos de gradiente, a menudo no más allá de cinco divisiones</strong></em></p></li>
 </ul>
 </div>
+</section>
+<section id="proyecto-integrador-de-aprendizaje-automatico">
+<h2><span class="section-number">5.12. </span>Proyecto Integrador de Aprendizaje Automático<a class="headerlink" href="#proyecto-integrador-de-aprendizaje-automatico" title="Link to this heading">#</a></h2>
+<section id="prediccion-de-churn-en-telecomunicaciones-con-modelos-de-arboles-e-interpretabilidad">
+<h3><span class="section-number">5.12.1. </span>Predicción de churn en telecomunicaciones con modelos de árboles e interpretabilidad<a class="headerlink" href="#prediccion-de-churn-en-telecomunicaciones-con-modelos-de-arboles-e-interpretabilidad" title="Link to this heading">#</a></h3>
+</section>
+<section id="objetivo-general">
+<h3><span class="section-number">5.12.2. </span>Objetivo general<a class="headerlink" href="#objetivo-general" title="Link to this heading">#</a></h3>
+<p>Construir modelos precisos de clasificación utilizando algoritmos como Random Forest, XGBoost, CatBoost y LightGBM, integrados en un flujo de trabajo con <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code>, ajuste de hiperparámetros mediante <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code>, visualización de importancia de variables y uso de LIME para explicabilidad. Además, se solicita diseñar una arquitectura básica de MLOps para implementar el modelo en un entorno de producción.</p>
+</section>
+<section id="contexto-aplicado">
+<h3><span class="section-number">5.12.3. </span>Contexto aplicado<a class="headerlink" href="#contexto-aplicado" title="Link to this heading">#</a></h3>
+<p>Las empresas de telecomunicaciones enfrentan tasas significativas de pérdida de clientes. La predicción temprana del churn permite intervenir de manera oportuna. A través de modelos supervisados e interpretables, se puede identificar el perfil de clientes con mayor probabilidad de abandono y tomar decisiones informadas.</p>
+</section>
+<section id="dataset-recomendado-telco-customer-churn-kaggle">
+<h3><span class="section-number">5.12.4. </span>Dataset recomendado: “Telco Customer Churn” (Kaggle)<a class="headerlink" href="#dataset-recomendado-telco-customer-churn-kaggle" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Enlace: <a class="reference external" href="https://www.kaggle.com/blastchar/telco-customer-churn">https://www.kaggle.com/blastchar/telco-customer-churn</a></p></li>
+<li><p>Tamaño aproximado: 7 000 registros</p></li>
+<li><p>Contiene información demográfica, de facturación y uso de servicios, junto con la variable objetivo <code class="docutils literal notranslate"><span class="pre">Churn</span></code> (Sí/No)</p></li>
+</ul>
+</section>
+<section id="actividades-a-desarrollar">
+<h3><span class="section-number">5.12.5. </span>Actividades a desarrollar<a class="headerlink" href="#actividades-a-desarrollar" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Preprocesamiento</strong></p>
+<ul class="simple">
+<li><p>Limpieza de datos y tratamiento de valores faltantes</p></li>
+<li><p>Codificación de variables categóricas</p></li>
+<li><p>Escalado de variables numéricas si es necesario</p></li>
+<li><p>Separación en variables predictoras <code class="docutils literal notranslate"><span class="pre">X</span></code> y variable objetivo <code class="docutils literal notranslate"><span class="pre">y</span></code></p></li>
+</ul>
+</li>
+<li><p><strong>Modelado con Pipelines y GridSearchCV</strong></p>
+<ul class="simple">
+<li><p>Definir pipelines que incluyan transformaciones y modelo</p></li>
+<li><p>Ajustar hiperparámetros mediante <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code>:</p>
+<ul>
+<li><p>Random Forest: <code class="docutils literal notranslate"><span class="pre">n_estimators</span></code>, <code class="docutils literal notranslate"><span class="pre">max_depth</span></code></p></li>
+<li><p>XGBoost: <code class="docutils literal notranslate"><span class="pre">n_estimators</span></code>, <code class="docutils literal notranslate"><span class="pre">max_depth</span></code>, <code class="docutils literal notranslate"><span class="pre">learning_rate</span></code></p></li>
+<li><p>CatBoost: <code class="docutils literal notranslate"><span class="pre">iterations</span></code>, <code class="docutils literal notranslate"><span class="pre">learning_rate</span></code>, <code class="docutils literal notranslate"><span class="pre">depth</span></code></p></li>
+<li><p>LightGBM: <code class="docutils literal notranslate"><span class="pre">num_leaves</span></code>, <code class="docutils literal notranslate"><span class="pre">learning_rate</span></code>, <code class="docutils literal notranslate"><span class="pre">n_estimators</span></code></p></li>
+</ul>
+</li>
+<li><p>Validación cruzada estratificada con cinco particiones</p></li>
+</ul>
+</li>
+<li><p><strong>Evaluación del modelo</strong></p>
+<ul class="simple">
+<li><p>Cálculo de métricas: exactitud, precisión, recall, F1-score, AUC-ROC</p></li>
+<li><p>Matriz de confusión</p></li>
+<li><p>Curvas ROC por modelo</p></li>
+<li><p>Comparación gráfica del desempeño</p></li>
+</ul>
+</li>
+<li><p><strong>Importancia de características</strong></p>
+<ul class="simple">
+<li><p>Extraer <code class="docutils literal notranslate"><span class="pre">feature_importances_</span></code> de cada modelo</p></li>
+<li><p>Graficar las 10 variables más importantes para cada clasificador</p></li>
+</ul>
+</li>
+<li><p><strong>Explicación de predicciones con LIME</strong></p>
+<ul class="simple">
+<li><p>Aplicar <code class="docutils literal notranslate"><span class="pre">LimeTabularExplainer</span></code> sobre instancias específicas</p></li>
+<li><p>Visualizar y analizar las explicaciones para al menos tres casos representativos</p></li>
+</ul>
+</li>
+<li><p><strong>Diseño de arquitectura MLOps</strong></p>
+<ul class="simple">
+<li><p>Crear un servicio de inferencia con FastAPI que reciba datos nuevos y retorne predicciones</p></li>
+<li><p>Empaquetar el modelo y la API en una imagen Docker (<code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code>)</p></li>
+<li><p>Crear un flujo de trabajo CI/CD con GitHub Actions que:</p>
+<ul>
+<li><p>Ejecute pruebas unitarias</p></li>
+<li><p>Verifique calidad del código (linting)</p></li>
+<li><p>Construya y publique la imagen Docker si las pruebas son exitosas</p></li>
+</ul>
+</li>
+<li><p>Incluir sugerencias para monitoreo del modelo (deriva de datos, métricas de producción)</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="restricciones-didacticas">
+<h3><span class="section-number">5.12.6. </span>Restricciones didácticas<a class="headerlink" href="#restricciones-didacticas" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Es obligatorio el uso de <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code> y <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code></p></li>
+<li><p>No se permite el uso de AutoML</p></li>
+<li><p>Se deben presentar visualizaciones claras y código documentado</p></li>
+<li><p>El trabajo debe entregarse como notebook reproducible, con todas las decisiones justificadas</p></li>
+</ul>
+</section>
+<section id="herramientas-sugeridas">
+<h3><span class="section-number">5.12.7. </span>Herramientas sugeridas<a class="headerlink" href="#herramientas-sugeridas" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pandas</span></code>, <code class="docutils literal notranslate"><span class="pre">numpy</span></code>, <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">xgboost</span></code>, <code class="docutils literal notranslate"><span class="pre">catboost</span></code>, <code class="docutils literal notranslate"><span class="pre">lightgbm</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>, <code class="docutils literal notranslate"><span class="pre">seaborn</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lime</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fastapi</span></code>, <code class="docutils literal notranslate"><span class="pre">docker</span></code>, <code class="docutils literal notranslate"><span class="pre">GitHub</span> <span class="pre">Actions</span></code></p></li>
+<li><p>Entorno: Jupyter Notebook, Google Colab o VS Code</p></li>
+</ul>
+</section>
+<section id="entregables-esperados">
+<h3><span class="section-number">5.12.8. </span>Entregables esperados<a class="headerlink" href="#entregables-esperados" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Notebook con desarrollo completo: exploración, modelado, evaluación, visualización y análisis</p></li>
+<li><p>Script de la API (<code class="docutils literal notranslate"><span class="pre">api.py</span></code>) basado en FastAPI</p></li>
+<li><p>Dockerfile funcional con instrucciones de ejecución</p></li>
+<li><p>Flujo de trabajo CI/CD (<code class="docutils literal notranslate"><span class="pre">.github/workflows/ci.yml</span></code>)</p></li>
+<li><p>Archivo README con descripción del proyecto, instrucciones de uso y arquitectura del servicio</p></li>
+</ul>
+</section>
+<section id="diseno-sugerido-del-notebook">
+<h3><span class="section-number">5.12.9. </span>Diseño sugerido del notebook<a class="headerlink" href="#diseno-sugerido-del-notebook" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Exploración inicial del dataset</p></li>
+<li><p>Preprocesamiento y codificación</p></li>
+<li><p>Implementación de pipelines</p></li>
+<li><p>Entrenamiento y ajuste con <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code></p></li>
+<li><p>Evaluación de modelos</p></li>
+<li><p>Importancia de características</p></li>
+<li><p>Interpretabilidad con LIME</p></li>
+<li><p>Descripción del sistema de despliegue</p></li>
+<li><p>Conclusiones finales</p></li>
+</ol>
+</section>
+<section id="resumen">
+<h3><span class="section-number">5.12.10. </span>Resumen<a class="headerlink" href="#resumen" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Dataset</p></th>
+<th class="head"><p>Tarea</p></th>
+<th class="head"><p>Tamaño estimado</p></th>
+<th class="head"><p>Ventajas</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Telco Customer Churn (Kaggle)</p></td>
+<td><p>Clasificación</p></td>
+<td><p>~7 000 registros</p></td>
+<td><p>Real, variables heterogéneas, interpretable</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="instrucciones-para-el-mlops">
+<h3><span class="section-number">5.12.11. </span>Instrucciones para el MLOps<a class="headerlink" href="#instrucciones-para-el-mlops" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Para construir el <strong>entorno de MLOps</strong> correspondiente al problema planteado, es necesario <strong>instalar las bibliotecas específicas asociadas al despliegue y automatización del flujo de trabajo</strong>, además de aquellas requeridas por el modelo y el análisis exploratorio de datos (EDA), con el fin de garantizar su correcto funcionamiento.</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--force-reinstall<span class="w"> </span>pydantic
+python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>fastapi<span class="o">[</span>all<span class="o">]</span>
+python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>joblib
+python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>pandas
+</pre></div>
+</div>
+</section>
+<section id="estructura-general-del-proyecto">
+<h3><span class="section-number">5.12.12. </span>Estructura general del proyecto<a class="headerlink" href="#estructura-general-del-proyecto" title="Link to this heading">#</a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>telco-churn-mlops/
+├──<span class="w"> </span>data/
+│<span class="w">   </span>└──<span class="w"> </span>telco_churn.csv<span class="w">                  </span><span class="c1"># Dataset original</span>
+├──<span class="w"> </span>notebooks/
+│<span class="w">   </span>├──<span class="w"> </span>1_eda_preprocessing.ipynb<span class="w">        </span><span class="c1"># Análisis exploratorio</span>
+│<span class="w">   </span>├──<span class="w"> </span>2_model_training.ipynb<span class="w">           </span><span class="c1"># Entrenamiento y evaluación</span>
+│<span class="w">   </span>└──<span class="w"> </span>3_interpretability.ipynb<span class="w">         </span><span class="c1"># LIME y SHAP</span>
+├──<span class="w"> </span>app/
+│<span class="w">   </span>├──<span class="w"> </span>api.py<span class="w">                           </span><span class="c1"># FastAPI para inferencia</span>
+│<span class="w">   </span>├──<span class="w"> </span>schemas.py<span class="w">                       </span><span class="c1"># Modelos Pydantic</span>
+│<span class="w">   </span>└──<span class="w"> </span>model.joblib<span class="w">                     </span><span class="c1"># Modelo entrenado</span>
+├──<span class="w"> </span>tests/
+│<span class="w">   </span>├──<span class="w"> </span>test_api.py<span class="w">                      </span><span class="c1"># Pruebas unitarias</span>
+│<span class="w">   </span>└──<span class="w"> </span>test_model.py<span class="w">                    </span><span class="c1"># Validación del modelo</span>
+├──<span class="w"> </span>Dockerfile<span class="w">                           </span><span class="c1"># Configuración de contenedor</span>
+├──<span class="w"> </span>requirements.txt<span class="w">                     </span><span class="c1"># Dependencias</span>
+├──<span class="w"> </span>.github/workflows/
+│<span class="w">   </span>└──<span class="w"> </span>ci.yml<span class="w">                           </span><span class="c1"># CI/CD con GitHub Actions</span>
+└──<span class="w"> </span>README.md<span class="w">                            </span><span class="c1"># Documentación</span>
+</pre></div>
+</div>
+</section>
+<section id="api-py-servicio-fastapi-para-predicciones">
+<h3><span class="section-number">5.12.13. </span><code class="docutils literal notranslate"><span class="pre">api.py</span></code> — Servicio FastAPI para predicciones<a class="headerlink" href="#api-py-servicio-fastapi-para-predicciones" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">FastAPI</span>
+<span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span>
+<span class="kn">import</span> <span class="nn">joblib</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">joblib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;app/model.joblib&quot;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">CustomerData</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">SeniorCitizen</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">MonthlyCharges</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">TotalCharges</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">Contract</span><span class="p">:</span> <span class="nb">str</span>  <span class="c1"># &quot;Month-to-month&quot;, &quot;One year&quot;, etc.</span>
+    <span class="n">PaymentMethod</span><span class="p">:</span> <span class="nb">str</span>  <span class="c1"># &quot;Electronic check&quot;, &quot;Credit card&quot;, etc.</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/predict&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">CustomerData</span><span class="p">):</span>
+    <span class="c1"># Preprocesamiento en memoria (ejemplo simplificado)</span>
+    <span class="n">features</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">SeniorCitizen</span><span class="p">,</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">MonthlyCharges</span><span class="p">,</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">TotalCharges</span><span class="p">,</span>
+        <span class="mi">1</span> <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">Contract</span> <span class="o">==</span> <span class="s2">&quot;Month-to-month&quot;</span> <span class="k">else</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="mi">1</span> <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">PaymentMethod</span> <span class="o">==</span> <span class="s2">&quot;Electronic check&quot;</span> <span class="k">else</span> <span class="mi">0</span>
+    <span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    
+    <span class="n">prediction</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">features</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># Probabilidad de churn</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;churn_probability&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">prediction</span><span class="p">),</span> <span class="s2">&quot;prediction&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">prediction</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">)}</span>
+</pre></div>
+</div>
+</section>
+<section id="dockerfile-contenerizacion">
+<h3><span class="section-number">5.12.14. </span><code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code> — Contenerización<a class="headerlink" href="#dockerfile-contenerizacion" title="Link to this heading">#</a></h3>
+<div class="highlight-docker notranslate"><div class="highlight"><pre><span></span><span class="k">FROM</span><span class="w"> </span><span class="s">python:3.10-slim</span>
+
+<span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
+<span class="k">COPY</span><span class="w"> </span>requirements.txt<span class="w"> </span>.
+<span class="k">RUN</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--no-cache-dir<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+
+<span class="k">COPY</span><span class="w"> </span>app/<span class="w"> </span>./app/
+<span class="k">COPY</span><span class="w"> </span>data/<span class="w"> </span>./data/
+
+<span class="k">EXPOSE</span><span class="w"> </span><span class="s">8000</span>
+<span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;uvicorn&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;app.api:app&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;--host&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;0.0.0.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;--port&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;8000&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="requirements-txt">
+<h3><span class="section-number">5.12.15. </span><code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code><a class="headerlink" href="#requirements-txt" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Este archivo puede generarse de manera automática mediante el comando <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">freeze</span> <span class="pre">&gt;</span> <span class="pre">requirements.txt</span></code>, siempre que se ejecute desde el entorno virtual previamente configurado para el desarrollo del entorno MLOps.</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>fastapi&gt;<span class="o">=</span><span class="m">0</span>.95.0
+uvicorn
+scikit-learn
+pandas
+numpy
+joblib
+lime
+xgboost
+catboost
+lightgbm
+</pre></div>
+</div>
+</section>
+<section id="github-workflows-ci-yml-ci-cd-pipeline">
+<h3><span class="section-number">5.12.16. </span><code class="docutils literal notranslate"><span class="pre">.github/workflows/ci.yml</span></code> — CI/CD Pipeline<a class="headerlink" href="#github-workflows-ci-yml-ci-cd-pipeline" title="Link to this heading">#</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CI Pipeline</span>
+<span class="nt">on</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">push</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">pull_request</span><span class="p p-Indicator">]</span>
+
+<span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">test</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v3</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Set up Python</span>
+<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-python@v4</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3.10</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install dependencies</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">          </span><span class="no">pip install -r requirements.txt</span>
+<span class="w">          </span><span class="no">pip install pytest flake8</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run Linter</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">flake8 app/ --ignore=E501,W503</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run Tests</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pytest tests/</span>
+</pre></div>
+</div>
+</section>
+<section id="readme-md-documentacion">
+<h3><span class="section-number">5.12.17. </span><code class="docutils literal notranslate"><span class="pre">README.md</span></code> — Documentación<a class="headerlink" href="#readme-md-documentacion" title="Link to this heading">#</a></h3>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span><span class="gh"># Predicción de Churn en Telecomunicaciones</span>
+
+<span class="gu">## Descripción</span>
+Proyecto de ML para predecir abandono de clientes (churn) usando Random Forest, XGBoost y técnicas de interpretabilidad.
+
+<span class="gu">## Componentes</span>
+<span class="k">-</span><span class="w"> </span><span class="sb">`notebooks/`</span>: Análisis, entrenamiento y explicabilidad.
+<span class="k">-</span><span class="w"> </span><span class="sb">`app/api.py`</span>: API REST para predicciones.
+<span class="k">-</span><span class="w"> </span><span class="sb">`Dockerfile`</span>: Configuración para despliegue.
+
+<span class="gu">## Instalación</span>
+<span class="sb">```bash</span>
+pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+uvicorn<span class="w"> </span>app.api:app<span class="w"> </span>--reload<span class="w">  </span><span class="c1"># Desarrollo local</span>
+<span class="sb">```</span>
+
+<span class="gu">## Docker</span>
+<span class="sb">```bash</span>
+docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>telco-churn-api<span class="w"> </span>.
+docker<span class="w"> </span>run<span class="w"> </span>-p<span class="w"> </span><span class="m">8000</span>:8000<span class="w"> </span>telco-churn-api
+<span class="sb">```</span>
+
+<span class="gu">## Endpoints</span>
+<span class="k">-</span><span class="w"> </span><span class="sb">`POST /predict`</span>: Recibe JSON con features del cliente, retorna probabilidad de churn.
+</pre></div>
+</div>
+</section>
+<section id="ejecucion-de-pruebas">
+<h3><span class="section-number">5.12.18. </span>Ejecución de pruebas<a class="headerlink" href="#ejecucion-de-pruebas" title="Link to this heading">#</a></h3>
+<ul>
+<li><p>Localmente, ejecutando en la terminal: <code class="docutils literal notranslate"><span class="pre">uvicorn</span> <span class="pre">app.api:app</span> <span class="pre">--port</span> <span class="pre">8001</span></code>, el servidor <strong>FastAPI</strong> queda <strong>corriendo en segundo plano, listo para ejecutar algunas pruebas</strong>.</p></li>
+<li><p>El siguiente es un ejemplo de <strong>test unitario local</strong> usando <code class="docutils literal notranslate"><span class="pre">uvicorn</span></code></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8001/predict<span class="w">   </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w">   </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;SeniorCitizen&quot;: 1, &quot;MonthlyCharges&quot;: 99.9, &quot;tenure&quot;: 5, &quot;Contract&quot;: &quot;Month-to-month&quot;, &quot;PaymentMethod&quot;: &quot;Bank transfer (automatic)&quot;}&#39;</span>
+</pre></div>
+</div>
+<p>La salida de este test debe ser la predicción con su respectiva probabilidad:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="o">{</span><span class="s2">&quot;churn_probability&quot;</span>:0.96,<span class="s2">&quot;prediction&quot;</span>:<span class="s2">&quot;Yes&quot;</span><span class="o">}</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<ul class="simple">
+<li><p><strong>Entrada (Input)</strong>: Se está haciendo una solicitud <strong>POST</strong> (envío de datos) a una API que está escuchando localmente en:</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>http://localhost:8001/predict
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Lo que enviamos es un <strong>JSON</strong> que representa las características de un cliente, por ejemplo:</p></li>
+</ul>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Campo</p></th>
+<th class="head"><p>Significado</p></th>
+<th class="head"><p>Valor enviado</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">SeniorCitizen</span></code></p></td>
+<td><p>Indica si el cliente es adulto mayor (1: sí, 0: no)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">MonthlyCharges</span></code></p></td>
+<td><p>Cuánto paga el cliente al mes</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">99.9</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">tenure</span></code></p></td>
+<td><p>Antigüedad en meses como cliente</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">5</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Contract</span></code></p></td>
+<td><p>Tipo de contrato que tiene el cliente</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;Month-to-month&quot;</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">PaymentMethod</span></code></p></td>
+<td><p>Método de pago</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;Bank</span> <span class="pre">transfer</span> <span class="pre">(automatic)&quot;</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul class="simple">
+<li><p><strong>Idea clave:</strong> Le estamos preguntando al modelo: “¿Qué probabilidad tiene este cliente de irse (churn) dadas estas características?”</p></li>
+<li><p><strong>Salida (Output)</strong>: El servidor devuelve también un <strong>JSON</strong> como respuesta:</p></li>
+</ul>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="nt">&quot;churn_probability&quot;</span><span class="p">:</span><span class="mf">0.96</span><span class="p">,</span><span class="nt">&quot;prediction&quot;</span><span class="p">:</span><span class="s2">&quot;Yes&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Campo</p></th>
+<th class="head"><p>Significado</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">churn_probability</span></code></p></td>
+<td><p>Probabilidad calculada por el modelo de que el cliente abandone la compañía (valor entre 0 y 1). En este caso, <code class="docutils literal notranslate"><span class="pre">0.96</span></code> indica un 96% de probabilidad.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">prediction</span></code></p></td>
+<td><p>Predicción final del modelo: <code class="docutils literal notranslate"><span class="pre">&quot;Yes&quot;</span></code> indica que el modelo predice que el cliente probablemente se irá.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul class="simple">
+<li><p>Para poder realizar estas <strong>pruebas desde el contenedor Docker de forma persistente y poder iniciarlo/detenerlo fácilmente</strong> desde su aplicación, debe tener en cuenta estos pasos:</p></li>
+</ul>
+<ol class="arabic simple">
+<li><p><strong>Construir y Ejecutar por Primera Vez</strong> (crea el contenedor persistente). Nótese que se usó un puerto diferente al local. Además, recuerde que debe tener iniciada la aplicación <code class="docutils literal notranslate"><span class="pre">Docker</span></code></p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>telco-churn<span class="w"> </span>.<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>telco-churn-container<span class="w"> </span>-p<span class="w"> </span><span class="m">8000</span>:8000<span class="w"> </span>telco-churn
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Utilizamos los siguientes pasos para <code class="docutils literal notranslate"><span class="pre">iniciar,</span></code> <code class="docutils literal notranslate"><span class="pre">detener</span></code> y <code class="docutils literal notranslate"><span class="pre">ver</span> <span class="pre">estado</span></code></p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>start<span class="w"> </span>telco-churn-container
+docker<span class="w"> </span>stop<span class="w"> </span>telco-churn-container
+docker<span class="w"> </span>ps<span class="w"> </span>-a<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>telco-churn
+</pre></div>
+</div>
+<ol class="arabic" start="3">
+<li><p>El siguiente es un ejemplo de <strong>test unitario desde <code class="docutils literal notranslate"><span class="pre">Docker</span></code></strong> usando <code class="docutils literal notranslate"><span class="pre">uvicorn</span></code></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8000/predict<span class="w">   </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w">   </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;SeniorCitizen&quot;: 1, &quot;MonthlyCharges&quot;: 99.9, &quot;tenure&quot;: 5, &quot;Contract&quot;: &quot;Month-to-month&quot;, &quot;PaymentMethod&quot;: &quot;Bank transfer (automatic)&quot;}&#39;</span>
+</pre></div>
+</div>
+<p>La salida de este test debe ser la predicción con su respectiva probabilidad:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="o">{</span><span class="s2">&quot;churn_probability&quot;</span>:0.96,<span class="s2">&quot;prediction&quot;</span>:<span class="s2">&quot;Yes&quot;</span><span class="o">}</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
 </section>
 </section>
 
@@ -76539,7 +76968,7 @@ Modelo guardado como best_xgboost_model.pkl
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">8. </span>Máquinas de vectores de soporte</p>
+        <p class="prev-next-title"><span class="section-number">6. </span>Máquinas de vectores de soporte</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -76559,24 +76988,39 @@ Modelo guardado como best_xgboost_model.pkl
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">5. Random Forest y XGBoost</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis">5.1. Análisis</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#combinacion-de-clasificadores">5.2. Combinación de clasificadores</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#enfoque-boosting">5.3. Enfoque Boosting</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-funcion-log-loss">5.4. La función Log-Loss</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arboles-boosting">5.5. Arboles Boosting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios-para-el-estudiante">5.6. Ejercicios para el estudiante</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion">5.7. Implementación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#control-de-complejidad">5.8. Control de complejidad</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-los-arboles-de-decision">5.9. Análisis de los árboles de decisión</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#caracteristicas-importantes-en-los-arboles">5.10. Características importantes en los árboles</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ensamble-de-arboles-de-decision">5.11. Ensamble de árboles de decisión</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proyecto-integrador-de-aprendizaje-automatico">5.12. Proyecto Integrador de Aprendizaje Automático</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prediccion-de-churn-en-telecomunicaciones-con-modelos-de-arboles-e-interpretabilidad">5.12.1. Predicción de churn en telecomunicaciones con modelos de árboles e interpretabilidad</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivo-general">5.12.2. Objetivo general</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contexto-aplicado">5.12.3. Contexto aplicado</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-recomendado-telco-customer-churn-kaggle">5.12.4. Dataset recomendado: “Telco Customer Churn” (Kaggle)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#actividades-a-desarrollar">5.12.5. Actividades a desarrollar</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#restricciones-didacticas">5.12.6. Restricciones didácticas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#herramientas-sugeridas">5.12.7. Herramientas sugeridas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#entregables-esperados">5.12.8. Entregables esperados</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diseno-sugerido-del-notebook">5.12.9. Diseño sugerido del notebook</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen">5.12.10. Resumen</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instrucciones-para-el-mlops">5.12.11. Instrucciones para el MLOps</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estructura-general-del-proyecto">5.12.12. Estructura general del proyecto</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#api-py-servicio-fastapi-para-predicciones">5.12.13. <code class="docutils literal notranslate"><span class="pre">api.py</span></code> — Servicio FastAPI para predicciones</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dockerfile-contenerizacion">5.12.14. <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code> — Contenerización</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#requirements-txt">5.12.15. <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#github-workflows-ci-yml-ci-cd-pipeline">5.12.16. <code class="docutils literal notranslate"><span class="pre">.github/workflows/ci.yml</span></code> — CI/CD Pipeline</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#readme-md-documentacion">5.12.17. <code class="docutils literal notranslate"><span class="pre">README.md</span></code> — Documentación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejecucion-de-pruebas">5.12.18. Ejecución de pruebas</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios-para-el-estudiante">6. Ejercicios para el estudiante</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion">7. Implementación</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#control-de-complejidad">7.1. Control de complejidad</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-los-arboles-de-decision">7.2. Análisis de los árboles de decisión</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#caracteristicas-importantes-en-los-arboles">7.3. Características importantes en los árboles</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ensamble-de-arboles-de-decision">7.4. Ensamble de árboles de decisión</a></li>
 </ul>
-</li>
-</ul>
-
   </nav></div>
 
 </div></div>

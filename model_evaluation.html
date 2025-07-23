@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>12. Evaluación de modelos &#8212; Machine Learning</title>
+    <title>9. Evaluación de modelos &#8212; Machine Learning</title>
   
   
   
@@ -68,8 +68,8 @@
     <script src="_static/.ipynb_checkpoints/custom-checkpoint.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="13. Cadenas de Algoritmos y Pipelines" href="chains_pipelines.html" />
-    <link rel="prev" title="11. Análisis de Componentes Principales" href="practical_pca.html" />
+    <link rel="next" title="10. Cadenas de Algoritmos y Pipelines" href="chains_pipelines.html" />
+    <link rel="prev" title="8. Análisis de Componentes Principales" href="practical_pca.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -193,17 +193,14 @@
 <li class="toctree-l1"><a class="reference internal" href="linear_model.html">3. Regresión Ridge y Lasso</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bayes_model.html">4. Clasificador Bayesiano</a></li>
 <li class="toctree-l1"><a class="reference internal" href="decisiontree_model.html">5. Random Forest y XGBoost</a></li>
-
-
-<li class="toctree-l1"><a class="reference internal" href="svm_model.html">8. Máquinas de vectores de soporte</a></li>
-
-<li class="toctree-l1"><a class="reference internal" href="ann_model.html">10. Redes Neuronales y Deep Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="practical_pca.html">11. Análisis de Componentes Principales</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">12. Evaluación de modelos</a></li>
-<li class="toctree-l1"><a class="reference internal" href="chains_pipelines.html">13. Cadenas de Algoritmos y Pipelines</a></li>
-<li class="toctree-l1"><a class="reference internal" href="appendix.html">14. Apéndice</a></li>
-<li class="toctree-l1"><a class="reference internal" href="exercises_sols.html">15. Soluciones a ejercicios</a></li>
-<li class="toctree-l1"><a class="reference internal" href="biblio.html">16. Bibliografía</a></li>
+<li class="toctree-l1"><a class="reference internal" href="svm_model.html">6. Máquinas de vectores de soporte</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ann_model.html">7. Redes Neuronales y Deep Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="practical_pca.html">8. Análisis de Componentes Principales</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">9. Evaluación de modelos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chains_pipelines.html">10. Cadenas de Algoritmos y Pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix.html">11. Apéndice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exercises_sols.html">12. Soluciones a ejercicios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="biblio.html">13. Bibliografía</a></li>
 </ul>
 
     </div>
@@ -352,42 +349,42 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-validation">12.1. Cross-Validation</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-cruzada-en-scikit-learn">12.1.1. Validación cruzada en scikit-learn</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ventajas-de-la-validacion-cruzada">12.1.2. Ventajas de la validación cruzada</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-cruzada-estratificada-k-fold-y-otras-estrategias">12.1.3. Validación cruzada estratificada <span class="math notranslate nohighlight">\(k\)</span>-fold y otras estrategias</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mas-control-sobre-la-validacion-cruzada">12.1.4. Más control sobre la validación cruzada</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-cruzada-con-exclusion-leave-one-out">12.1.5. Validación cruzada con exclusión (<code class="docutils literal notranslate"><span class="pre">leave-one-out</span></code>)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-cruzada-aleatoria-y-dividida">12.1.6. Validación cruzada aleatoria y dividida</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-cruzada-con-grupos">12.1.7. Validación cruzada con grupos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-validation">9.1. Cross-Validation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-cruzada-en-scikit-learn">9.1.1. Validación cruzada en scikit-learn</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ventajas-de-la-validacion-cruzada">9.1.2. Ventajas de la validación cruzada</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-cruzada-estratificada-k-fold-y-otras-estrategias">9.1.3. Validación cruzada estratificada <span class="math notranslate nohighlight">\(k\)</span>-fold y otras estrategias</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mas-control-sobre-la-validacion-cruzada">9.1.4. Más control sobre la validación cruzada</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-cruzada-con-exclusion-leave-one-out">9.1.5. Validación cruzada con exclusión (<code class="docutils literal notranslate"><span class="pre">leave-one-out</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-cruzada-aleatoria-y-dividida">9.1.6. Validación cruzada aleatoria y dividida</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-cruzada-con-grupos">9.1.7. Validación cruzada con grupos</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grid-search">12.2. Grid Search</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#grid-search-simple">12.2.1. Grid Search simple</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#el-peligro-de-sobreajustar-los-parametros-y-el-conjunto-de-validacion">12.2.2. El peligro de sobreajustar los parámetros y el conjunto de validación</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#grid-search-con-validacion-cruzada">12.2.3. Grid Search con validación cruzada</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-del-resultado-de-la-validacion-cruzada">12.2.4. Análisis del resultado de la validación cruzada</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#busqueda-sobre-espacios-que-no-son-una-red">12.2.5. Búsqueda sobre espacios que no son una red</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-cruzada-anidada">12.2.6. Validación cruzada anidada</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paralelizacion-de-la-validacion-cruzada-y-la-busqueda-en-red">12.2.7. Paralelización de la validación cruzada y la búsqueda en red</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grid-search">9.2. Grid Search</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#grid-search-simple">9.2.1. Grid Search simple</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#el-peligro-de-sobreajustar-los-parametros-y-el-conjunto-de-validacion">9.2.2. El peligro de sobreajustar los parámetros y el conjunto de validación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#grid-search-con-validacion-cruzada">9.2.3. Grid Search con validación cruzada</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-del-resultado-de-la-validacion-cruzada">9.2.4. Análisis del resultado de la validación cruzada</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#busqueda-sobre-espacios-que-no-son-una-red">9.2.5. Búsqueda sobre espacios que no son una red</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-cruzada-anidada">9.2.6. Validación cruzada anidada</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paralelizacion-de-la-validacion-cruzada-y-la-busqueda-en-red">9.2.7. Paralelización de la validación cruzada y la búsqueda en red</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metricas-de-evaluacion-y-scoring">12.3. Métricas de evaluación y scoring</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tenga-en-cuenta-el-objetivo-final">12.3.1. Tenga en cuenta el objetivo final</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metricas-para-la-clasificacion-binaria">12.3.2. Métricas para la clasificación binaria</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tipos-de-errores">12.3.3. Tipos de errores</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conjuntos-de-datos-desequilibrados">12.3.4. Conjuntos de datos desequilibrados</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matrices-de-confusion">12.3.5. Matrices de confusión</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#teniendo-en-cuenta-la-incertidumbre">12.3.6. Teniendo en cuenta la incertidumbre</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metricas-de-evaluacion-y-scoring">9.3. Métricas de evaluación y scoring</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tenga-en-cuenta-el-objetivo-final">9.3.1. Tenga en cuenta el objetivo final</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metricas-para-la-clasificacion-binaria">9.3.2. Métricas para la clasificación binaria</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tipos-de-errores">9.3.3. Tipos de errores</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conjuntos-de-datos-desequilibrados">9.3.4. Conjuntos de datos desequilibrados</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matrices-de-confusion">9.3.5. Matrices de confusión</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#teniendo-en-cuenta-la-incertidumbre">9.3.6. Teniendo en cuenta la incertidumbre</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curvas-precision-recall-y-roc">12.4. Curvas precision-recall y ROC</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#caracteristicas-operativas-del-receptor-roc-y-auc">12.4.1. Características operativas del receptor (ROC) y AUC</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curvas-precision-recall-y-roc">9.4. Curvas precision-recall y ROC</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#caracteristicas-operativas-del-receptor-roc-y-auc">9.4.1. Características operativas del receptor (ROC) y AUC</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metricas-para-la-clasificacion-multiclase">12.5. Métricas para la clasificación multiclase</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metricas-de-regresion">12.6. Métricas de regresión</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-metricas-de-evaluacion-en-la-seleccion-de-modelos">12.6.1. Uso de métricas de evaluación en la selección de modelos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metricas-para-la-clasificacion-multiclase">9.5. Métricas para la clasificación multiclase</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metricas-de-regresion">9.6. Métricas de regresión</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-metricas-de-evaluacion-en-la-seleccion-de-modelos">9.6.1. Uso de métricas de evaluación en la selección de modelos</a></li>
 </ul>
 </li>
 </ul>
@@ -402,7 +399,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="evaluacion-de-modelos">
-<h1><span class="section-number">12. </span>Evaluación de modelos<a class="headerlink" href="#evaluacion-de-modelos" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">9. </span>Evaluación de modelos<a class="headerlink" href="#evaluacion-de-modelos" title="Link to this heading">#</a></h1>
 <div class="tip admonition">
 <p class="admonition-title">Introducción</p>
 <ul class="simple">
@@ -499,7 +496,7 @@ document.write(`
 <li><p>También hablaremos del <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code>, un método eficaz para ajustar los parámetros de los modelos supervisados y obtener el <em><strong>mejor rendimiento de la generalización</strong></em>.</p></li>
 </ul>
 <section id="cross-validation">
-<h2><span class="section-number">12.1. </span>Cross-Validation<a class="headerlink" href="#cross-validation" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">9.1. </span>Cross-Validation<a class="headerlink" href="#cross-validation" title="Link to this heading">#</a></h2>
 <div class="tip admonition">
 <p class="admonition-title">Introducción</p>
 <ul class="simple">
@@ -527,7 +524,7 @@ document.write(`
 <em><strong>segundo fold</strong></em>, y así sucesivamente.</p></li>
 </ul>
 <section id="validacion-cruzada-en-scikit-learn">
-<h3><span class="section-number">12.1.1. </span>Validación cruzada en scikit-learn<a class="headerlink" href="#validacion-cruzada-en-scikit-learn" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">9.1.1. </span>Validación cruzada en scikit-learn<a class="headerlink" href="#validacion-cruzada-en-scikit-learn" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>La validación cruzada se implementa en <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> utilizando la función <code class="docutils literal notranslate"><span class="pre">cross_val_score</span></code> del módulo <code class="docutils literal notranslate"><span class="pre">model_selection</span></code>. <em><strong>Los parámetros de la función</strong></em> <code class="docutils literal notranslate"><span class="pre">cross_val_score</span></code> <em><strong>son, el modelo que queremos evaluar, los datos de entrenamiento y las etiquetas reales</strong></em>. Vamos a evaluar <code class="docutils literal notranslate"><span class="pre">LogisticRegression</span></code> en el conjunto de datos <code class="docutils literal notranslate"><span class="pre">iris</span></code>.</p></li>
 <li><p>Utilizaremos los <em><strong>parámetros por defecto de este modelo</strong></em>, más adelante estudiaremos como conseguir los más óptimos por medio de <code class="docutils literal notranslate"><span class="pre">grid-search</span></code>, por ahora solo estamos interesados en <em><strong>evaluar el modelo por defecto usando</strong></em> <code class="docutils literal notranslate"><span class="pre">cross_val_score</span></code>. Para más información acerca de los argumentos del modelo (ver <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html">sklearn.linear_model.LogisticRegression</a>).</p></li>
@@ -540,7 +537,8 @@ document.write(`
 </ul>
 </div>
 <figure class="align-center">
-<a class="reference internal image-reference" href="_images/iris_dataset.png"><img alt="_images/iris_dataset.png" src="_images/iris_dataset.png" style="width: 700.0px; height: 524.8000000000001px;" /></a>
+<a class="reference internal image-reference" href="_images/iris_dataset.png"><img alt="_images/iris_dataset.png" src="_images/iris_dataset.png" style="width: 700.0px; height: 524.8000000000001px;" />
+</a>
 </figure>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -721,7 +719,7 @@ petal width (cm):
 </div>
 </section>
 <section id="ventajas-de-la-validacion-cruzada">
-<h3><span class="section-number">12.1.2. </span>Ventajas de la validación cruzada<a class="headerlink" href="#ventajas-de-la-validacion-cruzada" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">9.1.2. </span>Ventajas de la validación cruzada<a class="headerlink" href="#ventajas-de-la-validacion-cruzada" title="Link to this heading">#</a></h3>
 <div class="important admonition">
 <p class="admonition-title">Observación</p>
 <ul class="simple">
@@ -741,7 +739,7 @@ petal width (cm):
 </div>
 </section>
 <section id="validacion-cruzada-estratificada-k-fold-y-otras-estrategias">
-<h3><span class="section-number">12.1.3. </span>Validación cruzada estratificada <span class="math notranslate nohighlight">\(k\)</span>-fold y otras estrategias<a class="headerlink" href="#validacion-cruzada-estratificada-k-fold-y-otras-estrategias" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">9.1.3. </span>Validación cruzada estratificada <span class="math notranslate nohighlight">\(k\)</span>-fold y otras estrategias<a class="headerlink" href="#validacion-cruzada-estratificada-k-fold-y-otras-estrategias" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Dividir el conjunto de datos en <code class="docutils literal notranslate"><span class="pre">k</span></code> <em><strong>pliegues</strong></em> comenzando por la primera parte de los datos, como descrito en la sección anterior, <em><strong>puede no ser siempre una buena idea</strong></em>. Por ejemplo, veamos el conjunto de datos <code class="docutils literal notranslate"><span class="pre">iris</span></code></p></li>
 </ul>
@@ -801,7 +799,7 @@ petal width (cm):
 </div>
 </section>
 <section id="mas-control-sobre-la-validacion-cruzada">
-<h3><span class="section-number">12.1.4. </span>Más control sobre la validación cruzada<a class="headerlink" href="#mas-control-sobre-la-validacion-cruzada" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">9.1.4. </span>Más control sobre la validación cruzada<a class="headerlink" href="#mas-control-sobre-la-validacion-cruzada" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Podemos <em><strong>ajustar el número de pliegues en</strong></em> <code class="docutils literal notranslate"><span class="pre">cross_val_score</span></code> <em><strong>con el parámetro</strong></em> <code class="docutils literal notranslate"><span class="pre">cv</span></code>. No obstante, <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> permite mayor control al aceptar un divisor de validación cruzada como parámetro <code class="docutils literal notranslate"><span class="pre">cv</span></code>. Aunque <em><strong>los valores predeterminados suelen ser adecuados, en ciertos casos puede ser útil una estrategia diferente</strong></em>.</p></li>
 <li><p>Por ejemplo, para replicar resultados con validación cruzada <code class="docutils literal notranslate"><span class="pre">k-fold</span></code> en clasificación, se puede importar la clase <code class="docutils literal notranslate"><span class="pre">KFold</span></code> de <code class="docutils literal notranslate"><span class="pre">model_selection</span></code> e instanciarla con el número deseado de pliegues.</p></li>
@@ -849,7 +847,7 @@ petal width (cm):
 </div>
 </section>
 <section id="validacion-cruzada-con-exclusion-leave-one-out">
-<h3><span class="section-number">12.1.5. </span>Validación cruzada con exclusión (<code class="docutils literal notranslate"><span class="pre">leave-one-out</span></code>)<a class="headerlink" href="#validacion-cruzada-con-exclusion-leave-one-out" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">9.1.5. </span>Validación cruzada con exclusión (<code class="docutils literal notranslate"><span class="pre">leave-one-out</span></code>)<a class="headerlink" href="#validacion-cruzada-con-exclusion-leave-one-out" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>El método de <em><strong>validación cruzada</strong></em> <code class="docutils literal notranslate"><span class="pre">leave-one-out</span></code> <em><strong>es una variante de</strong></em> <code class="docutils literal notranslate"><span class="pre">k</span></code> <em><strong>pliegues</strong></em> donde <em><strong>cada pliegue de prueba contiene solo una muestra</strong></em>. Aunque es más lento en conjuntos de datos grandes, puede ofrecer <em><strong><code class="docutils literal notranslate"><span class="pre">mejores</span> <span class="pre">estimaciones</span> <span class="pre">en</span> <span class="pre">conjuntos</span> <span class="pre">de</span> <span class="pre">datos</span> <span class="pre">pequeños</span></code></strong></em>.</p></li>
 </ul>
@@ -878,7 +876,7 @@ Mean accuracy: 0.97
 </div>
 </section>
 <section id="validacion-cruzada-aleatoria-y-dividida">
-<h3><span class="section-number">12.1.6. </span>Validación cruzada aleatoria y dividida<a class="headerlink" href="#validacion-cruzada-aleatoria-y-dividida" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">9.1.6. </span>Validación cruzada aleatoria y dividida<a class="headerlink" href="#validacion-cruzada-aleatoria-y-dividida" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Otra estrategia muy flexible para la validación cruzada es <em><strong>la validación cruzada aleatoria</strong></em> (<code class="docutils literal notranslate"><span class="pre">shuffle-split</span> <span class="pre">cross-validation</span></code>). En la validación cruzada de división aleatoria, cada división (<code class="docutils literal notranslate"><span class="pre">split</span></code>) está compuesta de tantos <code class="docutils literal notranslate"><span class="pre">train_size</span></code> <em><strong>puntos (disyuntos)</strong></em> para el conjunto de entrenamiento y tantos <code class="docutils literal notranslate"><span class="pre">test_size</span></code> <em><strong>puntos (disjuntos)</strong></em> para el conjunto de prueba, se fijen inicialmente.</p></li>
 <li><p>Esta división se repite <code class="docutils literal notranslate"><span class="pre">n_iter</span></code> veces, de forma aleatoria. A continuación se muestra <em><strong>la ejecución de cuatro iteraciones de división de un conjunto de datos que consta de <code class="docutils literal notranslate"><span class="pre">10</span> <span class="pre">puntos</span></code>, con un conjunto de entrenamiento de <code class="docutils literal notranslate"><span class="pre">5</span> <span class="pre">puntos</span></code> y conjuntos de prueba de <code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">puntos</span></code> cada uno</strong></em></p></li>
@@ -924,7 +922,7 @@ Mean accuracy: 0.97
 </ul>
 </section>
 <section id="validacion-cruzada-con-grupos">
-<h3><span class="section-number">12.1.7. </span>Validación cruzada con grupos<a class="headerlink" href="#validacion-cruzada-con-grupos" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">9.1.7. </span>Validación cruzada con grupos<a class="headerlink" href="#validacion-cruzada-con-grupos" title="Link to this heading">#</a></h3>
 <div class="admonition-groupkfold admonition">
 <p class="admonition-title">GroupKFold</p>
 <ul class="simple">
@@ -1010,17 +1008,18 @@ LogisticRegression Score:  0.6666666666666666
 </section>
 </section>
 <section id="grid-search">
-<h2><span class="section-number">12.2. </span>Grid Search<a class="headerlink" href="#grid-search" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">9.2. </span>Grid Search<a class="headerlink" href="#grid-search" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Ahora que sabemos cómo evaluar el grado de generalización de un modelo, podemos dar el siguiente paso y <em><strong>mejorar el rendimiento de la generalización del modelo ajustando sus parámetros</strong></em>. Es importante <em><strong>entender lo que significan los parámetros antes de intentar ajustarlos</strong></em>. Encontrar los valores de los parámetros relevantes de un modelo (<em><strong>los que proporcionan el mejor rendimiento de generalización</strong></em>) es una tarea complicada, pero necesaria para casi todos los modelos y conjuntos de datos.</p></li>
 <li><p>Al ser una tarea tan común, existen métodos estándar en <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> para ayudarle con ello. El método más utilizado es la <code class="docutils literal notranslate"><span class="pre">grid</span> <span class="pre">search</span></code>, que básicamente significa <em><strong>probar todas las combinaciones posibles de los parámetros de interés</strong></em>. Considere el caso de un SVM con un <code class="docutils literal notranslate"><span class="pre">kernel</span> <span class="pre">RBF</span></code> (función de base radial), como implementado en la clase <code class="docutils literal notranslate"><span class="pre">SVC</span></code>. Hay dos parámetros importantes: el <em><strong>ancho de banda del kernel</strong></em>, <code class="docutils literal notranslate"><span class="pre">gamma</span></code>, y el <em><strong>parámetro de regularización</strong></em>, <code class="docutils literal notranslate"><span class="pre">C</span></code>.</p></li>
 <li><p>Digamos que queremos probar los valores <em><strong>0.001, 0.01, 0.1, 1, 10 y 100 para el parámetro</strong></em> <code class="docutils literal notranslate"><span class="pre">C</span></code>, <em><strong>y lo mismo para</strong></em> <code class="docutils literal notranslate"><span class="pre">gamma</span></code>. Como tenemos seis ajustes diferentes para <code class="docutils literal notranslate"><span class="pre">C</span></code> y <code class="docutils literal notranslate"><span class="pre">gamma</span></code> que queremos probar, tenemos <em><strong>36 combinaciones de parámetros en total</strong></em>. Al ver todas las combinaciones posibles, <em><strong>se crea una tabla (o red) de parámetros para</strong></em> `SVM, como se muestra aquí:</p></li>
 </ul>
 <figure class="align-center" id="grid-search-svm">
-<a class="reference internal image-reference" href="_images/grid_search_svm.png"><img alt="_images/grid_search_svm.png" src="_images/grid_search_svm.png" style="width: 698.5999999999999px; height: 138.6px;" /></a>
+<a class="reference internal image-reference" href="_images/grid_search_svm.png"><img alt="_images/grid_search_svm.png" src="_images/grid_search_svm.png" style="width: 698.5999999999999px; height: 138.6px;" />
+</a>
 </figure>
 <section id="grid-search-simple">
-<h3><span class="section-number">12.2.1. </span>Grid Search simple<a class="headerlink" href="#grid-search-simple" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">9.2.1. </span>Grid Search simple<a class="headerlink" href="#grid-search-simple" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Podemos implementar un <code class="docutils literal notranslate"><span class="pre">grid</span> <span class="pre">search</span></code> sobre los dos parámetros usando un par de <em><strong>ciclos for</strong></em>, entrenando y evaluando un clasificador para cada combinación</p></li>
 </ul>
@@ -1069,7 +1068,7 @@ Best parameters: {&#39;C&#39;: 100, &#39;gamma&#39;: 0.001}
 </div>
 </section>
 <section id="el-peligro-de-sobreajustar-los-parametros-y-el-conjunto-de-validacion">
-<h3><span class="section-number">12.2.2. </span>El peligro de sobreajustar los parámetros y el conjunto de validación<a class="headerlink" href="#el-peligro-de-sobreajustar-los-parametros-y-el-conjunto-de-validacion" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">9.2.2. </span>El peligro de sobreajustar los parámetros y el conjunto de validación<a class="headerlink" href="#el-peligro-de-sobreajustar-los-parametros-y-el-conjunto-de-validacion" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Teniendo en cuenta este resultado, podríamos tener la <em><strong>tentación de decir que hemos encontrado un modelo que funciona con un 97% de precisión</strong></em> en nuestro conjunto de datos. Sin embargo, esta afirmación podría ser demasiado optimista (o simplemente errónea), por la siguiente razón: <em><strong>hemos probado muchos parámetros diferentes y se seleccionó el que tenía la mejor precisión en el conjunto de prueba, pero <code class="docutils literal notranslate"><span class="pre">esta</span> <span class="pre">precisión</span> <span class="pre">no</span> <span class="pre">necesariamente</span> <span class="pre">la</span> <span class="pre">obtendremos</span> <span class="pre">con</span> <span class="pre">nuevos</span> <span class="pre">datos</span></code></strong></em>.</p></li>
 <li><p><em><strong>Como hemos utilizado los datos de prueba para ajustar los parámetros, ya no podemos utilizarlos para evaluar la calidad del modelo</strong></em>. Esta es la misma razón por la que necesitamos dividir los datos en conjuntos de entrenamiento y de prueba; <em><strong><code class="docutils literal notranslate"><span class="pre">necesitamos</span> <span class="pre">un</span> <span class="pre">conjunto</span> <span class="pre">de</span> <span class="pre">datos</span> <span class="pre">independiente</span> <span class="pre">para</span> <span class="pre">evaluar,</span> <span class="pre">uno</span> <span class="pre">que</span> <span class="pre">no</span> <span class="pre">se</span> <span class="pre">haya</span> <span class="pre">utilizado</span> <span class="pre">para</span> <span class="pre">crear</span> <span class="pre">el</span> <span class="pre">modelo</span></code></strong></em>.</p></li>
@@ -1173,7 +1172,7 @@ Test set score with best parameters: 0.92
 </ul>
 </section>
 <section id="grid-search-con-validacion-cruzada">
-<h3><span class="section-number">12.2.3. </span>Grid Search con validación cruzada<a class="headerlink" href="#grid-search-con-validacion-cruzada" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">9.2.3. </span>Grid Search con validación cruzada<a class="headerlink" href="#grid-search-con-validacion-cruzada" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><em><strong>Aunque el método de dividir los datos en un conjunto de entrenamiento, uno de validación y otro de prueba que acabamos de ver es factible y se utiliza con relativa frecuencia, es bastante sensible a la forma en que se dividen los datos</strong></em>. De la salida del fragmento de código anterior podemos ver que el <code class="docutils literal notranslate"><span class="pre">grid-search</span></code> selecciona <code class="docutils literal notranslate"><span class="pre">'C':</span> <span class="pre">10,</span> <span class="pre">'gamma':</span> <span class="pre">0.001</span></code>, como los mejores parámetros, mientras que la salida del código de la sección anterior selecciona <code class="docutils literal notranslate"><span class="pre">'C':</span> <span class="pre">100,</span> <span class="pre">'gamma':</span> <span class="pre">0.001</span></code> como los mejores parámetros.</p></li>
 <li><p>Para una mejor estimación del rendimiento de la generalización, <em><strong>en lugar de usar una única división en un conjunto de entrenamiento y otro de validación, podemos usar la validación cruzada para evaluar el rendimiento de cada combinación de parámetros</strong></em>. Este método puede codificarse como sigue:</p></li>
@@ -1633,9 +1632,10 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <li><p>El proceso general de división de los datos, la ejecución de <code class="docutils literal notranslate"><span class="pre">grid</span> <span class="pre">search</span></code> y la evaluación de los parámetros finales se ilustra en la siguiente figura</p></li>
 </ul>
 <figure class="align-center" id="kfold-validation">
-<a class="reference internal image-reference" href="_images/kfold_validation.png"><img alt="_images/kfold_validation.png" src="_images/kfold_validation.png" style="width: 525.0px; height: 351.4px;" /></a>
+<a class="reference internal image-reference" href="_images/kfold_validation.png"><img alt="_images/kfold_validation.png" src="_images/kfold_validation.png" style="width: 525.0px; height: 351.4px;" />
+</a>
 <figcaption>
-<p><span class="caption-number">Fig. 12.1 </span><span class="caption-text">Resumen del proceso de selección de parámetros y evaluación de modelos con <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code>.</span><a class="headerlink" href="#kfold-validation" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 9.1 </span><span class="caption-text">Resumen del proceso de selección de parámetros y evaluación de modelos con <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code>.</span><a class="headerlink" href="#kfold-validation" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <ul class="simple">
@@ -2162,7 +2162,7 @@ SVC(C=10, gamma=0.1)
 </ul>
 </section>
 <section id="analisis-del-resultado-de-la-validacion-cruzada">
-<h3><span class="section-number">12.2.4. </span>Análisis del resultado de la validación cruzada<a class="headerlink" href="#analisis-del-resultado-de-la-validacion-cruzada" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">9.2.4. </span>Análisis del resultado de la validación cruzada<a class="headerlink" href="#analisis-del-resultado-de-la-validacion-cruzada" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>A menudo es útil visualizar los resultados de la validación cruzada, para entender cómo la generalización del modelo depende de los parámetros que estamos buscando. Como los <code class="docutils literal notranslate"><span class="pre">grid</span> <span class="pre">search</span></code> son bastante costosos desde el punto de vista computacional, <em><strong>a menudo es una buena idea empezar con grids de múltiples medidas, ya sean grandes o pequeños</strong></em>.</p></li>
 <li><p>A continuación, podemos inspeccionar los resultados del <code class="docutils literal notranslate"><span class="pre">grid</span> <span class="pre">search</span></code> validado, y posiblemente ampliar nuestra búsqueda. Los resultados de un <code class="docutils literal notranslate"><span class="pre">grid</span> <span class="pre">search</span></code> se pueden encontrar en el atributo <code class="docutils literal notranslate"><span class="pre">cv_results_</span></code>, que es un diccionario que almacena todos los aspectos de la búsqueda. Este contiene muchos detalles, como se puede ver en la siguiente salida, y es mejor verlo después de convertirlo en un <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> de <code class="docutils literal notranslate"><span class="pre">pandas</span></code>.</p></li>
@@ -2359,7 +2359,7 @@ SVC(C=10, gamma=0.1)
 </ul>
 </section>
 <section id="busqueda-sobre-espacios-que-no-son-una-red">
-<h3><span class="section-number">12.2.5. </span>Búsqueda sobre espacios que no son una red<a class="headerlink" href="#busqueda-sobre-espacios-que-no-son-una-red" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">9.2.5. </span>Búsqueda sobre espacios que no son una red<a class="headerlink" href="#busqueda-sobre-espacios-que-no-son-una-red" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>En algunos casos, probar todas las combinaciones posibles de todos los parámetros, como suele hacer <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code>, no es una buena idea. Por ejemplo, <code class="docutils literal notranslate"><span class="pre">SVC</span></code> tiene un parámetro de <code class="docutils literal notranslate"><span class="pre">kernel</span></code>, y dependiendo del <code class="docutils literal notranslate"><span class="pre">kernel</span></code> que se elija, otros parámetros serán relevantes. Si <code class="docutils literal notranslate"><span class="pre">kernel='linear'</span></code>, el modelo es lineal, y solo se utiliza el parámetro <code class="docutils literal notranslate"><span class="pre">C</span></code>. Si <code class="docutils literal notranslate"><span class="pre">kernel='rbf'</span></code>, se utilizan los parámetros <code class="docutils literal notranslate"><span class="pre">C</span> <span class="pre">y</span> <span class="pre">gamma</span></code> (pero no otros parámetros como el grado).</p></li>
 <li><p>En este caso, la búsqueda de todas las combinaciones posibles de <code class="docutils literal notranslate"><span class="pre">C,</span> <span class="pre">gamma</span> <span class="pre">y</span> <span class="pre">kernel</span></code> no tendría sentido: si <code class="docutils literal notranslate"><span class="pre">kernel='linear',</span> <span class="pre">gamma</span></code> no se utiliza, y probar diferentes valores de <code class="docutils literal notranslate"><span class="pre">gamma</span></code> sería una pérdida de tiempo. Recuerde que <code class="docutils literal notranslate"><span class="pre">kernel='rbf'</span></code> es el <em><strong>kernel de función de base radial (RBF)</strong></em> con mapeo de características <span class="math notranslate nohighlight">\(\phi(\boldsymbol{x})=\exp(\|\boldsymbol{x}-x_{i}\|/2\sigma^2),~\gamma=1/\sigma^2\)</span>. Para ver todas las opciones de kernel gaussiano (ver <a class="reference external" href="https://scikit-learn.org/stable/modules/gaussian_process.html#gp-kernels">Kernels for Gaussian Processes</a>).</p></li>
@@ -2598,7 +2598,7 @@ Best cross-validation score: 0.97
 </div>
 </section>
 <section id="validacion-cruzada-anidada">
-<h3><span class="section-number">12.2.6. </span>Validación cruzada anidada<a class="headerlink" href="#validacion-cruzada-anidada" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">9.2.6. </span>Validación cruzada anidada<a class="headerlink" href="#validacion-cruzada-anidada" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>En los ejemplos anteriores, pasamos de utilizar una única división de los datos en conjuntos de entrenamiento validación y prueba, a <em><strong>dividir los datos en conjuntos de entrenamiento y prueba, y luego de validación cruzada en el conjunto de entrenamiento</strong></em>. Pero al utilizar <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> como se ha descrito anteriormente, <em><strong>seguimos teniendo una única división de los datos en conjuntos de entrenamiento y de prueba</strong></em>, lo que puede hacer que nuestros resultados sean inestables y nos haga depender demasiado de esta única división de los datos. Podemos ir un paso más allá, y <em><strong>en lugar de dividir los datos originales en conjuntos de entrenamiento y prueba una vez, utilizar múltiples divisiones de validación cruzada</strong></em>. Esto dará lugar a lo que se denomina <em><strong>validación cruzada anidada</strong></em>.</p></li>
 <li><p><em><strong>En la validación cruzada anidada, hay un bucle externo sobre las divisiones de los datos en conjuntos de entrenamiento y de prueba. Para cada uno de ellos, se ejecuta una búsqueda en red</strong></em> (que puede dar lugar a diferentes parámetros óptimos para cada división en el bucle externo). A continuación, para cada división exterior, se informa del scoring del conjunto de prueba utilizando los mejores parámetros. <em><strong>El resultado de este procedimiento es una lista de puntuaciones, no un modelo ni un conjunto de parámetros</strong></em>.</p></li>
@@ -2672,7 +2672,7 @@ Mean cross-validation score:  0.9666666666666668
 </div>
 </section>
 <section id="paralelizacion-de-la-validacion-cruzada-y-la-busqueda-en-red">
-<h3><span class="section-number">12.2.7. </span>Paralelización de la validación cruzada y la búsqueda en red<a class="headerlink" href="#paralelizacion-de-la-validacion-cruzada-y-la-busqueda-en-red" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">9.2.7. </span>Paralelización de la validación cruzada y la búsqueda en red<a class="headerlink" href="#paralelizacion-de-la-validacion-cruzada-y-la-busqueda-en-red" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Si bien la ejecución de un <em><strong>grid search</strong></em> sobre muchos parámetros y en grandes conjuntos de datos puede ser <em><strong>computacionalmente un reto</strong></em>, también es un paralelismo tedioso. Esto significa que la construcción de un modelo utilizando un ajuste de parámetros particular en una división de validación cruzada particular <em><strong>puede hacerse con total independencia de los demás ajustes de parámetros y modelos</strong></em>. <em><strong>Esto hace que la búsqueda en red y la validación cruzada sean candidatas ideales para la paralelización en múltiples núcleos de CPU o en un clúster</strong></em>. Se puede hacer uso de múltiples núcleos en <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> y <code class="docutils literal notranslate"><span class="pre">cross_validation</span></code> estableciendo el parámetro <code class="docutils literal notranslate"><span class="pre">n_jobs</span></code> con el número de núcleos de CPU que desee utilizar. <em><strong>Puede establecer n_jobs=-1 para utilizar todos los núcleos disponibles</strong></em>.</p></li>
 <li><p>Debe tener en cuenta que <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> no permite el anidamiento de operaciones paralelas. Por lo tanto, si está utilizando la opción <code class="docutils literal notranslate"><span class="pre">n_jobs</span></code> en su modelo (por ejemplo, <code class="docutils literal notranslate"><span class="pre">random</span> <span class="pre">forest</span></code>), no puede utilizarla en <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> para buscar sobre este modelo. Si su <em><strong>conjunto de datos y su modelo son muy grandes, puede ser que el uso de muchos núcleos consuma demasiada memoria</strong></em>, y deberías controlar el uso de la memoria cuando construyas modelos grandes en paralelo. <em><strong>También es posible paralelizar la búsqueda en red y la validación cruzada en varias máquinas en un clúster</strong></em>. Sin embargo, es posible utilizar el marco paralelo de <code class="docutils literal notranslate"><span class="pre">IPython</span></code> para las búsquedas paralelas de la red, también puede <em><strong>escribir el bucle for sobre los parámetros como lo hicimos en “Búsqueda simple en la red”</strong></em>. <strong><code class="docutils literal notranslate"><span class="pre">Para</span> <span class="pre">los</span> <span class="pre">usuarios</span> <span class="pre">de</span> <span class="pre">Spark,</span> <span class="pre">también</span> <span class="pre">existe</span> <span class="pre">el</span> <span class="pre">paquete</span> <span class="pre">spark-sklearn,</span> <span class="pre">recientemente</span> <span class="pre">desarrollado,</span> <span class="pre">que</span> <span class="pre">permite</span> <span class="pre">ejecutar</span> <span class="pre">una</span> <span class="pre">búsqueda</span> <span class="pre">grid</span> <span class="pre">sobre</span> <span class="pre">un</span> <span class="pre">cluster</span> <span class="pre">Spark</span> <span class="pre">ya</span> <span class="pre">establecido</span></code></strong>.</p></li>
@@ -2680,12 +2680,12 @@ Mean cross-validation score:  0.9666666666666668
 </section>
 </section>
 <section id="metricas-de-evaluacion-y-scoring">
-<h2><span class="section-number">12.3. </span>Métricas de evaluación y scoring<a class="headerlink" href="#metricas-de-evaluacion-y-scoring" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">9.3. </span>Métricas de evaluación y scoring<a class="headerlink" href="#metricas-de-evaluacion-y-scoring" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Hasta ahora, hemos evaluado el <em><strong>rendimiento de la clasificación utilizando la precisión (accuracy)</strong></em> (la fracción de muestras correctamente clasificadas) y el <em><strong>rendimiento de la regresión</strong></em> mediante el <span class="math notranslate nohighlight">\(R^2\)</span>. Sin embargo, éstas son sólo dos de las muchas formas posibles de resumir la eficacia de un modelo supervisado en un conjunto de datos determinado. <em><strong>En la práctica, estas métricas de evaluación pueden no ser apropiadas para su aplicación, y es importante elegir la métrica correcta cuando se selecciona entre modelos y se ajustan los parámetros</strong></em>.</p></li>
 </ul>
 <section id="tenga-en-cuenta-el-objetivo-final">
-<h3><span class="section-number">12.3.1. </span>Tenga en cuenta el objetivo final<a class="headerlink" href="#tenga-en-cuenta-el-objetivo-final" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">9.3.1. </span>Tenga en cuenta el objetivo final<a class="headerlink" href="#tenga-en-cuenta-el-objetivo-final" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Al elegir una <em><strong>métrica en aprendizaje automático, debe alinearse con el objetivo final de la aplicación</strong></em>, conocido como <em><strong>métrica de negocio</strong></em>, ya que las predicciones influyen en la toma de decisiones y el impacto empresarial. Por ejemplo, podría buscar reducir accidentes, minimizar hospitalizaciones o aumentar ingresos.</p></li>
 <li><p>La <em><strong>selección del modelo y sus parámetros debe maximizar el impacto positivo en la métrica de negocio</strong></em>, pero evaluarlo en producción puede ser riesgoso. Por ello, se emplean métricas sustitutas más fáciles de calcular, como la <code class="docutils literal notranslate"><span class="pre">precision</span></code> en la clasificación de imágenes. Sin embargo, estas métricas deben acercarse lo más posible al objetivo real.</p></li>
@@ -2693,13 +2693,13 @@ Mean cross-validation score:  0.9666666666666668
 </ul>
 </section>
 <section id="metricas-para-la-clasificacion-binaria">
-<h3><span class="section-number">12.3.2. </span>Métricas para la clasificación binaria<a class="headerlink" href="#metricas-para-la-clasificacion-binaria" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">9.3.2. </span>Métricas para la clasificación binaria<a class="headerlink" href="#metricas-para-la-clasificacion-binaria" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>La clasificación binaria es probablemente la aplicación más común y conceptualmente simple de aprendizaje automático en la práctica. <em><strong>Sin embargo, todavía hay una serie de advertencias en evaluar incluso esta sencilla tarea</strong></em>. Antes de entrar en las métricas alternativas, echemos un vistazo a la forma en que se mide la precisión, la cual puede ser engañosa. Recordemos que para la clasificación binaria, a menudo hablamos de una <em><strong>clase positiva</strong></em> y una <em><strong>clase negativa</strong></em>, entendiendo que la clase positiva es la que estamos buscando.</p></li>
 </ul>
 </section>
 <section id="tipos-de-errores">
-<h3><span class="section-number">12.3.3. </span>Tipos de errores<a class="headerlink" href="#tipos-de-errores" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">9.3.3. </span>Tipos de errores<a class="headerlink" href="#tipos-de-errores" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>precisión (<code class="docutils literal notranslate"><span class="pre">accuracy</span></code>)</strong> no siempre es una buena medida del rendimiento, ya que los errores cometidos no reflejan toda la información relevante. Por ejemplo, en la <strong>detección temprana de cáncer</strong>, una prueba positiva implica más exámenes, mientras que una negativa considera al paciente sano. Dado que ningún modelo es perfecto, es crucial evaluar el impacto real de sus errores.</p></li>
 <li><p>Un <strong>falso positivo</strong> ocurre cuando un paciente sano es clasificado como enfermo, causando pruebas innecesarias y posibles preocupaciones. En cambio, un <strong>falso negativo</strong>, donde un paciente enfermo es clasificado como sano, puede ser fatal al retrasar el tratamiento. Estos errores se conocen como <strong>tipo I y tipo II</strong>, pero los términos <strong>falso positivo y falso negativo</strong> son más claros. En este contexto, es <strong>crítico minimizar los falsos negativos (<code class="docutils literal notranslate"><span class="pre">recall</span></code>)</strong>, aunque los falsos positivos sean una molestia.</p></li>
@@ -2715,7 +2715,7 @@ Mean cross-validation score:  0.9666666666666668
 </ul>
 </section>
 <section id="conjuntos-de-datos-desequilibrados">
-<h3><span class="section-number">12.3.4. </span>Conjuntos de datos desequilibrados<a class="headerlink" href="#conjuntos-de-datos-desequilibrados" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">9.3.4. </span>Conjuntos de datos desequilibrados<a class="headerlink" href="#conjuntos-de-datos-desequilibrados" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Los errores son cruciales cuando una clase es mucho más frecuente que otra, como en la predicción de <em>clicks</em>, donde la mayoría de los elementos mostrados no reciben interacción. En estos casos, los datos están <strong>desequilibrados</strong>, con una gran mayoría perteneciente a la clase “no click”.</p></li>
 <li><p>Dado que los eventos de interés suelen ser raros, un modelo con <strong>99% para <code class="docutils literal notranslate"><span class="pre">accuracy</span></code></strong> podría simplemente predecir siempre “no click” sin aportar valor real. Por ello, la precisión no distingue entre un modelo trivial y uno efectivo. Para ilustrarlo, se creará un conjunto de datos desequilibrado 9:1 con el conjunto <em>digits</em>, clasificando el dígito 9 frente a los demás.</p></li>
@@ -2860,7 +2860,7 @@ Test score: 0.90
 </ul>
 </section>
 <section id="matrices-de-confusion">
-<h3><span class="section-number">12.3.5. </span>Matrices de confusión<a class="headerlink" href="#matrices-de-confusion" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">9.3.5. </span>Matrices de confusión<a class="headerlink" href="#matrices-de-confusion" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Una de las formas más completas de representar el resultado de la evaluación de la clasificación binaria es el uso de <em><strong>matrices de confusión</strong></em>. Inspeccionemos las predicciones de <code class="docutils literal notranslate"><span class="pre">LogisticRegres</span></code> de la sección anterior utilizando la función <code class="docutils literal notranslate"><span class="pre">confusion_matrix</span></code>. Ya hemos almacenado las predicciones del conjunto de prueba en <code class="docutils literal notranslate"><span class="pre">pred_logreg</span></code></p></li>
 </ul>
@@ -3132,7 +3132,7 @@ weighted avg       0.98      0.98      0.98       450
 </ul>
 </section>
 <section id="teniendo-en-cuenta-la-incertidumbre">
-<h3><span class="section-number">12.3.6. </span>Teniendo en cuenta la incertidumbre<a class="headerlink" href="#teniendo-en-cuenta-la-incertidumbre" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">9.3.6. </span>Teniendo en cuenta la incertidumbre<a class="headerlink" href="#teniendo-en-cuenta-la-incertidumbre" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>La matriz de confusión y el informe de clasificación analizan detalladamente un conjunto de predicciones, pero las predicciones en sí contienen información clave del modelo. La mayoría de los clasificadores incluyen <code class="docutils literal notranslate"><span class="pre">decision_function</span></code> o <code class="docutils literal notranslate"><span class="pre">predict_proba</span></code> para medir la certeza de las predicciones, utilizando umbrales fijos: 0 en <code class="docutils literal notranslate"><span class="pre">decision_function</span></code> y 0.5 en <code class="docutils literal notranslate"><span class="pre">predict_proba</span></code> para clasificación binaria.</p></li>
 <li><p>Un ejemplo de clasificación binaria desequilibrada presenta 400 puntos negativos y 50 positivos. Se entrena un <em><strong>kernel SVM</strong></em>, y un mapa de calor ilustra la función de decisión. Un círculo negro en la gráfica central superior marca el umbral donde la función es cero: puntos dentro del círculo son positivos, los demás negativos.</p></li>
@@ -3288,7 +3288,7 @@ weighted avg       0.99      0.99      0.99       100
 </section>
 </section>
 <section id="curvas-precision-recall-y-roc">
-<h2><span class="section-number">12.4. </span>Curvas precision-recall y ROC<a class="headerlink" href="#curvas-precision-recall-y-roc" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">9.4. </span>Curvas precision-recall y ROC<a class="headerlink" href="#curvas-precision-recall-y-roc" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Ajustar el umbral de clasificación permite equilibrar <code class="docutils literal notranslate"><span class="pre">precision</span></code> y <code class="docutils literal notranslate"><span class="pre">recall</span></code>. Por ejemplo, para un <code class="docutils literal notranslate"><span class="pre">recall</span></code> del 90%, el umbral debe adaptarse según los objetivos empresariales. Sin embargo, un umbral extremo, como clasificar todo como positivo, garantiza un <code class="docutils literal notranslate"><span class="pre">recall</span></code> del 100% pero hace inútil el modelo.</p></li>
 <li><p>Fijar un <em><strong>punto operativo</strong></em>, como un <code class="docutils literal notranslate"><span class="pre">recall</span></code> del 90%, ayuda a garantizar el rendimiento en entornos empresariales. Al desarrollar un modelo, es clave explorar distintos umbrales y compromisos <code class="docutils literal notranslate"><span class="pre">precision-recall</span></code> para comprender mejor el problema.</p></li>
@@ -3526,7 +3526,7 @@ Average precision of svc: 0.948
 <li><p>Al promediar todos los umbrales posibles, vemos que el bosque aleatorio y el SVC tienen un rendimiento similar, con <code class="docutils literal notranslate"><span class="pre">RF</span></code> ligeramente por delante. Esto es bastante diferente del resultado que obtuvimos antes con <span class="math notranslate nohighlight">\(f_{1}\)</span>-score. Como la <em><strong>precisión media es el área área bajo una curva que va de 0 a 1, la precisión media siempre devuelve un valor entre 0 (worst) y 1 (best)</strong></em>. La precisión media de un clasificador que asigna <code class="docutils literal notranslate"><span class="pre">decision_function</span></code> al azar es la fracción de muestras positivas en el conjunto de datos.</p></li>
 </ul>
 <section id="caracteristicas-operativas-del-receptor-roc-y-auc">
-<h3><span class="section-number">12.4.1. </span>Características operativas del receptor (ROC) y AUC<a class="headerlink" href="#caracteristicas-operativas-del-receptor-roc-y-auc" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">9.4.1. </span>Características operativas del receptor (ROC) y AUC<a class="headerlink" href="#caracteristicas-operativas-del-receptor-roc-y-auc" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>La <em><strong>curva ROC</strong></em> analiza el rendimiento de los clasificadores a distintos umbrales, graficando la <em><strong>tasa de verdaderos positivos (TPR)</strong></em> frente a la <em><strong>tasa de falsos positivos (FPR)</strong></em>. Mientras que TPR equivale al <code class="docutils literal notranslate"><span class="pre">recall</span></code>, FPR mide la fracción de negativos reales clasificados incorrectamente. A diferencia de la curva <code class="docutils literal notranslate"><span class="pre">precision-recall</span></code>, la curva ROC evalúa el equilibrio entre la detección de positivos y la generación de falsos positivos.</p></li>
 </ul>
@@ -3649,7 +3649,7 @@ gamma = 0.01 accuracy = 0.63 AUC = 0.93
 </section>
 </section>
 <section id="metricas-para-la-clasificacion-multiclase">
-<h2><span class="section-number">12.5. </span>Métricas para la clasificación multiclase<a class="headerlink" href="#metricas-para-la-clasificacion-multiclase" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">9.5. </span>Métricas para la clasificación multiclase<a class="headerlink" href="#metricas-para-la-clasificacion-multiclase" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>La evaluación de la clasificación multiclase se basa en métricas de clasificación binaria, pero promediadas en todas las clases. El <code class="docutils literal notranslate"><span class="pre">accuracy</span></code> sigue siendo la fracción de ejemplos clasificados correctamente, pero no es ideal cuando las clases están desequilibradas.</p></li>
 <li><p>Por ejemplo, en un problema con tres clases (A: 85%, B: 10%, C: 5%), un <code class="docutils literal notranslate"><span class="pre">accuracy</span></code> del 85% puede ser engañoso. La clasificación multiclase es más difícil de interpretar que la binaria, por lo que, además del <code class="docutils literal notranslate"><span class="pre">accuracy</span></code>, se utilizan la <em><strong>matriz de confusión</strong></em> y el <em><strong>informe de clasificación</strong></em>. Aplicaremos estos métodos al reconocimiento de dígitos escritos a mano en el conjunto de datos <code class="docutils literal notranslate"><span class="pre">digits</span></code>.</p></li>
@@ -3775,12 +3775,12 @@ Micro average f1 score: 0.951
 </div>
 </section>
 <section id="metricas-de-regresion">
-<h2><span class="section-number">12.6. </span>Métricas de regresión<a class="headerlink" href="#metricas-de-regresion" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">9.6. </span>Métricas de regresión<a class="headerlink" href="#metricas-de-regresion" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>La evaluación en regresión puede ser tan detallada como en clasificación, analizando sobrepredicción y subpredicción. Sin embargo, en la mayoría de los casos, el <strong><span class="math notranslate nohighlight">\(R^2\)</span></strong> usado por defecto en los regresores es suficiente. En aplicaciones empresariales, métricas como <strong>MSE o MAE</strong> pueden influir en la optimización de modelos. No obstante, <strong><span class="math notranslate nohighlight">\(R^2\)</span></strong> suele ser más intuitivo. En el curso de <strong>Time Series Forecasting</strong>, se profundizará en métricas como <strong>MAE, MAPE, MSE y RMSE</strong>.</p></li>
 </ul>
 <section id="uso-de-metricas-de-evaluacion-en-la-seleccion-de-modelos">
-<h3><span class="section-number">12.6.1. </span>Uso de métricas de evaluación en la selección de modelos<a class="headerlink" href="#uso-de-metricas-de-evaluacion-en-la-seleccion-de-modelos" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">9.6.1. </span>Uso de métricas de evaluación en la selección de modelos<a class="headerlink" href="#uso-de-metricas-de-evaluacion-en-la-seleccion-de-modelos" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Para evaluar modelos con métricas como AUC en <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> o <code class="docutils literal notranslate"><span class="pre">cross_val_score</span></code>, <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> permite usar el argumento <code class="docutils literal notranslate"><span class="pre">scoring</span></code>. Basta con proporcionar una cadena con la métrica deseada, como <code class="docutils literal notranslate"><span class="pre">&quot;roc_auc&quot;</span></code>, para cambiar la evaluación predeterminada (accuracy) a AUC. Esto facilita la selección de modelos en tareas como clasificar “nueve vs. resto” en <code class="docutils literal notranslate"><span class="pre">digits</span></code>.</p></li>
 </ul>
@@ -3956,7 +3956,7 @@ Test set accuracy: 1.000
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">11. </span>Análisis de Componentes Principales</p>
+        <p class="prev-next-title"><span class="section-number">8. </span>Análisis de Componentes Principales</p>
       </div>
     </a>
     <a class="right-next"
@@ -3964,7 +3964,7 @@ Test set accuracy: 1.000
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">13. </span>Cadenas de Algoritmos y Pipelines</p>
+        <p class="prev-next-title"><span class="section-number">10. </span>Cadenas de Algoritmos y Pipelines</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -3984,42 +3984,42 @@ Test set accuracy: 1.000
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-validation">12.1. Cross-Validation</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-cruzada-en-scikit-learn">12.1.1. Validación cruzada en scikit-learn</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ventajas-de-la-validacion-cruzada">12.1.2. Ventajas de la validación cruzada</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-cruzada-estratificada-k-fold-y-otras-estrategias">12.1.3. Validación cruzada estratificada <span class="math notranslate nohighlight">\(k\)</span>-fold y otras estrategias</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mas-control-sobre-la-validacion-cruzada">12.1.4. Más control sobre la validación cruzada</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-cruzada-con-exclusion-leave-one-out">12.1.5. Validación cruzada con exclusión (<code class="docutils literal notranslate"><span class="pre">leave-one-out</span></code>)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-cruzada-aleatoria-y-dividida">12.1.6. Validación cruzada aleatoria y dividida</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-cruzada-con-grupos">12.1.7. Validación cruzada con grupos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-validation">9.1. Cross-Validation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-cruzada-en-scikit-learn">9.1.1. Validación cruzada en scikit-learn</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ventajas-de-la-validacion-cruzada">9.1.2. Ventajas de la validación cruzada</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-cruzada-estratificada-k-fold-y-otras-estrategias">9.1.3. Validación cruzada estratificada <span class="math notranslate nohighlight">\(k\)</span>-fold y otras estrategias</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mas-control-sobre-la-validacion-cruzada">9.1.4. Más control sobre la validación cruzada</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-cruzada-con-exclusion-leave-one-out">9.1.5. Validación cruzada con exclusión (<code class="docutils literal notranslate"><span class="pre">leave-one-out</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-cruzada-aleatoria-y-dividida">9.1.6. Validación cruzada aleatoria y dividida</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-cruzada-con-grupos">9.1.7. Validación cruzada con grupos</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grid-search">12.2. Grid Search</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#grid-search-simple">12.2.1. Grid Search simple</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#el-peligro-de-sobreajustar-los-parametros-y-el-conjunto-de-validacion">12.2.2. El peligro de sobreajustar los parámetros y el conjunto de validación</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#grid-search-con-validacion-cruzada">12.2.3. Grid Search con validación cruzada</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-del-resultado-de-la-validacion-cruzada">12.2.4. Análisis del resultado de la validación cruzada</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#busqueda-sobre-espacios-que-no-son-una-red">12.2.5. Búsqueda sobre espacios que no son una red</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-cruzada-anidada">12.2.6. Validación cruzada anidada</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paralelizacion-de-la-validacion-cruzada-y-la-busqueda-en-red">12.2.7. Paralelización de la validación cruzada y la búsqueda en red</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grid-search">9.2. Grid Search</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#grid-search-simple">9.2.1. Grid Search simple</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#el-peligro-de-sobreajustar-los-parametros-y-el-conjunto-de-validacion">9.2.2. El peligro de sobreajustar los parámetros y el conjunto de validación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#grid-search-con-validacion-cruzada">9.2.3. Grid Search con validación cruzada</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-del-resultado-de-la-validacion-cruzada">9.2.4. Análisis del resultado de la validación cruzada</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#busqueda-sobre-espacios-que-no-son-una-red">9.2.5. Búsqueda sobre espacios que no son una red</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-cruzada-anidada">9.2.6. Validación cruzada anidada</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paralelizacion-de-la-validacion-cruzada-y-la-busqueda-en-red">9.2.7. Paralelización de la validación cruzada y la búsqueda en red</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metricas-de-evaluacion-y-scoring">12.3. Métricas de evaluación y scoring</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tenga-en-cuenta-el-objetivo-final">12.3.1. Tenga en cuenta el objetivo final</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metricas-para-la-clasificacion-binaria">12.3.2. Métricas para la clasificación binaria</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tipos-de-errores">12.3.3. Tipos de errores</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conjuntos-de-datos-desequilibrados">12.3.4. Conjuntos de datos desequilibrados</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matrices-de-confusion">12.3.5. Matrices de confusión</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#teniendo-en-cuenta-la-incertidumbre">12.3.6. Teniendo en cuenta la incertidumbre</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metricas-de-evaluacion-y-scoring">9.3. Métricas de evaluación y scoring</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tenga-en-cuenta-el-objetivo-final">9.3.1. Tenga en cuenta el objetivo final</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metricas-para-la-clasificacion-binaria">9.3.2. Métricas para la clasificación binaria</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tipos-de-errores">9.3.3. Tipos de errores</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conjuntos-de-datos-desequilibrados">9.3.4. Conjuntos de datos desequilibrados</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matrices-de-confusion">9.3.5. Matrices de confusión</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#teniendo-en-cuenta-la-incertidumbre">9.3.6. Teniendo en cuenta la incertidumbre</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curvas-precision-recall-y-roc">12.4. Curvas precision-recall y ROC</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#caracteristicas-operativas-del-receptor-roc-y-auc">12.4.1. Características operativas del receptor (ROC) y AUC</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curvas-precision-recall-y-roc">9.4. Curvas precision-recall y ROC</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#caracteristicas-operativas-del-receptor-roc-y-auc">9.4.1. Características operativas del receptor (ROC) y AUC</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metricas-para-la-clasificacion-multiclase">12.5. Métricas para la clasificación multiclase</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metricas-de-regresion">12.6. Métricas de regresión</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-metricas-de-evaluacion-en-la-seleccion-de-modelos">12.6.1. Uso de métricas de evaluación en la selección de modelos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metricas-para-la-clasificacion-multiclase">9.5. Métricas para la clasificación multiclase</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metricas-de-regresion">9.6. Métricas de regresión</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-metricas-de-evaluacion-en-la-seleccion-de-modelos">9.6.1. Uso de métricas de evaluación en la selección de modelos</a></li>
 </ul>
 </li>
 </ul>

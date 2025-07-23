@@ -193,17 +193,14 @@
 <li class="toctree-l1"><a class="reference internal" href="linear_model.html">3. Regresión Ridge y Lasso</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bayes_model.html">4. Clasificador Bayesiano</a></li>
 <li class="toctree-l1"><a class="reference internal" href="decisiontree_model.html">5. Random Forest y XGBoost</a></li>
-
-
-<li class="toctree-l1"><a class="reference internal" href="svm_model.html">8. Máquinas de vectores de soporte</a></li>
-
-<li class="toctree-l1"><a class="reference internal" href="ann_model.html">10. Redes Neuronales y Deep Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="practical_pca.html">11. Análisis de Componentes Principales</a></li>
-<li class="toctree-l1"><a class="reference internal" href="model_evaluation.html">12. Evaluación de modelos</a></li>
-<li class="toctree-l1"><a class="reference internal" href="chains_pipelines.html">13. Cadenas de Algoritmos y Pipelines</a></li>
-<li class="toctree-l1"><a class="reference internal" href="appendix.html">14. Apéndice</a></li>
-<li class="toctree-l1"><a class="reference internal" href="exercises_sols.html">15. Soluciones a ejercicios</a></li>
-<li class="toctree-l1"><a class="reference internal" href="biblio.html">16. Bibliografía</a></li>
+<li class="toctree-l1"><a class="reference internal" href="svm_model.html">6. Máquinas de vectores de soporte</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ann_model.html">7. Redes Neuronales y Deep Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="practical_pca.html">8. Análisis de Componentes Principales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_evaluation.html">9. Evaluación de modelos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chains_pipelines.html">10. Cadenas de Algoritmos y Pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix.html">11. Apéndice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exercises_sols.html">12. Soluciones a ejercicios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="biblio.html">13. Bibliografía</a></li>
 </ul>
 
     </div>
@@ -359,6 +356,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relacion-entre-la-complejidad-del-modelo-y-el-tamano-del-conjunto-de-datos">1.5. Relación entre la complejidad del modelo y el tamaño del conjunto de datos</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmos-de-aprendizaje-automatico-supervisado">1.6. Algoritmos de aprendizaje automático supervisado</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algunos-ejemplos-de-conjuntos-de-datos">1.7. Algunos ejemplos de conjuntos de datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracion-de-entornos-para-tensorflow">1.8. Configuración de entornos para TensorFlow</a></li>
 </ul>
             </nav>
         </div>
@@ -373,7 +371,8 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="aprendizaje-supervisado">
 <h1><span class="section-number">1. </span>Aprendizaje supervisado<a class="headerlink" href="#aprendizaje-supervisado" title="Link to this heading">#</a></h1>
 <figure class="align-center" id="fig-v7labs-supervisedlearning">
-<a class="reference internal image-reference" href="_images/v7labs_supervisedlearning.png"><img alt="_images/v7labs_supervisedlearning.png" src="_images/v7labs_supervisedlearning.png" style="width: 571.0px; height: 293.0px;" /></a>
+<a class="reference internal image-reference" href="_images/v7labs_supervisedlearning.png"><img alt="_images/v7labs_supervisedlearning.png" src="_images/v7labs_supervisedlearning.png" style="width: 571.0px; height: 293.0px;" />
+</a>
 <figcaption>
 <p><span class="caption-number">Fig. 1.1 </span><span class="caption-text">Aprendizaje Supervisado. Source: <a class="reference external" href="http://v7labs.com">v7labs.com</a>.</span><a class="headerlink" href="#fig-v7labs-supervisedlearning" title="Link to this image">#</a></p>
 </figcaption>
@@ -428,7 +427,8 @@ Aquí la <em>entrada es un registro de la transacción de la tarjeta de crédito
 </ul>
 </div>
 <figure class="align-center" id="fig-sweet-spot">
-<a class="reference internal image-reference" href="_images/sweet_spot.png"><img alt="_images/sweet_spot.png" src="_images/sweet_spot.png" style="width: 488.0px; height: 364.0px;" /></a>
+<a class="reference internal image-reference" href="_images/sweet_spot.png"><img alt="_images/sweet_spot.png" src="_images/sweet_spot.png" style="width: 488.0px; height: 364.0px;" />
+</a>
 <figcaption>
 <p><span class="caption-number">Fig. 1.3 </span><span class="caption-text">Complejidad vs precisión para entrenamiento y prueba. Source: <a class="reference external" href="http://towardsai.net">towardsai.net</a>.</span><a class="headerlink" href="#fig-sweet-spot" title="Link to this image">#</a></p>
 </figcaption>
@@ -792,6 +792,45 @@ dict_keys([&#39;data&#39;, &#39;target&#39;, &#39;frame&#39;, &#39;target_names&
 <li><p>Las 104 características resultantes son las 13 características originales junto con las 91 combinaciones posibles de dos características dentro de esas 13. Utilizaremos estos conjuntos de datos para explicar e ilustrar las propiedades de los distintos algoritmos de aprendizaje automático. Pero por ahora, vamos a hablar de los algoritmos en sí. En primer lugar, vamos a examinar el algoritmo de los <em><strong>vecinos más cercanos (k-nearest neighbors) (k-NN)</strong></em>.</p></li>
 </ul>
 </section>
+<section id="configuracion-de-entornos-para-tensorflow">
+<h2><span class="section-number">1.8. </span>Configuración de entornos para TensorFlow<a class="headerlink" href="#configuracion-de-entornos-para-tensorflow" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Instalación de <code class="docutils literal notranslate"><span class="pre">TensorFlow</span> <span class="pre">2.10</span></code> en <code class="docutils literal notranslate"><span class="pre">Window</span> <span class="pre">Native</span></code>:</p>
+<ul>
+<li><p>Tutorial: <a class="reference external" href="https://www.youtube.com/watch?v=jzTWjXm8hsc&amp;amp;ab_channel=LihkiJoseRubioOrtega">Tutorial 1. Machine Learning. UN 202330</a> y <a class="reference external" href="https://github.com/lihkir/Data/blob/main/TutorialesMachineLearning.pdf">TutorialesMachineLearning.pdf</a></p></li>
+<li><p>Link: <a class="reference external" href="https://www.tensorflow.org/install/pip#windows-native">TensorFlow Nindows Native</a></p></li>
+</ul>
+</li>
+</ul>
+<ul class="simple">
+<li><p>Instalación de <code class="docutils literal notranslate"><span class="pre">TensorFlow</span></code><span class="math notranslate nohighlight">\(\geq\)</span><code class="docutils literal notranslate"><span class="pre">2.11</span></code> en <code class="docutils literal notranslate"><span class="pre">WSL2</span></code></p>
+<ul>
+<li><p>Tutorial: <a class="reference external" href="https://www.youtube.com/watch?v=VOJq98BLjb8&amp;amp;ab_channel=TechJotters">Install TensorFlow GPU on WSL2 (Windows Subsystem for Linux) - Step by Step Tutorial
+</a></p></li>
+<li><p>Link: <a class="reference external" href="https://www.tensorflow.org/install/pip#windows-wsl2">TensorFlow WSL2</a></p></li>
+</ul>
+</li>
+</ul>
+<ul class="simple">
+<li><p>Instalación de <code class="docutils literal notranslate"><span class="pre">TensorFlow</span></code> en <code class="docutils literal notranslate"><span class="pre">Mac</span></code></p>
+<ul>
+<li><p>Tutorial: <a class="reference external" href="https://www.youtube.com/watch?v=5DgWvU0p2bk&amp;amp;ab_channel=JeffHeaton">How to Install TensorFlow GPU for Mac M1/M2 with Conda</a></p></li>
+<li><p>Link: <a class="reference external" href="https://www.tensorflow.org/install/pip#macos">TensorFlow MacOS</a></p></li>
+</ul>
+</li>
+</ul>
+<ul class="simple">
+<li><p>Generación de <code class="docutils literal notranslate"><span class="pre">Jupyter</span> <span class="pre">Books</span></code> para los entregables <strong>informes de Machine Learning</strong></p>
+<ul>
+<li><p>Tutorial: <a class="reference external" href="https://www.youtube.com/watch?v=m_wCMg2EmdQ&amp;amp;ab_channel=LihkiJoseRubioOrtega">Tutorial 2. Machine Learning. UN 202330</a> y <a class="reference external" href="https://github.com/lihkir/Data/blob/main/TutorialesMachineLearning.pdf">TutorialesMachineLearning.pdf</a></p></li>
+<li><p>Link: <a class="reference external" href="https://jupyterbook.org/en/stable/start/your-first-book.html">Create your first book</a></p></li>
+</ul>
+</li>
+</ul>
+<ul class="simple">
+<li><p>Introducción a <code class="docutils literal notranslate"><span class="pre">Docker</span></code> y <code class="docutils literal notranslate"><span class="pre">Dash</span></code>: <a class="reference external" href="https://lihkir.github.io/DataVizPython/postgresql.html#instalacion-y-uso-de-docker">Instalación y uso de Docker</a> y <a class="reference external" href="https://lihkir.github.io/DataVizPython/dash_dataviz.html">Introducción a Dash</a></p></li>
+</ul>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -865,6 +904,7 @@ dict_keys([&#39;data&#39;, &#39;target&#39;, &#39;frame&#39;, &#39;target_names&
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relacion-entre-la-complejidad-del-modelo-y-el-tamano-del-conjunto-de-datos">1.5. Relación entre la complejidad del modelo y el tamaño del conjunto de datos</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmos-de-aprendizaje-automatico-supervisado">1.6. Algoritmos de aprendizaje automático supervisado</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algunos-ejemplos-de-conjuntos-de-datos">1.7. Algunos ejemplos de conjuntos de datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracion-de-entornos-para-tensorflow">1.8. Configuración de entornos para TensorFlow</a></li>
 </ul>
   </nav></div>
 

@@ -193,17 +193,14 @@
 <li class="toctree-l1"><a class="reference internal" href="linear_model.html">3. Regresión Ridge y Lasso</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">4. Clasificador Bayesiano</a></li>
 <li class="toctree-l1"><a class="reference internal" href="decisiontree_model.html">5. Random Forest y XGBoost</a></li>
-
-
-<li class="toctree-l1"><a class="reference internal" href="svm_model.html">8. Máquinas de vectores de soporte</a></li>
-
-<li class="toctree-l1"><a class="reference internal" href="ann_model.html">10. Redes Neuronales y Deep Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="practical_pca.html">11. Análisis de Componentes Principales</a></li>
-<li class="toctree-l1"><a class="reference internal" href="model_evaluation.html">12. Evaluación de modelos</a></li>
-<li class="toctree-l1"><a class="reference internal" href="chains_pipelines.html">13. Cadenas de Algoritmos y Pipelines</a></li>
-<li class="toctree-l1"><a class="reference internal" href="appendix.html">14. Apéndice</a></li>
-<li class="toctree-l1"><a class="reference internal" href="exercises_sols.html">15. Soluciones a ejercicios</a></li>
-<li class="toctree-l1"><a class="reference internal" href="biblio.html">16. Bibliografía</a></li>
+<li class="toctree-l1"><a class="reference internal" href="svm_model.html">6. Máquinas de vectores de soporte</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ann_model.html">7. Redes Neuronales y Deep Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="practical_pca.html">8. Análisis de Componentes Principales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_evaluation.html">9. Evaluación de modelos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chains_pipelines.html">10. Cadenas de Algoritmos y Pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix.html">11. Apéndice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exercises_sols.html">12. Soluciones a ejercicios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="biblio.html">13. Bibliografía</a></li>
 </ul>
 
     </div>
@@ -354,6 +351,22 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formulacion">4.1. Formulación</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-titanic-dataset">4.2. Aplicación: Titanic Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proyecto-integrador-de-aprendizaje-automatico">4.3. Proyecto Integrador de Aprendizaje Automático</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clasificacion-de-enfermedades-cardiacas-con-modelos-bayesianos">4.3.1. Clasificación de enfermedades cardíacas con modelos bayesianos</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivo-general">4.3.1.1. Objetivo general</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#contexto-aplicado">4.3.1.2. Contexto aplicado</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-sugerido">4.3.1.3. Dataset sugerido</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-disponibles-ejemplo">4.3.1.4. Variables disponibles (ejemplo)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tareas">4.3.1.5. Tareas</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#restricciones-didacticas">4.3.1.6. Restricciones didácticas</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#herramientas-sugeridas">4.3.1.7. Herramientas sugeridas</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#resultado-esperado">4.3.1.8. Resultado esperado</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#diseno-sugerido-del-notebook">4.3.1.9. Diseño sugerido del notebook</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen">4.3.1.10. Resumen</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -436,7 +449,8 @@ G_{2}&amp;: N_{p}(\boldsymbol{\mu}_{2}, \Sigma_{2})\sim\boldsymbol{x}_{1}^{(2)},
 </div>
 <p>Por ejemplo, consideremos una observación, extraida de una distribución normal <span class="math notranslate nohighlight">\(N(170, 6^2)\)</span> asociada con <em><strong>alturas de hombres</strong></em>. Entonces, usando la función de densidad de probabilidad, el <em><strong>nivel relativo de ocurrencia de hombres de 178 cm de altura</strong></em>, puede ser determinado como <span class="math notranslate nohighlight">\(f(178|170, 6^2)\)</span> (ver <a class="reference internal" href="#fig-heights-bayes"><span class="std std-numref">Fig. 4.1</span></a>).</p>
 <figure class="align-center" id="fig-heights-bayes">
-<a class="reference internal image-reference" href="_images/heights_bayes.png"><img alt="_images/heights_bayes.png" src="_images/heights_bayes.png" style="width: 405.20000000000005px; height: 310.8px;" /></a>
+<a class="reference internal image-reference" href="_images/heights_bayes.png"><img alt="_images/heights_bayes.png" src="_images/heights_bayes.png" style="width: 405.20000000000005px; height: 310.8px;" />
+</a>
 <figcaption>
 <p><span class="caption-number">Fig. 4.1 </span><span class="caption-text">Nivel relativo de ocurrencia <span class="math notranslate nohighlight">\(f(178|170, 6^{2})\)</span>. Fuente <span id="id1">[<a class="reference internal" href="biblio.html#id20" title="S. Konishi. Introduction to Multivariate Analysis: Linear and Nonlinear Modeling. Chapman &amp; Hall/CRC Texts in Statistical Science. Taylor &amp; Francis, 2014. ISBN 9781466567283. URL: https://books.google.com.co/books?id=fcuuAwAAQBAJ.">Konishi, 2014</a>]</span>.</span><a class="headerlink" href="#fig-heights-bayes" title="Link to this image">#</a></p>
 </figcaption>
@@ -482,7 +496,8 @@ P(\boldsymbol{x}|G_{i})=\frac{f(\boldsymbol{x}|\overline{\boldsymbol{x}}_{i}, S_
 \]</div>
 <p>(ver <a class="reference internal" href="#fig-bayes-normal"><span class="std std-numref">Fig. 4.2</span></a>) representación del <em><strong>nivel relativo de ocurrencia</strong></em>.</p>
 <figure class="align-center" id="fig-bayes-normal">
-<a class="reference internal image-reference" href="_images/bayes_normal.png"><img alt="_images/bayes_normal.png" src="_images/bayes_normal.png" style="width: 394.0px; height: 303.6px;" /></a>
+<a class="reference internal image-reference" href="_images/bayes_normal.png"><img alt="_images/bayes_normal.png" src="_images/bayes_normal.png" style="width: 394.0px; height: 303.6px;" />
+</a>
 <figcaption>
 <p><span class="caption-number">Fig. 4.2 </span><span class="caption-text"><span class="math notranslate nohighlight">\(P(\boldsymbol{x}|G_{i})\)</span>. Nivel relativo de ocurrencia del dato <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> en cada clase. Fuente <span id="id2">[<a class="reference internal" href="biblio.html#id20" title="S. Konishi. Introduction to Multivariate Analysis: Linear and Nonlinear Modeling. Chapman &amp; Hall/CRC Texts in Statistical Science. Taylor &amp; Francis, 2014. ISBN 9781466567283. URL: https://books.google.com.co/books?id=fcuuAwAAQBAJ.">Konishi, 2014</a>]</span>.</span><a class="headerlink" href="#fig-bayes-normal" title="Link to this image">#</a></p>
 </figcaption>
@@ -3565,6 +3580,152 @@ To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 FMA, 
 </ul>
 </div>
 </section>
+<section id="proyecto-integrador-de-aprendizaje-automatico">
+<h2><span class="section-number">4.3. </span>Proyecto Integrador de Aprendizaje Automático<a class="headerlink" href="#proyecto-integrador-de-aprendizaje-automatico" title="Link to this heading">#</a></h2>
+<section id="clasificacion-de-enfermedades-cardiacas-con-modelos-bayesianos">
+<h3><span class="section-number">4.3.1. </span>Clasificación de enfermedades cardíacas con modelos bayesianos<a class="headerlink" href="#clasificacion-de-enfermedades-cardiacas-con-modelos-bayesianos" title="Link to this heading">#</a></h3>
+<section id="objetivo-general">
+<h4><span class="section-number">4.3.1.1. </span>Objetivo general<a class="headerlink" href="#objetivo-general" title="Link to this heading">#</a></h4>
+<p>Aplicar un modelo supervisado de clasificación basado en la <strong>probabilidad bayesiana</strong> (<code class="docutils literal notranslate"><span class="pre">GaussianNB</span></code>) para predecir la <strong>presencia o ausencia de enfermedad cardíaca</strong> en pacientes a partir de indicadores clínicos. El objetivo es:</p>
+<ol class="arabic simple">
+<li><p>Construir un pipeline de preprocesamiento y clasificación usando <code class="docutils literal notranslate"><span class="pre">GaussianNB</span></code>.</p></li>
+<li><p>Evaluar el desempeño del modelo usando métricas estándar y visualizaciones.</p></li>
+<li><p>Analizar el impacto de cada variable en la predicción desde la perspectiva probabilística.</p></li>
+</ol>
+</section>
+<section id="contexto-aplicado">
+<h4><span class="section-number">4.3.1.2. </span>Contexto aplicado<a class="headerlink" href="#contexto-aplicado" title="Link to this heading">#</a></h4>
+<p>Los sistemas de salud buscan modelos interpretables para apoyar el diagnóstico temprano de enfermedades. Uno de los problemas más frecuentes es el diagnóstico de enfermedad cardíaca, donde se tienen múltiples mediciones clínicas, y se requiere estimar el riesgo de forma transparente. Los clasificadores bayesianos son una herramienta adecuada por su rapidez, simplicidad e interpretabilidad.</p>
+</section>
+<section id="dataset-sugerido">
+<h4><span class="section-number">4.3.1.3. </span>Dataset sugerido<a class="headerlink" href="#dataset-sugerido" title="Link to this heading">#</a></h4>
+<p><strong>Heart Disease UCI Dataset</strong></p>
+<ul class="simple">
+<li><p>Fuente: UCI Machine Learning Repository</p></li>
+<li><p>Registros: 303 pacientes</p></li>
+<li><p>Enlace: <a class="reference external" href="https://archive.ics.uci.edu/ml/datasets/Heart+Disease">https://archive.ics.uci.edu/ml/datasets/Heart+Disease</a></p></li>
+</ul>
+</section>
+<section id="variables-disponibles-ejemplo">
+<h4><span class="section-number">4.3.1.4. </span>Variables disponibles (ejemplo)<a class="headerlink" href="#variables-disponibles-ejemplo" title="Link to this heading">#</a></h4>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Tipo</p></th>
+<th class="head"><p>Variables principales</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Demográficas</p></td>
+<td><p>Edad, sexo</p></td>
+</tr>
+<tr class="row-odd"><td><p>Clínicas</p></td>
+<td><p>Presión arterial, colesterol, frecuencia cardíaca máxima</p></td>
+</tr>
+<tr class="row-even"><td><p>Síntomas</p></td>
+<td><p>Dolor torácico, angina inducida por ejercicio, nivel de azúcar en sangre</p></td>
+</tr>
+<tr class="row-odd"><td><p>Diagnóstico</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">target</span></code> (1 = enfermedad presente, 0 = ausencia de enfermedad)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="tareas">
+<h4><span class="section-number">4.3.1.5. </span>Tareas<a class="headerlink" href="#tareas" title="Link to this heading">#</a></h4>
+<ol class="arabic simple">
+<li><p><strong>Preprocesamiento</strong></p>
+<ul class="simple">
+<li><p>Limpieza de valores faltantes o codificación de valores especiales</p></li>
+<li><p>Codificación de variables categóricas (<code class="docutils literal notranslate"><span class="pre">ChestPain</span></code>, <code class="docutils literal notranslate"><span class="pre">Thal</span></code>, etc.)</p></li>
+<li><p>Escalado si se combina con otras técnicas comparativas</p></li>
+<li><p>División de datos con <code class="docutils literal notranslate"><span class="pre">train_test_split</span></code></p></li>
+</ul>
+</li>
+<li><p><strong>Modelado</strong></p>
+<ul class="simple">
+<li><p>Implementar un <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code> con preprocesamiento y <code class="docutils literal notranslate"><span class="pre">GaussianNB</span></code></p></li>
+<li><p>(Opcional) Comparar con <code class="docutils literal notranslate"><span class="pre">BernoulliNB</span></code> o <code class="docutils literal notranslate"><span class="pre">MultinomialNB</span></code> si hay discretización</p></li>
+<li><p>Realizar validación cruzada para estimar la robustez del clasificador</p></li>
+</ul>
+</li>
+<li><p><strong>Evaluación</strong></p>
+<ul class="simple">
+<li><p>Métricas: matriz de confusión, accuracy, precision, recall, F1-score</p></li>
+<li><p>Curva ROC y cálculo de AUC</p></li>
+<li><p>Gráficos de distribución de predicciones y probabilidad condicional</p></li>
+<li><p>Comparar desempeño con otros clasificadores si se desea (por ejemplo <code class="docutils literal notranslate"><span class="pre">LogisticRegression</span></code>)</p></li>
+</ul>
+</li>
+<li><p><strong>Análisis y reporte</strong></p>
+<ul class="simple">
+<li><p>Analizar cuáles variables son más relevantes según su efecto en las probabilidades</p></li>
+<li><p>Discutir fortalezas y limitaciones del modelo bayesiano (asunción de independencia)</p></li>
+<li><p>Reflexión sobre interpretabilidad y aplicabilidad médica</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="restricciones-didacticas">
+<h4><span class="section-number">4.3.1.6. </span>Restricciones didácticas<a class="headerlink" href="#restricciones-didacticas" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Se debe usar <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code> de <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code></p></li>
+<li><p>No se permite el uso de GridSearchCV (ya que GaussianNB no tiene hiperparámetros principales)</p></li>
+<li><p>El trabajo debe estar documentado, reproducible y visualmente explicado</p></li>
+<li><p>Se debe justificar el uso del modelo bayesiano en el contexto médico</p></li>
+</ul>
+</section>
+<section id="herramientas-sugeridas">
+<h4><span class="section-number">4.3.1.7. </span>Herramientas sugeridas<a class="headerlink" href="#herramientas-sugeridas" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pandas</span></code>, <code class="docutils literal notranslate"><span class="pre">numpy</span></code>, <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>, <code class="docutils literal notranslate"><span class="pre">seaborn</span></code></p></li>
+<li><p>Jupyter Notebook o Google Colab</p></li>
+</ul>
+</section>
+<section id="resultado-esperado">
+<h4><span class="section-number">4.3.1.8. </span>Resultado esperado<a class="headerlink" href="#resultado-esperado" title="Link to this heading">#</a></h4>
+<p>Un cuaderno de trabajo completo que incluya:</p>
+<ul class="simple">
+<li><p>Preprocesamiento y exploración de los datos</p></li>
+<li><p>Implementación del clasificador bayesiano con <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code></p></li>
+<li><p>Evaluación del modelo con métricas apropiadas</p></li>
+<li><p>Análisis crítico de resultados y visualizaciones</p></li>
+<li><p>Conclusiones orientadas a aplicaciones médicas o clínicas</p></li>
+</ul>
+</section>
+<section id="diseno-sugerido-del-notebook">
+<h4><span class="section-number">4.3.1.9. </span>Diseño sugerido del notebook<a class="headerlink" href="#diseno-sugerido-del-notebook" title="Link to this heading">#</a></h4>
+<ol class="arabic simple">
+<li><p>Carga y análisis exploratorio del dataset</p></li>
+<li><p>Preprocesamiento y codificación</p></li>
+<li><p>Definición del pipeline con <code class="docutils literal notranslate"><span class="pre">GaussianNB</span></code></p></li>
+<li><p>Evaluación de resultados y visualizaciones</p></li>
+<li><p>Reflexión crítica y conclusiones</p></li>
+</ol>
+</section>
+<section id="resumen">
+<h4><span class="section-number">4.3.1.10. </span>Resumen<a class="headerlink" href="#resumen" title="Link to this heading">#</a></h4>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Dataset</p></th>
+<th class="head"><p>Tarea</p></th>
+<th class="head"><p>Tamaño</p></th>
+<th class="head"><p>Ventajas clave</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>UCI Heart Disease</p></td>
+<td><p>Clasificación</p></td>
+<td><p>303</p></td>
+<td><p>Real, médico, ideal para modelos interpretables</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -3633,6 +3794,22 @@ To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 FMA, 
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formulacion">4.1. Formulación</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-titanic-dataset">4.2. Aplicación: Titanic Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proyecto-integrador-de-aprendizaje-automatico">4.3. Proyecto Integrador de Aprendizaje Automático</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clasificacion-de-enfermedades-cardiacas-con-modelos-bayesianos">4.3.1. Clasificación de enfermedades cardíacas con modelos bayesianos</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivo-general">4.3.1.1. Objetivo general</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#contexto-aplicado">4.3.1.2. Contexto aplicado</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-sugerido">4.3.1.3. Dataset sugerido</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-disponibles-ejemplo">4.3.1.4. Variables disponibles (ejemplo)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tareas">4.3.1.5. Tareas</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#restricciones-didacticas">4.3.1.6. Restricciones didácticas</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#herramientas-sugeridas">4.3.1.7. Herramientas sugeridas</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#resultado-esperado">4.3.1.8. Resultado esperado</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#diseno-sugerido-del-notebook">4.3.1.9. Diseño sugerido del notebook</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen">4.3.1.10. Resumen</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
