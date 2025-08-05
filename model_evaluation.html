@@ -352,11 +352,12 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-validation">9.1. Cross-Validation</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-cruzada-en-scikit-learn">9.1.1. Validación cruzada en scikit-learn</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ventajas-de-la-validacion-cruzada">9.1.2. Ventajas de la validación cruzada</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-cruzada-estratificada-k-fold-y-otras-estrategias">9.1.3. Validación cruzada estratificada <span class="math notranslate nohighlight">\(k\)</span>-fold y otras estrategias</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mas-control-sobre-la-validacion-cruzada">9.1.4. Más control sobre la validación cruzada</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-cruzada-con-exclusion-leave-one-out">9.1.5. Validación cruzada con exclusión (<code class="docutils literal notranslate"><span class="pre">leave-one-out</span></code>)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-cruzada-aleatoria-y-dividida">9.1.6. Validación cruzada aleatoria y dividida</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-cruzada-con-grupos">9.1.7. Validación cruzada con grupos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-cruzada-kfold">9.1.3. Validación cruzada <code class="docutils literal notranslate"><span class="pre">KFold</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-cruzada-estratificada-stratifiedkfold">9.1.4. Validación cruzada estratificada <code class="docutils literal notranslate"><span class="pre">StratifiedKFold</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-cruzada-shuffle-kfold">9.1.5. Validación cruzada <code class="docutils literal notranslate"><span class="pre">shuffle</span> <span class="pre">KFold</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-cruzada-con-exclusion-leave-one-out">9.1.6. Validación cruzada con exclusión <code class="docutils literal notranslate"><span class="pre">leave-one-out</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-cruzada-aleatoria-y-divididashufflesplit">9.1.7. Validación cruzada aleatoria y dividida<code class="docutils literal notranslate"><span class="pre">ShuffleSplit</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-cruzada-por-grupos-groupkfold">9.1.8. Validación cruzada por grupos <code class="docutils literal notranslate"><span class="pre">GroupKFold</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grid-search">9.2. Grid Search</a><ul class="nav section-nav flex-column">
@@ -387,6 +388,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-metricas-de-evaluacion-en-la-seleccion-de-modelos">9.6.1. Uso de métricas de evaluación en la selección de modelos</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#por-que-usar-pyspark-para-modelos-de-machine-learning-con-grandes-volumenes-de-datos">9.7. ¿Por qué usar <code class="docutils literal notranslate"><span class="pre">PySpark</span></code> para modelos de Machine Learning con grandes volúmenes de datos?</a></li>
 </ul>
             </nav>
         </div>
@@ -516,7 +518,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/464ba17b4c200310244bcd04b0b83810a15c15e388b3bdb0c2b90033a9130eb5.png" src="_images/464ba17b4c200310244bcd04b0b83810a15c15e388b3bdb0c2b90033a9130eb5.png" />
+<img alt="_images/562d28b67da460fdd1de3a076bf6d3f8c4a24cbde422e043ab6049c7bc5af0ab.png" src="_images/562d28b67da460fdd1de3a076bf6d3f8c4a24cbde422e043ab6049c7bc5af0ab.png" />
 </div>
 </div>
 <ul class="simple">
@@ -738,8 +740,8 @@ petal width (cm):
 </ul>
 </div>
 </section>
-<section id="validacion-cruzada-estratificada-k-fold-y-otras-estrategias">
-<h3><span class="section-number">9.1.3. </span>Validación cruzada estratificada <span class="math notranslate nohighlight">\(k\)</span>-fold y otras estrategias<a class="headerlink" href="#validacion-cruzada-estratificada-k-fold-y-otras-estrategias" title="Link to this heading">#</a></h3>
+<section id="validacion-cruzada-kfold">
+<h3><span class="section-number">9.1.3. </span>Validación cruzada <code class="docutils literal notranslate"><span class="pre">KFold</span></code><a class="headerlink" href="#validacion-cruzada-kfold" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Dividir el conjunto de datos en <code class="docutils literal notranslate"><span class="pre">k</span></code> <em><strong>pliegues</strong></em> comenzando por la primera parte de los datos, como descrito en la sección anterior, <em><strong>puede no ser siempre una buena idea</strong></em>. Por ejemplo, veamos el conjunto de datos <code class="docutils literal notranslate"><span class="pre">iris</span></code></p></li>
 </ul>
@@ -762,44 +764,6 @@ petal width (cm):
 </div>
 </div>
 </div>
-<ul class="simple">
-<li><p>En este conjunto de datos, el <em><strong>primer tercio corresponde a la clase 0, el segundo a la clase 1 y el último a la clase 2</strong></em>. Al realizar una <em><strong>validación cruzada de 3 pliegues, cada pliegue contendría solo una clase en el conjunto de prueba</strong></em> y <em><strong>las otras dos en el conjunto de entrenamiento</strong></em>. Esto causaría que la precisión fuera del 0%, ya que las clases en entrenamiento y prueba no coincidirían en ninguna división, lo cual es ineficaz para evaluar el modelo.</p></li>
-<li><p>Como la estrategia simple de <code class="docutils literal notranslate"><span class="pre">k-fold</span></code> falla aquí, <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> <em><strong>no la utiliza para clasificación, sino que utiliza la <code class="docutils literal notranslate"><span class="pre">validación</span> <span class="pre">cruzada</span> <span class="pre">estratificada</span> <span class="pre">k-fold</span></code></strong></em>. En la validación cruzada estratificada, dividimos los datos de forma que las <em><strong>proporciones entre las clases sean las mismas en cada pliegue como en todo el conjunto de datos</strong></em>.</p></li>
-</ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mglearn</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">plot_stratified_cross_validation</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/16c4a06a1cbc231a522754d8efdd1a866821b29bdc053e9632c382dce6612dac.png" src="_images/16c4a06a1cbc231a522754d8efdd1a866821b29bdc053e9632c382dce6612dac.png" />
-</div>
-</div>
-<ul class="simple">
-<li><p>La validación cruzada estratificada de <code class="docutils literal notranslate"><span class="pre">k</span></code> pliegues <em><strong>distribuye las clases en cada pliegue según su proporción en el conjunto de datos, evitando que un pliegue carezca de muestras de alguna clase</strong></em>. Esto ofrece <em><strong>estimaciones más fiables del rendimiento del clasificador</strong></em> en comparación con la validación cruzada estándar de <code class="docutils literal notranslate"><span class="pre">k</span></code> pliegues, especialmente en conjuntos de datos desbalanceados.</p></li>
-<li><p>Para la regresión, <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> utiliza la validación cruzada <code class="docutils literal notranslate"><span class="pre">k-fold</span></code> estándar por defecto. Sería posible también tratar de hacer cada pliegue representativo de los diferentes valores objetivo de la regresión, pero esta no es una estrategia comúnmente utilizada.</p></li>
-</ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">StratifiedKFold</span>
-<span class="n">stratified_kfold</span> <span class="o">=</span> <span class="n">StratifiedKFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-
-<span class="n">scores</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">logreg</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">stratified_kfold</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cross-validation scores:</span><span class="se">\n</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">scores</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Cross-validation scores:
-[0.98 0.96 0.98]
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="mas-control-sobre-la-validacion-cruzada">
-<h3><span class="section-number">9.1.4. </span>Más control sobre la validación cruzada<a class="headerlink" href="#mas-control-sobre-la-validacion-cruzada" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Podemos <em><strong>ajustar el número de pliegues en</strong></em> <code class="docutils literal notranslate"><span class="pre">cross_val_score</span></code> <em><strong>con el parámetro</strong></em> <code class="docutils literal notranslate"><span class="pre">cv</span></code>. No obstante, <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> permite mayor control al aceptar un divisor de validación cruzada como parámetro <code class="docutils literal notranslate"><span class="pre">cv</span></code>. Aunque <em><strong>los valores predeterminados suelen ser adecuados, en ciertos casos puede ser útil una estrategia diferente</strong></em>.</p></li>
 <li><p>Por ejemplo, para replicar resultados con validación cruzada <code class="docutils literal notranslate"><span class="pre">k-fold</span></code> en clasificación, se puede importar la clase <code class="docutils literal notranslate"><span class="pre">KFold</span></code> de <code class="docutils literal notranslate"><span class="pre">model_selection</span></code> e instanciarla con el número deseado de pliegues.</p></li>
@@ -828,8 +792,49 @@ petal width (cm):
 </div>
 </div>
 </div>
+</section>
+<section id="validacion-cruzada-estratificada-stratifiedkfold">
+<h3><span class="section-number">9.1.4. </span>Validación cruzada estratificada <code class="docutils literal notranslate"><span class="pre">StratifiedKFold</span></code><a class="headerlink" href="#validacion-cruzada-estratificada-stratifiedkfold" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Usar <em><strong>validación cruzada triple (no estratificada) en el conjunto de datos iris es ineficaz</strong></em>, ya que cada pliegue corresponde a una clase, impidiendo el aprendizaje. Para evitarlo, <em><strong>se recomienda aleatorizar los datos en lugar de estratificarlos, configurando</strong></em> <code class="docutils literal notranslate"><span class="pre">shuffle=True</span></code> en <code class="docutils literal notranslate"><span class="pre">KFold</span></code> <em><strong>y fijando</strong></em> <code class="docutils literal notranslate"><span class="pre">random_state</span></code> para obtener resultados reproducibles. Esta aleatorización mejora significativamente los resultados.</p></li>
+<li><p>En este conjunto de datos, el <em><strong>primer tercio corresponde a la clase 0, el segundo a la clase 1 y el último a la clase 2</strong></em>. Al realizar una <em><strong>validación cruzada de 3 pliegues, cada pliegue contendría solo una clase en el conjunto de prueba</strong></em> y <em><strong>las otras dos en el conjunto de entrenamiento</strong></em>. Esto causaría que la precisión fuera del 0%, ya que las clases en entrenamiento y prueba no coincidirían en ninguna división, lo cual es ineficaz para evaluar el modelo.</p></li>
+<li><p>Como la estrategia simple de <code class="docutils literal notranslate"><span class="pre">k-fold</span></code> falla aquí, <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> <em><strong>no la utiliza para clasificación, sino que utiliza la <code class="docutils literal notranslate"><span class="pre">validación</span> <span class="pre">cruzada</span> <span class="pre">estratificada</span> <span class="pre">k-fold</span></code></strong></em>. En la validación cruzada estratificada, dividimos los datos de forma que las <em><strong>proporciones entre las clases sean las mismas en cada pliegue como en todo el conjunto de datos</strong></em>.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mglearn</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">plot_stratified_cross_validation</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/a1ae92a3fa489cdeb77047ffc0bc79117f1e2a5eae09fa40d6b490cfa792ff4b.png" src="_images/a1ae92a3fa489cdeb77047ffc0bc79117f1e2a5eae09fa40d6b490cfa792ff4b.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p>La validación cruzada estratificada de <code class="docutils literal notranslate"><span class="pre">k</span></code> pliegues <strong><code class="docutils literal notranslate"><span class="pre">distribuye</span> <span class="pre">las</span> <span class="pre">clases</span> <span class="pre">en</span> <span class="pre">cada</span> <span class="pre">pliegue</span> <span class="pre">según</span> <span class="pre">su</span> <span class="pre">proporción</span> <span class="pre">en</span> <span class="pre">el</span> <span class="pre">conjunto</span> <span class="pre">de</span> <span class="pre">datos,</span> <span class="pre">evitando</span> <span class="pre">que</span> <span class="pre">un</span> <span class="pre">pliegue</span> <span class="pre">carezca</span> <span class="pre">de</span> <span class="pre">muestras</span> <span class="pre">de</span> <span class="pre">alguna</span> <span class="pre">clase</span></code></strong>. Esto ofrece <em><strong>estimaciones más fiables del rendimiento del clasificador</strong></em> en comparación con la validación cruzada estándar de <code class="docutils literal notranslate"><span class="pre">k</span></code> pliegues, especialmente en conjuntos de datos desbalanceados.</p></li>
+<li><p>Para la regresión, <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> utiliza la validación cruzada <code class="docutils literal notranslate"><span class="pre">k-fold</span></code> estándar por defecto. Sería posible también tratar de hacer cada pliegue representativo de los diferentes valores objetivo de la regresión, pero esta no es una estrategia comúnmente utilizada.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">StratifiedKFold</span>
+<span class="n">stratified_kfold</span> <span class="o">=</span> <span class="n">StratifiedKFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">scores</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">logreg</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">stratified_kfold</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cross-validation scores:</span><span class="se">\n</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">scores</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Cross-validation scores:
+[0.98 0.96 0.98]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="validacion-cruzada-shuffle-kfold">
+<h3><span class="section-number">9.1.5. </span>Validación cruzada <code class="docutils literal notranslate"><span class="pre">shuffle</span> <span class="pre">KFold</span></code><a class="headerlink" href="#validacion-cruzada-shuffle-kfold" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Usar <em><strong>validación cruzada triple (no estratificada) en el conjunto de datos iris es ineficaz</strong></em>, ya que cada pliegue corresponde a una clase, impidiendo el aprendizaje. Para evitarlo, <strong>se recomienda aleatorizar los datos en lugar de estratificarlos, configurando</strong> <code class="docutils literal notranslate"><span class="pre">shuffle=True</span></code> en <code class="docutils literal notranslate"><span class="pre">KFold</span></code> <em><strong>y fijando</strong></em> <code class="docutils literal notranslate"><span class="pre">random_state</span></code> para obtener resultados reproducibles. Esta aleatorización mejora significativamente los resultados.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -847,7 +852,7 @@ petal width (cm):
 </div>
 </section>
 <section id="validacion-cruzada-con-exclusion-leave-one-out">
-<h3><span class="section-number">9.1.5. </span>Validación cruzada con exclusión (<code class="docutils literal notranslate"><span class="pre">leave-one-out</span></code>)<a class="headerlink" href="#validacion-cruzada-con-exclusion-leave-one-out" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">9.1.6. </span>Validación cruzada con exclusión <code class="docutils literal notranslate"><span class="pre">leave-one-out</span></code><a class="headerlink" href="#validacion-cruzada-con-exclusion-leave-one-out" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>El método de <em><strong>validación cruzada</strong></em> <code class="docutils literal notranslate"><span class="pre">leave-one-out</span></code> <em><strong>es una variante de</strong></em> <code class="docutils literal notranslate"><span class="pre">k</span></code> <em><strong>pliegues</strong></em> donde <em><strong>cada pliegue de prueba contiene solo una muestra</strong></em>. Aunque es más lento en conjuntos de datos grandes, puede ofrecer <em><strong><code class="docutils literal notranslate"><span class="pre">mejores</span> <span class="pre">estimaciones</span> <span class="pre">en</span> <span class="pre">conjuntos</span> <span class="pre">de</span> <span class="pre">datos</span> <span class="pre">pequeños</span></code></strong></em>.</p></li>
 </ul>
@@ -875,8 +880,8 @@ Mean accuracy: 0.97
 </div>
 </div>
 </section>
-<section id="validacion-cruzada-aleatoria-y-dividida">
-<h3><span class="section-number">9.1.6. </span>Validación cruzada aleatoria y dividida<a class="headerlink" href="#validacion-cruzada-aleatoria-y-dividida" title="Link to this heading">#</a></h3>
+<section id="validacion-cruzada-aleatoria-y-divididashufflesplit">
+<h3><span class="section-number">9.1.7. </span>Validación cruzada aleatoria y dividida<code class="docutils literal notranslate"><span class="pre">ShuffleSplit</span></code><a class="headerlink" href="#validacion-cruzada-aleatoria-y-divididashufflesplit" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Otra estrategia muy flexible para la validación cruzada es <em><strong>la validación cruzada aleatoria</strong></em> (<code class="docutils literal notranslate"><span class="pre">shuffle-split</span> <span class="pre">cross-validation</span></code>). En la validación cruzada de división aleatoria, cada división (<code class="docutils literal notranslate"><span class="pre">split</span></code>) está compuesta de tantos <code class="docutils literal notranslate"><span class="pre">train_size</span></code> <em><strong>puntos (disyuntos)</strong></em> para el conjunto de entrenamiento y tantos <code class="docutils literal notranslate"><span class="pre">test_size</span></code> <em><strong>puntos (disjuntos)</strong></em> para el conjunto de prueba, se fijen inicialmente.</p></li>
 <li><p>Esta división se repite <code class="docutils literal notranslate"><span class="pre">n_iter</span></code> veces, de forma aleatoria. A continuación se muestra <em><strong>la ejecución de cuatro iteraciones de división de un conjunto de datos que consta de <code class="docutils literal notranslate"><span class="pre">10</span> <span class="pre">puntos</span></code>, con un conjunto de entrenamiento de <code class="docutils literal notranslate"><span class="pre">5</span> <span class="pre">puntos</span></code> y conjuntos de prueba de <code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">puntos</span></code> cada uno</strong></em></p></li>
@@ -888,7 +893,7 @@ Mean accuracy: 0.97
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/3da0128faf4cd0ca1231184ff81f1016555701727260db26519d838bb1c4c5a1.png" src="_images/3da0128faf4cd0ca1231184ff81f1016555701727260db26519d838bb1c4c5a1.png" />
+<img alt="_images/2f251b3cf0f1cf97660350cef8dd23b09de186e0938347df2faf782915f99081.png" src="_images/2f251b3cf0f1cf97660350cef8dd23b09de186e0938347df2faf782915f99081.png" />
 </div>
 </div>
 <ul class="simple">
@@ -903,16 +908,23 @@ Mean accuracy: 0.97
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">shuffle_split</span> <span class="o">=</span> <span class="n">ShuffleSplit</span><span class="p">(</span><span class="n">test_size</span><span class="o">=</span><span class="mf">.5</span><span class="p">,</span> <span class="n">train_size</span><span class="o">=</span><span class="mf">.5</span><span class="p">,</span> <span class="n">n_splits</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-<span class="n">scores</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">logreg</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">shuffle_split</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cross-validation scores:</span><span class="se">\n</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">scores</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">shuffle_split</span> <span class="o">=</span> <span class="n">ShuffleSplit</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">train_size</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">scores</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">logreg</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">shuffle_split</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cross-validation scores with partial coverage of the dataset:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">scores</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mean score: </span><span class="si">{:.3f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">scores</span><span class="o">.</span><span class="n">mean</span><span class="p">()))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Cross-validation scores:
-[0.94666667 0.93333333 0.96       0.96       0.96       0.92
- 0.98666667 0.94666667 0.97333333 0.97333333]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Cross-validation scores with partial coverage of the dataset:
+ [0.85 0.85 0.95 0.85 0.5  0.9  0.85 0.85 0.95 0.75]
+Mean score: 0.830
 </pre></div>
 </div>
 </div>
@@ -921,8 +933,8 @@ Mean accuracy: 0.97
 <li><p>La <em><strong>validación cruzada aleatoria permite ajustar el número de iteraciones y <code class="docutils literal notranslate"><span class="pre">usar</span> <span class="pre">solo</span> <span class="pre">una</span> <span class="pre">parte</span> <span class="pre">de</span> <span class="pre">los</span> <span class="pre">datos</span> <span class="pre">en</span> <span class="pre">cada</span> <span class="pre">iteración,</span> <span class="pre">lo</span> <span class="pre">cual</span> <span class="pre">es</span> <span class="pre">útil</span> <span class="pre">para</span> <span class="pre">grandes</span> <span class="pre">conjuntos</span> <span class="pre">de</span> <span class="pre">datos</span></code></strong></em>. La variante estratificada, <code class="docutils literal notranslate"><span class="pre">StratifiedShuffleSplit</span></code>, <em><strong>ofrece resultados más fiables en tareas de clasificación</strong></em>.</p></li>
 </ul>
 </section>
-<section id="validacion-cruzada-con-grupos">
-<h3><span class="section-number">9.1.7. </span>Validación cruzada con grupos<a class="headerlink" href="#validacion-cruzada-con-grupos" title="Link to this heading">#</a></h3>
+<section id="validacion-cruzada-por-grupos-groupkfold">
+<h3><span class="section-number">9.1.8. </span>Validación cruzada por grupos <code class="docutils literal notranslate"><span class="pre">GroupKFold</span></code><a class="headerlink" href="#validacion-cruzada-por-grupos-groupkfold" title="Link to this heading">#</a></h3>
 <div class="admonition-groupkfold admonition">
 <p class="admonition-title">GroupKFold</p>
 <ul class="simple">
@@ -937,42 +949,28 @@ Mean accuracy: 0.97
 </ul>
 </div>
 <ul class="simple">
-<li><p>Este ejemplo ilustra el uso de la validación cruzada en un conjunto de datos sintético con agrupación definida por la matriz groups. El conjunto tiene <em><strong>12 datos, organizados en cuatro grupos: los primeros tres puntos pertenecen al primer grupo, los siguientes cuatro al segundo, y así sucesivamente</strong></em>.</p></li>
+<li><p>Este ejemplo ilustra cómo aplicar validación cruzada por grupos usando <code class="docutils literal notranslate"><span class="pre">GroupKFold</span></code>, asegurando que las <strong>observaciones de un mismo grupo no se mezclen entre entrenamiento y prueba</strong>. Se usa un conjunto sintético de 12 datos divididos en 4 grupos, <strong>ideal para evitar fugas de información en contextos donde los datos están agrupados</strong> (como pacientes o dispositivos).</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GroupKFold</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_classification</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_blobs</span>
 </pre></div>
 </div>
 </div>
 </div>
 <ul class="simple">
-<li><p>Creamos nuestro conjunto de datos sintético, y la lista de grupos <code class="docutils literal notranslate"><span class="pre">groups</span></code></p></li>
+<li><p>Dataset sintético con <strong>12 muestras y 4 grupos</strong> (pacientes)</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_blobs</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 0, 2, 0, 0, 1, 1, 2, 0, 2, 2, 1])
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">groups</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_classification</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">n_features</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">groups</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>     <span class="c1"># Paciente 0</span>
+          <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span>  <span class="c1"># Paciente 1</span>
+          <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span>        <span class="c1"># Paciente 2</span>
+          <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>     <span class="c1"># Paciente 3</span>
 </pre></div>
 </div>
 </div>
@@ -980,30 +978,57 @@ Mean accuracy: 0.97
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gkf</span> <span class="o">=</span> <span class="n">GroupKFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">train</span><span class="p">,</span> <span class="n">test</span> <span class="ow">in</span> <span class="n">gkf</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="n">groups</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;GroupKFold: </span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">train</span><span class="p">,</span> <span class="n">test</span><span class="p">))</span>
-    <span class="n">Xtrain</span><span class="p">,</span> <span class="n">Xtest</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">train</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="n">test</span><span class="p">]</span>
-    <span class="n">ytrain</span><span class="p">,</span> <span class="n">ytest</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">train</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">test</span><span class="p">]</span>
-    <span class="n">logreg</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>
-    <span class="n">logreg</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">Xtrain</span><span class="p">,</span> <span class="n">ytrain</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;LogisticRegression Score: &quot;</span><span class="p">,</span> <span class="n">logreg</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">Xtest</span><span class="p">,</span> <span class="n">ytest</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">fold</span><span class="p">,</span> <span class="p">(</span><span class="n">train_idx</span><span class="p">,</span> <span class="n">test_idx</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">gkf</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">groups</span><span class="p">)):</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">train_idx</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">train_idx</span><span class="p">])</span>
+    <span class="n">score</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">test_idx</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">test_idx</span><span class="p">])</span>
+    
+    <span class="n">train_groups</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">groups</span><span class="p">)[</span><span class="n">train_idx</span><span class="p">])</span>
+    <span class="n">test_groups</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">groups</span><span class="p">)[</span><span class="n">test_idx</span><span class="p">])</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Fold </span><span class="si">{</span><span class="n">fold</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Train indices: </span><span class="si">{</span><span class="n">train_idx</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Test indices:  </span><span class="si">{</span><span class="n">test_idx</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Train groups:  </span><span class="si">{</span><span class="n">train_groups</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Test groups:   </span><span class="si">{</span><span class="n">test_groups</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Score:         </span><span class="si">{</span><span class="n">score</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GroupKFold: [ 0  1  2  7  8  9 10 11] [3 4 5 6]
-LogisticRegression Score:  0.75
-GroupKFold: [0 1 2 3 4 5 6] [ 7  8  9 10 11]
-LogisticRegression Score:  0.6
-GroupKFold: [ 3  4  5  6  7  8  9 10 11] [0 1 2]
-LogisticRegression Score:  0.6666666666666666
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fold 1
+Train indices: [ 0  1  2  7  8  9 10 11]
+Test indices:  [3 4 5 6]
+Train groups:  {0, 2, 3}
+Test groups:   {1}
+Score:         0.75
+
+Fold 2
+Train indices: [0 1 2 3 4 5 6]
+Test indices:  [ 7  8  9 10 11]
+Train groups:  {0, 1}
+Test groups:   {2, 3}
+Score:         0.40
+
+Fold 3
+Train indices: [ 3  4  5  6  7  8  9 10 11]
+Test indices:  [0 1 2]
+Train groups:  {1, 2, 3}
+Test groups:   {0}
+Score:         0.67
 </pre></div>
 </div>
 </div>
 </div>
 <ul class="simple">
-<li><p>No es necesario que las muestras estén ordenadas por grupos; sólo lo hemos hecho con fines ilustrativos. <em><strong>Como puede ver, para cada división, cada grupo está completamente en el conjunto de entrenamiento o completamente en el conjunto de prueba</strong></em>. Ademas, <em><strong>observe que los pliegues no tienen exactamente el mismo tamaño debido al desequilibrio de los datos</strong></em>.</p></li>
-<li><p>Hay más estrategias de división para la validación cruzada en <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>, que pueden utilizarse para una variedad aún mayor de casos (ver <a class="reference external" href="https://scikit-learn.org/stable/modules/cross_validation.html">Cross-validation: evaluating estimator performance</a>). Sin embargo, el <code class="docutils literal notranslate"><span class="pre">KFold</span></code> estándar, el <code class="docutils literal notranslate"><span class="pre">StratifiedKFold</span></code> y el <code class="docutils literal notranslate"><span class="pre">GroupKFold</span></code> son, como mucho, los más utilizados. En el siguiente link puede encontrar la documentición relacionada con el uso de cada parámetro de la función <code class="docutils literal notranslate"><span class="pre">sklearn.model_selection.cross_val_score</span></code> (ver <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.cross_val_score.html">Evaluate a score by cross-validation</a>).</p></li>
+<li><p><strong>Como puede ver, para cada división, cada grupo está completamente en el conjunto de entrenamiento o completamente en el conjunto de prueba</strong>. Además, <em>observe que los pliegues no tienen exactamente el mismo tamaño debido al desequilibrio de los datos</em>.</p></li>
+<li><p>Hay más estrategias de división para la validación cruzada en <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>, que pueden utilizarse para una variedad aún mayor de casos (ver <a class="reference external" href="https://scikit-learn.org/stable/modules/cross_validation.html">Cross-validation: evaluating estimator performance</a>). Sin embargo, el <code class="docutils literal notranslate"><span class="pre">KFold</span></code> estándar, el <code class="docutils literal notranslate"><span class="pre">StratifiedKFold</span></code> y el <code class="docutils literal notranslate"><span class="pre">GroupKFold</span></code> son, como mucho, los más utilizados. En el siguiente link puede encontrar la documentación relacionada con el uso de cada parámetro de la función <code class="docutils literal notranslate"><span class="pre">sklearn.model_selection.cross_val_score</span></code> (ver <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.cross_val_score.html">Evaluate a score by cross-validation</a>).</p></li>
 </ul>
 </section>
 </section>
@@ -1081,7 +1106,7 @@ Best parameters: {&#39;C&#39;: 100, &#39;gamma&#39;: 0.001}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/7652fbcbf2450303a0cada32aed703b023faeaed06625753c52144946c766fe1.png" src="_images/7652fbcbf2450303a0cada32aed703b023faeaed06625753c52144946c766fe1.png" />
+<img alt="_images/5501ff7c3f118d14e38402fdccef8cfd7743bf2bf85eea65afe759ef3f2c9cf0.png" src="_images/5501ff7c3f118d14e38402fdccef8cfd7743bf2bf85eea65afe759ef3f2c9cf0.png" />
 </div>
 </div>
 <ul class="simple">
@@ -1209,411 +1234,7 @@ Test set score with best parameters: 0.92
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><style>#sk-container-id-1 {
-  /* Definition of color scheme common for light and dark mode */
-  --sklearn-color-text: black;
-  --sklearn-color-line: gray;
-  /* Definition of color scheme for unfitted estimators */
-  --sklearn-color-unfitted-level-0: #fff5e6;
-  --sklearn-color-unfitted-level-1: #f6e4d2;
-  --sklearn-color-unfitted-level-2: #ffe0b3;
-  --sklearn-color-unfitted-level-3: chocolate;
-  /* Definition of color scheme for fitted estimators */
-  --sklearn-color-fitted-level-0: #f0f8ff;
-  --sklearn-color-fitted-level-1: #d4ebff;
-  --sklearn-color-fitted-level-2: #b3dbfd;
-  --sklearn-color-fitted-level-3: cornflowerblue;
-
-  /* Specific color for light theme */
-  --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
-  --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, white)));
-  --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
-  --sklearn-color-icon: #696969;
-
-  @media (prefers-color-scheme: dark) {
-    /* Redefinition of color scheme for dark theme */
-    --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
-    --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, #111)));
-    --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
-    --sklearn-color-icon: #878787;
-  }
-}
-
-#sk-container-id-1 {
-  color: var(--sklearn-color-text);
-}
-
-#sk-container-id-1 pre {
-  padding: 0;
-}
-
-#sk-container-id-1 input.sk-hidden--visually {
-  border: 0;
-  clip: rect(1px 1px 1px 1px);
-  clip: rect(1px, 1px, 1px, 1px);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  width: 1px;
-}
-
-#sk-container-id-1 div.sk-dashed-wrapped {
-  border: 1px dashed var(--sklearn-color-line);
-  margin: 0 0.4em 0.5em 0.4em;
-  box-sizing: border-box;
-  padding-bottom: 0.4em;
-  background-color: var(--sklearn-color-background);
-}
-
-#sk-container-id-1 div.sk-container {
-  /* jupyter's `normalize.less` sets `[hidden] { display: none; }`
-     but bootstrap.min.css set `[hidden] { display: none !important; }`
-     so we also need the `!important` here to be able to override the
-     default hidden behavior on the sphinx rendered scikit-learn.org.
-     See: https://github.com/scikit-learn/scikit-learn/issues/21755 */
-  display: inline-block !important;
-  position: relative;
-}
-
-#sk-container-id-1 div.sk-text-repr-fallback {
-  display: none;
-}
-
-div.sk-parallel-item,
-div.sk-serial,
-div.sk-item {
-  /* draw centered vertical line to link estimators */
-  background-image: linear-gradient(var(--sklearn-color-text-on-default-background), var(--sklearn-color-text-on-default-background));
-  background-size: 2px 100%;
-  background-repeat: no-repeat;
-  background-position: center center;
-}
-
-/* Parallel-specific style estimator block */
-
-#sk-container-id-1 div.sk-parallel-item::after {
-  content: "";
-  width: 100%;
-  border-bottom: 2px solid var(--sklearn-color-text-on-default-background);
-  flex-grow: 1;
-}
-
-#sk-container-id-1 div.sk-parallel {
-  display: flex;
-  align-items: stretch;
-  justify-content: center;
-  background-color: var(--sklearn-color-background);
-  position: relative;
-}
-
-#sk-container-id-1 div.sk-parallel-item {
-  display: flex;
-  flex-direction: column;
-}
-
-#sk-container-id-1 div.sk-parallel-item:first-child::after {
-  align-self: flex-end;
-  width: 50%;
-}
-
-#sk-container-id-1 div.sk-parallel-item:last-child::after {
-  align-self: flex-start;
-  width: 50%;
-}
-
-#sk-container-id-1 div.sk-parallel-item:only-child::after {
-  width: 0;
-}
-
-/* Serial-specific style estimator block */
-
-#sk-container-id-1 div.sk-serial {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: var(--sklearn-color-background);
-  padding-right: 1em;
-  padding-left: 1em;
-}
-
-
-/* Toggleable style: style used for estimator/Pipeline/ColumnTransformer box that is
-clickable and can be expanded/collapsed.
-- Pipeline and ColumnTransformer use this feature and define the default style
-- Estimators will overwrite some part of the style using the `sk-estimator` class
-*/
-
-/* Pipeline and ColumnTransformer style (default) */
-
-#sk-container-id-1 div.sk-toggleable {
-  /* Default theme specific background. It is overwritten whether we have a
-  specific estimator or a Pipeline/ColumnTransformer */
-  background-color: var(--sklearn-color-background);
-}
-
-/* Toggleable label */
-#sk-container-id-1 label.sk-toggleable__label {
-  cursor: pointer;
-  display: block;
-  width: 100%;
-  margin-bottom: 0;
-  padding: 0.5em;
-  box-sizing: border-box;
-  text-align: center;
-}
-
-#sk-container-id-1 label.sk-toggleable__label-arrow:before {
-  /* Arrow on the left of the label */
-  content: "▸";
-  float: left;
-  margin-right: 0.25em;
-  color: var(--sklearn-color-icon);
-}
-
-#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {
-  color: var(--sklearn-color-text);
-}
-
-/* Toggleable content - dropdown */
-
-#sk-container-id-1 div.sk-toggleable__content {
-  max-height: 0;
-  max-width: 0;
-  overflow: hidden;
-  text-align: left;
-  /* unfitted */
-  background-color: var(--sklearn-color-unfitted-level-0);
-}
-
-#sk-container-id-1 div.sk-toggleable__content.fitted {
-  /* fitted */
-  background-color: var(--sklearn-color-fitted-level-0);
-}
-
-#sk-container-id-1 div.sk-toggleable__content pre {
-  margin: 0.2em;
-  border-radius: 0.25em;
-  color: var(--sklearn-color-text);
-  /* unfitted */
-  background-color: var(--sklearn-color-unfitted-level-0);
-}
-
-#sk-container-id-1 div.sk-toggleable__content.fitted pre {
-  /* unfitted */
-  background-color: var(--sklearn-color-fitted-level-0);
-}
-
-#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {
-  /* Expand drop-down */
-  max-height: 200px;
-  max-width: 100%;
-  overflow: auto;
-}
-
-#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
-  content: "▾";
-}
-
-/* Pipeline/ColumnTransformer-specific style */
-
-#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
-  color: var(--sklearn-color-text);
-  background-color: var(--sklearn-color-unfitted-level-2);
-}
-
-#sk-container-id-1 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
-  background-color: var(--sklearn-color-fitted-level-2);
-}
-
-/* Estimator-specific style */
-
-/* Colorize estimator box */
-#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
-  /* unfitted */
-  background-color: var(--sklearn-color-unfitted-level-2);
-}
-
-#sk-container-id-1 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
-  /* fitted */
-  background-color: var(--sklearn-color-fitted-level-2);
-}
-
-#sk-container-id-1 div.sk-label label.sk-toggleable__label,
-#sk-container-id-1 div.sk-label label {
-  /* The background is the default theme color */
-  color: var(--sklearn-color-text-on-default-background);
-}
-
-/* On hover, darken the color of the background */
-#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {
-  color: var(--sklearn-color-text);
-  background-color: var(--sklearn-color-unfitted-level-2);
-}
-
-/* Label box, darken color on hover, fitted */
-#sk-container-id-1 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
-  color: var(--sklearn-color-text);
-  background-color: var(--sklearn-color-fitted-level-2);
-}
-
-/* Estimator label */
-
-#sk-container-id-1 div.sk-label label {
-  font-family: monospace;
-  font-weight: bold;
-  display: inline-block;
-  line-height: 1.2em;
-}
-
-#sk-container-id-1 div.sk-label-container {
-  text-align: center;
-}
-
-/* Estimator-specific */
-#sk-container-id-1 div.sk-estimator {
-  font-family: monospace;
-  border: 1px dotted var(--sklearn-color-border-box);
-  border-radius: 0.25em;
-  box-sizing: border-box;
-  margin-bottom: 0.5em;
-  /* unfitted */
-  background-color: var(--sklearn-color-unfitted-level-0);
-}
-
-#sk-container-id-1 div.sk-estimator.fitted {
-  /* fitted */
-  background-color: var(--sklearn-color-fitted-level-0);
-}
-
-/* on hover */
-#sk-container-id-1 div.sk-estimator:hover {
-  /* unfitted */
-  background-color: var(--sklearn-color-unfitted-level-2);
-}
-
-#sk-container-id-1 div.sk-estimator.fitted:hover {
-  /* fitted */
-  background-color: var(--sklearn-color-fitted-level-2);
-}
-
-/* Specification for estimator info (e.g. "i" and "?") */
-
-/* Common style for "i" and "?" */
-
-.sk-estimator-doc-link,
-a:link.sk-estimator-doc-link,
-a:visited.sk-estimator-doc-link {
-  float: right;
-  font-size: smaller;
-  line-height: 1em;
-  font-family: monospace;
-  background-color: var(--sklearn-color-background);
-  border-radius: 1em;
-  height: 1em;
-  width: 1em;
-  text-decoration: none !important;
-  margin-left: 1ex;
-  /* unfitted */
-  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
-  color: var(--sklearn-color-unfitted-level-1);
-}
-
-.sk-estimator-doc-link.fitted,
-a:link.sk-estimator-doc-link.fitted,
-a:visited.sk-estimator-doc-link.fitted {
-  /* fitted */
-  border: var(--sklearn-color-fitted-level-1) 1pt solid;
-  color: var(--sklearn-color-fitted-level-1);
-}
-
-/* On hover */
-div.sk-estimator:hover .sk-estimator-doc-link:hover,
-.sk-estimator-doc-link:hover,
-div.sk-label-container:hover .sk-estimator-doc-link:hover,
-.sk-estimator-doc-link:hover {
-  /* unfitted */
-  background-color: var(--sklearn-color-unfitted-level-3);
-  color: var(--sklearn-color-background);
-  text-decoration: none;
-}
-
-div.sk-estimator.fitted:hover .sk-estimator-doc-link.fitted:hover,
-.sk-estimator-doc-link.fitted:hover,
-div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
-.sk-estimator-doc-link.fitted:hover {
-  /* fitted */
-  background-color: var(--sklearn-color-fitted-level-3);
-  color: var(--sklearn-color-background);
-  text-decoration: none;
-}
-
-/* Span, style for the box shown on hovering the info icon */
-.sk-estimator-doc-link span {
-  display: none;
-  z-index: 9999;
-  position: relative;
-  font-weight: normal;
-  right: .2ex;
-  padding: .5ex;
-  margin: .5ex;
-  width: min-content;
-  min-width: 20ex;
-  max-width: 50ex;
-  color: var(--sklearn-color-text);
-  box-shadow: 2pt 2pt 4pt #999;
-  /* unfitted */
-  background: var(--sklearn-color-unfitted-level-0);
-  border: .5pt solid var(--sklearn-color-unfitted-level-3);
-}
-
-.sk-estimator-doc-link.fitted span {
-  /* fitted */
-  background: var(--sklearn-color-fitted-level-0);
-  border: var(--sklearn-color-fitted-level-3);
-}
-
-.sk-estimator-doc-link:hover span {
-  display: block;
-}
-
-/* "?"-specific style due to the `<a>` HTML tag */
-
-#sk-container-id-1 a.estimator_doc_link {
-  float: right;
-  font-size: 1rem;
-  line-height: 1em;
-  font-family: monospace;
-  background-color: var(--sklearn-color-background);
-  border-radius: 1rem;
-  height: 1rem;
-  width: 1rem;
-  text-decoration: none;
-  /* unfitted */
-  color: var(--sklearn-color-unfitted-level-1);
-  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
-}
-
-#sk-container-id-1 a.estimator_doc_link.fitted {
-  /* fitted */
-  border: var(--sklearn-color-fitted-level-1) 1pt solid;
-  color: var(--sklearn-color-fitted-level-1);
-}
-
-/* On hover */
-#sk-container-id-1 a.estimator_doc_link:hover {
-  /* unfitted */
-  background-color: var(--sklearn-color-unfitted-level-3);
-  color: var(--sklearn-color-background);
-  text-decoration: none;
-}
-
-#sk-container-id-1 a.estimator_doc_link.fitted:hover {
-  /* fitted */
-  background-color: var(--sklearn-color-fitted-level-3);
-}
-</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>SVC(C=10, gamma=0.1)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked><label for="sk-estimator-id-1" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;&nbsp;SVC<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.svm.SVC.html">?<span>Documentation for SVC</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></label><div class="sk-toggleable__content fitted"><pre>SVC(C=10, gamma=0.1)</pre></div> </div></div></div></div></div></div>
+<div class="output text_html"><style>#sk-container-id-1 {color: black;}#sk-container-id-1 pre{padding: 0;}#sk-container-id-1 div.sk-toggleable {background-color: white;}#sk-container-id-1 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-1 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-1 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-1 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-1 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-1 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-1 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-1 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-1 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-1 div.sk-item {position: relative;z-index: 1;}#sk-container-id-1 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-1 div.sk-item::before, #sk-container-id-1 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-1 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-1 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-1 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-1 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-1 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-1 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-1 div.sk-label-container {text-align: center;}#sk-container-id-1 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-1 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>SVC(C=10, gamma=0.1)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked><label for="sk-estimator-id-1" class="sk-toggleable__label sk-toggleable__label-arrow">SVC</label><div class="sk-toggleable__content"><pre>SVC(C=10, gamma=0.1)</pre></div></div></div></div></div></div></div>
 </div>
 <ul class="simple">
 <li><p>Para evaluar la precisión de <code class="docutils literal notranslate"><span class="pre">SVM</span></code> utilizando un ajuste particular de <code class="docutils literal notranslate"><span class="pre">C</span></code> y <code class="docutils literal notranslate"><span class="pre">gamma</span></code> con <code class="docutils literal notranslate"><span class="pre">5-fold</span></code> validación cruzada, necesitamos entrenar <em><strong>36 * 5 = 180 modelos</strong></em>. Como puede imaginarse el <em><strong>principal inconveniente del uso de la validación cruzada es el tiempo que lleva entrenar todos estos modelos</strong></em>. La siguiente visualización ilustra cómo se selecciona la mejor configuración de parámetros en el código anterior</p></li>
@@ -1695,415 +1316,11 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><style>#sk-container-id-2 {
-  /* Definition of color scheme common for light and dark mode */
-  --sklearn-color-text: black;
-  --sklearn-color-line: gray;
-  /* Definition of color scheme for unfitted estimators */
-  --sklearn-color-unfitted-level-0: #fff5e6;
-  --sklearn-color-unfitted-level-1: #f6e4d2;
-  --sklearn-color-unfitted-level-2: #ffe0b3;
-  --sklearn-color-unfitted-level-3: chocolate;
-  /* Definition of color scheme for fitted estimators */
-  --sklearn-color-fitted-level-0: #f0f8ff;
-  --sklearn-color-fitted-level-1: #d4ebff;
-  --sklearn-color-fitted-level-2: #b3dbfd;
-  --sklearn-color-fitted-level-3: cornflowerblue;
-
-  /* Specific color for light theme */
-  --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
-  --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, white)));
-  --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
-  --sklearn-color-icon: #696969;
-
-  @media (prefers-color-scheme: dark) {
-    /* Redefinition of color scheme for dark theme */
-    --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
-    --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, #111)));
-    --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
-    --sklearn-color-icon: #878787;
-  }
-}
-
-#sk-container-id-2 {
-  color: var(--sklearn-color-text);
-}
-
-#sk-container-id-2 pre {
-  padding: 0;
-}
-
-#sk-container-id-2 input.sk-hidden--visually {
-  border: 0;
-  clip: rect(1px 1px 1px 1px);
-  clip: rect(1px, 1px, 1px, 1px);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  width: 1px;
-}
-
-#sk-container-id-2 div.sk-dashed-wrapped {
-  border: 1px dashed var(--sklearn-color-line);
-  margin: 0 0.4em 0.5em 0.4em;
-  box-sizing: border-box;
-  padding-bottom: 0.4em;
-  background-color: var(--sklearn-color-background);
-}
-
-#sk-container-id-2 div.sk-container {
-  /* jupyter's `normalize.less` sets `[hidden] { display: none; }`
-     but bootstrap.min.css set `[hidden] { display: none !important; }`
-     so we also need the `!important` here to be able to override the
-     default hidden behavior on the sphinx rendered scikit-learn.org.
-     See: https://github.com/scikit-learn/scikit-learn/issues/21755 */
-  display: inline-block !important;
-  position: relative;
-}
-
-#sk-container-id-2 div.sk-text-repr-fallback {
-  display: none;
-}
-
-div.sk-parallel-item,
-div.sk-serial,
-div.sk-item {
-  /* draw centered vertical line to link estimators */
-  background-image: linear-gradient(var(--sklearn-color-text-on-default-background), var(--sklearn-color-text-on-default-background));
-  background-size: 2px 100%;
-  background-repeat: no-repeat;
-  background-position: center center;
-}
-
-/* Parallel-specific style estimator block */
-
-#sk-container-id-2 div.sk-parallel-item::after {
-  content: "";
-  width: 100%;
-  border-bottom: 2px solid var(--sklearn-color-text-on-default-background);
-  flex-grow: 1;
-}
-
-#sk-container-id-2 div.sk-parallel {
-  display: flex;
-  align-items: stretch;
-  justify-content: center;
-  background-color: var(--sklearn-color-background);
-  position: relative;
-}
-
-#sk-container-id-2 div.sk-parallel-item {
-  display: flex;
-  flex-direction: column;
-}
-
-#sk-container-id-2 div.sk-parallel-item:first-child::after {
-  align-self: flex-end;
-  width: 50%;
-}
-
-#sk-container-id-2 div.sk-parallel-item:last-child::after {
-  align-self: flex-start;
-  width: 50%;
-}
-
-#sk-container-id-2 div.sk-parallel-item:only-child::after {
-  width: 0;
-}
-
-/* Serial-specific style estimator block */
-
-#sk-container-id-2 div.sk-serial {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: var(--sklearn-color-background);
-  padding-right: 1em;
-  padding-left: 1em;
-}
-
-
-/* Toggleable style: style used for estimator/Pipeline/ColumnTransformer box that is
-clickable and can be expanded/collapsed.
-- Pipeline and ColumnTransformer use this feature and define the default style
-- Estimators will overwrite some part of the style using the `sk-estimator` class
-*/
-
-/* Pipeline and ColumnTransformer style (default) */
-
-#sk-container-id-2 div.sk-toggleable {
-  /* Default theme specific background. It is overwritten whether we have a
-  specific estimator or a Pipeline/ColumnTransformer */
-  background-color: var(--sklearn-color-background);
-}
-
-/* Toggleable label */
-#sk-container-id-2 label.sk-toggleable__label {
-  cursor: pointer;
-  display: block;
-  width: 100%;
-  margin-bottom: 0;
-  padding: 0.5em;
-  box-sizing: border-box;
-  text-align: center;
-}
-
-#sk-container-id-2 label.sk-toggleable__label-arrow:before {
-  /* Arrow on the left of the label */
-  content: "▸";
-  float: left;
-  margin-right: 0.25em;
-  color: var(--sklearn-color-icon);
-}
-
-#sk-container-id-2 label.sk-toggleable__label-arrow:hover:before {
-  color: var(--sklearn-color-text);
-}
-
-/* Toggleable content - dropdown */
-
-#sk-container-id-2 div.sk-toggleable__content {
-  max-height: 0;
-  max-width: 0;
-  overflow: hidden;
-  text-align: left;
-  /* unfitted */
-  background-color: var(--sklearn-color-unfitted-level-0);
-}
-
-#sk-container-id-2 div.sk-toggleable__content.fitted {
-  /* fitted */
-  background-color: var(--sklearn-color-fitted-level-0);
-}
-
-#sk-container-id-2 div.sk-toggleable__content pre {
-  margin: 0.2em;
-  border-radius: 0.25em;
-  color: var(--sklearn-color-text);
-  /* unfitted */
-  background-color: var(--sklearn-color-unfitted-level-0);
-}
-
-#sk-container-id-2 div.sk-toggleable__content.fitted pre {
-  /* unfitted */
-  background-color: var(--sklearn-color-fitted-level-0);
-}
-
-#sk-container-id-2 input.sk-toggleable__control:checked~div.sk-toggleable__content {
-  /* Expand drop-down */
-  max-height: 200px;
-  max-width: 100%;
-  overflow: auto;
-}
-
-#sk-container-id-2 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
-  content: "▾";
-}
-
-/* Pipeline/ColumnTransformer-specific style */
-
-#sk-container-id-2 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
-  color: var(--sklearn-color-text);
-  background-color: var(--sklearn-color-unfitted-level-2);
-}
-
-#sk-container-id-2 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
-  background-color: var(--sklearn-color-fitted-level-2);
-}
-
-/* Estimator-specific style */
-
-/* Colorize estimator box */
-#sk-container-id-2 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
-  /* unfitted */
-  background-color: var(--sklearn-color-unfitted-level-2);
-}
-
-#sk-container-id-2 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
-  /* fitted */
-  background-color: var(--sklearn-color-fitted-level-2);
-}
-
-#sk-container-id-2 div.sk-label label.sk-toggleable__label,
-#sk-container-id-2 div.sk-label label {
-  /* The background is the default theme color */
-  color: var(--sklearn-color-text-on-default-background);
-}
-
-/* On hover, darken the color of the background */
-#sk-container-id-2 div.sk-label:hover label.sk-toggleable__label {
-  color: var(--sklearn-color-text);
-  background-color: var(--sklearn-color-unfitted-level-2);
-}
-
-/* Label box, darken color on hover, fitted */
-#sk-container-id-2 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
-  color: var(--sklearn-color-text);
-  background-color: var(--sklearn-color-fitted-level-2);
-}
-
-/* Estimator label */
-
-#sk-container-id-2 div.sk-label label {
-  font-family: monospace;
-  font-weight: bold;
-  display: inline-block;
-  line-height: 1.2em;
-}
-
-#sk-container-id-2 div.sk-label-container {
-  text-align: center;
-}
-
-/* Estimator-specific */
-#sk-container-id-2 div.sk-estimator {
-  font-family: monospace;
-  border: 1px dotted var(--sklearn-color-border-box);
-  border-radius: 0.25em;
-  box-sizing: border-box;
-  margin-bottom: 0.5em;
-  /* unfitted */
-  background-color: var(--sklearn-color-unfitted-level-0);
-}
-
-#sk-container-id-2 div.sk-estimator.fitted {
-  /* fitted */
-  background-color: var(--sklearn-color-fitted-level-0);
-}
-
-/* on hover */
-#sk-container-id-2 div.sk-estimator:hover {
-  /* unfitted */
-  background-color: var(--sklearn-color-unfitted-level-2);
-}
-
-#sk-container-id-2 div.sk-estimator.fitted:hover {
-  /* fitted */
-  background-color: var(--sklearn-color-fitted-level-2);
-}
-
-/* Specification for estimator info (e.g. "i" and "?") */
-
-/* Common style for "i" and "?" */
-
-.sk-estimator-doc-link,
-a:link.sk-estimator-doc-link,
-a:visited.sk-estimator-doc-link {
-  float: right;
-  font-size: smaller;
-  line-height: 1em;
-  font-family: monospace;
-  background-color: var(--sklearn-color-background);
-  border-radius: 1em;
-  height: 1em;
-  width: 1em;
-  text-decoration: none !important;
-  margin-left: 1ex;
-  /* unfitted */
-  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
-  color: var(--sklearn-color-unfitted-level-1);
-}
-
-.sk-estimator-doc-link.fitted,
-a:link.sk-estimator-doc-link.fitted,
-a:visited.sk-estimator-doc-link.fitted {
-  /* fitted */
-  border: var(--sklearn-color-fitted-level-1) 1pt solid;
-  color: var(--sklearn-color-fitted-level-1);
-}
-
-/* On hover */
-div.sk-estimator:hover .sk-estimator-doc-link:hover,
-.sk-estimator-doc-link:hover,
-div.sk-label-container:hover .sk-estimator-doc-link:hover,
-.sk-estimator-doc-link:hover {
-  /* unfitted */
-  background-color: var(--sklearn-color-unfitted-level-3);
-  color: var(--sklearn-color-background);
-  text-decoration: none;
-}
-
-div.sk-estimator.fitted:hover .sk-estimator-doc-link.fitted:hover,
-.sk-estimator-doc-link.fitted:hover,
-div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
-.sk-estimator-doc-link.fitted:hover {
-  /* fitted */
-  background-color: var(--sklearn-color-fitted-level-3);
-  color: var(--sklearn-color-background);
-  text-decoration: none;
-}
-
-/* Span, style for the box shown on hovering the info icon */
-.sk-estimator-doc-link span {
-  display: none;
-  z-index: 9999;
-  position: relative;
-  font-weight: normal;
-  right: .2ex;
-  padding: .5ex;
-  margin: .5ex;
-  width: min-content;
-  min-width: 20ex;
-  max-width: 50ex;
-  color: var(--sklearn-color-text);
-  box-shadow: 2pt 2pt 4pt #999;
-  /* unfitted */
-  background: var(--sklearn-color-unfitted-level-0);
-  border: .5pt solid var(--sklearn-color-unfitted-level-3);
-}
-
-.sk-estimator-doc-link.fitted span {
-  /* fitted */
-  background: var(--sklearn-color-fitted-level-0);
-  border: var(--sklearn-color-fitted-level-3);
-}
-
-.sk-estimator-doc-link:hover span {
-  display: block;
-}
-
-/* "?"-specific style due to the `<a>` HTML tag */
-
-#sk-container-id-2 a.estimator_doc_link {
-  float: right;
-  font-size: 1rem;
-  line-height: 1em;
-  font-family: monospace;
-  background-color: var(--sklearn-color-background);
-  border-radius: 1rem;
-  height: 1rem;
-  width: 1rem;
-  text-decoration: none;
-  /* unfitted */
-  color: var(--sklearn-color-unfitted-level-1);
-  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
-}
-
-#sk-container-id-2 a.estimator_doc_link.fitted {
-  /* fitted */
-  border: var(--sklearn-color-fitted-level-1) 1pt solid;
-  color: var(--sklearn-color-fitted-level-1);
-}
-
-/* On hover */
-#sk-container-id-2 a.estimator_doc_link:hover {
-  /* unfitted */
-  background-color: var(--sklearn-color-unfitted-level-3);
-  color: var(--sklearn-color-background);
-  text-decoration: none;
-}
-
-#sk-container-id-2 a.estimator_doc_link.fitted:hover {
-  /* fitted */
-  background-color: var(--sklearn-color-fitted-level-3);
-}
-</style><div id="sk-container-id-2" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>GridSearchCV(cv=5, estimator=SVC(),
+<div class="output text_html"><style>#sk-container-id-2 {color: black;}#sk-container-id-2 pre{padding: 0;}#sk-container-id-2 div.sk-toggleable {background-color: white;}#sk-container-id-2 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-2 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-2 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-2 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-2 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-2 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-2 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-2 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-2 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-2 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-2 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-2 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-2 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-2 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-2 div.sk-item {position: relative;z-index: 1;}#sk-container-id-2 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-2 div.sk-item::before, #sk-container-id-2 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-2 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-2 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-2 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-2 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-2 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-2 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-2 div.sk-label-container {text-align: center;}#sk-container-id-2 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-2 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-2" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>GridSearchCV(cv=5, estimator=SVC(),
              param_grid={&#x27;C&#x27;: [0.001, 0.01, 0.1, 1, 10, 100],
-                         &#x27;gamma&#x27;: [0.001, 0.01, 0.1, 1, 10, 100]})</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox" ><label for="sk-estimator-id-2" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;&nbsp;GridSearchCV<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.model_selection.GridSearchCV.html">?<span>Documentation for GridSearchCV</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></label><div class="sk-toggleable__content fitted"><pre>GridSearchCV(cv=5, estimator=SVC(),
+                         &#x27;gamma&#x27;: [0.001, 0.01, 0.1, 1, 10, 100]})</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox" ><label for="sk-estimator-id-2" class="sk-toggleable__label sk-toggleable__label-arrow">GridSearchCV</label><div class="sk-toggleable__content"><pre>GridSearchCV(cv=5, estimator=SVC(),
              param_grid={&#x27;C&#x27;: [0.001, 0.01, 0.1, 1, 10, 100],
-                         &#x27;gamma&#x27;: [0.001, 0.01, 0.1, 1, 10, 100]})</pre></div> </div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-3" type="checkbox" ><label for="sk-estimator-id-3" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">best_estimator_: SVC</label><div class="sk-toggleable__content fitted"><pre>SVC(C=10, gamma=0.1)</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-4" type="checkbox" ><label for="sk-estimator-id-4" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;SVC<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.svm.SVC.html">?<span>Documentation for SVC</span></a></label><div class="sk-toggleable__content fitted"><pre>SVC(C=10, gamma=0.1)</pre></div> </div></div></div></div></div></div></div></div></div></div></div>
+                         &#x27;gamma&#x27;: [0.001, 0.01, 0.1, 1, 10, 100]})</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-3" type="checkbox" ><label for="sk-estimator-id-3" class="sk-toggleable__label sk-toggleable__label-arrow">estimator: SVC</label><div class="sk-toggleable__content"><pre>SVC()</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-4" type="checkbox" ><label for="sk-estimator-id-4" class="sk-toggleable__label sk-toggleable__label-arrow">SVC</label><div class="sk-toggleable__content"><pre>SVC()</pre></div></div></div></div></div></div></div></div></div></div></div></div>
 </div>
 <ul class="simple">
 <li><p>El objeto <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> no solo busca los mejores parámetros, sino que también automáticamente un <em><strong>nuevo modelo en todo el conjunto de datos de entrenamiento con los parámetros que han dado el mejor rendimiento en la validación cruzada</strong></em>. La clase <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> proporciona una interfaz muy conveniente para acceder al modelo reentrenado utilizando los métodos <code class="docutils literal notranslate"><span class="pre">predict</span></code> y <code class="docutils literal notranslate"><span class="pre">score</span></code>. Para <em><strong>evaluar lo bien que generalizan los mejores parámetros encontrados</strong></em>, podemos llamar a <code class="docutils literal notranslate"><span class="pre">score</span></code> en el conjunto de prueba</p></li>
@@ -2213,48 +1430,48 @@ SVC(C=10, gamma=0.1)
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.000427</td>
-      <td>0.000093</td>
-      <td>0.000237</td>
-      <td>0.000026</td>
+      <td>0.000562</td>
+      <td>0.000246</td>
+      <td>0.000291</td>
+      <td>0.000039</td>
       <td>0.001</td>
       <td>0.001</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.000364</td>
-      <td>0.000006</td>
-      <td>0.000215</td>
-      <td>0.000005</td>
+      <td>0.000412</td>
+      <td>0.000009</td>
+      <td>0.000274</td>
+      <td>0.000050</td>
       <td>0.001</td>
-      <td>0.010</td>
+      <td>0.01</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.000371</td>
-      <td>0.000014</td>
-      <td>0.000215</td>
-      <td>0.000009</td>
+      <td>0.000417</td>
+      <td>0.000013</td>
+      <td>0.000235</td>
+      <td>0.000008</td>
       <td>0.001</td>
-      <td>0.100</td>
+      <td>0.1</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.000373</td>
-      <td>0.000007</td>
-      <td>0.000239</td>
-      <td>0.000018</td>
+      <td>0.000414</td>
+      <td>0.000009</td>
+      <td>0.000230</td>
+      <td>0.000003</td>
       <td>0.001</td>
-      <td>1.000</td>
+      <td>1</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.000371</td>
+      <td>0.000426</td>
+      <td>0.000027</td>
+      <td>0.000239</td>
       <td>0.000013</td>
-      <td>0.000211</td>
-      <td>0.000002</td>
       <td>0.001</td>
-      <td>10.000</td>
+      <td>10</td>
     </tr>
   </tbody>
 </table>
@@ -2287,7 +1504,7 @@ SVC(C=10, gamma=0.1)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/5719b38eb7be209a30c2089442dad9517c3dca41a20c11ae81e21a4239cb90bf.png" src="_images/5719b38eb7be209a30c2089442dad9517c3dca41a20c11ae81e21a4239cb90bf.png" />
+<img alt="_images/e5851044dd7ebb11b33753fc3202dd9236a2bceb6760b34214077bda892f1d57.png" src="_images/e5851044dd7ebb11b33753fc3202dd9236a2bceb6760b34214077bda892f1d57.png" />
 </div>
 </div>
 <ul class="simple">
@@ -2348,7 +1565,7 @@ SVC(C=10, gamma=0.1)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/6d98b0e248786ef6be1df2c7800e8f341ee0c5ec480bdf2ca33718a48a2d9fcb.png" src="_images/6d98b0e248786ef6be1df2c7800e8f341ee0c5ec480bdf2ca33718a48a2d9fcb.png" />
+<img alt="_images/b49dd78dad4899c6e2859f830e2c52ac1035f8a3f4aa99474dd4b90f2173af16.png" src="_images/b49dd78dad4899c6e2859f830e2c52ac1035f8a3f4aa99474dd4b90f2173af16.png" />
 </div>
 </div>
 <ul class="simple">
@@ -2443,39 +1660,39 @@ Best cross-validation score: 0.97
   <tbody>
     <tr>
       <th>mean_fit_time</th>
-      <td>0.000445</td>
-      <td>0.000385</td>
-      <td>0.000366</td>
-      <td>0.000394</td>
-      <td>0.000364</td>
-      <td>0.000442</td>
+      <td>0.000476</td>
+      <td>0.000407</td>
+      <td>0.000416</td>
+      <td>0.000423</td>
+      <td>0.000417</td>
+      <td>0.000482</td>
     </tr>
     <tr>
       <th>std_fit_time</th>
-      <td>0.000102</td>
-      <td>0.000017</td>
-      <td>0.000007</td>
-      <td>0.000052</td>
-      <td>0.000006</td>
-      <td>0.000021</td>
+      <td>0.000104</td>
+      <td>0.000008</td>
+      <td>0.000016</td>
+      <td>0.000011</td>
+      <td>0.00001</td>
+      <td>0.000013</td>
     </tr>
     <tr>
       <th>mean_score_time</th>
-      <td>0.000251</td>
-      <td>0.000218</td>
+      <td>0.000265</td>
+      <td>0.000235</td>
+      <td>0.000257</td>
       <td>0.000254</td>
-      <td>0.000237</td>
-      <td>0.000217</td>
-      <td>0.000228</td>
+      <td>0.00027</td>
+      <td>0.000253</td>
     </tr>
     <tr>
       <th>std_score_time</th>
-      <td>0.000037</td>
-      <td>0.000004</td>
-      <td>0.000063</td>
-      <td>0.000026</td>
-      <td>0.000009</td>
-      <td>0.000005</td>
+      <td>0.000044</td>
+      <td>0.000008</td>
+      <td>0.00003</td>
+      <td>0.000042</td>
+      <td>0.000062</td>
+      <td>0.000015</td>
     </tr>
     <tr>
       <th>param_C</th>
@@ -2491,9 +1708,9 @@ Best cross-validation score: 0.97
       <td>0.001</td>
       <td>0.01</td>
       <td>0.1</td>
-      <td>1.0</td>
-      <td>10.0</td>
-      <td>100.0</td>
+      <td>1</td>
+      <td>10</td>
+      <td>100</td>
     </tr>
     <tr>
       <th>param_kernel</th>
@@ -2600,9 +1817,8 @@ Best cross-validation score: 0.97
 <section id="validacion-cruzada-anidada">
 <h3><span class="section-number">9.2.6. </span>Validación cruzada anidada<a class="headerlink" href="#validacion-cruzada-anidada" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>En los ejemplos anteriores, pasamos de utilizar una única división de los datos en conjuntos de entrenamiento validación y prueba, a <em><strong>dividir los datos en conjuntos de entrenamiento y prueba, y luego de validación cruzada en el conjunto de entrenamiento</strong></em>. Pero al utilizar <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> como se ha descrito anteriormente, <em><strong>seguimos teniendo una única división de los datos en conjuntos de entrenamiento y de prueba</strong></em>, lo que puede hacer que nuestros resultados sean inestables y nos haga depender demasiado de esta única división de los datos. Podemos ir un paso más allá, y <em><strong>en lugar de dividir los datos originales en conjuntos de entrenamiento y prueba una vez, utilizar múltiples divisiones de validación cruzada</strong></em>. Esto dará lugar a lo que se denomina <em><strong>validación cruzada anidada</strong></em>.</p></li>
-<li><p><em><strong>En la validación cruzada anidada, hay un bucle externo sobre las divisiones de los datos en conjuntos de entrenamiento y de prueba. Para cada uno de ellos, se ejecuta una búsqueda en red</strong></em> (que puede dar lugar a diferentes parámetros óptimos para cada división en el bucle externo). A continuación, para cada división exterior, se informa del scoring del conjunto de prueba utilizando los mejores parámetros. <em><strong>El resultado de este procedimiento es una lista de puntuaciones, no un modelo ni un conjunto de parámetros</strong></em>.</p></li>
-<li><p><em><strong>Las puntuaciones nos dicen lo bien que generaliza un modelo</strong></em>, dados los mejores parámetros encontrados por la red. Como no proporciona un modelo que pueda utilizarse con nuevos datos, la <em><strong>validación cruzada anidada no suele utilizarse cuando se busca un modelo predictivo para aplicarlo a datos futuros</strong></em>. Sin embargo, puede ser útil para evaluar lo bien que funciona un modelo determinado en un conjunto de datos concreto. La implementación de la <em><strong>validación cruzada anidada</strong></em> en <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> es sencilla. Llamamos a <code class="docutils literal notranslate"><span class="pre">cross_val_score</span></code> con una instancia de <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> como modelo</p></li>
+<li><p>La validación cruzada anidada mejora la estabilidad de la evaluación del modelo al evitar depender de una sola partición de entrenamiento/prueba. <strong>Consiste en un bucle externo de validación cruzada que evalúa el rendimiento general del modelo y un bucle interno (GridSearchCV) que ajusta los hiperparámetros</strong>.</p></li>
+<li><p>El resultado son <strong>puntuaciones más realistas sobre la capacidad de generalización, pero no genera un modelo final entrenado</strong>. Es útil para evaluación comparativa de modelos, no para producción. Se implementa fácilmente con <code class="docutils literal notranslate"><span class="pre">cross_val_score(GridSearchCV(...))</span></code>.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2620,8 +1836,7 @@ Mean cross-validation score:  0.9666666666666668
 </div>
 </div>
 <ul class="simple">
-<li><p>El resultado de nuestra <em><strong>validación cruzada anidada</strong></em> puede resumirse en que <em><strong>“SVC puede alcanzar un 96.67% de precisión media de validación cruzada en el conjunto de datos del iris”</strong></em>, nada más y nada menos. Aquí, utilizamos la validación cruzada estratificada de cinco pliegues (<em><strong>5-fold</strong></em>) tanto en el bucle interno como en el externo. Como nuestra red de parámetros contiene 36 combinaciones de parámetros, <em><strong>el resultado es la cantidad de 36 * 5 * 5 = 900 modelos construidos, lo que hace que la validación cruzada anidada sea un procedimiento muy costoso</strong></em>.</p></li>
-<li><p>Aquí, <em><strong>utilizamos el mismo divisor de validación cruzada en el bucle interno y en el externo</strong></em>; sin embargo, esto no es necesario y se puede utilizar cualquier combinación de estrategias de validación cruzada en el bucle interno y en el externo. Puede ser un poco complicado entender lo que está sucediendo en la línea simple dada anteriormente, y puede ser útil <em><strong>visualizarlo como bucles for, como se hace en la siguiente implementación simplificada</strong></em></p></li>
+<li><p>La validación cruzada anidada muestra que <strong>SVC alcanza un 96.67% de precisión media en el conjunto <code class="docutils literal notranslate"><span class="pre">iris</span></code></strong>, usando validación cruzada estratificada de 5 pliegues en bucles interno y externo. Con <strong>36 combinaciones de parámetros, se entrenan 900 modelos (36 × 5 × 5)</strong>, lo que implica un alto costo computacional. Aunque aquí se usa el mismo divisor para ambos bucles, pueden combinarse distintas estrategias, y visualizar el proceso como bucles <code class="docutils literal notranslate"><span class="pre">for</span></code> facilita su comprensión.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2674,8 +1889,9 @@ Mean cross-validation score:  0.9666666666666668
 <section id="paralelizacion-de-la-validacion-cruzada-y-la-busqueda-en-red">
 <h3><span class="section-number">9.2.7. </span>Paralelización de la validación cruzada y la búsqueda en red<a class="headerlink" href="#paralelizacion-de-la-validacion-cruzada-y-la-busqueda-en-red" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Si bien la ejecución de un <em><strong>grid search</strong></em> sobre muchos parámetros y en grandes conjuntos de datos puede ser <em><strong>computacionalmente un reto</strong></em>, también es un paralelismo tedioso. Esto significa que la construcción de un modelo utilizando un ajuste de parámetros particular en una división de validación cruzada particular <em><strong>puede hacerse con total independencia de los demás ajustes de parámetros y modelos</strong></em>. <em><strong>Esto hace que la búsqueda en red y la validación cruzada sean candidatas ideales para la paralelización en múltiples núcleos de CPU o en un clúster</strong></em>. Se puede hacer uso de múltiples núcleos en <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> y <code class="docutils literal notranslate"><span class="pre">cross_validation</span></code> estableciendo el parámetro <code class="docutils literal notranslate"><span class="pre">n_jobs</span></code> con el número de núcleos de CPU que desee utilizar. <em><strong>Puede establecer n_jobs=-1 para utilizar todos los núcleos disponibles</strong></em>.</p></li>
-<li><p>Debe tener en cuenta que <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> no permite el anidamiento de operaciones paralelas. Por lo tanto, si está utilizando la opción <code class="docutils literal notranslate"><span class="pre">n_jobs</span></code> en su modelo (por ejemplo, <code class="docutils literal notranslate"><span class="pre">random</span> <span class="pre">forest</span></code>), no puede utilizarla en <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> para buscar sobre este modelo. Si su <em><strong>conjunto de datos y su modelo son muy grandes, puede ser que el uso de muchos núcleos consuma demasiada memoria</strong></em>, y deberías controlar el uso de la memoria cuando construyas modelos grandes en paralelo. <em><strong>También es posible paralelizar la búsqueda en red y la validación cruzada en varias máquinas en un clúster</strong></em>. Sin embargo, es posible utilizar el marco paralelo de <code class="docutils literal notranslate"><span class="pre">IPython</span></code> para las búsquedas paralelas de la red, también puede <em><strong>escribir el bucle for sobre los parámetros como lo hicimos en “Búsqueda simple en la red”</strong></em>. <strong><code class="docutils literal notranslate"><span class="pre">Para</span> <span class="pre">los</span> <span class="pre">usuarios</span> <span class="pre">de</span> <span class="pre">Spark,</span> <span class="pre">también</span> <span class="pre">existe</span> <span class="pre">el</span> <span class="pre">paquete</span> <span class="pre">spark-sklearn,</span> <span class="pre">recientemente</span> <span class="pre">desarrollado,</span> <span class="pre">que</span> <span class="pre">permite</span> <span class="pre">ejecutar</span> <span class="pre">una</span> <span class="pre">búsqueda</span> <span class="pre">grid</span> <span class="pre">sobre</span> <span class="pre">un</span> <span class="pre">cluster</span> <span class="pre">Spark</span> <span class="pre">ya</span> <span class="pre">establecido</span></code></strong>.</p></li>
+<li><p>Aunque la ejecución de <em>grid search</em> sobre múltiples parámetros y grandes conjuntos de datos puede ser computacionalmente exigente, su naturaleza independiente entre combinaciones de parámetros y particiones de validación cruzada permite una paralelización eficiente en múltiples núcleos o clústeres.</p></li>
+<li><p>En <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> y <code class="docutils literal notranslate"><span class="pre">cross_validation</span></code>, el parámetro <code class="docutils literal notranslate"><span class="pre">n_jobs</span></code> controla el número de núcleos utilizados (<code class="docutils literal notranslate"><span class="pre">n_jobs=-1</span></code> emplea todos). No obstante, scikit-learn no permite anidamiento de paralelización: si el modelo ya usa <code class="docutils literal notranslate"><span class="pre">n_jobs</span></code>, no debe usarse en <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code>. Además, en modelos o conjuntos de datos grandes, el uso intensivo de núcleos puede generar un consumo elevado de memoria, por lo que debe monitorearse.</p></li>
+<li><p>La paralelización también puede extenderse a varios nodos mediante el marco paralelo de IPython o mediante bucles personalizados. Para entornos Spark, el paquete <strong><code class="docutils literal notranslate"><span class="pre">spark-sklearn</span></code> permite ejecutar búsquedas en red sobre un clúster ya configurado</strong>.</p></li>
 </ul>
 </section>
 </section>
@@ -2896,7 +2112,7 @@ Test score: 0.90
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/11103c5e86611f1ce3af8695501b801d5446ec857fc9741651a131b9c387683c.png" src="_images/11103c5e86611f1ce3af8695501b801d5446ec857fc9741651a131b9c387683c.png" />
+<img alt="_images/d015e36315dcf24c7da5c0244804d4e070dc8cf5fcd4f271c64165177d2e7942.png" src="_images/d015e36315dcf24c7da5c0244804d4e070dc8cf5fcd4f271c64165177d2e7942.png" />
 </div>
 </div>
 <ul class="simple">
@@ -2909,7 +2125,7 @@ Test score: 0.90
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/919d33fd5494029644cef9f3a35f2ed7d5b259fc76d16cfada01ae13ea330e7a.png" src="_images/919d33fd5494029644cef9f3a35f2ed7d5b259fc76d16cfada01ae13ea330e7a.png" />
+<img alt="_images/fa190ec0c58244f66d7148f34adebdcf042ed53699b96c50db73e736806707b4.png" src="_images/fa190ec0c58244f66d7148f34adebdcf042ed53699b96c50db73e736806707b4.png" />
 </div>
 </div>
 <ul class="simple">
@@ -3166,7 +2382,7 @@ weighted avg       0.98      0.98      0.98       450
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/92692614d9169b2871f2ac1fc0cfdd7a523727c772007bcc7ae208fe98b688df.png" src="_images/92692614d9169b2871f2ac1fc0cfdd7a523727c772007bcc7ae208fe98b688df.png" />
+<img alt="_images/5a2b41ffed1db21e6b8fa3faddc9dccb0dd2ce46ecd6d5b38be0dad937a6742c.png" src="_images/5a2b41ffed1db21e6b8fa3faddc9dccb0dd2ce46ecd6d5b38be0dad937a6742c.png" />
 </div>
 </div>
 <ul class="simple">
@@ -3405,7 +2621,7 @@ weighted avg       0.99      0.99      0.99       100
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/b34f41fb7f11e354635ecbc9faec0b1b5d1729e7eb975876330ed4eed644703b.png" src="_images/b34f41fb7f11e354635ecbc9faec0b1b5d1729e7eb975876330ed4eed644703b.png" />
+<img alt="_images/aefc5af3c9c56bfba4c97803da75360c67f14a8228bf21406ae377973474bdd0.png" src="_images/aefc5af3c9c56bfba4c97803da75360c67f14a8228bf21406ae377973474bdd0.png" />
 </div>
 </div>
 <ul class="simple">
@@ -3476,7 +2692,7 @@ weighted avg       0.99      0.99      0.99       100
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/3f8a4f1d35759504585dca460cd17d09c724de780bfdca2d85cdc1c460f65223.png" src="_images/3f8a4f1d35759504585dca460cd17d09c724de780bfdca2d85cdc1c460f65223.png" />
+<img alt="_images/f7de970220dd694c01f26fb10e348803673b105ea196aa5a79f6185c8a082dcc.png" src="_images/f7de970220dd694c01f26fb10e348803673b105ea196aa5a79f6185c8a082dcc.png" />
 </div>
 </div>
 <ul class="simple">
@@ -3557,7 +2773,7 @@ FPR=\frac{FP}{FP+TN}.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/28aa93ff234e007850cf542255d75a59ffc1cd27466a0508bf140c95ee706e23.png" src="_images/28aa93ff234e007850cf542255d75a59ffc1cd27466a0508bf140c95ee706e23.png" />
+<img alt="_images/1157213221094643f496c78d6acac32475b321562103e0e1fbe0691ef98d8420.png" src="_images/1157213221094643f496c78d6acac32475b321562103e0e1fbe0691ef98d8420.png" />
 </div>
 </div>
 <ul class="simple">
@@ -3608,7 +2824,7 @@ AUC for SVC: 0.921
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/cfc58c0450993597a1c5637f0f6b154c22a2a1183ba8a830bb086ae7dee8a655.png" src="_images/cfc58c0450993597a1c5637f0f6b154c22a2a1183ba8a830bb086ae7dee8a655.png" />
+<img alt="_images/45e5dec07684121d99bb7f0389bd79d4dd0f13c1378b6150c1b1effabc48211b.png" src="_images/45e5dec07684121d99bb7f0389bd79d4dd0f13c1378b6150c1b1effabc48211b.png" />
 </div>
 </div>
 <ul class="simple">
@@ -3639,7 +2855,7 @@ gamma = 0.07 accuracy = 0.62 AUC = 0.91
 gamma = 0.01 accuracy = 0.63 AUC = 0.93
 </pre></div>
 </div>
-<img alt="_images/5f3160fe71dd1c9658c9c152fe075d73b700b467cc384ae65e78a486c04ac654.png" src="_images/5f3160fe71dd1c9658c9c152fe075d73b700b467cc384ae65e78a486c04ac654.png" />
+<img alt="_images/460dcea5c79ca9b1a2c04b6aa0496f2e06d6f0f317bad8720dd3b76e2ad7c057.png" src="_images/460dcea5c79ca9b1a2c04b6aa0496f2e06d6f0f317bad8720dd3b76e2ad7c057.png" />
 </div>
 </div>
 <ul class="simple">
@@ -3713,7 +2929,7 @@ Confusion matrix:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/db8844e1ca026b2e1d1cbea6341b7b6fb8910af91c5f89f559445badfeb0fa9e.png" src="_images/db8844e1ca026b2e1d1cbea6341b7b6fb8910af91c5f89f559445badfeb0fa9e.png" />
+<img alt="_images/61f510d04de55a3c9009dea4392eed536f362af1a379bc21798ef6bf633b8438.png" src="_images/61f510d04de55a3c9009dea4392eed536f362af1a379bc21798ef6bf633b8438.png" />
 </div>
 </div>
 <ul class="simple">
@@ -3916,7 +3132,274 @@ Test set accuracy: 1.000
 </ol>
 <p>Las herramientas descritas son esenciales para cualquier científico de datos. Sin embargo, grid-search y validación cruzada solo aplican a modelos supervisados individuales. En la siguiente sección, se introducirá <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code> para optimizar procesos más complejos.</p>
 </div>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Elemento</p></th>
+<th class="head"><p>¿Necesario?</p></th>
+<th class="head"><p>Comentario</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Python</strong></p></td>
+<td><p>Sí</p></td>
+<td><p>Versión recomendada: 3.8 a 3.10</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>PySpark instalado</strong> (<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">pyspark</span></code>)</p></td>
+<td><p>Sí</p></td>
+<td><p>Necesario para ejecutar Spark desde Python</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>scikit-learn</strong> (<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">scikit-learn</span></code>)</p></td>
+<td><p>Sí</p></td>
+<td><p>Necesario para cargar el dataset de <em>Iris</em></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Jupyter, VSCode o IDE</strong></p></td>
+<td><p>Recomendado</p></td>
+<td><p>Necesario si deseas una interfaz cómoda para desarrollar</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Java JDK (versión requerida por PySpark <code class="docutils literal notranslate"><span class="pre">java-17</span></code>)</strong></p></td>
+<td><p>Usualmente necesario</p></td>
+<td><p>Spark requiere Java. Asegúrate de tener <code class="docutils literal notranslate"><span class="pre">JAVA_HOME</span></code> configurado correctamente</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>findspark</strong> (<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">findspark</span></code>)</p></td>
+<td><p>Opcional</p></td>
+<td><p>Útil si usas notebooks y necesitas inicializar Spark manualmente</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>MLflow</strong> (<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">mlflow</span></code>)</p></td>
+<td><p>Opcional</p></td>
+<td><p>Solo si planeas hacer tracking de experimentos</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul class="simple">
+<li><p>Para instalar Java (ver <a class="reference external" href="https://www.oracle.com/java/technologies/downloads/?er=221886">Java Downloads</a>)</p></li>
+<li><p>Configurar <code class="docutils literal notranslate"><span class="pre">JAVA_HOME</span></code> permanentemente. Si prefieres no tener que hacer esto en cada notebook:</p>
+<ol class="arabic simple">
+<li><p>Abre el Panel de Control → Sistema → Configuración avanzada del sistema.</p></li>
+<li><p>Clic en “Variables de entorno”.</p></li>
+<li><p>En “Variables del sistema”, haz clic en “Nueva…” y agrega:</p>
+<ul>
+<li><p><strong>Nombre:</strong> <code class="docutils literal notranslate"><span class="pre">JAVA_HOME</span></code></p></li>
+<li><p><strong>Valor:</strong> <code class="docutils literal notranslate"><span class="pre">C:\Program</span> <span class="pre">Files\Java\jdk-17.0.20</span></code> (ajusta según tu versión)</p></li>
+</ul>
+</li>
+<li><p>Cierra y vuelve a abrir tu entorno (Jupyter, Anaconda, etc.).</p></li>
+</ol>
+</li>
+</ul>
 </section>
+</section>
+<section id="por-que-usar-pyspark-para-modelos-de-machine-learning-con-grandes-volumenes-de-datos">
+<h2><span class="section-number">9.7. </span>¿Por qué usar <code class="docutils literal notranslate"><span class="pre">PySpark</span></code> para modelos de Machine Learning con grandes volúmenes de datos?<a class="headerlink" href="#por-que-usar-pyspark-para-modelos-de-machine-learning-con-grandes-volumenes-de-datos" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>A medida que trabajamos con datasets más grandes, las herramientas tradicionales como <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> comienzan a mostrar ciertas limitaciones. Aunque son excelentes para prototipado rápido y problemas de tamaño moderado, <strong>no están diseñadas para escalar eficientemente</strong> cuando tratamos con millones de registros.</p></li>
+<li><p>Aquí es donde entra <strong>PySpark</strong>, la interfaz en Python de <code class="docutils literal notranslate"><span class="pre">Apache</span> <span class="pre">Spark</span></code>. <code class="docutils literal notranslate"><span class="pre">PySpark</span></code> permite:</p>
+<ul>
+<li><p><strong>Ejecutar operaciones en paralelo</strong> aprovechando múltiples núcleos o incluso múltiples máquinas (clústeres)</p></li>
+<li><p><strong>Procesar y transformar datos a gran escala</strong> con pipelines eficientes</p></li>
+<li><p><strong>Entrenar modelos de machine learning distribuidos</strong> con la API <code class="docutils literal notranslate"><span class="pre">pyspark.ml</span></code></p></li>
+</ul>
+</li>
+<li><p>En el siguiente ejemplo consideramos un <strong>ejemplo realista</strong> donde entrenamos un modelo <code class="docutils literal notranslate"><span class="pre">SVM</span></code> sobre un dataset sintético de <strong>10 mil muestras y 50 features</strong>. Compararemos dos enfoques:</p>
+<ul>
+<li><p>Uno con <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> de <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>, ejecutado en un solo equipo usando múltiples hilos</p></li>
+<li><p>Otro con <code class="docutils literal notranslate"><span class="pre">CrossValidator</span></code> de <code class="docutils literal notranslate"><span class="pre">PySpark</span></code>, aprovechando el cómputo distribuido</p></li>
+</ul>
+</li>
+<li><p>Ambos producen resultados comparables en calidad (métrica AUC), pero difieren notablemente en <strong>tiempo de entrenamiento</strong>, demostrando cómo <strong>PySpark puede acelerar tareas complejas cuando los datos crecen</strong>.</p></li>
+<li><p>Este tipo de enfoque es crucial cuando trabajas en entornos de big data, o cuando quieres preparar tus modelos para producción sobre volúmenes de datos reales.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_classification</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span><span class="p">,</span> <span class="n">GridSearchCV</span>
+<span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">roc_auc_score</span>
+<span class="kn">from</span> <span class="nn">pyspark.sql</span> <span class="kn">import</span> <span class="n">SparkSession</span>
+<span class="kn">from</span> <span class="nn">pyspark.ml.classification</span> <span class="kn">import</span> <span class="n">LinearSVC</span>
+<span class="kn">from</span> <span class="nn">pyspark.ml.feature</span> <span class="kn">import</span> <span class="n">VectorAssembler</span>
+<span class="kn">from</span> <span class="nn">pyspark.ml.tuning</span> <span class="kn">import</span> <span class="n">ParamGridBuilder</span><span class="p">,</span> <span class="n">CrossValidator</span>
+<span class="kn">from</span> <span class="nn">pyspark.ml.evaluation</span> <span class="kn">import</span> <span class="n">BinaryClassificationEvaluator</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;PYSPARK_PYTHON&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;/usr/bin/python3.10&quot;</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;PYSPARK_DRIVER_PYTHON&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;/usr/bin/python3.10&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">platform</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Driver usando Python:&quot;</span><span class="p">,</span> <span class="n">platform</span><span class="o">.</span><span class="n">python_version</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;PYSPARK_PYTHON:&quot;</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;PYSPARK_PYTHON&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Driver usando Python: 3.10.12
+PYSPARK_PYTHON: /usr/bin/python3.10
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_classification</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">10_000</span><span class="p">,</span> <span class="n">n_features</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">n_informative</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">n_classes</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">PySpark</span></code> solo soporta <code class="docutils literal notranslate"><span class="pre">LinearSVC</span></code>, sin soporte para kernels no lineales (<code class="docutils literal notranslate"><span class="pre">RBF,</span> <span class="pre">poly,</span> <span class="pre">sigmoid</span></code>). Si necesitas kernels no lineales con <code class="docutils literal notranslate"><span class="pre">Spark</span></code>, puedes usar <code class="docutils literal notranslate"><span class="pre">MLflow</span> <span class="pre">+</span> <span class="pre">Spark</span> <span class="pre">Submit</span></code> (<code class="docutils literal notranslate"><span class="pre">ejercicio</span> <span class="pre">para</span> <span class="pre">el</span> <span class="pre">estudiante</span></code>).</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># --- PySpark ---</span>
+<span class="n">spark</span> <span class="o">=</span> <span class="n">SparkSession</span><span class="o">.</span><span class="n">builder</span> \
+    <span class="o">.</span><span class="n">appName</span><span class="p">(</span><span class="s2">&quot;WSL Spark Demo&quot;</span><span class="p">)</span> \
+    <span class="o">.</span><span class="n">master</span><span class="p">(</span><span class="s2">&quot;local[*]&quot;</span><span class="p">)</span> \
+    <span class="o">.</span><span class="n">getOrCreate</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING: Using incubator modules: jdk.incubator.vector
+Using Spark&#39;s default log4j profile: org/apache/spark/log4j2-defaults.properties
+25/08/04 23:28:27 WARN Utils: Your hostname, DESKTOP-14GHD2E, resolves to a loopback address: 127.0.1.1; using 10.255.255.254 instead (on interface lo)
+25/08/04 23:28:27 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+Using Spark&#39;s default log4j profile: org/apache/spark/log4j2-defaults.properties
+Setting default log level to &quot;WARN&quot;.
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+25/08/04 23:28:28 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Convertir a Spark DataFrame</span>
+<span class="n">df_pd</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;f</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])])</span>
+<span class="n">df_pd</span><span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span>
+<span class="n">df_spark</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">(</span><span class="n">df_pd</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># VectorAssembler</span>
+<span class="n">assembler</span> <span class="o">=</span> <span class="n">VectorAssembler</span><span class="p">(</span><span class="n">inputCols</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;f</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])],</span> <span class="n">outputCol</span><span class="o">=</span><span class="s2">&quot;features&quot;</span><span class="p">)</span>
+<span class="n">df_spark</span> <span class="o">=</span> <span class="n">assembler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">df_spark</span><span class="p">)</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;features&quot;</span><span class="p">,</span> <span class="s2">&quot;label&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Split en Spark</span>
+<span class="n">train_df</span><span class="p">,</span> <span class="n">test_df</span> <span class="o">=</span> <span class="n">df_spark</span><span class="o">.</span><span class="n">randomSplit</span><span class="p">([</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">],</span> <span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Modelo y Grid</span>
+<span class="n">svm</span> <span class="o">=</span> <span class="n">LinearSVC</span><span class="p">(</span><span class="n">labelCol</span><span class="o">=</span><span class="s2">&quot;label&quot;</span><span class="p">,</span> <span class="n">featuresCol</span><span class="o">=</span><span class="s2">&quot;features&quot;</span><span class="p">)</span>
+<span class="n">paramGrid</span> <span class="o">=</span> <span class="n">ParamGridBuilder</span><span class="p">()</span><span class="o">.</span><span class="n">addGrid</span><span class="p">(</span><span class="n">svm</span><span class="o">.</span><span class="n">regParam</span><span class="p">,</span> <span class="p">[</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">]])</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+<span class="n">evaluator</span> <span class="o">=</span> <span class="n">BinaryClassificationEvaluator</span><span class="p">(</span><span class="n">labelCol</span><span class="o">=</span><span class="s2">&quot;label&quot;</span><span class="p">,</span> <span class="n">metricName</span><span class="o">=</span><span class="s2">&quot;areaUnderROC&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># CrossValidator</span>
+<span class="n">cv</span> <span class="o">=</span> <span class="n">CrossValidator</span><span class="p">(</span><span class="n">estimator</span><span class="o">=</span><span class="n">svm</span><span class="p">,</span> <span class="n">estimatorParamMaps</span><span class="o">=</span><span class="n">paramGrid</span><span class="p">,</span> <span class="n">evaluator</span><span class="o">=</span><span class="n">evaluator</span><span class="p">,</span> <span class="n">numFolds</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Entrenamiento</span>
+<span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">cv_model</span> <span class="o">=</span> <span class="n">cv</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_df</span><span class="p">)</span>
+<span class="n">elapsed_spark</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>25/08/04 23:28:31 WARN SparkStringUtils: Truncated the string representation of a plan since it was too large. This behavior can be adjusted by setting &#39;spark.sql.debug.maxToStringFields&#39;.
+25/08/04 23:28:34 WARN InstanceBuilder: Failed to load implementation from:dev.ludovic.netlib.blas.JNIBLAS
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Evaluación</span>
+<span class="n">predictions</span> <span class="o">=</span> <span class="n">cv_model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">test_df</span><span class="p">)</span>
+<span class="n">auc_spark</span> <span class="o">=</span> <span class="n">evaluator</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">predictions</span><span class="p">)</span>
+<span class="n">best_reg</span> <span class="o">=</span> <span class="n">cv_model</span><span class="o">.</span><span class="n">bestModel</span><span class="o">.</span><span class="n">_java_obj</span><span class="o">.</span><span class="n">getRegParam</span><span class="p">()</span>
+<span class="n">best_c</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">best_reg</span>
+
+<span class="c1"># Resultados</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"> PySpark + CrossValidator&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Best C (1/regParam):&quot;</span><span class="p">,</span> <span class="n">best_c</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Test AUC: </span><span class="si">{:.4f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">auc_spark</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Tiempo: </span><span class="si">{:.2f}</span><span class="s2"> segundos&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">elapsed_spark</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> PySpark + CrossValidator
+Best C (1/regParam): 10.0
+Test AUC: 0.8573
+Tiempo: 31.21 segundos
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="n">param_grid</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">]}</span>
+<span class="n">svc</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="n">probability</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">grid</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">svc</span><span class="p">,</span> <span class="n">param_grid</span><span class="o">=</span><span class="n">param_grid</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;roc_auc&#39;</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">grid</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">elapsed_sklearn</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
+
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="n">decision_function</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="n">auc_sklearn</span> <span class="o">=</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">GridSearchCV (scikit-learn)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Best C:&quot;</span><span class="p">,</span> <span class="n">grid</span><span class="o">.</span><span class="n">best_params_</span><span class="p">[</span><span class="s1">&#39;C&#39;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Test AUC: </span><span class="si">{:.4f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">auc_sklearn</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Tiempo: </span><span class="si">{:.2f}</span><span class="s2"> segundos&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">elapsed_sklearn</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GridSearchCV (scikit-learn)
+Best C: 0.1
+Test AUC: 0.8760
+Tiempo: 273.57 segundos
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 </section>
 
@@ -3987,11 +3470,12 @@ Test set accuracy: 1.000
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-validation">9.1. Cross-Validation</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-cruzada-en-scikit-learn">9.1.1. Validación cruzada en scikit-learn</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ventajas-de-la-validacion-cruzada">9.1.2. Ventajas de la validación cruzada</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-cruzada-estratificada-k-fold-y-otras-estrategias">9.1.3. Validación cruzada estratificada <span class="math notranslate nohighlight">\(k\)</span>-fold y otras estrategias</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mas-control-sobre-la-validacion-cruzada">9.1.4. Más control sobre la validación cruzada</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-cruzada-con-exclusion-leave-one-out">9.1.5. Validación cruzada con exclusión (<code class="docutils literal notranslate"><span class="pre">leave-one-out</span></code>)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-cruzada-aleatoria-y-dividida">9.1.6. Validación cruzada aleatoria y dividida</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-cruzada-con-grupos">9.1.7. Validación cruzada con grupos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-cruzada-kfold">9.1.3. Validación cruzada <code class="docutils literal notranslate"><span class="pre">KFold</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-cruzada-estratificada-stratifiedkfold">9.1.4. Validación cruzada estratificada <code class="docutils literal notranslate"><span class="pre">StratifiedKFold</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-cruzada-shuffle-kfold">9.1.5. Validación cruzada <code class="docutils literal notranslate"><span class="pre">shuffle</span> <span class="pre">KFold</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-cruzada-con-exclusion-leave-one-out">9.1.6. Validación cruzada con exclusión <code class="docutils literal notranslate"><span class="pre">leave-one-out</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-cruzada-aleatoria-y-divididashufflesplit">9.1.7. Validación cruzada aleatoria y dividida<code class="docutils literal notranslate"><span class="pre">ShuffleSplit</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-cruzada-por-grupos-groupkfold">9.1.8. Validación cruzada por grupos <code class="docutils literal notranslate"><span class="pre">GroupKFold</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grid-search">9.2. Grid Search</a><ul class="nav section-nav flex-column">
@@ -4022,6 +3506,7 @@ Test set accuracy: 1.000
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-metricas-de-evaluacion-en-la-seleccion-de-modelos">9.6.1. Uso de métricas de evaluación en la selección de modelos</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#por-que-usar-pyspark-para-modelos-de-machine-learning-con-grandes-volumenes-de-datos">9.7. ¿Por qué usar <code class="docutils literal notranslate"><span class="pre">PySpark</span></code> para modelos de Machine Learning con grandes volúmenes de datos?</a></li>
 </ul>
   </nav></div>
 
