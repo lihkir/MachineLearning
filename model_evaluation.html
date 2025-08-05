@@ -3403,6 +3403,14 @@ Tiempo: 273.57 segundos
 </div>
 </div>
 </div>
+<div class="tip admonition">
+<p class="admonition-title">Observación</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> usa <strong>liblinear</strong> como backend para <code class="docutils literal notranslate"><span class="pre">LinearSVC</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PySpark</span></code> (<code class="docutils literal notranslate"><span class="pre">pyspark.ml.classification.LinearSVC</span></code>) usa un optimizador diferente basado en <strong>OWLQN</strong> (Orthant-Wise Limited-memory Quasi-Newton).</p></li>
+<li><p><strong>Diferente optimizador → diferentes soluciones</strong>, incluso si el parámetro <code class="docutils literal notranslate"><span class="pre">C</span></code> o <code class="docutils literal notranslate"><span class="pre">regParam</span></code> es equivalente.</p></li>
+</ul>
+</div>
 </section>
 </section>
 
