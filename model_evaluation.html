@@ -389,6 +389,27 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#por-que-usar-pyspark-para-modelos-de-machine-learning-con-grandes-volumenes-de-datos">9.7. ¿Por qué usar <code class="docutils literal notranslate"><span class="pre">PySpark</span></code> para modelos de Machine Learning con grandes volúmenes de datos?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proyecto-integrador-de-aprendizaje-automatico">9.8. Proyecto Integrador de Aprendizaje Automático</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivo">9.8.1. Objetivo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">9.8.2. Dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#target">9.8.3. Target</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estructura-del-proyecto">9.8.4. Estructura del proyecto</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exploracion-de-datos-eda">9.8.4.1. Exploración de datos (EDA)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocesamiento">9.8.4.2. Preprocesamiento</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#scikit-learn">9.8.4.2.1. scikit-learn</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#pyspark">9.8.4.2.2. PySpark</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modelado-con-scikit-learn">9.8.4.3. Modelado con scikit-learn</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modelado-con-pyspark">9.8.4.4. Modelado con PySpark</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretabilidad-con-lime">9.8.4.5. Interpretabilidad con LIME</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacion-de-resultados">9.8.4.6. Comparación de Resultados</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#entregable">9.8.5. Entregable</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recursos">9.8.6. Recursos</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -3123,6 +3144,33 @@ Test set accuracy: 1.000
 <li><p>Cuando se utiliza <code class="docutils literal notranslate"><span class="pre">accuracy</span></code>, se selecciona el parámetro <code class="docutils literal notranslate"><span class="pre">gamma=0.0001</span></code>, mientras que cuando se utiliza el AUC se selecciona <code class="docutils literal notranslate"><span class="pre">gamma=0.01</span></code>. Accuracy score para la validación cruzada es coherente con el <code class="docutils literal notranslate"><span class="pre">accuracy</span></code> del conjunto de prueba en ambos casos. <em><strong>Sin embargo, al utilizar AUC se encontró un mejor ajuste de los parámetros en en términos de AUC e incluso en términos de accuracy</strong></em>. Los valores más importantes del parámetro de scoring para la clasificación son <code class="docutils literal notranslate"><span class="pre">accuracy</span></code> (por defecto); <code class="docutils literal notranslate"><span class="pre">roc_auc</span></code> para el área bajo la curva ROC; <code class="docutils literal notranslate"><span class="pre">average_precision</span></code> para el área bajo la curva de <code class="docutils literal notranslate"><span class="pre">precision-recall</span></code>; <code class="docutils literal notranslate"><span class="pre">f1,</span> <span class="pre">f1_macro,</span> <span class="pre">f1_micro</span></code> y <code class="docutils literal notranslate"><span class="pre">f1_weighted</span></code> para <span class="math notranslate nohighlight">\(f_{1}\)</span>-score binario y las diferentes variantes ponderadas.</p></li>
 <li><p>En cuanto a la regresión, los valores más utilizados son <code class="docutils literal notranslate"><span class="pre">r2</span></code> para el score <span class="math notranslate nohighlight">\(R^{2}\)</span>, <code class="docutils literal notranslate"><span class="pre">mean_squared_error</span></code> para el error medio al cuadrado y <code class="docutils literal notranslate"><span class="pre">mean_absolute_error</span></code> para el error medio absoluto. Puede encontrar una lista completa de argumentos admitidos en la <a class="reference external" href="https://scikit-learn.org/stable/modules/model_evaluation.html#the-scoring-parameter-defining-model-evaluation-rules">documentación</a> o consultando el diccionario SCORER definido en el módulo <code class="docutils literal notranslate"><span class="pre">metrics.scorer</span></code>.</p></li>
 </ul>
+<div class="tip admonition">
+<p class="admonition-title">Observación</p>
+<p><strong>El modelo <code class="docutils literal notranslate"><span class="pre">SVC()</span></code> resultante no cambia automáticamente su <em>threshold</em></strong> al que entrega el mejor trade-off entre <em>precision</em> y <em>recall</em> o entre <em>TPR</em> y <em>FPR</em> (como podría sugerir el AUC).</p>
+<ul class="simple">
+<li><p>Lo que <strong>SÍ</strong> hace <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> con <code class="docutils literal notranslate"><span class="pre">scoring=&quot;roc_auc&quot;</span></code>:</p></li>
+</ul>
+<ul class="simple">
+<li><p><strong>Durante la validación cruzada</strong>, el modelo se evalúa usando el <strong>área bajo la curva ROC (AUC)</strong>, lo cual es <strong>umbral-independiente</strong>: AUC mide la <strong>capacidad del modelo para separar clases en todo el rango de posibles <em>thresholds</em></strong>.</p></li>
+<li><p><strong>Escoge los hiperparámetros</strong> que producen el mejor AUC promedio en validación cruzada.</p></li>
+</ul>
+<ul class="simple">
+<li><p>Lo que <strong>NO</strong> hace automáticamente:</p></li>
+</ul>
+<ul>
+<li><p><strong>No ajusta el umbral de decisión final</strong>.
+El modelo sigue usando el <strong>umbral predeterminado de 0</strong> para <code class="docutils literal notranslate"><span class="pre">decision_function(X)</span></code> o <strong>0.5</strong> para <code class="docutils literal notranslate"><span class="pre">predict_proba(X)</span></code> (cuando el clasificador lo permite).</p>
+<ul>
+<li><p>Para <code class="docutils literal notranslate"><span class="pre">SVC()</span></code>, <code class="docutils literal notranslate"><span class="pre">predict()</span></code> funciona como:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">y_pred</span> <span class="o">=</span> <span class="p">(</span><span class="n">decision_function</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Y ese umbral <strong>no se adapta</strong> al mejor trade-off entre precisión y recall.</p></li>
+</ul>
+</li>
+</ul>
+</div>
 <div class="important admonition">
 <p class="admonition-title">Resumen y conclusiones</p>
 <p>La validación cruzada, el grid-search y las métricas de evaluación son fundamentales para mejorar los modelos de aprendizaje automático. Hay dos puntos clave a considerar:</p>
@@ -3412,6 +3460,163 @@ Tiempo: 273.57 segundos
 </ul>
 </div>
 </section>
+<section id="proyecto-integrador-de-aprendizaje-automatico">
+<h2><span class="section-number">9.8. </span>Proyecto Integrador de Aprendizaje Automático<a class="headerlink" href="#proyecto-integrador-de-aprendizaje-automatico" title="Link to this heading">#</a></h2>
+<section id="objetivo">
+<h3><span class="section-number">9.8.1. </span>Objetivo<a class="headerlink" href="#objetivo" title="Link to this heading">#</a></h3>
+<p>Construir un modelo de <strong>clasificación supervisada</strong> para predecir si un préstamo emitido por la plataforma Lending Club resultará en <strong>default (1)</strong> o será <strong>pagado completamente (0)</strong>. El objetivo es comparar el desempeño de los modelos construidos con <strong>scikit-learn</strong> y <strong>PySpark</strong>, además de aplicar <strong>LIME</strong> para interpretar predicciones.</p>
+</section>
+<section id="dataset">
+<h3><span class="section-number">9.8.2. </span>Dataset<a class="headerlink" href="#dataset" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Nombre</strong>: Lending Club Loan Data (2007–2020)</p></li>
+<li><p><strong>Fuente</strong>: <a class="reference external" href="https://www.kaggle.com/datasets/wordsforthewise/lending-club">Kaggle Dataset - Lending Club</a></p></li>
+<li><p><strong>Tamaño</strong>: más de 1,3 millones de registros</p></li>
+<li><p><strong>Características</strong>: variables socioeconómicas, financieras, de crédito, empleo y propósito del préstamo</p></li>
+</ul>
+</section>
+<section id="target">
+<h3><span class="section-number">9.8.3. </span>Target<a class="headerlink" href="#target" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Variable binaria: <code class="docutils literal notranslate"><span class="pre">loan_status</span></code></p>
+<ul>
+<li><p>0 = Fully Paid</p></li>
+<li><p>1 = Charged Off (default)</p></li>
+</ul>
+</li>
+<li><p>Generar la variable <code class="docutils literal notranslate"><span class="pre">default</span></code> basada en la columna <code class="docutils literal notranslate"><span class="pre">loan_status</span></code>:</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;default&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;loan_status&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="s2">&quot;Charged Off&quot;</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="estructura-del-proyecto">
+<h3><span class="section-number">9.8.4. </span>Estructura del proyecto<a class="headerlink" href="#estructura-del-proyecto" title="Link to this heading">#</a></h3>
+<section id="exploracion-de-datos-eda">
+<h4><span class="section-number">9.8.4.1. </span>Exploración de datos (EDA)<a class="headerlink" href="#exploracion-de-datos-eda" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Cargar el dataset CSV</p></li>
+<li><p>Ver distribución de la variable <code class="docutils literal notranslate"><span class="pre">default</span></code></p></li>
+<li><p>Verificar valores faltantes y tipos de datos</p></li>
+<li><p>Visualizaciones:</p>
+<ul>
+<li><p>Histogramas de variables numéricas</p></li>
+<li><p>Boxplots por clase</p></li>
+<li><p>Correlaciones</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="preprocesamiento">
+<h4><span class="section-number">9.8.4.2. </span>Preprocesamiento<a class="headerlink" href="#preprocesamiento" title="Link to this heading">#</a></h4>
+<section id="scikit-learn">
+<h5><span class="section-number">9.8.4.2.1. </span>scikit-learn<a class="headerlink" href="#scikit-learn" title="Link to this heading">#</a></h5>
+<ul class="simple">
+<li><p>Seleccionar variables relevantes: <code class="docutils literal notranslate"><span class="pre">loan_amnt</span></code>, <code class="docutils literal notranslate"><span class="pre">int_rate</span></code>, <code class="docutils literal notranslate"><span class="pre">fico_range_high</span></code>, <code class="docutils literal notranslate"><span class="pre">emp_length</span></code>, <code class="docutils literal notranslate"><span class="pre">annual_inc</span></code>, <code class="docutils literal notranslate"><span class="pre">purpose</span></code>, <code class="docutils literal notranslate"><span class="pre">home_ownership</span></code>, <code class="docutils literal notranslate"><span class="pre">dti</span></code>, <code class="docutils literal notranslate"><span class="pre">addr_state</span></code>, etc.</p></li>
+<li><p>Codificación de variables categóricas (<code class="docutils literal notranslate"><span class="pre">OneHotEncoder</span></code> o <code class="docutils literal notranslate"><span class="pre">LabelEncoder</span></code>)</p></li>
+<li><p>Escalado con <code class="docutils literal notranslate"><span class="pre">StandardScaler</span></code> si es necesario</p></li>
+<li><p>División <code class="docutils literal notranslate"><span class="pre">train_test_split</span></code> (80/20), estratificada por clase</p></li>
+</ul>
+</section>
+<section id="pyspark">
+<h5><span class="section-number">9.8.4.2.2. </span>PySpark<a class="headerlink" href="#pyspark" title="Link to this heading">#</a></h5>
+<ul class="simple">
+<li><p>Leer CSV en <code class="docutils literal notranslate"><span class="pre">SparkSession</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">StringIndexer</span></code> y <code class="docutils literal notranslate"><span class="pre">OneHotEncoder</span></code> para categóricas</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">VectorAssembler</span></code> + <code class="docutils literal notranslate"><span class="pre">StandardScaler</span></code> (opcional)</p></li>
+<li><p>División <code class="docutils literal notranslate"><span class="pre">randomSplit</span></code>, estratificada si es posible</p></li>
+</ul>
+</section>
+</section>
+<section id="modelado-con-scikit-learn">
+<h4><span class="section-number">9.8.4.3. </span>Modelado con scikit-learn<a class="headerlink" href="#modelado-con-scikit-learn" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Usar <code class="docutils literal notranslate"><span class="pre">RandomForestClassifier</span></code></p></li>
+<li><p>Aplicar <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> sin <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code>, sobre:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">n_estimators</span></code>: [10, 50, 100]</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max_depth</span></code>: [5, 10, 15]</p></li>
+</ul>
+</li>
+<li><p>Métricas:</p>
+<ul>
+<li><p>Accuracy, Precision, Recall, F1-score, ROC AUC</p></li>
+<li><p>Matriz de confusión</p></li>
+</ul>
+</li>
+<li><p>Medir tiempo de entrenamiento y predicción con <code class="docutils literal notranslate"><span class="pre">time.time()</span></code> o <code class="docutils literal notranslate"><span class="pre">%time</span></code></p></li>
+</ul>
+</section>
+<section id="modelado-con-pyspark">
+<h4><span class="section-number">9.8.4.4. </span>Modelado con PySpark<a class="headerlink" href="#modelado-con-pyspark" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Usar <code class="docutils literal notranslate"><span class="pre">pyspark.ml.classification.RandomForestClassifier</span></code></p></li>
+<li><p>Probar manualmente las mismas combinaciones de hiperparámetros</p></li>
+<li><p>Evaluar con <code class="docutils literal notranslate"><span class="pre">BinaryClassificationEvaluator</span></code></p></li>
+<li><p>Calcular precisión, F1-score, matriz de confusión (manual si es necesario)</p></li>
+<li><p>Medir tiempo total de entrenamiento y predicción</p></li>
+</ul>
+</section>
+<section id="interpretabilidad-con-lime">
+<h4><span class="section-number">9.8.4.5. </span>Interpretabilidad con LIME<a class="headerlink" href="#interpretabilidad-con-lime" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Instalar LIME: <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">lime</span></code></p></li>
+<li><p>Seleccionar una o dos instancias clasificadas erróneamente</p></li>
+<li><p>Aplicar <code class="docutils literal notranslate"><span class="pre">lime.lime_tabular.LimeTabularExplainer</span></code></p></li>
+<li><p>Visualizar:</p>
+<ul>
+<li><p>Variables más influyentes en la predicción</p></li>
+<li><p>Gráficos locales de explicación</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="comparacion-de-resultados">
+<h4><span class="section-number">9.8.4.6. </span>Comparación de Resultados<a class="headerlink" href="#comparacion-de-resultados" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Tabla comparativa con:</p>
+<ul>
+<li><p>Métricas para sklearn vs PySpark</p></li>
+<li><p>Tiempo de cómputo</p></li>
+</ul>
+</li>
+<li><p>Gráficos:</p>
+<ul>
+<li><p>Curva ROC</p></li>
+<li><p>Comparación de tiempos</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="entregable">
+<h3><span class="section-number">9.8.5. </span>Entregable<a class="headerlink" href="#entregable" title="Link to this heading">#</a></h3>
+<p>Un <code class="docutils literal notranslate"><span class="pre">Jupyter</span> <span class="pre">Book</span></code> bien documentado con:</p>
+<ul class="simple">
+<li><p>Análisis exploratorio</p></li>
+<li><p>Preprocesamiento (sklearn y PySpark)</p></li>
+<li><p>Modelado + tuning de hiperparámetros</p></li>
+<li><p>Evaluación de métricas</p></li>
+<li><p>Interpretabilidad con LIME</p></li>
+<li><p>Reflexión crítica sobre:</p>
+<ul>
+<li><p>¿Qué entorno fue más rápido?</p></li>
+<li><p>¿Cuál fue más preciso?</p></li>
+<li><p>¿Cuándo es útil PySpark?</p></li>
+<li><p>¿Qué aporta LIME?</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="recursos">
+<h3><span class="section-number">9.8.6. </span>Recursos<a class="headerlink" href="#recursos" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.kaggle.com/datasets/wordsforthewise/lending-club">Lending Club Dataset (Kaggle)</a></p></li>
+<li><p><a class="reference external" href="https://github.com/marcotcr/lime">LIME Documentation</a></p></li>
+<li><p><a class="reference external" href="https://spark.apache.org/docs/latest/ml-guide.html">PySpark MLlib</a></p></li>
+</ul>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -3518,6 +3723,27 @@ Tiempo: 273.57 segundos
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#por-que-usar-pyspark-para-modelos-de-machine-learning-con-grandes-volumenes-de-datos">9.7. ¿Por qué usar <code class="docutils literal notranslate"><span class="pre">PySpark</span></code> para modelos de Machine Learning con grandes volúmenes de datos?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proyecto-integrador-de-aprendizaje-automatico">9.8. Proyecto Integrador de Aprendizaje Automático</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivo">9.8.1. Objetivo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">9.8.2. Dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#target">9.8.3. Target</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estructura-del-proyecto">9.8.4. Estructura del proyecto</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exploracion-de-datos-eda">9.8.4.1. Exploración de datos (EDA)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocesamiento">9.8.4.2. Preprocesamiento</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#scikit-learn">9.8.4.2.1. scikit-learn</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#pyspark">9.8.4.2.2. PySpark</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modelado-con-scikit-learn">9.8.4.3. Modelado con scikit-learn</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modelado-con-pyspark">9.8.4.4. Modelado con PySpark</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretabilidad-con-lime">9.8.4.5. Interpretabilidad con LIME</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacion-de-resultados">9.8.4.6. Comparación de Resultados</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#entregable">9.8.5. Entregable</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recursos">9.8.6. Recursos</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
