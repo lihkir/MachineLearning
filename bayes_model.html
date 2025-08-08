@@ -351,18 +351,28 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formulacion">4.1. Formulación</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-titanic-dataset">4.2. Aplicación: Titanic Dataset</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proyecto-integrador-de-aprendizaje-automatico">4.3. Proyecto Integrador de Aprendizaje Automático</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clasificacion-de-enfermedades-cardiacas-con-modelos-bayesianos">4.3.1. Clasificación de enfermedades cardíacas con modelos bayesianos</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivo-general">4.3.1.1. Objetivo general</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#contexto-aplicado">4.3.1.2. Contexto aplicado</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-sugerido">4.3.1.3. Dataset sugerido</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-disponibles-ejemplo">4.3.1.4. Variables disponibles (ejemplo)</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tareas">4.3.1.5. Tareas</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#restricciones-didacticas">4.3.1.6. Restricciones didácticas</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#herramientas-sugeridas">4.3.1.7. Herramientas sugeridas</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#resultado-esperado">4.3.1.8. Resultado esperado</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#diseno-sugerido-del-notebook">4.3.1.9. Diseño sugerido del notebook</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen">4.3.1.10. Resumen</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#codificacion-de-variables-categoricas">4.3. Codificación de Variables Categóricas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#codificacion-de-variables-categoricas-onehotencoder-vs-get-dummies-en-machine-learning">4.3.1. Codificación de Variables Categóricas: <code class="docutils literal notranslate"><span class="pre">OneHotEncoder</span></code> vs <code class="docutils literal notranslate"><span class="pre">get_dummies</span></code> en Machine Learning</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pandas-get-dummies">4.3.2. <code class="docutils literal notranslate"><span class="pre">pandas.get_dummies</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sklearn-preprocessing-onehotencoder">4.3.3. <code class="docutils literal notranslate"><span class="pre">sklearn.preprocessing.OneHotEncoder</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recomendacion-para-validacion-cruzada-con-pipelines">4.3.4. Recomendación para Validación Cruzada con Pipelines</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-basico-con-pipeline">4.3.5. Ejemplo Básico con <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">4.3.6. Conclusión</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#onehotencoder-con-gpu-vs-pd-get-dummies">4.3.7. <code class="docutils literal notranslate"><span class="pre">OneHotEncoder</span></code> con GPU vs <code class="docutils literal notranslate"><span class="pre">pd.get_dummies</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proyecto-integrador-de-aprendizaje-automatico">4.4. Proyecto Integrador de Aprendizaje Automático</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clasificacion-de-enfermedades-cardiacas-con-modelos-bayesianos">4.4.1. Clasificación de enfermedades cardíacas con modelos bayesianos</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivo-general">4.4.1.1. Objetivo general</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#contexto-aplicado">4.4.1.2. Contexto aplicado</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-sugerido">4.4.1.3. Dataset sugerido</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-disponibles-ejemplo">4.4.1.4. Variables disponibles (ejemplo)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tareas">4.4.1.5. Tareas</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#restricciones-didacticas">4.4.1.6. Restricciones didácticas</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#herramientas-sugeridas">4.4.1.7. Herramientas sugeridas</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#resultado-esperado">4.4.1.8. Resultado esperado</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#diseno-sugerido-del-notebook">4.4.1.9. Diseño sugerido del notebook</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen">4.4.1.10. Resumen</a></li>
 </ul>
 </li>
 </ul>
@@ -505,9 +515,12 @@ P(\boldsymbol{x}|G_{i})=\frac{f(\boldsymbol{x}|\overline{\boldsymbol{x}}_{i}, S_
 <p>Sustituyendo estas ecuaciones en <a class="reference internal" href="#equation-eq-bayes-normal">(4.4)</a>, el radio de <em><strong>probabilidades posteriores</strong></em> es expresado como</p>
 <div class="math notranslate nohighlight">
 \[
-\frac{P(G_{1}|\boldsymbol{x})}{P(G_{2}|\boldsymbol{x})}=
-\frac{P(G_{1})P(\boldsymbol{x}|G_{1})}{P(G_{2})P(\boldsymbol{x}|G_{2})}=
-\frac{P(G_{1})f(\boldsymbol{x}|\overline{\boldsymbol{x}}_{1}, S_{1})}{P(G_{2})f(\boldsymbol{x}|\overline{\boldsymbol{x}}_{2}, S_{2})}
+\frac{P(G_1 \mid \mathbf{x})}{P(G_2 \mid \mathbf{x})} = \frac{\displaystyle{\frac{P(G_1) P(\mathbf{x} \mid G_1)}{P(\mathbf{x})}}}{\displaystyle{\frac{P(G_2) P(\mathbf{x} \mid G_2)}{P(\mathbf{x})}}} = \frac{P(G_1) P(\mathbf{x} \mid G_1)}{P(G_2) P(\mathbf{x} \mid G_2)}
+\]</div>
+<p>Como se <strong>asume que las clases <span class="math notranslate nohighlight">\(G_1\)</span> y <span class="math notranslate nohighlight">\(G_2\)</span> siguen una distribución normal multivariada</strong> con media estimada <span class="math notranslate nohighlight">\(\bar{\mathbf{x}}_i\)</span> y covarianza estimada <span class="math notranslate nohighlight">\(S_i\)</span>, entonces <span class="math notranslate nohighlight">\(P(\mathbf{x} \mid G_i) = f(\mathbf{x} \mid \bar{\mathbf{x}}_i, S_i)\)</span>. Por lo tanto</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{P(G_1) P(\mathbf{x} \mid G_1)}{P(G_2) P(\mathbf{x} \mid G_2)} = \frac{P(G_1) f(\mathbf{x} \mid \bar{\mathbf{x}}_1, S_1)}{P(G_2) f(\mathbf{x} \mid \bar{\mathbf{x}}_2, S_2)}
 \]</div>
 <p><em><strong>Tomando el logaritmo</strong></em> de esta expresión, <em><strong>bajo el supuesto de que las probabilidades a priori son iguales</strong></em>, obtenemos la <em><strong>clasificación Bayesiana</strong></em> basada en la distribución de probabilidad</p>
 <div class="math notranslate nohighlight" id="equation-bayes-class-rule">
@@ -535,13 +548,53 @@ h(\boldsymbol{x})&amp;=\log f(\boldsymbol{x}|\overline{\boldsymbol{x}}_{1}, S_{1
 \end{split}\]</div>
 <p>La función <span class="math notranslate nohighlight">\(h(\boldsymbol{x})\)</span> de la Eq. <a class="reference internal" href="#equation-quad-disc-eq">(4.6)</a> es conocida como <em><strong>función discriminante cuadratica</strong></em>. Reemplazando <span class="math notranslate nohighlight">\(S_{i}\)</span> con la <em><strong>matriz de varianza-covarianza de la muestra conjunta</strong></em> <span class="math notranslate nohighlight">\(S=(n_{1}S_{1}+n_{2}S_{2})/(n_{1}+n_{2})\)</span>, la función discriminante es además reducida a la <em><strong>función discriminante lineal</strong></em> (<em>verifíquelo</em>)</p>
 <div class="math notranslate nohighlight">
+\[
+h(\mathbf{x}) = \frac{1}{2}(\mathbf{x} - \mathbf{x}_2)^T S^{-1} (\mathbf{x} - \mathbf{x}_2) - \frac{1}{2}(\mathbf{x} - \mathbf{x}_1)^T S^{-1} (\mathbf{x} - \mathbf{x}_1)
+\]</div>
+<p>Expandamos cada término:</p>
+<div class="math notranslate nohighlight">
+\[
+(\mathbf{x} - \mathbf{x}_2)^T S^{-1} (\mathbf{x} - \mathbf{x}_2) =
+\mathbf{x}^T S^{-1} \mathbf{x} - 2 \mathbf{x}_2^T S^{-1} \mathbf{x} + \mathbf{x}_2^T S^{-1} \mathbf{x}_2
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+(\mathbf{x} - \mathbf{x}_1)^T S^{-1} (\mathbf{x} - \mathbf{x}_1) =
+\mathbf{x}^T S^{-1} \mathbf{x} - 2 \mathbf{x}_1^T S^{-1} \mathbf{x} + \mathbf{x}_1^T S^{-1} \mathbf{x}_1
+\]</div>
+<p>Sustituyendo en la función discriminante dentro de la resta:</p>
+<div class="math notranslate nohighlight">
 \[\begin{split}
-\begin{align*}
-h(\boldsymbol{x})&amp;=\frac{1}{2}(\boldsymbol{x}-\overline{\boldsymbol{x}}_{2})^{T}S^{-1}(\boldsymbol{x}-\overline{\boldsymbol{x}}_{2})-\frac{1}{2}(\boldsymbol{x}-\overline{\boldsymbol{x}}_{1})^{T}S^{-1}(\boldsymbol{x}-\overline{\boldsymbol{x}}_{1})\\
-&amp;=(\boldsymbol{x}_{1}-\overline{\boldsymbol{x}}_{2})^{T}S^{-1}\boldsymbol{x}-\frac{1}{2}(\overline{\boldsymbol{x}}_{1}^{T}S^{-1}\overline{\boldsymbol{x}}_{1}-\overline{\boldsymbol{x}}_{2}^{T}S^{-1}\overline{\boldsymbol{x}}_{2})
-\end{align*}
+\begin{aligned}
+h(\mathbf{x}) &amp;= \frac{1}{2} \left( \mathbf{x}^T S^{-1} \mathbf{x} - 2 \mathbf{x}_2^T S^{-1} \mathbf{x} + \mathbf{x}_2^T S^{-1} \mathbf{x}_2 \right) \\
+&amp;\quad - \frac{1}{2} \left( \mathbf{x}^T S^{-1} \mathbf{x} - 2 \mathbf{x}_1^T S^{-1} \mathbf{x} + \mathbf{x}_1^T S^{-1} \mathbf{x}_1 \right)
+\end{aligned}
 \end{split}\]</div>
-<p>De esta forma, obtenemos la <em><strong>regla de clasificación de Bayes</strong></em> <a class="reference internal" href="#equation-bayes-class-rule">(4.5)</a> basada en el <em><strong>signo del logaritmo de la razón entre la distribución de probabilidad estimada que caracteriza la clase</strong></em>. La función <span class="math notranslate nohighlight">\(h(\boldsymbol{x})\)</span> expresada por la distribución normal <span class="math notranslate nohighlight">\(p\)</span>-dimensional entrega las <em><strong>funciones discriminantes lineales y cuadráticas</strong></em>.</p>
+<p>Los términos <span class="math notranslate nohighlight">\(\mathbf{x}^T S^{-1} \mathbf{x}\)</span> se cancelan entre sí, ya que aparecen con el mismo signo y factor. Entonces queda:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+h(\mathbf{x}) &amp;= \frac{1}{2} \left( -2 \mathbf{x}_2^T S^{-1} \mathbf{x} + \mathbf{x}_2^T S^{-1} \mathbf{x}_2 
++ 2 \mathbf{x}_1^T S^{-1} \mathbf{x} - \mathbf{x}_1^T S^{-1} \mathbf{x}_1 \right) \\
+&amp;= \left( \mathbf{x}_1^T S^{-1} - \mathbf{x}_2^T S^{-1} \right) \mathbf{x} + \frac{1}{2} \left( \mathbf{x}_2^T S^{-1} \mathbf{x}_2 - \mathbf{x}_1^T S^{-1} \mathbf{x}_1 \right)
+\end{aligned}
+\end{split}\]</div>
+<p>La expresión anterior se puede reescribir como:</p>
+<div class="math notranslate nohighlight">
+\[
+h(\mathbf{x}) = \mathbf{w}^T \mathbf{x} + w_0
+\]</div>
+<p>donde:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mathbf{w} = S^{-1} (\mathbf{x}_1 - \mathbf{x}_2)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(w_0 = \frac{1}{2} \left( \mathbf{x}_2^T S^{-1} \mathbf{x}_2 - \mathbf{x}_1^T S^{-1} \mathbf{x}_1 \right)\)</span></p></li>
+</ul>
+<p>Por lo tanto,</p>
+<div class="math notranslate nohighlight">
+\[
+h(\mathbf{x}) = (\mathbf{x}_1 - \mathbf{x}_2)^T S^{-1} \mathbf{x} - \frac{1}{2} \left( \mathbf{x}_1^T S^{-1} \mathbf{x}_1 - \mathbf{x}_2^T S^{-1} \mathbf{x}_2 \right).
+\]</div>
+<p>De esta forma, obtenemos la <em><strong>regla de clasificación de Bayes</strong></em> <a class="reference internal" href="#equation-bayes-class-rule">(4.5)</a> basada en el <em><strong>signo del logaritmo de la razón entre la distribución de probabilidad estimada que caracteriza la clase</strong></em>. La función <span class="math notranslate nohighlight">\(h(\boldsymbol{x})\)</span> expresada por la distribución normal <span class="math notranslate nohighlight">\(p\)</span>-dimensional entrega las <em><strong>funciones discriminantes, lineales y cuadráticas</strong></em>.</p>
 </section>
 <section id="aplicacion-titanic-dataset">
 <h2><span class="section-number">4.2. </span>Aplicación: Titanic Dataset<a class="headerlink" href="#aplicacion-titanic-dataset" title="Link to this heading">#</a></h2>
@@ -711,7 +764,7 @@ h(\boldsymbol{x})&amp;=\frac{1}{2}(\boldsymbol{x}-\overline{\boldsymbol{x}}_{2})
 </div></div></div>
 </div>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">Análisis</span> <span class="pre">Exploratorio</span> <span class="pre">de</span> <span class="pre">Datos</span> <span class="pre">(EDA)</span></code></p></li>
+<li><p><strong>Análisis Exploratorio de Datos (EDA)</strong></p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1382,7 +1435,7 @@ memory usage: 36.0+ KB
 </div></div></div>
 </div>
 <ul class="simple">
-<li><p>En total faltan <code class="docutils literal notranslate"><span class="pre">263</span> <span class="pre">valores</span> <span class="pre">de</span> <span class="pre">Edad,</span> <span class="pre">1</span> <span class="pre">de</span> <span class="pre">Tarifa,</span> <span class="pre">1014</span> <span class="pre">NA</span> <span class="pre">en</span> <span class="pre">la</span> <span class="pre">variable</span> <span class="pre">Cabina</span> <span class="pre">y</span> <span class="pre">2</span> <span class="pre">en</span> <span class="pre">la</span> <span class="pre">variable</span> <span class="pre">Embarcado</span></code>. <code class="docutils literal notranslate"><span class="pre">418</span> <span class="pre">NA</span> <span class="pre">en</span> <span class="pre">la</span> <span class="pre">variable</span> <span class="pre">Survived</span></code> debido a la <code class="docutils literal notranslate"><span class="pre">ausencia</span> <span class="pre">de</span> <span class="pre">esta</span> <span class="pre">información</span> <span class="pre">en</span> <span class="pre">el</span> <span class="pre">conjunto</span> <span class="pre">de</span> <span class="pre">datos</span> <span class="pre">de</span> <span class="pre">prueba</span></code>.</p></li>
+<li><p>En total faltan <strong>263 valores de Edad, 1 de Tarifa, 1014 NA en la variable Cabina y 2 en la variable Embarcado</strong>. <strong>418 NA en la variable Survived</strong> debido a la <strong>ausencia de esta información en el conjunto de datos de prueba</strong>.</p></li>
 <li><p>En este ejemplo, no imputaremos estas pérdidas. Técnicas de imputación de datos serán estudiadas en el curso <code class="docutils literal notranslate"><span class="pre">Visualización</span> <span class="pre">de</span> <span class="pre">Datos</span> <span class="pre">para</span> <span class="pre">la</span> <span class="pre">Toma</span> <span class="pre">de</span> <span class="pre">Decisiones</span></code>.</p></li>
 </ul>
 <ul class="simple">
@@ -1418,7 +1471,7 @@ Name: count, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/877802c2b06c378352b7db4f97cbf0b71cd64e0b7f167e6c85c2c6bcf52a22fa.png" src="_images/877802c2b06c378352b7db4f97cbf0b71cd64e0b7f167e6c85c2c6bcf52a22fa.png" />
+<img alt="_images/643b21f6def103581edac289b33459b9df67b84b915c74ec37fd087857aedb7b.png" src="_images/643b21f6def103581edac289b33459b9df67b84b915c74ec37fd087857aedb7b.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1451,7 +1504,7 @@ Name: proportion, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/4f69a3ebb53d826f81789d68211b5359f8a36270c4c733c068e9c351786e6957.png" src="_images/4f69a3ebb53d826f81789d68211b5359f8a36270c4c733c068e9c351786e6957.png" />
+<img alt="_images/378da6a8ed013c518acf4623f3a1ff678234755d2a0da64775f6a3457908f448.png" src="_images/378da6a8ed013c518acf4623f3a1ff678234755d2a0da64775f6a3457908f448.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1522,7 +1575,7 @@ Name: proportion, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/64158f16769a9a95513b9c72d80a0d94883e566684d812fd9953f689ffa3780d.png" src="_images/64158f16769a9a95513b9c72d80a0d94883e566684d812fd9953f689ffa3780d.png" />
+<img alt="_images/feb5b351102ef9db0347fd5e8847c958895409f2cdd81a0ddf6d843eb37c4865.png" src="_images/feb5b351102ef9db0347fd5e8847c958895409f2cdd81a0ddf6d843eb37c4865.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1785,7 +1838,7 @@ Name: proportion, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/9d8e29fd1a1201d9c9f5ea4d839882f8d249500db19f0f3f561852bf665fba32.png" src="_images/9d8e29fd1a1201d9c9f5ea4d839882f8d249500db19f0f3f561852bf665fba32.png" />
+<img alt="_images/f842568175750205ca0b232ea001dc59f064c51a152d27543b8b88c5321c05fb.png" src="_images/f842568175750205ca0b232ea001dc59f064c51a152d27543b8b88c5321c05fb.png" />
 </div>
 </div>
 <ul class="simple">
@@ -2676,30 +2729,53 @@ memory usage: 25.9 KB
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/f0b6735076d9daac3b32831c49ab68e00726ca18262d5c2accd466e86f6f6dac.png" src="_images/f0b6735076d9daac3b32831c49ab68e00726ca18262d5c2accd466e86f6f6dac.png" />
+<img alt="_images/b491d1043db1e724ad51c5deb4525a2e3d4b944cfe108108aa5f6f9f21102447.png" src="_images/b491d1043db1e724ad51c5deb4525a2e3d4b944cfe108108aa5f6f9f21102447.png" />
 </div>
 </div>
 <ul class="simple">
-<li><p>Dividimos nuestros dataset <code class="docutils literal notranslate"><span class="pre">df_train_ml</span></code> en, conjunto de entrenamiento y de prueba. Posteriormente, <code class="docutils literal notranslate"><span class="pre">escalamos</span> <span class="pre">la</span> <span class="pre">partición</span> <span class="pre">de</span> <span class="pre">entrenamiento</span></code> usando <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html">StandardScaler</a>.</p></li>
+<li><p>Dividimos nuestro dataset <code class="docutils literal notranslate"><span class="pre">df_train_ml</span></code> en, conjunto de entrenamiento y de prueba. Posteriormente, <strong>escalamos la partición de entrenamiento</strong> usando <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html">StandardScaler</a>.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span><span class="p">,</span> <span class="n">GridSearchCV</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="kn">import</span> <span class="n">GaussianNB</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">df_train_ml</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;Survived&#39;</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">df_train_ml</span><span class="p">[</span><span class="s1">&#39;Survived&#39;</span><span class="p">],</span> 
-                                                    <span class="n">test_size</span><span class="o">=</span><span class="mf">0.30</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">101</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">df_train_ml</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;Survived&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df_train_ml</span><span class="p">[</span><span class="s1">&#39;Survived&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.30</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">101</span><span class="p">)</span>
+
+<span class="n">pipe</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([</span>
+    <span class="p">(</span><span class="s1">&#39;scaler&#39;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">()),</span>
+    <span class="p">(</span><span class="s1">&#39;clf&#39;</span><span class="p">,</span> <span class="n">GaussianNB</span><span class="p">())</span>
+<span class="p">])</span>
+
+<span class="n">param_grid</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="n">grid</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">pipe</span><span class="p">,</span> <span class="n">param_grid</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">grid</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="n">acc</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Accuracy: </span><span class="si">{</span><span class="n">acc</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy: 0.7757
 </pre></div>
 </div>
 </div>
@@ -2707,430 +2783,75 @@ memory usage: 25.9 KB
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<span class="n">X_train_sc</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train_sc</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_test_sc</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clf</span> <span class="o">=</span> <span class="n">BernoulliNB</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_pred</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_sc</span><span class="p">)</span>
+<span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6588785046728972
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">GaussianNB</span></code></strong> Es el modelo recomendado para este problema, por las siguientes razones:</p>
+<ul>
+<li><p>Úsalo cuando <strong>tienes variables numéricas continuas</strong>, como <code class="docutils literal notranslate"><span class="pre">Age</span></code>, <code class="docutils literal notranslate"><span class="pre">Fare</span></code>.</p></li>
+<li><p>Funciona bien con mezclas de variables numéricas y discretas.</p></li>
+<li><p>Las variables categóricas deben ser convertidas (por ejemplo, con <code class="docutils literal notranslate"><span class="pre">OneHotEncoding</span></code> o <code class="docutils literal notranslate"><span class="pre">LabelEncoding</span></code>).</p></li>
+<li><p>Es <strong>el más adecuado</strong> para el dataset Titanic después de preprocesar.</p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([</span>
+    <span class="p">(</span><span class="s1">&#39;scaler&#39;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">()),</span>
+    <span class="p">(</span><span class="s1">&#39;clf&#39;</span><span class="p">,</span> <span class="n">GaussianNB</span><span class="p">())</span>
+<span class="p">])</span>
+
+<span class="n">param_grid</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="n">grid</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">pipe</span><span class="p">,</span> <span class="n">param_grid</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">grid</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="n">acc</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Accuracy: </span><span class="si">{</span><span class="n">acc</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy: 0.7757
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clf</span> <span class="o">=</span> <span class="n">GaussianNB</span><span class="p">()</span>
 <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_sc</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><style>#sk-container-id-1 {
-  /* Definition of color scheme common for light and dark mode */
-  --sklearn-color-text: black;
-  --sklearn-color-line: gray;
-  /* Definition of color scheme for unfitted estimators */
-  --sklearn-color-unfitted-level-0: #fff5e6;
-  --sklearn-color-unfitted-level-1: #f6e4d2;
-  --sklearn-color-unfitted-level-2: #ffe0b3;
-  --sklearn-color-unfitted-level-3: chocolate;
-  /* Definition of color scheme for fitted estimators */
-  --sklearn-color-fitted-level-0: #f0f8ff;
-  --sklearn-color-fitted-level-1: #d4ebff;
-  --sklearn-color-fitted-level-2: #b3dbfd;
-  --sklearn-color-fitted-level-3: cornflowerblue;
-
-  /* Specific color for light theme */
-  --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
-  --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, white)));
-  --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
-  --sklearn-color-icon: #696969;
-
-  @media (prefers-color-scheme: dark) {
-    /* Redefinition of color scheme for dark theme */
-    --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
-    --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, #111)));
-    --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
-    --sklearn-color-icon: #878787;
-  }
-}
-
-#sk-container-id-1 {
-  color: var(--sklearn-color-text);
-}
-
-#sk-container-id-1 pre {
-  padding: 0;
-}
-
-#sk-container-id-1 input.sk-hidden--visually {
-  border: 0;
-  clip: rect(1px 1px 1px 1px);
-  clip: rect(1px, 1px, 1px, 1px);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  width: 1px;
-}
-
-#sk-container-id-1 div.sk-dashed-wrapped {
-  border: 1px dashed var(--sklearn-color-line);
-  margin: 0 0.4em 0.5em 0.4em;
-  box-sizing: border-box;
-  padding-bottom: 0.4em;
-  background-color: var(--sklearn-color-background);
-}
-
-#sk-container-id-1 div.sk-container {
-  /* jupyter's `normalize.less` sets `[hidden] { display: none; }`
-     but bootstrap.min.css set `[hidden] { display: none !important; }`
-     so we also need the `!important` here to be able to override the
-     default hidden behavior on the sphinx rendered scikit-learn.org.
-     See: https://github.com/scikit-learn/scikit-learn/issues/21755 */
-  display: inline-block !important;
-  position: relative;
-}
-
-#sk-container-id-1 div.sk-text-repr-fallback {
-  display: none;
-}
-
-div.sk-parallel-item,
-div.sk-serial,
-div.sk-item {
-  /* draw centered vertical line to link estimators */
-  background-image: linear-gradient(var(--sklearn-color-text-on-default-background), var(--sklearn-color-text-on-default-background));
-  background-size: 2px 100%;
-  background-repeat: no-repeat;
-  background-position: center center;
-}
-
-/* Parallel-specific style estimator block */
-
-#sk-container-id-1 div.sk-parallel-item::after {
-  content: "";
-  width: 100%;
-  border-bottom: 2px solid var(--sklearn-color-text-on-default-background);
-  flex-grow: 1;
-}
-
-#sk-container-id-1 div.sk-parallel {
-  display: flex;
-  align-items: stretch;
-  justify-content: center;
-  background-color: var(--sklearn-color-background);
-  position: relative;
-}
-
-#sk-container-id-1 div.sk-parallel-item {
-  display: flex;
-  flex-direction: column;
-}
-
-#sk-container-id-1 div.sk-parallel-item:first-child::after {
-  align-self: flex-end;
-  width: 50%;
-}
-
-#sk-container-id-1 div.sk-parallel-item:last-child::after {
-  align-self: flex-start;
-  width: 50%;
-}
-
-#sk-container-id-1 div.sk-parallel-item:only-child::after {
-  width: 0;
-}
-
-/* Serial-specific style estimator block */
-
-#sk-container-id-1 div.sk-serial {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: var(--sklearn-color-background);
-  padding-right: 1em;
-  padding-left: 1em;
-}
-
-
-/* Toggleable style: style used for estimator/Pipeline/ColumnTransformer box that is
-clickable and can be expanded/collapsed.
-- Pipeline and ColumnTransformer use this feature and define the default style
-- Estimators will overwrite some part of the style using the `sk-estimator` class
-*/
-
-/* Pipeline and ColumnTransformer style (default) */
-
-#sk-container-id-1 div.sk-toggleable {
-  /* Default theme specific background. It is overwritten whether we have a
-  specific estimator or a Pipeline/ColumnTransformer */
-  background-color: var(--sklearn-color-background);
-}
-
-/* Toggleable label */
-#sk-container-id-1 label.sk-toggleable__label {
-  cursor: pointer;
-  display: block;
-  width: 100%;
-  margin-bottom: 0;
-  padding: 0.5em;
-  box-sizing: border-box;
-  text-align: center;
-}
-
-#sk-container-id-1 label.sk-toggleable__label-arrow:before {
-  /* Arrow on the left of the label */
-  content: "▸";
-  float: left;
-  margin-right: 0.25em;
-  color: var(--sklearn-color-icon);
-}
-
-#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {
-  color: var(--sklearn-color-text);
-}
-
-/* Toggleable content - dropdown */
-
-#sk-container-id-1 div.sk-toggleable__content {
-  max-height: 0;
-  max-width: 0;
-  overflow: hidden;
-  text-align: left;
-  /* unfitted */
-  background-color: var(--sklearn-color-unfitted-level-0);
-}
-
-#sk-container-id-1 div.sk-toggleable__content.fitted {
-  /* fitted */
-  background-color: var(--sklearn-color-fitted-level-0);
-}
-
-#sk-container-id-1 div.sk-toggleable__content pre {
-  margin: 0.2em;
-  border-radius: 0.25em;
-  color: var(--sklearn-color-text);
-  /* unfitted */
-  background-color: var(--sklearn-color-unfitted-level-0);
-}
-
-#sk-container-id-1 div.sk-toggleable__content.fitted pre {
-  /* unfitted */
-  background-color: var(--sklearn-color-fitted-level-0);
-}
-
-#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {
-  /* Expand drop-down */
-  max-height: 200px;
-  max-width: 100%;
-  overflow: auto;
-}
-
-#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
-  content: "▾";
-}
-
-/* Pipeline/ColumnTransformer-specific style */
-
-#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
-  color: var(--sklearn-color-text);
-  background-color: var(--sklearn-color-unfitted-level-2);
-}
-
-#sk-container-id-1 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
-  background-color: var(--sklearn-color-fitted-level-2);
-}
-
-/* Estimator-specific style */
-
-/* Colorize estimator box */
-#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
-  /* unfitted */
-  background-color: var(--sklearn-color-unfitted-level-2);
-}
-
-#sk-container-id-1 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
-  /* fitted */
-  background-color: var(--sklearn-color-fitted-level-2);
-}
-
-#sk-container-id-1 div.sk-label label.sk-toggleable__label,
-#sk-container-id-1 div.sk-label label {
-  /* The background is the default theme color */
-  color: var(--sklearn-color-text-on-default-background);
-}
-
-/* On hover, darken the color of the background */
-#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {
-  color: var(--sklearn-color-text);
-  background-color: var(--sklearn-color-unfitted-level-2);
-}
-
-/* Label box, darken color on hover, fitted */
-#sk-container-id-1 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
-  color: var(--sklearn-color-text);
-  background-color: var(--sklearn-color-fitted-level-2);
-}
-
-/* Estimator label */
-
-#sk-container-id-1 div.sk-label label {
-  font-family: monospace;
-  font-weight: bold;
-  display: inline-block;
-  line-height: 1.2em;
-}
-
-#sk-container-id-1 div.sk-label-container {
-  text-align: center;
-}
-
-/* Estimator-specific */
-#sk-container-id-1 div.sk-estimator {
-  font-family: monospace;
-  border: 1px dotted var(--sklearn-color-border-box);
-  border-radius: 0.25em;
-  box-sizing: border-box;
-  margin-bottom: 0.5em;
-  /* unfitted */
-  background-color: var(--sklearn-color-unfitted-level-0);
-}
-
-#sk-container-id-1 div.sk-estimator.fitted {
-  /* fitted */
-  background-color: var(--sklearn-color-fitted-level-0);
-}
-
-/* on hover */
-#sk-container-id-1 div.sk-estimator:hover {
-  /* unfitted */
-  background-color: var(--sklearn-color-unfitted-level-2);
-}
-
-#sk-container-id-1 div.sk-estimator.fitted:hover {
-  /* fitted */
-  background-color: var(--sklearn-color-fitted-level-2);
-}
-
-/* Specification for estimator info (e.g. "i" and "?") */
-
-/* Common style for "i" and "?" */
-
-.sk-estimator-doc-link,
-a:link.sk-estimator-doc-link,
-a:visited.sk-estimator-doc-link {
-  float: right;
-  font-size: smaller;
-  line-height: 1em;
-  font-family: monospace;
-  background-color: var(--sklearn-color-background);
-  border-radius: 1em;
-  height: 1em;
-  width: 1em;
-  text-decoration: none !important;
-  margin-left: 1ex;
-  /* unfitted */
-  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
-  color: var(--sklearn-color-unfitted-level-1);
-}
-
-.sk-estimator-doc-link.fitted,
-a:link.sk-estimator-doc-link.fitted,
-a:visited.sk-estimator-doc-link.fitted {
-  /* fitted */
-  border: var(--sklearn-color-fitted-level-1) 1pt solid;
-  color: var(--sklearn-color-fitted-level-1);
-}
-
-/* On hover */
-div.sk-estimator:hover .sk-estimator-doc-link:hover,
-.sk-estimator-doc-link:hover,
-div.sk-label-container:hover .sk-estimator-doc-link:hover,
-.sk-estimator-doc-link:hover {
-  /* unfitted */
-  background-color: var(--sklearn-color-unfitted-level-3);
-  color: var(--sklearn-color-background);
-  text-decoration: none;
-}
-
-div.sk-estimator.fitted:hover .sk-estimator-doc-link.fitted:hover,
-.sk-estimator-doc-link.fitted:hover,
-div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
-.sk-estimator-doc-link.fitted:hover {
-  /* fitted */
-  background-color: var(--sklearn-color-fitted-level-3);
-  color: var(--sklearn-color-background);
-  text-decoration: none;
-}
-
-/* Span, style for the box shown on hovering the info icon */
-.sk-estimator-doc-link span {
-  display: none;
-  z-index: 9999;
-  position: relative;
-  font-weight: normal;
-  right: .2ex;
-  padding: .5ex;
-  margin: .5ex;
-  width: min-content;
-  min-width: 20ex;
-  max-width: 50ex;
-  color: var(--sklearn-color-text);
-  box-shadow: 2pt 2pt 4pt #999;
-  /* unfitted */
-  background: var(--sklearn-color-unfitted-level-0);
-  border: .5pt solid var(--sklearn-color-unfitted-level-3);
-}
-
-.sk-estimator-doc-link.fitted span {
-  /* fitted */
-  background: var(--sklearn-color-fitted-level-0);
-  border: var(--sklearn-color-fitted-level-3);
-}
-
-.sk-estimator-doc-link:hover span {
-  display: block;
-}
-
-/* "?"-specific style due to the `<a>` HTML tag */
-
-#sk-container-id-1 a.estimator_doc_link {
-  float: right;
-  font-size: 1rem;
-  line-height: 1em;
-  font-family: monospace;
-  background-color: var(--sklearn-color-background);
-  border-radius: 1rem;
-  height: 1rem;
-  width: 1rem;
-  text-decoration: none;
-  /* unfitted */
-  color: var(--sklearn-color-unfitted-level-1);
-  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
-}
-
-#sk-container-id-1 a.estimator_doc_link.fitted {
-  /* fitted */
-  border: var(--sklearn-color-fitted-level-1) 1pt solid;
-  color: var(--sklearn-color-fitted-level-1);
-}
-
-/* On hover */
-#sk-container-id-1 a.estimator_doc_link:hover {
-  /* unfitted */
-  background-color: var(--sklearn-color-unfitted-level-3);
-  color: var(--sklearn-color-background);
-  text-decoration: none;
-}
-
-#sk-container-id-1 a.estimator_doc_link.fitted:hover {
-  /* fitted */
-  background-color: var(--sklearn-color-fitted-level-3);
-}
-</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>BernoulliNB()</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked><label for="sk-estimator-id-1" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;&nbsp;BernoulliNB<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.naive_bayes.BernoulliNB.html">?<span>Documentation for BernoulliNB</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></label><div class="sk-toggleable__content fitted"><pre>BernoulliNB()</pre></div> </div></div></div></div></div></div>
+<div class="output text_html"><style>#sk-container-id-1 {color: black;}#sk-container-id-1 pre{padding: 0;}#sk-container-id-1 div.sk-toggleable {background-color: white;}#sk-container-id-1 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-1 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-1 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-1 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-1 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-1 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-1 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-1 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-1 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-1 div.sk-item {position: relative;z-index: 1;}#sk-container-id-1 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-1 div.sk-item::before, #sk-container-id-1 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-1 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-1 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-1 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-1 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-1 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-1 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-1 div.sk-label-container {text-align: center;}#sk-container-id-1 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-1 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>GaussianNB()</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked><label for="sk-estimator-id-1" class="sk-toggleable__label sk-toggleable__label-arrow">GaussianNB</label><div class="sk-toggleable__content"><pre>GaussianNB()</pre></div></div></div></div></div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3147,59 +2868,178 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7429906542056075
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7757009345794392
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_test_dfsc</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">df_test_ml</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.compose</span> <span class="kn">import</span> <span class="n">ColumnTransformer</span>
+<span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">OneHotEncoder</span><span class="p">,</span> <span class="n">StandardScaler</span>
+<span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="kn">import</span> <span class="n">GaussianNB</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">classification_report</span><span class="p">,</span> <span class="n">accuracy_score</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_pred_df</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_dfsc</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_pred_df</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;https://raw.githubusercontent.com/lihkir/Data/main/train_titanic.csv&#39;</span><span class="p">)</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;PassengerId&#39;</span><span class="p">,</span> <span class="s1">&#39;Name&#39;</span><span class="p">,</span> <span class="s1">&#39;Ticket&#39;</span><span class="p">,</span> <span class="s1">&#39;Cabin&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;Survived&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Survived&quot;</span><span class="p">]</span>
+
+<span class="n">categorical_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Sex&quot;</span><span class="p">,</span> <span class="s2">&quot;Embarked&quot;</span><span class="p">,</span> <span class="s2">&quot;Pclass&quot;</span><span class="p">]</span>
+<span class="n">numerical_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Age&quot;</span><span class="p">,</span> <span class="s2">&quot;SibSp&quot;</span><span class="p">,</span> <span class="s2">&quot;Parch&quot;</span><span class="p">,</span> <span class="s2">&quot;Fare&quot;</span><span class="p">]</span>
+
+<span class="n">preprocessor</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">(</span><span class="n">transformers</span><span class="o">=</span><span class="p">[</span>
+    <span class="p">(</span><span class="s2">&quot;cat&quot;</span><span class="p">,</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="s2">&quot;first&quot;</span><span class="p">,</span> <span class="n">handle_unknown</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">),</span> <span class="n">categorical_cols</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;num&quot;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">(),</span> <span class="n">numerical_cols</span><span class="p">)</span>
+<span class="p">])</span>
+
+<span class="n">pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[</span>
+    <span class="p">(</span><span class="s2">&quot;preprocessing&quot;</span><span class="p">,</span> <span class="n">preprocessor</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;classifier&quot;</span><span class="p">,</span> <span class="n">GaussianNB</span><span class="p">())</span>
+<span class="p">])</span>
+
+<span class="n">param_grid</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="n">grid_search</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">pipeline</span><span class="p">,</span> <span class="n">param_grid</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;roc_auc&#39;</span><span class="p">)</span>
+
+<span class="n">grid_search</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mejor precisión en validación cruzada: </span><span class="si">{</span><span class="n">grid_search</span><span class="o">.</span><span class="n">best_score_</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mejor modelo: </span><span class="si">{</span><span class="n">grid_search</span><span class="o">.</span><span class="n">best_estimator_</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">grid_search</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Reporte de clasificación sobre datos de entrenamiento:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 1, 0, 1,
-       1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0,
-       1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1,
-       0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0,
-       0, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-       0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1,
-       1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0,
-       0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1, 1, 1, 0,
-       1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1,
-       1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0,
-       0, 1, 1, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0,
-       0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0,
-       0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1,
-       0, 1, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0,
-       0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 1, 1, 0, 1,
-       0])
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mejor precisión en validación cruzada: 0.8059
+Mejor modelo: Pipeline(steps=[(&#39;preprocessing&#39;,
+                 ColumnTransformer(transformers=[(&#39;cat&#39;,
+                                                  OneHotEncoder(drop=&#39;first&#39;,
+                                                                handle_unknown=&#39;ignore&#39;),
+                                                  [&#39;Sex&#39;, &#39;Embarked&#39;,
+                                                   &#39;Pclass&#39;]),
+                                                 (&#39;num&#39;, StandardScaler(),
+                                                  [&#39;Age&#39;, &#39;SibSp&#39;, &#39;Parch&#39;,
+                                                   &#39;Fare&#39;])])),
+                (&#39;classifier&#39;, GaussianNB())])
+
+Reporte de clasificación sobre datos de entrenamiento:
+              precision    recall  f1-score   support
+
+           0       0.80      0.85      0.83       424
+           1       0.76      0.69      0.72       288
+
+    accuracy                           0.79       712
+   macro avg       0.78      0.77      0.77       712
+weighted avg       0.78      0.79      0.78       712
 </pre></div>
 </div>
 </div>
 </div>
-<div class="tip dropdown admonition">
-<p class="admonition-title">get_dummies vs OneHotEncoder</p>
+</section>
+<section id="codificacion-de-variables-categoricas">
+<h2><span class="section-number">4.3. </span>Codificación de Variables Categóricas<a class="headerlink" href="#codificacion-de-variables-categoricas" title="Link to this heading">#</a></h2>
+<section id="codificacion-de-variables-categoricas-onehotencoder-vs-get-dummies-en-machine-learning">
+<h3><span class="section-number">4.3.1. </span>Codificación de Variables Categóricas: <code class="docutils literal notranslate"><span class="pre">OneHotEncoder</span></code> vs <code class="docutils literal notranslate"><span class="pre">get_dummies</span></code> en Machine Learning<a class="headerlink" href="#codificacion-de-variables-categoricas-onehotencoder-vs-get-dummies-en-machine-learning" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">get_dummies</span></code> es <code class="docutils literal notranslate"><span class="pre">un</span> <span class="pre">poco</span> <span class="pre">más</span> <span class="pre">conveniente</span></code> y probablemente por eso es un método popular. El verdadero problema es la <code class="docutils literal notranslate"><span class="pre">gestión</span> <span class="pre">de</span> <span class="pre">las</span> <span class="pre">características</span> <span class="pre">categóricas</span> <span class="pre">desconocidas</span> <span class="pre">que</span> <span class="pre">aparecerán</span></code> en la producción. Si el <code class="docutils literal notranslate"><span class="pre">número</span> <span class="pre">total</span> <span class="pre">de</span> <span class="pre">valores</span> <span class="pre">únicos</span> <span class="pre">en</span> <span class="pre">una</span> <span class="pre">columna</span> <span class="pre">categórica</span> <span class="pre">no</span> <span class="pre">es</span> <span class="pre">el</span> <span class="pre">mismo</span> <span class="pre">para</span> <span class="pre">nuestro</span> <span class="pre">conjunto</span> <span class="pre">de</span> <span class="pre">entrenamiento</span> <span class="pre">que</span> <span class="pre">para</span> <span class="pre">el</span> <span class="pre">conjunto</span> <span class="pre">de</span> <span class="pre">prueba,</span> <span class="pre">vamos</span> <span class="pre">a</span> <span class="pre">tener</span> <span class="pre">problemas</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">OneHotEncoder</span> <span class="pre">es</span> <span class="pre">una</span> <span class="pre">clase</span> <span class="pre">transformadora</span></code>, por lo que <code class="docutils literal notranslate"><span class="pre">se</span> <span class="pre">puede</span> <span class="pre">ajustar</span> <span class="pre">a</span> <span class="pre">los</span> <span class="pre">datos</span></code>. Una vez ajustada, es capaz de <code class="docutils literal notranslate"><span class="pre">transformar</span> <span class="pre">los</span> <span class="pre">datos</span> <span class="pre">de</span> <span class="pre">validación</span> <span class="pre">basándose</span> <span class="pre">en</span> <span class="pre">las</span> <span class="pre">categorías</span> <span class="pre">que</span> <span class="pre">ha</span> <span class="pre">aprendido</span></code>. Básicamente, <code class="docutils literal notranslate"><span class="pre">get_dummies</span></code> puede utilizarse en el análisis exploratorio, mientras que <code class="docutils literal notranslate"><span class="pre">OneHotEncoder</span></code> en el cálculo y la estimación. Además, puede utilizarse con <code class="docutils literal notranslate"><span class="pre">TensorFlow</span></code>.</p></li>
+<li><p>En los modelos de <em>Machine Learning</em>, es común encontrarse con variables categóricas, las cuales deben transformarse en valores numéricos antes de ser utilizadas por los algoritmos de aprendizaje. Una de las estrategias más utilizadas para ello es la <strong>codificación one-hot</strong>, que convierte cada categoría en una columna binaria. <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> y <code class="docutils literal notranslate"><span class="pre">pandas</span></code> ofrecen dos formas populares de realizar esta transformación:</p></li>
 </ul>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">OneHotEncoder</span></code> (de <code class="docutils literal notranslate"><span class="pre">sklearn.preprocessing</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_dummies</span></code> (de <code class="docutils literal notranslate"><span class="pre">pandas</span></code>)</p></li>
+</ul>
+<ul class="simple">
+<li><p>A continuación, se describen ambos enfoques, sus diferencias y recomendaciones para su uso en el contexto de validación cruzada y pipelines.</p></li>
+</ul>
+</section>
+<section id="pandas-get-dummies">
+<h3><span class="section-number">4.3.2. </span><code class="docutils literal notranslate"><span class="pre">pandas.get_dummies</span></code><a class="headerlink" href="#pandas-get-dummies" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>La función <code class="docutils literal notranslate"><span class="pre">get_dummies()</span></code> de <code class="docutils literal notranslate"><span class="pre">pandas</span></code> realiza una codificación one-hot de manera simple y directa. *<em>Cada categoría de una variable se transforma en una columna con valores 0 o 1. Es útil para análisis exploratorio</em> o modelos simples que no requieren un flujo automatizado.</p></li>
+<li><p><strong>Ventajas:</strong></p></li>
+</ul>
+<ul class="simple">
+<li><p>Sencillo de aplicar.</p></li>
+<li><p>Integra automáticamente las columnas generadas en el mismo <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>.</p></li>
+</ul>
+<p><strong>Desventajas:</strong></p>
+<ul class="simple">
+<li><p>No se integra fácilmente con pipelines de <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>.</p></li>
+<li><p>No guarda información sobre las categorías aprendidas durante el ajuste, lo que puede generar errores si aparecen nuevas categorías en datos futuros.</p></li>
+</ul>
+</section>
+<section id="sklearn-preprocessing-onehotencoder">
+<h3><span class="section-number">4.3.3. </span><code class="docutils literal notranslate"><span class="pre">sklearn.preprocessing.OneHotEncoder</span></code><a class="headerlink" href="#sklearn-preprocessing-onehotencoder" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">OneHotEncoder</span></code> es una clase de <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> que permite realizar la misma transformación, pero de forma más controlada y compatible con flujos de trabajo avanzados como los pipelines y la validación cruzada.</p></li>
+</ul>
+<p><strong>Ventajas:</strong></p>
+<ul class="simple">
+<li><p>Compatible con <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code> y <code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code>.</p></li>
+<li><p>Permite configurar qué hacer con categorías desconocidas (<code class="docutils literal notranslate"><span class="pre">handle_unknown='ignore'</span></code>).</p></li>
+<li><p>Aprende las categorías durante el ajuste (<code class="docutils literal notranslate"><span class="pre">fit</span></code>) y las reutiliza en el proceso de predicción (<code class="docutils literal notranslate"><span class="pre">transform</span></code>).</p></li>
+<li><p>Ideal para procesos reproducibles y despliegue en producción.</p></li>
+</ul>
+<p><strong>Desventajas:</strong></p>
+<ul class="simple">
+<li><p>Requiere pasos adicionales para integrarse al flujo de datos (por ejemplo, seleccionar columnas específicas).</p></li>
+</ul>
+</section>
+<section id="recomendacion-para-validacion-cruzada-con-pipelines">
+<h3><span class="section-number">4.3.4. </span>Recomendación para Validación Cruzada con Pipelines<a class="headerlink" href="#recomendacion-para-validacion-cruzada-con-pipelines" title="Link to this heading">#</a></h3>
+<p>Cuando se trabaja con <strong>validación cruzada</strong>, es fundamental que <strong>la transformación de las variables categóricas esté incluida dentro del pipeline</strong>. Esto garantiza que <strong>no haya fuga de datos</strong> entre los conjuntos de entrenamiento y validación. Por esta razón, se recomienda utilizar: <code class="docutils literal notranslate"><span class="pre">OneHotEncoder</span></code> junto con <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code> y <code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code>. Este enfoque permite mantener un flujo completo y seguro del preprocesamiento, evitando fugas de información y facilitando la automatización del modelo.</p>
+</section>
+<section id="ejemplo-basico-con-pipeline">
+<h3><span class="section-number">4.3.5. </span>Ejemplo Básico con <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code><a class="headerlink" href="#ejemplo-basico-con-pipeline" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
+<span class="kn">from</span> <span class="nn">sklearn.compose</span> <span class="kn">import</span> <span class="n">ColumnTransformer</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">OneHotEncoder</span><span class="p">,</span> <span class="n">StandardScaler</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+
+<span class="c1"># Variables numéricas y categóricas</span>
+<span class="n">num_vars</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="s1">&#39;Fare&#39;</span><span class="p">]</span>
+<span class="n">cat_vars</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Sex&#39;</span><span class="p">,</span> <span class="s1">&#39;Embarked&#39;</span><span class="p">]</span>
+
+<span class="c1"># Preprocesamiento</span>
+<span class="n">preprocessor</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">(</span>
+    <span class="n">transformers</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">(</span><span class="s1">&#39;num&#39;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">(),</span> <span class="n">num_vars</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;cat&#39;</span><span class="p">,</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">handle_unknown</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">),</span> <span class="n">cat_vars</span><span class="p">)</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+<span class="c1"># Pipeline completo</span>
+<span class="n">pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[</span>
+    <span class="p">(</span><span class="s1">&#39;preprocessing&#39;</span><span class="p">,</span> <span class="n">preprocessor</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;classifier&#39;</span><span class="p">,</span> <span class="n">RandomForestClassifier</span><span class="p">())</span>
+<span class="p">])</span>
+</pre></div>
 </div>
+</section>
+<section id="conclusion">
+<h3><span class="section-number">4.3.6. </span>Conclusión<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Para modelos productivos, reproducibles y validados correctamente mediante <em>cross-validation</em>, se recomienda preferir <code class="docutils literal notranslate"><span class="pre">OneHotEncoder</span></code> sobre <code class="docutils literal notranslate"><span class="pre">get_dummies</span></code>. Aunque <code class="docutils literal notranslate"><span class="pre">get_dummies</span></code> es útil en etapas exploratorias, no garantiza la integridad del flujo de datos en esquemas complejos.</p></li>
+</ul>
+</section>
+<section id="onehotencoder-con-gpu-vs-pd-get-dummies">
+<h3><span class="section-number">4.3.7. </span><code class="docutils literal notranslate"><span class="pre">OneHotEncoder</span></code> con GPU vs <code class="docutils literal notranslate"><span class="pre">pd.get_dummies</span></code><a class="headerlink" href="#onehotencoder-con-gpu-vs-pd-get-dummies" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -3501,13 +3341,13 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-03-21 16:23:39.836879: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
-2025-03-21 16:23:39.854869: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:485] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
-2025-03-21 16:23:39.863676: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:8454] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
-2025-03-21 16:23:39.866494: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1452] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
-2025-03-21 16:23:39.874957: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-08-08 12:58:58.127877: I tensorflow/core/util/port.cc:113] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-08-08 12:58:58.813544: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2025-08-08 12:58:58.813642: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2025-08-08 12:58:58.921612: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2025-08-08 12:58:59.132198: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
 To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
-2025-03-21 16:23:41.447261: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2025-08-08 12:59:00.366004: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
 </pre></div>
 </div>
 </div>
@@ -3572,20 +3412,21 @@ To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 FMA, 
 </div>
 </div>
 </div>
-<div class="admonition-observaciones admonition">
+<div class="tip admonition">
 <p class="admonition-title">Observaciones</p>
 <ul class="simple">
-<li><p>A partir del gráfico KDE para <code class="docutils literal notranslate"><span class="pre">Age</span></code>, se observa que tiene una distribución cercana a la Gaussiana. Por tanto, aplicar el modelo <code class="docutils literal notranslate"><span class="pre">Gaussiano</span> <span class="pre">de</span> <span class="pre">Naive</span> <span class="pre">Bayes</span></code> a los datos podría ser una buena idea. <code class="docutils literal notranslate"><span class="pre">GaussianNB</span></code> se utiliza sobre todo con datos de muy alta dimensión, mientras que las otras dos variants de Bayes <code class="docutils literal notranslate"><span class="pre">MultinomialNB</span></code> y <code class="docutils literal notranslate"><span class="pre">BinaryNB</span></code>, se utilizan ampliamente para datos de recuento dispersos, como el texto. <code class="docutils literal notranslate"><span class="pre">MultinomialNB</span></code> suele funcionar mejor que <code class="docutils literal notranslate"><span class="pre">BinaryNB</span></code>, especialmente en conjuntos de datos con un número relativamente grande de características no nulas.</p></li>
-<li><p>Los <code class="docutils literal notranslate"><span class="pre">modelos</span> <span class="pre">Bayesiano</span></code> comparten muchos de los puntos fuertes y débiles de los modelos lineales<code class="docutils literal notranslate"><span class="pre">.</span> <span class="pre">Son</span> <span class="pre">muy</span> </code>rápidos de entrenar y predecir, y el procedimiento de entrenamiento es fácil de entender<code class="docutils literal notranslate"><span class="pre">.</span> <span class="pre">Los</span> <span class="pre">modelos</span> </code>funcionan muy bien con datos dispersos de alta dimensión y son relativamente robustos a los parámetros<code class="docutils literal notranslate"><span class="pre">.</span> <span class="pre">Los</span> <span class="pre">modelos</span> </code>Naive Bayes se utilizan a menudo en conjuntos de datos muy grandes`, donde el entrenamiento incluso de un modelo lineal podría llevar demasiado tiempo.</p></li>
+<li><p>A partir del gráfico KDE de <em>Age</em>, se observa una distribución aproximadamente normal, lo que sugiere que el modelo <strong>GaussianNB</strong> podría ser adecuado. Este se emplea principalmente con datos de alta dimensión, mientras que <strong>MultinomialNB</strong> y <strong>BernoulliNB</strong> son más comunes en datos de texto dispersos. Entre ellos, <em>MultinomialNB</em> suele superar a <em>BernoulliNB</em> cuando hay muchas características no nulas.</p></li>
+<li><p>Los modelos bayesianos, al igual que los modelos lineales, destacan por su <strong>rapidez en entrenamiento y predicción</strong>, facilidad de interpretación y <strong>buen rendimiento con datos dispersos de alta dimensión</strong>. Además, son <strong>robustos a los hiperparámetros</strong> y resultan especialmente útiles en <strong>conjuntos de datos muy grandes</strong>, donde entrenar modelos más complejos puede ser computacionalmente costoso.</p></li>
 </ul>
 </div>
 </section>
+</section>
 <section id="proyecto-integrador-de-aprendizaje-automatico">
-<h2><span class="section-number">4.3. </span>Proyecto Integrador de Aprendizaje Automático<a class="headerlink" href="#proyecto-integrador-de-aprendizaje-automatico" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">4.4. </span>Proyecto Integrador de Aprendizaje Automático<a class="headerlink" href="#proyecto-integrador-de-aprendizaje-automatico" title="Link to this heading">#</a></h2>
 <section id="clasificacion-de-enfermedades-cardiacas-con-modelos-bayesianos">
-<h3><span class="section-number">4.3.1. </span>Clasificación de enfermedades cardíacas con modelos bayesianos<a class="headerlink" href="#clasificacion-de-enfermedades-cardiacas-con-modelos-bayesianos" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">4.4.1. </span>Clasificación de enfermedades cardíacas con modelos bayesianos<a class="headerlink" href="#clasificacion-de-enfermedades-cardiacas-con-modelos-bayesianos" title="Link to this heading">#</a></h3>
 <section id="objetivo-general">
-<h4><span class="section-number">4.3.1.1. </span>Objetivo general<a class="headerlink" href="#objetivo-general" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">4.4.1.1. </span>Objetivo general<a class="headerlink" href="#objetivo-general" title="Link to this heading">#</a></h4>
 <p>Aplicar un modelo supervisado de clasificación basado en la <strong>probabilidad bayesiana</strong> (<code class="docutils literal notranslate"><span class="pre">GaussianNB</span></code>) para predecir la <strong>presencia o ausencia de enfermedad cardíaca</strong> en pacientes a partir de indicadores clínicos. El objetivo es:</p>
 <ol class="arabic simple">
 <li><p>Construir un pipeline de preprocesamiento y clasificación usando <code class="docutils literal notranslate"><span class="pre">GaussianNB</span></code>.</p></li>
@@ -3594,11 +3435,11 @@ To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 FMA, 
 </ol>
 </section>
 <section id="contexto-aplicado">
-<h4><span class="section-number">4.3.1.2. </span>Contexto aplicado<a class="headerlink" href="#contexto-aplicado" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">4.4.1.2. </span>Contexto aplicado<a class="headerlink" href="#contexto-aplicado" title="Link to this heading">#</a></h4>
 <p>Los sistemas de salud buscan modelos interpretables para apoyar el diagnóstico temprano de enfermedades. Uno de los problemas más frecuentes es el diagnóstico de enfermedad cardíaca, donde se tienen múltiples mediciones clínicas, y se requiere estimar el riesgo de forma transparente. Los clasificadores bayesianos son una herramienta adecuada por su rapidez, simplicidad e interpretabilidad.</p>
 </section>
 <section id="dataset-sugerido">
-<h4><span class="section-number">4.3.1.3. </span>Dataset sugerido<a class="headerlink" href="#dataset-sugerido" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">4.4.1.3. </span>Dataset sugerido<a class="headerlink" href="#dataset-sugerido" title="Link to this heading">#</a></h4>
 <p><strong>Heart Disease UCI Dataset</strong></p>
 <ul class="simple">
 <li><p>Fuente: UCI Machine Learning Repository</p></li>
@@ -3607,7 +3448,7 @@ To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 FMA, 
 </ul>
 </section>
 <section id="variables-disponibles-ejemplo">
-<h4><span class="section-number">4.3.1.4. </span>Variables disponibles (ejemplo)<a class="headerlink" href="#variables-disponibles-ejemplo" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">4.4.1.4. </span>Variables disponibles (ejemplo)<a class="headerlink" href="#variables-disponibles-ejemplo" title="Link to this heading">#</a></h4>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Tipo</p></th>
@@ -3632,7 +3473,7 @@ To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 FMA, 
 </div>
 </section>
 <section id="tareas">
-<h4><span class="section-number">4.3.1.5. </span>Tareas<a class="headerlink" href="#tareas" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">4.4.1.5. </span>Tareas<a class="headerlink" href="#tareas" title="Link to this heading">#</a></h4>
 <ol class="arabic simple">
 <li><p><strong>Preprocesamiento</strong></p>
 <ul class="simple">
@@ -3667,7 +3508,7 @@ To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 FMA, 
 </ol>
 </section>
 <section id="restricciones-didacticas">
-<h4><span class="section-number">4.3.1.6. </span>Restricciones didácticas<a class="headerlink" href="#restricciones-didacticas" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">4.4.1.6. </span>Restricciones didácticas<a class="headerlink" href="#restricciones-didacticas" title="Link to this heading">#</a></h4>
 <ul class="simple">
 <li><p>Se debe usar <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code> de <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code></p></li>
 <li><p>No se permite el uso de GridSearchCV (ya que GaussianNB no tiene hiperparámetros principales)</p></li>
@@ -3676,7 +3517,7 @@ To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 FMA, 
 </ul>
 </section>
 <section id="herramientas-sugeridas">
-<h4><span class="section-number">4.3.1.7. </span>Herramientas sugeridas<a class="headerlink" href="#herramientas-sugeridas" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">4.4.1.7. </span>Herramientas sugeridas<a class="headerlink" href="#herramientas-sugeridas" title="Link to this heading">#</a></h4>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">pandas</span></code>, <code class="docutils literal notranslate"><span class="pre">numpy</span></code>, <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>, <code class="docutils literal notranslate"><span class="pre">seaborn</span></code></p></li>
@@ -3684,7 +3525,7 @@ To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 FMA, 
 </ul>
 </section>
 <section id="resultado-esperado">
-<h4><span class="section-number">4.3.1.8. </span>Resultado esperado<a class="headerlink" href="#resultado-esperado" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">4.4.1.8. </span>Resultado esperado<a class="headerlink" href="#resultado-esperado" title="Link to this heading">#</a></h4>
 <p>Un cuaderno de trabajo completo que incluya:</p>
 <ul class="simple">
 <li><p>Preprocesamiento y exploración de los datos</p></li>
@@ -3695,7 +3536,7 @@ To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 FMA, 
 </ul>
 </section>
 <section id="diseno-sugerido-del-notebook">
-<h4><span class="section-number">4.3.1.9. </span>Diseño sugerido del notebook<a class="headerlink" href="#diseno-sugerido-del-notebook" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">4.4.1.9. </span>Diseño sugerido del notebook<a class="headerlink" href="#diseno-sugerido-del-notebook" title="Link to this heading">#</a></h4>
 <ol class="arabic simple">
 <li><p>Carga y análisis exploratorio del dataset</p></li>
 <li><p>Preprocesamiento y codificación</p></li>
@@ -3705,7 +3546,7 @@ To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 FMA, 
 </ol>
 </section>
 <section id="resumen">
-<h4><span class="section-number">4.3.1.10. </span>Resumen<a class="headerlink" href="#resumen" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">4.4.1.10. </span>Resumen<a class="headerlink" href="#resumen" title="Link to this heading">#</a></h4>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Dataset</p></th>
@@ -3794,18 +3635,28 @@ To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 FMA, 
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formulacion">4.1. Formulación</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-titanic-dataset">4.2. Aplicación: Titanic Dataset</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proyecto-integrador-de-aprendizaje-automatico">4.3. Proyecto Integrador de Aprendizaje Automático</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clasificacion-de-enfermedades-cardiacas-con-modelos-bayesianos">4.3.1. Clasificación de enfermedades cardíacas con modelos bayesianos</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivo-general">4.3.1.1. Objetivo general</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#contexto-aplicado">4.3.1.2. Contexto aplicado</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-sugerido">4.3.1.3. Dataset sugerido</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-disponibles-ejemplo">4.3.1.4. Variables disponibles (ejemplo)</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tareas">4.3.1.5. Tareas</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#restricciones-didacticas">4.3.1.6. Restricciones didácticas</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#herramientas-sugeridas">4.3.1.7. Herramientas sugeridas</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#resultado-esperado">4.3.1.8. Resultado esperado</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#diseno-sugerido-del-notebook">4.3.1.9. Diseño sugerido del notebook</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen">4.3.1.10. Resumen</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#codificacion-de-variables-categoricas">4.3. Codificación de Variables Categóricas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#codificacion-de-variables-categoricas-onehotencoder-vs-get-dummies-en-machine-learning">4.3.1. Codificación de Variables Categóricas: <code class="docutils literal notranslate"><span class="pre">OneHotEncoder</span></code> vs <code class="docutils literal notranslate"><span class="pre">get_dummies</span></code> en Machine Learning</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pandas-get-dummies">4.3.2. <code class="docutils literal notranslate"><span class="pre">pandas.get_dummies</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sklearn-preprocessing-onehotencoder">4.3.3. <code class="docutils literal notranslate"><span class="pre">sklearn.preprocessing.OneHotEncoder</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recomendacion-para-validacion-cruzada-con-pipelines">4.3.4. Recomendación para Validación Cruzada con Pipelines</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-basico-con-pipeline">4.3.5. Ejemplo Básico con <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">4.3.6. Conclusión</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#onehotencoder-con-gpu-vs-pd-get-dummies">4.3.7. <code class="docutils literal notranslate"><span class="pre">OneHotEncoder</span></code> con GPU vs <code class="docutils literal notranslate"><span class="pre">pd.get_dummies</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proyecto-integrador-de-aprendizaje-automatico">4.4. Proyecto Integrador de Aprendizaje Automático</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clasificacion-de-enfermedades-cardiacas-con-modelos-bayesianos">4.4.1. Clasificación de enfermedades cardíacas con modelos bayesianos</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivo-general">4.4.1.1. Objetivo general</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#contexto-aplicado">4.4.1.2. Contexto aplicado</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-sugerido">4.4.1.3. Dataset sugerido</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-disponibles-ejemplo">4.4.1.4. Variables disponibles (ejemplo)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tareas">4.4.1.5. Tareas</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#restricciones-didacticas">4.4.1.6. Restricciones didácticas</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#herramientas-sugeridas">4.4.1.7. Herramientas sugeridas</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#resultado-esperado">4.4.1.8. Resultado esperado</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#diseno-sugerido-del-notebook">4.4.1.9. Diseño sugerido del notebook</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen">4.4.1.10. Resumen</a></li>
 </ul>
 </li>
 </ul>
