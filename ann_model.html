@@ -359,7 +359,10 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculo-de-gradientes">7.8. Cálculo de gradientes</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculo-de-delta-nj-r">7.9. Cálculo de <span class="math notranslate nohighlight">\(\delta_{nj}^{r}\)</span></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tuning-de-redes-neuronales">7.10. Tuning de Redes Neuronales</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-malware-por-api-calls">7.11. Análisis de Malware por API calls</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-malware-por-api-calls">7.11. Análisis de Malware por API calls</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#entrenamiento-en-pyspark">7.11.1. Entrenamiento en <code class="docutils literal notranslate"><span class="pre">PySpark</span></code></a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-prediccion-de-series-temporales">7.12. Aplicación: Predicción de series temporales</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#redes-neuronales-convolucionales">7.13. Redes Neuronales Convolucionales</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-necesidad-de-convoluciones">7.13.1. La necesidad de convoluciones</a></li>
@@ -727,7 +730,7 @@ f(\boldsymbol{z}^{r})
 </ul>
 </div>
 <ul class="simple">
-<li><p>Se pueden emplear las llamadas <em><strong>técnicas de reparto de pesos</strong></em>, en las que un conjunto de parámetros es compartido entre un número de conexiones, a través de restricciones adecuadamente incorporadas. Las <em><strong>redes neuronales recurrentes y convolucionales</strong></em> pertenecen a esta familia de redes de peso compartido. En una red convolucional, las <em><strong>convoluciones sustituyen a las operaciones de producto interno</strong></em>, lo que permite un reparto de pesos importante que conduce a una reducción sustancial del número de parámetros.</p></li>
+<li><p>Las <strong>técnicas de reparto de pesos</strong> consisten en compartir un conjunto de parámetros entre varias conexiones mediante restricciones específicas. Las <strong>redes neuronales recurrentes</strong> y <strong>convolucionales</strong> aplican este principio; en estas últimas, las convoluciones reemplazan al producto interno, reduciendo significativamente el número de parámetros.</p></li>
 </ul>
 </section>
 <section id="el-algoritmo-de-backpropagation">
@@ -795,10 +798,7 @@ f(z)=\sigma(z):=\frac{1}{1+\exp(-az)}.
 </figure>
 <div class="important admonition">
 <p class="admonition-title">Observación</p>
-<ul class="simple">
-<li><p>La <em><strong>elección del tamaño del paso</strong></em>, <span class="math notranslate nohighlight">\(\mu\)</span>, <em><strong>es crítica para la convergencia del algoritmo</strong></em>. En problemas reales en espacios multidimensionales, el número de mínimos locales puede ser grande, por lo que el algoritmo puede converger a uno local. Sin embargo, esto no es necesariamente una mala noticia. Si este <em><strong>mínimo local es lo suficientemente profundo</strong></em>, es decir, si el valor de la función de coste en este punto, por ejemplo, <span class="math notranslate nohighlight">\(J(\theta_{l})\)</span>, <em><strong>no es mucho mayor que el alcanzado en el mínimo global</strong></em>, es decir, <span class="math notranslate nohighlight">\(J(\theta_{g})\)</span>, la <em><strong>convergencia a dicho mínimo local puede corresponder a una buena solución</strong></em>.</p></li>
-<li><p>Una opción para evitar caer en mínimos locales es utilizar un método de optimización diferente, por ejemplo, <em><strong>Adam, RMSprop o AdaGrad</strong></em> que pueden adaptarse mejor a la topografía del error y ayudar a escapar de los mínimos locales. Explorar <em><strong>otras funciones de coste</strong></em> también es otra opción, o <em><strong>utilizar diferentes métodos de regularización</strong></em> (<span class="math notranslate nohighlight">\(L1, L2\)</span>), dado que, <em><strong>si el modelo es muy complejo, puede ser más propenso a caer en mínimos locales</strong></em>.</p></li>
-</ul>
+<p>La <strong>elección del tamaño de paso</strong> <span class="math notranslate nohighlight">\(\mu\)</span> es clave para la convergencia. En espacios multidimensionales, abundan los mínimos locales, pero converger a uno profundo y cercano al mínimo global puede ser aceptable. Para evitarlos, pueden emplearse optimizadores como <strong>Adam</strong>, <strong>RMSprop</strong> o <strong>AdaGrad</strong>, explorar otras funciones de coste o aplicar regularización, ya que modelos muy complejos son más propensos a caer en mínimos locales.</p>
 </div>
 </section>
 <section id="el-esquema-de-backpropagation-para-gradiente-descendente">
@@ -937,8 +937,7 @@ b &amp;= b-\textsf{lr}\cdot\frac{\partial\textsf{Loss}}{\partial b}=(0)-(0.01)(-
 </figcaption>
 </figure>
 <ul class="simple">
-<li><p>En este punto, <em><strong>se aplica el algoritmo de backpropagation para calcular las derivadas parciales entre dos nodos conectados por una arista</strong></em>. El recorrido hacia atrás en el grafo para calcular la derivada parcial también se conoce como paso hacia atrás (<em><strong>backward pass</strong></em>). <em><strong>El operador de diferenciación parcial se aplica en cada nodo y las derivadas parciales se asignan a las respectivas aristas que conectan el nodo descendente a lo largo del grafo computacional</strong></em>.</p></li>
-<li><p>Siguiendo la regla de la cadena la derivada parcial <span class="math notranslate nohighlight">\(\partial_{\omega} L\)</span> se calcula <em><strong>multiplicando las derivadas parciales en todas las aristas que conectan el nodo de peso y el nodo de pérdida</strong></em>. Si existen varios caminos entre un nodo de peso y el nodo de pérdida, las derivadas parciales a lo largo de cada camino se suman para obtener la <em><strong>derivada parcial total de la pérdida con respecto al peso</strong></em>. Esta técnica gráfica de implementar los pasos hacia delante y hacia atrás es la técnica computacional subyacente utilizada en potentes bibliotecas de aprendizaje profundo. El paso hacia atrás se ilustra en <a class="reference internal" href="#partialderivates-single-hidden-layer"><span class="std std-numref">Fig. 7.17</span></a></p></li>
+<li><p>En el <strong>backpropagation</strong>, el recorrido inverso del grafo (backward pass) calcula las derivadas parciales entre nodos conectados. Siguiendo la <strong>regla de la cadena</strong>, la derivada de la pérdida respecto a un peso es el producto de las derivadas a lo largo de cada camino que los une, y si hay varios caminos, se suman. Este enfoque gráfico sustenta las bibliotecas modernas de <strong>deep learning</strong> para implementar los pasos forward y backward (ver <a class="reference internal" href="#partialderivates-single-hidden-layer"><span class="std std-numref">Fig. 7.17</span></a>)</p></li>
 </ul>
 <figure class="align-center" id="partialderivates-single-hidden-layer">
 <img alt="_images/partialderivates_single_hidden_layer.png" src="_images/partialderivates_single_hidden_layer.png" />
@@ -961,8 +960,8 @@ b &amp;= b-\textsf{lr}\cdot\frac{\partial\textsf{Loss}}{\partial b}=(0)-(0.01)(-
 \end{align*}
 \end{split}\]</div>
 <ul class="simple">
-<li><p>Durante el entrenamiento, <em><strong>los pesos se inicializan con números aleatorios comúnmente muestreados a partir de una distribución uniforme con límites superior e inferior en</strong></em> <span class="math notranslate nohighlight">\([-1, 1]\)</span> o una <em><strong>distribución normal que tiene media cero y varianza unitaria</strong></em>. Estos esquemas de inicialización aleatoria tienen algunas variantes que mejoran la convergencia de la optimización. En este caso, vamos a suponer que los pesos son inicializados a partir de una distribución aleatoria uniforme y, por tanto, <span class="math notranslate nohighlight">\(w_{1} = -0.33, w_{2} = -0.33, w_{3} = 0.57, w_{4} = -0.01, w_{5}=0.07\)</span>, y <span class="math notranslate nohighlight">\(w_{6} = 0.82\)</span>.</p></li>
-<li><p>Con estos valores, vamos a realizar pasos hacia adelante y hacia atrás sobre el grafo computacional. Actualizamos la figura anterior con los valores calculados durante la <em><strong>pasada hacia adelante en azul y los gradientes calculados durante la pasada hacia atrás en rojo</strong></em>. Para este ejemplo, fijamos el <em><strong>valor real de la variable objetivo como</strong></em> <span class="math notranslate nohighlight">\(y = 1\)</span></p></li>
+<li><p>Durante el entrenamiento, los <strong>pesos</strong> suelen inicializarse aleatoriamente, ya sea con una distribución <strong>uniforme</strong> en un rango como <span class="math notranslate nohighlight">\([-1, 1]\)</span> o con una distribución <strong>normal</strong> de media cero y varianza unitaria, existiendo variantes que aceleran la convergencia.</p></li>
+<li><p>En este ejemplo, se asume inicialización <strong>uniforme</strong>, obteniendo: <span class="math notranslate nohighlight">\(w_1 = -0.33,\; w_2 = -0.33,\; w_3 = 0.57,\; w_4 = -0.01,\; w_5 = 0.07,\; w_6 = 0.82\)</span>. Con estos valores, se realizan los pasos <strong>forward</strong> y <strong>backward</strong> sobre el grafo computacional, mostrando en <strong>azul</strong> los resultados del forward y en <strong>rojo</strong> los gradientes del backward. El valor real de la variable objetivo se fija en <span class="math notranslate nohighlight">\(y = 1\)</span>.</p></li>
 </ul>
 <figure class="align-center" id="forward-backward-single-hidden-layer">
 <img alt="_images/forward_backward_single_hidden_layer.png" src="_images/forward_backward_single_hidden_layer.png" />
@@ -984,24 +983,20 @@ b &amp;= b-\textsf{lr}\cdot\frac{\partial\textsf{Loss}}{\partial b}=(0)-(0.01)(-
 \frac{\partial L}{\partial\omega_{4}} &amp;= -0.919\times 1\times 0.82\times 0.229\times 1\times 2 = -0.346\\
 \end{align*}
 \end{split}\]</div>
-<ul class="simple">
-<li><p>El siguiente paso consiste en <em><strong>actualizar los pesos mediante el algoritmo de gradiente descendiente</strong></em>. Así, con una <em><strong>tasa de aprendizaje de</strong></em> <span class="math notranslate nohighlight">\(\alpha = 0.01\)</span>, el nuevo valor de</p></li>
-</ul>
+<p>El siguiente paso es <strong>actualizar los pesos</strong> mediante <strong>gradiente descendente</strong>.
+Con tasa de aprendizaje <span class="math notranslate nohighlight">\(\alpha = 0.01\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
-w_{5} = 0.07 - 0.01\times -0.384 = 0.0738.
+w_5 = 0.07 - 0.01 \times (-0.384) = 0.0738
 \]</div>
-<ul class="simple">
-<li><p>El resto de pesos también pueden actualizarse utilizando una regla de actualización similar. El proceso de actualización iterativa de los pesos se repite varias veces. <em><strong>El número de veces que se actualizan los pesos se conoce como número de épocas</strong></em> o pasadas sobre los datos de entrenamiento. Normalmente, un criterio de tolerancia sobre el cambio de la función de pérdida en comparación con la época anterior controla el número de épocas.</p></li>
-<li><p><em><strong>Para determinar los pesos de una red neuronal se utiliza el algoritmo backpropagation junto con un optimizador basado en el gradiente</strong></em>. Afortunadamente, existen potentes bibliotecas de aprendizaje profundo, como <code class="docutils literal notranslate"><span class="pre">Tensorflow,</span> <span class="pre">Theano</span></code> y <code class="docutils literal notranslate"><span class="pre">CNTK</span></code> que implementan gráficos computacionales para entrenar redes neuronales de cualquier arquitectura y complejidad. Estas bibliotecas vienen con soporte para ejecutar los cálculos como operaciones matemáticas en matrices multidimensionales y también pueden aprovechar las <code class="docutils literal notranslate"><span class="pre">GPU</span></code> para realizar cálculos más rápidos.</p></li>
-</ul>
+<p>El resto de pesos se actualizan con la misma fórmula.
+Este proceso se repite varias veces; el número de actualizaciones se denomina <strong>número de épocas</strong>.
+Generalmente, un criterio de tolerancia sobre el cambio en la función de pérdida controla cuándo detener el entrenamiento.</p>
+<p>Para determinar los pesos, se combina <strong>backpropagation</strong> con un <strong>optimizador basado en gradiente</strong>.
+Bibliotecas como <strong>TensorFlow</strong>, <strong>Theano</strong> o <strong>CNTK</strong> implementan gráficos computacionales que entrenan redes neuronales de cualquier arquitectura, ejecutando operaciones matriciales y aprovechando <strong>GPU</strong> para acelerar el cálculo.</p>
 <div class="important admonition">
 <p class="admonition-title">Observación</p>
-<ul class="simple">
-<li><p>El esquema de cálculo hacia atrás <em><strong>backpropagation</strong></em> es una aplicación directa de la <em><strong>regla de la cadena para las derivadas</strong></em>, y comienza con el paso inicial de <em><strong>calcular las derivadas asociadas a la última capa (de salida)</strong></em>, que resulta ser sencillo.</p></li>
-<li><p>A continuación, el algoritmo “fluye” hacia atrás en la jerarquía de capas. Esto se debe a la naturaleza de la red multicapa, donde las <em><strong>salidas, capa tras capa, se forman como funciones de funciones</strong></em>.</p></li>
-<li><p>El gradiente en la <em><strong>última capa es simplemente la derivada de la función de pérdida con respecto a la salida de esa capa</strong></em>. Como <em><strong>no hay capas posteriores que influyan en su gradiente</strong></em>, el cálculo es más directo y <em><strong>no requiere aplicar la regla de la cadena</strong></em> a través de varias capas.</p></li>
-</ul>
+<p>El <strong>backpropagation</strong> aplica la <strong>regla de la cadena</strong> para derivadas, comenzando por la <strong>última capa (salida)</strong>, donde el cálculo del gradiente es directo: es la derivada de la función de pérdida respecto a la salida, sin depender de capas posteriores. Luego, el algoritmo retrocede capa por capa, propagando gradientes a través de funciones anidadas hasta las capas iniciales.</p>
 </div>
 <ul>
 <li><p>En efecto, centrémonos en la salida <span class="math notranslate nohighlight">\(y_{k}^{r}\)</span> de la neurona <span class="math notranslate nohighlight">\(k\)</span> en la capa <span class="math notranslate nohighlight">\(r\)</span>. Entonces tenemos</p>
@@ -4612,6 +4607,215 @@ weighted avg       0.99      0.99      0.99     10969
 <ul class="simple">
 <li><p>Nótese que con el umbral por defecto, la curva <em><strong>precision-recall</strong></em> muestra una clasificación con <em><strong>scores bastante buenos para cada una de estas métricas</strong></em>, incluso, si movemos el umbral un poco, para favorecer la clase 0 que es la menos frecuente, vamos a obtener de igual manera un rango de valores altos para <em><strong>precision</strong></em> y <em><strong>recall</strong></em>. Sólo valores de <em><strong>precision</strong></em> muy elevados, esto es, valores cuya distancia 1 tiende a cero, estaríamos sacrificando <em><strong>recall</strong></em>.</p></li>
 </ul>
+<section id="entrenamiento-en-pyspark">
+<h3><span class="section-number">7.11.1. </span>Entrenamiento en <code class="docutils literal notranslate"><span class="pre">PySpark</span></code><a class="headerlink" href="#entrenamiento-en-pyspark" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Preparar <strong>entorno y datos en</strong> <code class="docutils literal notranslate"><span class="pre">PySpark</span></code></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">pyspark.sql</span> <span class="kn">import</span> <span class="n">SparkSession</span>
+
+<span class="n">spark</span> <span class="o">=</span> <span class="n">SparkSession</span><span class="o">.</span><span class="n">builder</span> \
+    <span class="o">.</span><span class="n">appName</span><span class="p">(</span><span class="s2">&quot;MLP with PySpark&quot;</span><span class="p">)</span> \
+    <span class="o">.</span><span class="n">getOrCreate</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pdf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;https://raw.githubusercontent.com/lihkir/Data/main/api_call_sequence_per_malware.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">pdf</span><span class="o">.</span><span class="n">dtypes</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>hash       object
+t_0         int64
+t_1         int64
+t_2         int64
+t_3         int64
+            ...  
+t_96        int64
+t_97        int64
+t_98        int64
+t_99        int64
+malware     int64
+Length: 102, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">total_unicos</span> <span class="o">=</span> <span class="n">pdf</span><span class="p">[</span><span class="s2">&quot;hash&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+<span class="n">total_filas</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">pdf</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Hashes únicos: </span><span class="si">{</span><span class="n">total_unicos</span><span class="si">}</span><span class="s2"> de </span><span class="si">{</span><span class="n">total_filas</span><span class="si">}</span><span class="s2"> filas&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Top 10 hashes más frecuentes:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pdf</span><span class="p">[</span><span class="s2">&quot;hash&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hashes únicos: 43867 de 43876 filas
+Top 10 hashes más frecuentes:
+hash
+f78ea80cec007b2c32fb10f9c6c82f39    2
+0822ec2ba98d291e5bfc836bc3686096    2
+075323e77815ee8bcc7854ce23955a15    2
+bdaaac3fa3f6796825a51ef1c0e5b3fd    2
+a71a2319cf8c74a89501eb80acd04fe6    2
+3d8a7a97ea954dd4fe66279df2b445e0    2
+64261f6acf8e566a70ec8b62af8ccdb1    2
+03384ab6368b68ed16ecb9e6352539af    2
+79b78bb3d583748040c41ded09555fd3    2
+a98d18ac36e393d851d105a7b0461041    1
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pdf</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;hash&#39;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_spark</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">(</span><span class="n">pdf</span><span class="p">)</span>
+<span class="n">target_col</span> <span class="o">=</span> <span class="s2">&quot;malware&quot;</span>
+<span class="n">feature_cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df_spark</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">c</span> <span class="o">!=</span> <span class="n">target_col</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_features</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">feature_cols</span><span class="p">)</span>
+<span class="n">num_classes</span>  <span class="o">=</span> <span class="n">pdf</span><span class="p">[</span><span class="s1">&#39;malware&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>En <code class="docutils literal notranslate"><span class="pre">PySpark</span></code>, antes de entrenar un modelo, hay que <strong>combinar todas las columnas de entrada en una sola columna</strong> <code class="docutils literal notranslate"><span class="pre">features</span></code> usando <code class="docutils literal notranslate"><span class="pre">VectorAssembler</span></code></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyspark.ml.feature</span> <span class="kn">import</span> <span class="n">VectorAssembler</span>
+
+<span class="n">assembler</span> <span class="o">=</span> <span class="n">VectorAssembler</span><span class="p">(</span><span class="n">inputCols</span><span class="o">=</span><span class="n">feature_cols</span><span class="p">,</span> <span class="n">outputCol</span><span class="o">=</span><span class="s2">&quot;features&quot;</span><span class="p">)</span>
+<span class="n">data_assembled</span> <span class="o">=</span> <span class="n">assembler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">df_spark</span><span class="p">)</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;features&quot;</span><span class="p">,</span> <span class="n">target_col</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><strong>Escalado de datos</strong> (equivalente a <code class="docutils literal notranslate"><span class="pre">StandardScaler</span></code> de <code class="docutils literal notranslate"><span class="pre">sklearn</span></code>)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyspark.ml.feature</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">(</span><span class="n">inputCol</span><span class="o">=</span><span class="s2">&quot;features&quot;</span><span class="p">,</span> <span class="n">outputCol</span><span class="o">=</span><span class="s2">&quot;scaledFeatures&quot;</span><span class="p">,</span> <span class="n">withStd</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">withMean</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">scaler_model</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data_assembled</span><span class="p">)</span>
+<span class="n">data_scaled</span> <span class="o">=</span> <span class="n">scaler_model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">data_assembled</span><span class="p">)</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;scaledFeatures&quot;</span><span class="p">,</span> <span class="n">target_col</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>División en <code class="docutils literal notranslate"><span class="pre">train</span></code> y <code class="docutils literal notranslate"><span class="pre">test</span></code></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train</span><span class="p">,</span> <span class="n">test</span> <span class="o">=</span> <span class="n">data_scaled</span><span class="o">.</span><span class="n">randomSplit</span><span class="p">([</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">],</span> <span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Entrenar un <code class="docutils literal notranslate"><span class="pre">MLP</span></code> en <code class="docutils literal notranslate"><span class="pre">PySpark</span></code>. PySpark tiene su propio <code class="docutils literal notranslate"><span class="pre">MultilayerPerceptronClassifier</span></code></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyspark.ml.classification</span> <span class="kn">import</span> <span class="n">MultilayerPerceptronClassifier</span>
+<span class="kn">from</span> <span class="nn">pyspark.ml.evaluation</span> <span class="kn">import</span> <span class="n">BinaryClassificationEvaluator</span>
+<span class="kn">from</span> <span class="nn">pyspark.ml.tuning</span> <span class="kn">import</span> <span class="n">CrossValidator</span><span class="p">,</span> <span class="n">ParamGridBuilder</span>
+<span class="kn">from</span> <span class="nn">pyspark.ml.evaluation</span> <span class="kn">import</span> <span class="n">MulticlassClassificationEvaluator</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">layers_10</span>   <span class="o">=</span> <span class="p">[</span><span class="n">num_features</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">num_classes</span><span class="p">]</span>
+<span class="n">layers_100</span>  <span class="o">=</span> <span class="p">[</span><span class="n">num_features</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">num_classes</span><span class="p">]</span>
+<span class="n">layers_1000</span> <span class="o">=</span> <span class="p">[</span><span class="n">num_features</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="n">num_classes</span><span class="p">]</span>
+
+<span class="n">mlp</span> <span class="o">=</span> <span class="n">MultilayerPerceptronClassifier</span><span class="p">(</span>
+    <span class="n">featuresCol</span><span class="o">=</span><span class="s2">&quot;scaledFeatures&quot;</span><span class="p">,</span>
+    <span class="n">labelCol</span><span class="o">=</span><span class="n">target_col</span><span class="p">,</span>
+    <span class="n">maxIter</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="n">seed</span><span class="o">=</span><span class="mi">123</span>
+<span class="p">)</span>
+
+
+<span class="n">paramGrid</span> <span class="o">=</span> <span class="p">(</span><span class="n">ParamGridBuilder</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">addGrid</span><span class="p">(</span><span class="n">mlp</span><span class="o">.</span><span class="n">layers</span><span class="p">,</span> <span class="p">[</span>
+        <span class="p">[</span><span class="n">num_features</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">num_classes</span><span class="p">],</span>
+        <span class="p">[</span><span class="n">num_features</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">num_classes</span><span class="p">],</span>
+        <span class="p">[</span><span class="n">num_features</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="n">num_classes</span><span class="p">]</span>
+    <span class="p">])</span>
+    <span class="o">.</span><span class="n">addGrid</span><span class="p">(</span><span class="n">mlp</span><span class="o">.</span><span class="n">stepSize</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">])</span>  <span class="c1"># Aproximando a &#39;alpha&#39; y &#39;learning_rate&#39;</span>
+    <span class="o">.</span><span class="n">addGrid</span><span class="p">(</span><span class="n">mlp</span><span class="o">.</span><span class="n">maxIter</span><span class="p">,</span> <span class="p">[</span><span class="mi">100</span><span class="p">])</span>  <span class="c1"># &#39;learning_rate&#39; constant por defecto en PySpark</span>
+    <span class="o">.</span><span class="n">build</span><span class="p">()</span>
+<span class="p">)</span>
+
+<span class="n">evaluator</span> <span class="o">=</span> <span class="n">BinaryClassificationEvaluator</span><span class="p">(</span>
+    <span class="n">labelCol</span><span class="o">=</span><span class="n">target_col</span><span class="p">,</span>
+    <span class="n">rawPredictionCol</span><span class="o">=</span><span class="s2">&quot;rawPrediction&quot;</span><span class="p">,</span>
+    <span class="n">metricName</span><span class="o">=</span><span class="s2">&quot;areaUnderROC&quot;</span>
+<span class="p">)</span>
+
+<span class="n">cv</span> <span class="o">=</span> <span class="n">CrossValidator</span><span class="p">(</span>
+    <span class="n">estimator</span><span class="o">=</span><span class="n">mlp</span><span class="p">,</span>
+    <span class="n">estimatorParamMaps</span><span class="o">=</span><span class="n">paramGrid</span><span class="p">,</span>
+    <span class="n">evaluator</span><span class="o">=</span><span class="n">evaluator</span><span class="p">,</span>
+    <span class="n">numFolds</span><span class="o">=</span><span class="mi">5</span>
+<span class="p">)</span>
+
+<span class="n">cv_model</span> <span class="o">=</span> <span class="n">cv</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">predictions</span> <span class="o">=</span> <span class="n">cv_model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">test</span><span class="p">)</span>
+<span class="n">f1</span> <span class="o">=</span> <span class="n">evaluator</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">predictions</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;F1 Score: </span><span class="si">{</span><span class="n">f1</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>F1 Score: 0.9457
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 </section>
 <section id="aplicacion-prediccion-de-series-temporales">
 <h2><span class="section-number">7.12. </span>Aplicación: Predicción de series temporales<a class="headerlink" href="#aplicacion-prediccion-de-series-temporales" title="Link to this heading">#</a></h2>
@@ -11623,7 +11827,10 @@ Variabilidad explicada por el autoencoder: 0.8997409120202065
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculo-de-gradientes">7.8. Cálculo de gradientes</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculo-de-delta-nj-r">7.9. Cálculo de <span class="math notranslate nohighlight">\(\delta_{nj}^{r}\)</span></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tuning-de-redes-neuronales">7.10. Tuning de Redes Neuronales</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-malware-por-api-calls">7.11. Análisis de Malware por API calls</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-malware-por-api-calls">7.11. Análisis de Malware por API calls</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#entrenamiento-en-pyspark">7.11.1. Entrenamiento en <code class="docutils literal notranslate"><span class="pre">PySpark</span></code></a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-prediccion-de-series-temporales">7.12. Aplicación: Predicción de series temporales</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#redes-neuronales-convolucionales">7.13. Redes Neuronales Convolucionales</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-necesidad-de-convoluciones">7.13.1. La necesidad de convoluciones</a></li>
