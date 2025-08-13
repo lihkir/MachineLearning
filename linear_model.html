@@ -349,7 +349,11 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-de-regresion-lineal">3.1. Modelo de regresión lineal</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-de-regresion-lineal">3.1. Modelo de regresión lineal</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formulacion">3.1.1. Formulación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ilustracion">3.1.2. Ilustración</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#minimos-cuadrados-ordinarios">3.2. Mínimos Cuadrados Ordinarios</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-linearregression">3.3. Aplicación: LinearRegression()</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-exploratorio-de-datos">3.3.1. Análisis Exploratorio de Datos</a></li>
@@ -357,7 +361,8 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-ridge">3.4. Regresión ridge</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis">3.4.1. Análisis</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion">3.4.2. Implementación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">3.4.2. Formulación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion">3.4.3. Implementación</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-lasso">3.5. Regresión Lasso</a></li>
@@ -404,7 +409,9 @@ document.write(`
 </div>
 <section id="modelo-de-regresion-lineal">
 <h2><span class="section-number">3.1. </span>Modelo de regresión lineal<a class="headerlink" href="#modelo-de-regresion-lineal" title="Link to this heading">#</a></h2>
-<p><strong><code class="docutils literal notranslate"><span class="pre">Formulación</span></code></strong>: El modelo</p>
+<section id="formulacion">
+<h3><span class="section-number">3.1.1. </span>Formulación<a class="headerlink" href="#formulacion" title="Link to this heading">#</a></h3>
+<p>El modelo</p>
 <div class="math notranslate nohighlight" id="equation-linear-reg">
 <span class="eqno">(3.1)<a class="headerlink" href="#equation-linear-reg" title="Link to this equation">#</a></span>\[
 \boldsymbol{y}=\boldsymbol{X}\boldsymbol{\beta}+\boldsymbol{\varepsilon},
@@ -470,7 +477,9 @@ y_{n}
 <ul class="simple">
 <li><p>Aquí, <span class="math notranslate nohighlight">\(\hat{\beta}_{1}\)</span> es la <em><strong>pendiente</strong></em> y <span class="math notranslate nohighlight">\(\hat{\beta}_{0}\)</span> es el <em><strong>desplazamiento en el eje</strong></em> <span class="math notranslate nohighlight">\(y\)</span>. Para más características, <span class="math notranslate nohighlight">\(\boldsymbol{\hat{\beta}}\)</span> contiene las <em><strong>pendientes a lo largo de cada eje de características</strong></em>. Alternativamente, se puede pensar en la <em><strong>respuesta predicha</strong></em> como una <em><strong>suma ponderada de las características de entrada</strong></em>, con pesos (que pueden ser negativos) dados por las entradas de <span class="math notranslate nohighlight">\(\boldsymbol{\hat{\beta}}\)</span>.</p></li>
 </ul>
-<p><strong><code class="docutils literal notranslate"><span class="pre">Ilustración</span></code></strong></p>
+</section>
+<section id="ilustracion">
+<h3><span class="section-number">3.1.2. </span>Ilustración<a class="headerlink" href="#ilustracion" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Considere el ejemplo de intentar <em><strong>aprender los parámetros</strong></em> <span class="math notranslate nohighlight">\(\hat{\beta}_{1}:=w[0]\)</span> y <span class="math notranslate nohighlight">\(\hat{\beta}_{0}:=b\)</span> en nuestro <em><strong>conjunto de datos de ondas unidimensionales (wave)</strong></em> usando <code class="docutils literal notranslate"><span class="pre">plot_linear_regression_wave()</span></code>. En este caso, la función para la regresión lineal de ondas unidimensionales, usa la librería <code class="docutils literal notranslate"><span class="pre">LinearRegression()</span></code>, para ajustar la recta de regresión, basada en mínimos cuadrados.</p></li>
 </ul>
@@ -510,6 +519,7 @@ y_{n}
 <li><p>Hay muchos modelos lineales diferentes para la regresión. <em><strong>La diferencia entre estos modelos radica en cómo se aprenden los parámetros del modelo</strong></em> <span class="math notranslate nohighlight">\(\boldsymbol{\beta}_{1}\)</span> y <span class="math notranslate nohighlight">\(\boldsymbol{\beta}_{0}\)</span> a partir de los datos de entrenamiento, y en <em><strong>cómo se puede controlar la complejidad del modelo</strong></em>. A continuación veremos los modelos lineales más populares.</p></li>
 </ul>
 </div>
+</section>
 </section>
 <section id="minimos-cuadrados-ordinarios">
 <h2><span class="section-number">3.2. </span>Mínimos Cuadrados Ordinarios<a class="headerlink" href="#minimos-cuadrados-ordinarios" title="Link to this heading">#</a></h2>
@@ -1602,14 +1612,16 @@ Test set score: 0.61
 <p><span class="caption-number">Fig. 3.1 </span><span class="caption-text">Ilustration del score de predicción en el conjunto de test para <em><strong>linear regression, ridge</strong></em> y <em><strong>lasso</strong></em>.</span><a class="headerlink" href="#ridge-lasso-ilustration-fig" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
-<p><strong><code class="docutils literal notranslate"><span class="pre">Formulación</span></code></strong></p>
+</section>
+<section id="id1">
+<h3><span class="section-number">3.4.2. </span>Formulación<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
 <ul>
 <li><p>Consideremos el <em><strong>modelo de regresión lineal</strong></em></p>
 <div class="math notranslate nohighlight" id="equation-linear-model-comp">
 <span class="eqno">(3.3)<a class="headerlink" href="#equation-linear-model-comp" title="Link to this equation">#</a></span>\[
     y_{i}=\beta_{0}+\beta_{1}\cdot x_{i1}+\beta_{2}\cdot x_{i2}+\cdots+\beta_{p}\cdot x_{ip}+\varepsilon_{i},~i = 1,2,\dots, n,
     \]</div>
-<p>basado en los datos observados <span class="math notranslate nohighlight">\(\{(y_{i}, x_{i1}, x_{i2},\dots, x_{ip}):~i=1,2,\dots,n\}\)</span> para la variable respuesta <span class="math notranslate nohighlight">\(y\)</span> y <span class="math notranslate nohighlight">\(p\)</span> variables predictoras <span class="math notranslate nohighlight">\(\boldsymbol{x}=(x_{1}, x_{2},\dots,x_{p})\)</span>. La <em><strong>regresión ridge</strong></em> propuesta por <span id="id1">[<a class="reference internal" href="biblio.html#id63" title="Arthur E Hoerl and Robert W Kennard. Ridge regression: biased estimation for nonorthogonal problems. Technometrics, 12(1):55–67, 1970.">Hoerl and Kennard, 1970</a>]</span> es un método para <em><strong>evitar la inestabilidad de las estimaciones en los modelos de regresión lineal, causada por la multicolinealidad</strong></em>, esto es, correlación alta entre más de dos variables predictoras.</p>
+<p>basado en los datos observados <span class="math notranslate nohighlight">\(\{(y_{i}, x_{i1}, x_{i2},\dots, x_{ip}):~i=1,2,\dots,n\}\)</span> para la variable respuesta <span class="math notranslate nohighlight">\(y\)</span> y <span class="math notranslate nohighlight">\(p\)</span> variables predictoras <span class="math notranslate nohighlight">\(\boldsymbol{x}=(x_{1}, x_{2},\dots,x_{p})\)</span>. La <em><strong>regresión ridge</strong></em> propuesta por <span id="id2">[<a class="reference internal" href="biblio.html#id63" title="Arthur E Hoerl and Robert W Kennard. Ridge regression: biased estimation for nonorthogonal problems. Technometrics, 12(1):55–67, 1970.">Hoerl and Kennard, 1970</a>]</span> es un método para <em><strong>evitar la inestabilidad de las estimaciones en los modelos de regresión lineal, causada por la multicolinealidad</strong></em>, esto es, correlación alta entre más de dos variables predictoras.</p>
 </li>
 </ul>
 <div class="tip dropdown admonition">
@@ -1887,11 +1899,11 @@ y=X\boldsymbol{\beta}+\boldsymbol{\varepsilon},
 </div>
 <div class="tip admonition">
 <p class="admonition-title">Ejercicio para el lector</p>
-<p>Queda como <em><strong>ejercicio para el lector verificar las Propiedades</strong></em> <a class="reference internal" href="#equation-ridge-props">(3.12)</a> del <em><strong>estimador ridge</strong></em>. <em>Sugerencia: Revisar el texto de Sadanori Konishi</em>, <em><strong>Introduction to Multivariate Analysis: Linear and Nonlinear Modeling</strong></em> <span id="id2">[<a class="reference internal" href="biblio.html#id20" title="S. Konishi. Introduction to Multivariate Analysis: Linear and Nonlinear Modeling. Chapman &amp; Hall/CRC Texts in Statistical Science. Taylor &amp; Francis, 2014. ISBN 9781466567283. URL: https://books.google.com.co/books?id=fcuuAwAAQBAJ.">Konishi, 2014</a>]</span>.</p>
+<p>Queda como <em><strong>ejercicio para el lector verificar las Propiedades</strong></em> <a class="reference internal" href="#equation-ridge-props">(3.12)</a> del <em><strong>estimador ridge</strong></em>. <em>Sugerencia: Revisar el texto de Sadanori Konishi</em>, <em><strong>Introduction to Multivariate Analysis: Linear and Nonlinear Modeling</strong></em> <span id="id3">[<a class="reference internal" href="biblio.html#id20" title="S. Konishi. Introduction to Multivariate Analysis: Linear and Nonlinear Modeling. Chapman &amp; Hall/CRC Texts in Statistical Science. Taylor &amp; Francis, 2014. ISBN 9781466567283. URL: https://books.google.com.co/books?id=fcuuAwAAQBAJ.">Konishi, 2014</a>]</span>.</p>
 </div>
 </section>
 <section id="implementacion">
-<h3><span class="section-number">3.4.2. </span>Implementación<a class="headerlink" href="#implementacion" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.4.3. </span>Implementación<a class="headerlink" href="#implementacion" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>La <em><strong>regresión ridge</strong></em> se implementa en <code class="docutils literal notranslate"><span class="pre">linear_model.Ridge</span></code>. Veamos qué tal lo hace en el conjunto de datos ampliado de <code class="docutils literal notranslate"><span class="pre">Boston</span> <span class="pre">Housing</span></code>.</p></li>
 </ul>
@@ -2886,7 +2898,11 @@ Intercept shape:  (3,)
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-de-regresion-lineal">3.1. Modelo de regresión lineal</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-de-regresion-lineal">3.1. Modelo de regresión lineal</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formulacion">3.1.1. Formulación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ilustracion">3.1.2. Ilustración</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#minimos-cuadrados-ordinarios">3.2. Mínimos Cuadrados Ordinarios</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-linearregression">3.3. Aplicación: LinearRegression()</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-exploratorio-de-datos">3.3.1. Análisis Exploratorio de Datos</a></li>
@@ -2894,7 +2910,8 @@ Intercept shape:  (3,)
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-ridge">3.4. Regresión ridge</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis">3.4.1. Análisis</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion">3.4.2. Implementación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">3.4.2. Formulación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion">3.4.3. Implementación</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-lasso">3.5. Regresión Lasso</a></li>
