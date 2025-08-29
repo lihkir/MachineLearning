@@ -8013,6 +8013,7 @@ There are total of 780 images and 798 masks.
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">load_image</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">size</span><span class="p">):</span>
+<span class="w">    </span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Carga una imagen desde la ruta especificada, la redimensiona y la convierte a escala de grises.</span>
 
@@ -8027,6 +8028,7 @@ There are total of 780 images and 798 masks.
     <span class="n">image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">))</span>  <span class="c1"># Redimensionar la imagen</span>
     <span class="n">image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_RGB2GRAY</span><span class="p">)</span>  <span class="c1"># Convertir a escala de grises (shape: (size, size, 3) -&gt; (size, size, 1))</span>
     <span class="n">image</span> <span class="o">=</span> <span class="n">image</span> <span class="o">/</span> <span class="mf">255.</span>  <span class="c1"># Normalizar la imagen (valores entre 0 y 1)</span>
+        
     <span class="k">return</span> <span class="n">image</span>
 </pre></div>
 </div>
@@ -8035,6 +8037,7 @@ There are total of 780 images and 798 masks.
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">load_data</span><span class="p">(</span><span class="n">root_path</span><span class="p">,</span> <span class="n">size</span><span class="p">):</span>
+<span class="w">    </span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Carga imágenes y máscaras desde una carpeta, asegurando que múltiples máscaras para una misma imagen se combinen correctamente.</span>
 
@@ -8072,6 +8075,32 @@ There are total of 780 images and 798 masks.
 </div>
 </div>
 </div>
+<ul>
+<li><p>La variable <code class="docutils literal notranslate"><span class="pre">x</span></code> funciona como bandera:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">0</span></code> → aún no hay máscara asociada.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">1</span></code> → ya se cargó al menos una máscara para esa imagen.</p></li>
+</ul>
+</li>
+<li><p>En datasets médicos como <strong>BUSI</strong>, las máscaras son binarias:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> → fondo.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code> (o <code class="docutils literal notranslate"><span class="pre">255</span></code> en PNG) → lesión.</p></li>
+</ul>
+</li>
+<li><p>Al cargar se normalizan a <code class="docutils literal notranslate"><span class="pre">[0.0,</span> <span class="pre">1.0]</span></code>. El problema surge cuando una imagen tiene varias máscaras (<code class="docutils literal notranslate"><span class="pre">_mask.png</span></code>, <code class="docutils literal notranslate"><span class="pre">_mask_1.png</span></code>, …): al <strong>sumarlas</strong> aparecen valores <code class="docutils literal notranslate"><span class="pre">2</span></code>.  Por ejemplo,</p>
+<ul class="simple">
+<li><p><em>máscara 1</em>: <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">1,</span> <span class="pre">0]</span></code></p></li>
+<li><p><em>máscara 2</em>: <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">1,</span> <span class="pre">1]</span></code></p></li>
+<li><p><em>suma</em>:     <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">2,</span> <span class="pre">1]</span></code></p></li>
+</ul>
+</li>
+<li><p>Por eso se aplica:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">masks</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">masks</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">load_data</span><span class="p">(</span><span class="n">root_path</span><span class="o">=</span><span class="s1">&#39;/home/lihkir/datasets/Dataset_BUSI_with_GT/*/*&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">128</span><span class="p">)</span>  
@@ -8079,7 +8108,15 @@ There are total of 780 images and 798 masks.
 </div>
 </div>
 </div>
-<p><strong><code class="docutils literal notranslate"><span class="pre">EDA</span></code></strong></p>
+<p>Se usa <code class="docutils literal notranslate"><span class="pre">128×128</span></code> por:</p>
+<ul class="simple">
+<li><p><strong>Eficiencia:</strong> reduce memoria y tiempo de entrenamiento.</p></li>
+<li><p><strong>Escalabilidad:</strong> potencia de 2, compatible con CNNs (128 → 64 → 32…).</p></li>
+<li><p><strong>Aplicación:</strong> suficiente para prototipos en segmentación médica; mayor precisión requiere 256 o 512, pero con más costo computacional.</p></li>
+</ul>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">Exploratory</span> <span class="pre">Data</span> <span class="pre">Analysis</span> <span class="pre">(EDA)</span></code></strong></p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
@@ -8140,6 +8177,21 @@ Your kernel may have been built without NUMA support.
 <img alt="_images/c14f0285e6dffd5133dfd1fb749a9674786d2cc80938877007088e344bf1c7af.png" src="_images/c14f0285e6dffd5133dfd1fb749a9674786d2cc80938877007088e344bf1c7af.png" />
 </div>
 </div>
+<ul>
+<li><p>Cuando se cargaron los datos con:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">load_data</span><span class="p">(</span><span class="n">root_path</span><span class="o">=</span><span class="s1">&#39;/home/lihkir/datasets/Dataset_BUSI_with_GT/*/*&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">128</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>la función <code class="docutils literal notranslate"><span class="pre">glob</span></code> junto con <code class="docutils literal notranslate"><span class="pre">sorted()</span></code> organiza las rutas <strong>en orden alfabético</strong>. Por eso se leen primero las imágenes de la carpeta <strong><code class="docutils literal notranslate"><span class="pre">benign</span></code></strong>, luego <strong><code class="docutils literal notranslate"><span class="pre">malignant</span></code></strong> y finalmente <strong><code class="docutils literal notranslate"><span class="pre">normal</span></code></strong>.</p>
+</li>
+<li><p>De este modo, como las imagenes provienen directamente de cómo está organizado el dataset <em>BUSI (Breast Ultrasound Images with Ground Truth): 437 imágenes de tumores benignos; 210 imágenes de tumores malignos; 133 imágenes normales (sin tumor)</em>, en los arrays <code class="docutils literal notranslate"><span class="pre">X</span></code> y <code class="docutils literal notranslate"><span class="pre">y</span></code> las posiciones quedan distribuidas así:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">X[0:437]</span></code> → Benignos</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">X[437:647]</span></code> → Malignos</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">X[647:780]</span></code> → Normales</p></li>
+</ul>
+</li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
@@ -8182,7 +8234,9 @@ Your kernel may have been built without NUMA support.
 <img alt="_images/c578dcb6b302c6d61aeb6e22dad90fb6fd2600b3dcf2fcf5771f29bdc5a0f85c.png" src="_images/c578dcb6b302c6d61aeb6e22dad90fb6fd2600b3dcf2fcf5771f29bdc5a0f85c.png" />
 </div>
 </div>
-<p><strong><code class="docutils literal notranslate"><span class="pre">Preprocesamiento</span></code></strong></p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">Preprocesamiento</span></code></strong></p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Eliminar la clase &quot;normal&quot; porque no tiene máscara (usar las primera 647)</span>
@@ -8207,6 +8261,28 @@ Forma de X: (647, 128, 128, 1)  |  Forma de y: (647, 128, 128, 1)
 </div>
 </div>
 </div>
+<ul>
+<li><p>Eliminación de imágenes (<code class="docutils literal notranslate"><span class="pre">X</span> <span class="pre">=</span> <span class="pre">X[:647]</span></code>). El dataset <strong>BUSI</strong> tiene 3 clases:</p>
+<ul class="simple">
+<li><p><strong>Benigno</strong> → 437 imágenes</p></li>
+<li><p><strong>Maligno</strong> → 210 imágenes</p></li>
+<li><p><strong>Normal</strong> → 133 imágenes</p></li>
+</ul>
+</li>
+<li><p>Las imágenes de la clase <strong>Normal</strong> no tienen máscara (<code class="docutils literal notranslate"><span class="pre">y</span></code>). En segmentación se necesita siempre un par <em>(imagen, máscara)</em>. Por eso se conservan solo las <strong>647 imágenes</strong> de <code class="docutils literal notranslate"><span class="pre">Benigno</span> <span class="pre">+</span> <span class="pre">Maligno</span></code>, que sí tienen máscara. Así <code class="docutils literal notranslate"><span class="pre">X</span></code> e <code class="docutils literal notranslate"><span class="pre">y</span></code> quedan con el mismo número de muestras.</p></li>
+<li><p>Expansión de dimensión (<code class="docutils literal notranslate"><span class="pre">np.expand_dims(X,</span> <span class="pre">-1)</span></code>). Al cargar imágenes en escala de grises con <code class="docutils literal notranslate"><span class="pre">load_image</span></code>, cada muestra queda como: <code class="docutils literal notranslate"><span class="pre">(size,</span> <span class="pre">size)</span>&#160; <span class="pre">#</span> <span class="pre">ej:</span> <span class="pre">(128,</span> <span class="pre">128)</span></code>, pero, las redes neuronales esperan un <strong>tensor con canales</strong>: <code class="docutils literal notranslate"><span class="pre">(altura,</span> <span class="pre">anchura,</span> <span class="pre">canales)</span></code></p>
+<ul class="simple">
+<li><p>Color: <code class="docutils literal notranslate"><span class="pre">(128,</span> <span class="pre">128,</span> <span class="pre">3)</span></code></p></li>
+<li><p>Escala de grises: <code class="docutils literal notranslate"><span class="pre">(128,</span> <span class="pre">128,</span> <span class="pre">1)</span></code></p></li>
+</ul>
+<p>Por eso se usa:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>y cada muestra pasa de <code class="docutils literal notranslate"><span class="pre">(128,</span> <span class="pre">128)</span></code> a <code class="docutils literal notranslate"><span class="pre">(128,</span> <span class="pre">128,</span> <span class="pre">1)</span></code>.</p>
+</li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
@@ -8232,6 +8308,31 @@ y_test shape: (65, 128, 128, 1)
 <p><strong>Construcción de la Arquitectura U-Net</strong></p>
 <ul class="simple">
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">Conv</span> <span class="pre">block</span></code></strong></p></li>
+</ul>
+<ul>
+<li><p>El <strong>método He Normal</strong> (He et al., 2015) es una técnica de inicialización de pesos pensada para redes con activación <strong>ReLU</strong>. Motivación:</p>
+<ul class="simple">
+<li><p>Pesos muy pequeños → gradiente desaparece.</p></li>
+<li><p>Pesos muy grandes → gradiente explota.</p></li>
+<li><p>He Normal busca un <strong>balance</strong> para mantener activaciones y gradientes estables.</p></li>
+</ul>
+</li>
+<li><p>Los pesos <span class="math notranslate nohighlight">\(W\)</span> se generan con una <em>distribución normal de media 0 y varianza</em> <span class="math notranslate nohighlight">\(\mathbb{Var}(W) = 2/n_{in}\)</span> donde <span class="math notranslate nohighlight">\(n_{in}\)</span> es el número de entradas de la capa. En Keras:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">kernel_initializer</span><span class="o">=</span><span class="s1">&#39;he_normal&#39;</span>
+</pre></div>
+</div>
+<p>equivale a</p>
+<div class="math notranslate nohighlight">
+\[
+    W \sim \mathcal{N}(0, \sqrt{2/n_{in}})
+    \]</div>
+</li>
+<li><p>Ventajas:</p>
+<ul class="simple">
+<li><p>Se adapta a <strong>ReLU</strong>, considerando que descarta la mitad de las neuronas.</p></li>
+<li><p>Facilita un <strong>entrenamiento más rápido y estable</strong> en redes profundas.</p></li>
+</ul>
+</li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
