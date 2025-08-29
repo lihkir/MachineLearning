@@ -8004,7 +8004,12 @@ There are total of 780 images and 798 masks.
 </div>
 </div>
 </div>
-<p><strong><code class="docutils literal notranslate"><span class="pre">Cargue</span> <span class="pre">de</span> <span class="pre">datos</span></code></strong></p>
+<ul class="simple">
+<li><p>Cada caso (ej. benign (100)) puede tener <strong>varias máscaras de segmentación</strong> (<code class="docutils literal notranslate"><span class="pre">_mask.png,</span> <span class="pre">_mask_1.png</span></code>, a veces <code class="docutils literal notranslate"><span class="pre">_mask_2.png</span></code>). Es porque los médicos que lo anotaron <strong>identificaron más de una región sospechosa en la misma imagen</strong>, o bien diferentes especialistas marcaron áreas distintas.</p></li>
+</ul>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">Cargue</span> <span class="pre">de</span> <span class="pre">datos</span></code></strong></p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">load_image</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">size</span><span class="p">):</span>
@@ -8040,6 +8045,7 @@ There are total of 780 images and 798 masks.
 <span class="sd">    Retorna:</span>
 <span class="sd">    tuple: Dos arrays de NumPy, uno con las imágenes y otro con las máscaras.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    
     <span class="n">images</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># Lista para almacenar las imágenes</span>
     <span class="n">masks</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># Lista para almacenar las máscaras</span>
     
