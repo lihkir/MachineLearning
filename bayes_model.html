@@ -515,8 +515,7 @@ P(G_i \mid \boldsymbol{x}) = \frac{P(\boldsymbol{x} \mid G_i)}{P(\boldsymbol{x} 
 \[
 P(G_i \mid \boldsymbol{x}) = \frac{f(\boldsymbol{x} \mid \bar{\boldsymbol{x}}_i, S_i)}{f(\boldsymbol{x} \mid \bar{\boldsymbol{x}}_1, S_1) + f(\boldsymbol{x} \mid \bar{\boldsymbol{x}}_2, S_2)}
 \]</div>
-<p>Cada curva <span class="math notranslate nohighlight">\(f(\boldsymbol{x} \mid \bar{\boldsymbol{x}}_i, S_i)\)</span> representa la densidad de probabilidad de los datos si pertenecieran a cada clase. El valor en el punto <span class="math notranslate nohighlight">\(x\)</span> se usa para comparar qué clase es más probable, y el cociente en la fórmula asegura que la suma de probabilidades posteriores sea</p>
-<p>(ver <a class="reference internal" href="#fig-bayes-normal"><span class="std std-numref">Fig. 4.2</span></a>) representación del <em><strong>nivel relativo de ocurrencia</strong></em>.</p>
+<p>Cada curva <span class="math notranslate nohighlight">\(f(\boldsymbol{x} \mid \bar{\boldsymbol{x}}_i, S_i)\)</span> describe la densidad de probabilidad de los datos bajo la hipótesis de que pertenecen a una clase determinada. El valor en un <strong>punto <span class="math notranslate nohighlight">\(x\)</span> permite comparar qué clase es más probable, y el cociente en la fórmula garantiza que las probabilidades posteriores sumen 1</strong> (ver <a class="reference internal" href="#fig-bayes-normal"><span class="std std-numref">Fig. 4.2</span></a>), reflejando así el <strong>nivel relativo de ocurrencia</strong>.</p>
 <figure class="align-center" id="fig-bayes-normal">
 <a class="reference internal image-reference" href="_images/bayes_normal.png"><img alt="_images/bayes_normal.png" src="_images/bayes_normal.png" style="width: 394.0px; height: 303.6px;" />
 </a>
@@ -561,34 +560,34 @@ h(\boldsymbol{x})&amp;=\log f(\boldsymbol{x}|\overline{\boldsymbol{x}}_{1}, S_{1
 <p>La función <span class="math notranslate nohighlight">\(h(\boldsymbol{x})\)</span> de la Eq. <a class="reference internal" href="#equation-quad-disc-eq">(4.6)</a> es conocida como <em><strong>función discriminante cuadratica</strong></em>. Reemplazando <span class="math notranslate nohighlight">\(S_{i}\)</span> con la <em><strong>matriz de varianza-covarianza de la muestra conjunta</strong></em> <span class="math notranslate nohighlight">\(S=(n_{1}S_{1}+n_{2}S_{2})/(n_{1}+n_{2})\)</span>, la función discriminante es además reducida a la <em><strong>función discriminante lineal</strong></em> (<em>verifíquelo</em>)</p>
 <div class="math notranslate nohighlight">
 \[
-h(\boldsymbol{x}) = \frac{1}{2}(\boldsymbol{x} - \boldsymbol{x}_2)^T S^{-1} (\boldsymbol{x} - \boldsymbol{x}_2) - \frac{1}{2}(\boldsymbol{x} - \boldsymbol{x}_1)^T S^{-1} (\boldsymbol{x} - \boldsymbol{x}_1)
+h(\boldsymbol{x}) = \frac{1}{2}(\boldsymbol{x} - \boldsymbol{\overline{x}}_2)^T S^{-1} (\boldsymbol{x} - \boldsymbol{\overline{x}}_2) - \frac{1}{2}(\boldsymbol{x} - \boldsymbol{\overline{x}}_1)^T S^{-1} (\boldsymbol{x} - \boldsymbol{\overline{x}}_1)
 \]</div>
 <p>Expandamos cada término:</p>
 <div class="math notranslate nohighlight">
 \[
-(\boldsymbol{x} - \boldsymbol{x}_2)^T S^{-1} (\boldsymbol{x} - \boldsymbol{x}_2) =
-\boldsymbol{x}^T S^{-1} \boldsymbol{x} - 2 \boldsymbol{x}_2^T S^{-1} \boldsymbol{x} + \boldsymbol{x}_2^T S^{-1} \boldsymbol{x}_2
+(\boldsymbol{x} - \boldsymbol{\overline{x}}_2)^T S^{-1} (\boldsymbol{x} - \boldsymbol{\overline{x}}_2) =
+\boldsymbol{x}^T S^{-1} \boldsymbol{x} - 2 \boldsymbol{\overline{x}}_2^T S^{-1} \boldsymbol{x} + \boldsymbol{\overline{x}}_2^T S^{-1} \boldsymbol{\overline{x}}_2
 \]</div>
 <div class="math notranslate nohighlight">
 \[
-(\boldsymbol{x} - \boldsymbol{x}_1)^T S^{-1} (\boldsymbol{x} - \boldsymbol{x}_1) =
-\boldsymbol{x}^T S^{-1} \boldsymbol{x} - 2 \boldsymbol{x}_1^T S^{-1} \boldsymbol{x} + \boldsymbol{x}_1^T S^{-1} \boldsymbol{x}_1
+(\boldsymbol{x} - \boldsymbol{\overline{x}}_1)^T S^{-1} (\boldsymbol{x} - \boldsymbol{\overline{x}}_1) =
+\boldsymbol{x}^T S^{-1} \boldsymbol{x} - 2 \boldsymbol{\overline{x}}_1^T S^{-1} \boldsymbol{x} + \boldsymbol{\overline{x}}_1^T S^{-1} \boldsymbol{\overline{x}}_1
 \]</div>
 <p>Sustituyendo en la función discriminante dentro de la resta:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{aligned}
-h(\boldsymbol{x}) &amp;= \frac{1}{2} \left( \boldsymbol{x}^T S^{-1} \boldsymbol{x} - 2 \boldsymbol{x}_2^T S^{-1} \boldsymbol{x} + \boldsymbol{x}_2^T S^{-1} \boldsymbol{x}_2 \right) \\
-&amp;\quad - \frac{1}{2} \left( \boldsymbol{x}^T S^{-1} \boldsymbol{x} - 2 \boldsymbol{x}_1^T S^{-1} \boldsymbol{x} + \boldsymbol{x}_1^T S^{-1} \boldsymbol{x}_1 \right)
+h(\boldsymbol{x}) &amp;= \frac{1}{2} \left( \boldsymbol{x}^T S^{-1} \boldsymbol{x} - 2 \boldsymbol{\overline{x}}_2^T S^{-1} \boldsymbol{x} + \boldsymbol{\overline{x}}_2^T S^{-1} \boldsymbol{\overline{x}}_2 \right) \\
+&amp;\quad - \frac{1}{2} \left( \boldsymbol{x}^T S^{-1} \boldsymbol{x} - 2 \boldsymbol{\overline{x}}_1^T S^{-1} \boldsymbol{x} + \boldsymbol{\overline{x}}_1^T S^{-1} \boldsymbol{\overline{x}}_1 \right)
 \end{aligned}
 \end{split}\]</div>
 <p>Los términos <span class="math notranslate nohighlight">\(\boldsymbol{x}^T S^{-1} \boldsymbol{x}\)</span> se cancelan entre sí, ya que aparecen con el mismo signo y factor. Entonces queda:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{aligned}
-h(\boldsymbol{x}) &amp;= \frac{1}{2} \left( -2 \boldsymbol{x}_2^T S^{-1} \boldsymbol{x} + \boldsymbol{x}_2^T S^{-1} \boldsymbol{x}_2 
-+ 2 \boldsymbol{x}_1^T S^{-1} \boldsymbol{x} - \boldsymbol{x}_1^T S^{-1} \boldsymbol{x}_1 \right) \\
-&amp;= \left( \boldsymbol{x}_1^T S^{-1} - \boldsymbol{x}_2^T S^{-1} \right) \boldsymbol{x} + \frac{1}{2} \left( \boldsymbol{x}_2^T S^{-1} \boldsymbol{x}_2 - \boldsymbol{x}_1^T S^{-1} \boldsymbol{x}_1 \right)
+h(\boldsymbol{x}) &amp;= \frac{1}{2} \left( -2 \boldsymbol{\overline{x}}_2^T S^{-1} \boldsymbol{x} + \boldsymbol{\overline{x}}_2^T S^{-1} \boldsymbol{\overline{x}}_2 
++ 2 \boldsymbol{\overline{x}}_1^T S^{-1} \boldsymbol{x} - \boldsymbol{\overline{x}}_1^T S^{-1} \boldsymbol{\overline{x}}_1 \right) \\
+&amp;= \left( \boldsymbol{\overline{x}}_1^T S^{-1} - \boldsymbol{\overline{x}}_2^T S^{-1} \right) \boldsymbol{x} + \frac{1}{2} \left( \boldsymbol{\overline{x}}_2^T S^{-1} \boldsymbol{\overline{x}}_2 - \boldsymbol{\overline{x}}_1^T S^{-1} \boldsymbol{\overline{x}}_1 \right)
 \end{aligned}
 \end{split}\]</div>
 <p>La expresión anterior se puede reescribir como:</p>
@@ -598,13 +597,13 @@ h(\boldsymbol{x}) = \mathbf{w}^T \boldsymbol{x} + w_0
 \]</div>
 <p>donde:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\mathbf{w} = S^{-1} (\boldsymbol{x}_1 - \boldsymbol{x}_2)\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(w_0 = \frac{1}{2} \left( \boldsymbol{x}_2^T S^{-1} \boldsymbol{x}_2 - \boldsymbol{x}_1^T S^{-1} \boldsymbol{x}_1 \right)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbf{w} = S^{-1} (\boldsymbol{\overline{x}}_1 - \boldsymbol{\overline{x}}_2)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(w_0 = \frac{1}{2} \left( \boldsymbol{\overline{x}}_2^T S^{-1} \boldsymbol{\overline{x}}_2 - \boldsymbol{\overline{x}}_1^T S^{-1} \boldsymbol{\overline{x}}_1 \right)\)</span></p></li>
 </ul>
 <p>Por lo tanto,</p>
 <div class="math notranslate nohighlight">
 \[
-h(\boldsymbol{x}) = (\boldsymbol{x}_1 - \boldsymbol{x}_2)^T S^{-1} \boldsymbol{x} - \frac{1}{2} \left( \boldsymbol{x}_1^T S^{-1} \boldsymbol{x}_1 - \boldsymbol{x}_2^T S^{-1} \boldsymbol{x}_2 \right).
+h(\boldsymbol{x}) = (\boldsymbol{\overline{x}}_1 - \boldsymbol{\overline{x}}_2)^T S^{-1} \boldsymbol{x} - \frac{1}{2} \left( \boldsymbol{\overline{x}}_1^T S^{-1} \boldsymbol{\overline{x}}_1 - \boldsymbol{\overline{x}}_2^T S^{-1} \boldsymbol{\overline{x}}_2 \right).
 \]</div>
 <p>De esta forma, obtenemos la <em><strong>regla de clasificación de Bayes</strong></em> <a class="reference internal" href="#equation-bayes-class-rule">(4.5)</a> basada en el <em><strong>signo del logaritmo de la razón entre la distribución de probabilidad estimada que caracteriza la clase</strong></em>. La función <span class="math notranslate nohighlight">\(h(\boldsymbol{x})\)</span> expresada por la distribución normal <span class="math notranslate nohighlight">\(p\)</span>-dimensional entrega las <em><strong>funciones discriminantes, lineales y cuadráticas</strong></em>.</p>
 </section>
