@@ -364,7 +364,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prediccion-de-churn-en-telecomunicaciones-con-modelos-de-arboles-e-interpretabilidad">5.12.1. Predicción de churn en telecomunicaciones con modelos de árboles e interpretabilidad</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivo-general">5.12.2. Objetivo general</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contexto-aplicado">5.12.3. Contexto aplicado</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-recomendado-telco-customer-churn-kaggle">5.12.4. Dataset recomendado: “Telco Customer Churn” (Kaggle)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-recomendado-telco-customer-churn">5.12.4. Dataset recomendado: “Telco Customer Churn”</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#actividades-a-desarrollar">5.12.5. Actividades a desarrollar</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#restricciones-didacticas">5.12.6. Restricciones didácticas</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#herramientas-sugeridas">5.12.7. Herramientas sugeridas</a></li>
@@ -377,8 +377,9 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dockerfile-contenerizacion">5.12.14. <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code> — Contenerización</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#requirements-txt">5.12.15. <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#github-workflows-ci-yml-ci-cd-pipeline">5.12.16. <code class="docutils literal notranslate"><span class="pre">.github/workflows/ci.yml</span></code> — CI/CD Pipeline</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#readme-md-documentacion">5.12.17. <code class="docutils literal notranslate"><span class="pre">README.md</span></code> — Documentación</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejecucion-de-pruebas">5.12.18. Ejecución de pruebas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#flujo-del-pipeline-de-integracion-continua-ci">5.12.17. Flujo del Pipeline de Integración Continua (CI)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#readme-md-documentacion">5.12.18. <code class="docutils literal notranslate"><span class="pre">README.md</span></code> — Documentación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejecucion-de-pruebas">5.12.19. Ejecución de pruebas</a></li>
 </ul>
 </li>
 </ul>
@@ -555,28 +556,6 @@ su valor <em><strong>máximo cuando todas las clases son equiprobables</strong><
 <li><p>Otra posibilidad es parar cuando la cardinalidad de <span class="math notranslate nohighlight">\(X_{t}\)</span> es menor que un número determinado o si el <em><strong>nodo es puro, en el sentido de que todos los puntos que lo componen pertenecen a una única clase</strong></em>.</p></li>
 </ul>
 </div>
-<div class="important admonition">
-<p class="admonition-title">Regla de asignación de clase</p>
-<ul class="simple">
-<li><p>Una vez que se declara que un <em><strong>nodo <span class="math notranslate nohighlight">\(t\)</span> es un nodo hoja, se le asigna una etiqueta de clase</strong></em>; normalmente por mayoría. Es decir, <em><strong>se le asigna la etiqueta de la clase a la que pertenecen la mayoría de los datos de</strong></em> <span class="math notranslate nohighlight">\(X_{t}\)</span>.</p></li>
-<li><p>Solución a <strong>situaciones de empates</strong>: <code class="docutils literal notranslate"><span class="pre">Random</span> <span class="pre">Forest</span></code> realiza predicciones reuniendo las decisiones de muchos árboles:</p>
-<ul>
-<li><p>Cada árbol <strong>asigna una clase (voto “duro”) o una distribución de probabilidad (ver Ecuación <a class="reference internal" href="#equation-random-forest-probs">(5.1)</a>) por clase (voto “blando”</strong> -&gt; <code class="docutils literal notranslate"><span class="pre">predict_proba</span></code>).</p></li>
-<li><p>La lógica habitual de <code class="docutils literal notranslate"><span class="pre">RandomForestClassifier.predict</span></code> usa las <strong>probabilidades promedio</strong> (promedio de <code class="docutils literal notranslate"><span class="pre">predict_proba</span></code> de cada árbol) y <strong>luego toma el índice con <code class="docutils literal notranslate"><span class="pre">argmax</span></code></strong>.</p></li>
-<li><p>Un <strong>“empate perfecto” en el conteo de votos (por ejemplo, 50 árboles votan 0 y 50 votan 1) no implica necesariamente empate en la probabilidad promedio</strong>; el promedio de probabilidades suele romperlo.</p></li>
-<li><p>Si <strong>también</strong> las <strong>probabilidades promedio son exactamente iguales (caso extremo), <code class="docutils literal notranslate"><span class="pre">np.argmax</span></code> devuelve el primer índice con el máximo</strong> — es decir, la clase con índice más bajo en <code class="docutils literal notranslate"><span class="pre">clf.classes_</span></code>.</p></li>
-</ul>
-</li>
-<li><p><strong>¿Cómo lo hace scikit-learn internamente?</strong></p></li>
-</ul>
-<p><em>Flujo simplificado</em>:</p>
-<ol class="arabic simple">
-<li><p>Cada árbol calcula <code class="docutils literal notranslate"><span class="pre">proba_i(x)</span></code> (vector de probabilidades por clase para la muestra <code class="docutils literal notranslate"><span class="pre">x</span></code>), normalmente la distribución de clases en la hoja normalizada.</p></li>
-<li><p>Random Forest calcula <code class="docutils literal notranslate"><span class="pre">avg_proba(x)</span> <span class="pre">=</span> <span class="pre">mean_i</span> <span class="pre">proba_i(x)</span></code>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">predict(x)</span></code> hace <code class="docutils literal notranslate"><span class="pre">argmax(avg_proba(x))</span></code>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">np.argmax</span></code> devuelve el primer índice con el valor máximo — eso rompe empates determinísticamente (clase de menor índice).</p></li>
-</ol>
-</div>
 <div class="tip admonition">
 <p class="admonition-title">Podado del árbol</p>
 <ul class="simple">
@@ -613,6 +592,28 @@ su valor <em><strong>máximo cuando todas las clases son equiprobables</strong><
 <ul class="simple">
 <li><p>Además de los métodos anteriores, recientemente, también se han sugerido <em><strong>técnicas Bayesianas utilizadas para estabilizar el rendimiento de los árboles</strong></em>; véase <span id="id7">[<a class="reference internal" href="biblio.html#id7" title="Hugh A Chipman, Edward I George, and Robert E McCulloch. Bart: bayesian additive regression trees. The Annals of Applied Statistics, 4(1):266–298, 2010.">Chipman <em>et al.</em>, 2010</a>, <a class="reference internal" href="biblio.html#id8" title="Yuhong Wu, Håkon Tjelmeland, and Mike West. Bayesian cart: prior specification and posterior simulation. Journal of Computational and Graphical Statistics, 16(1):44–66, 2007.">Wu <em>et al.</em>, 2007</a>]</span>. Por supuesto, <em><strong>el efecto de utilizar múltiples árboles, es perder una de las principales ventajas de los árboles, su facilidad de interpretación.</strong></em></p></li>
 </ul>
+<div class="important admonition">
+<p class="admonition-title">Regla de asignación de clase</p>
+<ul class="simple">
+<li><p>Una vez que se declara que un <em><strong>nodo <span class="math notranslate nohighlight">\(t\)</span> es un nodo hoja, se le asigna una etiqueta de clase</strong></em>; normalmente por mayoría. Es decir, <em><strong>se le asigna la etiqueta de la clase a la que pertenecen la mayoría de los datos de</strong></em> <span class="math notranslate nohighlight">\(X_{t}\)</span>.</p></li>
+<li><p>Solución a <strong>situaciones de empates</strong>: <code class="docutils literal notranslate"><span class="pre">Random</span> <span class="pre">Forest</span></code> realiza predicciones reuniendo las decisiones de muchos árboles:</p>
+<ul>
+<li><p>Cada árbol <strong>asigna una clase (voto “duro”) o una distribución de probabilidad (ver Ecuación <a class="reference internal" href="#equation-random-forest-probs">(5.1)</a>) por clase (voto “blando”</strong> -&gt; <code class="docutils literal notranslate"><span class="pre">predict_proba</span></code>).</p></li>
+<li><p>La lógica habitual de <code class="docutils literal notranslate"><span class="pre">RandomForestClassifier.predict</span></code> usa las <strong>probabilidades promedio</strong> (promedio de <code class="docutils literal notranslate"><span class="pre">predict_proba</span></code> de cada árbol) y <strong>luego toma el índice con <code class="docutils literal notranslate"><span class="pre">argmax</span></code></strong>.</p></li>
+<li><p>Un <strong>“empate perfecto” en el conteo de votos (por ejemplo, 50 árboles votan 0 y 50 votan 1) no implica necesariamente empate en la probabilidad promedio</strong>; el promedio de probabilidades suele romperlo.</p></li>
+<li><p>Si <strong>también</strong> las <strong>probabilidades promedio son exactamente iguales (caso extremo), <code class="docutils literal notranslate"><span class="pre">np.argmax</span></code> devuelve el primer índice con el máximo</strong> — es decir, la clase con índice más bajo en <code class="docutils literal notranslate"><span class="pre">clf.classes_</span></code>.</p></li>
+</ul>
+</li>
+<li><p><strong>¿Cómo lo hace scikit-learn internamente?</strong></p></li>
+</ul>
+<p><em>Flujo simplificado</em>:</p>
+<ol class="arabic simple">
+<li><p>Cada árbol calcula <code class="docutils literal notranslate"><span class="pre">proba_i(x)</span></code> (vector de probabilidades por clase para la muestra <code class="docutils literal notranslate"><span class="pre">x</span></code>), normalmente la distribución de clases en la hoja normalizada.</p></li>
+<li><p>Random Forest calcula <code class="docutils literal notranslate"><span class="pre">avg_proba(x)</span> <span class="pre">=</span> <span class="pre">mean_i</span> <span class="pre">proba_i(x)</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">predict(x)</span></code> hace <code class="docutils literal notranslate"><span class="pre">argmax(avg_proba(x))</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">np.argmax</span></code> devuelve el primer índice con el valor máximo — eso rompe empates determinísticamente (clase de menor índice).</p></li>
+</ol>
+</div>
 </section>
 <section id="combinacion-de-clasificadores">
 <h2><span class="section-number">5.2. </span>Combinación de clasificadores<a class="headerlink" href="#combinacion-de-clasificadores" title="Link to this heading">#</a></h2>
@@ -991,7 +992,88 @@ F(\boldsymbol{x})=\sum_{k=1}^{K}T(\boldsymbol{x}; \boldsymbol{\Theta}_{k}),\quad
 \]</div>
 <ul class="simple">
 <li><p>La <em>optimización</em> con respecto a <span class="math notranslate nohighlight">\(\boldsymbol{\Theta}\)</span> tiene lugar en <em>dos pasos: uno con respecto a</em> <span class="math notranslate nohighlight">\(\hat{y}_{ij},~j=1,2,\dots,J\)</span>, dado <span class="math notranslate nohighlight">\(R_{ij}\)</span> , y luego <em>uno con respecto a las regiones</em> <span class="math notranslate nohighlight">\(R_{ij}\)</span>. Esta última es una tarea difícil y solo se simplifica en casos muy especiales. En la práctica, se pueden emplear varias aproximaciones. Nótese que en el caso de la <em>pérdida exponencial</em> y la <em>tarea de clasificación de dos clases</em>, lo anterior está directamente relacionado con el esquema <em><strong>AdaBoost</strong></em>.</p></li>
-<li><p>En <em><strong>Python</strong></em> el modelo <em><strong>XGBoost</strong></em> (<em>Adaboost regularizado</em>), se considera la suma de todos los errores divididos por el número de muestras, y utiliza las siguientes funciones de pérdida <code class="docutils literal notranslate"><span class="pre">binary:logistic</span></code> (<span class="math notranslate nohighlight">\(-y(\log(\tilde{y}))+(1-y)\log(1-\tilde{y})\)</span>), <code class="docutils literal notranslate"><span class="pre">reg:logistic</span></code> (<span class="math notranslate nohighlight">\((y-\tilde{y})^{2}\)</span>) y para clasificación múltiple <a class="reference external" href="https://xgboost.readthedocs.io/en/latest/parameter.html#learning-task-parameters">multi:softmax, multi:softprob</a>.</p></li>
+<li><p>En <em><strong>Python</strong></em> el modelo <em><strong>XGBoost</strong></em> (<em>Adaboost regularizado</em>) se considera como la suma de todos los errores divididos por el número de muestras, y permite elegir distintas <strong>funciones de pérdida</strong> según la tarea de aprendizaje:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">binary:logistic</span></code>: <span class="math notranslate nohighlight">\(y \cdot \log(\tilde{y}) + (1-y)\cdot\log(1-\tilde{y})\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">reg:logistic</span></code>:<span class="math notranslate nohighlight">\((y - \tilde{y})^2\)</span></p></li>
+<li><p>Para clasificación múltiple: <a class="reference external" href="https://xgboost.readthedocs.io/en/latest/parameter.html#learning-task-parameters"><code class="docutils literal notranslate"><span class="pre">multi:softmax</span></code>, <code class="docutils literal notranslate"><span class="pre">multi:softprob</span></code></a>. A continuación vamos a centrarnos en la función de pérdida <strong>binary:logistic</strong>, que corresponde a la <strong>entropía cruzada binaria</strong>, muy usada en problemas de clasificación.</p></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>La <strong>función de pérdida de entropía cruzada (cross-entropy loss)</strong> se utiliza para medir la diferencia entre las <strong>etiquetas reales</strong> y las <strong>probabilidades predichas por el modelo</strong>. Su definición en clasificación binaria es:</p>
+<div class="math notranslate nohighlight" id="equation-eq-crossentropy">
+<span class="eqno">(5.12)<a class="headerlink" href="#equation-eq-crossentropy" title="Link to this equation">#</a></span>\[
+    \text{Loss} = -\Big[ y_{\text{real}} \cdot \log(\hat{y}) + (1-y_{\text{real}})\cdot \log(1-\hat{y}) \Big]
+    \]</div>
+<p>donde:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(y_{\text{real}} \in \{0,1\}\)</span> es la <strong>etiqueta verdadera</strong>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\hat{y}\)</span> es la <strong>probabilidad predicha por el modelo</strong> de que la clase sea positiva (clase = 1).</p></li>
+</ul>
+</li>
+<li><p>Si <span class="math notranslate nohighlight">\(y_{\text{real}} = 1\)</span>, solo se activa el primer término: <span class="math notranslate nohighlight">\(\text{Loss} = -\log(\hat{y})\)</span> y si <span class="math notranslate nohighlight">\(y_{\text{real}} = 0\)</span>, solo se activa el segundo término: <span class="math notranslate nohighlight">\(\text{Loss} = -\log(1-\hat{y})\)</span>. De este modo, la etiqueta <strong>0 o 1 actúa como un interruptor</strong> que selecciona la parte relevante de la pérdida.</p></li>
+<li><p><strong>Ejemplo 1: Clase real = 1 (positiva)</strong>. Supongamos que la etiqueta verdadera es <span class="math notranslate nohighlight">\(y_{\text{real}} = 1\)</span>.</p>
+<ul class="simple">
+<li><p>Caso A: El modelo predice bien. Si <span class="math notranslate nohighlight">\(\hat{y} = 0.8\)</span>:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+    \text{Loss} = -\big[1 \cdot \log(0.8) + 0 \cdot \log(1-0.8)\big]
+    \]</div>
+<div class="math notranslate nohighlight">
+\[
+    \text{Loss} = -\log(0.8) \approx 0.223
+    \]</div>
+<p><strong>El modelo acierta con alta probabilidad, la pérdida es baja.</strong></p>
+<ul class="simple">
+<li><p>Caso B: El modelo está inseguro. Si <span class="math notranslate nohighlight">\(\hat{y} = 0.5\)</span>:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+    \text{Loss} = -\log(0.5) \approx 0.693
+    \]</div>
+<p><strong>El modelo no se decide, la pérdida es intermedia.</strong></p>
+<ul class="simple">
+<li><p>Caso C: El modelo se equivoca. Si <span class="math notranslate nohighlight">\(\hat{y} = 0.1\)</span>:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+    \text{Loss} = -\log(0.1) \approx 2.302
+    \]</div>
+<p><strong>El modelo falla gravemente, la pérdida es muy alta.</strong></p>
+</li>
+<li><p><strong>Ejemplo 2: Clase real = 0 (negativa)</strong>. Ahora la etiqueta verdadera es <span class="math notranslate nohighlight">\(y_{\text{real}} = 0\)</span>.</p>
+<ul class="simple">
+<li><p>Caso A: El modelo predice bien. Si <span class="math notranslate nohighlight">\(\hat{y} = 0.1\)</span>:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+    \text{Loss} = -\big[0 \cdot \log(0.1) + 1 \cdot \log(1-0.1)\big]
+    \]</div>
+<div class="math notranslate nohighlight">
+\[
+    \text{Loss} = -\log(0.9) \approx 0.105
+    \]</div>
+<p><strong>El modelo acierta, la pérdida es baja.</strong></p>
+<ul class="simple">
+<li><p>Caso B: El modelo está inseguro. Si <span class="math notranslate nohighlight">\(\hat{y} = 0.5\)</span>:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+    \text{Loss} = -\log(1-0.5) \approx 0.693
+    \]</div>
+<p><strong>El modelo duda, la pérdida es intermedia.</strong></p>
+<ul class="simple">
+<li><p>Caso C: El modelo se equivoca. Si <span class="math notranslate nohighlight">\(\hat{y} = 0.9\)</span>:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+    \text{Loss} = -\log(1-0.9) = -\log(0.1) \approx 2.302
+    \]</div>
+<p><strong>El modelo falla con mucha seguridad, la pérdida es muy alta.</strong></p>
+</li>
+<li><p>De esta forma, la entropía cruzada <strong>penaliza más fuerte los errores cuando el modelo está seguro de una predicción incorrecta</strong>, lo que incentiva al modelo a mejorar su calibración de probabilidades.</p></li>
 </ul>
 <ul class="simple">
 <li><p>Para casos más generales, se recurre a <strong>esquemas de optimización numérica</strong>. <em>El mismo razonamiento se aplica a los árboles de regresión, donde ahora se utilizan funciones de pérdida para la regresión, como el error al cuadrado o el valor de error absoluto</em>. Estos esquemas también se conocen como árboles de regresión aditiva múltiple (MART).</p></li>
@@ -76541,10 +76623,10 @@ Modelo guardado como best_xgboost_model.pkl
 </section>
 <section id="contexto-aplicado">
 <h3><span class="section-number">5.12.3. </span>Contexto aplicado<a class="headerlink" href="#contexto-aplicado" title="Link to this heading">#</a></h3>
-<p>Las empresas de telecomunicaciones enfrentan tasas significativas de pérdida de clientes. La predicción temprana del churn permite intervenir de manera oportuna. A través de modelos supervisados e interpretables, se puede identificar el perfil de clientes con mayor probabilidad de abandono y tomar decisiones informadas.</p>
+<p>Las empresas de telecomunicaciones enfrentan tasas significativas de pérdida de clientes. La predicción temprana de <em>churn</em> permite intervenir de manera oportuna. A través de modelos supervisados e interpretables, se puede identificar el perfil de clientes con mayor probabilidad de abandono y tomar decisiones informadas.</p>
 </section>
-<section id="dataset-recomendado-telco-customer-churn-kaggle">
-<h3><span class="section-number">5.12.4. </span>Dataset recomendado: “Telco Customer Churn” (Kaggle)<a class="headerlink" href="#dataset-recomendado-telco-customer-churn-kaggle" title="Link to this heading">#</a></h3>
+<section id="dataset-recomendado-telco-customer-churn">
+<h3><span class="section-number">5.12.4. </span>Dataset recomendado: “Telco Customer Churn”<a class="headerlink" href="#dataset-recomendado-telco-customer-churn" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Enlace: <a class="reference external" href="https://www.kaggle.com/blastchar/telco-customer-churn">https://www.kaggle.com/blastchar/telco-customer-churn</a></p></li>
 <li><p>Tamaño aproximado: 7 000 registros</p></li>
@@ -76553,35 +76635,53 @@ Modelo guardado como best_xgboost_model.pkl
 </section>
 <section id="actividades-a-desarrollar">
 <h3><span class="section-number">5.12.5. </span>Actividades a desarrollar<a class="headerlink" href="#actividades-a-desarrollar" title="Link to this heading">#</a></h3>
-<ol class="arabic simple">
-<li><p><strong>Preprocesamiento</strong></p>
+<p><strong>Cada resultado presentado debe ir acompañado de su correspondiente análisis e interpretación, ya sean figuras, tablas o cualquier otro tipo de evidencia.</strong></p>
+<ol class="arabic">
+<li><p><strong>Preprocesamiento + Modelado con Pipelines y GridSearchCV</strong></p>
 <ul class="simple">
 <li><p>Limpieza de datos y tratamiento de valores faltantes</p></li>
 <li><p>Codificación de variables categóricas</p></li>
 <li><p>Escalado de variables numéricas si es necesario</p></li>
 <li><p>Separación en variables predictoras <code class="docutils literal notranslate"><span class="pre">X</span></code> y variable objetivo <code class="docutils literal notranslate"><span class="pre">y</span></code></p></li>
+<li><p>Definir pipelines que incluyan transformaciones de los ítems anteriores y modelo</p></li>
+<li><p>Ajustar hiperparámetros mediante <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> o <code class="docutils literal notranslate"><span class="pre">xgboost</span></code> con GPU</p></li>
 </ul>
-</li>
-<li><p><strong>Modelado con Pipelines y GridSearchCV</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Modelo</p></th>
+<th class="head"><p>Hiperparámetros adicionales recomendados</p></th>
+<th class="head"><p>Descripción breve</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Random Forest</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">min_samples_split</span></code>, <code class="docutils literal notranslate"><span class="pre">min_samples_leaf</span></code>, <code class="docutils literal notranslate"><span class="pre">max_features</span></code>, <code class="docutils literal notranslate"><span class="pre">bootstrap</span></code>, <code class="docutils literal notranslate"><span class="pre">criterion</span></code></p></td>
+<td><p><em>Tamaño mínimo para dividir nodos/interiores/hoja, máximo de features por split, método de bootstrapping, función de criterio (gini/entropy).</em></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>XGBoost</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">subsample</span></code>, <code class="docutils literal notranslate"><span class="pre">colsample_bytree</span></code>, <code class="docutils literal notranslate"><span class="pre">gamma</span></code>, <code class="docutils literal notranslate"><span class="pre">min_child_weight</span></code>, <code class="docutils literal notranslate"><span class="pre">reg_alpha</span></code>, <code class="docutils literal notranslate"><span class="pre">reg_lambda</span></code>, <code class="docutils literal notranslate"><span class="pre">scale_pos_weight</span></code></p></td>
+<td><p><em>Proporción de muestras, columnas, regularización L1/L2, sensibilidad a outliers, ajuste clases desbalanceadas.</em></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>CatBoost</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">l2_leaf_reg</span></code>, <code class="docutils literal notranslate"><span class="pre">bagging_temperature</span></code>, <code class="docutils literal notranslate"><span class="pre">border_count</span></code>, <code class="docutils literal notranslate"><span class="pre">random_strength</span></code>, <code class="docutils literal notranslate"><span class="pre">one_hot_max_size</span></code>, <code class="docutils literal notranslate"><span class="pre">subsample</span></code></p></td>
+<td><p><em>Regularización L2, control de bagging, discretización, fuerza de aleatorización, máximo para one-hot, submuestreo.</em></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>LightGBM</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">min_child_samples</span></code>, <code class="docutils literal notranslate"><span class="pre">min_child_weight</span></code>, <code class="docutils literal notranslate"><span class="pre">subsample</span></code>, <code class="docutils literal notranslate"><span class="pre">colsample_bytree</span></code>, <code class="docutils literal notranslate"><span class="pre">reg_alpha</span></code>, <code class="docutils literal notranslate"><span class="pre">reg_lambda</span></code>, <code class="docutils literal notranslate"><span class="pre">max_bin</span></code></p></td>
+<td><p><em>Tamaño mínimo child, regularización, submuestreo, máximo bins, tasa de samples/col/bins.</em></p></td>
+</tr>
+</tbody>
+</table>
+</div>
 <ul class="simple">
-<li><p>Definir pipelines que incluyan transformaciones y modelo</p></li>
-<li><p>Ajustar hiperparámetros mediante <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code>:</p>
-<ul>
-<li><p>Random Forest: <code class="docutils literal notranslate"><span class="pre">n_estimators</span></code>, <code class="docutils literal notranslate"><span class="pre">max_depth</span></code></p></li>
-<li><p>XGBoost: <code class="docutils literal notranslate"><span class="pre">n_estimators</span></code>, <code class="docutils literal notranslate"><span class="pre">max_depth</span></code>, <code class="docutils literal notranslate"><span class="pre">learning_rate</span></code></p></li>
-<li><p>CatBoost: <code class="docutils literal notranslate"><span class="pre">iterations</span></code>, <code class="docutils literal notranslate"><span class="pre">learning_rate</span></code>, <code class="docutils literal notranslate"><span class="pre">depth</span></code></p></li>
-<li><p>LightGBM: <code class="docutils literal notranslate"><span class="pre">num_leaves</span></code>, <code class="docutils literal notranslate"><span class="pre">learning_rate</span></code>, <code class="docutils literal notranslate"><span class="pre">n_estimators</span></code></p></li>
-</ul>
-</li>
 <li><p>Validación cruzada estratificada con cinco particiones</p></li>
 </ul>
 </li>
 <li><p><strong>Evaluación del modelo</strong></p>
 <ul class="simple">
-<li><p>Cálculo de métricas: exactitud, precisión, recall, F1-score, AUC-ROC</p></li>
-<li><p>Matriz de confusión</p></li>
+<li><p>Cálculo de métricas: <em>precision, recall, accuracy, F1-score, AUC</em></p></li>
+<li><p>Matriz de confusión por modelo</p></li>
 <li><p>Curvas ROC por modelo</p></li>
-<li><p>Comparación gráfica del desempeño</p></li>
 </ul>
 </li>
 <li><p><strong>Importancia de características</strong></p>
@@ -76598,8 +76698,8 @@ Modelo guardado como best_xgboost_model.pkl
 </li>
 <li><p><strong>Diseño de arquitectura MLOps</strong></p>
 <ul class="simple">
-<li><p>Crear un servicio de inferencia con FastAPI que reciba datos nuevos y retorne predicciones</p></li>
-<li><p>Empaquetar el modelo y la API en una imagen Docker (<code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code>)</p></li>
+<li><p>Crear un servicio de inferencia con FastAPI que reciba datos nuevos y retorne predicciones. <em><strong>FastAPI es un framework web de Python que permite crear APIs de alto rendimiento de manera rápida y eficiente, utilizando las sugerencias de tipo estándar de Python</strong></em>.</p></li>
+<li><p>Empaquetar el modelo y la API en una imagen Docker (<code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code>). <em>Una API (Interfaz de Programación de Aplicaciones) es un conjunto de <strong>reglas y protocolos que permite que dos aplicaciones de software se comuniquen entre sí, intercambiando datos y funcionalidades de una manera bien definida y segura</strong></em></p></li>
 <li><p>Crear un flujo de trabajo CI/CD con GitHub Actions que:</p>
 <ul>
 <li><p>Ejecute pruebas unitarias</p></li>
@@ -76616,9 +76716,9 @@ Modelo guardado como best_xgboost_model.pkl
 <h3><span class="section-number">5.12.6. </span>Restricciones didácticas<a class="headerlink" href="#restricciones-didacticas" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Es obligatorio el uso de <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code> y <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code></p></li>
-<li><p>No se permite el uso de AutoML</p></li>
 <li><p>Se deben presentar visualizaciones claras y código documentado</p></li>
-<li><p>El trabajo debe entregarse como notebook reproducible, con todas las decisiones justificadas</p></li>
+<li><p>El trabajo debe entregarse como <em>notebook reproducible, con todas las decisiones justificadas</em></p></li>
+<li><p>Cada resultado presentado debe ir acompañado de su correspondiente análisis e interpretación, ya sean figuras, tablas o cualquier otro tipo de evidencia.</p></li>
 </ul>
 </section>
 <section id="herramientas-sugeridas">
@@ -76635,7 +76735,7 @@ Modelo guardado como best_xgboost_model.pkl
 <section id="entregables-esperados">
 <h3><span class="section-number">5.12.8. </span>Entregables esperados<a class="headerlink" href="#entregables-esperados" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Notebook con desarrollo completo: exploración, modelado, evaluación, visualización y análisis</p></li>
+<li><p>Notebook con desarrollo completo: ETL, EDA, modelado, evaluación, visualización y análisis</p></li>
 <li><p>Script de la API (<code class="docutils literal notranslate"><span class="pre">api.py</span></code>) basado en FastAPI</p></li>
 <li><p>Dockerfile funcional con instrucciones de ejecución</p></li>
 <li><p>Flujo de trabajo CI/CD (<code class="docutils literal notranslate"><span class="pre">.github/workflows/ci.yml</span></code>)</p></li>
@@ -76646,8 +76746,7 @@ Modelo guardado como best_xgboost_model.pkl
 <h3><span class="section-number">5.12.9. </span>Diseño sugerido del notebook<a class="headerlink" href="#diseno-sugerido-del-notebook" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
 <li><p>Exploración inicial del dataset</p></li>
-<li><p>Preprocesamiento y codificación</p></li>
-<li><p>Implementación de pipelines</p></li>
+<li><p>Preprocesamiento y codificación + Implementación de pipelines</p></li>
 <li><p>Entrenamiento y ajuste con <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code></p></li>
 <li><p>Evaluación de modelos</p></li>
 <li><p>Importancia de características</p></li>
@@ -76678,15 +76777,16 @@ Modelo guardado como best_xgboost_model.pkl
 </section>
 <section id="instrucciones-para-el-mlops">
 <h3><span class="section-number">5.12.11. </span>Instrucciones para el MLOps<a class="headerlink" href="#instrucciones-para-el-mlops" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Para construir el <strong>entorno de MLOps</strong> correspondiente al problema planteado, es necesario <strong>instalar las bibliotecas específicas asociadas al despliegue y automatización del flujo de trabajo</strong>, además de aquellas requeridas por el modelo y el análisis exploratorio de datos (EDA), con el fin de garantizar su correcto funcionamiento.</p></li>
-</ul>
+<ul>
+<li><p>Para construir el <strong>entorno de MLOps</strong> correspondiente al problema planteado, es necesario <strong>instalar las bibliotecas específicas asociadas al despliegue y automatización del flujo de trabajo</strong>, además de aquellas requeridas por el modelo y el análisis exploratorio de datos (EDA), con el fin de garantizar su correcto funcionamiento.</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--force-reinstall<span class="w"> </span>pydantic
 python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>fastapi<span class="o">[</span>all<span class="o">]</span>
 python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>joblib
 python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>pandas
 </pre></div>
 </div>
+</li>
+</ul>
 </section>
 <section id="estructura-general-del-proyecto">
 <h3><span class="section-number">5.12.12. </span>Estructura general del proyecto<a class="headerlink" href="#estructura-general-del-proyecto" title="Link to this heading">#</a></h3>
@@ -76696,7 +76796,7 @@ python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </sp
 ├──<span class="w"> </span>notebooks/
 │<span class="w">   </span>├──<span class="w"> </span>1_eda_preprocessing.ipynb<span class="w">        </span><span class="c1"># Análisis exploratorio</span>
 │<span class="w">   </span>├──<span class="w"> </span>2_model_training.ipynb<span class="w">           </span><span class="c1"># Entrenamiento y evaluación</span>
-│<span class="w">   </span>└──<span class="w"> </span>3_interpretability.ipynb<span class="w">         </span><span class="c1"># LIME y SHAP</span>
+│<span class="w">   </span>└──<span class="w"> </span>3_interpretability.ipynb<span class="w">         </span><span class="c1"># LIME</span>
 ├──<span class="w"> </span>app/
 │<span class="w">   </span>├──<span class="w"> </span>api.py<span class="w">                           </span><span class="c1"># FastAPI para inferencia</span>
 │<span class="w">   </span>├──<span class="w"> </span>schemas.py<span class="w">                       </span><span class="c1"># Modelos Pydantic</span>
@@ -76744,6 +76844,102 @@ python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </sp
     <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;churn_probability&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">prediction</span><span class="p">),</span> <span class="s2">&quot;prediction&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">prediction</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">)}</span>
 </pre></div>
 </div>
+<ol class="arabic">
+<li><p><strong>Importación de librerías</strong></p>
+<ul class="simple">
+<li><p>Se traen herramientas para crear la API (<code class="docutils literal notranslate"><span class="pre">FastAPI</span></code>), definir el formato de los datos de entrada (<code class="docutils literal notranslate"><span class="pre">BaseModel</span></code>), cargar el modelo (<code class="docutils literal notranslate"><span class="pre">joblib</span></code>), y manipular datos numéricos (<code class="docutils literal notranslate"><span class="pre">numpy</span></code>).</p></li>
+</ul>
+</li>
+<li><p><strong>Creación de la aplicación FastAPI</strong><br />
+<em>Variable: <code class="docutils literal notranslate"><span class="pre">app</span> <span class="pre">=</span> <span class="pre">FastAPI()</span></code></em></p>
+<ul class="simple">
+<li><p>Se instancia la aplicación web que permitirá recibir y responder solicitudes de predicción.</p></li>
+</ul>
+</li>
+<li><p><strong>Carga del modelo de machine learning</strong><br />
+<em>Variable: <code class="docutils literal notranslate"><span class="pre">model</span> <span class="pre">=</span> <span class="pre">joblib.load(&quot;app/model.joblib&quot;)</span></code></em></p>
+<ul class="simple">
+<li><p>Se carga desde disco un modelo previamente entrenado, listo para hacer predicciones.</p></li>
+</ul>
+</li>
+<li><p><strong>Definición del esquema de datos de entrada</strong><br />
+<em>Clase: <code class="docutils literal notranslate"><span class="pre">CustomerData(BaseModel)</span></code></em></p>
+<ul class="simple">
+<li><p>Se crea una clase para definir claramente qué datos espera la API, los cuales son:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">SeniorCitizen</span></code>: int</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MonthlyCharges</span></code>: float</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TotalCharges</span></code>: float</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Contract</span></code>: str</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PaymentMethod</span></code>: str</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Creación del endpoint de predicción</strong><br />
+<em>Decorador y función: <code class="docutils literal notranslate"><span class="pre">&#64;app.post(&quot;/predict&quot;)</span></code> y <code class="docutils literal notranslate"><span class="pre">def</span> <span class="pre">predict(data:</span> <span class="pre">CustomerData):</span></code></em></p>
+<ul class="simple">
+<li><p><strong>¿Qué es un endpoint?</strong><br />
+Es una “puerta de entrada” específica de la API donde los usuarios pueden enviar información y obtener una respuesta. Es como una dirección de correo electrónico, pero para datos entre programas.</p></li>
+<li><p><strong>¿Qué significa el decorador <code class="docutils literal notranslate"><span class="pre">&#64;app.post(&quot;/predict&quot;)</span></code>?</strong><br />
+El decorador indica que la función que sigue será accesible para recibir solicitudes POST (envío de datos) en la ruta <code class="docutils literal notranslate"><span class="pre">/predict</span></code>.</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">post</span></code> es el tipo de solicitud HTTP (enviar datos, crear algo nuevo).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;/predict&quot;</span></code> es la “dirección” a la que se debe enviar la solicitud para obtener una predicción.</p></li>
+</ul>
+</li>
+<li><p><strong>¿Qué hace la función <code class="docutils literal notranslate"><span class="pre">predict(data:</span> <span class="pre">CustomerData):</span></code>?</strong><br />
+La función recibe los datos enviados (siguiendo el esquema de <code class="docutils literal notranslate"><span class="pre">CustomerData</span></code>) y realiza todo lo necesario para producir una predicción.</p>
+<ul>
+<li><p>El parámetro <code class="docutils literal notranslate"><span class="pre">data:</span> <span class="pre">CustomerData</span></code> hace que FastAPI espere un JSON con los campos definidos (como <code class="docutils literal notranslate"><span class="pre">SeniorCitizen</span></code>, <code class="docutils literal notranslate"><span class="pre">Contract</span></code>, etc.), lo convierte automáticamente en el objeto <code class="docutils literal notranslate"><span class="pre">data</span></code> y lo valida.</p></li>
+</ul>
+</li>
+<li><p><strong>¿Cómo se usa este endpoint?</strong><br />
+Un usuario (o aplicación) envía una solicitud POST al endpoint <code class="docutils literal notranslate"><span class="pre">/predict</span></code>, incluyendo los datos del cliente. FastAPI recibe esta información, pasa los datos a la función y devuelve una predicción en formato JSON.</p></li>
+</ul>
+</li>
+<li><p><strong>Preprocesamiento de los datos de entrada</strong><br />
+<em>Dentro de <code class="docutils literal notranslate"><span class="pre">predict</span></code></em></p>
+<ul class="simple">
+<li><p>Se convierte la información recibida en variables numéricas, transformando las categorías en números que el modelo puede interpretar.</p></li>
+</ul>
+</li>
+<li><p><strong>Generación de la predicción</strong><br />
+<em>Dentro de <code class="docutils literal notranslate"><span class="pre">predict</span></code> (uso de <code class="docutils literal notranslate"><span class="pre">model.predict_proba</span></code>)</em></p>
+<ul class="simple">
+<li><p>El modelo utiliza los datos preparados para calcular la probabilidad de que el cliente se vaya (‘churn’).</p></li>
+<li><p>Supón que llamaste:</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">resultado</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">features</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">resultado</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Y obtienes como salida:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[[</span><span class="mf">0.22</span>  <span class="mf">0.78</span><span class="p">]]</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">resultado[0][0]</span> <span class="pre">=</span> <span class="pre">0.22</span></code> → <strong>Probabilidad de clase 0:</strong> el cliente NO se va</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">resultado[0][1]</span> <span class="pre">=</span> <span class="pre">0.78</span></code> → <strong>Probabilidad de clase 1:</strong> el cliente SÍ se va</p></li>
+</ul>
+<p>Por lo tanto:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">features</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>es la <strong>probabilidad (número entre 0 y 1) de que el cliente se vaya (“churn”)</strong>.</p>
+</li>
+<li><p><strong>Envío de la respuesta</strong><br />
+<em>Dentro de <code class="docutils literal notranslate"><span class="pre">predict</span></code> (valor de retorno)</em></p>
+<ul class="simple">
+<li><p>Se responde con un diccionario que incluye:</p>
+<ul>
+<li><p>La probabilidad estimada del evento (“churn”).</p></li>
+<li><p>Una predicción binaria: 1 si la probabilidad es mayor a 0.5, 0 si es menor o igual a 0.5.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
 </section>
 <section id="dockerfile-contenerizacion">
 <h3><span class="section-number">5.12.14. </span><code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code> — Contenerización<a class="headerlink" href="#dockerfile-contenerizacion" title="Link to this heading">#</a></h3>
@@ -76760,6 +76956,24 @@ python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </sp
 <span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;uvicorn&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;app.api:app&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;--host&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;0.0.0.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;--port&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;8000&quot;</span><span class="p">]</span>
 </pre></div>
 </div>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">FROM</span> <span class="pre">python:3.10-slim</span></code></strong><br />
+Utiliza una imagen base ligera de Python 3.10 para mantener el contenedor simple y pequeño.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">WORKDIR</span> <span class="pre">/app</span></code></strong><br />
+Establece el directorio de trabajo dentro del contenedor en <code class="docutils literal notranslate"><span class="pre">/app</span></code>, donde se ejecutarán las siguientes instrucciones y comandos.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">COPY</span> <span class="pre">requirements.txt</span> <span class="pre">.</span></code></strong><br />
+Copia el archivo <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> desde tu máquina local al directorio de trabajo del contenedor. Este archivo contiene la lista de las dependencias de tu proyecto.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">RUN</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--no-cache-dir</span> <span class="pre">-r</span> <span class="pre">requirements.txt</span></code></strong><br />
+Instala todas las dependencias de Python listadas en <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> usando pip.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">COPY</span> <span class="pre">app/</span> <span class="pre">./app/</span></code></strong><br />
+Copia tu carpeta de código fuente llamada <code class="docutils literal notranslate"><span class="pre">app/</span></code> al directorio <code class="docutils literal notranslate"><span class="pre">/app/app/</span></code> del contenedor.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">COPY</span> <span class="pre">data/</span> <span class="pre">./data/</span></code></strong><br />
+Copia tu carpeta de datos llamada <code class="docutils literal notranslate"><span class="pre">data/</span></code> al directorio <code class="docutils literal notranslate"><span class="pre">/app/data/</span></code> del contenedor.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">EXPOSE</span> <span class="pre">8000</span></code></strong><br />
+Indica que el contenedor usará el puerto 8000 (útil para exponer el servicio FastAPI).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">CMD</span> <span class="pre">[&quot;uvicorn&quot;,</span> <span class="pre">&quot;app.api:app&quot;,</span> <span class="pre">&quot;--host&quot;,</span> <span class="pre">&quot;0.0.0.0&quot;,</span> <span class="pre">&quot;--port&quot;,</span> <span class="pre">&quot;8000&quot;]</span></code></strong><br />
+Indica el comando que arrancará la aplicación al iniciar el contenedor: utiliza <code class="docutils literal notranslate"><span class="pre">uvicorn</span></code> para servir la aplicación <code class="docutils literal notranslate"><span class="pre">FastAPI</span></code>, haciéndola accesible desde cualquier red en el puerto 8000.</p></li>
+</ul>
 </section>
 <section id="requirements-txt">
 <h3><span class="section-number">5.12.15. </span><code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code><a class="headerlink" href="#requirements-txt" title="Link to this heading">#</a></h3>
@@ -76803,9 +77017,67 @@ lightgbm
 <span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pytest tests/</span>
 </pre></div>
 </div>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">name:</span> <span class="pre">CI</span> <span class="pre">Pipeline</span></code></strong><br />
+Nombre descriptivo de este flujo de trabajo (“pipeline”) de integración continua.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">on:</span> <span class="pre">[push,</span> <span class="pre">pull_request]</span></code></strong><br />
+Aquí se indica cuándo se debe ejecutar este pipeline:</p>
+<ul>
+<li><p>Cada vez que alguien hace un <strong>push</strong> (subida de cambios) o crea un <strong>pull request</strong> (propuesta de cambios) en el repositorio.</p></li>
+</ul>
+</li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">jobs:</span></code></strong><br />
+Conjunto de tareas independientes. Aquí hay una sola tarea llamada <code class="docutils literal notranslate"><span class="pre">test</span></code>.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">test:</span></code></strong><br />
+El nombre del trabajo principal: “test”, encargado de revisar la calidad y funcionamiento del código.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">runs-on:</span> <span class="pre">ubuntu-latest</span></code></strong><br />
+Indica que todas las instrucciones de este job se ejecutarán en un servidor virtual con Ubuntu actualizado.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">-</span> <span class="pre">uses:</span> <span class="pre">actions/checkout&#64;v3</span></code></strong><br />
+Clona el código fuente del repositorio en la máquina virtual que ejecuta el pipeline para poder trabajar con él.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">-</span> <span class="pre">name:</span> <span class="pre">Set</span> <span class="pre">up</span> <span class="pre">Python</span> <span class="pre">...</span></code></strong><br />
+Usa una acción específica para instalar la versión de Python (3.10) necesaria para correr el proyecto.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">-</span> <span class="pre">name:</span> <span class="pre">Install</span> <span class="pre">dependencies</span> <span class="pre">...</span></code></strong><br />
+Ejecuta comandos para instalar las dependencias del proyecto (de <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code>), y también instala herramientas útiles para pruebas (<code class="docutils literal notranslate"><span class="pre">pytest</span></code>) y revisión de estilo (<code class="docutils literal notranslate"><span class="pre">flake8</span></code>).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">-</span> <span class="pre">name:</span> <span class="pre">Run</span> <span class="pre">Linter</span></code></strong><br />
+Ejecuta Flake8 sobre la carpeta <code class="docutils literal notranslate"><span class="pre">app/</span></code> para revisar el estilo y calidad del código Python, ignorando ciertos errores de formato (<code class="docutils literal notranslate"><span class="pre">E501</span></code>, <code class="docutils literal notranslate"><span class="pre">W503</span></code>).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">-</span> <span class="pre">name:</span> <span class="pre">Run</span> <span class="pre">Tests</span></code></strong><br />
+Lanza las pruebas automáticas almacenadas en la carpeta <code class="docutils literal notranslate"><span class="pre">tests/</span></code>, usando PyTest.</p></li>
+<li><p><strong>¿Para qué sirve este archivo?</strong> Permite asegurar la calidad del código de forma automática: Cada vez que alguien sube o propone cambios, se valida que:</p>
+<ul>
+<li><p>El código sigue buenas prácticas.</p></li>
+<li><p>Todas las pruebas automáticas pasan correctamente.</p></li>
+<li><p>Esto ayuda a detectar errores <strong>antes</strong> de que el código llegue al entorno de producción.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="flujo-del-pipeline-de-integracion-continua-ci">
+<h3><span class="section-number">5.12.17. </span>Flujo del Pipeline de Integración Continua (CI)<a class="headerlink" href="#flujo-del-pipeline-de-integracion-continua-ci" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Inicio automático:</strong><br />
+El pipeline se ejecuta cada vez que se realiza un <code class="docutils literal notranslate"><span class="pre">push</span></code> o se crea un <code class="docutils literal notranslate"><span class="pre">pull</span> <span class="pre">request</span></code> en el repositorio.</p></li>
+<li><p><strong>Clonación del repositorio:</strong><br />
+El código fuente se descarga para que pueda ser analizado y probado en un entorno limpio.</p></li>
+<li><p><strong>Configuración del entorno de Python:</strong><br />
+Se instala la versión específica de Python (en este caso, 3.10) para asegurar la compatibilidad.</p></li>
+<li><p><strong>Instalación de dependencias:</strong><br />
+Se instalan todas las dependencias y herramientas necesarias utilizando los comandos correspondientes de <code class="docutils literal notranslate"><span class="pre">pip</span></code>.</p></li>
+<li><p><strong>Verificación de calidad de código:</strong><br />
+Se ejecuta Flake8 para comprobar que el código cumple con las convenciones de estilo establecidas.</p></li>
+<li><p><strong>Detección de errores de estilo:</strong><br />
+Si se encuentran errores de estilo, el pipeline se detiene y se solicita corregirlos antes de continuar.</p></li>
+<li><p><strong>Ejecución de pruebas automáticas:</strong><br />
+Si no hay errores de estilo, se procede a ejecutar las pruebas automáticas con PyTest para validar la funcionalidad del código.</p></li>
+<li><p><strong>Resultado del pipeline:</strong></p>
+<ul class="simple">
+<li><p>Si todas las pruebas pasan, el pipeline finaliza exitosamente y el código está listo para revisión o despliegue.</p></li>
+<li><p>Si alguna prueba falla, se requiere realizar las correcciones necesarias antes de intentarlo nuevamente.</p></li>
+</ul>
+</li>
+</ol>
 </section>
 <section id="readme-md-documentacion">
-<h3><span class="section-number">5.12.17. </span><code class="docutils literal notranslate"><span class="pre">README.md</span></code> — Documentación<a class="headerlink" href="#readme-md-documentacion" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">5.12.18. </span><code class="docutils literal notranslate"><span class="pre">README.md</span></code> — Documentación<a class="headerlink" href="#readme-md-documentacion" title="Link to this heading">#</a></h3>
 <div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span><span class="gh"># Predicción de Churn en Telecomunicaciones</span>
 
 <span class="gu">## Descripción</span>
@@ -76834,7 +77106,7 @@ docker<span class="w"> </span>run<span class="w"> </span>-p<span class="w"> </sp
 </div>
 </section>
 <section id="ejecucion-de-pruebas">
-<h3><span class="section-number">5.12.18. </span>Ejecución de pruebas<a class="headerlink" href="#ejecucion-de-pruebas" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">5.12.19. </span>Ejecución de pruebas<a class="headerlink" href="#ejecucion-de-pruebas" title="Link to this heading">#</a></h3>
 <ul>
 <li><p>Localmente, ejecutando en la terminal: <code class="docutils literal notranslate"><span class="pre">uvicorn</span> <span class="pre">app.api:app</span> <span class="pre">--port</span> <span class="pre">8001</span></code>, el servidor <strong>FastAPI</strong> queda <strong>corriendo en segundo plano, listo para ejecutar algunas pruebas</strong>.</p></li>
 <li><p>El siguiente es un ejemplo de <strong>test unitario local</strong> usando <code class="docutils literal notranslate"><span class="pre">uvicorn</span></code></p>
@@ -77021,7 +77293,7 @@ docker<span class="w"> </span>ps<span class="w"> </span>-a<span class="w"> </spa
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prediccion-de-churn-en-telecomunicaciones-con-modelos-de-arboles-e-interpretabilidad">5.12.1. Predicción de churn en telecomunicaciones con modelos de árboles e interpretabilidad</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivo-general">5.12.2. Objetivo general</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contexto-aplicado">5.12.3. Contexto aplicado</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-recomendado-telco-customer-churn-kaggle">5.12.4. Dataset recomendado: “Telco Customer Churn” (Kaggle)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-recomendado-telco-customer-churn">5.12.4. Dataset recomendado: “Telco Customer Churn”</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#actividades-a-desarrollar">5.12.5. Actividades a desarrollar</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#restricciones-didacticas">5.12.6. Restricciones didácticas</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#herramientas-sugeridas">5.12.7. Herramientas sugeridas</a></li>
@@ -77034,8 +77306,9 @@ docker<span class="w"> </span>ps<span class="w"> </span>-a<span class="w"> </spa
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dockerfile-contenerizacion">5.12.14. <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code> — Contenerización</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#requirements-txt">5.12.15. <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#github-workflows-ci-yml-ci-cd-pipeline">5.12.16. <code class="docutils literal notranslate"><span class="pre">.github/workflows/ci.yml</span></code> — CI/CD Pipeline</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#readme-md-documentacion">5.12.17. <code class="docutils literal notranslate"><span class="pre">README.md</span></code> — Documentación</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejecucion-de-pruebas">5.12.18. Ejecución de pruebas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#flujo-del-pipeline-de-integracion-continua-ci">5.12.17. Flujo del Pipeline de Integración Continua (CI)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#readme-md-documentacion">5.12.18. <code class="docutils literal notranslate"><span class="pre">README.md</span></code> — Documentación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejecucion-de-pruebas">5.12.19. Ejecución de pruebas</a></li>
 </ul>
 </li>
 </ul>
