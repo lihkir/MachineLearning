@@ -77029,9 +77029,9 @@ Aquí se indica cuándo se debe ejecutar este pipeline:</p>
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">jobs:</span></code></strong><br />
 Conjunto de tareas independientes. Aquí hay una sola tarea llamada <code class="docutils literal notranslate"><span class="pre">test</span></code>.</p></li>
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">test:</span></code></strong><br />
-El nombre del trabajo principal: “test”, encargado de revisar la calidad y funcionamiento del código.</p></li>
+El nombre del trabajo principal: <em>“test”</em>, encargado de revisar la calidad y funcionamiento del código.</p></li>
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">runs-on:</span> <span class="pre">ubuntu-latest</span></code></strong><br />
-Indica que todas las instrucciones de este job se ejecutarán en un servidor virtual con Ubuntu actualizado.</p></li>
+Indica que todas las instrucciones de este job se ejecutarán en un servidor virtual con <em>Ubuntu</em> actualizado.</p></li>
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">-</span> <span class="pre">uses:</span> <span class="pre">actions/checkout&#64;v3</span></code></strong><br />
 Clona el código fuente del repositorio en la máquina virtual que ejecuta el pipeline para poder trabajar con él.</p></li>
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">-</span> <span class="pre">name:</span> <span class="pre">Set</span> <span class="pre">up</span> <span class="pre">Python</span> <span class="pre">...</span></code></strong><br />
@@ -77075,6 +77075,30 @@ Si no hay errores de estilo, se procede a ejecutar las pruebas automáticas con 
 </ul>
 </li>
 </ol>
+<ul>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">.github/workflows/ci.yml</span></code></strong> es un archivo de configuración para que <strong>GitHub Actions</strong> ejecute automáticamente tareas (como instalar dependencias, correr pruebas, revisar el estilo del código, etc.) cada vez que alguien hace un cambio en el repositorio en GitHub. <strong>Debes guardarlo dentro de tu repositorio de GitHub, en la siguiente ruta exacta, y con la extensión <code class="docutils literal notranslate"><span class="pre">.yml</span></code> (por ejemplo, <code class="docutils literal notranslate"><span class="pre">ci.yml</span></code>)</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">github</span><span class="o">/</span><span class="n">workflows</span><span class="o">/</span><span class="n">ci</span><span class="o">.</span><span class="n">yml</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>¿Cómo se usa?</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Copia el contenido</strong> que mostraste y ponlo en un archivo llamado, por ejemplo, <code class="docutils literal notranslate"><span class="pre">ci.yml</span></code>.</p></li>
+<li><p><strong>Ubícalo en la carpeta <code class="docutils literal notranslate"><span class="pre">.github/workflows</span></code></strong> dentro de tu repositorio.</p></li>
+<li><p><strong>Haz un commit y súbelo a GitHub</strong>.</p></li>
+</ol>
+<ul class="simple">
+<li><p>A partir de ese momento, cada vez que tú o alguien más haga un <code class="docutils literal notranslate"><span class="pre">push</span></code> o un <code class="docutils literal notranslate"><span class="pre">pull</span> <span class="pre">request</span></code> al repositorio, <strong>GitHub Actions</strong> detectará el archivo y ejecutará las tareas automáticamente en sus propios servidores.</p></li>
+<li><p>No tienes que hacer nada en tu computador local. Todo ocurre en la nube, dentro del repositorio en la plataforma de GitHub.</p></li>
+</ul>
+</li>
+<li><p><strong>¿Cómo puedes ver los resultados?</strong></p>
+<ul class="simple">
+<li><p>En la página web de tu repositorio en GitHub, ve a la pestaña <strong>“Actions”</strong> (está en la parte superior).</p></li>
+<li><p>Ahí verás una lista de ejecuciones, sus resultados (éxito o fallo) y los detalles paso a paso de cada ejecución del pipeline.</p></li>
+</ul>
+</li>
+</ul>
 </section>
 <section id="readme-md-documentacion">
 <h3><span class="section-number">5.12.18. </span><code class="docutils literal notranslate"><span class="pre">README.md</span></code> — Documentación<a class="headerlink" href="#readme-md-documentacion" title="Link to this heading">#</a></h3>
@@ -77119,15 +77143,13 @@ docker<span class="w"> </span>run<span class="w"> </span>-p<span class="w"> </sp
 </div>
 </li>
 </ul>
-<ul class="simple">
-<li><p><strong>Entrada (Input)</strong>: Se está haciendo una solicitud <strong>POST</strong> (envío de datos) a una API que está escuchando localmente en:</p></li>
-</ul>
+<ul>
+<li><p><strong>Entrada (Input)</strong>: Se está haciendo una solicitud <strong>POST</strong> (envío de datos) a una API que está escuchando localmente en:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>http://localhost:8001/predict
 </pre></div>
 </div>
-<ul class="simple">
-<li><p>Lo que enviamos es un <strong>JSON</strong> que representa las características de un cliente, por ejemplo:</p></li>
-</ul>
+</li>
+<li><p>Lo que enviamos es un <strong>JSON</strong> que representa las características de un cliente, por ejemplo:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Campo</p></th>
@@ -77159,10 +77181,9 @@ docker<span class="w"> </span>run<span class="w"> </span>-p<span class="w"> </sp
 </tbody>
 </table>
 </div>
-<ul class="simple">
+</li>
 <li><p><strong>Idea clave:</strong> Le estamos preguntando al modelo: “¿Qué probabilidad tiene este cliente de irse (churn) dadas estas características?”</p></li>
-<li><p><strong>Salida (Output)</strong>: El servidor devuelve también un <strong>JSON</strong> como respuesta:</p></li>
-</ul>
+<li><p><strong>Salida (Output)</strong>: El servidor devuelve también un <strong>JSON</strong> como respuesta:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="nt">&quot;churn_probability&quot;</span><span class="p">:</span><span class="mf">0.96</span><span class="p">,</span><span class="nt">&quot;prediction&quot;</span><span class="p">:</span><span class="s2">&quot;Yes&quot;</span><span class="p">}</span>
 </pre></div>
 </div>
@@ -77182,23 +77203,25 @@ docker<span class="w"> </span>run<span class="w"> </span>-p<span class="w"> </sp
 </tbody>
 </table>
 </div>
+</li>
+</ul>
 <ul class="simple">
 <li><p>Para poder realizar estas <strong>pruebas desde el contenedor Docker de forma persistente y poder iniciarlo/detenerlo fácilmente</strong> desde su aplicación, debe tener en cuenta estos pasos:</p></li>
 </ul>
-<ol class="arabic simple">
-<li><p><strong>Construir y Ejecutar por Primera Vez</strong> (crea el contenedor persistente). Nótese que se usó un puerto diferente al local. Además, recuerde que debe tener iniciada la aplicación <code class="docutils literal notranslate"><span class="pre">Docker</span></code></p></li>
-</ol>
+<ol class="arabic">
+<li><p><strong>Construir y Ejecutar por Primera Vez</strong> (crea el contenedor persistente). Nótese que se usó un puerto diferente al local. Además, recuerde que debe tener iniciada la aplicación <code class="docutils literal notranslate"><span class="pre">Docker</span></code></p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>telco-churn<span class="w"> </span>.<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>telco-churn-container<span class="w"> </span>-p<span class="w"> </span><span class="m">8000</span>:8000<span class="w"> </span>telco-churn
 </pre></div>
 </div>
-<ol class="arabic simple" start="2">
-<li><p>Utilizamos los siguientes pasos para <code class="docutils literal notranslate"><span class="pre">iniciar,</span></code> <code class="docutils literal notranslate"><span class="pre">detener</span></code> y <code class="docutils literal notranslate"><span class="pre">ver</span> <span class="pre">estado</span></code></p></li>
-</ol>
+</li>
+<li><p>Utilizamos los siguientes pasos para <code class="docutils literal notranslate"><span class="pre">iniciar,</span></code> <code class="docutils literal notranslate"><span class="pre">detener</span></code> y <code class="docutils literal notranslate"><span class="pre">ver</span> <span class="pre">estado</span></code></p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>start<span class="w"> </span>telco-churn-container
 docker<span class="w"> </span>stop<span class="w"> </span>telco-churn-container
 docker<span class="w"> </span>ps<span class="w"> </span>-a<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>telco-churn
 </pre></div>
 </div>
+</li>
+</ol>
 <ol class="arabic" start="3">
 <li><p>El siguiente es un ejemplo de <strong>test unitario desde <code class="docutils literal notranslate"><span class="pre">Docker</span></code></strong> usando <code class="docutils literal notranslate"><span class="pre">uvicorn</span></code></p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8000/predict<span class="w">   </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w">   </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;SeniorCitizen&quot;: 1, &quot;MonthlyCharges&quot;: 99.9, &quot;tenure&quot;: 5, &quot;Contract&quot;: &quot;Month-to-month&quot;, &quot;PaymentMethod&quot;: &quot;Bank transfer (automatic)&quot;}&#39;</span>
