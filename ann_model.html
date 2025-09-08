@@ -6640,6 +6640,103 @@ Matriz del canal Azul (B):
 <ul class="simple">
 <li><p>Por convención, las tres dimensiones de un volumen se representarán como <span class="math notranslate nohighlight">\(h\)</span> <em><strong>para la altura,</strong></em> <span class="math notranslate nohighlight">\(w\)</span> <em><strong>para la anchura</strong></em> y <span class="math notranslate nohighlight">\(d\)</span> <em><strong>para la profundidad</strong></em>. Nótese que la profundidad <span class="math notranslate nohighlight">\(d\)</span> <em><strong>corresponde al número de imágenes implicadas</strong></em>. Así pues, si tenemos <em><strong>tres imágenes de 256 × 256</strong></em>, entonces <span class="math notranslate nohighlight">\(h = w = 256\)</span> y <span class="math notranslate nohighlight">\(d = 3\)</span> y diremos que el volumen es de <em><strong>tamaño (dimensión) 256 × 256 × 3</strong></em>. <a class="reference internal" href="#matrix-to-volume-conv-numref"><span class="std std-numref">Fig. 7.29</span></a> ilustra la geometría asociada a las respectivas definiciones.</p></li>
 </ul>
+<div class="information admonition">
+<p class="admonition-title"><strong>Tipos de formas tensoriales</strong></p>
+<ul>
+<li><p>En el procesamiento de imágenes, cada <strong>canal</strong> es una <strong>matriz 2D</strong> que contiene un tipo específico de información. Cuando se combinan varios canales, obtenemos un <strong>tensor 3D</strong> con forma:</p>
+<div class="math notranslate nohighlight">
+\[
+    \text{(alto, ancho, canales)}
+    \]</div>
+</li>
+<li><p><strong>Ejemplos de formas</strong></p></li>
+</ul>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Tipo de imagen</p></th>
+<th class="head"><p>Forma del tensor <code class="docutils literal notranslate"><span class="pre">(H,</span> <span class="pre">W,</span> <span class="pre">C)</span></code></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Escala de grises</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">(H,</span> <span class="pre">W,</span> <span class="pre">1)</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>RGB (color)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">(H,</span> <span class="pre">W,</span> <span class="pre">3)</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>RGBA (color + transparencia)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">(H,</span> <span class="pre">W,</span> <span class="pre">4)</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Satelital multiespectral</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">(H,</span> <span class="pre">W,</span> <span class="pre">13)</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Hiperespectral</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">(H,</span> <span class="pre">W,</span> <span class="pre">200+)</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li><p>En <code class="docutils literal notranslate"><span class="pre">TensorFlow</span></code>, cuando trabajamos con <strong>lotes de imágenes</strong>, la forma es</p>
+<div class="math notranslate nohighlight">
+\[
+    \text{(batch_size, alto, ancho, canales)}
+    \]</div>
+</li>
+<li><p>Las imágenes con más de tres canales se utilizan ampliamente en <strong>ciencia, ingeniería y medicina</strong>. Algunos casos representativos son los siguientes:</p></li>
+<li><p><strong>Teledetección Satelital</strong></p>
+<ul class="simple">
+<li><p><strong>Sentinel-2 (ESA):</strong> imágenes multiespectrales con <strong>13 bandas</strong> que capturan información en el visible, infrarrojo cercano e infrarrojo de onda corta.</p>
+<ul>
+<li><p>Aplicaciones: monitoreo de cultivos, detección de deforestación, seguimiento de incendios forestales, calidad del agua.</p></li>
+</ul>
+</li>
+<li><p><strong>Landsat-8 (NASA/USGS):</strong> imágenes con <strong>11 bandas espectrales</strong> para estudios ambientales y urbanos.</p>
+<ul>
+<li><p>Ejemplo: cálculo del <strong>NDVI (Normalized Difference Vegetation Index)</strong> para medir la salud de la vegetación.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Medicina e Imágenes Biomédicas</strong></p>
+<ul class="simple">
+<li><p><strong>Resonancia Magnética (MRI):</strong> puede incluir múltiples secuencias (T1, T2, FLAIR, DWI, etc.), cada una representando un canal con distinta información anatómica o funcional.</p>
+<ul>
+<li><p>Aplicaciones: detección de tumores, diagnóstico neurológico.</p></li>
+</ul>
+</li>
+<li><p><strong>Microscopía de fluorescencia:</strong> imágenes con <strong>canales multicolor</strong> para visualizar diferentes proteínas o estructuras celulares.</p></li>
+</ul>
+</li>
+<li><p><strong>Defensa y Detección</strong></p>
+<ul class="simple">
+<li><p><strong>Radar de Apertura Sintética (SAR):</strong> imágenes con varios canales que representan diferentes polarizaciones de radar.</p>
+<ul>
+<li><p>Aplicaciones: detección de barcos, monitoreo de movimientos de tierra, vigilancia marítima.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Agricultura de Precisión</strong></p>
+<ul class="simple">
+<li><p><strong>Drones multiespectrales:</strong> capturan entre 5 y 10 bandas (RGB + infrarrojos).</p>
+<ul>
+<li><p>Aplicaciones: estimación de rendimiento de cultivos, riego inteligente, detección temprana de plagas.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Industria y Calidad</strong></p>
+<ul class="simple">
+<li><p><strong>Cámaras hiperespectrales (200+ canales):</strong> cada canal corresponde a una longitud de onda distinta.</p>
+<ul>
+<li><p>Aplicaciones: inspección de alimentos (detección de contaminantes), control de calidad en textiles, minería (identificación de minerales).</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
 <div class="tip admonition">
 <p class="admonition-title">Convolución de volúmenes</p>
 <ul class="simple">
