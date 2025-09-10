@@ -6171,78 +6171,58 @@ I0000 00:00:1743899295.688447    4510 service.cc:154]   StreamExecutor device (0
 </li>
 </ul>
 </li>
-<li><p><strong>Actividades a desarrollar:</strong></p>
+<li><p><strong>Actividades a desarrollar</strong>. Cada resultado debe ir acompañado de <strong>análisis, justificación y visualización/tablas</strong> cuando sea relevante.</p>
 <ul class="simple">
-<li><p>Cada resultado debe ir acompañado de análisis, justificación y visualización/tablas cuando sea relevante.</p></li>
-<li><p>Realizar Análisis Exploratorio de Datos (ver <a class="reference external" href="https://lihkir.github.io/TimeSeries/statistical_background.html#analisis-exploratorio-de-datos-eda">Análisis Exploratorio de Datos</a>)</p></li>
-<li><p>Preprocesamiento y cálculo de features:</p>
-<ul>
-<li><p>Obtención, exploración y gráficos básicos de la serie de precios y retornos.</p></li>
-<li><p>Cálculo de lags de precio (ventanas previas de 7, 14, 21 y 28 días).</p></li>
-<li><p>Generación de targets multi-step (horizonte de 7 días).</p></li>
+<li><p><strong>Análisis Exploratorio de Datos (EDA)</strong></p></li>
+<li><p>Estadísticas descriptivas de precios y retornos.</p></li>
+<li><p>Visualizaciones: serie de precios, retornos diarios, histograma de retornos, autocorrelación (ACF) y ACF de cuadrados (para heterocedasticidad).</p></li>
+<li><p><strong>Preprocesamiento y cálculo de features</strong></p></li>
+<li><p>Cálculo de <strong>retornos logarítmicos</strong>.</p></li>
+<li><p>Cálculo de <strong>volatilidad histórica (rolling std)</strong> para inspección (variable objetivo alternativa).</p></li>
+<li><p>Generación de <strong>lags del precio</strong> (ventanas previas) para los siguientes tamaños: 7, 14, 21, 28 días.</p></li>
+<li><p>Generación de <strong>targets multi-step</strong>: horizonte de 7 días (salida multisalida de longitud 7).</p></li>
+<li><p><strong>Split temporal y validación cruzada</strong></p></li>
+<li><p>Usar <code class="docutils literal notranslate"><span class="pre">split_train_val_test_groupKFold</span></code> (de <strong>timeseries-cv / tsxv</strong>) para crear splits <strong>train / val / test</strong> sin data leakage.</p></li>
+<li><p>Escalado: <strong>fit del scaler solo con el train</strong> en cada fold; transformar val/test con ese scaler.</p></li>
+<li><p><strong>Modelado con Deep Learning</strong></p></li>
+<li><p>Entrenar <strong>MLP multisalida</strong> (por ejemplo <code class="docutils literal notranslate"><span class="pre">MLPRegressor</span></code> o un keras MLP con salida 7) fold a fold.</p></li>
+<li><p>Guardar por fold: <strong>predicciones para train, val y test</strong> (todas las muestras del fold).</p></li>
+<li><p>Evaluación: calcular <strong>métricas por horizonte (1..7) y agregadas (promedio sobre horizontes)</strong>.</p></li>
+<li><p><strong>Métricas obligatorias — tablas por tamaño de input</strong></p></li>
 </ul>
-</li>
-<li><p>Split temporal y validación cruzada:</p>
-<ul>
-<li><p>Usar <code class="docutils literal notranslate"><span class="pre">split_train_val_test_groupKFold</span></code> para crear splits temporales de train, val, test sin data-leakage.</p></li>
-</ul>
-</li>
-<li><p>Modelado con Deep Learning:</p>
-<ul>
-<li><p>Escalado solo con train por fold.</p></li>
-<li><p>Entrenamiento y predicción fold a fold usando MLP multisalida.</p></li>
-<li><p>Evaluación usando RMSE promedio por horizonte y fold.</p></li>
-</ul>
-</li>
-<li><p>Diagnóstico de residuos:</p>
-<ul>
-<li><p>Aplicar el Test BDS a los residuos del primer horizonte de cada fold para evaluar independencia serial.</p></li>
-</ul>
-</li>
-<li><p>Visualización y análisis:</p>
-<ul>
-<li><p>Gráficas de RMSE por ventana y horizonte.</p></li>
-<li><p>Resumen comparativo de diferentes cantidades de lags.</p></li>
-</ul>
-</li>
-<li><p>Documentación y deployment:</p>
-<ul>
-<li><p>Estructura de carpetas tipo MLOps (notebooks, scripts, prueba, Docker, README).</p></li>
-<li><p>Código reproducible y justificado paso a paso.</p></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p><strong>Herramientas sugeridas:</strong></p>
+<p>Por cada tamaño de input (7, 14, 21, 28) se debe entregar una <strong>tabla (en el conjunto de test)</strong> que incluya, idealmente por fold y con su promedio (y std):</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">pandas</span></code>, <code class="docutils literal notranslate"><span class="pre">numpy</span></code>, <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> (<code class="docutils literal notranslate"><span class="pre">MLPRegressor</span></code>, <code class="docutils literal notranslate"><span class="pre">StandardScaler</span></code>)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">tsxv</span></code> (para los splits temporales)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">arch</span></code> (para el test BDS)</p></li>
-<li><p>Entorno: Jupyter Notebook o VS Code</p></li>
+<li><p><strong>MAPE</strong> (Mean Absolute Percentage Error) — por horizonte y promedio.</p></li>
+<li><p><strong>MAE</strong> (Mean Absolute Error).</p></li>
+<li><p><strong>RMSE</strong> (Root Mean Squared Error).</p></li>
+<li><p><strong>MSE</strong> (Mean Squared Error).</p></li>
+<li><p><strong><span class="math notranslate nohighlight">\(p\)</span>-value BDS test</strong> aplicado a los residuos del primer horizonte (<span class="math notranslate nohighlight">\(h=1\)</span>) (por fold) — y su promedio.</p></li>
+</ul>
+<p><strong>Formato recomendado de la tabla (por lag):</strong></p>
+<ul class="simple">
+<li><p>Filas = folds (Fold 1, Fold 2, … , Mean ± Std).</p></li>
+<li><p>Columnas = métricas por horizonte (<span class="math notranslate nohighlight">\(h=1,\dots,7\)</span>) o resumen por horizonte + columna con <strong>BDS_pvalue_h1</strong>.</p></li>
+<li><p><strong>Diagnóstico de residuos</strong></p></li>
+<li><p>En cada fold, calcular residuos en test <span class="math notranslate nohighlight">\(\text{resid} = y_{test}^{\text{real}} - y_{pred}\)</span></p></li>
+<li><p>Aplicar <strong>BDS test</strong> a los residuos del horizonte 1 (test de independencia serial / no-iid).</p></li>
+<li><p>Reportar el <strong><span class="math notranslate nohighlight">\(p\)</span>-value</strong>.</p></li>
+<li><p>Interpretación: <strong><span class="math notranslate nohighlight">\(p &gt; 0.05\)</span> → no rechazo de iid (mejor señal de independencia residual)</strong>.</p></li>
+<li><p><strong>Visualización y análisis</strong></p></li>
+</ul>
+<p>Para cada tamaño de input:</p>
+<ul class="simple">
+<li><p>Dibujar una <strong>curva (time series)</strong> que muestre <strong>train / val / test</strong> (validados con sus timestamps) y las <strong>predicciones correspondientes</strong> (por lo menos para el mejor fold, el peor fold y el fold mediano por RMSE).</p></li>
+<li><p>Etiquetar claramente: <strong>train actual, train predicho, val actual, val predicho, test actual, test predicho</strong>.</p></li>
+<li><p>Gráfica de <strong>RMSE por fold</strong> (e.g., barras) y <strong>RMSE promedio por horizonte</strong> (líneas con 7 puntos).</p></li>
+<li><p><strong>Tabla resumen comparativa</strong> de los 4 tamaños de lag con las métricas solicitadas (MAPE, MAE, RMSE, MSE, p-value BDS).</p></li>
+<li><p>Guardar figuras en <code class="docutils literal notranslate"><span class="pre">notebooks/figs/</span></code> y las tablas en <code class="docutils literal notranslate"><span class="pre">results/</span></code> (CSV).</p></li>
+<li><p><strong>Documentación y deployment</strong></p>
+<ul>
+<li><p>Entregar <strong>notebook reproducible</strong> con todo el pipeline (<strong>EDA → features → CV → entrenamiento → evaluación → residuos → plots</strong>).</p></li>
+<li><p>Entregar <strong>API (<code class="docutils literal notranslate"><span class="pre">app/api.py</span></code>)</strong> que reciba lags y devuelva <strong>7 predicciones de volatilidad</strong> (lista de floats).</p></li>
+<li><p>Incluir <strong>Dockerfile, tests unitarios y README</strong> con instrucciones de uso.</p></li>
 </ul>
 </li>
-<li><p><strong>Entregables esperados:</strong></p>
-<ul class="simple">
-<li><p>Jupyter notebook completo y detallado con análisis reproducible.</p></li>
-<li><p>Figuras y tablas de resultados.</p></li>
-<li><p>Script de inferencia (<code class="docutils literal notranslate"><span class="pre">api.py</span></code>) si se pide.</p></li>
-<li><p>Dockerfile para deployment fácil.</p></li>
-<li><p>Prueba automática básica (opcional, para integración).</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">README.md</span></code> con guía clara de uso y metodología.</p></li>
-</ul>
-</li>
-<li><p><strong>Esquema de notebook sugerido:</strong></p>
-<ul class="simple">
-<li><p>Introducción teórica (precio, retorno, volatilidad)</p></li>
-<li><p>Descarga y exploración del dataset</p></li>
-<li><p>Preprocesamiento y cálculo de volatilidad, visualizaciones iniciales</p></li>
-<li><p>Generación de features lag y targets multistep</p></li>
-<li><p>Split temporal, validación cruzada y setup de folds</p></li>
-<li><p>Entrenamiento, evaluación y visualización de resultados (RMSE por horizonte y por folds)</p></li>
-<li><p>Diagnóstico de residuos con BDS test</p></li>
-<li><p>Comparación de resultados para distintos tamaños de ventana (lags)</p></li>
-<li><p>Conclusión y sugerencias de mejora</p></li>
 </ul>
 </li>
 </ul>
