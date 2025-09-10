@@ -428,7 +428,7 @@ document.write(`
 <div class="proof definition admonition" id="def_hilbert_rep">
 <p class="admonition-title"><span class="caption-number">Definition 6.1 </span></p>
 <section class="definition-content" id="proof-content">
-<p>Un espacio de Hilbert <span class="math notranslate nohighlight">\(H\)</span> es llamado <code class="docutils literal notranslate"><span class="pre">espacio</span> <span class="pre">de</span> <span class="pre">Hilbert</span> <span class="pre">con</span> <span class="pre">kernel</span> <span class="pre">reproductor</span> <span class="pre">(RKHS)</span></code> si existe una función:</p>
+<p>Un espacio de Hilbert <span class="math notranslate nohighlight">\(H\)</span> es llamado <strong>espacio de Hilbert con kernel reproductor (RKHS)</strong> si existe una función:</p>
 <div class="math notranslate nohighlight">
 \[
 \kappa:\mathcal{X}\times\mathcal{X}\mapsto\mathbb{R}
@@ -436,7 +436,7 @@ document.write(`
 <p>con las siguientes propiedades:</p>
 <ul class="simple">
 <li><p>Para cada <span class="math notranslate nohighlight">\(\boldsymbol{x}\in\mathcal{X},~\kappa(\cdot, \boldsymbol{x})\)</span> pertenece a <span class="math notranslate nohighlight">\(H\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(\kappa(\cdot, \cdot)\)</span> tiene la llamada <code class="docutils literal notranslate"><span class="pre">propiedad</span> <span class="pre">de</span> <span class="pre">reproducción</span></code>, esto es:</p></li>
+<li><p><span class="math notranslate nohighlight">\(\kappa(\cdot, \cdot)\)</span> tiene la llamada <strong>propiedad de reproducción</strong>, esto es:</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-prop-reproductora">
 <span class="eqno">(6.1)<a class="headerlink" href="#equation-prop-reproductora" title="Link to this equation">#</a></span>\[
@@ -450,24 +450,117 @@ f(\boldsymbol{x})=\langle f, \kappa(\cdot, \boldsymbol{x})\rangle,\quad\forall f
 \[
 \kappa(\boldsymbol{x}, \boldsymbol{y})=\langle\kappa(\cdot, \boldsymbol{y}), \kappa(\cdot, \boldsymbol{x})\rangle=\langle\kappa(\cdot, \boldsymbol{x}), \kappa(\cdot, \boldsymbol{y})\rangle=\kappa(\boldsymbol{y}, \boldsymbol{x})
 \]</div>
+<div class="tip admonition">
+<p class="admonition-title">Observación</p>
+<p>Un espacio de Hilbert con kernel reproductor (RKHS) tiene la Propiedad <a class="reference internal" href="#equation-prop-reproductora">(6.1)</a>, para todo <span class="math notranslate nohighlight">\(f \in H\)</span> y <span class="math notranslate nohighlight">\(x \in \mathcal{X}\)</span>.</p>
+<ul class="simple">
+<li><p><strong>Caso lineal</strong> en <span class="math notranslate nohighlight">\(\mathbb{R}^2\)</span></p></li>
+</ul>
+<ol class="arabic">
+<li><p><strong>Espacio y producto interno</strong>. Sea <span class="math notranslate nohighlight">\(H=\mathbb{R}^2\)</span> con el producto interior usual:</p>
+<div class="math notranslate nohighlight">
+\[
+   \langle u,v\rangle_H = u_1 v_1 + u_2 v_2.
+   \]</div>
+</li>
+<li><p><strong>Función <span class="math notranslate nohighlight">\(f\)</span> como vector</strong>. Sea <span class="math notranslate nohighlight">\(w=(w_1,w_2)\)</span>. Definimos</p>
+<div class="math notranslate nohighlight">
+\[
+   f(y)=\langle w,y\rangle_H = w_1 y_1 + w_2 y_2.
+   \]</div>
+<p>Aquí identificamos <span class="math notranslate nohighlight">\(f\)</span> con el vector <span class="math notranslate nohighlight">\(w\)</span>.</p>
+</li>
+<li><p><strong>Kernel lineal y su representante</strong>. El kernel lineal es</p>
+<div class="math notranslate nohighlight">
+\[
+   \kappa(x,x') = \langle x,x'\rangle_H.
+   \]</div>
+<p>Para un punto fijo <span class="math notranslate nohighlight">\(x\)</span>, la función</p>
+<div class="math notranslate nohighlight">
+\[
+   \kappa(\cdot,x): y \mapsto \langle y,x\rangle_H
+   \]</div>
+<p>corresponde al vector <span class="math notranslate nohighlight">\(x\)</span> en <span class="math notranslate nohighlight">\(H\)</span>.</p>
+</li>
+<li><p><strong>Producto interior entre funciones</strong>. Entonces:</p>
+<div class="math notranslate nohighlight">
+\[
+   \langle f, \kappa(\cdot,x)\rangle_H = \langle w,x\rangle_H.
+   \]</div>
+<p>Pero como</p>
+<div class="math notranslate nohighlight">
+\[
+   f(x)=\langle w,x\rangle_H,
+   \]</div>
+<p>se cumple la propiedad de reproducción.</p>
+</li>
+</ol>
+<ul>
+<li><p><strong>Ejemplo numérico</strong></p>
+<ul>
+<li><p>Sea <span class="math notranslate nohighlight">\(w=(2,1)\)</span>, <span class="math notranslate nohighlight">\(x=(3,4)\)</span>.</p></li>
+<li><p>Evaluación directa:</p>
+<div class="math notranslate nohighlight">
+\[
+      f(x)=\langle w,x\rangle = 2\cdot 3 + 1\cdot 4 = 10.
+      \]</div>
+</li>
+<li><p>Función del kernel:</p>
+<div class="math notranslate nohighlight">
+\[
+      \kappa(\cdot,x)(y)=\langle y,x\rangle = 3y_1 + 4y_2.
+      \]</div>
+</li>
+<li><p>Producto interior:</p>
+<div class="math notranslate nohighlight">
+\[
+      \langle f,\kappa(\cdot,x)\rangle_H = \langle w,x\rangle = 10.
+      \]</div>
+</li>
+</ul>
+</li>
+<li><p><strong>Conclusión:</strong></p>
+<div class="math notranslate nohighlight">
+\[
+    f(x) \;=\; \langle f,\kappa(\cdot,x)\rangle_H
+    \]</div>
+</li>
+<li><p>Generalización a kernels no lineales: En un RKHS general se introduce un <strong>mapa de características</strong> <span class="math notranslate nohighlight">\(\Phi\)</span> tal que:</p>
+<div class="math notranslate nohighlight">
+\[
+    \kappa(x,x') = \langle \Phi(x),\Phi(x')\rangle_H.
+    \]</div>
+<p>En este caso, <span class="math notranslate nohighlight">\(\kappa(\cdot,x)\)</span> corresponde a <span class="math notranslate nohighlight">\(\Phi(x)\)</span>, y la propiedad de reproducción toma la forma:</p>
+<div class="math notranslate nohighlight">
+\[
+    f(x)=\langle f,\Phi(x)\rangle_H.
+    \]</div>
+<p>El <strong>teorema de representación de Riesz</strong> garantiza que siempre existe un único elemento <span class="math notranslate nohighlight">\(k_x \in H\)</span> (llamado representador de la evaluación en <span class="math notranslate nohighlight">\(x\)</span>) tal que:</p>
+<div class="math notranslate nohighlight">
+\[
+    f(x)=\langle f, k_x \rangle_H, \quad \text{con } k_x = \kappa(\cdot,x).
+    \]</div>
+</li>
+</ul>
+</div>
 <div class="proof definition admonition" id="def_features_map">
 <p class="admonition-title"><span class="caption-number">Definition 6.2 </span></p>
 <section class="definition-content" id="proof-content">
-<p>Sea <span class="math notranslate nohighlight">\(H\)</span> un <code class="docutils literal notranslate"><span class="pre">(RKHS)</span></code> asociado con una función kernel <span class="math notranslate nohighlight">\(\kappa(\cdot, \cdot)\)</span> y <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> un conjunto de elementos. Entonces el mapeo</p>
+<p>Sea <span class="math notranslate nohighlight">\(H\)</span> un <strong>(RKHS)</strong> asociado con una función kernel <span class="math notranslate nohighlight">\(\kappa(\cdot, \cdot)\)</span> y <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> un conjunto de elementos. Entonces el mapeo</p>
 <div class="math notranslate nohighlight">
 \[
 \mathcal{X}\ni\boldsymbol{x}\mapsto\Phi(\boldsymbol{x}):=\kappa(\cdot, \boldsymbol{x})\in H
 \]</div>
-<p>es conocido como <code class="docutils literal notranslate"><span class="pre">mapeo</span> <span class="pre">de</span> <span class="pre">características</span></code> y el espacio <span class="math notranslate nohighlight">\(H\)</span> es el <code class="docutils literal notranslate"><span class="pre">espacio</span> <span class="pre">de</span> <span class="pre">características</span></code>. Esto es <span class="math notranslate nohighlight">\(\Phi\)</span> mapea cada vector <span class="math notranslate nohighlight">\(\boldsymbol{x}\in\mathcal{X}\)</span> en el (RKHS) <span class="math notranslate nohighlight">\(H\)</span>.</p>
+<p>es conocido como <strong>mapeo de características</strong> y el espacio <span class="math notranslate nohighlight">\(H\)</span> es el <strong>espacio de características</strong>. Esto es <span class="math notranslate nohighlight">\(\Phi\)</span> mapea cada vector <span class="math notranslate nohighlight">\(\boldsymbol{x}\in\mathcal{X}\)</span> en el (RKHS) <span class="math notranslate nohighlight">\(H\)</span>.</p>
 </section>
 </div><ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(H\)</span> puede ser de <code class="docutils literal notranslate"><span class="pre">dimensión</span> <span class="pre">finita</span> <span class="pre">o</span> <span class="pre">inifinita</span> <span class="pre">y</span> <span class="pre">sus</span> <span class="pre">elementos</span> <span class="pre">pueden</span> <span class="pre">ser</span> <span class="pre">funciones</span></code>. Esto es, cada <code class="docutils literal notranslate"><span class="pre">punto</span> <span class="pre">de</span> <span class="pre">entrenamiento</span> <span class="pre">es</span> <span class="pre">mapeado</span> <span class="pre">en</span> <span class="pre">un</span> <span class="pre">espacio</span> <span class="pre">de</span> <span class="pre">funciones</span></code>. Si <span class="math notranslate nohighlight">\(H\)</span> es de dimensión finita, por ejemplo el Espacio Euclidiano <span class="math notranslate nohighlight">\(\mathbb{R}^{k},~\Phi(\boldsymbol{x})\in\mathbb{R}^{k}\)</span>.</p></li>
-<li><p>Consideraremos el caso de dimensión infinita cuyas imágenes son funciones de <span class="math notranslate nohighlight">\(\Phi(\cdot)\)</span>. Veamos las ventajas de este <code class="docutils literal notranslate"><span class="pre">mapeo,</span> <span class="pre">del</span> <span class="pre">espacio</span> <span class="pre">original</span> <span class="pre">a</span> <span class="pre">otro</span> <span class="pre">de</span> <span class="pre">dimensión</span> <span class="pre">infinita</span> <span class="pre">(RKHS)</span></code>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(H\)</span> puede ser de <strong>dimensión finita o inifinita y sus elementos pueden ser funciones</strong>. Esto es, cada <strong>punto de entrenamiento es mapeado en un espacio de funciones</strong>. Si <span class="math notranslate nohighlight">\(H\)</span> es de dimensión finita, por ejemplo el Espacio Euclidiano <span class="math notranslate nohighlight">\(\mathbb{R}^{k},~\Phi(\boldsymbol{x})\in\mathbb{R}^{k}\)</span>.</p></li>
+<li><p>Consideraremos el caso de dimensión infinita cuyas imágenes son funciones de <span class="math notranslate nohighlight">\(\Phi(\cdot)\)</span>. Veamos las ventajas de este <strong>mapeo, del espacio original a otro de dimensión infinita (RKHS)</strong>.</p></li>
 </ul>
 <div class="proof definition admonition" id="def_kernel_trick">
 <p class="admonition-title"><span class="caption-number">Definition 6.3 </span></p>
 <section class="definition-content" id="proof-content">
-<p>Sean <span class="math notranslate nohighlight">\(\boldsymbol{x}, \boldsymbol{y}\in\mathcal{X}\subseteq\mathbb{R}^{l}\)</span>, entonces el <code class="docutils literal notranslate"><span class="pre">producto</span> <span class="pre">interno</span> <span class="pre">del</span> <span class="pre">respectivo</span> <span class="pre">mapeo</span> <span class="pre">de</span> <span class="pre">imágenes</span></code> es escrito como:</p>
+<p>Sean <span class="math notranslate nohighlight">\(\boldsymbol{x}, \boldsymbol{y}\in\mathcal{X}\subseteq\mathbb{R}^{l}\)</span>, entonces el <strong>producto interno del respectivo mapeo de imágenes</strong> es escrito como:</p>
 <div class="math notranslate nohighlight">
 \[
 \langle\Phi(\boldsymbol{x}), \Phi(\boldsymbol{y})\rangle_{H}=\langle \kappa(\cdot, \boldsymbol{x}), \kappa(\cdot, \boldsymbol{y})\rangle
@@ -483,7 +576,7 @@ f(\boldsymbol{x})=\langle f, \kappa(\cdot, \boldsymbol{x})\rangle,\quad\forall f
 </a>
 </figure>
 <ul class="simple">
-<li><p>Empleando este tipo de mapeo a nuestro problema, calculamos <code class="docutils literal notranslate"><span class="pre">operaciones</span> <span class="pre">de</span> <span class="pre">producto</span> <span class="pre">interno</span> <span class="pre">en</span></code> <span class="math notranslate nohighlight">\(H\)</span> en una manera eficiente, vía <code class="docutils literal notranslate"><span class="pre">evaluación</span> <span class="pre">de</span> <span class="pre">funciones</span> <span class="pre">sobre</span> <span class="pre">el</span> <span class="pre">espacio</span> <span class="pre">de</span> <span class="pre">baja</span> <span class="pre">dimensión</span></code>.</p></li>
+<li><p>Empleando este tipo de mapeo a nuestro problema, calculamos <strong>operaciones de producto interno en</strong> <span class="math notranslate nohighlight">\(H\)</span> en una manera eficiente, vía <strong>evaluación de funciones sobre el espacio de baja dimensión</strong>.</p></li>
 </ul>
 <figure class="align-center" id="non-linear-classifier-using-kernel-trick-fig">
 <img alt="_images/non-linear-classifier-using-kernel-trick.png" src="_images/non-linear-classifier-using-kernel-trick.png" />
@@ -496,8 +589,8 @@ f(\boldsymbol{x})=\langle f, \kappa(\cdot, \boldsymbol{x})\rangle,\quad\forall f
 <section class="property-content" id="proof-content">
 <p>El mapeo <span class="math notranslate nohighlight">\(\Phi(\cdot)\)</span> satisface las siguientes propiedades</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">Mapea</span> <span class="pre">implícitamente</span> <span class="pre">inputs</span> <span class="pre">(datos</span> <span class="pre">de</span> <span class="pre">entrenamiento)</span> <span class="pre">en</span> <span class="pre">un</span> <span class="pre">espacio</span> <span class="pre">RKHS</span></code></p></li>
-<li><p>Soluciona tareas de <code class="docutils literal notranslate"><span class="pre">estimación</span> <span class="pre">lineal</span> <span class="pre">en</span></code> <span class="math notranslate nohighlight">\(H\)</span>, involucrando las imágenes:</p></li>
+<li><p><strong>Mapea implícitamente inputs (datos de entrenamiento) en un espacio RKHS</strong></p></li>
+<li><p>Soluciona tareas de <strong>estimación lineal en</strong> <span class="math notranslate nohighlight">\(H\)</span>, involucrando las imágenes:</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[
@@ -511,7 +604,7 @@ f(\boldsymbol{x})=\langle f, \kappa(\cdot, \boldsymbol{x})\rangle,\quad\forall f
 \langle\Phi(x_{i}), \Phi(x_{j})\rangle,\quad i,j=1,2,\dots,N
 \]</div>
 <ul class="simple">
-<li><p>Considera la <code class="docutils literal notranslate"><span class="pre">evaluación</span> <span class="pre">kernel</span> <span class="pre">como</span> <span class="pre">el</span> <span class="pre">producto</span> <span class="pre">interno</span></code>:</p></li>
+<li><p>Considera la <strong>evaluación kernel como el producto interno</strong>:</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[
@@ -524,7 +617,7 @@ f(\boldsymbol{x})=\langle f, \kappa(\cdot, \boldsymbol{x})\rangle,\quad\forall f
 <div class="proof example admonition" id="ej_feature_map">
 <p class="admonition-title"><span class="caption-number">Example 6.1 </span></p>
 <section class="example-content" id="proof-content">
-<p>Considere el caso del <code class="docutils literal notranslate"><span class="pre">espacio</span> <span class="pre">de</span> <span class="pre">2</span> <span class="pre">dimensiones</span></code> y el mapeo</p>
+<p>Considere el caso del <strong>espacio de 2 dimensiones</strong> y el mapeo</p>
 <div class="math notranslate nohighlight">
 \[
 \mathbb{R}^{2}\ni \boldsymbol{x}\mapsto\Phi(x)=(x_{1}^{2}, \sqrt{2}x_{1}x_{2}, x_{2}^{2})\in\mathbb{R}^{3}
@@ -534,7 +627,7 @@ f(\boldsymbol{x})=\langle f, \kappa(\cdot, \boldsymbol{x})\rangle,\quad\forall f
 \[
 \kappa(\boldsymbol{x}, \boldsymbol{y})=\langle\Phi(\boldsymbol{x}), \Phi(\boldsymbol{y})\rangle_{\mathbb{R}^{3}}=\Phi(\boldsymbol{x})^{T}\Phi(\boldsymbol{y})=(x_{1}y_{1}+x_{2}y_{2})^{2}=(\boldsymbol{x}^{T}\boldsymbol{y})^{2}
 \]</div>
-<p>Es decir, el producto interior en el espacio tridimensional, después del mapeo, está dado en términos de una <code class="docutils literal notranslate"><span class="pre">función</span> <span class="pre">de</span> <span class="pre">las</span> <span class="pre">variables</span> <span class="pre">en</span> <span class="pre">el</span> <span class="pre">espacio</span> <span class="pre">original</span></code>.</p>
+<p>Es decir, el producto interior en el espacio tridimensional, después del mapeo, está dado en términos de una <strong>función de las variables en el espacio original</strong>.</p>
 </section>
 </div><div class="proof property admonition" id="prop_kcompacto">
 <p class="admonition-title"><span class="caption-number">Property 6.2 </span></p>
@@ -544,7 +637,7 @@ f(\boldsymbol{x})=\langle f, \kappa(\cdot, \boldsymbol{x})\rangle,\quad\forall f
 \[
 \kappa:\mathcal{X}\times\mathcal{X}\mapsto\mathbb{R}.
 \]</div>
-<p>La función <span class="math notranslate nohighlight">\(\kappa\)</span> es llamada <code class="docutils literal notranslate"><span class="pre">kernel</span> <span class="pre">definido</span> <span class="pre">positivo</span> <span class="pre">si</span> <span class="pre">satisface</span></code></p>
+<p>La función <span class="math notranslate nohighlight">\(\kappa\)</span> es llamada <strong>kernel definido positivo si satisface</strong></p>
 <div class="math notranslate nohighlight">
 \[
 \sum_{n=1}^{N}\sum_{m=1}^{N}a_{n}a_{m}\kappa(x_{n}, x_{m})\geq0,
@@ -564,29 +657,29 @@ k(x_{N}, x_{1}) &amp; \cdots &amp; k(x_{N}, x_{N})\\
 </div><div class="proof example admonition" id="ej_kernel_functions">
 <p class="admonition-title"><span class="caption-number">Example 6.2 </span></p>
 <section class="example-content" id="proof-content">
-<p>Los siguientes son algunos <code class="docutils literal notranslate"><span class="pre">ejemplos</span> <span class="pre">típicos</span> <span class="pre">de</span> <span class="pre">funciones</span> <span class="pre">kernel</span></code>, las cuales son comúnmente usadas en varias aplicaciones. Estas funciones kernel son utilizadas en <code class="docutils literal notranslate"><span class="pre">Python</span></code> para los modelos <code class="docutils literal notranslate"><span class="pre">SVC</span></code> y <code class="docutils literal notranslate"><span class="pre">SVR</span></code> (ver <a class="reference external" href="https://scikit-learn.org/stable/modules/svm.html#kernel-functions">kernel-functions</a>).</p>
+<p>Los siguientes son algunos <strong>ejemplos típicos de funciones kernel</strong>, las cuales son comúnmente usadas en varias aplicaciones. Estas funciones kernel son utilizadas en <code class="docutils literal notranslate"><span class="pre">Python</span></code> para los modelos <strong>SVC</strong> y <strong>SVR</strong> (ver <a class="reference external" href="https://scikit-learn.org/stable/modules/svm.html#kernel-functions">kernel-functions</a>).</p>
 <ul>
-<li><p>El <code class="docutils literal notranslate"><span class="pre">kernel</span> <span class="pre">gaussiano</span></code> está entre las más populares y está dado por la función</p>
+<li><p>El <strong>kernel gaussiano</strong> está entre las más populares y está dado por la función</p>
 <div class="math notranslate nohighlight">
 \[
     \kappa(\boldsymbol{x}, \boldsymbol{y})=\exp\left(-\frac{\|\boldsymbol{x}-\boldsymbol{y}\|^{2}}{2\sigma^2}\right),\quad\sigma&gt;0
     \]</div>
 </li>
-<li><p>El <code class="docutils literal notranslate"><span class="pre">kernel</span> <span class="pre">polinomial</span></code> homogéneo tiene la forma</p>
+<li><p>El <strong>kernel polinomial</strong> homogéneo tiene la forma</p>
 <div class="math notranslate nohighlight">
 \[
     \kappa(\boldsymbol{x}, \boldsymbol{y})=(\boldsymbol{x}^{T}\boldsymbol{y})^{r},
     \]</div>
 <p>donde <span class="math notranslate nohighlight">\(r\)</span> es un parámetro.</p>
 </li>
-<li><p>El <code class="docutils literal notranslate"><span class="pre">kernel</span> <span class="pre">polinómico</span> <span class="pre">no-homogéneo</span></code> tiene la forma</p>
+<li><p>El <strong>kernel polinómico no-homogéneo</strong> tiene la forma</p>
 <div class="math notranslate nohighlight">
 \[
     \kappa(\boldsymbol{x}, \boldsymbol{y})=(\boldsymbol{x}^{T}\boldsymbol{y}+c)^{r},
     \]</div>
 <p>donde <span class="math notranslate nohighlight">\(c\geq0,~r\)</span> son parámetros.</p>
 </li>
-<li><p>El <code class="docutils literal notranslate"><span class="pre">kernel</span> <span class="pre">laplaciano</span></code> está dado por</p>
+<li><p>El <strong>kernel laplaciano</strong> está dado por</p>
 <div class="math notranslate nohighlight">
 \[
     \kappa(\boldsymbol{x}, \boldsymbol{y})=\exp(-t\|\boldsymbol{x}-\boldsymbol{y}\|),
@@ -598,13 +691,13 @@ k(x_{N}, x_{1}) &amp; \cdots &amp; k(x_{N}, x_{N})\\
 </div><figure class="align-center" id="sphx-glr-plot-iris-svc-001-fig">
 <img alt="_images/sphx_glr_plot_iris_svc_001.png" src="_images/sphx_glr_plot_iris_svc_001.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 6.2 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">SVC</span></code> y <code class="docutils literal notranslate"><span class="pre">LinearSVC</span></code> para clasificación en un conjunto de datos. Ver <a class="reference external" href="https://scikit-learn.org/stable/modules/svm.html#classification">scikit-learn</a>.</span><a class="headerlink" href="#sphx-glr-plot-iris-svc-001-fig" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 6.2 </span><span class="caption-text"><strong>SVC</strong> y <strong>LinearSVC</strong> para clasificación en un conjunto de datos. Ver <a class="reference external" href="https://scikit-learn.org/stable/modules/svm.html#classification">scikit-learn</a>.</span><a class="headerlink" href="#sphx-glr-plot-iris-svc-001-fig" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="construccion-de-kernels">
 <h2><span class="section-number">6.3. </span>Construcción de kernels<a class="headerlink" href="#construccion-de-kernels" title="Link to this heading">#</a></h2>
-<p>Además de los ejemplos previos, se pueden <code class="docutils literal notranslate"><span class="pre">construir</span> <span class="pre">otros</span> <span class="pre">kernels</span> <span class="pre">aplicando</span> <span class="pre">las</span> <span class="pre">siguientes</span> <span class="pre">propiedades</span></code></p>
+<p>Además de los ejemplos previos, se pueden <strong>construir otros kernels aplicando las siguientes propiedades</strong></p>
 <ul>
 <li><p>Si</p>
 <div class="math notranslate nohighlight">
@@ -658,7 +751,7 @@ k(x_{N}, x_{1}) &amp; \cdots &amp; k(x_{N}, x_{N})\\
 </li>
 </ul>
 <ul>
-<li><p>Sea <span class="math notranslate nohighlight">\(A\)</span> una <code class="docutils literal notranslate"><span class="pre">matriz</span> <span class="pre">definida</span> <span class="pre">positiva</span></code> con dimensión <span class="math notranslate nohighlight">\(l\times l\)</span>. Entonces</p>
+<li><p>Sea <span class="math notranslate nohighlight">\(A\)</span> una <strong>matriz definida positiva</strong> con dimensión <span class="math notranslate nohighlight">\(l\times l\)</span>. Entonces</p>
 <div class="math notranslate nohighlight">
 \[
     \kappa(\boldsymbol{x}, \boldsymbol{y})=\boldsymbol{x}^{T}A\boldsymbol{y}
@@ -700,22 +793,22 @@ k(x_{N}, x_{1}) &amp; \cdots &amp; k(x_{N}, x_{N})\\
 \[
 \Omega: [0, +\infty)\longmapsto\mathbb{R}
 \]</div>
-<p>una función arbitraria, <code class="docutils literal notranslate"><span class="pre">estrictamente</span> <span class="pre">monotona</span> <span class="pre">creciente</span></code>. Sea también</p>
+<p>una función arbitraria, <strong>estrictamente monotona creciente</strong>. Sea también</p>
 <div class="math notranslate nohighlight">
 \[
 \mathcal{L}:\mathbb{R}^{2}\longmapsto\mathbb{R}\cup\{\infty\}
 \]</div>
-<p>una <code class="docutils literal notranslate"><span class="pre">función</span> <span class="pre">de</span> <span class="pre">pérdida</span></code>. Entonces, cada minimizador <span class="math notranslate nohighlight">\(f\in H\)</span>, de una <code class="docutils literal notranslate"><span class="pre">tarea</span> <span class="pre">de</span> <span class="pre">minimización</span> <span class="pre">regularizada</span></code></p>
+<p>una <strong>función de pérdida</strong>. Entonces, cada minimizador <span class="math notranslate nohighlight">\(f\in H\)</span>, de una <strong>tarea de minimización regularizada</strong></p>
 <div class="math notranslate nohighlight" id="equation-eq-min-reg">
 <span class="eqno">(6.2)<a class="headerlink" href="#equation-eq-min-reg" title="Link to this equation">#</a></span>\[
 \min_{f\in H} J(f)=\sum_{n=1}^{N}\mathcal{L}(y_{n}, f(\boldsymbol{x}_{n}))+\lambda\Omega(\|f\|^{2})
 \]</div>
-<p>admite una <code class="docutils literal notranslate"><span class="pre">representación</span></code> de la forma</p>
+<p>admite una <strong>representación</strong> de la forma</p>
 <div class="math notranslate nohighlight">
 \[
 f(\cdot)=\sum_{n=1}^{N}\theta_{n}\kappa(\cdot, \boldsymbol{x}_{n}),
 \]</div>
-<p>donde <span class="math notranslate nohighlight">\(\theta_{n}\in\mathbb{R},~n=1,2,\dots,N\)</span>. La regularización de la forma <span class="math notranslate nohighlight">\(\Omega(\|f\|^{2})\)</span> es una <code class="docutils literal notranslate"><span class="pre">función</span> <span class="pre">cuadrática,</span> <span class="pre">y</span> <span class="pre">por</span> <span class="pre">lo</span> <span class="pre">tanto</span> <span class="pre">estrictamente</span> <span class="pre">monotona</span></code> en el intervalo <span class="math notranslate nohighlight">\([0, \infty)\)</span>.</p>
+<p>donde <span class="math notranslate nohighlight">\(\theta_{n}\in\mathbb{R},~n=1,2,\dots,N\)</span>. La regularización de la forma <span class="math notranslate nohighlight">\(\Omega(\|f\|^{2})\)</span> es una <strong>función cuadrática, y por lo tanto estrictamente monotona</strong> en el intervalo <span class="math notranslate nohighlight">\([0, \infty)\)</span>.</p>
 </section>
 </div><p><strong><code class="docutils literal notranslate"><span class="pre">Demostración</span></code></strong></p>
 <p>Sea</p>
@@ -752,13 +845,13 @@ f(\boldsymbol{x}_{m})&amp;=\langle f, \kappa(\cdot, \boldsymbol{x}_{m})\rangle\\
 &amp;\geq\Omega\left(\left\|\sum_{n=1}^{N}\theta_{n}\kappa(\cdot, \boldsymbol{x}_{n})\right\|^{2}\right)
 \end{align*}
 \end{split}\]</div>
-<p>Por lo tanto <code class="docutils literal notranslate"><span class="pre">para</span> <span class="pre">cualquier</span> <span class="pre">selección</span> <span class="pre">de</span></code> <span class="math notranslate nohighlight">\(\theta_{n},~n=1,2,\dots,N\)</span>, <code class="docutils literal notranslate"><span class="pre">la</span> <span class="pre">función</span> <span class="pre">de</span> <span class="pre">coste</span> <span class="pre">es</span> <span class="pre">minimizada</span> <span class="pre">por</span></code> <span class="math notranslate nohighlight">\(f_{\perp}=0\)</span>.</p>
+<p>Por lo tanto <strong>para cualquier selección de</strong> <span class="math notranslate nohighlight">\(\theta_{n},~n=1,2,\dots,N\)</span>, <strong>la función de coste es minimizada por</strong> <span class="math notranslate nohighlight">\(f_{\perp}=0\)</span>.</p>
 <div class="proof observation admonition" id="observation-8">
 <p class="admonition-title"><span class="caption-number">Observation 6.1 </span></p>
 <section class="observation-content" id="proof-content">
 <ul>
 <li><p>La importancia de este teorema radica en que, para optimizar <span class="math notranslate nohighlight">\(J(f)\)</span> en <a class="reference internal" href="#equation-eq-min-reg">(6.2)</a> con respecto a <span class="math notranslate nohighlight">\(f\)</span>, usamos la expresión <span class="math notranslate nohighlight">\(f(\cdot)\)</span> en <a class="reference internal" href="#equation-prop-reproductora">(6.1)</a> y <strong>la minimización es llevada a cabo con respecto a los parámetros</strong> <span class="math notranslate nohighlight">\(\theta_{n},~n=1,2,\dots,N\)</span>.</p></li>
-<li><p>En casos que la regularización no es necesaria, usualmente un término de sesgo es agregado y se supone que la <code class="docutils literal notranslate"><span class="pre">función</span> <span class="pre">a</span> <span class="pre">minimizar</span> <span class="pre">admite</span> <span class="pre">la</span> <span class="pre">representación</span></code></p>
+<li><p>En casos que la regularización no es necesaria, usualmente un término de sesgo es agregado y se supone que la <strong>función a minimizar admite la representación</strong></p>
 <div class="math notranslate nohighlight">
 \[
     \tilde{f}=f+b,\quad f(\cdot)=\sum_{n=1}^{N}\theta_{n}\kappa(\cdot, \boldsymbol{x}_{n})
@@ -796,7 +889,7 @@ f(\boldsymbol{x}_{m})&amp;=\langle f, \kappa(\cdot, \boldsymbol{x}_{m})\rangle\\
 </div><div class="proof observation admonition" id="observation-10">
 <p class="admonition-title"><span class="caption-number">Observation 6.2 </span></p>
 <section class="observation-content" id="proof-content">
-<p>Un ejemplo de <code class="docutils literal notranslate"><span class="pre">aplicación</span> <span class="pre">exitosa</span> <span class="pre">de</span> <span class="pre">este</span> <span class="pre">teorema</span> <span class="pre">fue</span> <span class="pre">demostrada</span> <span class="pre">en</span> <span class="pre">el</span> <span class="pre">contexto</span> <span class="pre">de</span> <span class="pre">procesamiento</span> <span class="pre">de</span> <span class="pre">imágenes</span></code> <span id="id3">[<a class="reference internal" href="biblio.html#id15" title="Pantelis Bouboulis, Konstantinos Slavakis, and Sergios Theodoridis. Adaptive kernel-based image denoising employing semi-parametric regularization. IEEE Transactions on Image Processing, 19(6):1465–1479, 2010.">Bouboulis <em>et al.</em>, 2010</a>]</span>. Un conjunto de funciones no lineales en lugar de <span class="math notranslate nohighlight">\(\psi_{m}\)</span> fueron usadas para <strong>detección de bordes en una imagen con (saltos no suaves)</strong>. La parte de <span class="math notranslate nohighlight">\(f\)</span> que pertenece al espacio <code class="docutils literal notranslate"><span class="pre">RKHS</span></code> es usada para las partes suaves en la imagen.</p>
+<p>Un ejemplo de <strong>aplicación exitosa de este teorema fue demostrada en el contexto de procesamiento de imágenes</strong> <span id="id3">[<a class="reference internal" href="biblio.html#id15" title="Pantelis Bouboulis, Konstantinos Slavakis, and Sergios Theodoridis. Adaptive kernel-based image denoising employing semi-parametric regularization. IEEE Transactions on Image Processing, 19(6):1465–1479, 2010.">Bouboulis <em>et al.</em>, 2010</a>]</span>. Un conjunto de funciones no lineales en lugar de <span class="math notranslate nohighlight">\(\psi_{m}\)</span> fueron usadas para <strong>detección de bordes en una imagen con (saltos no suaves)</strong>. La parte de <span class="math notranslate nohighlight">\(f\)</span> que pertenece al espacio <strong>RKHS</strong> es usada para las partes suaves en la imagen.</p>
 </section>
 </div></section>
 <section id="regresion-ridge-con-kernel">
@@ -1197,7 +1290,7 @@ f(\boldsymbol{x})=\sum_{n=1}^{N}\theta_{n}\kappa(\boldsymbol{x}, \boldsymbol{x}_
 \end{align*}
 \end{split}\]</div>
 <ul class="simple">
-<li><p>Las condiciones <code class="docutils literal notranslate"><span class="pre">KKT</span></code> transmiten información importante. Los <em><strong>multiplicadores de Lagrange</strong></em>, <span class="math notranslate nohighlight">\(\tilde{\lambda}_{n},\lambda_{n}\)</span>, para puntos que obtienen un error menor que <span class="math notranslate nohighlight">\(\varepsilon\)</span>, es decir,</p></li>
+<li><p>Las condiciones <strong>KKT</strong> transmiten información importante. Los <em><strong>multiplicadores de Lagrange</strong></em>, <span class="math notranslate nohighlight">\(\tilde{\lambda}_{n},\lambda_{n}\)</span>, para puntos que obtienen un error menor que <span class="math notranslate nohighlight">\(\varepsilon\)</span>, es decir,</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[
@@ -1752,7 +1845,7 @@ L(\boldsymbol{\theta}, \theta_{0}, \xi, \lambda)=\frac{1}{2}\|\boldsymbol{\theta
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/2ec01e100ff1e0101e7a54be086d7467a429ff7fb70ae8a256b7443ce1d6cbea.png" src="_images/2ec01e100ff1e0101e7a54be086d7467a429ff7fb70ae8a256b7443ce1d6cbea.png" />
+<img alt="_images/739d6b65e86a300e97b2c657098cbc5aa86f920072c9914fbdcb93c25bf08abf.png" src="_images/739d6b65e86a300e97b2c657098cbc5aa86f920072c9914fbdcb93c25bf08abf.png" />
 </div>
 </div>
 <ul class="simple">
@@ -1849,7 +1942,7 @@ L(\boldsymbol{\theta}, \theta_{0}, \xi, \lambda)=\frac{1}{2}\|\boldsymbol{\theta
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/2a74913a84b37bc8907eb9a2da42d90193e98447723228d4b8cadbadee60b0bb.png" src="_images/2a74913a84b37bc8907eb9a2da42d90193e98447723228d4b8cadbadee60b0bb.png" />
+<img alt="_images/6f4129c3808bf8e1414be4650360cff52ba3bc79ec3987501b8464cdcca248f0.png" src="_images/6f4129c3808bf8e1414be4650360cff52ba3bc79ec3987501b8464cdcca248f0.png" />
 </div>
 </div>
 <ul class="simple">
@@ -1868,7 +1961,7 @@ L(\boldsymbol{\theta}, \theta_{0}, \xi, \lambda)=\frac{1}{2}\|\boldsymbol{\theta
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/04d398141563a22bf072550f483c85c2e3ed266bb7dfc1c45ba8bb23bc3f4715.png" src="_images/04d398141563a22bf072550f483c85c2e3ed266bb7dfc1c45ba8bb23bc3f4715.png" />
+<img alt="_images/df8a1b012861d6602cee1ae06ceff066ef4ee238bfc39b9fe0e54c18fa2430da.png" src="_images/df8a1b012861d6602cee1ae06ceff066ef4ee238bfc39b9fe0e54c18fa2430da.png" />
 </div>
 </div>
 </section>
