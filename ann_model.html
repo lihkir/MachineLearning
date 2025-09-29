@@ -9560,9 +9560,13 @@ J(U, W, V, \boldsymbol{b}, \boldsymbol{c})=\sum_{n=1}^{N}J_{n}(U, W, V, \boldsym
 </li>
 <li><p>Propagación total del estado oculto <span class="math notranslate nohighlight">\(h_2\)</span>:</p>
 <div class="math notranslate nohighlight">
-\[
-   h_2 = \tanh([0.22, 0.13, 0.15] + [0.065, 0.096, 0.074] + b) = \tanh([0.385, 0.376, 0.394]) \approx [0.367, 0.359, 0.374]
-   \]</div>
+\[\begin{split}
+   \begin{align*}
+   h_2 &amp;= \tanh([0.22, 0.13, 0.15] + [0.065, 0.096, 0.074] + b)\\
+   &amp;= \tanh([0.385, 0.376, 0.394])\\
+   &amp;\approx [0.367, 0.359, 0.374]
+   \end{align*}
+   \end{split}\]</div>
 </li>
 </ol>
 <ul class="simple">
@@ -9605,7 +9609,87 @@ J(U, W, V, \boldsymbol{b}, \boldsymbol{c})=\sum_{n=1}^{N}J_{n}(U, W, V, \boldsym
     \text{Loss} = - \log(0.5148) \approx 0.663
     \]</div>
 </li>
+</ul>
+<ul>
 <li><p><em><strong>Gradientes</strong></em></p></li>
+<li><p>La siguiente es la derivada de la entropía cruzada con softmax</p>
+<div class="math notranslate nohighlight">
+\[
+    \frac{\partial L}{\partial \tilde{y}_k} = \hat{y}_k - y_k
+    \]</div>
+<p>es válido incluso si <span class="math notranslate nohighlight">\(y\)</span> es una distribución (ej. <em>label smoothing</em>).</p>
+</li>
+<li><p>Dado que,</p>
+<ul class="simple">
+<li><p><strong>Logits</strong>: <span class="math notranslate nohighlight">\(\tilde{y}_k\)</span>, salidas crudas (no normalizadas) de la última capa lineal antes de aplicar la función softmax</p></li>
+<li><p><strong>Softmax</strong>:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+    \hat{y}_k = \frac{e^{\tilde{y}_k}}{\sum_j e^{\tilde{y}_j}}
+    \]</div>
+<ul class="simple">
+<li><p><strong>Entropía cruzada</strong>:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+    L = -\sum_i y_i \log(\hat{y}_i)
+    \]</div>
+</li>
+<li><p>Gradiente paso a paso</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\frac{\partial L}{\partial \tilde{y}_k}
+&amp;= -\sum_i y_i \frac{1}{\hat{y}_i} 
+     \frac{\partial \hat{y}_i}{\partial \tilde{y}_k} \\[6pt]
+\frac{\partial \hat{y}_i}{\partial \tilde{y}_k} 
+&amp;= \hat{y}_i \,(\delta_{ik} - \hat{y}_k) \\[6pt]
+\Rightarrow \quad
+\frac{\partial L}{\partial \tilde{y}_k}
+&amp;= -\sum_i y_i \,(\delta_{ik} - \hat{y}_k)
+\end{align}
+\end{split}\]</div>
+<ul class="simple">
+<li><p>Separando casos</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\frac{\partial L}{\partial \tilde{y}_k} =
+\begin{cases}
+-y_k(1 - \hat{y}_k), &amp; i = k \\[6pt]
++y_i \hat{y}_k, &amp; i \neq k
+\end{cases}
+\end{split}\]</div>
+<ul>
+<li><p>Sumando todo</p>
+<div class="math notranslate nohighlight">
+\[
+    \frac{\partial L}{\partial \tilde{y}_k} 
+    = -y_k + y_k \hat{y}_k + \hat{y}_k \sum_{i \neq k} y_i
+    \]</div>
+<p>y usando que:</p>
+<div class="math notranslate nohighlight">
+\[
+    \sum_{i \neq k} y_i = \Big(\sum_i y_i \Big) - y_k
+    \]</div>
+</li>
+<li><p>Si <span class="math notranslate nohighlight">\(y\)</span> es un vector <em>one-hot</em>:</p>
+<div class="math notranslate nohighlight">
+\[
+    \sum_i y_i = 1,
+    \]</div>
+<p>entonces:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align}
+    \frac{\partial L}{\partial \tilde{y}_k} 
+    &amp;= -y_k + y_k \hat{y}_k + \hat{y}_k (1 - y_k) \\[6pt]
+    &amp;= \hat{y}_k - y_k
+    \end{align}
+    \end{split}\]</div>
+</li>
 </ul>
 <ol class="arabic">
 <li><p><em>Gradiente para <span class="math notranslate nohighlight">\(V\)</span></em>:</p>
@@ -9662,14 +9746,15 @@ Usamos la retropropagación a través del tiempo (BPTT). Los gradientes para <sp
 <p class="admonition-title"><span class="caption-number">Observation 7.4 </span></p>
 <section class="observation-content" id="proof-content">
 <ul class="simple">
-<li><p>La <em><strong>idea clave de la red LSTM</strong></em>, propuesta en el artículo seminal <span id="id37">[<a class="reference internal" href="biblio.html#id39" title="Sepp Hochreiter and Jürgen Schmidhuber. Long short-term memory. Neural computation, 9(8):1735–1780, 1997.">Hochreiter and Schmidhuber, 1997</a>]</span>, es el llamado <em><strong>estado de celda</strong></em>, que ayuda a <em><strong>superar los problemas asociados con los fenómenos de desvanecimiento/explosión</strong></em> que son causados por las <em><strong>dependencias largo plazo</strong></em> dentro de la red.</p></li>
+<li><p>La <em><strong>idea clave de la red LSTM</strong></em>, propuesta en el artículo seminal <span id="id37">[<a class="reference internal" href="biblio.html#id39" title="Sepp Hochreiter and Jürgen Schmidhuber. Long short-term memory. Neural computation, 9(8):1735–1780, 1997.">Hochreiter and Schmidhuber, 1997</a>]</span>, es el llamado <strong>celda de estado (cell state)</strong>, que ayuda a <em><strong>superar los problemas asociados con los fenómenos de desvanecimiento/explosión</strong></em> que son causados por las <em><strong>dependencias largo plazo</strong></em> dentro de la red.</p></li>
 <li><p>Las <em><strong>redes LSTM</strong></em> tienen la capacidad incorporada de <em><strong>controlar el flujo de información que entra y sale de la memoria del sistema mediante algoritmos no lineales</strong></em>. Estas puertas se implementan <em><strong>mediante la no linealidad sigmoidea y un multiplicador</strong></em>.</p></li>
 <li><p>Desde un punto de vista algorítmico, las puertas equivalen a <em><strong>aplicar una ponderación al flujo de información correspondiente</strong></em>. Los <em><strong>pesos</strong></em> se sitúan en el intervalo <span class="math notranslate nohighlight">\([0,1]\)</span> y <em><strong>dependen de los valores de las variables implicadas que activan la no linealidad sigmoidea</strong></em>.</p></li>
 </ul>
 </section>
 </div><ul class="simple">
 <li><p>En otras palabras, <em><strong>la ponderación (control) de la información</strong></em> tiene lugar en el contexto. Según este razonamiento, <em><strong>la red tiene la agilidad de olvidar la información que ya ha sido utilizada y ya no es necesaria</strong></em>. La <em><strong>célula/unidad LSTM básica</strong></em> se
-se muestra en la <a class="reference internal" href="#lstm-arch-rnn-numref"><span class="std std-numref">Fig. 7.45</span></a>. Se construye en torno a <em><strong>dos conjuntos de variables, apiladas en el vector</strong></em> <span class="math notranslate nohighlight">\(\boldsymbol{s}\)</span>, que se conoce como el <em><strong>estado de la célula o unidad</strong></em>, y el vector <span class="math notranslate nohighlight">\(\boldsymbol{h}\)</span>, que se conoce como el <em><strong>vector de variables ocultas</strong></em>. Una <em><strong>red LSTM</strong></em> se construye a partir de la <em><strong>concatenación sucesiva de esta unidad básica</strong></em>. La unidad correspondiente al tiempo <span class="math notranslate nohighlight">\(n\)</span>, además del vector de entrada, <span class="math notranslate nohighlight">\(\boldsymbol{x}_{n}\)</span>, recibe <span class="math notranslate nohighlight">\(\boldsymbol{s}_{n-1}\)</span> y <span class="math notranslate nohighlight">\(\boldsymbol{h}_{n-1}\)</span> de la etapa anterior y pasa <span class="math notranslate nohighlight">\(\boldsymbol{s}_{n}\)</span> y <span class="math notranslate nohighlight">\(\boldsymbol{h}_{n}\)</span> a la siguiente. A continuación se resumen las <em><strong>ecuaciones de actualización asociadas</strong></em></p></li>
+se muestra en la <a class="reference internal" href="#lstm-arch-rnn-numref"><span class="std std-numref">Fig. 7.45</span></a>.</p></li>
+<li><p>Se construye en torno a <em><strong>dos conjuntos de variables, apiladas en el vector</strong></em> <span class="math notranslate nohighlight">\(\boldsymbol{s}\)</span>, que se conoce como el <em><strong>celda de estado</strong></em>, y el vector <span class="math notranslate nohighlight">\(\boldsymbol{h}\)</span>, que se conoce como el <em><strong>vector de variables ocultas</strong></em>. Una <em><strong>red LSTM</strong></em> se construye a partir de la <em><strong>concatenación sucesiva de esta unidad básica</strong></em>. La unidad correspondiente al tiempo <span class="math notranslate nohighlight">\(n\)</span>, además del vector de entrada, <span class="math notranslate nohighlight">\(\boldsymbol{x}_{n}\)</span>, recibe <span class="math notranslate nohighlight">\(\boldsymbol{s}_{n-1}\)</span> y <span class="math notranslate nohighlight">\(\boldsymbol{h}_{n-1}\)</span> de la etapa anterior y pasa <span class="math notranslate nohighlight">\(\boldsymbol{s}_{n}\)</span> y <span class="math notranslate nohighlight">\(\boldsymbol{h}_{n}\)</span> a la siguiente. A continuación se resumen las <em><strong>ecuaciones de actualización asociadas</strong></em></p></li>
 </ul>
 <figure class="align-center" id="lstm-arch-rnn-numref">
 <a class="reference internal image-reference" href="_images/lstm_arch_rnn.png"><img alt="_images/lstm_arch_rnn.png" src="_images/lstm_arch_rnn.png" style="width: 623.25px; height: 311.25px;" />
@@ -9694,8 +9779,8 @@ se muestra en la <a class="reference internal" href="#lstm-arch-rnn-numref"><spa
 <p class="admonition-title"><span class="caption-number">Observation 7.5 </span></p>
 <section class="observation-content" id="proof-content">
 <ul class="simple">
-<li><p>Nótese que el <em><strong>estado de la célula</strong></em>, <span class="math notranslate nohighlight">\(\boldsymbol{s}\)</span>, <em><strong>pasa información directa del instante anterior al siguiente</strong></em>. Esta información es <em><strong>controlada primero por la primera puerta</strong></em>, según los elementos en <span class="math notranslate nohighlight">\(f\)</span>, que toman valores en el rango <span class="math notranslate nohighlight">\([0, 1]\)</span>, <em><strong>dependiendo de la entrada actual y de las variables ocultas que se reciben de la etapa anterior</strong></em>. Esto es lo que decíamos antes, es decir, que <em><strong>la ponderación se ajusta en “contexto”</strong></em>. A continuación, <em><strong>se añade nueva información</strong></em>, es decir, <span class="math notranslate nohighlight">\(\tilde{\boldsymbol{s}}\)</span>, a <span class="math notranslate nohighlight">\(\boldsymbol{s}_{n-1}\)</span>, que también está <em><strong>controlada por la segunda red de puertas sigmoidales</strong></em> (es decir, <span class="math notranslate nohighlight">\(\boldsymbol{i}\)</span>). Así se garantiza que la <em><strong>información del pasado se transmita al futuro de forma directa, lo cual, ayuda a la red a memorizar información.</strong></em>.</p></li>
-<li><p>Resulta que este tipo de memoria <em><strong>explota mejor las dependencias de largo alcance en los datos</strong></em>, en comparación con la estructura <em><strong>RNN básica</strong></em>. El vector de variables ocultas <span class="math notranslate nohighlight">\(\boldsymbol{h}\)</span> <em><strong>está controlado tanto por el estado de la célula como por los valores actuales de las variables de entrada y de estados anteriores</strong></em>. Todas las <em><strong>matrices y vectores implicados se aprenden en la fase de entrenamiento</strong></em>. Nótese que hay dos líneas asociadas a <span class="math notranslate nohighlight">\(\boldsymbol{h}_{n}\)</span>. La de <em><strong>la derecha conduce a la siguiente etapa</strong></em> y la de <em><strong>la parte superior se utiliza para proporcionar la salida</strong></em>, <span class="math notranslate nohighlight">\(\hat{\boldsymbol{y}}_{n}\)</span>, en el tiempo <span class="math notranslate nohighlight">\(n\)</span>, a <em><strong>través de, digamos, la no linealidad softmax</strong></em>, como en las RNN estándar en Eq. <a class="reference internal" href="#equation-rnn-system-eq">(7.14)</a>.</p></li>
+<li><p>Nótese que el <em><strong>celda de estado</strong></em>, <span class="math notranslate nohighlight">\(\boldsymbol{s}\)</span>, <em><strong>pasa información directa del instante anterior al siguiente</strong></em>. Esta información es <em><strong>controlada primero por la primera puerta</strong></em>, según los elementos en <span class="math notranslate nohighlight">\(f\)</span>, que toman valores en el rango <span class="math notranslate nohighlight">\([0, 1]\)</span>, <em><strong>dependiendo de la entrada actual y de las variables ocultas que se reciben de la etapa anterior</strong></em>. Esto es lo que decíamos antes, es decir, que <em><strong>la ponderación se ajusta en “contexto”</strong></em>. A continuación, <em><strong>se añade nueva información</strong></em>, es decir, <span class="math notranslate nohighlight">\(\tilde{\boldsymbol{s}}\)</span>, a <span class="math notranslate nohighlight">\(\boldsymbol{s}_{n-1}\)</span>, que también está <em><strong>controlada por la segunda red de puertas sigmoidales</strong></em> (es decir, <span class="math notranslate nohighlight">\(\boldsymbol{i}\)</span>). Así se garantiza que la <em><strong>información del pasado se transmita al futuro de forma directa, lo cual, ayuda a la red a memorizar información.</strong></em>.</p></li>
+<li><p>Resulta que este tipo de memoria <em><strong>explota mejor las dependencias de largo alcance en los datos</strong></em>, en comparación con la estructura <em><strong>RNN básica</strong></em>. El vector de variables ocultas <span class="math notranslate nohighlight">\(\boldsymbol{h}\)</span> <em><strong>está controlado tanto por el celda de estado como por los valores actuales de las variables de entrada y de estados anteriores</strong></em>. Todas las <em><strong>matrices y vectores implicados se aprenden en la fase de entrenamiento</strong></em>. Nótese que hay dos líneas asociadas a <span class="math notranslate nohighlight">\(\boldsymbol{h}_{n}\)</span>. La de <em><strong>la derecha conduce a la siguiente etapa</strong></em> y la de <em><strong>la parte superior se utiliza para proporcionar la salida</strong></em>, <span class="math notranslate nohighlight">\(\hat{\boldsymbol{y}}_{n}\)</span>, en el tiempo <span class="math notranslate nohighlight">\(n\)</span>, a <em><strong>través de, digamos, la no linealidad softmax</strong></em>, como en las RNN estándar en Eq. <a class="reference internal" href="#equation-rnn-system-eq">(7.14)</a>.</p></li>
 </ul>
 </section>
 </div><div class="admonition-variantes-y-aplicaciones admonition">
