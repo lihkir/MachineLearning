@@ -873,33 +873,101 @@ L(\boldsymbol{w}, \lambda)=\boldsymbol{w}^{T}S\boldsymbol{w}+\lambda(1-\boldsymb
 <div class="proof example admonition" id="example-0">
 <p class="admonition-title"><span class="caption-number">Example 8.1 </span> (Relación entre estructura de correlación y pérdida de información)</p>
 <section class="example-content" id="proof-content">
-<ul>
-<li><p>Supongamos que tenemos la <em><strong>matriz de correlación muestral</strong></em> basada en datos observados bidimensionales para las variables <span class="math notranslate nohighlight">\(x_{1}, x_{2}\)</span></p>
+<p>Se analiza cómo la <strong>correlación entre variables</strong> afecta la <strong>varianza explicada</strong> por los <strong>componentes principales (PCA)</strong> en el caso bidimensional.
+Sean dos variables <span class="math notranslate nohighlight">\(x_{1}\)</span> y <span class="math notranslate nohighlight">\(x_{2}\)</span> con <strong>matriz de correlación muestral</strong>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-    R=\begin{pmatrix}1 &amp; r\\r &amp; 1\end{pmatrix}
-    \end{split}\]</div>
-<p>donde <span class="math notranslate nohighlight">\(r (&gt; 0)\)</span> es el <em><strong>coeficiente de correlación muestral</strong></em> entre dos variables <span class="math notranslate nohighlight">\(x_{1}\)</span> y <span class="math notranslate nohighlight">\(x_{2}\)</span>.</p>
-</li>
-<li><p>La <em><strong>ecuación característica de la matriz de correlación de muestral</strong></em> <span class="math notranslate nohighlight">\(R\)</span> es</p>
+R =
+\begin{pmatrix}
+1 &amp; r \\
+r &amp; 1
+\end{pmatrix},
+\end{split}\]</div>
+<p>donde <span class="math notranslate nohighlight">\(r (&gt;0)\)</span> es el <strong>coeficiente de correlación muestral</strong> entre <span class="math notranslate nohighlight">\(x_{1}\)</span> y <span class="math notranslate nohighlight">\(x_{2}\)</span>.
+La diagonal contiene correlaciones iguales a uno porque cada variable está perfectamente correlacionada consigo misma, y <span class="math notranslate nohighlight">\(R\)</span> es simétrica y positiva semidefinida.</p>
+<p><strong>Ecuación característica</strong>. Para obtener los <strong>autovalores</strong>, se resuelve:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+|R - \lambda I_2| =
+\begin{vmatrix}
+1-\lambda &amp; r \\
+r &amp; 1-\lambda
+\end{vmatrix}
+= (1-\lambda)^2 - r^2 = \lambda^2 - 2\lambda + 1 - r^2 = 0.
+\end{split}\]</div>
+<p>Las soluciones son</p>
 <div class="math notranslate nohighlight">
 \[
-    |R-\lambda I_{2}|=(1-\lambda)^{2}-r^{2}=\lambda^{2}-2\lambda+1-r^{2}=0.
-    \]</div>
-</li>
-<li><p>Sus soluciones son <span class="math notranslate nohighlight">\(\lambda_{1}=1+r\)</span> y <span class="math notranslate nohighlight">\(\lambda_{2}=1 - r\)</span>, y los <em><strong>correspondientes autovectores</strong></em> son entonces <span class="math notranslate nohighlight">\(\boldsymbol{w}_{1} = (1/\sqrt{2}, 1/\sqrt{2})^{T}\)</span> y <span class="math notranslate nohighlight">\(\boldsymbol{w}_{2} = (-1/\sqrt{2}, 1/\sqrt{2})^{T}\)</span>, respectivamente.</p></li>
-<li><p>Los <em><strong>componentes principales primero y segundo</strong></em> obtenidos a partir de la matriz de correlación de la muestra vienen dadas, por tanto, por</p>
+\lambda_1 = 1 + r, \quad \lambda_2 = 1 - r.
+\]</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\lambda_1\)</span> corresponde al <strong>primer componente principal</strong> (máxima varianza).</p></li>
+<li><p><span class="math notranslate nohighlight">\(\lambda_2\)</span> corresponde al <strong>segundo componente</strong> (varianza residual).</p></li>
+<li><p>Cuando <span class="math notranslate nohighlight">\(r \to 1\)</span>, se tiene <span class="math notranslate nohighlight">\(\lambda_1 \to 2\)</span> y <span class="math notranslate nohighlight">\(\lambda_2 \to 0\)</span>, indicando que casi toda la varianza se concentra en un solo componente.</p></li>
+</ul>
+<p><strong>Autovectores</strong>. Para cada <span class="math notranslate nohighlight">\(\lambda_i\)</span>, se resuelve <span class="math notranslate nohighlight">\((R - \lambda_i I) \boldsymbol{w}_i = 0\)</span>.
+Las soluciones normalizadas son:</p>
 <div class="math notranslate nohighlight">
 \[
-    y_{1}=\frac{1}{\sqrt{2}}x_{1}+\frac{1}{\sqrt{2}}x_{2},\quad y_{2}=-\frac{1}{\sqrt{2}}x_{1}+\frac{1}{\sqrt{2}}x_{2}
-    \]</div>
-</li>
-<li><p>Las <em><strong>contribuciones del primer y segundo componentes principales son</strong></em>, respectivamente,</p>
+\boldsymbol{w}_1 = \frac{1}{\sqrt{2}}
+\begin{pmatrix}
+1 \ 1
+\end{pmatrix},
+\quad
+\boldsymbol{w}_2 = \frac{1}{\sqrt{2}}
+\begin{pmatrix}
+-1 \ 1
+\end{pmatrix}.
+\]</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\boldsymbol{w}_1\)</span> apunta en la dirección <span class="math notranslate nohighlight">\(x_1 = x_2\)</span> (ambas variables en conjunto).</p></li>
+<li><p><span class="math notranslate nohighlight">\(\boldsymbol{w}_2\)</span> es perpendicular, representando diferencias entre ellas.</p></li>
+</ul>
+<p><strong>Componentes principales</strong>. Proyectando los datos sobre los autovectores:</p>
 <div class="math notranslate nohighlight">
 \[
-    \frac{\lambda_{1}}{\lambda_{1}+\lambda_{2}}=\frac{1+r}{2},\quad\frac{\lambda_{2}}{\lambda_{1}+\lambda_{2}}=\frac{1-r}{2}.
-    \]</div>
-</li>
+y_1 = \frac{1}{\sqrt{2}}x_1 + \frac{1}{\sqrt{2}}x_2, \quad
+y_2 = -\frac{1}{\sqrt{2}}x_1 + \frac{1}{\sqrt{2}}x_2.
+\]</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(y_1\)</span> captura la varianza compartida (información redundante).</p></li>
+<li><p><span class="math notranslate nohighlight">\(y_2\)</span> recoge la varianza no redundante.</p></li>
+</ul>
+<p><strong>Proporción de varianza explicada</strong>. Las fracciones de varianza explicada por cada componente son:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\lambda_1}{\lambda_1 + \lambda_2} = \frac{1+r}{2},
+\quad
+\frac{\lambda_2}{\lambda_1 + \lambda_2} = \frac{1-r}{2}.
+\]</div>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p><span class="math notranslate nohighlight">\(r\)</span></p></th>
+<th class="head text-center"><p>Var(<span class="math notranslate nohighlight">\(y_1\)</span>)</p></th>
+<th class="head text-center"><p>Var(<span class="math notranslate nohighlight">\(y_2\)</span>)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>0.0</p></td>
+<td class="text-center"><p>0.50</p></td>
+<td class="text-center"><p>0.50</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>0.5</p></td>
+<td class="text-center"><p>0.75</p></td>
+<td class="text-center"><p>0.25</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>0.9</p></td>
+<td class="text-center"><p>0.95</p></td>
+<td class="text-center"><p>0.05</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>A medida que <span class="math notranslate nohighlight">\(r\)</span> aumenta:</p>
+<ul class="simple">
+<li><p>La varianza se concentra en el primer componente.</p></li>
+<li><p>El segundo componente pierde relevancia informativa.</p></li>
+<li><p>Por tanto, <strong>PCA puede reducir la dimensionalidad sin pérdida significativa</strong> cuando las variables están fuertemente correlacionadas.</p></li>
 </ul>
 </section>
 </div><ul class="simple">
@@ -1875,16 +1943,16 @@ transformed shape: (200, 1)
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "ml_tf"
+            mode: "python"
         },
         kernelOptions: {
-            name: "ml_tf",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'ml_tf'</script>
+    <script>kernelName = 'python3'</script>
 
                 </article>
               
