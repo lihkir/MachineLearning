@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>6. Máquinas de vectores de soporte &#8212; Machine Learning</title>
+    <title>6. SVM &#8212; Machine Learning</title>
   
   
   
@@ -68,7 +68,7 @@
     <script src="_static/.ipynb_checkpoints/custom-checkpoint.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="7. Redes Neuronales y Deep Learning" href="ann_model.html" />
+    <link rel="next" title="7. PCA" href="practical_pca.html" />
     <link rel="prev" title="5. Random Forest y XGBoost" href="decisiontree_model.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -189,18 +189,19 @@
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="supervised_intro.html">1. Aprendizaje supervisado</a></li>
-<li class="toctree-l1"><a class="reference internal" href="knn_model.html">2. <span class="math notranslate nohighlight">\(k\)</span>-vecinos más cercanos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="knn_model.html">2. <span class="math notranslate nohighlight">\(k\)</span>-NN</a></li>
 <li class="toctree-l1"><a class="reference internal" href="linear_model.html">3. Regresión Ridge y Lasso</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bayes_model.html">4. Clasificador Bayesiano</a></li>
 <li class="toctree-l1"><a class="reference internal" href="decisiontree_model.html">5. Random Forest y XGBoost</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">6. Máquinas de vectores de soporte</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ann_model.html">7. Redes Neuronales y Deep Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="practical_pca.html">8. Análisis de Componentes Principales</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">6. SVM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="practical_pca.html">7. PCA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clustering.html">8. Clustering</a></li>
 <li class="toctree-l1"><a class="reference internal" href="model_evaluation.html">9. Evaluación de modelos</a></li>
-<li class="toctree-l1"><a class="reference internal" href="chains_pipelines.html">10. Cadenas de Algoritmos y Pipelines</a></li>
-<li class="toctree-l1"><a class="reference internal" href="appendix.html">11. Apéndice</a></li>
-<li class="toctree-l1"><a class="reference internal" href="exercises_sols.html">12. Soluciones a ejercicios</a></li>
-<li class="toctree-l1"><a class="reference internal" href="biblio.html">13. Bibliografía</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chains_pipelines.html">10. Pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ann_model.html">11. Deep Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix.html">12. Apéndice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exercises_sols.html">13. Soluciones a ejercicios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="biblio.html">14. Bibliografía</a></li>
 </ul>
 
     </div>
@@ -339,7 +340,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Máquinas de vectores de soporte</h1>
+    <h1>SVM</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -357,7 +358,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-de-vectores-de-soporte">6.6. Regresión de vectores de soporte</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-optima-lineal-varepsilon-insensible">6.7. Regresión óptima lineal <span class="math notranslate nohighlight">\(\varepsilon\)</span>-insensible</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-kernel-ridge">6.8. Regresión Kernel Ridge</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">6.9. Máquinas de vectores de soporte</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#maquinas-de-vectores-de-soporte">6.9. Máquinas de vectores de soporte</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clases-linealmente-separables-clasificador-de-maximo-margen">6.10. Clases linealmente separables: Clasificador de máximo margen</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clases-no-separables">6.11. Clases no separables</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios-para-el-estudiante">6.12. Ejercicios para el estudiante</a></li>
@@ -410,8 +411,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="maquinas-de-vectores-de-soporte">
-<h1><span class="section-number">6. </span>Máquinas de vectores de soporte<a class="headerlink" href="#maquinas-de-vectores-de-soporte" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="svm">
+<h1><span class="section-number">6. </span>SVM<a class="headerlink" href="#svm" title="Link to this heading">#</a></h1>
 <div class="admonition-introduccion admonition">
 <p class="admonition-title">Introducción</p>
 <ul class="simple">
@@ -1379,8 +1380,8 @@ f(\boldsymbol{x})=\sum_{n=1}^{N}\theta_{n}\kappa(\boldsymbol{x}, \boldsymbol{x}_
 </figcaption>
 </figure>
 </section>
-<section id="id6">
-<h2><span class="section-number">6.9. </span>Máquinas de vectores de soporte<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<section id="maquinas-de-vectores-de-soporte">
+<h2><span class="section-number">6.9. </span>Máquinas de vectores de soporte<a class="headerlink" href="#maquinas-de-vectores-de-soporte" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Antes de abordar el <em><strong>modelo de clasificación</strong></em>, <em><strong>máquinas de vectores de soporte (SVM)</strong></em> revisemos la definición de un clasificador</p></li>
 </ul>
@@ -1566,7 +1567,7 @@ J(\boldsymbol{\theta}, \theta_{0})=\frac{1}{2}\|\boldsymbol{\theta}\|^{2}+C\sum_
     \]</div>
 <p>donde <span class="math notranslate nohighlight">\(\hat{\theta}_{0}\)</span> <em><strong>es obtenido por medio del promedio entre las soluciones de</strong></em> <a class="reference internal" href="#equation-mean-sol-fortheta0">(6.16)</a>. Aunque la solución es única, los correspondientes multiplicadores <span class="math notranslate nohighlight">\(\lambda_{m}\)</span> pueden no ser únicos.</p>
 </li>
-<li><p>Finalmente <em><strong>el número de vectores de soporte está relacionado con la capacidad de generalización del clasificador</strong></em>. Entre mas pequeño es el número de vectores de soporte, mejor será la generalización esperada (ver <span id="id7">[<a class="reference internal" href="biblio.html#id19" title="Konstantinos Koutroumbas and Sergios Theodoridis. Pattern recognition. Academic Press, 2008.">Koutroumbas and Theodoridis, 2008</a>, <a class="reference internal" href="biblio.html#id18" title="佐土原健. N. cristianini and j. shawe-taylor: an introduction to support vector machines, cambridge university press (2000). 人工知能, 16(2):337–337, 2001.">佐土原健, 2001</a>]</span>).</p></li>
+<li><p>Finalmente <em><strong>el número de vectores de soporte está relacionado con la capacidad de generalización del clasificador</strong></em>. Entre mas pequeño es el número de vectores de soporte, mejor será la generalización esperada (ver <span id="id6">[<a class="reference internal" href="biblio.html#id19" title="Konstantinos Koutroumbas and Sergios Theodoridis. Pattern recognition. Academic Press, 2008.">Koutroumbas and Theodoridis, 2008</a>, <a class="reference internal" href="biblio.html#id18" title="佐土原健. N. cristianini and j. shawe-taylor: an introduction to support vector machines, cambridge university press (2000). 人工知能, 16(2):337–337, 2001.">佐土原健, 2001</a>]</span>).</p></li>
 </ul>
 <p><strong><code class="docutils literal notranslate"><span class="pre">Tarea</span> <span class="pre">de</span> <span class="pre">optimización</span></code></strong></p>
 <ul class="simple">
@@ -2691,11 +2692,11 @@ docker<span class="w"> </span>run<span class="w"> </span>-p<span class="w"> </sp
       </div>
     </a>
     <a class="right-next"
-       href="ann_model.html"
+       href="practical_pca.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">7. </span>Redes Neuronales y Deep Learning</p>
+        <p class="prev-next-title"><span class="section-number">7. </span>PCA</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -2723,7 +2724,7 @@ docker<span class="w"> </span>run<span class="w"> </span>-p<span class="w"> </sp
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-de-vectores-de-soporte">6.6. Regresión de vectores de soporte</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-optima-lineal-varepsilon-insensible">6.7. Regresión óptima lineal <span class="math notranslate nohighlight">\(\varepsilon\)</span>-insensible</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-kernel-ridge">6.8. Regresión Kernel Ridge</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">6.9. Máquinas de vectores de soporte</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#maquinas-de-vectores-de-soporte">6.9. Máquinas de vectores de soporte</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clases-linealmente-separables-clasificador-de-maximo-margen">6.10. Clases linealmente separables: Clasificador de máximo margen</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clases-no-separables">6.11. Clases no separables</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios-para-el-estudiante">6.12. Ejercicios para el estudiante</a></li>

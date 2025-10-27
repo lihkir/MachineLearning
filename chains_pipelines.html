@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>10. Cadenas de Algoritmos y Pipelines &#8212; Machine Learning</title>
+    <title>10. Pipelines &#8212; Machine Learning</title>
   
   
   
@@ -68,7 +68,7 @@
     <script src="_static/.ipynb_checkpoints/custom-checkpoint.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="11. Apéndice" href="appendix.html" />
+    <link rel="next" title="11. Deep Learning" href="ann_model.html" />
     <link rel="prev" title="9. Evaluación de modelos" href="model_evaluation.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -189,18 +189,19 @@
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="supervised_intro.html">1. Aprendizaje supervisado</a></li>
-<li class="toctree-l1"><a class="reference internal" href="knn_model.html">2. <span class="math notranslate nohighlight">\(k\)</span>-vecinos más cercanos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="knn_model.html">2. <span class="math notranslate nohighlight">\(k\)</span>-NN</a></li>
 <li class="toctree-l1"><a class="reference internal" href="linear_model.html">3. Regresión Ridge y Lasso</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bayes_model.html">4. Clasificador Bayesiano</a></li>
 <li class="toctree-l1"><a class="reference internal" href="decisiontree_model.html">5. Random Forest y XGBoost</a></li>
-<li class="toctree-l1"><a class="reference internal" href="svm_model.html">6. Máquinas de vectores de soporte</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ann_model.html">7. Redes Neuronales y Deep Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="practical_pca.html">8. Análisis de Componentes Principales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="svm_model.html">6. SVM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="practical_pca.html">7. PCA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clustering.html">8. Clustering</a></li>
 <li class="toctree-l1"><a class="reference internal" href="model_evaluation.html">9. Evaluación de modelos</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">10. Cadenas de Algoritmos y Pipelines</a></li>
-<li class="toctree-l1"><a class="reference internal" href="appendix.html">11. Apéndice</a></li>
-<li class="toctree-l1"><a class="reference internal" href="exercises_sols.html">12. Soluciones a ejercicios</a></li>
-<li class="toctree-l1"><a class="reference internal" href="biblio.html">13. Bibliografía</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">10. Pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ann_model.html">11. Deep Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix.html">12. Apéndice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exercises_sols.html">13. Soluciones a ejercicios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="biblio.html">14. Bibliografía</a></li>
 </ul>
 
     </div>
@@ -339,7 +340,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Cadenas de Algoritmos y Pipelines</h1>
+    <h1>Pipelines</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -386,8 +387,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="cadenas-de-algoritmos-y-pipelines">
-<h1><span class="section-number">10. </span>Cadenas de Algoritmos y Pipelines<a class="headerlink" href="#cadenas-de-algoritmos-y-pipelines" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="pipelines">
+<h1><span class="section-number">10. </span>Pipelines<a class="headerlink" href="#pipelines" title="Link to this heading">#</a></h1>
 <ul class="simple">
 <li><p>El rendimiento de los algoritmos de aprendizaje automático depende de la representación de los datos, desde el escalado hasta el aprendizaje de características no supervisadas. La mayoría de las aplicaciones requieren encadenar múltiples transformaciones y modelos.</p></li>
 <li><p>La clase <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code> simplifica este proceso, <strong>permitiendo combinar pasos de preprocesamiento y modelos en un solo flujo</strong>. Además, <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code> puede integrarse con <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> para optimizar todos los parámetros a la vez. Un ejemplo muestra que el uso de <code class="docutils literal notranslate"><span class="pre">MinMaxScaler</span></code> mejora significativamente el desempeño de un <code class="docutils literal notranslate"><span class="pre">SVM</span></code> en el conjunto de datos <code class="docutils literal notranslate"><span class="pre">cancer</span></code>.</p></li>
@@ -1885,11 +1886,11 @@ Este proyecto es una arquitectura local basada en herramientas open source y Doc
       </div>
     </a>
     <a class="right-next"
-       href="appendix.html"
+       href="ann_model.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">11. </span>Apéndice</p>
+        <p class="prev-next-title"><span class="section-number">11. </span>Deep Learning</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
