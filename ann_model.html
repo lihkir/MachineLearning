@@ -12495,22 +12495,85 @@ Variabilidad explicada por el autoencoder: 0.8997409120202065
     \]</div>
 <p>Donde:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(s_{t-1}\)</span>: estado anterior del <strong>decoder</strong> (hidden state)</p></li>
-<li><p><span class="math notranslate nohighlight">\(h_j\)</span>: <span class="math notranslate nohighlight">\(j\)</span>-ésimo estado del <strong>encoder</strong></p></li>
+<li><p><span class="math notranslate nohighlight">\(s_{t-1}\)</span>: estado anterior del <strong>decoder</strong> “hidden state” (<em>usualmente una LSTM o GRU</em>)</p></li>
+<li><p><span class="math notranslate nohighlight">\(h_j\)</span>: <span class="math notranslate nohighlight">\(j\)</span>-ésimo estado del <strong>encoder</strong> (<em>generalmente una Bi-LSTM o Bi-GRU</em>).</p></li>
 <li><p><span class="math notranslate nohighlight">\(W_a, U_a\)</span>: matrices de pesos entrenables</p></li>
 <li><p><span class="math notranslate nohighlight">\(v_a\)</span>: vector de pesos entrenable</p></li>
 </ul>
-<p>Pesos de atención normalizados:</p>
+<p><strong>Pesos de atención normalizados</strong></p>
 <div class="math notranslate nohighlight">
 \[
     \alpha_{tj} = \frac{\exp(e_{tj})}{\sum_{k=1}^S \exp(e_{tk})}
     \]</div>
-<p>Vector de contexto dinámico:</p>
+<p><strong>Vector de contexto dinámico</strong></p>
 <div class="math notranslate nohighlight">
 \[
     c_t = \sum_{j=1}^S \alpha_{tj} h_j
     \]</div>
 </li>
+<li><p>En otras palabras:</p>
+<ul class="simple">
+<li><p>Cada <span class="math notranslate nohighlight">\(h_j\)</span> es una <strong>codificación contextual</strong> de la palabra <span class="math notranslate nohighlight">\(x_j\)</span>.
+No es la palabra en sí, sino su representación en el <em>espacio latente del encoder</em>.</p></li>
+<li><p>Cada <span class="math notranslate nohighlight">\(s_{t-1}\)</span> es una <strong>codificación del estado de generación</strong> del decoder en el tiempo <span class="math notranslate nohighlight">\(t-1\)</span>.
+Resume lo que el modelo “sabe” del texto ya producido y lo que espera producir ahora.</p></li>
+<li><p>El vector de contexto <span class="math notranslate nohighlight">\(c_t\)</span></p>
+<ul>
+<li><p>Resume <strong>la información relevante de la entrada</strong> en el paso actual del decoder.</p></li>
+<li><p>Se recalcula <strong>en cada paso de generación</strong>.</p></li>
+<li><p><strong>Permite que el modelo “mire” directamente partes específicas de la secuencia de entrada</strong>, en lugar de depender de una sola representación comprimida.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Por <strong>diseño clásico</strong> (Bahdanau et al., 2015, <em>Neural Machine Translation by Jointly Learning to Align and Translate</em>):</p>
+<ul>
+<li><p><strong>Encoder:</strong> Una <strong>RNN bidireccional</strong> (generalmente una <em>Bi-LSTM</em> o <em>Bi-GRU</em>). Produce una secuencia de <em>hidden states</em>:</p>
+<div class="math notranslate nohighlight">
+\[
+      h_1, h_2, \dots, h_S \in \mathbb{R}^{d_h}
+      \]</div>
+<p>Cada <span class="math notranslate nohighlight">\(h_j\)</span> es la concatenación de los estados forward y backward.</p>
+</li>
+<li><p><strong>Decoder:</strong> Una <strong>RNN unidireccional</strong> (usualmente una <em>LSTM</em> o <em>GRU</em>). En cada paso <span class="math notranslate nohighlight">\(t\)</span>, produce un nuevo estado:</p>
+<div class="math notranslate nohighlight">
+\[
+      s_t = \text{RNNCell}(s_{t-1}, [y_{t-1}, c_t])
+      \]</div>
+<p>donde <span class="math notranslate nohighlight">\(y_{t-1}\)</span> es el embedding del token previo, y <span class="math notranslate nohighlight">\(c_t\)</span> es el vector de contexto dinámico que viene de la atención.</p>
+</li>
+<li><p><strong>Generación del token de salida</strong>. A partir del estado oculto del <em>decoder</em> <span class="math notranslate nohighlight">\(s_t\)</span>, se calcula la probabilidad del siguiente token <span class="math notranslate nohighlight">\(y_t\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+        p(y_t \mid y_{&lt;t}, X) = \text{softmax}(W_o [s_t, c_t])
+        \]</div>
+<p>donde:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(W_o \in \mathbb{R}^{|V| \times (d_s + d_c)}\)</span> es una <strong>matriz de pesos entrenable</strong>,</p></li>
+<li><p><span class="math notranslate nohighlight">\([s_t, c_t]\)</span> es la <strong>concatenación del estado oculto y el vector de contexto</strong>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(|V|\)</span> es el <strong>tamaño del vocabulario</strong>.</p></li>
+</ul>
+<p>El token de salida se obtiene como:</p>
+<div class="math notranslate nohighlight">
+\[
+        y_t =
+        \begin{cases}
+        \arg\max, p(y_t \mid y_{&lt;t}, X), &amp; \textit{(inferencia)} \
+        \text{sample}(p(y_t \mid y_{&lt;t}, X)), &amp; \textit{(teacher forcing)}
+        \end{cases}
+        \]</div>
+</li>
+</ul>
+</li>
+<li><p>El <strong>espacio latente</strong> es el espacio vectorial en el que viven los estados ocultos (<span class="math notranslate nohighlight">\(h_j\)</span>, <span class="math notranslate nohighlight">\(s_t\)</span>) y el vector de contexto (<span class="math notranslate nohighlight">\(c_t\)</span>). Es decir, todos estos vectores están en la <strong>misma dimensión semántica</strong> (por ejemplo, <span class="math notranslate nohighlight">\(\mathbb{R}^{512}\)</span>).</p></li>
+</ul>
+<figure class="align-center" id="bahdanau-attention-fig">
+<img alt="_images/bahdanau_attention.png" src="_images/bahdanau_attention.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 11.46 </span><span class="caption-text"><strong>Fuente:</strong> Bahdanau et al. (2015), <em>Neural Machine Translation by Jointly Learning to Align and Translate.</em></span><a class="headerlink" href="#bahdanau-attention-fig" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<ul class="simple">
 <li><p><strong>Pseudocódigo Python:</strong></p></li>
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">scores</span> <span class="o">=</span> <span class="n">tanh</span><span class="p">(</span><span class="n">W_a</span> <span class="o">@</span> <span class="n">s_prev</span> <span class="o">+</span> <span class="n">U_a</span> <span class="o">@</span> <span class="n">encoder_outputs</span><span class="p">)</span>  <span class="c1"># shape (seq_len,)</span>
