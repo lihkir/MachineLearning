@@ -410,14 +410,13 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#red-de-memoria-a-largo-plazo-lstm">11.18. Red de memoria a largo plazo (LSTM)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-procesamiento-del-lenguaje-natural">11.19. Aplicación: Procesamiento del Lenguaje Natural</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-lstm-para-la-prediccion-de-series-de-tiempo">11.20. Aplicación: LSTM para la predicción de series de tiempo</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#atencion-y-memoria">11.21. Atención y Memoria</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entrenamiento-adversario">11.22. Entrenamiento adversario</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-generativos-profundos">11.23. Modelos Generativos Profundos</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#maquina-de-boltzmann-restringida">11.23.1. Máquina de Boltzmann Restringida</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autoencoders">11.24. Autoencoders</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-autoencoders-para-mnist-data">11.25. Aplicación: Autoencoders para MNIST data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autoencoders">11.21. Autoencoders</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-autoencoders-para-mnist-data">11.22. Aplicación: Autoencoders para MNIST data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#attention">11.23. Attention</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#self-attention">11.24. Self-Attention</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-head-attention">11.25. Multi-head Attention</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformer">11.26. Transformer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplos-de-aplicacion">11.27. Ejemplos de aplicación</a></li>
 </ul>
             </nav>
         </div>
@@ -732,11 +731,11 @@ f(\boldsymbol{z}^{r})
 <ul class="simple">
 <li><p>La siguiente figura describe como es creada la <span class="math notranslate nohighlight">\(j\)</span>-ésima capa de la red neuronal full conectada</p></li>
 </ul>
-<figure class="align-center" id="id54">
+<figure class="align-center" id="id46">
 <a class="reference internal image-reference" href="_images/fully_connected_net.png"><img alt="_images/fully_connected_net.png" src="_images/fully_connected_net.png" style="width: 600.0px; height: 317.20000000000005px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Fig. 11.9 </span><span class="caption-text"><span class="math notranslate nohighlight">\(j\)</span>-ésimo elemento de la capa <span class="math notranslate nohighlight">\(r\)</span> de la red totalmente conectada.</span><a class="headerlink" href="#id54" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 11.9 </span><span class="caption-text"><span class="math notranslate nohighlight">\(j\)</span>-ésimo elemento de la capa <span class="math notranslate nohighlight">\(r\)</span> de la red totalmente conectada.</span><a class="headerlink" href="#id46" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <div class="important admonition">
@@ -7339,10 +7338,10 @@ O_{r}=I_{r}\star H_{r},\quad r=1,2,\dots,d.
 <li><p>A continuación, se presentan <em><strong>redes convolucionales clásicas, cuya comprensión es clave para profundizar en el tema</strong></em>, aunque algunos de sus métodos ya no se utilicen. Los estudios citados ofrecen una base sólida para el aprendizaje de las CNN.</p></li>
 </ul>
 </div>
-<figure class="align-center" id="id55">
+<figure class="align-center" id="id47">
 <img alt="_images/cat_dog_class.png" src="_images/cat_dog_class.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 11.34 </span><span class="caption-text">Clasificación de imágenes. Fuente <a class="reference external" href="https://docs.clarifai.com/">clarifai</a></span><a class="headerlink" href="#id55" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 11.34 </span><span class="caption-text">Clasificación de imágenes. Fuente <a class="reference external" href="https://docs.clarifai.com/">clarifai</a></span><a class="headerlink" href="#id47" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
@@ -7415,10 +7414,10 @@ O_{r}=I_{r}\star H_{r},\quad r=1,2,\dots,d.
 <li><p>En el módulo de inicio, se <em><strong>concatenan los volúmenes de salida de varias trayectorias</strong></em>, permitiendo que la red, durante el entrenamiento, <em><strong>elija las mejores operaciones para cada capa</strong></em>. A medida que se avanza hacia capas superiores, <em><strong>se incrementa la proporción de convoluciones 3 × 3 y 5 × 5, ya que captan rasgos más abstractos</strong></em>. La red tiene <em><strong>22 capas y 6 millones de parámetros</strong></em>.</p></li>
 </ul>
 </div>
-<figure class="align-center" id="id56">
+<figure class="align-center" id="id48">
 <img alt="_images/google-net-like.png" src="_images/google-net-like.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 11.38 </span><span class="caption-text">Arquitectura GoogleNet. Fuente <a class="reference external" href="https://pubmed.ncbi.nlm.nih.gov/29084154/">pubmed</a></span><a class="headerlink" href="#id56" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 11.38 </span><span class="caption-text">Arquitectura GoogleNet. Fuente <a class="reference external" href="https://pubmed.ncbi.nlm.nih.gov/29084154/">pubmed</a></span><a class="headerlink" href="#id48" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <figure class="align-center" id="inception-architecture-numref">
@@ -7499,20 +7498,20 @@ y^r = y^{r-1} + F(y^{r-1})
 </section>
 <section id="u-net-redes-convolucionales-para-la-segmentacion-de-imagenes-biomedicas">
 <h3><span class="section-number">11.16.16. </span>U-Net: Redes Convolucionales para la Segmentación de Imágenes Biomédicas<a class="headerlink" href="#u-net-redes-convolucionales-para-la-segmentacion-de-imagenes-biomedicas" title="Link to this heading">#</a></h3>
-<figure class="align-center" id="id57">
+<figure class="align-center" id="id49">
 <img alt="_images/segmentation_instance.avif" src="_images/segmentation_instance.avif" />
 <figcaption>
-<p><span class="caption-number">Fig. 11.42 </span><span class="caption-text">Image segmentation vs Instance segmentation. Fuente <a class="reference external" href="https://www.v7labs.com/">v7labs</a></span><a class="headerlink" href="#id57" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 11.42 </span><span class="caption-text">Image segmentation vs Instance segmentation. Fuente <a class="reference external" href="https://www.v7labs.com/">v7labs</a></span><a class="headerlink" href="#id49" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <ul class="simple">
 <li><p>En imágenes médicas, la <strong><em>segmentación semántica</em> clasifica cada píxel según una categoría anatómica o patológica, mientras que la <em>segmentación de instancias</em> diferencia objetos individuales dentro de la misma clase</strong>. Estas técnicas son esenciales para el diagnóstico automatizado y la planificación clínica.</p></li>
 <li><p>La arquitectura <strong><em>U-Net</em>, diseñada para segmentación biomédica, permite una segmentación precisa</strong> mediante un diseño en forma de <em>U</em> que combina información de contexto con detalles espaciales, mejorando la detección de estructuras complejas en imágenes médicas.</p></li>
 </ul>
-<figure class="align-center" id="id58">
+<figure class="align-center" id="id50">
 <img alt="_images/unet_segmentation.png" src="_images/unet_segmentation.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 11.43 </span><span class="caption-text">La arquitectura U-Net representa mapas de características con cajas, indicando canales y tamaño, mientras que las flechas señalan las operaciones.</span><a class="headerlink" href="#id58" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 11.43 </span><span class="caption-text">La arquitectura U-Net representa mapas de características con cajas, indicando canales y tamaño, mientras que las flechas señalan las operaciones.</span><a class="headerlink" href="#id50" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <div class="admonition-arquitectura-u-net admonition">
@@ -11842,27 +11841,6 @@ El entrenamiento se ha completado y el historial ha sido guardado en &#39;histor
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
-
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">history_pm25_LSTM</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;loss&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Entrenamiento&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">history_pm25_LSTM</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;val_loss&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Validación&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Pérdida (MAE) en Entrenamiento vs Validación&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;MAE&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Época&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/d9ac891d92596ea9d60a76dbf74bb0febe2b1b336a62b00908abf1c167918ab7.png" src="_images/d9ac891d92596ea9d60a76dbf74bb0febe2b1b336a62b00908abf1c167918ab7.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
 </pre></div>
 </div>
@@ -11956,228 +11934,8 @@ El entrenamiento se ha completado y el historial ha sido guardado en &#39;histor
 </div>
 </div>
 </section>
-<section id="atencion-y-memoria">
-<h2><span class="section-number">11.21. </span>Atención y Memoria<a class="headerlink" href="#atencion-y-memoria" title="Link to this heading">#</a></h2>
-<div class="admonition-introduccion admonition">
-<p class="admonition-title">Introducción</p>
-<ul class="simple">
-<li><p>El uso histórico de <em><strong>esquemas de atención en redes neuronales</strong></em> se inspira en el <em><strong>mecanismo de atención humana</strong></em>. En la visión humana, <em><strong>nos centramos en información contextual importante</strong></em> cuando observamos escenas. En el aprendizaje automático, los <em><strong>modelos de atención implementan este concepto asignando pesos a las variables que influyen en la salida</strong></em>.</p></li>
-<li><p>Por ejemplo, en una <em><strong>RNN</strong></em>, la salida <span class="math notranslate nohighlight">\(\hat{\boldsymbol{y}}_{n}\)</span> depende del vector de estado <span class="math notranslate nohighlight">\(\boldsymbol{h}_{n}\)</span>, pero <em><strong>no siempre es la información más importante para tareas</strong></em> como la traducción de idiomas (aunque el estado codifica la memoria hasta el tiempo más reciente, <span class="math notranslate nohighlight">\(n\)</span>.).</p></li>
-</ul>
-</div>
-<div class="proof observation admonition" id="observation_ann12">
-<p class="admonition-title"><span class="caption-number">Observation 11.6 </span> (Caso típico)</p>
-<section class="observation-content" id="proof-content">
-<ul class="simple">
-<li><p>En la <em><strong>traducción del japonés al inglés, la última palabra de una frase japonesa puede influir mucho en la primera palabra de la traducción inglesa</strong></em>. Del mismo modo, en la <em><strong>toma de decisiones, nuestras acciones dependen de las experiencias pasadas acumuladas</strong></em>, y algunas <em><strong>experiencias pasadas específicas ejercen más influencia que las recientes</strong></em>.</p></li>
-</ul>
-</section>
-</div><ul class="simple">
-<li><p>Para solucionar este problema, <em><strong>los mecanismos de atención asignan pesos a los vectores de estado anteriores</strong></em>, lo que permite que <em><strong>la salida dependa de una combinación ponderada de información previa</strong></em>. Estas ponderaciones se aprenden durante el entrenamiento, lo que <em><strong>permite al sistema dar prioridad a detalles contextuales significativos</strong></em> a la hora de tomar decisiones o generar resultados.</p></li>
-</ul>
-<ul>
-<li><p>Por ejemplo, el <em><strong>vector de salida</strong></em> puede modificarse para que <em><strong>dependa de todos los vectores de estado calculados anteriormente</strong></em></p>
-<div class="math notranslate nohighlight">
-\[
-    \hat{\boldsymbol{y}}_{n}=f\left(\sum_{i=1}^{n}\alpha_{ni}\boldsymbol{h}_{i}+\boldsymbol{c}\right),
-    \]</div>
-<p>donde <span class="math notranslate nohighlight">\(\alpha_{ni}\)</span> son los <em><strong>correspondientes pesos en el tiempo</strong></em> <span class="math notranslate nohighlight">\(n\)</span>.</p>
-</li>
-<li><p>La idea anterior de <em><strong>combinar todos los vectores de estado</strong></em> ha sido empleada, en una formulación algo diferente, en el <em><strong>sistema de traducción automática</strong></em> (ver <span id="id46">[<a class="reference internal" href="biblio.html#id48" title="Dzmitry Bahdanau, Kyunghyun Cho, and Yoshua Bengio. Neural machine translation by jointly learning to align and translate. arXiv preprint arXiv:1409.0473, 2014.">Bahdanau <em>et al.</em>, 2014</a>]</span>)</p></li>
-</ul>
-<figure class="align-center" id="attention-weights-grayscale-numref">
-<a class="reference internal image-reference" href="_images/attention_weights_grayscale.png"><img alt="_images/attention_weights_grayscale.png" src="_images/attention_weights_grayscale.png" style="width: 381.6px; height: 434.40000000000003px;" />
-</a>
-<figcaption>
-<p><span class="caption-number">Fig. 11.46 </span><span class="caption-text">Valores de los pesos de atención en escala de grises. <a class="reference internal" href="#attention_example_grayscale">Example 11.1</a></span><a class="headerlink" href="#attention-weights-grayscale-numref" title="Link to this image">#</a></p>
-</figcaption>
-</figure>
-<div class="proof example admonition" id="attention_example_grayscale">
-<p class="admonition-title"><span class="caption-number">Example 11.1 </span></p>
-<section class="example-content" id="proof-content">
-<ul class="simple">
-<li><p>La <a class="reference internal" href="#attention-weights-grayscale-numref"><span class="std std-numref">Fig. 11.46</span></a> demuestra el razonamiento que subyace a la <em><strong>utilización de un mecanismo de ponderación</strong></em>. La <em><strong>entrada</strong></em> está representada por las <em><strong>palabras en francés</strong></em>, mientras que las secuencias de <em><strong>salida</strong></em> correspondientes están representadas por las <em><strong>palabras en inglés</strong></em>.</p></li>
-<li><p><em><strong>La visualización representa los pesos de atención como píxeles</strong></em>, donde los <em><strong>pesos más altos se representan como píxeles más blancos</strong></em>. En particular, el <em><strong>término</strong></em> <code class="docutils literal notranslate"><span class="pre">&quot;produce&quot;</span></code> <em><strong>en la salida</strong></em> es consecuencia de <em><strong>asignar peso a la información de tres puntos temporales consecutivos</strong></em>, vinculados con las palabras <code class="docutils literal notranslate"><span class="pre">&quot;peut</span> <span class="pre">plus</span> <span class="pre">produire&quot;</span></code>, mientras que el término <code class="docutils literal notranslate"><span class="pre">&quot;destruction&quot;</span></code> está <em><strong>asociado con dos palabras</strong></em>, a saber, <code class="docutils literal notranslate"><span class="pre">&quot;La</span> <span class="pre">destruction&quot;</span></code>.</p></li>
-</ul>
-</section>
-</div><div class="proof observation admonition" id="observation_ann13">
-<p class="admonition-title"><span class="caption-number">Observation 11.7 </span></p>
-<section class="observation-content" id="proof-content">
-<ul class="simple">
-<li><p>Una ventaja notable de <em><strong>incorporar un mecanismo de atención</strong></em> al modelo es la <em><strong>transparencia que aporta a las acciones del modelo</strong></em> y a la formación de la información de salida. Esto resulta especialmente valioso cuando la <em><strong>interpretabilidad de la red es una preocupación</strong></em>, ya que permite comprender el <em><strong>“por qué” y el “cómo” del proceso de toma de decisiones de la red</strong></em>.</p></li>
-</ul>
-</section>
-</div></section>
-<section id="entrenamiento-adversario">
-<h2><span class="section-number">11.22. </span>Entrenamiento adversario<a class="headerlink" href="#entrenamiento-adversario" title="Link to this heading">#</a></h2>
-<div class="admonition-introduccion admonition">
-<p class="admonition-title">Introducción</p>
-<ul class="simple">
-<li><p>Las <em><strong>redes neuronales profundas</strong></em> lideran en la obtención de un <em><strong>rendimiento y precisión sobresalientes</strong></em>, frecuentemente comparables e incluso en <em><strong>algunos casos superiores a las habilidades humanas</strong></em>. Sin embargo, persiste el <em><strong>desafío de afirmar que estos modelos realmente “comprenden” las tareas que han “aprendido” a realizar</strong></em>, a pesar de su habilidad para predecir etiquetas precisas en tareas de clasificación con una confianza considerablemente alta.</p></li>
-<li><p>Es <em><strong>viable <code class="docutils literal notranslate"><span class="pre">generar</span> <span class="pre">ejemplos</span> <span class="pre">adversos</span> <span class="pre">que</span> <span class="pre">sistemáticamente</span> <span class="pre">engañan</span> <span class="pre">a</span> <span class="pre">los</span> <span class="pre">modelos</span> <span class="pre">de</span> <span class="pre">aprendizaje</span> <span class="pre">automático</span></code></strong></em>. Aquí, <em><strong>“adversario” denota la introducción intencional de pequeñas perturbaciones en los patrones dentro del conjunto de datos de entrada</strong></em>, lo que resulta en una <em><strong>alta probabilidad de clasificación incorrecta</strong></em>. Notablemente, estas sutiles perturbaciones de ruido son <em><strong>apenas detectables para los sentidos humanos</strong></em>, ya sea en forma de imágenes o música.</p></li>
-</ul>
-</div>
-<ul class="simple">
-<li><p>La <a class="reference internal" href="#wrong-image-classification-numref"><span class="std std-numref">Fig. 11.47</span></a> muestra una serie de <em><strong>nueve imágenes</strong></em>. Se ha entrenado una <em><strong>red neuronal (AlexNet)</strong></em> para <em><strong>discernir los contenidos de las imágenes</strong></em>. El trío <em><strong>izquierdo de imágenes</strong></em>, tomadas del respectivo conjunto de pruebas, fueron <em><strong>identificadas con precisión</strong></em>. Las imágenes en el <em><strong>centro son versiones ruidosas</strong></em> añadidas a las originales de la izquierda. Las composiciones <em><strong>resultantes se presentan a la derecha</strong></em>. Mientras los seres <em><strong>humanos anticipan sin dificultad las etiquetas correctas</strong></em>, <em><strong>AlexNet catalogó de forma errónea las tres imágenes como “<code class="docutils literal notranslate"><span class="pre">avestruz,</span> <span class="pre">struthio</span> <span class="pre">camelus</span></code>”</strong></em>.</p></li>
-</ul>
-<figure class="align-center" id="wrong-image-classification-numref">
-<a class="reference internal image-reference" href="_images/wrong_image_classification.png"><img alt="_images/wrong_image_classification.png" src="_images/wrong_image_classification.png" style="width: 672.0px; height: 661.6px;" />
-</a>
-<figcaption>
-<p><span class="caption-number">Fig. 11.47 </span><span class="caption-text">Imágenes de la <em><strong>izquierda</strong></em> se han <em><strong>clasificado correctamente</strong></em>. Todas las <em><strong>imágenes de la derecha</strong></em> han sido <em><strong>clasificadas como “avestruz, Struthio camelus”</strong></em>. Fuente <span id="id47">[<a class="reference internal" href="biblio.html#id17" title="S. Theodoridis. Machine Learning: A Bayesian and Optimization Perspective. Elsevier Science, 2020. ISBN 9780128188040. URL: https://books.google.com.co/books?id=l-nEDwAAQBAJ.">Theodoridis, 2020</a>]</span>.</span><a class="headerlink" href="#wrong-image-classification-numref" title="Link to this image">#</a></p>
-</figcaption>
-</figure>
-<ul>
-<li><p>La causa de este <em><strong>comportamiento aparentemente “peculiar”</strong></em> parece estar vinculada a la <em><strong>naturaleza altamente dimensional del espacio de entrada</strong></em>. Por lo general, en un contexto de aprendizaje, se cumple el <em><strong>supuesto de suavidad</strong></em>.  Esto implica que <em><strong>para un valor positivo suficientemente pequeño</strong></em> <span class="math notranslate nohighlight">\(\epsilon\)</span> y un <em><strong>patrón de entrada</strong></em> <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span>, se espera que el patrón</p>
-<div class="math notranslate nohighlight">
-\[
-    \boldsymbol{x}':= \boldsymbol{x} + \boldsymbol{v},~\text{donde}~\boldsymbol{v} : \|\boldsymbol{v}\|\leq\epsilon,
-    \]</div>
-<p>se <em><strong>clasifique en la misma categoría que</strong></em> <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> <em><strong>con una alta probabilidad</strong></em>.</p>
-</li>
-<li><p>El impacto de la <em><strong>alta dimensionalidad (número de características igual o superior al número de observaciones)</strong></em> en la condición de suavidad se hace evidente, sobre todo en el contexto de un <em><strong>clasificador lineal</strong></em>. Consideremos un <em><strong>clasificador</strong></em> entrenado <em><strong>descrito por sus parámetros</strong></em>, <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span>. Dado un <em><strong>patrón de entrada</strong></em>, <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span>, la <em><strong>etiqueta se determina basándose en el signo del producto interior</strong></em>, <span class="math notranslate nohighlight">\(\boldsymbol{\theta}^{T}\boldsymbol{x}\)</span>. Para el escenario en el que interviene <span class="math notranslate nohighlight">\(\boldsymbol{x}'\)</span>, el producto interior se expresa como</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[
-\boldsymbol{\theta}^{T}\boldsymbol{x}' = \boldsymbol{\theta}^{T}\boldsymbol{x} + \boldsymbol{\theta}^{T}\boldsymbol{v}.
-\]</div>
-<ul class="simple">
-<li><p>Si establecemos intencionadamente <span class="math notranslate nohighlight">\(\boldsymbol{v} = \pm\epsilon\cdot\text{sgn}(\boldsymbol{\theta})\)</span>, donde la <em><strong>operación signo se aplica elemento a elemento</strong></em>, se obtiene un resultado digno de mención. Entonces</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[
-\boldsymbol{\theta}^{T}\boldsymbol{x}'=\boldsymbol{\theta}^{T}\boldsymbol{x}+\boldsymbol{\theta}^{T}\boldsymbol{v}=\boldsymbol{\theta}^{T}\boldsymbol{x}\pm\epsilon\sum_{i=1}^{l}|\theta_{i}|.
-\]</div>
-<ul class="simple">
-<li><p>Por lo tanto, cuando la <em><strong>dimensionalidad de la entrada</strong></em> <span class="math notranslate nohighlight">\(l\)</span> <em><strong>es alta</strong></em>, es probable que se produzcan <em><strong>diferencias significativas en los valores del producto interno</strong></em>, lo que podría causar etiquetas de <em><strong>predicción distintas</strong></em> tanto para <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> como para <span class="math notranslate nohighlight">\(\boldsymbol{x}'\)</span>. En términos sencillos, la <em><strong>interacción de la linealidad y la alta dimensionalidad rompe el supuesto de suavidad</strong></em>.</p></li>
-</ul>
-<div class="proof observation admonition" id="observation_ann14">
-<p class="admonition-title"><span class="caption-number">Observation 11.8 </span></p>
-<section class="observation-content" id="proof-content">
-<ul class="simple">
-<li><p>A pesar de que los <em><strong>ejemplos adversos son poco frecuentes</strong></em> en los datos de entrada (tanto en los conjuntos de <em><strong>entrenamiento</strong></em> como en los de <em><strong>prueba</strong></em>), <em><strong>su existencia sigue siendo desconcertante</strong></em>. Además, pueden aprovecharse para <em><strong>engañar deliberadamente a las redes</strong></em>. En consecuencia, han surgido varias <em><strong>técnicas para reforzar la resistencia de las redes frente a adversarios</strong></em>.</p></li>
-</ul>
-</section>
-</div><ul class="simple">
-<li><p>Uno estudio descrito en <span id="id48">[<a class="reference internal" href="biblio.html#id49" title="Christian Szegedy, Wojciech Zaremba, Ilya Sutskever, Joan Bruna, Dumitru Erhan, Ian Goodfellow, and Rob Fergus. Intriguing properties of neural networks. arXiv preprint arXiv:1312.6199, 2013.">Szegedy <em>et al.</em>, 2013</a>]</span>, consiste en <em><strong>generar ejemplos adversos e incorporarlos de nuevo al conjunto de entrenamiento</strong></em>. Esta estrategia funciona como una forma de <em><strong>regularización a través del aumento de datos</strong></em>. Sin embargo, una perspectiva alternativa presentada en <span id="id49">[<a class="reference internal" href="biblio.html#id50" title="Corey Kereliuk, Bob L Sturm, and Jan Larsen. Deep learning and music adversaries. IEEE Transactions on Multimedia, 17(11):2059–2071, 2015.">Kereliuk <em>et al.</em>, 2015</a>]</span> argumenta que este método <em><strong>no mejoró notablemente el rendimiento cuando se aplicó a datos musicales</strong></em>.</p></li>
-</ul>
-<ul>
-<li><p>En <span id="id50">[<a class="reference internal" href="biblio.html#id51" title="Ian J Goodfellow, Jonathon Shlens, and Christian Szegedy. Explaining and harnessing adversarial examples. arXiv preprint arXiv:1412.6572, 2014.">Goodfellow <em>et al.</em>, 2014</a>]</span>, la <em><strong>función de pérdida</strong></em> <span class="math notranslate nohighlight">\(J\)</span> <em><strong>se modifica adecuadamente</strong></em> como</p>
-<div class="math notranslate nohighlight">
-\[
-    J'(\boldsymbol{\theta}, \boldsymbol{x}, \boldsymbol{y})=\alpha J(\boldsymbol{\theta}, \boldsymbol{x}, \boldsymbol{y})+(1-\alpha)J(\boldsymbol{\theta}, \boldsymbol{x}+\Delta\boldsymbol{x}, \boldsymbol{y}),~0&lt;\alpha&lt;1,
-    \]</div>
-<p>donde</p>
-<div class="math notranslate nohighlight">
-\[
-    \Delta\boldsymbol{x}=\epsilon\cdot\text{sgn}\left(\frac{\partial}{\partial\boldsymbol{x}}J(\boldsymbol{\theta}, \boldsymbol{x}, \boldsymbol{y})\right),~\epsilon&gt;0,
-    \]</div>
-<p>es una <em><strong>dirección para la perturbación adversarial</strong></em>.</p>
-</li>
-<li><p>Es importante señalar que los <em><strong>ejemplos adversarios</strong></em> siguen siendo un foco de investigación en evolución dinámica. Se subrayan los <em><strong>peligros potenciales, como la manipulación de vehículos autónomos utilizando muestras adversarios</strong></em>, entre otros (ver <span id="id51">[<a class="reference internal" href="biblio.html#id53" title="Alexey Kurakin, Ian J Goodfellow, and Samy Bengio. Adversarial examples in the physical world. In Artificial intelligence safety and security, pages 99–112. Chapman and Hall/CRC, 2018.">Kurakin <em>et al.</em>, 2018</a>, <a class="reference internal" href="biblio.html#id52" title="Nicolas Papernot, Patrick McDaniel, Ian Goodfellow, Somesh Jha, Z Berkay Celik, and Ananthram Swami. Practical black-box attacks against machine learning. In Proceedings of the 2017 ACM on Asia conference on computer and communications security, 506–519. 2017.">Papernot <em>et al.</em>, 2017</a>, <a class="reference internal" href="biblio.html#id54" title="Nicolas Papernot, Patrick McDaniel, Arunesh Sinha, and Michael Wellman. Towards the science of security and privacy in machine learning. arXiv preprint arXiv:1611.03814, 2016.">Papernot <em>et al.</em>, 2016</a>]</span>).</p></li>
-</ul>
-</section>
-<section id="modelos-generativos-profundos">
-<h2><span class="section-number">11.23. </span>Modelos Generativos Profundos<a class="headerlink" href="#modelos-generativos-profundos" title="Link to this heading">#</a></h2>
-<section id="maquina-de-boltzmann-restringida">
-<h3><span class="section-number">11.23.1. </span>Máquina de Boltzmann Restringida<a class="headerlink" href="#maquina-de-boltzmann-restringida" title="Link to this heading">#</a></h3>
-<div class="admonition-introduccion admonition">
-<p class="admonition-title">Introducción</p>
-<ul class="simple">
-<li><p>Una <em><strong>máquina de Boltzmann restringida (RBM)</strong></em> es una <em><strong>red neuronal artificial estocástica generativa</strong></em> que puede <em><strong>aprender una distribución de probabilidad sobre su conjunto de entradas</strong></em> bajo ajuste de parámetros. Las RBM fueron estudiadas inicialmente con el nombre de <em><strong>Harmonium por Paul Smolensky en 1986</strong></em>, y adquirieron prominencia después de que <em><strong>Geoffrey Hinton</strong></em> y sus colaboradores propusieron para estas, algoritmos de aprendizaje rápido a mediados de 2000.</p></li>
-<li><p>Las <em><strong>RBM</strong></em> han encontrado <em><strong>aplicaciones en la <code class="docutils literal notranslate"><span class="pre">reducción</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">dimensionalidad,</span> <span class="pre">clasificación,</span> <span class="pre">filtrado,</span> <span class="pre">aprendizaje</span> <span class="pre">de</span> <span class="pre">funciones,</span> <span class="pre">modelado</span> <span class="pre">de</span> <span class="pre">temas</span> <span class="pre">e</span> <span class="pre">incluso</span> <span class="pre">en</span> <span class="pre">muchas</span> <span class="pre">mecánicas</span> <span class="pre">cuánticas</span> <span class="pre">corporales</span></code></strong></em>. Pueden ser entrenados en <em><strong>forma supervisada o no supervisada</strong></em>, dependiendo de la tarea.</p></li>
-</ul>
-</div>
-<ul>
-<li><p>El modelo gráfico de la <a class="reference internal" href="#rboltzmann-model-numref"><span class="std std-numref">Fig. 11.48</span></a> ilustra una <em><strong>máquina de Boltzmann restringida (RBM)</strong></em>. La máquina de Boltzmann utiliza la siguiente <em><strong>distribución de probabilidad conjunta de Boltzmann</strong></em> definida como</p>
-<div class="math notranslate nohighlight">
-\[
-    p(x_{1}, \dots, x_{l}):=p(\boldsymbol{x})=\frac{1}{Z}\exp\left(-\sum_{i}\left(\sum_{j&gt;i}\theta_{ij}x_{i}x_{j}+\theta_{i0}x_{i}\right)\right),
-    \]</div>
-<p>donde cada <em><strong>variable aleatoria toma valores binarios</strong></em> en <span class="math notranslate nohighlight">\(\{-1, 1\}\)</span>, <span class="math notranslate nohighlight">\(\theta_{ij}=0\)</span> si los <em><strong>nodos respectivos no están conectados</strong></em> y la constante <span class="math notranslate nohighlight">\(Z\)</span> se conoce como <em><strong>función de partición</strong></em> y es la <em><strong>constante normalizadora</strong></em> para <em><strong>garantizar que</strong></em> <span class="math notranslate nohighlight">\(p(x_{1}, \dots, x_{l})\)</span> <em><strong>es una distribución de probabilidad</strong></em>.</p>
-</li>
-<li><p>Es importante destacar que los <em><strong>nodos dentro de la misma capa carecen de interconexiones</strong></em>. Esta arquitectura abarca <em><strong>nodos visibles en la capa inferior</strong></em> que reciben observaciones, mientras que la <em><strong>capa superior contiene nodos vinculados a variables ocultas</strong></em>. Cabe destacar que <em><strong>sólo los nodos de la capa inferior reciben observaciones</strong></em>. Es posible construir <em><strong>RBM profundos</strong></em> apilando múltiples <em><strong>RBM</strong></em> unos sobre otros.</p></li>
-<li><p>De acuerdo con la <em><strong>definición general de una máquina de Boltzmann</strong></em>, la distribución conjunta de las variables aleatorias implicadas puede expresarse como:</p>
-<div class="math notranslate nohighlight">
-\[
-    P(v_{1}, \dots, v_{J}, h_{1}, \dots, h_{I})=\frac{1}{Z}\exp(-E(\boldsymbol{v}, \boldsymbol{h})),
-    \]</div>
-<p>donde hemos utilizado símbolos diferentes para las <span class="math notranslate nohighlight">\(J\)</span> <em><strong>variables visibles</strong></em> (<span class="math notranslate nohighlight">\(v_{j},~j = 1, 2,\dots, J\)</span>) y las <span class="math notranslate nohighlight">\(I\)</span> <em><strong>variables ocultas</strong></em> (<span class="math notranslate nohighlight">\(h_{i},~i = 1, 2,\dots, I\)</span>).</p>
-</li>
-</ul>
-<ul class="simple">
-<li><p>La <em><strong>función de energía no es la salida de la RBM</strong></em>, por lo contrario, es una métrica para medir la calidad de un modelo. Produce un <em><strong>valor escalar que corresponde básicamente a la configuración del modelo</strong></em> y es un <em><strong>indicador de la probabilidad de que el modelo esté en esa configuración</strong></em>. Si el modelo está configurado para favorecer una energía baja, las <em><strong>configuraciones que conduzcan a una energía baja tendrán una probabilidad más alta</strong></em>.</p></li>
-</ul>
-<figure class="align-center" id="rboltzmann-model-numref">
-<a class="reference internal image-reference" href="_images/rboltzmann_model.png"><img alt="_images/rboltzmann_model.png" src="_images/rboltzmann_model.png" style="width: 274.4px; height: 121.8px;" />
-</a>
-<figcaption>
-<p><span class="caption-number">Fig. 11.48 </span><span class="caption-text">Arquitectura de <em><strong>modelo (RBM)</strong></em>. Fuente <span id="id52">[<a class="reference internal" href="biblio.html#id17" title="S. Theodoridis. Machine Learning: A Bayesian and Optimization Perspective. Elsevier Science, 2020. ISBN 9780128188040. URL: https://books.google.com.co/books?id=l-nEDwAAQBAJ.">Theodoridis, 2020</a>]</span>.</span><a class="headerlink" href="#rboltzmann-model-numref" title="Link to this image">#</a></p>
-</figcaption>
-</figure>
-<ul class="simple">
-<li><p>La <em><strong>energía</strong></em> se define en <em><strong>función de un conjunto de parámetros desconocidos</strong></em>, es decir,</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[
-E(\boldsymbol{v}, \boldsymbol{h})=-\sum_{i=1}^{I}\sum_{j=1}^{J}\theta_{ij}h_{i}v_{j}-\sum_{i=1}^{I}b_{i}h_{i}-\sum_{j=1}^{J}c_{j}v_{j}.                                                                                                                                                                              
-\]</div>
-<ul class="simple">
-<li><p>La <em><strong>constante de normalización</strong></em> se obtiene como</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[
-Z=\sum_{v}\sum_{h}\exp(-E(\boldsymbol{v}, \boldsymbol{h})).
-\]</div>
-<ul class="simple">
-<li><p>Nuestro enfoque será en <em><strong>variables discretas</strong></em>, lo que implica que las <em><strong>distribuciones relacionadas son de carácter probabilístico</strong></em>. Específicamente, nos centraremos en <em><strong>variables de naturaleza binaria</strong></em>, es decir, aquellas que poseen únicamente dos posibles valores, <span class="math notranslate nohighlight">\(v_{j}, h_{i}\in\{0, 1\},\)</span> <span class="math notranslate nohighlight">\(j=1,\dots,J\)</span>, <span class="math notranslate nohighlight">\(i=1,\dots,I\)</span>.</p></li>
-</ul>
-<ul>
-<li><p>El objetivo al <em><strong>entrenar una Máquina de Boltzmann Restringida (RBM)</strong></em> consiste en <em><strong>adquirir el conjunto de parámetros desconocidos</strong></em> <span class="math notranslate nohighlight">\(\theta_{ij}, b_{i}, c_{j}\)</span>, los cuales serán designados colectivamente como, <span class="math notranslate nohighlight">\(\boldsymbol{\Theta},\boldsymbol{b}\)</span> y <span class="math notranslate nohighlight">\(\boldsymbol{c}\)</span> respectivamente. Un enfoque primordial para lograr esto es <em><strong>maximizar la log-verosimilitud</strong></em>, utilizando <span class="math notranslate nohighlight">\(N\)</span> observaciones de las <em><strong>variables visibles</strong></em>, representadas como <span class="math notranslate nohighlight">\(v_{n},~n=1,\dots, N\)</span>, donde</p>
-<div class="math notranslate nohighlight">
-\[
-    \boldsymbol{v}_{n}=[v_{1n}, \dots, v_{Jn}]^{T},
-    \]</div>
-<p>es el vector que contiene las <em><strong>observaciones</strong></em> correspondientes en el <em><strong>momento</strong></em> <span class="math notranslate nohighlight">\(n\)</span>.</p>
-</li>
-</ul>
-<ul>
-<li><p>Diremos que los <em><strong>nodos visibles están fijados en las observaciones respectivas</strong></em>. La correspondiente <em><strong>log-verosimilitud (promedio)</strong></em> se expresa como sigue:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-    \begin{align*}
-    L(\boldsymbol{\Theta}, \boldsymbol{b}, \boldsymbol{c})&amp;=\frac{1}{N}\sum_{n=1}^{N}\ln P(\boldsymbol{v}_{n};\boldsymbol{\Theta}, \boldsymbol{b}, \boldsymbol{c})\\
-    &amp;=\frac{1}{N}\sum_{n=1}^{N}\ln\left(\frac{1}{Z}\sum_{\boldsymbol{h}}\exp(-E(\boldsymbol{v}_{n}, \boldsymbol{h}; \boldsymbol{\Theta}, \boldsymbol{b}, \boldsymbol{c}))\right)\\
-    &amp;=\frac{1}{N}\sum_{n=1}^{N}\ln\left(\sum_{\boldsymbol{h}}\exp(-E(\boldsymbol{v}_{n}, \boldsymbol{h}; \boldsymbol{\Theta}, \boldsymbol{b}, \boldsymbol{c}))\right)-\ln\sum_{\boldsymbol{v}}\sum_{\boldsymbol{h}}\exp\left(-E(\boldsymbol{v}, \boldsymbol{h})\right),
-    \end{align*}
-    \end{split}\]</div>
-<p>donde el índice “<span class="math notranslate nohighlight">\(n\)</span>” en la energía se refiere a las <em><strong>observaciones respectivas en las cuales los nodos visibles han sido fijados</strong></em>, y el símbolo “<span class="math notranslate nohighlight">\(\Theta\)</span>” ha sido <em><strong>incluido explícitamente en la notación</strong></em>.</p>
-</li>
-</ul>
-<ul>
-<li><p>Tomando la derivada de <span class="math notranslate nohighlight">\(L(\boldsymbol{\Theta}, \boldsymbol{b}, \boldsymbol{c})\)</span> respecto a <span class="math notranslate nohighlight">\(\theta_{ij}\)</span> (similar es el caso de las derivadas respecto a respecto a <span class="math notranslate nohighlight">\(b_{i}\)</span> y <span class="math notranslate nohighlight">\(c_{j}\)</span>) y aplicando las <em><strong>propiedades estándar de las derivadas</strong></em>, se tiene que (<em><strong>verifíquelo</strong></em>)</p>
-<div class="math notranslate nohighlight" id="equation-gradient-boltzmann-eq">
-<span class="eqno">(11.18)<a class="headerlink" href="#equation-gradient-boltzmann-eq" title="Link to this equation">#</a></span>\[
-    \frac{\partial L(\boldsymbol{\Theta}, \boldsymbol{b}, \boldsymbol{c})}{\partial\theta_{ij}}=\frac{1}{N}\sum_{n=1}^{N}\left(\sum_{\boldsymbol{h}}P(\boldsymbol{h}|\boldsymbol{v}_{n})h_{i}v_{jn}\right)-\sum_{\boldsymbol{v}}\sum_{\boldsymbol{h}}P(\boldsymbol{v}, \boldsymbol{h})h_{i}v_{j},
-    \]</div>
-<p>donde</p>
-<div class="math notranslate nohighlight">
-\[
-    P(\boldsymbol{h}|\boldsymbol{v})=\frac{P(\boldsymbol{v}|\boldsymbol{h})}{\sum_{\boldsymbol{h}'}P(\boldsymbol{v}, \boldsymbol{h}')}.
-    \]</div>
-</li>
-</ul>
-<ul class="simple">
-<li><p>El gradiente en la Eq. <a class="reference internal" href="#equation-gradient-boltzmann-eq">(11.18)</a> consta de <em><strong>dos términos</strong></em>. El primero puede ser <em><strong>calculado una vez que</strong></em> <span class="math notranslate nohighlight">\(P(\boldsymbol{h}|\boldsymbol{v})\)</span> <em><strong>está disponible</strong></em>. Básicamente, este término es la <em><strong>tasa media de disparo o correlación</strong></em> cuando la Máquina de Boltzmann Restringida <em><strong>(RBM) está operando en su fase fijada</strong></em>; a menudo, nos referimos a esto como la <em><strong>fase positiva</strong></em> (<em><strong>regla de aprendizaje de Hebb</strong></em> <span id="id53">[<a class="reference internal" href="biblio.html#id55" title="Donald Olding Hebb. The organization of behavior: A neuropsychological theory. Psychology press, 2005.">Hebb, 2005</a>]</span>), y el término se denota como <span class="math notranslate nohighlight">\(\langle h{i}v_{j}\rangle^{+}\)</span>. El segundo término es la <em><strong>correlación correspondiente cuando la RBM está funcionando en su llamada fase libre o negativa</strong></em>, y se denota como <span class="math notranslate nohighlight">\(\langle h_{i}v_{j}\rangle^{-}\)</span>. Por lo tanto, un <em><strong>esquema de aumento de gradiente</strong></em> para maximizar la log-verosimilitud tendrá la forma:</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[
-\theta_{ij}(\text{new})=\theta_{ij}(old)+\mu(\langle h{i}v_{j}\rangle^{+}-\langle h_{i}v_{j}\rangle^{-}).
-\]</div>
-</section>
-</section>
 <section id="autoencoders">
-<h2><span class="section-number">11.24. </span>Autoencoders<a class="headerlink" href="#autoencoders" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">11.21. </span>Autoencoders<a class="headerlink" href="#autoencoders" title="Link to this heading">#</a></h2>
 <figure class="align-center">
 <img alt="_images/autoencoder-architecture.png" src="_images/autoencoder-architecture.png" />
 </figure>
@@ -12222,7 +11980,7 @@ Z=\sum_{v}\sum_{h}\exp(-E(\boldsymbol{v}, \boldsymbol{h})).
 </ul>
 </section>
 <section id="aplicacion-autoencoders-para-mnist-data">
-<h2><span class="section-number">11.25. </span>Aplicación: Autoencoders para MNIST data<a class="headerlink" href="#aplicacion-autoencoders-para-mnist-data" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">11.22. </span>Aplicación: Autoencoders para MNIST data<a class="headerlink" href="#aplicacion-autoencoders-para-mnist-data" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -12644,6 +12402,387 @@ Variabilidad explicada por el autoencoder: 0.8997409120202065
 </div>
 </div>
 </section>
+<section id="attention">
+<h2><span class="section-number">11.23. </span>Attention<a class="headerlink" href="#attention" title="Link to this heading">#</a></h2>
+<div class="important admonition">
+<p class="admonition-title">Introducción</p>
+<ul class="simple">
+<li><p><strong>Base Neurocientífica y Psicológica</strong></p>
+<ul>
+<li><p>En lectura humana, no procesamos cada palabra linealmente; <strong>nuestro cerebro focaliza atención en elementos relevantes según contexto y significado</strong>.</p></li>
+<li><p>En NLP, esto se traduce en <strong>pesos de atención (<span class="math notranslate nohighlight">\(\alpha\)</span>)</strong> aplicados a los estados del encoder para generar un <strong>vector de contexto (<span class="math notranslate nohighlight">\(c_t\)</span>)</strong> que condicione la predicción del decoder.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<ul>
+<li><p><strong>Problema de los Encoder-Decoder clásicos</strong>. El modelo secuencial clásico codifica toda la información en un vector fijo <span class="math notranslate nohighlight">\(v\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+    P(y_1, ..., y_T \mid x_1, ..., x_S) = \prod_{t=1}^T P(y_t \mid v, y_1, ..., y_{t-1})
+    \]</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(v\)</span> es un vector de contexto fijo → cuello de botella informativo. Es un <strong>vector de dimensión fija que intenta resumir toda la información relevante de la secuencia de entrada</strong>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(P(y_1, \ldots, y_T \mid x_1, \ldots, x_S)\)</span>: Representa la <strong>probabilidad total</strong> de generar toda la <em>secuencia de salida (por ejemplo, en inglés) condicionada a la secuencia completa de entrada (por ejemplo, en español)</em>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\prod_{t=1}^T\)</span>: Indica que el modelo <strong>genera los tokens uno por uno, siguiendo un proceso autoregresivo</strong>. Cada paso (<span class="math notranslate nohighlight">\(t\)</span>) depende de los tokens previos (<span class="math notranslate nohighlight">\(y_1, \ldots, y_{t-1}\)</span>).</p></li>
+<li><p><span class="math notranslate nohighlight">\(P(y_t \mid v, y_1, \ldots, y_{t-1})\)</span>: Es la <strong>probabilidad de generar el token actual</strong> (<span class="math notranslate nohighlight">\(y_t\)</span>), dado:</p>
+<ol class="arabic simple">
+<li><p>El <strong>vector de contexto fijo</strong> (<span class="math notranslate nohighlight">\(v\)</span>), que proviene del encoder.</p></li>
+<li><p>La <strong>historia previa</strong> de tokens ya generados por el decoder.</p></li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p><strong>Contexto: Modelo Encoder-Decoder</strong>: ¿Qué hace cada parte?</p>
+<p><strong>1. Encoder:</strong></p>
+<ul class="simple">
+<li><p>Recibe la <strong>secuencia de entrada</strong>, por ejemplo una frase en español:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+    X = [x_1, x_2, x_3, x_4] = [\text{&quot;El&quot;, &quot;gato&quot;, &quot;negro&quot;, &quot;duerme&quot;}]
+    \]</div>
+<ul class="simple">
+<li><p>La procesa paso a paso y genera <strong>hidden states</strong> (representaciones vectoriales de cada palabra):</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+    h_1, h_2, h_3, h_4
+    \]</div>
+<ul class="simple">
+<li><p>Cada <span class="math notranslate nohighlight">\(h_i\)</span> captura información <strong>del token <span class="math notranslate nohighlight">\(x_i\)</span> y del contexto de la secuencia</strong> (dependiendo de si usamos RNN, LSTM, GRU, etc.).</p></li>
+</ul>
+<p><strong>2. Decoder:</strong></p>
+<ul class="simple">
+<li><p>Genera la <strong>secuencia de salida</strong> (por ejemplo en inglés):</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+    Y = [y_1, y_2, y_3] = [\text{&quot;The&quot;, &quot;black&quot;, &quot;cat&quot;}]
+    \]</div>
+<ul class="simple">
+<li><p>Lo hace <strong>token por token</strong>, usando:</p>
+<ol class="arabic simple">
+<li><p>El hidden state anterior del decoder.</p></li>
+<li><p>Un <strong>vector de contexto <span class="math notranslate nohighlight">\(v\)</span></strong> que representa la información de toda la entrada.</p></li>
+<li><p>El token “duerme” se procesó dentro del encoder → generó un hidden state <span class="math notranslate nohighlight">\(h_4\)</span>. Sin embargo, en <strong>el modelo Encoder-Decoder tradicional, el decoder no tiene acceso directo a <span class="math notranslate nohighlight">\(h_4\)</span> (ni a <span class="math notranslate nohighlight">\(h_1, h_2, h_3\)</span>). Solo recibe el vector <span class="math notranslate nohighlight">\(v\)</span>, que resume todo en una representación fija</strong>.</p></li>
+<li><p>Por tanto, el “significado” de duerme queda mezclado con el resto de la información en ese vector. <strong>Si el vector <span class="math notranslate nohighlight">\(v\)</span> no logra codificar bien la acción, el modelo olvida traducir “duerme” → “sleeps”</strong>.</p></li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p><strong>Limitaciones</strong></p>
+<ul class="simple">
+<li><p>Si la frase de entrada es larga, <span class="math notranslate nohighlight">\(v\)</span> no puede contener toda la información.</p></li>
+<li><p>Esto se llama <strong>cuello de botella</strong>, porque el decoder “ve” toda la entrada a través de un solo vector.</p></li>
+<li><p>Como resultado, la traducción o la predicción pierde información, especialmente en frases largas.</p></li>
+</ul>
+</li>
+<li><p><strong>Analogía sencilla</strong></p>
+<ul class="simple">
+<li><p>Imagina que tienes que <strong>resumir un libro de 200 páginas en una sola oración</strong> y luego alguien tiene que escribir un resumen basado solo en esa oración.</p></li>
+<li><p>Obviamente, perderías mucho detalle importante.</p></li>
+<li><p>En el modelo clásico Encoder-Decoder sin atención, eso es exactamente lo que pasa: <strong>toda la secuencia de entrada se comprime en un solo vector <span class="math notranslate nohighlight">\(v\)</span></strong>.</p></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">Bahdanau</span> <span class="pre">Attention</span> <span class="pre">(Additive)</span></code></strong>. La atención de Bahdanau et al. (2015) solucionó el problema de <em>cuello de botella</em> permitiendo que, <strong>en cada paso del decoder, el modelo “mire” directamente a los estados del encoder relevantes</strong>. Así nace el concepto de <strong>pesos de atención y contexto dinámico (<span class="math notranslate nohighlight">\(c_t\)</span>)</strong>: el decoder ya no memoriza todo, sino que selecciona lo importante en cada momento.</p>
+<p>Score de atención (alineamiento)</p>
+<div class="math notranslate nohighlight">
+\[
+    e_{tj} = v_a^\top \tanh(W_a s_{t-1} + U_a h_j)
+    \]</div>
+<p>Donde:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(s_{t-1}\)</span>: estado anterior del <strong>decoder</strong> (hidden state)</p></li>
+<li><p><span class="math notranslate nohighlight">\(h_j\)</span>: <span class="math notranslate nohighlight">\(j\)</span>-ésimo estado del <strong>encoder</strong></p></li>
+<li><p><span class="math notranslate nohighlight">\(W_a, U_a\)</span>: matrices de pesos entrenables</p></li>
+<li><p><span class="math notranslate nohighlight">\(v_a\)</span>: vector de pesos entrenable</p></li>
+</ul>
+<p>Pesos de atención normalizados:</p>
+<div class="math notranslate nohighlight">
+\[
+    \alpha_{tj} = \frac{\exp(e_{tj})}{\sum_{k=1}^S \exp(e_{tk})}
+    \]</div>
+<p>Vector de contexto dinámico:</p>
+<div class="math notranslate nohighlight">
+\[
+    c_t = \sum_{j=1}^S \alpha_{tj} h_j
+    \]</div>
+</li>
+<li><p><strong>Pseudocódigo Python:</strong></p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">scores</span> <span class="o">=</span> <span class="n">tanh</span><span class="p">(</span><span class="n">W_a</span> <span class="o">@</span> <span class="n">s_prev</span> <span class="o">+</span> <span class="n">U_a</span> <span class="o">@</span> <span class="n">encoder_outputs</span><span class="p">)</span>  <span class="c1"># shape (seq_len,)</span>
+<span class="n">attention_weights</span> <span class="o">=</span> <span class="n">softmax</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>  <span class="c1"># shape (seq_len,)</span>
+<span class="n">context_vector</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">attention_weights</span> <span class="o">*</span> <span class="n">encoder_outputs</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Interpretación:</strong></p>
+<ol class="arabic simple">
+<li><p>Linealizamos <span class="math notranslate nohighlight">\(h_j\)</span> y <span class="math notranslate nohighlight">\(s_{t-1}\)</span> con <span class="math notranslate nohighlight">\(W_a\)</span> y <span class="math notranslate nohighlight">\(U_a\)</span>.</p></li>
+<li><p>Aplicamos <span class="math notranslate nohighlight">\(\tanh\)</span> para no linealidades.</p></li>
+<li><p>Multiplicamos por <span class="math notranslate nohighlight">\(v_a^\top\)</span> para obtener un escalar de relevancia.</p></li>
+<li><p>Softmax transforma scores en distribución de atención.</p></li>
+</ol>
+</li>
+</ul>
+<div class="tip admonition">
+<p class="admonition-title">Observación</p>
+<ul class="simple">
+<li><p>La atención de Bahdanau soluciona el cuello de botella del encoder-decoder clásico porque <strong>ya no usa un único vector fijo</strong> para representar toda la entrada. En su lugar, el decoder <strong>calcula en cada paso un vector de contexto <span class="math notranslate nohighlight">\(c_t\)</span></strong> como una <strong>combinación ponderada de los estados del encoder (<span class="math notranslate nohighlight">\(h_j\)</span>)</strong>. Así, el modelo <strong>“enfoca su atención” dinámicamente en las partes más relevantes</strong> de la secuencia al generar cada palabra.</p></li>
+</ul>
+</div>
+<ul>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">Atención</span> <span class="pre">Luong</span> <span class="pre">(Multiplicativa)</span></code></strong>. Score general:</p>
+<div class="math notranslate nohighlight">
+\[
+    \text{score}(s_t, h_j) =
+    \begin{cases}
+    s_t^\top h_j &amp; \text{dot} \
+    s_t^\top W_a h_j &amp; \text{general} \
+    v_a^\top \tanh(W_a [s_t; h_j]) &amp; \text{concat}
+    \end{cases}
+    \]</div>
+<p>Pesos de atención y vector de contexto:</p>
+<div class="math notranslate nohighlight">
+\[
+    \alpha_{tj} = \frac{\exp(\text{score}(s_t,h_j))}{\sum_k \exp(\text{score}(s_t,h_k))}, \quad
+    c_t = \sum_j \alpha_{tj} h_j
+    \]</div>
+</li>
+<li><p><strong>Pseudocódigo Python:</strong></p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">scores</span> <span class="o">=</span> <span class="n">hidden_decoder</span> <span class="o">@</span> <span class="n">hidden_encoder</span><span class="o">.</span><span class="n">T</span>
+<span class="n">attention_weights</span> <span class="o">=</span> <span class="n">softmax</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>
+<span class="n">context_vector</span> <span class="o">=</span> <span class="n">attention_weights</span> <span class="o">@</span> <span class="n">encoder_outputs</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Comparación conceptual:</strong></p>
+<ul>
+<li><p>Additive: más flexible, captura relaciones complejas, computacionalmente más costosa.</p></li>
+<li><p>Multiplicative: más eficiente, basado en producto punto proyectado.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="self-attention">
+<h2><span class="section-number">11.24. </span>Self-Attention<a class="headerlink" href="#self-attention" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Formulación general</p></li>
+</ul>
+<p>Input: Secuencia de embeddings <span class="math notranslate nohighlight">\(X \in \mathbb{R}^{n \times d_{model}}\)</span></p>
+<p>Proyecciones:</p>
+<div class="math notranslate nohighlight">
+\[
+Q = X W_Q, \quad K = X W_K, \quad V = X W_V
+\]</div>
+<p>Donde:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(W_Q, W_K \in \mathbb{R}^{d_{model} \times d_k}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(W_V \in \mathbb{R}^{d_{model} \times d_v}\)</span></p></li>
+</ul>
+<p>Self-Attention escalada:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{Attention}(Q,K,V) = \text{softmax}\left(\frac{Q K^\top}{\sqrt{d_k}}\right)V
+\]</div>
+<p>-# Demostración del escalado</p>
+<p>Varianza del producto punto:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{Var}\left(\frac{q_i \cdot k_j}{\sqrt{d_k}}\right) = \frac{1}{d_k} \text{Var}(q_i \cdot k_j)
+\]</div>
+<p>Si <span class="math notranslate nohighlight">\(q_i, k_j\)</span> tienen media <span class="math notranslate nohighlight">\(0\)</span> y varianza <span class="math notranslate nohighlight">\(1\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{Var}(q_i \cdot k_j) = d_k \quad \Rightarrow \quad
+\text{Var}\left(\frac{q_i \cdot k_j}{\sqrt{d_k}}\right) = 1
+\]</div>
+<p>Esto evita saturación de softmax y gradientes demasiado pequeños.</p>
+<p><strong>Propiedad de invarianza permutacional:</strong></p>
+<div class="math notranslate nohighlight">
+\[
+\text{Attention}(PX, PX, PX) = P \cdot \text{Attention}(X,X,X)
+\]</div>
+<p>Para cualquier matriz de permutación <span class="math notranslate nohighlight">\(P\)</span>.</p>
+<p><strong>Pseudocódigo Python:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Q</span> <span class="o">=</span> <span class="n">X</span> <span class="o">@</span> <span class="n">W_Q</span>
+<span class="n">K</span> <span class="o">=</span> <span class="n">X</span> <span class="o">@</span> <span class="n">W_K</span>
+<span class="n">V</span> <span class="o">=</span> <span class="n">X</span> <span class="o">@</span> <span class="n">W_V</span>
+<span class="n">scores</span> <span class="o">=</span> <span class="n">Q</span> <span class="o">@</span> <span class="n">K</span><span class="o">.</span><span class="n">T</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">d_k</span><span class="p">)</span>
+<span class="n">weights</span> <span class="o">=</span> <span class="n">softmax</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">weights</span> <span class="o">@</span> <span class="n">V</span>
+</pre></div>
+</div>
+</section>
+<section id="multi-head-attention">
+<h2><span class="section-number">11.25. </span>Multi-head Attention<a class="headerlink" href="#multi-head-attention" title="Link to this heading">#</a></h2>
+<p>Formulación:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{MultiHead}(Q,K,V) = \text{Concat}(head_1, ..., head_h) W^O
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\text{head}_i = \text{Attention}(Q W_i^Q, K W_i^K, V W_i^V)
+\]</div>
+<p>Dimensionalidad típica:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(d_{model} = 512\)</span>, <span class="math notranslate nohighlight">\(h = 8\)</span> heads</p></li>
+<li><p><span class="math notranslate nohighlight">\(d_k = d_v = d_{model}/h = 64\)</span></p></li>
+</ul>
+<p>Complejidad computacional:</p>
+<div class="math notranslate nohighlight">
+\[
+O(n^2 \cdot d_{model}) \quad vs \quad O(n^2 \cdot d_{model}/h) \quad \text{por cabeza}
+\]</div>
+<p>Interpretación geométrica:</p>
+<p>Cada cabeza proyecta la información en un subespacio diferente:</p>
+<div class="math notranslate nohighlight">
+\[
+Q_i = X W_i^Q \quad \text{proyecta a dimensión } d_k
+\]</div>
+<p>Teorema (Yun et al., 2020): Multi-head attention puede aproximar cualquier función continua de múltiples variables.</p>
+<p><strong>Pseudocódigo Python:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">heads</span> <span class="o">=</span> <span class="p">[</span><span class="n">self_attention</span><span class="p">(</span><span class="n">X</span> <span class="o">@</span> <span class="n">WQ</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">X</span> <span class="o">@</span> <span class="n">WK</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">X</span> <span class="o">@</span> <span class="n">WV</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">h</span><span class="p">)]</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">heads</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span> <span class="o">@</span> <span class="n">WO</span>
+</pre></div>
+</div>
+</section>
+<section id="transformer">
+<h2><span class="section-number">11.26. </span>Transformer<a class="headerlink" href="#transformer" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Encoder Layer Matemático</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+Z = \text{LayerNorm}(X + \text{MultiHeadAttention}(X,X,X))
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\text{Output} = \text{LayerNorm}(Z + \text{FFN}(Z))
+\]</div>
+<p>Feed-Forward Network:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{FFN}(x) = \max(0, x W_1 + b_1) W_2 + b_2
+\]</div>
+<p>Dimensionalidad típica: <span class="math notranslate nohighlight">\(d_{ff} = 2048, d_{model} = 512\)</span></p>
+<ul class="simple">
+<li><p>Decoder - Masked Self-Attention</p></li>
+</ul>
+<p>Máscara causal:</p>
+<div class="math notranslate nohighlight">
+\[
+M_{ij} =
+\begin{cases}
+0 &amp; i \ge j \
+-\infty &amp; i &lt; j
+\end{cases}
+\]</div>
+<p>Masked Attention:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{MaskedAttention}(Q,K,V) = \text{softmax}\left(\frac{QK^\top}{\sqrt{d_k}} + M\right)V
+\]</div>
+<p>Residual connections:</p>
+<div class="math notranslate nohighlight">
+\[
+y = x + F(x), \quad \frac{\partial L}{\partial x} = \frac{\partial L}{\partial y} \left(1 + \frac{\partial F}{\partial x}\right)
+\]</div>
+<p>Layer Normalization:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{LayerNorm}(x) = \gamma \frac{x - \mu}{\sigma} + \beta, \quad
+\mu = \frac{1}{d}\sum_{i=1}^d x_i, \quad \sigma = \sqrt{\frac{1}{d} \sum_{i=1}^d (x_i - \mu)^2}
+\]</div>
+<ul>
+<li><p><strong>Ventajas matemáticas sobre LSTM</strong></p>
+<ul class="simple">
+<li><p>Completa paralelización: no depende de pasos previos.</p></li>
+<li><p>Captura dependencias largas sin decaimiento exponencial del gradiente.</p></li>
+<li><p>Mayor eficiencia computacional en GPU/TPU.</p></li>
+<li><p>Mejor performance en tareas complejas.</p></li>
+</ul>
+<p>Complejidad:</p>
+<ul class="simple">
+<li><p>LSTM: <span class="math notranslate nohighlight">\(O(n \cdot d^2)\)</span> por paso temporal</p></li>
+<li><p>Transformer: <span class="math notranslate nohighlight">\(O(n^2 \cdot d)\)</span>, paralelizable</p></li>
+</ul>
+<p>Gradientes:</p>
+<ul class="simple">
+<li><p>LSTM: <span class="math notranslate nohighlight">\(O(\lambda^L)\)</span> con <span class="math notranslate nohighlight">\(\lambda&lt;1\)</span> (desvanecimiento)</p></li>
+<li><p>Transformer: atención directa entre tokens → <span class="math notranslate nohighlight">\(O(1)\)</span></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="ejemplos-de-aplicacion">
+<h2><span class="section-number">11.27. </span>Ejemplos de aplicación<a class="headerlink" href="#ejemplos-de-aplicacion" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><ol class="arabic simple">
+<li><p>Visualización de Atención</p></li>
+</ol>
+</li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">attention_weights</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Input Tokens&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Output Tokens&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><ol class="arabic simple" start="2">
+<li><p>Implementación Self-Attention</p></li>
+</ol>
+</li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">self_attention</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">WQ</span><span class="p">,</span> <span class="n">WK</span><span class="p">,</span> <span class="n">WV</span><span class="p">):</span>
+    <span class="n">Q</span> <span class="o">=</span> <span class="n">X</span> <span class="o">@</span> <span class="n">WQ</span>
+    <span class="n">K</span> <span class="o">=</span> <span class="n">X</span> <span class="o">@</span> <span class="n">WK</span>  
+    <span class="n">V</span> <span class="o">=</span> <span class="n">X</span> <span class="o">@</span> <span class="n">WV</span>
+    
+    <span class="n">scores</span> <span class="o">=</span> <span class="n">Q</span> <span class="o">@</span> <span class="n">K</span><span class="o">.</span><span class="n">T</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">K</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">weights</span> <span class="o">=</span> <span class="n">softmax</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">weights</span> <span class="o">@</span> <span class="n">V</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><ol class="arabic simple" start="3">
+<li><p>Comparación Teórica LSTM vs Transformer</p></li>
+</ol>
+</li>
+</ul>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Métrica</p></th>
+<th class="head"><p>LSTM</p></th>
+<th class="head"><p>Transformer</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Paralelismo</p></td>
+<td><p>No</p></td>
+<td><p>Sí</p></td>
+</tr>
+<tr class="row-odd"><td><p>Dependencias largas</p></td>
+<td><p>Exponencial decay</p></td>
+<td><p>Directo</p></td>
+</tr>
+<tr class="row-even"><td><p>Memoria</p></td>
+<td><p>O(n)</p></td>
+<td><p>O(n²)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Training</p></td>
+<td><p>Lento</p></td>
+<td><p>Rápido</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -12770,14 +12909,13 @@ Variabilidad explicada por el autoencoder: 0.8997409120202065
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#red-de-memoria-a-largo-plazo-lstm">11.18. Red de memoria a largo plazo (LSTM)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-procesamiento-del-lenguaje-natural">11.19. Aplicación: Procesamiento del Lenguaje Natural</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-lstm-para-la-prediccion-de-series-de-tiempo">11.20. Aplicación: LSTM para la predicción de series de tiempo</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#atencion-y-memoria">11.21. Atención y Memoria</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entrenamiento-adversario">11.22. Entrenamiento adversario</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-generativos-profundos">11.23. Modelos Generativos Profundos</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#maquina-de-boltzmann-restringida">11.23.1. Máquina de Boltzmann Restringida</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autoencoders">11.24. Autoencoders</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-autoencoders-para-mnist-data">11.25. Aplicación: Autoencoders para MNIST data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autoencoders">11.21. Autoencoders</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-autoencoders-para-mnist-data">11.22. Aplicación: Autoencoders para MNIST data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#attention">11.23. Attention</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#self-attention">11.24. Self-Attention</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-head-attention">11.25. Multi-head Attention</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformer">11.26. Transformer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplos-de-aplicacion">11.27. Ejemplos de aplicación</a></li>
 </ul>
   </nav></div>
 
