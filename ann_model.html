@@ -416,6 +416,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#self-attention">11.24. Self-Attention</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-head-attention">11.25. Multi-head Attention</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformer">11.26. Transformer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-analisis-de-sentimiento-con-transformer">11.27. Aplicación: Análisis de sentimiento con Transformer</a></li>
 </ul>
             </nav>
         </div>
@@ -10817,6 +10818,28 @@ Q_i = X W_i^Q \quad \text{proyecta a dimensión } d_k
 <span class="n">output</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">heads</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span> <span class="o">@</span> <span class="n">WO</span>
 </pre></div>
 </div>
+<div class="tip admonition">
+<p class="admonition-title">Observación</p>
+<ul>
+<li><p>En <em>multi-head attention</em>, <strong>cada cabeza es un bloque independiente de self-attention</strong>, pero trabaja en un <strong>subespacio distinto</strong> del espacio de representaciones del modelo. Si tu vector de <em>embeddings</em> (una palabra o token) vive en un espacio de dimensión</p>
+<div class="math notranslate nohighlight">
+\[
+    d_{\text{model}} = 512
+    \]</div>
+<p>y tienes</p>
+<div class="math notranslate nohighlight">
+\[
+    h = 8
+    \]</div>
+<p>cabezas, entonces</p>
+<div class="math notranslate nohighlight">
+\[
+    d_k = d_v = \frac{d_{\text{model}}}{h} = 64
+    \]</div>
+</li>
+<li><p>Cada cabeza trabaja en un <strong>subespacio de 64 dimensiones</strong>, en lugar de usar todo el espacio de 512 dimensiones. Así, la <em>Multi-Head Attention (MHA)</em> <strong>no copia la misma atención 8 veces</strong>, sino que <strong>divide la información y la observa desde distintos ángulos</strong>.</p></li>
+</ul>
+</div>
 </section>
 <section id="transformer">
 <h2><span class="section-number">11.26. </span>Transformer<a class="headerlink" href="#transformer" title="Link to this heading">#</a></h2>
@@ -11020,6 +11043,829 @@ Cada cabeza aprende a <strong>atender distintos patrones</strong> dentro de la m
 </table>
 </div>
 </section>
+<section id="aplicacion-analisis-de-sentimiento-con-transformer">
+<h2><span class="section-number">11.27. </span>Aplicación: Análisis de sentimiento con Transformer<a class="headerlink" href="#aplicacion-analisis-de-sentimiento-con-transformer" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Instalar inicialmente</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>tensorflow-text<span class="o">==</span><span class="m">2</span>.17.0
+pip<span class="w"> </span>install<span class="w"> </span>tensorflow-hub<span class="o">==</span><span class="m">0</span>.16.1
+pip<span class="w"> </span>install<span class="w"> </span>-q<span class="w"> </span>tf-models-official<span class="o">==</span><span class="m">2</span>.17.0
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tensorflow</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">tf</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tensorflow_text</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">text</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tensorflow_hub</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">hub</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">tensorflow</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">tf</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;TensorFlow version:&quot;</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Num GPUs Available:&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">list_physical_devices</span><span class="p">(</span><span class="s1">&#39;GPU&#39;</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">list_physical_devices</span><span class="p">(</span><span class="s1">&#39;GPU&#39;</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;TensorFlow Text version:&quot;</span><span class="p">,</span> <span class="n">text</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;TensorFlow Hub:&quot;</span><span class="p">,</span> <span class="n">hub</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/lihkir/.local/lib/python3.10/site-packages/tensorflow_hub/__init__.py:61: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools&lt;81.
+  from pkg_resources import parse_version
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>TensorFlow version: 2.17.0
+Num GPUs Available: 1
+[PhysicalDevice(name=&#39;/physical_device:GPU:0&#39;, device_type=&#39;GPU&#39;)]
+TensorFlow Text version: 2.17.0
+TensorFlow Hub: 0.16.1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ==========================================================</span>
+<span class="c1"># Transformer para clasificación de texto (TensorFlow)</span>
+<span class="c1"># Métricas esenciales + Testing con textos personalizados</span>
+<span class="c1"># ==========================================================</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">tensorflow</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">tf</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tensorflow.keras</span><span class="w"> </span><span class="kn">import</span> <span class="n">layers</span><span class="p">,</span> <span class="n">models</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tensorflow_datasets</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">tfds</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">confusion_matrix</span><span class="p">,</span> <span class="n">classification_report</span><span class="p">,</span> <span class="n">roc_curve</span><span class="p">,</span> <span class="n">auc</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="c1"># Configurar estilo de plots</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;default&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Métricas Esenciales del Modelo Transformer&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+
+<span class="c1"># ----------------------------------------------------------</span>
+<span class="c1"># 1. Cargar dataset (IMDB)</span>
+<span class="c1"># ----------------------------------------------------------</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cargando dataset IMDB...&quot;</span><span class="p">)</span>
+<span class="n">train_data</span><span class="p">,</span> <span class="n">test_data</span> <span class="o">=</span> <span class="n">tfds</span><span class="o">.</span><span class="n">load</span><span class="p">(</span>
+    <span class="s2">&quot;imdb_reviews&quot;</span><span class="p">,</span>
+    <span class="n">split</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">,</span> <span class="s2">&quot;test&quot;</span><span class="p">],</span>
+    <span class="n">as_supervised</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+
+<span class="c1"># ----------------------------------------------------------</span>
+<span class="c1"># 2. Vectorización de texto</span>
+<span class="c1"># ----------------------------------------------------------</span>
+<span class="n">VOCAB_SIZE</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">SEQUENCE_LENGTH</span> <span class="o">=</span> <span class="mi">200</span>
+
+<span class="n">vectorize_layer</span> <span class="o">=</span> <span class="n">layers</span><span class="o">.</span><span class="n">TextVectorization</span><span class="p">(</span>
+    <span class="n">max_tokens</span><span class="o">=</span><span class="n">VOCAB_SIZE</span><span class="p">,</span>
+    <span class="n">output_mode</span><span class="o">=</span><span class="s2">&quot;int&quot;</span><span class="p">,</span>
+    <span class="n">output_sequence_length</span><span class="o">=</span><span class="n">SEQUENCE_LENGTH</span>
+<span class="p">)</span>
+
+<span class="c1"># Adaptar vocabulario</span>
+<span class="n">train_text</span> <span class="o">=</span> <span class="n">train_data</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">x</span><span class="p">)</span>
+<span class="n">vectorize_layer</span><span class="o">.</span><span class="n">adapt</span><span class="p">(</span><span class="n">train_text</span><span class="p">)</span>
+
+<span class="c1"># ----------------------------------------------------------</span>
+<span class="c1"># 3. Preparar datasets vectorizados</span>
+<span class="c1"># ----------------------------------------------------------</span>
+<span class="n">AUTOTUNE</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">AUTOTUNE</span>
+<span class="n">BATCH_SIZE</span> <span class="o">=</span> <span class="mi">64</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">vectorize_text</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">label</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">vectorize_layer</span><span class="p">(</span><span class="n">text</span><span class="p">),</span> <span class="n">label</span>
+
+<span class="n">train_vec</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">train_data</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">vectorize_text</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">cache</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">batch</span><span class="p">(</span><span class="n">BATCH_SIZE</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">prefetch</span><span class="p">(</span><span class="n">AUTOTUNE</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">test_vec</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">test_data</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">vectorize_text</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">cache</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">batch</span><span class="p">(</span><span class="n">BATCH_SIZE</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">prefetch</span><span class="p">(</span><span class="n">AUTOTUNE</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># ----------------------------------------------------------</span>
+<span class="c1"># 4. Definir modelo Transformer</span>
+<span class="c1"># ----------------------------------------------------------</span>
+<span class="n">EMBED_DIM</span> <span class="o">=</span> <span class="mi">64</span>
+<span class="n">NUM_HEADS</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">FF_DIM</span> <span class="o">=</span> <span class="mi">128</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">TEORÍA TRANSFORMER - ENCODER LAYER MATEMÁTICO:</span>
+<span class="sd">El encoder del Transformer se basa en dos bloques principales:</span>
+<span class="sd">1. Multi-Head Self-Attention (MHA)</span>
+<span class="sd">2. Feed-Forward Network (FFN)</span>
+<span class="sd">ambos con conexiones residuales y normalización de capa.</span>
+
+<span class="sd">Ecuaciones teóricas:</span>
+<span class="sd">Z = LayerNorm(X + MultiHeadAttention(X,X,X))</span>
+<span class="sd">Output = LayerNorm(Z + FFN(Z))</span>
+
+<span class="sd">Donde:</span>
+<span class="sd">- X son las representaciones de entrada (tokens embebidos)</span>
+<span class="sd">- MultiHeadAttention(X,X,X) aplica autoatención en paralelo sobre X</span>
+<span class="sd">- LayerNorm estabiliza las distribuciones internas de activaciones</span>
+<span class="sd">- La conexión residual X + F(X) evita el desvanecimiento del gradiente</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">inputs</span> <span class="o">=</span> <span class="n">layers</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">SEQUENCE_LENGTH</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">TEORÍA TRANSFORMER - EMBEDDING:</span>
+<span class="sd">Cada token se representa como un vector denso en R^EMBED_DIM</span>
+<span class="sd">Esto corresponde a la primera transformación de tokens en vectores numéricos</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">layers</span><span class="o">.</span><span class="n">Embedding</span><span class="p">(</span><span class="n">VOCAB_SIZE</span><span class="p">,</span> <span class="n">EMBED_DIM</span><span class="p">)(</span><span class="n">inputs</span><span class="p">)</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">TEORÍA TRANSFORMER - MULTI-HEAD ATTENTION:</span>
+<span class="sd">Ecuaciones teóricas:</span>
+<span class="sd">MultiHead(Q,K,V) = Concat(head₁,...,headₕ)W^O</span>
+<span class="sd">head_i = Attention(Q W_i^Q, K W_i^K, V W_i^V)</span>
+
+<span class="sd">En nuestro caso: Q=K=V=X (self-attention del encoder)</span>
+<span class="sd">Cada cabeza aprende a atender distintos patrones dentro de la misma secuencia</span>
+<span class="sd">Cada cabeza proyecta la información a un subespacio distinto (W_i^Q, W_i^K, W_i^V)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">layers</span><span class="o">.</span><span class="n">MultiHeadAttention</span><span class="p">(</span><span class="n">num_heads</span><span class="o">=</span><span class="n">NUM_HEADS</span><span class="p">,</span> <span class="n">key_dim</span><span class="o">=</span><span class="n">EMBED_DIM</span><span class="p">)(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">TEORÍA TRANSFORMER - POOLING PARA CLASIFICACIÓN:</span>
+<span class="sd">En clasificación, necesitamos convertir la secuencia de vectores </span>
+<span class="sd">(SEQUENCE_LENGTH × EMBED_DIM) en un solo vector para la clasificación</span>
+<span class="sd">Esto adapta la arquitectura encoder para tareas de clasificación</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">layers</span><span class="o">.</span><span class="n">GlobalAveragePooling1D</span><span class="p">()(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">TEORÍA TRANSFORMER - FEED-FORWARD NETWORK (FFN):</span>
+<span class="sd">Ecuación teórica: FFN(x) = max(0, xW₁ + b₁)W₂ + b₂</span>
+<span class="sd">La FFN no mezcla información entre tokens; su función es refinar y transformar </span>
+<span class="sd">la representación enriquecida que proviene del MHA.</span>
+
+<span class="sd">Típicamente: d_model = 512, d_ff = 2048 (en nuestro caso: EMBED_DIM=64, FF_DIM=128)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">FF_DIM</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s2">&quot;relu&quot;</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="c1"># Dropout para regularización (no parte de la teoría original pero útil en práctica)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">layers</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="c1"># Capa final de clasificación binaria</span>
+<span class="n">outputs</span> <span class="o">=</span> <span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s2">&quot;sigmoid&quot;</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">outputs</span><span class="p">)</span>
+
+<span class="c1"># ----------------------------------------------------------</span>
+<span class="c1"># 5. Compilar y entrenar con AUC</span>
+<span class="c1"># ----------------------------------------------------------</span>
+<span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
+    <span class="n">optimizer</span><span class="o">=</span><span class="s2">&quot;adam&quot;</span><span class="p">,</span>
+    <span class="n">loss</span><span class="o">=</span><span class="s2">&quot;binary_crossentropy&quot;</span><span class="p">,</span>
+    <span class="n">metrics</span><span class="o">=</span><span class="p">[</span>
+        <span class="s2">&quot;accuracy&quot;</span><span class="p">,</span>
+        <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">AUC</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;auc&#39;</span><span class="p">),</span>
+        <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">Precision</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;precision&#39;</span><span class="p">),</span>
+        <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">Recall</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;recall&#39;</span><span class="p">)</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Entrenando modelo Transformer...&quot;</span><span class="p">)</span>
+<span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+    <span class="n">train_vec</span><span class="p">,</span>
+    <span class="n">validation_data</span><span class="o">=</span><span class="n">test_vec</span><span class="p">,</span>
+    <span class="n">epochs</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span>
+<span class="p">)</span>
+
+<span class="c1"># ----------------------------------------------------------</span>
+<span class="c1"># 6. Evaluar modelo y preparar datos para métricas</span>
+<span class="c1"># ----------------------------------------------------------</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Evaluación final del modelo:&quot;</span><span class="p">)</span>
+<span class="n">loss</span><span class="p">,</span> <span class="n">accuracy</span><span class="p">,</span> <span class="n">auc_score</span><span class="p">,</span> <span class="n">precision</span><span class="p">,</span> <span class="n">recall</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">test_vec</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Obtener predicciones para métricas detalladas</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Generando predicciones para análisis...&quot;</span><span class="p">)</span>
+<span class="n">y_true</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">y_pred_proba</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">batch</span> <span class="ow">in</span> <span class="n">test_vec</span><span class="p">:</span>
+    <span class="n">texts</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">batch</span>
+    <span class="n">predictions</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">texts</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">y_true</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">labels</span><span class="o">.</span><span class="n">numpy</span><span class="p">())</span>
+    <span class="n">y_pred_proba</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">predictions</span><span class="o">.</span><span class="n">flatten</span><span class="p">())</span>
+
+<span class="n">y_true</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">y_true</span><span class="p">)</span>
+<span class="n">y_pred_proba</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">y_pred_proba</span><span class="p">)</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_pred_proba</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+<span class="c1"># ----------------------------------------------------------</span>
+<span class="c1"># 7. MATRIZ DE CONFUSIÓN (SOLO PORCENTAJES)</span>
+<span class="c1"># ----------------------------------------------------------</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">cm</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="n">cm_percentage</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float&#39;</span><span class="p">)</span> <span class="o">/</span> <span class="n">cm</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">cm_percentage</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;.1f&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+            <span class="n">xticklabels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Negativo&#39;</span><span class="p">,</span> <span class="s1">&#39;Positivo&#39;</span><span class="p">],</span>
+            <span class="n">yticklabels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Negativo&#39;</span><span class="p">,</span> <span class="s1">&#39;Positivo&#39;</span><span class="p">],</span>
+            <span class="n">cbar_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Porcentaje (%)&#39;</span><span class="p">})</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Predicción&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Valor Real&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Matriz de Confusión (% por Fila)&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+
+<span class="c1"># ----------------------------------------------------------</span>
+<span class="c1"># 8. CURVA ROC</span>
+<span class="c1"># ----------------------------------------------------------</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">,</span> <span class="n">thresholds</span> <span class="o">=</span> <span class="n">roc_curve</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred_proba</span><span class="p">)</span>
+<span class="n">roc_auc</span> <span class="o">=</span> <span class="n">auc</span><span class="p">(</span><span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;darkorange&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;ROC Curve (AUC = </span><span class="si">{</span><span class="n">roc_auc</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;navy&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Clasificador Aleatorio&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.05</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Tasa de Falsos Positivos (False Positive Rate)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Tasa de Verdaderos Positivos (True Positive Rate)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Curva ROC&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;lower right&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+
+<span class="c1"># Destacar punto de operación con threshold 0.5</span>
+<span class="n">threshold_05_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">thresholds</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fpr</span><span class="p">[</span><span class="n">threshold_05_idx</span><span class="p">],</span> <span class="n">tpr</span><span class="p">[</span><span class="n">threshold_05_idx</span><span class="p">],</span> <span class="s1">&#39;ro&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> 
+        <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Threshold 0.5</span><span class="se">\n</span><span class="s1">(FPR=</span><span class="si">{</span><span class="n">fpr</span><span class="p">[</span><span class="n">threshold_05_idx</span><span class="p">]</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">, TPR=</span><span class="si">{</span><span class="n">tpr</span><span class="p">[</span><span class="n">threshold_05_idx</span><span class="p">]</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;lower right&quot;</span><span class="p">)</span>
+
+<span class="c1"># Ajustar layout</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;metricas_esenciales_transformer.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># ----------------------------------------------------------</span>
+<span class="c1"># 9. REPORTE DE CLASIFICACIÓN DETALLADO</span>
+<span class="c1"># ----------------------------------------------------------</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">80</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;REPORTE DE CLASIFICACIÓN DETALLADO&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">80</span><span class="p">)</span>
+
+<span class="n">report</span> <span class="o">=</span> <span class="n">classification_report</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> 
+                              <span class="n">target_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Negativo&#39;</span><span class="p">,</span> <span class="s1">&#39;Positivo&#39;</span><span class="p">],</span>
+                              <span class="n">digits</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">output_dict</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Imprimir reporte formateado</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">{</span><span class="s1">&#39;&#39;</span><span class="si">:</span><span class="s2">&lt;15</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;Precision&#39;</span><span class="si">:</span><span class="s2">&lt;12</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;Recall&#39;</span><span class="si">:</span><span class="s2">&lt;12</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;F1-Score&#39;</span><span class="si">:</span><span class="s2">&lt;12</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;Support&#39;</span><span class="si">:</span><span class="s2">&lt;12</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">class_name</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;Negativo&#39;</span><span class="p">,</span> <span class="s1">&#39;Positivo&#39;</span><span class="p">]:</span>
+    <span class="n">metrics</span> <span class="o">=</span> <span class="n">report</span><span class="p">[</span><span class="n">class_name</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">class_name</span><span class="si">:</span><span class="s2">&lt;15</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">metrics</span><span class="p">[</span><span class="s1">&#39;precision&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">&lt;12.4f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">metrics</span><span class="p">[</span><span class="s1">&#39;recall&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">&lt;12.4f</span><span class="si">}</span><span class="s2"> &quot;</span>
+          <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">metrics</span><span class="p">[</span><span class="s1">&#39;f1-score&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">&lt;12.4f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">metrics</span><span class="p">[</span><span class="s1">&#39;support&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">&lt;12</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;Accuracy&#39;</span><span class="si">:</span><span class="s2">&lt;15</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;&#39;</span><span class="si">:</span><span class="s2">&lt;12</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;&#39;</span><span class="si">:</span><span class="s2">&lt;12</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">report</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">&lt;12.4f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">y_true</span><span class="p">)</span><span class="si">:</span><span class="s2">&lt;12</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;Macro Avg&#39;</span><span class="si">:</span><span class="s2">&lt;15</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">report</span><span class="p">[</span><span class="s1">&#39;macro avg&#39;</span><span class="p">][</span><span class="s1">&#39;precision&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">&lt;12.4f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">report</span><span class="p">[</span><span class="s1">&#39;macro avg&#39;</span><span class="p">][</span><span class="s1">&#39;recall&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">&lt;12.4f</span><span class="si">}</span><span class="s2"> &quot;</span>
+      <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">report</span><span class="p">[</span><span class="s1">&#39;macro avg&#39;</span><span class="p">][</span><span class="s1">&#39;f1-score&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">&lt;12.4f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">report</span><span class="p">[</span><span class="s1">&#39;macro avg&#39;</span><span class="p">][</span><span class="s1">&#39;support&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">&lt;12</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;Weighted Avg&#39;</span><span class="si">:</span><span class="s2">&lt;15</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">report</span><span class="p">[</span><span class="s1">&#39;weighted avg&#39;</span><span class="p">][</span><span class="s1">&#39;precision&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">&lt;12.4f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">report</span><span class="p">[</span><span class="s1">&#39;weighted avg&#39;</span><span class="p">][</span><span class="s1">&#39;recall&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">&lt;12.4f</span><span class="si">}</span><span class="s2"> &quot;</span>
+      <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">report</span><span class="p">[</span><span class="s1">&#39;weighted avg&#39;</span><span class="p">][</span><span class="s1">&#39;f1-score&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">&lt;12.4f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">report</span><span class="p">[</span><span class="s1">&#39;weighted avg&#39;</span><span class="p">][</span><span class="s1">&#39;support&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">&lt;12</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># ----------------------------------------------------------</span>
+<span class="c1"># 10. RESUMEN DE MÉTRICAS DEL MODELO</span>
+<span class="c1"># ----------------------------------------------------------</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">80</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;RESUMEN DE MÉTRICAS DEL MODELO&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">80</span><span class="p">)</span>
+
+<span class="c1"># Calcular métricas adicionales</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">f1_score</span>
+
+<span class="n">f1</span> <span class="o">=</span> <span class="n">f1_score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="n">tn</span><span class="p">,</span> <span class="n">fp</span><span class="p">,</span> <span class="n">fn</span><span class="p">,</span> <span class="n">tp</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+<span class="n">specificity</span> <span class="o">=</span> <span class="n">tn</span> <span class="o">/</span> <span class="p">(</span><span class="n">tn</span> <span class="o">+</span> <span class="n">fp</span><span class="p">)</span> <span class="k">if</span> <span class="p">(</span><span class="n">tn</span> <span class="o">+</span> <span class="n">fp</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span>
+<span class="n">balanced_accuracy</span> <span class="o">=</span> <span class="p">(</span><span class="n">recall</span> <span class="o">+</span> <span class="n">specificity</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+
+<span class="c1"># Crear resumen de métricas</span>
+<span class="n">metrics_summary</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;AUC (Area Under ROC Curve)&#39;</span><span class="p">:</span> <span class="n">roc_auc</span><span class="p">,</span>
+    <span class="s1">&#39;Accuracy&#39;</span><span class="p">:</span> <span class="n">accuracy</span><span class="p">,</span>
+    <span class="s1">&#39;Precision&#39;</span><span class="p">:</span> <span class="n">precision</span><span class="p">,</span>
+    <span class="s1">&#39;Recall (Sensitivity)&#39;</span><span class="p">:</span> <span class="n">recall</span><span class="p">,</span>
+    <span class="s1">&#39;Specificity&#39;</span><span class="p">:</span> <span class="n">specificity</span><span class="p">,</span>
+    <span class="s1">&#39;F1-Score&#39;</span><span class="p">:</span> <span class="n">f1</span><span class="p">,</span>
+    <span class="s1">&#39;Balanced Accuracy&#39;</span><span class="p">:</span> <span class="n">balanced_accuracy</span>
+<span class="p">}</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">{</span><span class="s1">&#39;MÉTRICA&#39;</span><span class="si">:</span><span class="s2">&lt;30</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;VALOR&#39;</span><span class="si">:</span><span class="s2">&lt;10</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;INTERPRETACIÓN&#39;</span><span class="si">:</span><span class="s2">&lt;40</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">85</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">metric</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">metrics_summary</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="c1"># Interpretaciones basadas en valores</span>
+    <span class="k">if</span> <span class="n">metric</span> <span class="o">==</span> <span class="s1">&#39;AUC (Area Under ROC Curve)&#39;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="o">&gt;=</span> <span class="mf">0.9</span><span class="p">:</span> <span class="n">interpretation</span> <span class="o">=</span> <span class="s2">&quot;Excelente discriminación&quot;</span>
+        <span class="k">elif</span> <span class="n">value</span> <span class="o">&gt;=</span> <span class="mf">0.8</span><span class="p">:</span> <span class="n">interpretation</span> <span class="o">=</span> <span class="s2">&quot;Buena discriminación&quot;</span>
+        <span class="k">elif</span> <span class="n">value</span> <span class="o">&gt;=</span> <span class="mf">0.7</span><span class="p">:</span> <span class="n">interpretation</span> <span class="o">=</span> <span class="s2">&quot;Discriminación aceptable&quot;</span>
+        <span class="k">else</span><span class="p">:</span> <span class="n">interpretation</span> <span class="o">=</span> <span class="s2">&quot;Discriminación pobre&quot;</span>
+    
+    <span class="k">elif</span> <span class="n">metric</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;Accuracy&#39;</span><span class="p">,</span> <span class="s1">&#39;Balanced Accuracy&#39;</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="o">&gt;=</span> <span class="mf">0.9</span><span class="p">:</span> <span class="n">interpretation</span> <span class="o">=</span> <span class="s2">&quot;Exactitud excelente&quot;</span>
+        <span class="k">elif</span> <span class="n">value</span> <span class="o">&gt;=</span> <span class="mf">0.8</span><span class="p">:</span> <span class="n">interpretation</span> <span class="o">=</span> <span class="s2">&quot;Buena exactitud&quot;</span>
+        <span class="k">elif</span> <span class="n">value</span> <span class="o">&gt;=</span> <span class="mf">0.7</span><span class="p">:</span> <span class="n">interpretation</span> <span class="o">=</span> <span class="s2">&quot;Exactitud aceptable&quot;</span>
+        <span class="k">else</span><span class="p">:</span> <span class="n">interpretation</span> <span class="o">=</span> <span class="s2">&quot;Exactitud pobre&quot;</span>
+    
+    <span class="k">elif</span> <span class="n">metric</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;Precision&#39;</span><span class="p">,</span> <span class="s1">&#39;Recall (Sensitivity)&#39;</span><span class="p">,</span> <span class="s1">&#39;Specificity&#39;</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="o">&gt;=</span> <span class="mf">0.9</span><span class="p">:</span> <span class="n">interpretation</span> <span class="o">=</span> <span class="s2">&quot;Rendimiento excelente&quot;</span>
+        <span class="k">elif</span> <span class="n">value</span> <span class="o">&gt;=</span> <span class="mf">0.8</span><span class="p">:</span> <span class="n">interpretation</span> <span class="o">=</span> <span class="s2">&quot;Buen rendimiento&quot;</span>
+        <span class="k">elif</span> <span class="n">value</span> <span class="o">&gt;=</span> <span class="mf">0.7</span><span class="p">:</span> <span class="n">interpretation</span> <span class="o">=</span> <span class="s2">&quot;Rendimiento aceptable&quot;</span>
+        <span class="k">else</span><span class="p">:</span> <span class="n">interpretation</span> <span class="o">=</span> <span class="s2">&quot;Rendimiento pobre&quot;</span>
+    
+    <span class="k">elif</span> <span class="n">metric</span> <span class="o">==</span> <span class="s1">&#39;F1-Score&#39;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="o">&gt;=</span> <span class="mf">0.9</span><span class="p">:</span> <span class="n">interpretation</span> <span class="o">=</span> <span class="s2">&quot;Balance excelente&quot;</span>
+        <span class="k">elif</span> <span class="n">value</span> <span class="o">&gt;=</span> <span class="mf">0.8</span><span class="p">:</span> <span class="n">interpretation</span> <span class="o">=</span> <span class="s2">&quot;Buen balance&quot;</span>
+        <span class="k">elif</span> <span class="n">value</span> <span class="o">&gt;=</span> <span class="mf">0.7</span><span class="p">:</span> <span class="n">interpretation</span> <span class="o">=</span> <span class="s2">&quot;Balance aceptable&quot;</span>
+        <span class="k">else</span><span class="p">:</span> <span class="n">interpretation</span> <span class="o">=</span> <span class="s2">&quot;Balance pobre&quot;</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">metric</span><span class="si">:</span><span class="s2">&lt;30</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">value</span><span class="si">:</span><span class="s2">&lt;10.4f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">interpretation</span><span class="si">:</span><span class="s2">&lt;40</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># ----------------------------------------------------------</span>
+<span class="c1"># 11. TESTEAR CON TEXTOS PERSONALIZADOS - DEMOSTRACIÓN PRÁCTICA</span>
+<span class="c1"># ----------------------------------------------------------</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">predict_sentiment</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">vectorize_layer</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Predice si un texto es positivo o negativo</span>
+<span class="sd">    Demuestra el pipeline completo del Transformer:</span>
+<span class="sd">    1. Vectorización → 2. Embedding → 3. Attention → 4. Clasificación</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Vectorizar el texto (tokenización + padding)</span>
+    <span class="n">vectorized_text</span> <span class="o">=</span> <span class="n">vectorize_layer</span><span class="p">([</span><span class="n">text</span><span class="p">])</span>
+    
+    <span class="c1"># Predecir usando el modelo Transformer</span>
+    <span class="n">prediction</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">vectorized_text</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">probability</span> <span class="o">=</span> <span class="n">prediction</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    
+    <span class="c1"># Determinar sentimiento basado en threshold</span>
+    <span class="n">sentiment</span> <span class="o">=</span> <span class="s2">&quot;POSITIVO&quot;</span> <span class="k">if</span> <span class="n">probability</span> <span class="o">&gt;</span> <span class="n">threshold</span> <span class="k">else</span> <span class="s2">&quot;NEGATIVO&quot;</span>
+    
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s1">&#39;text&#39;</span><span class="p">:</span> <span class="n">text</span><span class="p">,</span>
+        <span class="s1">&#39;probability&#39;</span><span class="p">:</span> <span class="n">probability</span><span class="p">,</span>
+        <span class="s1">&#39;sentiment&#39;</span><span class="p">:</span> <span class="n">sentiment</span><span class="p">,</span>
+        <span class="s1">&#39;confidence&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">probability</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%&quot;</span>
+    <span class="p">}</span>
+
+<span class="c1"># Textos de ejemplo para probar el modelo</span>
+<span class="c1"># Estos textos demuestran cómo el Multi-Head Attention puede capturar</span>
+<span class="c1"># dependencias semánticas largas y patrones lingüísticos complejos</span>
+<span class="n">test_texts</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="c1"># Textos positivos - patrones que el modelo debe aprender</span>
+    <span class="s2">&quot;This movie was absolutely fantastic! The acting was superb and the story was captivating from start to finish.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;I loved this film! It&#39;s one of the best movies I&#39;ve seen this year. Highly recommended!&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Brilliant cinematography and outstanding performances. A true masterpiece of modern cinema.&quot;</span><span class="p">,</span>
+    
+    <span class="c1"># Textos negativos - patrones opuestos  </span>
+    <span class="s2">&quot;This was the worst movie I&#39;ve ever seen. Terrible acting and a boring plot. Complete waste of time.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;I hated every minute of this film. The characters were poorly developed and the dialogue was awful.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Poor direction, bad screenplay, and mediocre acting. I regret watching this movie.&quot;</span><span class="p">,</span>
+    
+    <span class="c1"># Textos neutrales/mixtos - casos desafiantes</span>
+    <span class="s2">&quot;The movie had some good moments but overall it was just average. Not great, not terrible.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;The special effects were impressive but the story was weak and predictable.&quot;</span><span class="p">,</span>
+    
+    <span class="c1"># Textos cortos - prueba de generalización</span>
+    <span class="s2">&quot;Awesome!&quot;</span><span class="p">,</span>           <span class="c1"># Palabra positiva aislada</span>
+    <span class="s2">&quot;Terrible.&quot;</span><span class="p">,</span>          <span class="c1"># Palabra negativa aislada  </span>
+    <span class="s2">&quot;I liked it&quot;</span><span class="p">,</span>         <span class="c1"># Expresión positiva simple</span>
+    <span class="s2">&quot;Boring movie&quot;</span><span class="p">,</span>       <span class="c1"># Expresión negativa simple</span>
+    
+    <span class="c1"># Textos en español - prueba de transferencia (el modelo fue entrenado en inglés)</span>
+    <span class="s2">&quot;Esta película es increíble, me encantó completamente!&quot;</span><span class="p">,</span>  <span class="c1"># Debería ser positivo</span>
+    <span class="s2">&quot;Que película tan mala, no la recomiendo para nada.&quot;</span>      <span class="c1"># Debería ser negativo</span>
+<span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">80</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;DEMOSTRACIÓN: TESTEO CON TEXTOS PERSONALIZADOS&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;El modelo usa Multi-Head Attention para analizar dependencias en el texto&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">80</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">text</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">test_texts</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">predict_sentiment</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">vectorize_layer</span><span class="p">)</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Texto </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   Texto: &#39;</span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   Probabilidad: </span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;probability&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   Confianza: </span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;confidence&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   Sentimiento: </span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;sentiment&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Visualización de la confianza de predicción</span>
+    <span class="c1"># Muestra cómo el modelo distribuye su certeza entre positivo/negativo</span>
+    <span class="n">bar_length</span> <span class="o">=</span> <span class="mi">20</span>
+    <span class="n">pos_ratio</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;probability&#39;</span><span class="p">]</span>
+    <span class="n">neg_ratio</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">pos_ratio</span>
+    
+    <span class="n">pos_bar</span> <span class="o">=</span> <span class="s2">&quot;|&quot;</span> <span class="o">*</span> <span class="nb">int</span><span class="p">(</span><span class="n">bar_length</span> <span class="o">*</span> <span class="n">pos_ratio</span><span class="p">)</span>
+    <span class="n">neg_bar</span> <span class="o">=</span> <span class="s2">&quot;.&quot;</span> <span class="o">*</span> <span class="nb">int</span><span class="p">(</span><span class="n">bar_length</span> <span class="o">*</span> <span class="n">neg_ratio</span><span class="p">)</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   Visual: [</span><span class="si">{</span><span class="n">pos_bar</span><span class="si">}{</span><span class="n">neg_bar</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">50</span><span class="p">)</span>
+
+<span class="c1"># ----------------------------------------------------------</span>
+<span class="c1"># 12. Análisis de rendimiento por categoría - EVALUACIÓN DETALLADA</span>
+<span class="c1"># ----------------------------------------------------------</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">80</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ANÁLISIS DETALLADO: RENDIMIENTO POR TIPO DE TEXTO&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Evalúa cómo el Transformer maneja diferentes patrones lingüísticos&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">80</span><span class="p">)</span>
+
+<span class="c1"># Agrupación estratégica para análisis</span>
+<span class="n">positive_texts</span> <span class="o">=</span> <span class="n">test_texts</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">test_texts</span><span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="n">test_texts</span><span class="p">[</span><span class="mi">10</span><span class="p">],</span> <span class="n">test_texts</span><span class="p">[</span><span class="mi">12</span><span class="p">]]</span>
+<span class="n">negative_texts</span> <span class="o">=</span> <span class="n">test_texts</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">6</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">test_texts</span><span class="p">[</span><span class="mi">9</span><span class="p">],</span> <span class="n">test_texts</span><span class="p">[</span><span class="mi">11</span><span class="p">],</span> <span class="n">test_texts</span><span class="p">[</span><span class="mi">13</span><span class="p">]]</span>
+<span class="n">neutral_texts</span> <span class="o">=</span> <span class="n">test_texts</span><span class="p">[</span><span class="mi">6</span><span class="p">:</span><span class="mi">8</span><span class="p">]</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">analyze_category</span><span class="p">(</span><span class="n">texts</span><span class="p">,</span> <span class="n">category_name</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">vectorize_layer</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Analiza el rendimiento del modelo en categorías específicas</span>
+<span class="sd">    Demuestra la capacidad del Transformer para generalizar patrones</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Análisis de textos </span><span class="si">{</span><span class="n">category_name</span><span class="si">}</span><span class="s2">:&quot;</span><span class="p">)</span>
+    <span class="n">correct_predictions</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">total_predictions</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">texts</span><span class="p">)</span>
+    
+    <span class="k">for</span> <span class="n">text</span> <span class="ow">in</span> <span class="n">texts</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">predict_sentiment</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">vectorize_layer</span><span class="p">)</span>
+        <span class="n">is_positive</span> <span class="o">=</span> <span class="s2">&quot;POSITIVO&quot;</span> <span class="ow">in</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;sentiment&#39;</span><span class="p">]</span>
+        
+        <span class="c1"># Lógica de evaluación según categoría esperada</span>
+        <span class="k">if</span> <span class="n">category_name</span> <span class="o">==</span> <span class="s2">&quot;positivos&quot;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">is_positive</span><span class="p">:</span>
+                <span class="n">correct_predictions</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">elif</span> <span class="n">category_name</span> <span class="o">==</span> <span class="s2">&quot;negativos&quot;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">is_positive</span><span class="p">:</span>
+                <span class="n">correct_predictions</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>  <span class="c1"># neutrales - solo mostramos sin evaluación binaria</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   &#39;</span><span class="si">{</span><span class="n">text</span><span class="p">[:</span><span class="mi">50</span><span class="p">]</span><span class="si">}</span><span class="s2">...&#39; -&gt; </span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;sentiment&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;confidence&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">category_name</span> <span class="o">!=</span> <span class="s2">&quot;neutrales&quot;</span><span class="p">:</span>
+        <span class="n">accuracy</span> <span class="o">=</span> <span class="n">correct_predictions</span> <span class="o">/</span> <span class="n">total_predictions</span> <span class="o">*</span> <span class="mi">100</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   Precisión: </span><span class="si">{</span><span class="n">correct_predictions</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">total_predictions</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">accuracy</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">%)&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   Interpretación: El modelo </span><span class="si">{</span><span class="s1">&#39;generaliza bien&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">accuracy</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">80</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;tiene dificultades&#39;</span><span class="si">}</span><span class="s2"> con textos </span><span class="si">{</span><span class="n">category_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Ejecutar análisis por categoría</span>
+<span class="n">analyze_category</span><span class="p">(</span><span class="n">positive_texts</span><span class="p">,</span> <span class="s2">&quot;positivos&quot;</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">vectorize_layer</span><span class="p">)</span>
+<span class="n">analyze_category</span><span class="p">(</span><span class="n">negative_texts</span><span class="p">,</span> <span class="s2">&quot;negativos&quot;</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">vectorize_layer</span><span class="p">)</span>
+<span class="n">analyze_category</span><span class="p">(</span><span class="n">neutral_texts</span><span class="p">,</span> <span class="s2">&quot;neutrales&quot;</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">vectorize_layer</span><span class="p">)</span>
+
+<span class="c1"># ----------------------------------------------------------</span>
+<span class="c1"># 13. RESUMEN TÉCNICO: CONEXIÓN CON LA TEORÍA TRANSFORMER</span>
+<span class="c1"># ----------------------------------------------------------</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">80</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;RESUMEN TÉCNICO: CONEXIÓN IMPLEMENTACIÓN-TEORÍA&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">80</span><span class="p">)</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">TEORÍA TRANSFORMER - VENTAJAS MATEMÁTICAS SOBRE LSTM:</span>
+
+<span class="sd">Aspecto               | Transformer                  | LSTM</span>
+<span class="sd">----------------------|------------------------------|---------------------------</span>
+<span class="sd">Dependencia temporal  | Paralelizable                | Secuencial</span>
+<span class="sd">Gradientes            | Sin desvanecimiento          | Se atenúan exponencialmente</span>
+<span class="sd">Complejidad           | O(n²·d) (paralelizable)      | O(n·d²)</span>
+<span class="sd">Dependencias largas   | Directas entre tokens        | Limitadas por memoria</span>
+<span class="sd">Eficiencia en GPU/TPU | Alta                         | Baja</span>
+
+<span class="sd">- Gradiente:</span>
+<span class="sd">  * En LSTM: O(λᴸ) con λ &lt; 1 → se desvanece al aumentar la longitud</span>
+<span class="sd">  * En Transformer: la atención conecta tokens de manera directa, manteniendo O(1)</span>
+
+<span class="sd">INTUICIÓN FINAL:</span>
+<span class="sd">El encoder construye representaciones jerárquicas del input combinando:</span>
+<span class="sd">• Multi-Head Self-Attention → capta relaciones internas desde múltiples subespacios</span>
+<span class="sd">• Feed-Forward Network → transforma las representaciones locales</span>
+<span class="sd">• Residual + LayerNorm → estabilizan y preservan información útil</span>
+
+<span class="sd">El decoder (no usado aquí) usa Masked Multi-Head Attention para generar texto </span>
+<span class="sd">paso a paso, mientras se conecta con el encoder mediante atención cruzada.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">NUESTRA IMPLEMENTACIÓN vs. TEORÍA TRANSFORMER:</span>
+
+<span class="s2">1. MULTI-HEAD ATTENTION: </span>
+<span class="s2">   • Teoría: Z = LayerNorm(X + MultiHeadAttention(X,X,X))</span>
+<span class="s2">   • Implementación: layers.MultiHeadAttention() maneja internamente</span>
+<span class="s2">     las proyecciones multi-head y combinación</span>
+
+<span class="s2">2. FEED-FORWARD NETWORK:</span>
+<span class="s2">   • Teoría: FFN(x) = max(0, xW₁ + b₁)W₂ + b₂  </span>
+<span class="s2">   • Implementación: layers.Dense(FF_DIM, activation=&#39;relu&#39;)</span>
+
+<span class="s2">3. EMBEDDING + POSICIONAL:</span>
+<span class="s2">   • Teoría: Input embedding + positional encoding</span>
+<span class="s2">   • Implementación: layers.Embedding() (sin positional encoding explícito)</span>
+
+<span class="s2">4. CLASIFICACIÓN:</span>
+<span class="s2">   • Adaptación de arquitectura encoder para clasificación</span>
+<span class="s2">   • GlobalAveragePooling convierte secuencia → vector</span>
+
+<span class="s2">VENTAJAS DEMOSTRADAS:</span>
+<span class="s2">• Paralelización completa del entrenamiento</span>
+<span class="s2">• Captura de dependencias largas mediante self-attention</span>
+<span class="s2">• Estabilidad numérica con capas de normalización implícitas</span>
+
+<span class="s2">LIMITACIONES DE ESTA IMPLEMENTACIÓN:</span>
+<span class="s2">• Arquitectura simplificada sin residual connections explícitas</span>
+<span class="s2">• Sin positional encoding para información del orden</span>
+<span class="s2">• Single-layer en lugar de multi-layer encoder</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
+
+<span class="c1"># ----------------------------------------------------------</span>
+<span class="c1"># 14. GRÁFICA ADICIONAL: Resumen de Métricas</span>
+<span class="c1"># ----------------------------------------------------------</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">metrics_for_plot</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Accuracy&#39;</span><span class="p">,</span> <span class="s1">&#39;Precision&#39;</span><span class="p">,</span> <span class="s1">&#39;Recall&#39;</span><span class="p">,</span> <span class="s1">&#39;F1-Score&#39;</span><span class="p">,</span> <span class="s1">&#39;AUC&#39;</span><span class="p">]</span>
+<span class="n">values_for_plot</span> <span class="o">=</span> <span class="p">[</span><span class="n">accuracy</span><span class="p">,</span> <span class="n">precision</span><span class="p">,</span> <span class="n">recall</span><span class="p">,</span> <span class="n">f1</span><span class="p">,</span> <span class="n">roc_auc</span><span class="p">]</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;#2E86AB&#39;</span><span class="p">,</span> <span class="s1">&#39;#A23B72&#39;</span><span class="p">,</span> <span class="s1">&#39;#F18F01&#39;</span><span class="p">,</span> <span class="s1">&#39;#C73E1D&#39;</span><span class="p">,</span> <span class="s1">&#39;#3E8914&#39;</span><span class="p">]</span>
+
+<span class="n">bars</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">metrics_for_plot</span><span class="p">,</span> <span class="n">values_for_plot</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Resumen de Métricas del Modelo Transformer&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Valor de la Métrica&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+
+<span class="c1"># Añadir valores en las barras</span>
+<span class="k">for</span> <span class="n">bar</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">bars</span><span class="p">,</span> <span class="n">values_for_plot</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">bar</span><span class="o">.</span><span class="n">get_x</span><span class="p">()</span> <span class="o">+</span> <span class="n">bar</span><span class="o">.</span><span class="n">get_width</span><span class="p">()</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">bar</span><span class="o">.</span><span class="n">get_height</span><span class="p">()</span> <span class="o">+</span> <span class="mf">0.01</span><span class="p">,</span> 
+             <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">value</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;resumen_metricas_transformer.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># ----------------------------------------------------------</span>
+<span class="c1"># 15. INTERPRETACIÓN FINAL</span>
+<span class="c1"># ----------------------------------------------------------</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">80</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;INTERPRETACIÓN FINAL DEL MODELO&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">80</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">El modelo Transformer ha demostrado los siguientes resultados:</span>
+
+<span class="s2">• CAPACIDAD DISCRIMINATIVA: </span><span class="si">{</span><span class="s1">&#39;EXCELENTE&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">roc_auc</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mf">0.9</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;BUENA&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">roc_auc</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mf">0.8</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;ACEPTABLE&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">roc_auc</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mf">0.7</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;LIMITADA&#39;</span><span class="si">}</span>
+<span class="s2">  - AUC de </span><span class="si">{</span><span class="n">roc_auc</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> indica que el modelo puede distinguir efectivamente entre reseñas positivas y negativas.</span>
+
+<span class="s2">• EXACTITUD GENERAL: </span><span class="si">{</span><span class="n">accuracy</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">% de las predicciones son correctas.</span>
+
+<span class="s2">• BALANCE PRECISIÓN-RECALL: </span>
+<span class="s2">  - Precisión: </span><span class="si">{</span><span class="n">precision</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">% de las predicciones positivas son correctas</span>
+<span class="s2">  - Recall: </span><span class="si">{</span><span class="n">recall</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">% de los casos positivos reales son detectados</span>
+<span class="s2">  - F1-Score: </span><span class="si">{</span><span class="n">f1</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> refleja un balance </span><span class="si">{</span><span class="s1">&#39;óptimo&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">f1</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mf">0.9</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;bueno&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">f1</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mf">0.8</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;aceptable&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">f1</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mf">0.7</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;mejorable&#39;</span><span class="si">}</span>
+
+<span class="s2">• ROBUSTEZ: Especificidad de </span><span class="si">{</span><span class="n">specificity</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">% en identificar correctamente reseñas negativas.</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Cargando dataset IMDB...
+Entrenando modelo Transformer...
+Epoch 1/3
+<span class=" -Color -Color-Bold">391/391</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">18s</span> 33ms/step - accuracy: 0.6739 - auc: 0.7456 - loss: 0.5608 - precision: 0.6701 - recall: 0.6799 - val_accuracy: 0.8508 - val_auc: 0.9287 - val_loss: 0.3416 - val_precision: 0.8549 - val_recall: 0.8450
+Epoch 2/3
+<span class=" -Color -Color-Bold">391/391</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">2s</span> 5ms/step - accuracy: 0.8930 - auc: 0.9543 - loss: 0.2740 - precision: 0.8930 - recall: 0.8924 - val_accuracy: 0.8611 - val_auc: 0.9369 - val_loss: 0.3269 - val_precision: 0.8685 - val_recall: 0.8510
+Epoch 3/3
+<span class=" -Color -Color-Bold">391/391</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">2s</span> 5ms/step - accuracy: 0.9290 - auc: 0.9758 - loss: 0.1954 - precision: 0.9302 - recall: 0.9275 - val_accuracy: 0.8440 - val_auc: 0.9252 - val_loss: 0.3892 - val_precision: 0.8761 - val_recall: 0.8014
+
+Evaluación final del modelo:
+Generando predicciones para análisis...
+</pre></div>
+</div>
+<img alt="_images/5bb5a900a3511c9b6d3d15f7cd4650f99427ffa898c87a96e3d34b36be8292a9.png" src="_images/5bb5a900a3511c9b6d3d15f7cd4650f99427ffa898c87a96e3d34b36be8292a9.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>================================================================================
+REPORTE DE CLASIFICACIÓN DETALLADO
+================================================================================
+
+                Precision    Recall       F1-Score     Support     
+------------------------------------------------------------
+Negativo        0.8170       0.8866       0.8504       12500.0     
+Positivo        0.8761       0.8014       0.8371       12500.0     
+------------------------------------------------------------
+Accuracy                                  0.8440       25000       
+Macro Avg       0.8465       0.8440       0.8437       25000.0     
+Weighted Avg    0.8465       0.8440       0.8437       25000.0     
+
+================================================================================
+RESUMEN DE MÉTRICAS DEL MODELO
+================================================================================
+
+MÉTRICA                        VALOR      INTERPRETACIÓN                          
+-------------------------------------------------------------------------------------
+AUC (Area Under ROC Curve)     0.9255     Excelente discriminación                
+Accuracy                       0.8440     Buena exactitud                         
+Precision                      0.8761     Buen rendimiento                        
+Recall (Sensitivity)           0.8014     Buen rendimiento                        
+Specificity                    0.8866     Buen rendimiento                        
+F1-Score                       0.8371     Buen balance                            
+Balanced Accuracy              0.8440     Buena exactitud                         
+
+================================================================================
+DEMOSTRACIÓN: TESTEO CON TEXTOS PERSONALIZADOS
+El modelo usa Multi-Head Attention para analizar dependencias en el texto
+================================================================================
+
+Texto 1:
+   Texto: &#39;This movie was absolutely fantastic! The acting was superb and the story was captivating from start to finish.&#39;
+   Probabilidad: 1.0000
+   Confianza: 100.00%
+   Sentimiento: POSITIVO
+   Visual: [||||||||||||||||||||]
+--------------------------------------------------
+
+Texto 2:
+   Texto: &#39;I loved this film! It&#39;s one of the best movies I&#39;ve seen this year. Highly recommended!&#39;
+   Probabilidad: 1.0000
+   Confianza: 100.00%
+   Sentimiento: POSITIVO
+   Visual: [||||||||||||||||||||]
+--------------------------------------------------
+
+Texto 3:
+   Texto: &#39;Brilliant cinematography and outstanding performances. A true masterpiece of modern cinema.&#39;
+   Probabilidad: 1.0000
+   Confianza: 100.00%
+   Sentimiento: POSITIVO
+   Visual: [||||||||||||||||||||]
+--------------------------------------------------
+
+Texto 4:
+   Texto: &#39;This was the worst movie I&#39;ve ever seen. Terrible acting and a boring plot. Complete waste of time.&#39;
+   Probabilidad: 0.0000
+   Confianza: 0.00%
+   Sentimiento: NEGATIVO
+   Visual: [...................]
+--------------------------------------------------
+
+Texto 5:
+   Texto: &#39;I hated every minute of this film. The characters were poorly developed and the dialogue was awful.&#39;
+   Probabilidad: 0.0000
+   Confianza: 0.00%
+   Sentimiento: NEGATIVO
+   Visual: [...................]
+--------------------------------------------------
+
+Texto 6:
+   Texto: &#39;Poor direction, bad screenplay, and mediocre acting. I regret watching this movie.&#39;
+   Probabilidad: 0.0000
+   Confianza: 0.00%
+   Sentimiento: NEGATIVO
+   Visual: [...................]
+--------------------------------------------------
+
+Texto 7:
+   Texto: &#39;The movie had some good moments but overall it was just average. Not great, not terrible.&#39;
+   Probabilidad: 0.0897
+   Confianza: 8.97%
+   Sentimiento: NEGATIVO
+   Visual: [|..................]
+--------------------------------------------------
+
+Texto 8:
+   Texto: &#39;The special effects were impressive but the story was weak and predictable.&#39;
+   Probabilidad: 0.0000
+   Confianza: 0.00%
+   Sentimiento: NEGATIVO
+   Visual: [...................]
+--------------------------------------------------
+
+Texto 9:
+   Texto: &#39;Awesome!&#39;
+   Probabilidad: 1.0000
+   Confianza: 100.00%
+   Sentimiento: POSITIVO
+   Visual: [||||||||||||||||||||]
+--------------------------------------------------
+
+Texto 10:
+   Texto: &#39;Terrible.&#39;
+   Probabilidad: 0.0000
+   Confianza: 0.00%
+   Sentimiento: NEGATIVO
+   Visual: [....................]
+--------------------------------------------------
+
+Texto 11:
+   Texto: &#39;I liked it&#39;
+   Probabilidad: 1.0000
+   Confianza: 100.00%
+   Sentimiento: POSITIVO
+   Visual: [||||||||||||||||||||]
+--------------------------------------------------
+
+Texto 12:
+   Texto: &#39;Boring movie&#39;
+   Probabilidad: 0.0000
+   Confianza: 0.00%
+   Sentimiento: NEGATIVO
+   Visual: [...................]
+--------------------------------------------------
+
+Texto 13:
+   Texto: &#39;Esta película es increíble, me encantó completamente!&#39;
+   Probabilidad: 0.5310
+   Confianza: 53.10%
+   Sentimiento: POSITIVO
+   Visual: [||||||||||.........]
+--------------------------------------------------
+
+Texto 14:
+   Texto: &#39;Que película tan mala, no la recomiendo para nada.&#39;
+   Probabilidad: 0.0003
+   Confianza: 0.03%
+   Sentimiento: NEGATIVO
+   Visual: [...................]
+--------------------------------------------------
+
+================================================================================
+ANÁLISIS DETALLADO: RENDIMIENTO POR TIPO DE TEXTO
+Evalúa cómo el Transformer maneja diferentes patrones lingüísticos
+================================================================================
+
+Análisis de textos positivos:
+   Precisión: 6/6 (100.0%)
+   Interpretación: El modelo generaliza bien con textos positivos
+
+Análisis de textos negativos:
+   Precisión: 6/6 (100.0%)
+   Interpretación: El modelo generaliza bien con textos negativos
+
+Análisis de textos neutrales:
+   &#39;The movie had some good moments but overall it was...&#39; -&gt; NEGATIVO (8.97%)
+   &#39;The special effects were impressive but the story ...&#39; -&gt; NEGATIVO (0.00%)
+
+================================================================================
+RESUMEN TÉCNICO: CONEXIÓN IMPLEMENTACIÓN-TEORÍA
+================================================================================
+
+NUESTRA IMPLEMENTACIÓN vs. TEORÍA TRANSFORMER:
+
+1. MULTI-HEAD ATTENTION: 
+   • Teoría: Z = LayerNorm(X + MultiHeadAttention(X,X,X))
+   • Implementación: layers.MultiHeadAttention() maneja internamente
+     las proyecciones multi-head y combinación
+
+2. FEED-FORWARD NETWORK:
+   • Teoría: FFN(x) = max(0, xW₁ + b₁)W₂ + b₂  
+   • Implementación: layers.Dense(FF_DIM, activation=&#39;relu&#39;)
+
+3. EMBEDDING + POSICIONAL:
+   • Teoría: Input embedding + positional encoding
+   • Implementación: layers.Embedding() (sin positional encoding explícito)
+
+4. CLASIFICACIÓN:
+   • Adaptación de arquitectura encoder para clasificación
+   • GlobalAveragePooling convierte secuencia → vector
+
+VENTAJAS DEMOSTRADAS:
+• Paralelización completa del entrenamiento
+• Captura de dependencias largas mediante self-attention
+• Estabilidad numérica con capas de normalización implícitas
+
+LIMITACIONES DE ESTA IMPLEMENTACIÓN:
+• Arquitectura simplificada sin residual connections explícitas
+• Sin positional encoding para información del orden
+• Single-layer en lugar de multi-layer encoder
+</pre></div>
+</div>
+<img alt="_images/4996adce708626340d3b086d55843a3c56f444d8046d764e6bef2186c7d90dee.png" src="_images/4996adce708626340d3b086d55843a3c56f444d8046d764e6bef2186c7d90dee.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>================================================================================
+INTERPRETACIÓN FINAL DEL MODELO
+================================================================================
+
+El modelo Transformer ha demostrado los siguientes resultados:
+
+• CAPACIDAD DISCRIMINATIVA: EXCELENTE
+  - AUC de 0.9255 indica que el modelo puede distinguir efectivamente entre reseñas positivas y negativas.
+
+• EXACTITUD GENERAL: 84.40% de las predicciones son correctas.
+
+• BALANCE PRECISIÓN-RECALL: 
+  - Precisión: 87.61% de las predicciones positivas son correctas
+  - Recall: 80.14% de los casos positivos reales son detectados
+  - F1-Score: 0.8371 refleja un balance bueno
+
+• ROBUSTEZ: Especificidad de 88.66% en identificar correctamente reseñas negativas.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -11152,6 +11998,7 @@ Cada cabeza aprende a <strong>atender distintos patrones</strong> dentro de la m
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#self-attention">11.24. Self-Attention</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-head-attention">11.25. Multi-head Attention</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformer">11.26. Transformer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-analisis-de-sentimiento-con-transformer">11.27. Aplicación: Análisis de sentimiento con Transformer</a></li>
 </ul>
   </nav></div>
 
