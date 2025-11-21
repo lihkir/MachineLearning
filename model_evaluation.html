@@ -4295,6 +4295,95 @@ ANÁLISIS COMPLETADO EXITOSAMENTE
 </section>
 <section id="ejemplo-de-aplicacion-regresion">
 <h3><span class="section-number">9.8.3. </span>Ejemplo de aplicación: Regresión<a class="headerlink" href="#ejemplo-de-aplicacion-regresion" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Cuando se comparan modelos de regresión, es fundamental no solo reportar métricas como RMSE, MAE o <span class="math notranslate nohighlight">\(R^2\)</span>, sino también evaluar si las diferencias entre modelos son <strong>estadísticamente significativas</strong>. Para ello se utilizan pruebas como el <strong>Test Diebold-Mariano (DM)</strong> <span id="id10">[<a class="reference internal" href="biblio.html#id72" title="Francis X. Diebold and Roberto S. Mariano. Comparing predictive accuracy. Journal of Business &amp; Economic Statistics, 13(3):253–263, 1995.">Diebold and Mariano, 1995</a>]</span> y técnicas de <strong>bootstrap</strong> para intervalos de confianza <span id="id11">[<a class="reference internal" href="biblio.html#id74" title="Bradley Efron. Bootstrap methods: another look at the jackknife. Annals of Statistics, 7(1):1–26, 1979.">Efron, 1979</a>]</span>.</p></li>
+</ul>
+<p><strong>1. Test Diebold-Mariano (1995)</strong> El <strong>test Diebold-Mariano (DM)</strong> evalúa si dos modelos de predicción difieren significativamente en su precisión predictiva.</p>
+<ul>
+<li><p>Hipótesis</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{aligned}
+    H_0 &amp;: \mathbb{E}[L(e_{1,t}) - L(e_{2,t})] = 0 \quad \text{(no hay diferencia en el error esperado)} \\
+    H_1 &amp;: \mathbb{E}[L(e_{1,t}) - L(e_{2,t})] \neq 0 \quad \text{(existe diferencia)}
+    \end{aligned}
+    \end{split}\]</div>
+<p>Donde</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(e_{i,t} = y_t - \hat{y}_{i,t}\)</span> es el error de predicción del modelo <span class="math notranslate nohighlight">\(i\)</span> en el tiempo <span class="math notranslate nohighlight">\(t\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(L(\cdot)\)</span> es la función de pérdida, típicamente el <strong>error cuadrático</strong> <span class="math notranslate nohighlight">\(L(e) = e^2\)</span>.</p></li>
+</ul>
+</li>
+<li><p>Para comparar dos modelos, se puede:</p>
+<ol class="arabic simple">
+<li><p>Calcular la diferencia de RMSE o MAE: <span class="math notranslate nohighlight">\(\Delta = \text{Metric}_1 - \text{Metric}_2\)</span></p></li>
+<li><p>Evaluar significancia mediante <strong>Diebold-Mariano</strong> (para errores correlacionados en el test set)</p></li>
+<li><p>Ajustar por comparaciones múltiples (Bonferroni) cuando se comparan muchos modelos simultáneamente <span id="id12">[<a class="reference internal" href="biblio.html#id75" title="Janez Demšar. Statistical comparisons of classifiers over multiple data sets. Journal of Machine Learning Research, 7:1–30, 2006.">Demšar, 2006</a>]</span></p></li>
+</ol>
+</li>
+</ul>
+<p><strong>2. Bootstrap para Intervalos de Confianza (Efron, 1979)</strong>. El <strong>bootstrap</strong> permite estimar la incertidumbre de métricas de rendimiento como <span class="math notranslate nohighlight">\(R^2\)</span>, RMSE o MAE sin suponer distribuciones paramétricas.</p>
+<ul class="simple">
+<li><p>Procedimiento</p>
+<ol class="arabic simple">
+<li><p>Dada una muestra de test <span class="math notranslate nohighlight">\((X, y)\)</span>, se generan <span class="math notranslate nohighlight">\(B\)</span> muestras con reemplazo:
+<span class="math notranslate nohighlight">\((X^*_b, y^*_b)\)</span> para <span class="math notranslate nohighlight">\(b = 1,\dots,B\)</span></p></li>
+<li><p>Para cada muestra se recalcula la métrica de interés <span class="math notranslate nohighlight">\(M_b\)</span> (por ejemplo, <span class="math notranslate nohighlight">\(R^2_b\)</span>)</p></li>
+<li><p>El <strong>intervalo de confianza al 95%</strong> se obtiene con los percentiles 2.5 y 97.5</p></li>
+</ol>
+</li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+IC_{95\%} = \left[\text{percentil}*{2.5}(M_b), \text{percentil}*{97.5}(M_b) \right]
+\]</div>
+<ul class="simple">
+<li><p><strong>Interpretación:</strong> si el IC no incluye 0, la métrica es estadísticamente diferente de un modelo aleatorio; IC estrecho indica alta precisión de la estimación.</p></li>
+</ul>
+<p><strong>3. Comparación de Métricas de Error</strong> Para comparar modelos de regresión se suelen utilizar</p>
+<ul class="simple">
+<li><p><strong>RMSE:</strong> raíz del error cuadrático medio</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+RMSE = \sqrt{\frac{1}{n} \sum_{t=1}^{n} (y_t - \hat{y}_t)^2}
+\]</div>
+<ul class="simple">
+<li><p><strong>MAE:</strong> error absoluto medio</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+MAE = \frac{1}{n} \sum_{t=1}^{n} |y_t - \hat{y}_t|
+\]</div>
+<ul class="simple">
+<li><p><strong>R²:</strong> coeficiente de determinación</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+R^2 = 1 - \frac{\sum_{t=1}^{n} (y_t - \hat{y}*t)^2}{\sum*{t=1}^{n} (y_t - \bar{y})^2}
+\]</div>
+<ul class="simple">
+<li><p>Para comparar dos modelos, se puede</p>
+<ol class="arabic simple">
+<li><p>Calcular la diferencia de RMSE o MAE: <span class="math notranslate nohighlight">\(\Delta = \text{Metric}_1 - \text{Metric}_2\)</span></p></li>
+<li><p>Evaluar significancia mediante <strong>Diebold-Mariano</strong> (para errores correlacionados en el test set)</p></li>
+<li><p>Ajustar por comparaciones múltiples (Bonferroni) cuando se comparan muchos modelos simultáneamente <span id="id13">[<a class="reference internal" href="biblio.html#id75" title="Janez Demšar. Statistical comparisons of classifiers over multiple data sets. Journal of Machine Learning Research, 7:1–30, 2006.">Demšar, 2006</a>]</span>.</p></li>
+</ol>
+</li>
+</ul>
+<p><strong>4. Consideraciones prácticas</strong></p>
+<ul class="simple">
+<li><p>Siempre reportar <strong><span class="math notranslate nohighlight">\(p\)</span>-values y magnitud de la diferencia</strong>.</p></li>
+<li><p>Para múltiples comparaciones, aplicar <strong>correcciones tipo Bonferroni</strong>:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\alpha_{adj} = \frac{\alpha}{\text{número de comparaciones}}
+\]</div>
+<ul class="simple">
+<li><p>Un modelo con diferencia significativa y <span class="math notranslate nohighlight">\(\Delta RMSE\)</span> relevante se considera superior.</p></li>
+<li><p>Las visualizaciones tipo <strong>heatmaps de <span class="math notranslate nohighlight">\(p\)</span>-values</strong> facilitan la interpretación de comparaciones múltiples.</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
