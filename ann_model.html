@@ -449,12 +449,50 @@ document.write(`
 </figcaption>
 </figure>
 <ul class="simple">
-<li><p>Suponga que en la iteración <span class="math notranslate nohighlight">\(i-1\)</span> el valor <span class="math notranslate nohighlight">\(\boldsymbol{\theta}^{(i-1)}\)</span> <em><strong>ha sido obtenido</strong></em></p></li>
+<li><p>Suponga que en la iteración <span class="math notranslate nohighlight">\(i-1\)</span> el valor <span class="math notranslate nohighlight">\(\boldsymbol{\theta}^{(i-1)}\)</span> <em><strong>ha sido obtenido</strong></em>. Evaluando la función objetivo en el nuevo punto se obtiene</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[
-J(\boldsymbol{\theta}^{(i)})=J(\boldsymbol{\theta}^{(i-1)}+\mu_{i}\Delta\boldsymbol{\theta}^{(i)})\approx J(\boldsymbol{\theta}^{(i-1)})+\mu_{i}\cdot\nabla^{T}J(\boldsymbol{\theta}^{(i-1)})\Delta\boldsymbol{\theta}^{(i-1)}.
+J(\boldsymbol{\theta}^{(i)})
+= J\big(\boldsymbol{\theta}^{(i-1)} + \mu_i \Delta \boldsymbol{\theta}^{(i)}\big).
 \]</div>
+<ul>
+<li><p>Si <span class="math notranslate nohighlight">\(\mu_i\)</span> es suficientemente pequeño, el nuevo punto se encuentra en un entorno cercano a <span class="math notranslate nohighlight">\(\boldsymbol{\theta}^{(i-1)}\)</span>, lo que permite aproximar <span class="math notranslate nohighlight">\(J(\cdot)\)</span> mediante una <strong>expansión de Taylor de primer orden</strong> alrededor de <span class="math notranslate nohighlight">\(\boldsymbol{\theta}^{(i-1)}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+    J(\boldsymbol{\theta}^{(i-1)} + \mathbf{h})
+    \approx J(\boldsymbol{\theta}^{(i-1)})
+    + \nabla^{T} J(\boldsymbol{\theta}^{(i-1)})\, \mathbf{h},
+    \]</div>
+<p>donde <span class="math notranslate nohighlight">\(\mathbf{h}\)</span> es una perturbación pequeña.</p>
+</li>
+<li><p>En este caso,</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{h} = \mu_i \Delta \boldsymbol{\theta}^{(i)}.
+\]</div>
+<ul>
+<li><p>Sustituyendo en la expresión anterior se obtiene</p>
+<div class="math notranslate nohighlight">
+\[
+    J(\boldsymbol{\theta}^{(i)})
+    \approx J(\boldsymbol{\theta}^{(i-1)})
+    + \nabla^{T} J(\boldsymbol{\theta}^{(i-1)})
+    \big(\mu_i \Delta \boldsymbol{\theta}^{(i)}\big),
+    \]</div>
+<p>o, de forma equivalente,</p>
+<div class="math notranslate nohighlight">
+\[
+    J(\boldsymbol{\theta}^{(i)})
+    \approx J(\boldsymbol{\theta}^{(i-1)})
+    + \mu_i \cdot \nabla^{T} J(\boldsymbol{\theta}^{(i-1)})
+    \Delta \boldsymbol{\theta}^{(i)}.
+    \]</div>
+</li>
+<li><p><strong>Esta aproximación describe el cambio local de la función objetivo como una función lineal del desplazamiento en el espacio de parámetros.</strong><br />
+El término <span class="math notranslate nohighlight">\(\nabla^{T} J(\boldsymbol{\theta}^{(i-1)}) \Delta \boldsymbol{\theta}^{(i)}\)</span> corresponde al producto interno entre el gradiente y la dirección de actualización, e indica si el valor de la función objetivo aumenta o disminuye.</p></li>
+</ul>
 <ul class="simple">
 <li><p>Nótese que <em><strong>seleccionando la dirección tal que</strong></em> <span class="math notranslate nohighlight">\(\nabla^{T}J(\boldsymbol{\theta}^{(i-1)})\Delta\boldsymbol{\theta}^{(i)}&lt;0\)</span>, <em><strong>garantizará que</strong></em> <span class="math notranslate nohighlight">\(J(\boldsymbol{\theta}^{(i-1)}+\mu_{i}\Delta\boldsymbol{\theta}^{(i)})&lt;J(\boldsymbol{\theta}^{(i-1)})\)</span>. Tal selección de <span class="math notranslate nohighlight">\(\Delta\boldsymbol{\theta}^{(i)}\)</span> y <span class="math notranslate nohighlight">\(\nabla J(\boldsymbol{\theta}^{(i-1)})\)</span> debe formar un <em><strong>ángulo obtuso</strong></em>. Las curvas de nivel asociadas a <span class="math notranslate nohighlight">\(J(\boldsymbol{\theta})\)</span> pueden tomar cualquier forma, la cual va a <em><strong>depender de como está definido</strong></em> <span class="math notranslate nohighlight">\(J(\boldsymbol{\theta})\)</span>.</p></li>
 <li><p><span class="math notranslate nohighlight">\(J(\boldsymbol{\theta})\)</span> se supone diferenciable, por lo tanto, las <em><strong>curvas de nivel o contornos deben ser suaves y aceptar un plano tangente en cualquier punto</strong></em>. Además, de los cursos de cálculo sabemos que el <em><strong>vector gradiente</strong></em> <span class="math notranslate nohighlight">\(\nabla J(\boldsymbol{\theta})\)</span> <em><strong>es perpendicular al plano tangente</strong></em> (recta tangente) <em><strong>a la correspondiente curva de nivel en el punto</strong></em> <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span>. Nótese que <em><strong>seleccionando la dirección de búsqueda</strong></em> <span class="math notranslate nohighlight">\(\Delta\boldsymbol{\theta}^{(i)}\)</span> <em><strong>que forma un angulo obtuso con el gradiente, se coloca a</strong></em> <span class="math notranslate nohighlight">\(\boldsymbol{\theta}^{(i-1)}+\mu_{i}\Delta\boldsymbol{\theta}^{(i)}\)</span> <em><strong>en un punto sobre el contorno el cual corresponde a un valor menor que</strong></em> <span class="math notranslate nohighlight">\(J(\boldsymbol{\theta})\)</span>.</p></li>
@@ -485,14 +523,139 @@ J(\boldsymbol{\theta}^{(i)})=J(\boldsymbol{\theta}^{(i-1)}+\mu_{i}\Delta\boldsym
 </figcaption>
 </figure>
 <ul class="simple">
-<li><p>Para abordar (1), <em><strong>supongamos que</strong></em> <span class="math notranslate nohighlight">\(\mu_{i}=1\)</span> y <em><strong>buscamos todos los vectores</strong></em> <span class="math notranslate nohighlight">\(\boldsymbol{z}\)</span> <em><strong>con norma Euclidiana unitaria, con inicio (cola) en</strong></em> <span class="math notranslate nohighlight">\(\boldsymbol{\theta}^{(i-1)}\)</span>. Entonces, para todas las posibles direcciones, la que entrega el valor más negativo del producto interno, <span class="math notranslate nohighlight">\(\nabla^{T}J(\boldsymbol{\theta}^{(i-1)})z\)</span>, es aquella de gradiente negativo</p></li>
+<li><p>Con el fin de analizar exclusivamente la <strong>dirección de búsqueda</strong> (1), se fija inicialmente <span class="math notranslate nohighlight">\(\mu_i = 1\)</span> y se consideran únicamente <strong>vectores de búsqueda unitarios <span class="math notranslate nohighlight">\(\boldsymbol{z}\)</span> tales que</strong></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\|\boldsymbol{z}\| = 1.
+\]</div>
+<ul class="simple">
+<li><p>De este modo, el problema se reduce a determinar la dirección unitaria que minimiza el producto interno con el gradiente:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\min_{\|\boldsymbol{z}\| = 1}
+\;
+\nabla^{T} J(\boldsymbol{\theta}^{(i-1)}) \, \boldsymbol{z}.
+\]</div>
+<ul class="simple">
+<li><p>Este planteamiento responde a la pregunta fundamental:</p></li>
+</ul>
+<blockquote>
+<div><p><strong>¿En qué dirección, manteniendo fija la longitud del desplazamiento, se logra la mayor disminución local de la función objetivo?</strong></p>
+</div></blockquote>
+<ul>
+<li><p>De álgebra lineal se sabe que, para cualquier vector no nulo <span class="math notranslate nohighlight">\(\boldsymbol{a} \in \mathbb{R}^n\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[
+    \min_{\|\boldsymbol{z}\| = 1}
+    \;
+    \boldsymbol{a}^{T} \boldsymbol{z}
+    =
+    -\|\boldsymbol{a}\|,
+    \]</div>
+<p>y que dicho mínimo se alcanza cuando</p>
+<div class="math notranslate nohighlight">
+\[
+    \boldsymbol{z}
+    =
+    -\frac{\boldsymbol{a}}{\|\boldsymbol{a}\|}.
+    \]</div>
+</li>
+<li><p><strong>Interpretación geométrica</strong>. El producto interno puede escribirse como</p>
+<div class="math notranslate nohighlight">
+\[
+    \boldsymbol{a}^{T} \boldsymbol{z}
+    =
+    \|\boldsymbol{a}\| \, \|\boldsymbol{z}\| \cos \theta,
+    \]</div>
+<p>donde <span class="math notranslate nohighlight">\(\theta\)</span> es el ángulo entre los vectores <span class="math notranslate nohighlight">\(\boldsymbol{a}\)</span> y <span class="math notranslate nohighlight">\(\boldsymbol{z}\)</span>.<br />
+Bajo la restricción <span class="math notranslate nohighlight">\(\|\boldsymbol{z}\| = 1\)</span>, se obtiene</p>
+<div class="math notranslate nohighlight">
+\[
+    \boldsymbol{a}^{T} \boldsymbol{z}
+    =
+    \|\boldsymbol{a}\| \cos \theta.
+    \]</div>
+</li>
+<li><p>Como <span class="math notranslate nohighlight">\(-1 \le \cos \theta \le 1\)</span>, el valor mínimo se alcanza cuando <span class="math notranslate nohighlight">\(\cos \theta = -1\)</span>, es decir, cuando <span class="math notranslate nohighlight">\(\theta = \pi\)</span>. Esto ocurre cuando <span class="math notranslate nohighlight">\(\boldsymbol{z}\)</span> apunta exactamente en la dirección opuesta a <span class="math notranslate nohighlight">\(\boldsymbol{a}\)</span>.</p></li>
+<li><p><strong>Aplicación al gradiente</strong>. Tomando</p>
+<div class="math notranslate nohighlight">
+\[
+    \boldsymbol{a} = \nabla J(\boldsymbol{\theta}^{(i-1)}),
+    \]</div>
+<p>se concluye que la dirección unitaria que produce la mayor disminución local de <span class="math notranslate nohighlight">\(J\)</span> es</p>
+<div class="math notranslate nohighlight">
+\[
+    \boldsymbol{z}
+    =
+    -\frac{\nabla J(\boldsymbol{\theta}^{(i-1)})}
+    {\|\nabla J(\boldsymbol{\theta}^{(i-1)})\|}.
+    \]</div>
+</li>
+<li><p>Geométricamente:</p>
+<ul class="simple">
+<li><p>El gradiente <span class="math notranslate nohighlight">\(\nabla J\)</span> apunta en la dirección de <strong>máximo crecimiento</strong> de <span class="math notranslate nohighlight">\(J\)</span>.</p></li>
+<li><p>El gradiente negativo apunta en la dirección de <strong>máximo descenso local</strong>.</p></li>
+<li><p>La normalización únicamente fija la longitud del vector.</p></li>
+</ul>
+</li>
+<li><p>En la práctica, no es necesario normalizar la dirección de descenso, ya que el tamaño del paso está controlado por el parámetro <span class="math notranslate nohighlight">\(\mu_i\)</span>. Por esta razón, se define directamente</p>
+<div class="math notranslate nohighlight">
+\[
+    \Delta \boldsymbol{\theta}^{(i)}
+    =
+    -\nabla J(\boldsymbol{\theta}^{(i-1)}),
+    \]</div>
+<p>lo que da lugar al método conocido como <strong>descenso por gradiente</strong>.</p>
+</li>
+<li><p>Sustituyendo esta elección en el producto interno se obtiene</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\nabla^{T} J(\boldsymbol{\theta}^{(i-1)})
+\Delta \boldsymbol{\theta}^{(i)}
+=
+\nabla^{T} J(\boldsymbol{\theta}^{(i-1)})
+\big(-\nabla J(\boldsymbol{\theta}^{(i-1)})\big)
+=
+- \|\nabla J(\boldsymbol{\theta}^{(i-1)})\|^2
+\le 0.
+\]</div>
+<ul>
+<li><p>Este valor es estrictamente negativo excepto en puntos críticos donde el gradiente se anula. En consecuencia, para valores suficientemente pequeños de <span class="math notranslate nohighlight">\(\mu_i\)</span>, la aproximación de Taylor garantiza que</p>
+<div class="math notranslate nohighlight">
+\[
+    J(\boldsymbol{\theta}^{(i)}) &lt; J(\boldsymbol{\theta}^{(i-1)}),
+    \]</div>
+<p>lo que asegura una disminución del valor de la función objetivo en cada iteración.</p>
+</li>
+</ul>
+<ul class="simple">
+<li><p>Entonces, para todas las posibles direcciones, la que entrega el valor más negativo del producto interno, <span class="math notranslate nohighlight">\(\nabla^{T}J(\boldsymbol{\theta}^{(i-1)})z\)</span>, es aquella de gradiente negativo</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[
 z=-\frac{\nabla J(\boldsymbol{\theta}^{(i-1)})}{\|\nabla J(\boldsymbol{\theta}^{(i-1)}\|}
 \]</div>
+<ul>
+<li><p>En particular, si se elige la dirección de descenso por gradiente</p>
+<div class="math notranslate nohighlight">
+\[
+    \Delta \boldsymbol{\theta}^{(i)} = - \nabla J(\boldsymbol{\theta}^{(i-1)}),
+    \]</div>
+<p>entonces</p>
+<div class="math notranslate nohighlight">
+\[
+    \nabla^{T} J(\boldsymbol{\theta}^{(i-1)})
+    \Delta \boldsymbol{\theta}^{(i)}
+    = - \left\| \nabla J(\boldsymbol{\theta}^{(i-1)}) \right\|^2 \le 0,
+    \]</div>
+<p>lo que garantiza, para valores suficientemente pequeños de <span class="math notranslate nohighlight">\(\mu_i\)</span>, una disminución del valor de la función objetivo en cada iteración.</p>
+</li>
+</ul>
 <ul class="simple">
-<li><p>Centrando <span class="math notranslate nohighlight">\(\boldsymbol{\theta}^{(i-1)}\)</span> en la bola con norma Euclideana uno. <em><strong>De todos los vectores con norma unitaria y origen en</strong></em> <span class="math notranslate nohighlight">\(\boldsymbol{\theta}^{(i-1)}\)</span>, <em><strong>seleccionamos aquel que apunta en la dirección negativa del gradiente</strong></em>. Por lo tanto, para todos los vectores con norma Euclidiana 1, la <em><strong>dirección de descenso mas pronunciada coincide con la dirección del gradiente descendente, negativo</strong></em>, y la correspondiente actualización recursiva se convierte en</p></li>
+<li><p>Por lo tanto, para todos los vectores con norma Euclidiana 1, la <em><strong>dirección de descenso mas pronunciada coincide con la dirección del gradiente descendente, negativo</strong></em>, y la correspondiente actualización recursiva se convierte en</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[
