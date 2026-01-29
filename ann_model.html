@@ -490,8 +490,7 @@ J(\boldsymbol{\theta}^{(i)})
     \Delta \boldsymbol{\theta}^{(i)}.
     \]</div>
 </li>
-<li><p><strong>Esta aproximación describe el cambio local de la función objetivo como una función lineal del desplazamiento en el espacio de parámetros.</strong><br />
-El término <span class="math notranslate nohighlight">\(\nabla^{T} J(\boldsymbol{\theta}^{(i-1)}) \Delta \boldsymbol{\theta}^{(i)}\)</span> corresponde al producto interno entre el gradiente y la dirección de actualización, e indica si el valor de la función objetivo aumenta o disminuye.</p></li>
+<li><p><strong>Esta aproximación describe el cambio local de la función objetivo como una función lineal del desplazamiento en el espacio de parámetros.</strong> El término <span class="math notranslate nohighlight">\(\nabla^{T} J(\boldsymbol{\theta}^{(i-1)}) \Delta \boldsymbol{\theta}^{(i)}\)</span> corresponde al producto interno entre el gradiente y la dirección de actualización, e indica si el valor de la función objetivo aumenta o disminuye.</p></li>
 </ul>
 <ul class="simple">
 <li><p>Nótese que <em><strong>seleccionando la dirección tal que</strong></em> <span class="math notranslate nohighlight">\(\nabla^{T}J(\boldsymbol{\theta}^{(i-1)})\Delta\boldsymbol{\theta}^{(i)}&lt;0\)</span>, <em><strong>garantizará que</strong></em> <span class="math notranslate nohighlight">\(J(\boldsymbol{\theta}^{(i-1)}+\mu_{i}\Delta\boldsymbol{\theta}^{(i)})&lt;J(\boldsymbol{\theta}^{(i-1)})\)</span>. Tal selección de <span class="math notranslate nohighlight">\(\Delta\boldsymbol{\theta}^{(i)}\)</span> y <span class="math notranslate nohighlight">\(\nabla J(\boldsymbol{\theta}^{(i-1)})\)</span> debe formar un <em><strong>ángulo obtuso</strong></em>. Las curvas de nivel asociadas a <span class="math notranslate nohighlight">\(J(\boldsymbol{\theta})\)</span> pueden tomar cualquier forma, la cual va a <em><strong>depender de como está definido</strong></em> <span class="math notranslate nohighlight">\(J(\boldsymbol{\theta})\)</span>.</p></li>
@@ -539,6 +538,12 @@ El término <span class="math notranslate nohighlight">\(\nabla^{T} J(\boldsymbo
 \nabla^{T} J(\boldsymbol{\theta}^{(i-1)}) \, \boldsymbol{z}.
 \]</div>
 <ul class="simple">
+<li><p>Nótese que</p>
+<ul>
+<li><p>Si <span class="math notranslate nohighlight">\(\nabla^T J \cdot z\)</span> es <strong>grande y positivo</strong>, <span class="math notranslate nohighlight">\(J\)</span> <strong>aumenta</strong> mucho.</p></li>
+<li><p>Si <span class="math notranslate nohighlight">\(\nabla^T J \cdot z\)</span> es <strong>grande y negativo</strong>, <span class="math notranslate nohighlight">\(J\)</span> <strong>disminuye</strong> mucho.</p></li>
+</ul>
+</li>
 <li><p>Este planteamiento responde a la pregunta fundamental:</p></li>
 </ul>
 <blockquote>
@@ -562,23 +567,78 @@ El término <span class="math notranslate nohighlight">\(\nabla^{T} J(\boldsymbo
     -\frac{\boldsymbol{a}}{\|\boldsymbol{a}\|}.
     \]</div>
 </li>
-<li><p><strong>Interpretación geométrica</strong>. El producto interno puede escribirse como</p>
+</ul>
+<ul>
+<li><p>En efecto, queremos resolver:</p>
 <div class="math notranslate nohighlight">
 \[
-    \boldsymbol{a}^{T} \boldsymbol{z}
-    =
-    \|\boldsymbol{a}\| \, \|\boldsymbol{z}\| \cos \theta,
+    \min_{\|z\| = 1} \mathbf{a}^T z
     \]</div>
-<p>donde <span class="math notranslate nohighlight">\(\theta\)</span> es el ángulo entre los vectores <span class="math notranslate nohighlight">\(\boldsymbol{a}\)</span> y <span class="math notranslate nohighlight">\(\boldsymbol{z}\)</span>.<br />
-Bajo la restricción <span class="math notranslate nohighlight">\(\|\boldsymbol{z}\| = 1\)</span>, se obtiene</p>
-<div class="math notranslate nohighlight">
-\[
-    \boldsymbol{a}^{T} \boldsymbol{z}
-    =
-    \|\boldsymbol{a}\| \cos \theta.
-    \]</div>
+<p>donde <span class="math notranslate nohighlight">\(\mathbf{a} \in \mathbb{R}^n\)</span> es un vector fijo no nulo.</p>
 </li>
-<li><p>Como <span class="math notranslate nohighlight">\(-1 \le \cos \theta \le 1\)</span>, el valor mínimo se alcanza cuando <span class="math notranslate nohighlight">\(\cos \theta = -1\)</span>, es decir, cuando <span class="math notranslate nohighlight">\(\theta = \pi\)</span>. Esto ocurre cuando <span class="math notranslate nohighlight">\(\boldsymbol{z}\)</span> apunta exactamente en la dirección opuesta a <span class="math notranslate nohighlight">\(\boldsymbol{a}\)</span>.</p></li>
+<li><p>Recordemos la identidad del producto escalar:</p>
+<div class="math notranslate nohighlight">
+\[
+    \mathbf{a}^T z = \|\mathbf{a}\| \|z\| \cos \theta,
+    \]</div>
+<p>donde <span class="math notranslate nohighlight">\(\theta\)</span> es el ángulo entre <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> y <span class="math notranslate nohighlight">\(z\)</span>.</p>
+</li>
+<li><p>Dado que <span class="math notranslate nohighlight">\(\|z\| = 1\)</span>, la expresión se simplifica a:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{a}^T z = \|\mathbf{a}\| \cos \theta.
+\]</div>
+<ul class="simple">
+<li><p>Como <span class="math notranslate nohighlight">\(\|\mathbf{a}\| &gt; 0\)</span> es constante, minimizar <span class="math notranslate nohighlight">\(\mathbf{a}^T z\)</span> equivale a minimizar <span class="math notranslate nohighlight">\(\cos \theta\)</span>. El rango de la función coseno es</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+-1 \leq \cos \theta \leq 1.
+\]</div>
+<ul class="simple">
+<li><p>El valor mínimo <span class="math notranslate nohighlight">\(\cos \theta = -1\)</span> se alcanza cuando</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\theta = \pi \quad (180^\circ).
+\]</div>
+<ul class="simple">
+<li><p>Cuando <span class="math notranslate nohighlight">\(\theta = \pi\)</span>, el vector <strong><span class="math notranslate nohighlight">\(z\)</span> apunta en la dirección exactamente opuesta a <span class="math notranslate nohighlight">\(\mathbf{a}\)</span></strong>. Esto significa que existe un escalar <span class="math notranslate nohighlight">\(\alpha &lt; 0\)</span> tal que</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+z = \alpha \mathbf{a}.
+\]</div>
+<ul class="simple">
+<li><p>Calculamos la norma de <span class="math notranslate nohighlight">\(z\)</span></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\|z\| = \|\alpha \mathbf{a}\| = |\alpha| \|\mathbf{a}\|.
+\]</div>
+<ul class="simple">
+<li><p>Dado que <span class="math notranslate nohighlight">\(\|z\| = 1\)</span>, tenemos</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+|\alpha| \|\mathbf{a}\| = 1 \quad \Rightarrow \quad |\alpha| = \frac{1}{\|\mathbf{a}\|}.
+\]</div>
+<ul class="simple">
+<li><p>Como <span class="math notranslate nohighlight">\(\alpha &lt; 0\)</span>:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\alpha = -\frac{1}{\|\mathbf{a}\|}.
+\]</div>
+<ul class="simple">
+<li><p>Sustituyendo <span class="math notranslate nohighlight">\(\alpha\)</span> en <span class="math notranslate nohighlight">\(z = \alpha \mathbf{a}\)</span>:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+z = -\frac{1}{\|\mathbf{a}\|} \mathbf{a} = -\frac{\mathbf{a}}{\|\mathbf{a}\|}.
+\]</div>
+<ul>
 <li><p><strong>Aplicación al gradiente</strong>. Tomando</p>
 <div class="math notranslate nohighlight">
 \[
@@ -600,7 +660,7 @@ Bajo la restricción <span class="math notranslate nohighlight">\(\|\boldsymbol{
 <li><p>La normalización únicamente fija la longitud del vector.</p></li>
 </ul>
 </li>
-<li><p>En la práctica, no es necesario normalizar la dirección de descenso, ya que el tamaño del paso está controlado por el parámetro <span class="math notranslate nohighlight">\(\mu_i\)</span>. Por esta razón, se define directamente</p>
+<li><p>En la práctica, <strong>no es necesario normalizar la dirección de descenso, ya que el tamaño del paso está controlado por el parámetro <span class="math notranslate nohighlight">\(\mu_i\)</span></strong>. Por esta razón, se define directamente</p>
 <div class="math notranslate nohighlight">
 \[
     \Delta \boldsymbol{\theta}^{(i)}
@@ -623,44 +683,28 @@ Bajo la restricción <span class="math notranslate nohighlight">\(\|\boldsymbol{
 \le 0.
 \]</div>
 <ul>
-<li><p>Este valor es estrictamente negativo excepto en puntos críticos donde el gradiente se anula. En consecuencia, para valores suficientemente pequeños de <span class="math notranslate nohighlight">\(\mu_i\)</span>, la aproximación de Taylor garantiza que</p>
+<li><p>Este valor es <strong>estrictamente negativo, excepto en puntos críticos donde el gradiente se anula</strong>. En consecuencia, para valores suficientemente pequeños de <span class="math notranslate nohighlight">\(\mu_i\)</span>, la aproximación de Taylor garantiza que</p>
 <div class="math notranslate nohighlight">
 \[
     J(\boldsymbol{\theta}^{(i)}) &lt; J(\boldsymbol{\theta}^{(i-1)}),
     \]</div>
-<p>lo que asegura una disminución del valor de la función objetivo en cada iteración.</p>
+<p>lo que asegura una <strong>disminución del valor de la función objetivo</strong> en cada iteración.</p>
 </li>
 </ul>
-<ul class="simple">
-<li><p>Entonces, para todas las posibles direcciones, la que entrega el valor más negativo del producto interno, <span class="math notranslate nohighlight">\(\nabla^{T}J(\boldsymbol{\theta}^{(i-1)})z\)</span>, es aquella de gradiente negativo</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[
-z=-\frac{\nabla J(\boldsymbol{\theta}^{(i-1)})}{\|\nabla J(\boldsymbol{\theta}^{(i-1)}\|}
-\]</div>
 <ul>
-<li><p>En particular, si se elige la dirección de descenso por gradiente</p>
+<li><p>Por lo tanto, para todos los vectores con norma Euclidiana 1, la <em><strong>dirección de descenso mas pronunciada coincide con la dirección del gradiente descendente, negativo</strong></em>, y la correspondiente actualización recursiva se convierte en</p>
 <div class="math notranslate nohighlight">
 \[
-    \Delta \boldsymbol{\theta}^{(i)} = - \nabla J(\boldsymbol{\theta}^{(i-1)}),
+    \boldsymbol{\theta}^{(i)}=\boldsymbol{\theta}^{(i-1)}-\mu_{i}\nabla J(\boldsymbol{\theta}^{(i-1)}),\quad\text{Gradiente descendente}.
     \]</div>
-<p>entonces</p>
-<div class="math notranslate nohighlight">
-\[
-    \nabla^{T} J(\boldsymbol{\theta}^{(i-1)})
-    \Delta \boldsymbol{\theta}^{(i)}
-    = - \left\| \nabla J(\boldsymbol{\theta}^{(i-1)}) \right\|^2 \le 0,
-    \]</div>
-<p>lo que garantiza, para valores suficientemente pequeños de <span class="math notranslate nohighlight">\(\mu_i\)</span>, una disminución del valor de la función objetivo en cada iteración.</p>
+<p>donde</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(-\nabla J\!\left(\theta^{(i-1)}\right)\)</span> representa la <strong>dirección de descenso</strong>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mu_i &gt; 0\)</span> es el tamaño del paso o <strong>learning rate</strong>.</p></li>
+<li><p>La cantidad <span class="math notranslate nohighlight">\(\|\nabla J(\theta^{(i-1)})\|^2\)</span> <strong>aparece únicamente en el análisis teórico del descenso, al evaluar la variación de la función objetivo, y no forma parte de la actualización del algoritmo</strong>.</p></li>
+</ul>
 </li>
 </ul>
-<ul class="simple">
-<li><p>Por lo tanto, para todos los vectores con norma Euclidiana 1, la <em><strong>dirección de descenso mas pronunciada coincide con la dirección del gradiente descendente, negativo</strong></em>, y la correspondiente actualización recursiva se convierte en</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[
-\boldsymbol{\theta}^{(i)}=\boldsymbol{\theta}^{(i-1)}-\mu_{i}\nabla J(\boldsymbol{\theta}^{(i-1)}),\quad\text{Gradiente descendente}.
-\]</div>
 <figure class="align-center" id="fig-desc-gradient">
 <a class="reference internal image-reference" href="_images/desc_gradient.png"><img alt="_images/desc_gradient.png" src="_images/desc_gradient.png" style="width: 480.6px; height: 352.8px;" />
 </a>
@@ -672,7 +716,7 @@ z=-\frac{\nabla J(\boldsymbol{\theta}^{(i-1)})}{\|\nabla J(\boldsymbol{\theta}^{
 <li><p>La selección de <span class="math notranslate nohighlight">\(\mu_{i}\)</span> debe ser realizada de tal forma que <em><strong>garantice convergencia de la secuencia de minimización</strong></em>. Nótese que <em><strong>el algoritmo puede oscilar en torno al mínimo sin converger, si no seleccionamos la dirección correcta</strong></em>. La selección de <span class="math notranslate nohighlight">\(\mu_{i}\)</span> <em><strong>dependerá de la convergencia a cero del error entre</strong></em> <span class="math notranslate nohighlight">\(\boldsymbol{\theta}^{(i)}\)</span> <em><strong>y el mínimo real en forma de serie geométrica</strong></em>.</p></li>
 </ul>
 <div class="tip admonition">
-<p class="admonition-title">Ejercicio</p>
+<p class="admonition-title"><strong>Ejercicio</strong></p>
 <ul class="simple">
 <li><p>Por ejemplo, para el caso de la función de coste del <em><strong>error cuadrático medio</strong></em>, la longitud de paso está dada por: <span class="math notranslate nohighlight">\(0&lt;\mu&lt;2/\lambda_{\max}\)</span>, donde <span class="math notranslate nohighlight">\(\lambda_{\max}\)</span> el máximo eigenvalor de la matriz de covarianza <span class="math notranslate nohighlight">\(\Sigma_{x}=\mathbb{E}[\boldsymbol{x}\boldsymbol{x}^{T}]\)</span>, donde <span class="math notranslate nohighlight">\(J(\boldsymbol{\theta})=E[(y-\boldsymbol{\theta}^{T}\boldsymbol{x})^{2}]\)</span> (ver Sección 5.3 <span id="id1">[<a class="reference internal" href="biblio.html#id17" title="S. Theodoridis. Machine Learning: A Bayesian and Optimization Perspective. Elsevier Science, 2020. ISBN 9780128188040. URL: https://books.google.com.co/books?id=l-nEDwAAQBAJ.">Theodoridis, 2020</a>]</span>).</p></li>
 </ul>
