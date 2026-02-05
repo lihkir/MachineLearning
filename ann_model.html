@@ -362,6 +362,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tuning-de-redes-neuronales">11.10. Tuning de Redes Neuronales</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-malware-por-api-calls">11.11. Análisis de Malware por API calls</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#entrenamiento-en-pyspark">11.11.1. Entrenamiento en <code class="docutils literal notranslate"><span class="pre">PySpark</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#por-que-usar-pyspark-para-modelos-de-machine-learning-con-grandes-volumenes-de-datos">11.11.2. ¿Por qué usar <code class="docutils literal notranslate"><span class="pre">PySpark</span></code> para modelos de Machine Learning con grandes volúmenes de datos?</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proyecto-integrador-de-deep-learning">11.12. Proyecto Integrador de Deep Learning</a><ul class="nav section-nav flex-column">
@@ -378,7 +379,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#entregable">11.12.11. Entregable</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recursos">11.13. 9.8.6. Recursos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recursos">11.13. Recursos</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-prediccion-de-series-temporales">11.14. Aplicación: Predicción de series temporales</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">11.15. Proyecto Integrador de Deep Learning</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#redes-neuronales-convolucionales">11.16. Redes Neuronales Convolucionales</a><ul class="nav section-nav flex-column">
@@ -2168,7 +2169,7 @@ Length: 102, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/9953acd9d46358a3c14f753e23f1ef0795b0adb57e7a85aec368a46b98c29c86.png" src="_images/9953acd9d46358a3c14f753e23f1ef0795b0adb57e7a85aec368a46b98c29c86.png" />
+<img alt="_images/f82b462017d8c74b40c103ec9385a4d4eede1a64c389dd05cb6f2f1b9a224292.png" src="_images/f82b462017d8c74b40c103ec9385a4d4eede1a64c389dd05cb6f2f1b9a224292.png" />
 </div>
 </div>
 <ul class="simple">
@@ -2282,28 +2283,48 @@ Length: 102, dtype: object
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid</span> <span class="o">=</span> <span class="kc">None</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
 
-<span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;grid_mlp.joblib&quot;</span><span class="p">))</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">):</span>
+<span class="n">grid</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;grid_mlp.joblib&quot;</span><span class="p">))</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
     <span class="n">grid</span> <span class="o">=</span> <span class="n">load</span><span class="p">(</span><span class="s1">&#39;grid_mlp.joblib&#39;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;cpu_time.txt&quot;</span><span class="p">))</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;cpu_time.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">saved_time</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">saved_time</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Archivo cpu_time.txt no encontrado&quot;</span><span class="p">)</span>
+
 <span class="k">else</span><span class="p">:</span>
-    <span class="n">time_start</span> <span class="o">=</span> <span class="n">process_time</span><span class="p">()</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
     <span class="n">grid</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">pipe</span><span class="p">,</span> <span class="n">param_grid</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;roc_auc&#39;</span><span class="p">)</span>
     <span class="n">grid</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-    <span class="n">time_stop</span> <span class="o">=</span> <span class="n">process_time</span><span class="p">()</span>
-    <span class="n">str_cpu_time</span> <span class="o">=</span> <span class="s2">&quot;GridSearchCV CPU time: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">((</span><span class="n">time_stop</span><span class="o">-</span><span class="n">time_start</span><span class="p">)</span><span class="o">*</span><span class="mf">0.6</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; minutes&quot;</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">str_cpu_time</span><span class="p">)</span> 
+
+    <span class="n">end</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+    <span class="n">elapsed_minutes</span> <span class="o">=</span> <span class="p">(</span><span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span> <span class="o">/</span> <span class="mi">60</span>
+
+    <span class="n">str_cpu_time</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;GridSearchCV time: </span><span class="si">{</span><span class="n">elapsed_minutes</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> minutes&quot;</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="n">str_cpu_time</span><span class="p">)</span>
+
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;cpu_time.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
         <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">str_cpu_time</span><span class="p">)</span>
+
     <span class="n">dump</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="s1">&#39;grid_mlp.joblib&#39;</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Best CV score = </span><span class="si">%0.3f</span><span class="s2">:&quot;</span> <span class="o">%</span> <span class="n">grid</span><span class="o">.</span><span class="n">best_score_</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Best CV score = </span><span class="si">%0.3f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">grid</span><span class="o">.</span><span class="n">best_score_</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Best parameters:</span><span class="se">\n</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">grid</span><span class="o">.</span><span class="n">best_params_</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best CV score = 0.958:
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GridSearchCV time: 2.92 minutes
+Best CV score = 0.958
 Best parameters:
 {&#39;mlpclassifier__activation&#39;: &#39;logistic&#39;, &#39;mlpclassifier__alpha&#39;: 0.01, &#39;mlpclassifier__hidden_layer_sizes&#39;: (100,), &#39;mlpclassifier__learning_rate&#39;: &#39;constant&#39;}
 </pre></div>
@@ -2380,7 +2401,7 @@ weighted avg       0.99      0.99      0.99     10969
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/f9b324094437e8d278a26e0ae8b92ff47630481fd2819fd04476e162bab28122.png" src="_images/f9b324094437e8d278a26e0ae8b92ff47630481fd2819fd04476e162bab28122.png" />
+<img alt="_images/b92853f3c19ac96b60395e05ce6d53073c56016cf15e4904423167b8213ebe85.png" src="_images/b92853f3c19ac96b60395e05ce6d53073c56016cf15e4904423167b8213ebe85.png" />
 </div>
 </div>
 <ul class="simple">
@@ -2400,7 +2421,7 @@ weighted avg       0.99      0.99      0.99     10969
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/34acd80f4b70ec9299ab7b38239dbed79b0f43d9bd415449c24a81556960de94.png" src="_images/34acd80f4b70ec9299ab7b38239dbed79b0f43d9bd415449c24a81556960de94.png" />
+<img alt="_images/4b7ddc7c3f8e42fcbf6c180e552d457a7c59ca91121e8fae5fda2eda9b2db12a.png" src="_images/4b7ddc7c3f8e42fcbf6c180e552d457a7c59ca91121e8fae5fda2eda9b2db12a.png" />
 </div>
 </div>
 <ul class="simple">
@@ -2408,6 +2429,74 @@ weighted avg       0.99      0.99      0.99     10969
 </ul>
 <section id="entrenamiento-en-pyspark">
 <h3><span class="section-number">11.11.1. </span>Entrenamiento en <code class="docutils literal notranslate"><span class="pre">PySpark</span></code><a class="headerlink" href="#entrenamiento-en-pyspark" title="Link to this heading">#</a></h3>
+</section>
+<section id="por-que-usar-pyspark-para-modelos-de-machine-learning-con-grandes-volumenes-de-datos">
+<h3><span class="section-number">11.11.2. </span>¿Por qué usar <code class="docutils literal notranslate"><span class="pre">PySpark</span></code> para modelos de Machine Learning con grandes volúmenes de datos?<a class="headerlink" href="#por-que-usar-pyspark-para-modelos-de-machine-learning-con-grandes-volumenes-de-datos" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>A medida que trabajamos con datasets más grandes, las herramientas tradicionales como <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> comienzan a mostrar ciertas limitaciones. Aunque son excelentes para prototipado rápido y problemas de tamaño moderado, <strong>no están diseñadas para escalar eficientemente</strong> cuando tratamos con millones de registros. Ver ejemplo <a class="reference internal" href="model_evaluation.html#section-pyspark"><span class="std std-ref">PySpark</span></a></p></li>
+<li><p>Aquí es donde entra <strong>PySpark</strong>, la interfaz en Python de <code class="docutils literal notranslate"><span class="pre">Apache</span> <span class="pre">Spark</span></code>. <code class="docutils literal notranslate"><span class="pre">PySpark</span></code> permite:</p>
+<ul>
+<li><p><strong>Ejecutar operaciones en paralelo</strong> aprovechando múltiples núcleos o incluso múltiples máquinas (clústeres)</p></li>
+<li><p><strong>Procesar y transformar datos a gran escala</strong> con pipelines eficientes</p></li>
+<li><p><strong>Entrenar modelos de machine learning distribuidos</strong> con la API <code class="docutils literal notranslate"><span class="pre">pyspark.ml</span></code></p></li>
+</ul>
+</li>
+</ul>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Elemento</p></th>
+<th class="head"><p>¿Necesario?</p></th>
+<th class="head"><p>Comentario</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Python</strong></p></td>
+<td><p>Sí</p></td>
+<td><p>Versión recomendada: 3.8 a 3.10</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>PySpark instalado</strong> (<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">pyspark</span></code>)</p></td>
+<td><p>Sí</p></td>
+<td><p>Necesario para ejecutar Spark desde Python</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>scikit-learn</strong> (<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">scikit-learn</span></code>)</p></td>
+<td><p>Sí</p></td>
+<td><p>Necesario para cargar el dataset de <em>Iris</em></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Jupyter, VSCode o IDE</strong></p></td>
+<td><p>Recomendado</p></td>
+<td><p>Necesario si deseas una interfaz cómoda para desarrollar</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Java JDK (versión requerida por PySpark <code class="docutils literal notranslate"><span class="pre">java-17</span></code>)</strong></p></td>
+<td><p>Usualmente necesario</p></td>
+<td><p>Spark requiere Java. Asegúrate de tener <code class="docutils literal notranslate"><span class="pre">JAVA_HOME</span></code> configurado correctamente</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>findspark</strong> (<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">findspark</span></code>)</p></td>
+<td><p>Opcional</p></td>
+<td><p>Útil si usas notebooks y necesitas inicializar Spark manualmente</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>MLflow</strong> (<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">mlflow</span></code>)</p></td>
+<td><p>Opcional</p></td>
+<td><p>Solo si planeas hacer tracking de experimentos</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul class="simple">
+<li><p>Para instalar Java (ver <a class="reference external" href="https://www.oracle.com/java/technologies/downloads/?er=221886">Java Downloads</a>)</p></li>
+<li><p>Configurar <code class="docutils literal notranslate"><span class="pre">JAVA_HOME</span></code> permanentemente. Si prefieres no tener que hacer esto en cada notebook:</p>
+<ol class="arabic simple">
+<li><p>Abre el Panel de Control → Sistema → Configuración avanzada del sistema.</p></li>
+<li><p>Clic en “Variables de entorno”.</p></li>
+<li><p>En “Variables del sistema”, haz clic en “Nueva…” y agrega:</p>
+<ul>
+<li><p><strong>Nombre:</strong> <code class="docutils literal notranslate"><span class="pre">JAVA_HOME</span></code></p></li>
+<li><p><strong>Valor:</strong> <code class="docutils literal notranslate"><span class="pre">C:\Program</span> <span class="pre">Files\Java\jdk-17.0.20</span></code> (ajusta según tu versión)</p></li>
+</ul>
+</li>
+<li><p>Cierra y vuelve a abrir tu entorno (<code class="docutils literal notranslate"><span class="pre">Jupyter,</span> <span class="pre">Anaconda</span></code>, etc.).</p></li>
+</ol>
+</li>
+</ul>
 <ul class="simple">
 <li><p>Preparar <strong>entorno y datos en</strong> <code class="docutils literal notranslate"><span class="pre">PySpark</span></code></p></li>
 </ul>
@@ -2425,12 +2514,12 @@ weighted avg       0.99      0.99      0.99     10969
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING: Using incubator modules: jdk.incubator.vector
 Using Spark&#39;s default log4j profile: org/apache/spark/log4j2-defaults.properties
-25/11/03 19:18:23 WARN Utils: Your hostname, DESKTOP-14GHD2E, resolves to a loopback address: 127.0.1.1; using 10.255.255.254 instead (on interface lo)
-25/11/03 19:18:23 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+26/02/04 22:09:56 WARN Utils: Your hostname, DESKTOP-14GHD2E, resolves to a loopback address: 127.0.1.1; using 10.255.255.254 instead (on interface lo)
+26/02/04 22:09:56 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
 Using Spark&#39;s default log4j profile: org/apache/spark/log4j2-defaults.properties
 Setting default log level to &quot;WARN&quot;.
 To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
-25/11/03 19:18:23 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+26/02/04 22:09:58 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
 </pre></div>
 </div>
 </div>
@@ -2480,16 +2569,16 @@ Length: 102, dtype: object
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hashes únicos: 43867 de 43876 filas
 Top 10 hashes más frecuentes:
 hash
-f78ea80cec007b2c32fb10f9c6c82f39    2
-0822ec2ba98d291e5bfc836bc3686096    2
 075323e77815ee8bcc7854ce23955a15    2
 bdaaac3fa3f6796825a51ef1c0e5b3fd    2
-a71a2319cf8c74a89501eb80acd04fe6    2
 3d8a7a97ea954dd4fe66279df2b445e0    2
-64261f6acf8e566a70ec8b62af8ccdb1    2
+a71a2319cf8c74a89501eb80acd04fe6    2
 03384ab6368b68ed16ecb9e6352539af    2
+0822ec2ba98d291e5bfc836bc3686096    2
 79b78bb3d583748040c41ded09555fd3    2
-a98d18ac36e393d851d105a7b0461041    1
+f78ea80cec007b2c32fb10f9c6c82f39    2
+64261f6acf8e566a70ec8b62af8ccdb1    2
+fe19283eb05bbe24699c0a5134e1c9fd    1
 Name: count, dtype: int64
 </pre></div>
 </div>
@@ -2546,7 +2635,7 @@ Name: count, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>25/11/03 19:18:38 WARN SparkStringUtils: Truncated the string representation of a plan since it was too large. This behavior can be adjusted by setting &#39;spark.sql.debug.maxToStringFields&#39;.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>26/02/04 22:11:17 WARN SparkStringUtils: Truncated the string representation of a plan since it was too large. This behavior can be adjusted by setting &#39;spark.sql.debug.maxToStringFields&#39;.
                                                                                 
 </pre></div>
 </div>
@@ -2613,13 +2702,24 @@ Name: count, dtype: int64
     <span class="n">numFolds</span><span class="o">=</span><span class="mi">5</span>
 <span class="p">)</span>
 
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+
+<span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
 <span class="n">cv_model</span> <span class="o">=</span> <span class="n">cv</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train</span><span class="p">)</span>
+
+<span class="n">end_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Tiempo total de cómputo: </span><span class="si">{:.2f}</span><span class="s2"> segundos&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">end_time</span> <span class="o">-</span> <span class="n">start_time</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>25/11/03 19:18:43 WARN InstanceBuilder: Failed to load implementation from:dev.ludovic.netlib.blas.JNIBLAS
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>26/02/04 22:11:22 WARN InstanceBuilder: Failed to load implementation from:dev.ludovic.netlib.blas.JNIBLAS
                                                                                 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tiempo total de cómputo: 419.27 segundos
 </pre></div>
 </div>
 </div>
@@ -2633,70 +2733,142 @@ Name: count, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>F1 Score: 0.9460
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>F1 Score: 0.9457
 </pre></div>
 </div>
 </div>
 </div>
+<ul>
+<li><p><strong>Comparación de desempeño: PySpark vs Scikit-learn</strong>: Los resultados obtenidos muestran que, para conjuntos de datos de tamaño pequeño o mediano, el entrenamiento mediante <strong>scikit-learn</strong> puede ser significativamente más rápido que mediante <strong>PySpark</strong>. Esto se debe al costo adicional de inicialización, serialización y comunicación inherente a los sistemas distribuidos.</p></li>
+<li><p><strong>¿Cuándo PySpark resulta más eficiente?</strong> El uso de PySpark comienza a ser ventajoso en escenarios como:</p>
+<ul class="simple">
+<li><p>Conjuntos de datos del orden de <strong>varios GB o TB</strong>.</p></li>
+<li><p>Datos que <strong>no caben en memoria RAM</strong> de una sola máquina.</p></li>
+<li><p>Entornos con <strong>múltiples nodos de cómputo</strong>.</p></li>
+<li><p>Necesidad de <strong>procesamiento realmente distribuido</strong>.</p></li>
+</ul>
+</li>
+<li><p>Por ejemplo, en problemas con:</p>
+<ul class="simple">
+<li><p>Decenas de millones de registros,</p></li>
+<li><p>Cientos o miles de variables,</p></li>
+<li><p>Entrenamiento distribuido en cluster,</p></li>
+</ul>
+<p>las herramientas tradicionales como scikit-learn pueden no ser viables, mientras que PySpark permite escalar el procesamiento de forma eficiente.</p>
+</li>
+</ul>
+<blockquote>
+<div><p><strong>“Distribuido no siempre es más rápido.”</strong></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>El paralelismo distribuido introduce un overhead que solo se compensa cuando el volumen de datos lo justifica.</p></li>
+<li><p><strong>Regla práctica</strong></p></li>
+</ul>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Escenario</p></th>
+<th class="head"><p>Herramienta recomendada</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Dataset pequeño o mediano</p></td>
+<td><p>scikit-learn</p></td>
+</tr>
+<tr class="row-odd"><td><p>Dataset grande en una sola máquina</p></td>
+<td><p>scikit-learn</p></td>
+</tr>
+<tr class="row-even"><td><p>Dataset muy grande distribuido</p></td>
+<td><p>PySpark</p></td>
+</tr>
+<tr class="row-odd"><td><p>Entornos productivos en cluster</p></td>
+<td><p>PySpark</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul class="simple">
+<li><p>En síntesis, la elección entre scikit-learn y PySpark debe basarse principalmente en el tamaño de los datos y la infraestructura disponible, más que en la expectativa de una mayor velocidad por el solo hecho de utilizar cómputo distribuido.</p></li>
+</ul>
 </section>
 </section>
 <section id="proyecto-integrador-de-deep-learning">
 <h2><span class="section-number">11.12. </span>Proyecto Integrador de Deep Learning<a class="headerlink" href="#proyecto-integrador-de-deep-learning" title="Link to this heading">#</a></h2>
 <section id="objetivo">
 <h3><span class="section-number">11.12.1. </span>Objetivo<a class="headerlink" href="#objetivo" title="Link to this heading">#</a></h3>
-<p>Construir un modelo de clasificación supervisada usando <strong>MLP (Multilayer Perceptron/Red Neuronal Multicapa)</strong> para predecir si un préstamo emitido por la plataforma Lending Club resultará en <strong>default</strong> (1) o será pagado completamente (0). Se comparará el desempeño de los modelos construidos con <strong>scikit-learn</strong> y <strong>PySpark</strong>. Además, se aplicará <strong>LIME</strong> para interpretar predicciones.</p>
+<p>Construir un modelo de clasificación supervisada usando <strong>MLP (Multilayer Perceptron/Red Neuronal Multicapa)</strong> para predecir si un usuario hará clic en un anuncio móvil (<strong>click = 1</strong>) o no (<strong>click = 0</strong>). Se comparará el desempeño de los modelos construidos con <strong>scikit-learn</strong> y <strong>PySpark</strong>. Además, se aplicará <strong>LIME</strong> para interpretar predicciones individuales del modelo.</p>
 </section>
 <section id="dataset">
 <h3><span class="section-number">11.12.2. </span>Dataset<a class="headerlink" href="#dataset" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p><strong>Nombre</strong>: Lending Club Loan Data (2007–2020)</p></li>
-<li><p><strong>Fuente</strong>: <a class="reference external" href="https://www.kaggle.com/datasets/wordsforthewise/lending-club">Kaggle Dataset - Lending Club</a></p></li>
-<li><p><strong>Tamaño</strong>: más de 1,3 millones de registros</p></li>
-<li><p><strong>Características</strong>: variables socioeconómicas, financieras, de crédito, empleo y propósito del préstamo</p></li>
+<li><p><strong>Nombre</strong>: Avazu Click-Through Rate Prediction</p></li>
+<li><p><strong>Fuente</strong>: <a class="reference external" href="https://www.kaggle.com/competitions/avazu-ctr-prediction">Kaggle – Avazu CTR Prediction</a></p></li>
+<li><p><strong>Tamaño</strong>: aproximadamente 40 millones de registros</p></li>
+<li><p><strong>Características</strong>: variables anónimas relacionadas con publicidad móvil, dispositivo, aplicación y contexto de navegación</p></li>
+</ul>
+<p><strong>Descripción de los campos principales:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code>: identificador del anuncio</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">click</span></code>: indicador de si hubo clic</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hour</span></code>: hora de la impresión del anuncio (formato YYMMDDHH)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">C1</span></code>: variable categórica anonimizada</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">banner_pos</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">site_id</span></code>, <code class="docutils literal notranslate"><span class="pre">site_domain</span></code>, <code class="docutils literal notranslate"><span class="pre">site_category</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">app_id</span></code>, <code class="docutils literal notranslate"><span class="pre">app_domain</span></code>, <code class="docutils literal notranslate"><span class="pre">app_category</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">device_id</span></code>, <code class="docutils literal notranslate"><span class="pre">device_ip</span></code>, <code class="docutils literal notranslate"><span class="pre">device_model</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">device_type</span></code>, <code class="docutils literal notranslate"><span class="pre">device_conn_type</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">C14–C21</span></code>: variables categóricas anónimas</p></li>
 </ul>
 </section>
 <section id="target">
 <h3><span class="section-number">11.12.3. </span>Target<a class="headerlink" href="#target" title="Link to this heading">#</a></h3>
-<ul>
-<li><p><strong>Variable binaria:</strong> <code class="docutils literal notranslate"><span class="pre">loan_status</span></code></p>
 <ul class="simple">
-<li><p>0 = Fully Paid</p></li>
-<li><p>1 = Charged Off (default)</p></li>
+<li><p><strong>Variable binaria:</strong> <code class="docutils literal notranslate"><span class="pre">click</span></code></p>
+<ul>
+<li><p>0 = No hubo clic</p></li>
+<li><p>1 = Hubo clic</p></li>
 </ul>
 </li>
-<li><p>Generar la variable <code class="docutils literal notranslate"><span class="pre">default</span></code> basada en la columna <code class="docutils literal notranslate"><span class="pre">loan_status</span></code>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;default&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;loan_status&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="s2">&quot;Charged Off&quot;</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+</ul>
+<p>La variable objetivo ya se encuentra definida en el dataset:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;click&quot;</span><span class="p">]</span>
 </pre></div>
 </div>
-</li>
-</ul>
 </section>
 <section id="exploracion-de-datos-eda">
 <h3><span class="section-number">11.12.4. </span>Exploración de datos (EDA)<a class="headerlink" href="#exploracion-de-datos-eda" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Cargar el dataset CSV</p></li>
-<li><p>Analizar la distribución de la variable <code class="docutils literal notranslate"><span class="pre">default</span></code></p></li>
+<li><p>Analizar la distribución de la variable <code class="docutils literal notranslate"><span class="pre">click</span></code></p></li>
 <li><p>Verificar valores faltantes y tipos de datos</p></li>
-<li><p><strong>Visualizaciones requeridas:</strong></p>
-<ul>
-<li><p>Histogramas de variables numéricas</p></li>
-<li><p>Boxplots por clase (<code class="docutils literal notranslate"><span class="pre">default</span></code>)</p></li>
-<li><p>Matriz de correlación o mapa de calor</p></li>
+<li><p>Analizar la cardinalidad de las variables categóricas</p></li>
+<li><p>Transformar la variable <code class="docutils literal notranslate"><span class="pre">hour</span></code> en nuevas características temporales (día, hora, franja horaria)</p></li>
 </ul>
-</li>
+<p><strong>Visualizaciones requeridas:</strong></p>
+<ul class="simple">
+<li><p>Gráfico de barras de la variable <code class="docutils literal notranslate"><span class="pre">click</span></code></p></li>
+<li><p>Histogramas de variables numéricas derivadas</p></li>
+<li><p>Gráficos de frecuencia de las principales variables categóricas</p></li>
+<li><p>Distribución de clics por hora del día</p></li>
+<li><p>Matriz de correlación para variables numéricas creadas</p></li>
 </ul>
 </section>
 <section id="scikit-learn">
 <h3><span class="section-number">11.12.5. </span>scikit-learn<a class="headerlink" href="#scikit-learn" title="Link to this heading">#</a></h3>
+<p>Debido al gran tamaño del dataset, el trabajo en scikit-learn deberá realizarse sobre una <strong>muestra representativa</strong> (por ejemplo, 1 millón de registros).</p>
 <ul class="simple">
-<li><p>Seleccionar variables relevantes: <code class="docutils literal notranslate"><span class="pre">loan_amnt</span></code>, <code class="docutils literal notranslate"><span class="pre">int_rate</span></code>, <code class="docutils literal notranslate"><span class="pre">fico_range_high</span></code>, <code class="docutils literal notranslate"><span class="pre">emp_length</span></code>, <code class="docutils literal notranslate"><span class="pre">annual_inc</span></code>, <code class="docutils literal notranslate"><span class="pre">purpose</span></code>, <code class="docutils literal notranslate"><span class="pre">home_ownership</span></code>, <code class="docutils literal notranslate"><span class="pre">dti</span></code>, <code class="docutils literal notranslate"><span class="pre">addr_state</span></code>, etc.</p></li>
-<li><p>Codificación de variables categóricas (<strong>OneHotEncoder</strong> o <strong>LabelEncoder</strong>)</p></li>
+<li><p>Seleccionar un subconjunto de variables relevantes</p></li>
+<li><p>Codificación de variables categóricas (<strong>OneHotEncoder</strong> o <strong>Target Encoding</strong>)</p></li>
 <li><p>Escalado de variables numéricas con <strong>StandardScaler</strong></p></li>
 <li><p>División <strong>train_test_split (80/20)</strong>, estratificada por clase</p></li>
 </ul>
+<p>Ejemplo de muestreo:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df_sample</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">1000000</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+</pre></div>
+</div>
 </section>
 <section id="pyspark">
 <h3><span class="section-number">11.12.6. </span>PySpark<a class="headerlink" href="#pyspark" title="Link to this heading">#</a></h3>
+<p>Esta sección debe trabajarse con el dataset completo.</p>
 <ul class="simple">
 <li><p>Leer el CSV utilizando <strong>SparkSession</strong></p></li>
 <li><p>Uso de <strong>StringIndexer</strong> y <strong>OneHotEncoder</strong> para variables categóricas</p></li>
@@ -2704,6 +2876,10 @@ Name: count, dtype: int64
 <li><p>Escalar las variables con <strong>StandardScaler</strong> (opcional)</p></li>
 <li><p>Dividir en train y test usando <strong>randomSplit</strong>, estratificada si es posible</p></li>
 </ul>
+<p>Ejemplo de lectura:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">csv</span><span class="p">(</span><span class="s2">&quot;train.csv&quot;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">inferSchema</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
 </section>
 <section id="modelado-con-scikit-learn">
 <h3><span class="section-number">11.12.7. </span>Modelado con scikit-learn<a class="headerlink" href="#modelado-con-scikit-learn" title="Link to this heading">#</a></h3>
@@ -2711,9 +2887,9 @@ Name: count, dtype: int64
 <li><p>Usar <strong>MLPClassifier</strong></p></li>
 <li><p>Realizar búsqueda de hiperparámetros (<strong>GridSearchCV</strong>) para:</p>
 <ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">hidden_layer_sizes</span></code> (por ejemplo: [(10,), (50,), (100,)])</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hidden_layer_sizes</span></code> (por ejemplo: [(50,), (100,), (100,50)])</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">alpha</span></code> (por ejemplo: [0.0001, 0.001, 0.01])</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">max_iter</span></code> (por ejemplo: [100, 200])</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max_iter</span></code> (por ejemplo: [50, 100])</p></li>
 </ul>
 </li>
 <li><p><strong>Métricas a evaluar:</strong></p>
@@ -2735,13 +2911,26 @@ Name: count, dtype: int64
 <li><p>Usar <strong>pyspark.ml.classification.MultilayerPerceptronClassifier</strong></p></li>
 <li><p>Probar combinaciones de hiperparámetros como:</p>
 <ul>
-<li><p>Estructura de capas (layers): [num_features, 10, 2], [num_features, 50, 2], [num_features, 100, 2]</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">stepSize</span></code>: 0.1, 0.01, 0.001</p></li>
+<li><p>Estructura de capas (layers):</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">[num_features,</span> <span class="pre">10,</span> <span class="pre">2]</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[num_features,</span> <span class="pre">50,</span> <span class="pre">2]</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[num_features,</span> <span class="pre">100,</span> <span class="pre">2]</span></code></p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">stepSize</span></code>: 0.1, 0.01</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">maxIter</span></code>: 100, 200</p></li>
 </ul>
 </li>
 <li><p>Evaluar con <strong>BinaryClassificationEvaluator</strong></p></li>
-<li><p>Calcular precisión, F1-score y matriz de confusión</p></li>
+<li><p>Calcular:</p>
+<ul>
+<li><p>Precisión</p></li>
+<li><p>Recall</p></li>
+<li><p>F1-score</p></li>
+<li><p>Matriz de confusión</p></li>
+</ul>
+</li>
 <li><p>Medir el tiempo total de entrenamiento y predicción</p></li>
 </ul>
 </section>
@@ -2796,11 +2985,11 @@ Name: count, dtype: int64
 </section>
 </section>
 <section id="recursos">
-<h2><span class="section-number">11.13. </span>9.8.6. Recursos<a class="headerlink" href="#recursos" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">11.13. </span>Recursos<a class="headerlink" href="#recursos" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p><a class="reference external" href="https://www.kaggle.com/datasets/wordsforthewise/lending-club">Lending Club Dataset (Kaggle)</a></p></li>
+<li><p><a class="reference external" href="https://www.kaggle.com/competitions/avazu-ctr-prediction">Avazu CTR Prediction – Kaggle</a></p></li>
 <li><p><a class="reference external" href="https://lime-ml.readthedocs.io/en/latest/">LIME Documentation</a></p></li>
-<li><p><a class="reference external" href="https://spark.apache.org/docs/latest/ml-classification-regression.html#multilayer-perceptron-classifier">PySpark MLlib</a></p></li>
+<li><p><a class="reference external" href="https://spark.apache.org/docs/latest/ml-classification-regression.html#multilayer-perceptron-classifier">PySpark MLlib – Multilayer Perceptron</a></p></li>
 <li><p><a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.neural_network.MLPClassifier.html">scikit-learn MLPClassifier docs</a></p></li>
 </ul>
 </section>
@@ -12151,6 +12340,7 @@ El modelo Transformer ha demostrado los siguientes resultados:
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tuning-de-redes-neuronales">11.10. Tuning de Redes Neuronales</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-malware-por-api-calls">11.11. Análisis de Malware por API calls</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#entrenamiento-en-pyspark">11.11.1. Entrenamiento en <code class="docutils literal notranslate"><span class="pre">PySpark</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#por-que-usar-pyspark-para-modelos-de-machine-learning-con-grandes-volumenes-de-datos">11.11.2. ¿Por qué usar <code class="docutils literal notranslate"><span class="pre">PySpark</span></code> para modelos de Machine Learning con grandes volúmenes de datos?</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proyecto-integrador-de-deep-learning">11.12. Proyecto Integrador de Deep Learning</a><ul class="nav section-nav flex-column">
@@ -12167,7 +12357,7 @@ El modelo Transformer ha demostrado los siguientes resultados:
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#entregable">11.12.11. Entregable</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recursos">11.13. 9.8.6. Recursos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recursos">11.13. Recursos</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-prediccion-de-series-temporales">11.14. Aplicación: Predicción de series temporales</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">11.15. Proyecto Integrador de Deep Learning</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#redes-neuronales-convolucionales">11.16. Redes Neuronales Convolucionales</a><ul class="nav section-nav flex-column">
