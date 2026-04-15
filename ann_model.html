@@ -4151,34 +4151,99 @@ I0000 00:00:1762220204.091115    7155 service.cc:154]   StreamExecutor device (0
 </section>
 <section id="id8">
 <h2><span class="section-number">11.15. </span>Proyecto Integrador de Deep Learning<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
-<ol class="arabic">
-<li><p><strong>Objetivo</strong></p>
-<p>El proyecto busca <strong>predecir el precio de cierre diario de Bitcoin</strong> (ver archivo <a class="reference external" href="https://github.com/lihkir/Data/blob/main/BTCBinance.zip">btc_1d_data_2018_to_2025.csv</a>) usando exclusivamente su <strong>histórico temporal (fecha y cierre)</strong>, aplicando ingeniería de retardos (lags), <strong>validación temporal con <a class="reference external" href="https://pypi.org/project/timeseries-cv/">timeseries-cv</a></strong>, una red MLP y un análisis riguroso de residuos. Además, se propone construir, validar y desplegar un modelo robusto de deep learning (MLP) para la predicción de la volatilidad del precio de BTC, partiendo únicamente de los cierres diarios.</p>
-<p>El flujo de trabajo incluye: <strong>medición y exploración de la volatilidad, creación de ventanas temporales, validación cruzada con GroupKFold (ver <a class="reference external" href="https://pypi.org/project/timeseries-cv/">timeseries-cv</a>), evaluación con métricas específicas y análisis de residuos</strong>, con miras a su <strong>deployment en un entorno de MLOps</strong>.</p>
-</li>
+<ol class="arabic simple">
+<li><p><strong>Objetivo</strong></p></li>
 </ol>
-<ul>
-<li><p><strong>Contexto</strong></p>
-<p>El mercado de <strong>Bitcoin</strong> se caracteriza por una <strong>volatilidad excepcionalmente alta, lo que representa simultáneamente un desafío y una oportunidad para traders, gestores de riesgo e investigadores financieros</strong>. Mientras que la predicción del precio ha sido tradicionalmente el objetivo central de muchos modelos, <strong>comprender y anticipar la volatilidad constituye un enfoque más sólido para la toma de decisiones en trading algorítmico</strong>, la asignación dinámica de activos, las estrategias de cobertura y la <strong>estimación de riesgos extremos</strong>. El forecasting de volatilidad, cuando se formula de manera realista, robusta y reproducible, se consolida así como una tarea fundamental dentro del análisis cuantitativo moderno aplicado a los mercados de criptomonedas.</p>
-</li>
-<li><p><strong>Dataset recomendado:</strong></p>
 <ul class="simple">
-<li><p>Fuente: Binance (<code class="docutils literal notranslate"><span class="pre">BTC-USD</span></code> ver (ver archivo <a class="reference external" href="https://github.com/lihkir/Data/blob/main/BTCBinance.zip">btc_1d_data_2018_to_2025.csv</a>))</p></li>
-<li><p>Frecuencia: Diario.</p></li>
-<li><p>Variables clave:</p>
+<li><p>El proyecto busca <strong>predecir una variable temporal de interés</strong>, como el <strong>precio de cierre de criptomonedas</strong> o la <strong>velocidad del viento</strong>, utilizando exclusivamente su <strong>histórico temporal</strong> (por ejemplo, fecha y valores observados). Para ello, se emplea la librería <a class="reference external" href="https://pypi.org/project/timeseries-cv/">timeseries-cv</a>, junto con <strong>estrategias de validación temporal</strong>, una red neuronal tipo MLP y un análisis riguroso de residuos.</p></li>
+<li><p>Adicionalmente, se propone <strong>construir, validar y desplegar un modelo robusto de deep learning</strong>, orientado tanto a la <strong>predicción del nivel de la serie</strong> como a la <strong>modelación de su volatilidad o variabilidad</strong>, partiendo únicamente de observaciones históricas.</p></li>
+<li><p>El flujo de trabajo incluye:</p>
 <ul>
-<li><p>Fecha (<code class="docutils literal notranslate"><span class="pre">Date</span></code>)</p></li>
-<li><p>Precio de Cierre (<code class="docutils literal notranslate"><span class="pre">Close</span></code>)</p></li>
+<li><p>Exploración y caracterización de la variabilidad de la serie</p></li>
+<li><p>Construcción de ventanas temporales</p></li>
+<li><p>Validación cruzada para datos secuenciales</p></li>
+<li><p>Evaluación mediante métricas específicas</p></li>
+<li><p>Análisis de residuos</p></li>
 </ul>
 </li>
-<li><p>Ejemplo de descarga en Python:</p></li>
+<li><p>Todo ello con el objetivo final de su <strong>despliegue en un entorno de MLOps</strong>.</p></li>
 </ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>  <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-  <span class="n">btc</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;btc_1d_data_2018_to_2025.csv&#39;</span><span class="p">)</span>
-  <span class="n">btc</span> <span class="o">=</span> <span class="n">btc</span><span class="p">[[</span><span class="s1">&#39;Date&#39;</span><span class="p">,</span> <span class="s1">&#39;Close&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<ol class="arabic simple" start="2">
+<li><p><strong>Contexto</strong></p></li>
+</ol>
+<ul class="simple">
+<li><p>Las series temporales asociadas a <strong>criptomonedas</strong> y a <strong>variables ambientales como la velocidad del viento</strong> comparten características fundamentales como:</p>
+<ul>
+<li><p>Alta variabilidad</p></li>
+<li><p>No linealidad</p></li>
+<li><p>Dependencia temporal compleja</p></li>
+<li><p>Posibles cambios de régimen</p></li>
+</ul>
+</li>
+<li><p>Estas propiedades representan tanto un desafío como una oportunidad para el desarrollo de modelos predictivos avanzados. En el caso de las criptomonedas, la alta volatilidad impacta directamente en:</p>
+<ul>
+<li><p>Trading algorítmico</p></li>
+<li><p>Gestión de portafolios</p></li>
+<li><p>Estimación de riesgos</p></li>
+</ul>
+</li>
+<li><p>Por su parte, en el ámbito energético y ambiental, la predicción de la velocidad del viento es clave para:</p>
+<ul>
+<li><p>Planificación de sistemas de generación eólica</p></li>
+<li><p>Optimización operativa</p></li>
+<li><p>Gestión de incertidumbre en energías renovables</p></li>
+</ul>
+</li>
+<li><p>En ambos contextos, si bien la predicción puntual de la serie es relevante, <strong>modelar y anticipar la variabilidad o volatilidad proporciona una base más robusta para la toma de decisiones bajo incertidumbre</strong>.</p></li>
+<li><p>Por ello, el <em>forecasting</em> de series temporales, cuando se aborda de manera <strong>rigurosa, reproducible y orientada a datos reales</strong>, se consolida como una tarea central en la ciencia de datos aplicada tanto a sistemas financieros como a sistemas energéticos y ambientales.</p></li>
+<li><p><strong>Datasets recomendados:</strong></p>
+<ul>
+<li><p>Fuente: <a class="reference external" href="https://www.binance.com/en/binance-api">Binance Public API</a>. API gratuita, sin registro, y es la fuente más citada en literatura académica de alta frecuencia. <strong>Seleccione la criptomoneda de su interés para esta tarea o el dataset de velocidad del viento</strong>. Ejemplo de uso de la API de Binance</p></li>
+</ul>
+</li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span><span class="o">,</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span><span class="o">,</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_binance_1m</span><span class="p">(</span><span class="n">symbol</span><span class="o">=</span><span class="s2">&quot;BTCUSDT&quot;</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="s2">&quot;2024-01-01&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;2024-01-31&quot;</span><span class="p">):</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://api.binance.com/api/v3/klines&quot;</span>
+    <span class="n">start_ms</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">timestamp</span><span class="p">()</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">)</span>
+    <span class="n">end_ms</span>   <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">end</span><span class="p">,</span>   <span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">timestamp</span><span class="p">()</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">)</span>
+    <span class="n">all_data</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">while</span> <span class="n">start_ms</span> <span class="o">&lt;</span> <span class="n">end_ms</span><span class="p">:</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;symbol&quot;</span><span class="p">:</span> <span class="n">symbol</span><span class="p">,</span>
+            <span class="s2">&quot;interval&quot;</span><span class="p">:</span> <span class="s2">&quot;1m&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;startTime&quot;</span><span class="p">:</span> <span class="n">start_ms</span><span class="p">,</span>
+            <span class="s2">&quot;endTime&quot;</span><span class="p">:</span> <span class="n">end_ms</span><span class="p">,</span>
+            <span class="s2">&quot;limit&quot;</span><span class="p">:</span> <span class="mi">1000</span>
+        <span class="p">}</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">data</span><span class="p">:</span> <span class="k">break</span>
+        <span class="n">all_data</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">start_ms</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">60000</span>  <span class="c1"># avanza 1 minuto</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>  <span class="c1"># evita rate limit</span>
+
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">all_data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span>
+        <span class="s2">&quot;open_time&quot;</span><span class="p">,</span><span class="s2">&quot;open&quot;</span><span class="p">,</span><span class="s2">&quot;high&quot;</span><span class="p">,</span><span class="s2">&quot;low&quot;</span><span class="p">,</span><span class="s2">&quot;close&quot;</span><span class="p">,</span><span class="s2">&quot;volume&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;close_time&quot;</span><span class="p">,</span><span class="s2">&quot;quote_volume&quot;</span><span class="p">,</span><span class="s2">&quot;trades&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;taker_buy_base&quot;</span><span class="p">,</span><span class="s2">&quot;taker_buy_quote&quot;</span><span class="p">,</span><span class="s2">&quot;ignore&quot;</span>
+    <span class="p">])</span>
+    <span class="n">df</span><span class="p">[</span><span class="s2">&quot;open_time&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;open_time&quot;</span><span class="p">],</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;ms&quot;</span><span class="p">)</span>
+    <span class="n">df</span><span class="p">[[</span><span class="s2">&quot;open&quot;</span><span class="p">,</span><span class="s2">&quot;high&quot;</span><span class="p">,</span><span class="s2">&quot;low&quot;</span><span class="p">,</span><span class="s2">&quot;close&quot;</span><span class="p">,</span><span class="s2">&quot;volume&quot;</span><span class="p">]]</span> <span class="o">=</span> \
+        <span class="n">df</span><span class="p">[[</span><span class="s2">&quot;open&quot;</span><span class="p">,</span><span class="s2">&quot;high&quot;</span><span class="p">,</span><span class="s2">&quot;low&quot;</span><span class="p">,</span><span class="s2">&quot;close&quot;</span><span class="p">,</span><span class="s2">&quot;volume&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">df</span><span class="p">[[</span><span class="s2">&quot;open_time&quot;</span><span class="p">,</span><span class="s2">&quot;open&quot;</span><span class="p">,</span><span class="s2">&quot;high&quot;</span><span class="p">,</span><span class="s2">&quot;low&quot;</span><span class="p">,</span><span class="s2">&quot;close&quot;</span><span class="p">,</span><span class="s2">&quot;volume&quot;</span><span class="p">,</span><span class="s2">&quot;trades&quot;</span><span class="p">]]</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">get_binance_1m</span><span class="p">(</span><span class="s2">&quot;BTCUSDT&quot;</span><span class="p">,</span> <span class="s2">&quot;2024-01-01&quot;</span><span class="p">,</span> <span class="s2">&quot;2024-03-31&quot;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;btc_1m_Q1_2024.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 </pre></div>
 </div>
-</li>
+<ul>
+<li><p>Frecuencia: 1 minuto.</p></li>
+<li><p>Variable clave: Precio de Cierre (<code class="docutils literal notranslate"><span class="pre">Close</span></code>)</p></li>
 <li><p><strong>Cálculo de la volatilidad: definición formal y ejemplo:</strong></p>
 <ul>
 <li><p>La volatilidad es una medida de <strong>dispersión de los rendimientos de un activo financiero</strong>.</p></li>
@@ -4196,6 +4261,11 @@ I0000 00:00:1762220204.091115    7155 service.cc:154]   StreamExecutor device (0
 </li>
 </ul>
 </li>
+</ul>
+<ul class="simple">
+<li><p>Datos del <a class="reference external" href="https://portal.inmet.gov.br/dadoshistoricos">INMET - National Institute of Meteorology</a> relacionados con velocidad del viento. La variable respuesta en este caso es la velocidad de viento suministrada de forma horaria por INMET. <strong>Debe seleccionar solo un dataset, el de velocidad del viento o el de criptomonedas</strong>.</p></li>
+</ul>
+<ul>
 <li><p><strong>Actividades a desarrollar</strong>. Cada resultado debe ir acompañado de <strong>análisis, justificación y visualización/tablas</strong> cuando sea relevante.</p>
 <ul class="simple">
 <li><p><strong>Análisis Exploratorio de Datos (EDA)</strong></p></li>
@@ -4207,7 +4277,7 @@ I0000 00:00:1762220204.091115    7155 service.cc:154]   StreamExecutor device (0
 <li><p>Generación de <strong>lags del precio</strong> (ventanas previas) para los siguientes tamaños: 7, 14, 21, 28 días.</p></li>
 <li><p>Generación de <strong>targets multi-step</strong>: horizonte de 7 días (salida multisalida de longitud 7).</p></li>
 <li><p><strong>Split temporal y validación cruzada</strong></p></li>
-<li><p>Usar <code class="docutils literal notranslate"><span class="pre">split_train_val_test_groupKFold</span></code> (de <strong>timeseries-cv / tsxv</strong>) para crear splits <strong>train / val / test</strong> sin data leakage.</p></li>
+<li><p>Usar <code class="docutils literal notranslate"><span class="pre">split_train_val_test_groupKFold</span></code> (de <a class="reference external" href="https://pypi.org/project/timeseries-cv/"><strong>timeseries-cv / tsxv</strong></a>) para crear splits <strong>train / val / test</strong> sin data leakage.</p></li>
 <li><p>Escalado: <strong>fit del scaler solo con el train</strong> en cada fold; transformar val/test con ese scaler.</p></li>
 <li><p><strong>Modelado con Deep Learning</strong></p></li>
 <li><p>Entrenar <strong>MLP multisalida</strong> (por ejemplo <code class="docutils literal notranslate"><span class="pre">MLPRegressor</span></code> o un keras MLP con salida 7) fold a fold.</p></li>
@@ -4399,9 +4469,11 @@ I0000 00:00:1762220204.091115    7155 service.cc:154]   StreamExecutor device (0
 </pre></div>
 </div>
 <ol class="arabic simple" start="6">
-<li><p><strong>Instrucciones para el MLOps</strong></p></li>
+<li><p><strong>Instrucciones para el entorno de MLOps</strong></p></li>
 </ol>
-<p>Para construir el entorno de MLOps correspondiente al problema planteado (<strong>predicción multistep de la volatilidad del precio de Bitcoin</strong>), es necesario instalar las bibliotecas específicas asociadas al modelado temporal, deep learning, validación cruzada temporal y tests de residuos.</p>
+<ul class="simple">
+<li><p>Para construir el entorno de MLOps correspondiente al problema planteado (<strong>predicción multistep del nivel y/o volatilidad de una serie temporal</strong>, como el precio de criptomonedas o la velocidad del viento), es necesario instalar las bibliotecas asociadas al modelado temporal, deep learning, validación cruzada temporal y análisis de residuos.</p></li>
+</ul>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--force-reinstall<span class="w"> </span>pydantic
 python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>fastapi<span class="o">[</span>all<span class="o">]</span>
 python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>joblib
@@ -4413,31 +4485,31 @@ python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </sp
 </pre></div>
 </div>
 <ol class="arabic simple" start="7">
-<li><p><strong>Estructura general del proyecto</strong></p></li>
+<li><p>Estructura general del proyecto</p></li>
 </ol>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>btc-volatility-mlops/
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>time-series-mlops/
 ├── data/
-│   └── btc_1d_data_2018_to_2025.csv     # Dataset original
+│   └── dataset.csv                     # Serie temporal (crypto o viento)
 ├── notebooks/
-│   ├── 1_eda_volatility.ipynb           # Exploración y cálculo de volatilidad
-│   ├── 2_model_training.ipynb           # Entrenamiento MLP multisalida con CV temporal
-│   ├── 3_residual_analysis.ipynb        # Diagnóstico de residuos (BDS test)
+│   ├── 1_eda.ipynb                    # Exploración y análisis de la serie
+│   ├── 2_model_training.ipynb         # Entrenamiento MLP con validación temporal
+│   ├── 3_residual_analysis.ipynb      # Diagnóstico de residuos
 ├── app/
-│   ├── api.py                           # FastAPI para inferencia
-│   ├── schemas.py                       # Modelos Pydantic
-│   └── model.joblib                     # Modelo entrenado (MLP multi-output)
+│   ├── api.py                         # API para inferencia
+│   ├── schemas.py                     # Modelos Pydantic
+│   └── model.joblib                   # Modelo entrenado (MLP multi-output)
 ├── tests/
-│   ├── test_api.py                      # Pruebas unitarias de la API
-│   └── test_model.py                    # Validación del modelo (RMSE, residuos)
-├── Dockerfile                           # Configuración de contenedor
-├── requirements.txt                     # Dependencias
+│   ├── test_api.py                    # Pruebas unitarias de la API
+│   └── test_model.py                  # Validación del modelo
+├── Dockerfile
+├── requirements.txt
 ├── .github/workflows/
-│   └── ci.yml                           # CI/CD con GitHub Actions
-└── README.md                            # Documentación
+│   └── ci.yml                         # CI/CD
+└── README.md
 </pre></div>
 </div>
 <ol class="arabic simple" start="8">
-<li><p><strong>API con FastAPI (<code class="docutils literal notranslate"><span class="pre">api.py</span></code>)</strong></p></li>
+<li><p>API con FastAPI (<code class="docutils literal notranslate"><span class="pre">api.py</span></code>)</p></li>
 </ol>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">fastapi</span><span class="w"> </span><span class="kn">import</span> <span class="n">FastAPI</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span>
@@ -4447,18 +4519,18 @@ python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </sp
 <span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">joblib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;app/model.joblib&quot;</span><span class="p">)</span>
 
-<span class="k">class</span><span class="w"> </span><span class="nc">BTCData</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
-    <span class="n">lags</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span>   <span class="c1"># Ventanas de precio (ej. últimos 7 días)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">TimeSeriesData</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">lags</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span>   <span class="c1"># Ventanas históricas (ej. últimos valores observados)</span>
 
 <span class="nd">@app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/predict&quot;</span><span class="p">)</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">predict</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">BTCData</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">predict</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">TimeSeriesData</span><span class="p">):</span>
     <span class="n">features</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">lags</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">prediction</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">features</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;predicted_volatility&quot;</span><span class="p">:</span> <span class="n">prediction</span><span class="o">.</span><span class="n">tolist</span><span class="p">()}</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;prediction&quot;</span><span class="p">:</span> <span class="n">prediction</span><span class="o">.</span><span class="n">tolist</span><span class="p">()}</span>
 </pre></div>
 </div>
 <ol class="arabic simple" start="9">
-<li><p><strong>Dockerfile</strong></p></li>
+<li><p>Dockerfile</p></li>
 </ol>
 <div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="k">FROM</span><span class="w"> </span><span class="s">python:3.10-slim</span>
 
@@ -4474,9 +4546,9 @@ python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </sp
 </pre></div>
 </div>
 <ol class="arabic simple" start="10">
-<li><p><strong><code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code></strong></p></li>
+<li><p>requirements.txt</p></li>
 </ol>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>fastapi&gt;<span class="o">=</span><span class="m">0</span>.95.0
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>fastapi&gt;=0.95.0
 uvicorn
 scikit-learn
 pandas
@@ -4488,7 +4560,7 @@ arch
 </pre></div>
 </div>
 <ol class="arabic simple" start="11">
-<li><p><strong>CI/CD con GitHub Actions (<code class="docutils literal notranslate"><span class="pre">.github/workflows/ci.yml</span></code>)</strong></p></li>
+<li><p>CI/CD con GitHub Actions</p></li>
 </ol>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CI Pipeline</span>
 <span class="nt">on</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">push</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">pull_request</span><span class="p p-Indicator">]</span>
@@ -4513,16 +4585,16 @@ arch
 </pre></div>
 </div>
 <ol class="arabic simple" start="12">
-<li><p><strong>Pruebas unitarias del modelo (<code class="docutils literal notranslate"><span class="pre">tests/test_model.py</span></code>)</strong></p></li>
+<li><p>Pruebas unitarias del modelo</p></li>
 </ol>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">joblib</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">test_model_prediction_shape</span><span class="p">():</span>
     <span class="n">model</span> <span class="o">=</span> <span class="n">joblib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;app/model.joblib&quot;</span><span class="p">)</span>
-    <span class="n">X_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>  <span class="c1"># 5 ejemplos, 7 lags</span>
+    <span class="n">X_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
     <span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
-    <span class="k">assert</span> <span class="n">y_pred</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>  <span class="c1"># 7 pasos de volatilidad</span>
+    <span class="k">assert</span> <span class="n">y_pred</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">test_prediction_values</span><span class="p">():</span>
     <span class="n">model</span> <span class="o">=</span> <span class="n">joblib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;app/model.joblib&quot;</span><span class="p">)</span>
@@ -4533,7 +4605,7 @@ arch
 </pre></div>
 </div>
 <ol class="arabic simple" start="13">
-<li><p><strong>Pruebas unitarias de la API (<code class="docutils literal notranslate"><span class="pre">tests/test_api.py</span></code>)</strong></p></li>
+<li><p>Pruebas unitarias de la API</p></li>
 </ol>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">fastapi.testclient</span><span class="w"> </span><span class="kn">import</span> <span class="n">TestClient</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">app.api</span><span class="w"> </span><span class="kn">import</span> <span class="n">app</span>
@@ -4541,32 +4613,32 @@ arch
 <span class="n">client</span> <span class="o">=</span> <span class="n">TestClient</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">test_predict_endpoint</span><span class="p">():</span>
-    <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/predict&quot;</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;lags&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">30000</span><span class="p">,</span> <span class="mi">30200</span><span class="p">,</span> <span class="mi">30100</span><span class="p">,</span> <span class="mi">30500</span><span class="p">,</span> <span class="mi">30750</span><span class="p">,</span> <span class="mi">30800</span><span class="p">,</span> <span class="mi">31000</span><span class="p">]})</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/predict&quot;</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;lags&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">,</span> <span class="mf">1.3</span><span class="p">,</span> <span class="mf">1.25</span><span class="p">,</span> <span class="mf">1.28</span><span class="p">,</span> <span class="mf">1.35</span><span class="p">]})</span>
     <span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
-    <span class="k">assert</span> <span class="s2">&quot;predicted_volatility&quot;</span> <span class="ow">in</span> <span class="n">data</span>
-    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;predicted_volatility&quot;</span><span class="p">],</span> <span class="nb">list</span><span class="p">)</span>
-    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;predicted_volatility&quot;</span><span class="p">])</span> <span class="o">==</span> <span class="mi">7</span>
+    <span class="k">assert</span> <span class="s2">&quot;prediction&quot;</span> <span class="ow">in</span> <span class="n">data</span>
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;prediction&quot;</span><span class="p">],</span> <span class="nb">list</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;prediction&quot;</span><span class="p">])</span> <span class="o">==</span> <span class="mi">7</span>
 </pre></div>
 </div>
 <ol class="arabic simple" start="14">
-<li><p><strong>Prueba local con <code class="docutils literal notranslate"><span class="pre">curl</span></code></strong></p></li>
+<li><p>Prueba local con curl</p></li>
 </ol>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8000/predict<span class="w"> </span><span class="se">\</span>
 <span class="w">   </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">   </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;lags&quot;: [30000, 30200, 30100, 30500, 30750, 30800, 31000]}&#39;</span>
+<span class="w">   </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;lags&quot;: [1.0, 1.2, 1.1, 1.3, 1.25, 1.28, 1.35]}&#39;</span>
 </pre></div>
 </div>
 <p>Salida esperada:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;predicted_volatility&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="mf">0.0345</span><span class="p">,</span>
-<span class="w">    </span><span class="mf">0.0321</span><span class="p">,</span>
-<span class="w">    </span><span class="mf">0.0318</span><span class="p">,</span>
-<span class="w">    </span><span class="mf">0.0305</span><span class="p">,</span>
-<span class="w">    </span><span class="mf">0.0299</span><span class="p">,</span>
-<span class="w">    </span><span class="mf">0.0287</span><span class="p">,</span>
-<span class="w">    </span><span class="mf">0.0275</span>
+<span class="w">  </span><span class="nt">&quot;prediction&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="mf">0.12</span><span class="p">,</span>
+<span class="w">    </span><span class="mf">0.11</span><span class="p">,</span>
+<span class="w">    </span><span class="mf">0.10</span><span class="p">,</span>
+<span class="w">    </span><span class="mf">0.09</span><span class="p">,</span>
+<span class="w">    </span><span class="mf">0.08</span><span class="p">,</span>
+<span class="w">    </span><span class="mf">0.07</span><span class="p">,</span>
+<span class="w">    </span><span class="mf">0.06</span>
 <span class="w">  </span><span class="p">]</span>
 <span class="p">}</span>
 </pre></div>
