@@ -402,7 +402,14 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">9.10.2. Dataset</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#target">9.10.3. Target</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estructura-del-proyecto">9.10.4. Estructura del proyecto</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exploracion-de-datos-eda">9.10.4.1. Exploración de datos (EDA)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exploracion-de-datos-eda">9.10.4.1. Exploración de datos (EDA)</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#carga-inicial-y-vision-general">9.10.4.1.1. Carga inicial y visión general</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-unidimensional-por-variable">9.10.4.1.2. Análisis unidimensional (por variable)</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-bidimensional-relaciones-entre-variables">9.10.4.1.3. Análisis bidimensional (relaciones entre variables)</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#valores-faltantes-analisis-detallado">9.10.4.1.4. Valores faltantes (análisis detallado)</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen-ejecutivo-del-eda">9.10.4.1.5. Resumen ejecutivo del EDA</a></li>
+</ul>
+</li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocesamiento">9.10.4.2. Preprocesamiento</a><ul class="nav section-nav flex-column">
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#scikit-learn">9.10.4.2.1. scikit-learn</a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">9.10.4.2.2. PySpark</a></li>
@@ -6791,7 +6798,7 @@ ANÁLISIS COMPLETADO - TODAS LAS TABLAS EXPORTADAS
 <h2><span class="section-number">9.10. </span>Proyecto Integrador de Aprendizaje Automático<a class="headerlink" href="#proyecto-integrador-de-aprendizaje-automatico" title="Link to this heading">#</a></h2>
 <section id="objetivo">
 <h3><span class="section-number">9.10.1. </span>Objetivo<a class="headerlink" href="#objetivo" title="Link to this heading">#</a></h3>
-<p>Construir un modelo de <strong>clasificación supervisada</strong> para predecir si un préstamo emitido por la plataforma Lending Club resultará en <strong>default (1)</strong> o será <strong>pagado completamente (0)</strong>. El objetivo es comparar el desempeño de los modelos construidos con <strong>scikit-learn</strong> y <strong>PySpark</strong>, además de aplicar <strong>LIME</strong> para interpretar predicciones.</p>
+<p>Construir un modelo de <strong>clasificación supervisada</strong> para predecir si un préstamo emitido por la plataforma Lending Club resultará en <strong>default (1)</strong> o será <strong>pagado completamente (0)</strong>. El objetivo es comparar el desempeño de los modelos construidos con <strong>scikit-learn</strong> y <strong>PySpark</strong>, además de aplicar <strong>LIME</strong> para interpretar predicciones. Se espera que, bajo las condiciones establecidas en este proyecto, PySpark supere en velocidad a scikit-learn.</p>
 </section>
 <section id="dataset">
 <h3><span class="section-number">9.10.2. </span>Dataset<a class="headerlink" href="#dataset" title="Link to this heading">#</a></h3>
@@ -6800,6 +6807,7 @@ ANÁLISIS COMPLETADO - TODAS LAS TABLAS EXPORTADAS
 <li><p><strong>Fuente</strong>: <a class="reference external" href="https://www.kaggle.com/datasets/wordsforthewise/lending-club">Kaggle Dataset - Lending Club</a></p></li>
 <li><p><strong>Tamaño</strong>: más de 1,3 millones de registros</p></li>
 <li><p><strong>Características</strong>: variables socioeconómicas, financieras, de crédito, empleo y propósito del préstamo</p></li>
+<li><p><strong>Condición obligatoria</strong>: Se debe utilizar el <strong>dataset completo sin ningún tipo de muestreo</strong>, submuestreo o reducción de filas. No se permite trabajar con versiones reducidas del conjunto de datos.</p></li>
 </ul>
 </section>
 <section id="target">
@@ -6821,18 +6829,92 @@ ANÁLISIS COMPLETADO - TODAS LAS TABLAS EXPORTADAS
 <h3><span class="section-number">9.10.4. </span>Estructura del proyecto<a class="headerlink" href="#estructura-del-proyecto" title="Link to this heading">#</a></h3>
 <section id="exploracion-de-datos-eda">
 <h4><span class="section-number">9.10.4.1. </span>Exploración de datos (EDA)<a class="headerlink" href="#exploracion-de-datos-eda" title="Link to this heading">#</a></h4>
+<p>Se debe realizar un análisis exploratorio exhaustivo, tanto unidimensional como bidimensional, que permita comprender la estructura, calidad y relaciones iniciales de los datos antes de cualquier preprocesamiento o modelado. Todas las visualizaciones y tablas resumen deben ser incluidas y comentadas en el Jupyter Book.</p>
+<section id="carga-inicial-y-vision-general">
+<h5><span class="section-number">9.10.4.1.1. </span>Carga inicial y visión general<a class="headerlink" href="#carga-inicial-y-vision-general" title="Link to this heading">#</a></h5>
 <ul class="simple">
-<li><p>Cargar el dataset CSV</p></li>
-<li><p>Ver distribución de la variable <code class="docutils literal notranslate"><span class="pre">default</span></code></p></li>
-<li><p>Verificar valores faltantes y tipos de datos</p></li>
-<li><p>Visualizaciones:</p>
-<ul>
-<li><p>Histogramas de variables numéricas</p></li>
-<li><p>Boxplots por clase</p></li>
-<li><p>Correlaciones</p></li>
+<li><p>Cargar el dataset CSV completo (sin muestreo) utilizando pandas y, opcionalmente, Spark para comparar tiempos de carga.</p></li>
+<li><p>Mostrar las primeras y últimas filas (<code class="docutils literal notranslate"><span class="pre">head()</span></code>, <code class="docutils literal notranslate"><span class="pre">tail()</span></code>) para verificar la correcta lectura.</p></li>
+<li><p>Usar <code class="docutils literal notranslate"><span class="pre">info()</span></code> y <code class="docutils literal notranslate"><span class="pre">describe()</span></code> para obtener un resumen de tipos de datos, valores nulos y estadísticas descriptivas básicas de las variables numéricas.</p></li>
+<li><p>Reportar la dimensión del dataset (número de filas y columnas).</p></li>
 </ul>
-</li>
+</section>
+<section id="analisis-unidimensional-por-variable">
+<h5><span class="section-number">9.10.4.1.2. </span>Análisis unidimensional (por variable)<a class="headerlink" href="#analisis-unidimensional-por-variable" title="Link to this heading">#</a></h5>
+<p>Para cada variable, según su tipo (numérica o categórica), se deben realizar las siguientes actividades:</p>
+<p><strong>Variables numéricas (ej. <code class="docutils literal notranslate"><span class="pre">loan_amnt</span></code>, <code class="docutils literal notranslate"><span class="pre">int_rate</span></code>, <code class="docutils literal notranslate"><span class="pre">annual_inc</span></code>, <code class="docutils literal notranslate"><span class="pre">dti</span></code>, <code class="docutils literal notranslate"><span class="pre">fico_range_high</span></code>, <code class="docutils literal notranslate"><span class="pre">emp_length</span></code>):</strong></p>
+<ul class="simple">
+<li><p>Calcular y reportar: media, mediana, desviación estándar, mínimo, máximo, percentiles (25%, 50%, 75%) y rango intercuartil (IQR).</p></li>
+<li><p>Identificar posibles valores atípicos (outliers) mediante el método del IQR (valores fuera de [Q1 - 1.5<em>IQR, Q3 + 1.5</em>IQR]) y mediante inspección visual.</p></li>
+<li><p>Generar histogramas para visualizar la distribución de frecuencias.</p></li>
+<li><p>Generar diagramas de caja (boxplots) para identificar asimetría y presencia de outliers.</p></li>
+<li><p>Evaluar la normalidad de la distribución (mediante asimetría o prueba de Shapiro-Wilk opcional) y comentar si sería necesario aplicar transformaciones (log, Box-Cox) en etapas posteriores.</p></li>
+<li><p>Calcular la tasa de valores faltantes por variable y decidir un umbral (ej. &gt;30%) para posible eliminación o imputación avanzada.</p></li>
 </ul>
+<p><strong>Variables categóricas (ej. <code class="docutils literal notranslate"><span class="pre">purpose</span></code>, <code class="docutils literal notranslate"><span class="pre">home_ownership</span></code>, <code class="docutils literal notranslate"><span class="pre">addr_state</span></code>, <code class="docutils literal notranslate"><span class="pre">verification_status</span></code>):</strong></p>
+<ul class="simple">
+<li><p>Reportar la frecuencia absoluta y relativa de cada categoría.</p></li>
+<li><p>Identificar categorías con muy baja frecuencia (ej. menos del 1% de los datos) que podrían agruparse en una categoría “Otros”.</p></li>
+<li><p>Generar gráficos de barras horizontales o verticales para visualizar la distribución.</p></li>
+<li><p>Detectar si existen categorías con significado redundante o que puedan unificarse.</p></li>
+<li><p>Calcular la tasa de valores faltantes y considerar su tratamiento (moda, categoría “Desconocido”, o eliminación si es muy alta).</p></li>
+</ul>
+<p><strong>Variable objetivo (<code class="docutils literal notranslate"><span class="pre">default</span></code>):</strong></p>
+<ul class="simple">
+<li><p>Calcular la distribución de clases (0 = Fully Paid, 1 = Charged Off) en valores absolutos y porcentajes.</p></li>
+<li><p>Visualizar con un gráfico de barras o pastel.</p></li>
+<li><p>Comentar si existe desbalance de clases y qué impacto podría tener en el modelado (por ejemplo, necesidad de usar estratificación, weighted metrics o técnicas de balanceo).</p></li>
+</ul>
+</section>
+<section id="analisis-bidimensional-relaciones-entre-variables">
+<h5><span class="section-number">9.10.4.1.3. </span>Análisis bidimensional (relaciones entre variables)<a class="headerlink" href="#analisis-bidimensional-relaciones-entre-variables" title="Link to this heading">#</a></h5>
+<p><strong>Relación de cada variable numérica con la variable objetivo <code class="docutils literal notranslate"><span class="pre">default</span></code>:</strong></p>
+<ul class="simple">
+<li><p>Generar <strong>boxplots comparativos</strong> por clase (default = 0 vs 1) para cada variable numérica, con el fin de observar diferencias en la mediana, dispersión y presencia de outliers separados por clase.</p></li>
+<li><p>Generar <strong>violin plots</strong> (opcional pero recomendado) para visualizar la densidad de la distribución por clase.</p></li>
+<li><p>Calcular la <strong>diferencia de medias</strong> entre clases y realizar una prueba t de Student o prueba de Mann-Whitney (si no hay normalidad) para determinar si la diferencia es estadísticamente significativa (p-value &lt; 0.05).</p></li>
+<li><p>Calcular la <strong>correlación punto-biserial</strong> entre cada variable numérica y la variable binaria <code class="docutils literal notranslate"><span class="pre">default</span></code>.</p></li>
+</ul>
+<p><strong>Relación de cada variable categórica con la variable objetivo <code class="docutils literal notranslate"><span class="pre">default</span></code>:</strong></p>
+<ul class="simple">
+<li><p>Generar tablas de contingencia (crosstab) que muestren, para cada categoría, la proporción de default (tasa de impago).</p></li>
+<li><p>Visualizar mediante <strong>gráficos de barras apiladas</strong> o <strong>barras agrupadas</strong> la frecuencia de default por categoría.</p></li>
+<li><p>Realizar una prueba de chi-cuadrado para evaluar la independencia entre cada variable categórica y <code class="docutils literal notranslate"><span class="pre">default</span></code>. Reportar el estadístico y el p-value.</p></li>
+<li><p>Identificar categorías con alta tasa de default que podrían ser predictores relevantes.</p></li>
+</ul>
+<p><strong>Relaciones entre variables independientes (multicolinealidad):</strong></p>
+<ul class="simple">
+<li><p>Calcular la <strong>matriz de correlaciones</strong> entre todas las variables numéricas usando el coeficiente de Pearson.</p></li>
+<li><p>Visualizar la matriz de correlación con un <strong>mapa de calor (heatmap)</strong> y comentar los pares de variables con correlación alta (|r| &gt; 0.7) que podrían generar multicolinealidad.</p></li>
+<li><p>Para pares de variables categóricas, utilizar el coeficiente V de Cramer o la prueba de chi-cuadrado para evaluar asociación.</p></li>
+<li><p>Identificar posibles redundancias (ej. <code class="docutils literal notranslate"><span class="pre">fico_range_high</span></code> con <code class="docutils literal notranslate"><span class="pre">int_rate</span></code>) que justifiquen la exclusión de alguna variable en el modelado.</p></li>
+</ul>
+<p><strong>Visualizaciones avanzadas sugeridas:</strong></p>
+<ul class="simple">
+<li><p><strong>Pairplot</strong> (solo para una muestra representativa si el dataset es muy grande) de las principales variables numéricas coloreado por <code class="docutils literal notranslate"><span class="pre">default</span></code>.</p></li>
+<li><p><strong>Gráficos de densidad (KDE)</strong> comparativos por clase para las variables más relevantes.</p></li>
+<li><p><strong>Matriz de dispersión (scatter matrix)</strong> limitada a 4-5 variables clave para identificar patrones no lineales.</p></li>
+</ul>
+</section>
+<section id="valores-faltantes-analisis-detallado">
+<h5><span class="section-number">9.10.4.1.4. </span>Valores faltantes (análisis detallado)<a class="headerlink" href="#valores-faltantes-analisis-detallado" title="Link to this heading">#</a></h5>
+<ul class="simple">
+<li><p>Reportar, para cada columna, el número y porcentaje de valores nulos.</p></li>
+<li><p>Visualizar el patrón de missing values mediante un mapa de calor de nulos o una biblioteca como <code class="docutils literal notranslate"><span class="pre">missingno</span></code>.</p></li>
+<li><p>Analizar si los valores faltantes se concentran en ciertas filas o columnas, y si existe relación con la variable objetivo (prueba de missingness completamente al azar, MCAR).</p></li>
+<li><p>Proponer un plan de tratamiento diferenciado por variable: eliminación (si el porcentaje es muy alto, &gt;70%), imputación con mediana/media/moda, o creación de una categoría “Missing”.</p></li>
+</ul>
+</section>
+<section id="resumen-ejecutivo-del-eda">
+<h5><span class="section-number">9.10.4.1.5. </span>Resumen ejecutivo del EDA<a class="headerlink" href="#resumen-ejecutivo-del-eda" title="Link to this heading">#</a></h5>
+<p>Al final de la sección, los estudiantes deben incluir un párrafo o tabla que sintetice:</p>
+<ul class="simple">
+<li><p>Principales hallazgos sobre la calidad de los datos.</p></li>
+<li><p>Variables más prometedoras para predecir <code class="docutils literal notranslate"><span class="pre">default</span></code>.</p></li>
+<li><p>Problemas detectados (desbalance, outliers severos, alta correlación, missing values sistemáticos).</p></li>
+<li><p>Decisiones preliminares que guiarán el preprocesamiento (qué variables se mantienen, transformaciones necesarias, tratamiento de nulos, posible necesidad de balanceo de clases).</p></li>
+</ul>
+</section>
 </section>
 <section id="preprocesamiento">
 <h4><span class="section-number">9.10.4.2. </span>Preprocesamiento<a class="headerlink" href="#preprocesamiento" title="Link to this heading">#</a></h4>
@@ -6848,10 +6930,12 @@ ANÁLISIS COMPLETADO - TODAS LAS TABLAS EXPORTADAS
 <section id="id14">
 <h5><span class="section-number">9.10.4.2.2. </span>PySpark<a class="headerlink" href="#id14" title="Link to this heading">#</a></h5>
 <ul class="simple">
-<li><p>Leer CSV en <code class="docutils literal notranslate"><span class="pre">SparkSession</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">StringIndexer</span></code> y <code class="docutils literal notranslate"><span class="pre">OneHotEncoder</span></code> para categóricas</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">VectorAssembler</span></code> + <code class="docutils literal notranslate"><span class="pre">StandardScaler</span></code> (opcional)</p></li>
-<li><p>División <code class="docutils literal notranslate"><span class="pre">randomSplit</span></code>, estratificada si es posible</p></li>
+<li><p>Leer CSV en <code class="docutils literal notranslate"><span class="pre">SparkSession</span></code> con el dataset completo.</p></li>
+<li><p><strong>Queda estrictamente prohibido</strong> el uso de <code class="docutils literal notranslate"><span class="pre">.toPandas()</span></code>, <code class="docutils literal notranslate"><span class="pre">.collect()</span></code> sobre el dataset completo o cualquier acción que transfiera los datos distribuidos al driver antes del entrenamiento.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">StringIndexer</span></code> y <code class="docutils literal notranslate"><span class="pre">OneHotEncoder</span></code> para variables categóricas.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">VectorAssembler</span></code> + <code class="docutils literal notranslate"><span class="pre">StandardScaler</span></code> (opcional).</p></li>
+<li><p><strong>Obligatoriamente cachear</strong> el DataFrame resultante después del <code class="docutils literal notranslate"><span class="pre">VectorAssembler</span></code> y antes del modelo mediante <code class="docutils literal notranslate"><span class="pre">.cache()</span></code> o <code class="docutils literal notranslate"><span class="pre">.persist(StorageLevel.MEMORY_AND_DISK)</span></code>.</p></li>
+<li><p>División <code class="docutils literal notranslate"><span class="pre">randomSplit</span></code> (80/20), estratificada si es posible, manteniendo siempre los datos en formato DataFrame de Spark.</p></li>
 </ul>
 </section>
 </section>
@@ -6878,11 +6962,23 @@ ANÁLISIS COMPLETADO - TODAS LAS TABLAS EXPORTADAS
 <h4><span class="section-number">9.10.4.4. </span>Modelado con PySpark<a class="headerlink" href="#modelado-con-pyspark" title="Link to this heading">#</a></h4>
 <ul class="simple">
 <li><p>Usar <code class="docutils literal notranslate"><span class="pre">pyspark.ml.classification.RandomForestClassifier</span></code></p></li>
-<li><p>Probar manualmente las mismas combinaciones de hiperparámetros</p></li>
+<li><p><strong>No se permite</strong> la búsqueda manual de hiperparámetros mediante bucles <code class="docutils literal notranslate"><span class="pre">for</span></code> o iteraciones explícitas sobre combinaciones. Se debe utilizar exclusivamente <code class="docutils literal notranslate"><span class="pre">ParamGridBuilder</span></code> junto con <code class="docutils literal notranslate"><span class="pre">CrossValidator</span></code> (con <code class="docutils literal notranslate"><span class="pre">numFolds</span> <span class="pre">=</span> <span class="pre">2</span></code> o 3).</p></li>
 <li><p>Evaluar con <code class="docutils literal notranslate"><span class="pre">BinaryClassificationEvaluator</span></code></p></li>
 <li><p>Calcular precisión, F1-score, matriz de confusión (manual si es necesario)</p></li>
-<li><p>Medir tiempo total de entrenamiento y predicción</p></li>
+<li><p>Medir tiempo total de entrenamiento y predicción (incluyendo la validación cruzada)</p></li>
+<li><p><strong>Configuración obligatoria de paralelismo y memoria</strong>: Antes de cualquier entrenamiento, se deberá configurar la sesión de Spark con los siguientes parámetros (u otros equivalentes debidamente justificados):</p></li>
 </ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">spark</span> <span class="o">=</span> <span class="n">SparkSession</span><span class="o">.</span><span class="n">builder</span> \
+    <span class="o">.</span><span class="n">appName</span><span class="p">(</span><span class="s2">&quot;LendingClub_Optimized&quot;</span><span class="p">)</span> \
+    <span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="s2">&quot;spark.sql.shuffle.partitions&quot;</span><span class="p">,</span> <span class="s2">&quot;400&quot;</span><span class="p">)</span> \
+    <span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="s2">&quot;spark.default.parallelism&quot;</span><span class="p">,</span> <span class="s2">&quot;400&quot;</span><span class="p">)</span> \
+    <span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="s2">&quot;spark.executor.memory&quot;</span><span class="p">,</span> <span class="s2">&quot;8g&quot;</span><span class="p">)</span> \
+    <span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="s2">&quot;spark.driver.memory&quot;</span><span class="p">,</span> <span class="s2">&quot;8g&quot;</span><span class="p">)</span> \
+    <span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="s2">&quot;spark.memory.fraction&quot;</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">)</span> \
+    <span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="s2">&quot;spark.memory.storageFraction&quot;</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span> \
+    <span class="o">.</span><span class="n">getOrCreate</span><span class="p">()</span>
+</pre></div>
+</div>
 </section>
 <section id="interpretabilidad-con-lime">
 <h4><span class="section-number">9.10.4.5. </span>Interpretabilidad con LIME<a class="headerlink" href="#interpretabilidad-con-lime" title="Link to this heading">#</a></h4>
@@ -6896,6 +6992,7 @@ ANÁLISIS COMPLETADO - TODAS LAS TABLAS EXPORTADAS
 <li><p>Gráficos locales de explicación</p></li>
 </ul>
 </li>
+<li><p><strong>Nota</strong>: Discutir las limitaciones de LIME al aplicarse sobre modelos entrenados con PySpark, dado que LIME opera en memoria local.</p></li>
 </ul>
 </section>
 <section id="comparacion-de-resultados">
@@ -6903,8 +7000,8 @@ ANÁLISIS COMPLETADO - TODAS LAS TABLAS EXPORTADAS
 <ul class="simple">
 <li><p>Tabla comparativa con:</p>
 <ul>
-<li><p>Métricas para sklearn vs PySpark</p></li>
-<li><p>Tiempo de cómputo</p></li>
+<li><p>Métricas para scikit-learn vs PySpark</p></li>
+<li><p>Tiempo de cómputo (preprocesamiento, entrenamiento con validación, predicción)</p></li>
 </ul>
 </li>
 <li><p>Gráficos:</p>
@@ -6921,16 +7018,17 @@ ANÁLISIS COMPLETADO - TODAS LAS TABLAS EXPORTADAS
 <p>Un <code class="docutils literal notranslate"><span class="pre">Jupyter</span> <span class="pre">Book</span></code> bien documentado con:</p>
 <ul class="simple">
 <li><p>Análisis exploratorio</p></li>
-<li><p>Preprocesamiento (sklearn y PySpark)</p></li>
+<li><p>Preprocesamiento (scikit-learn y PySpark)</p></li>
 <li><p>Modelado + tuning de hiperparámetros</p></li>
 <li><p>Evaluación de métricas</p></li>
 <li><p>Interpretabilidad con LIME</p></li>
 <li><p>Reflexión crítica sobre:</p>
 <ul>
-<li><p>¿Qué entorno fue más rápido?</p></li>
+<li><p>¿Qué entorno fue más rápido y por qué? (Considerar el efecto del tamaño completo del dataset, el caché, el <code class="docutils literal notranslate"><span class="pre">CrossValidator</span></code> y la configuración de Spark)</p></li>
 <li><p>¿Cuál fue más preciso?</p></li>
-<li><p>¿Cuándo es útil PySpark?</p></li>
-<li><p>¿Qué aporta LIME?</p></li>
+<li><p>¿A partir de qué volumen de datos PySpark comienza a superar a scikit-learn?</p></li>
+<li><p>¿Qué aporta LIME y cuáles son sus limitaciones en entornos distribuidos?</p></li>
+<li><p>¿Qué efecto tuvo cada una de las condiciones obligatorias en el rendimiento?</p></li>
 </ul>
 </li>
 </ul>
@@ -6942,6 +7040,9 @@ ANÁLISIS COMPLETADO - TODAS LAS TABLAS EXPORTADAS
 <li><p><a class="reference external" href="https://github.com/marcotcr/lime">LIME Documentation</a></p></li>
 <li><p><a class="reference external" href="https://spark.apache.org/docs/latest/ml-guide.html">PySpark MLlib</a></p></li>
 </ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
 </section>
 </section>
 </section>
@@ -7062,7 +7163,14 @@ ANÁLISIS COMPLETADO - TODAS LAS TABLAS EXPORTADAS
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">9.10.2. Dataset</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#target">9.10.3. Target</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estructura-del-proyecto">9.10.4. Estructura del proyecto</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exploracion-de-datos-eda">9.10.4.1. Exploración de datos (EDA)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exploracion-de-datos-eda">9.10.4.1. Exploración de datos (EDA)</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#carga-inicial-y-vision-general">9.10.4.1.1. Carga inicial y visión general</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-unidimensional-por-variable">9.10.4.1.2. Análisis unidimensional (por variable)</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-bidimensional-relaciones-entre-variables">9.10.4.1.3. Análisis bidimensional (relaciones entre variables)</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#valores-faltantes-analisis-detallado">9.10.4.1.4. Valores faltantes (análisis detallado)</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen-ejecutivo-del-eda">9.10.4.1.5. Resumen ejecutivo del EDA</a></li>
+</ul>
+</li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocesamiento">9.10.4.2. Preprocesamiento</a><ul class="nav section-nav flex-column">
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#scikit-learn">9.10.4.2.1. scikit-learn</a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">9.10.4.2.2. PySpark</a></li>
