@@ -410,14 +410,115 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#red-de-memoria-a-largo-plazo-lstm">11.18. Red de memoria a largo plazo (LSTM)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-procesamiento-del-lenguaje-natural">11.19. Aplicación: Procesamiento del Lenguaje Natural</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-lstm-para-la-prediccion-de-series-de-tiempo">11.20. Aplicación: LSTM para la predicción de series de tiempo</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autoencoders">11.21. Autoencoders</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-autoencoders-para-mnist-data">11.22. Aplicación: Autoencoders para MNIST data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#attention">11.23. Attention</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#self-attention">11.24. Self-Attention</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-head-attention">11.25. Multi-head Attention</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformer">11.26. Transformer</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-analisis-de-sentimiento-con-transformer">11.27. Aplicación: Análisis de sentimiento con Transformer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proyecto-integrador-de-aprendizaje-automatico">11.20. Proyecto Integrador de Aprendizaje Automático</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#titulo">11.20.1. Título</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivo-general">11.20.2. Objetivo general</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contexto-aplicado">11.20.3. Contexto aplicado</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#biomedicina">11.20.3.1. Biomedicina</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#procesamiento-del-lenguaje-natural">11.20.3.2. Procesamiento del Lenguaje Natural</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#datasets">11.20.4. Datasets</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#segmentacion-de-imagenes">11.20.4.1. Segmentación de imágenes</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#nlp">11.20.4.2. NLP</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bloque-1-segmentacion-de-imagenes">11.20.5. Bloque 1: Segmentación de imágenes</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-exploratorio-de-datos-eda">11.20.5.1. Análisis Exploratorio de Datos (EDA)</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id46">11.20.5.1.1. Objetivo</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-a-paso">11.20.5.1.2. Paso a paso</a><ul class="nav section-nav flex-column">
+<li class="toc-h6 nav-item toc-entry"><a class="reference internal nav-link" href="#carga-de-datos">11.20.5.1.2.1. 1. Carga de datos</a></li>
+<li class="toc-h6 nav-item toc-entry"><a class="reference internal nav-link" href="#construccion-de-dataset-estructurado">11.20.5.1.2.2. 2. Construcción de dataset estructurado</a></li>
+</ul>
+</li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-obligatorios">11.20.5.1.3. Análisis obligatorios</a><ul class="nav section-nav flex-column">
+<li class="toc-h6 nav-item toc-entry"><a class="reference internal nav-link" href="#tamano-de-imagenes">11.20.5.1.3.1. Tamaño de imágenes</a></li>
+<li class="toc-h6 nav-item toc-entry"><a class="reference internal nav-link" href="#numero-de-celulas-por-imagen">11.20.5.1.3.2. Número de células por imagen</a></li>
+<li class="toc-h6 nav-item toc-entry"><a class="reference internal nav-link" href="#area-de-celulas">11.20.5.1.3.3. Área de células</a></li>
+<li class="toc-h6 nav-item toc-entry"><a class="reference internal nav-link" href="#intensidad-de-pixeles">11.20.5.1.3.4. Intensidad de píxeles</a></li>
+<li class="toc-h6 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizacion-cualitativa">11.20.5.1.3.5. Visualización cualitativa</a></li>
+</ul>
+</li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-obligatoria">11.20.5.1.4. Interpretación obligatoria</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocesamiento">11.20.5.2. Preprocesamiento</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#pasos-obligatorios">11.20.5.2.1. Pasos obligatorios</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id47">11.20.5.2.2. Entregable</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-a-implementar">11.20.5.3. Modelos a implementar</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#obligatorio-implementar-los-5-modelos">11.20.5.3.1. Obligatorio: implementar los 5 modelos</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#que-debe-hacer-en-cada-modelo">11.20.5.3.2. Qué debe hacer en cada modelo</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#hiperparametros-a-ajustar">11.20.5.3.3. Hiperparámetros a ajustar</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion">11.20.5.4. Validación</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#metricas-de-evaluacion">11.20.5.5. Métricas de evaluación</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluacion-y-visualizacion">11.20.5.6. Evaluación y visualización</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacion-visual">11.20.5.6.1. Comparación visual</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#curvas">11.20.5.6.2. Curvas</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mapas-de-error">11.20.5.6.3. Mapas de error</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#boxplots">11.20.5.6.4. Boxplots</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#histogramas">11.20.5.6.5. Histogramas</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#resultados">11.20.5.7. Resultados</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-critico">11.20.5.8. Análisis crítico</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bloque-2-procesamiento-del-lenguaje-natural-nlp">11.20.6. Bloque 2: Procesamiento del Lenguaje Natural (NLP)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id48">11.20.6.1. Análisis Exploratorio de Datos (EDA)</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id49">11.20.6.1.1. Paso a paso</a><ul class="nav section-nav flex-column">
+<li class="toc-h6 nav-item toc-entry"><a class="reference internal nav-link" href="#id50">11.20.6.1.1.1. Carga de datos</a></li>
+<li class="toc-h6 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-clases">11.20.6.1.1.2. Análisis de clases</a></li>
+<li class="toc-h6 nav-item toc-entry"><a class="reference internal nav-link" href="#longitud-de-textos">11.20.6.1.1.3. Longitud de textos</a></li>
+<li class="toc-h6 nav-item toc-entry"><a class="reference internal nav-link" href="#frecuencia-de-palabras">11.20.6.1.1.4. Frecuencia de palabras</a></li>
+<li class="toc-h6 nav-item toc-entry"><a class="reference internal nav-link" href="#n-gramas">11.20.6.1.1.5. N-gramas</a></li>
+</ul>
+</li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion">11.20.6.1.2. Interpretación</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id51">11.20.6.2. Preprocesamiento</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id52">11.20.6.2.1. Pasos obligatorios</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#embeddings">11.20.6.2.2. Embeddings</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id53">11.20.6.3. Modelos a implementar</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hiperparametros-bilstm-obligatorio">11.20.6.4. Hiperparámetros (BiLSTM obligatorio)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#entrenamiento">11.20.6.5. Entrenamiento</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#metricas">11.20.6.6. Métricas</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluacion">11.20.6.7. Evaluación</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id54">11.20.6.8. Resultados</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id55">11.20.6.9. Análisis crítico</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mlops-basico">11.20.7. MLOps (BÁSICO)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id56">11.20.7.1. Objetivo</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#fastapi">11.20.7.2. FastAPI</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#docker">11.20.7.3. Docker</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ci-cd">11.20.7.4. CI/CD</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#monitoreo-conceptual">11.20.7.5. Monitoreo (conceptual)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#restricciones">11.20.8. Restricciones</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#herramientas-sugeridas">11.20.9. Herramientas sugeridas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#entregables">11.20.10. Entregables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estructura-del-proyecto">11.20.11. Estructura del proyecto</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacion-final">11.20.12. Comparación final</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusiones">11.20.13. Conclusiones</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reporte-final">11.20.14. Reporte final</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-lstm-para-la-prediccion-de-series-de-tiempo">11.21. Aplicación: LSTM para la predicción de series de tiempo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autoencoders">11.22. Autoencoders</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-autoencoders-para-mnist-data">11.23. Aplicación: Autoencoders para MNIST data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#attention">11.24. Attention</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#self-attention">11.25. Self-Attention</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-head-attention">11.26. Multi-head Attention</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformer">11.27. Transformer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-analisis-de-sentimiento-con-transformer">11.28. Aplicación: Análisis de sentimiento con Transformer</a></li>
 </ul>
             </nav>
         </div>
@@ -939,11 +1040,11 @@ f(\boldsymbol{z}^{r})
 <ul class="simple">
 <li><p>La siguiente figura describe como es creada la <span class="math notranslate nohighlight">\(j\)</span>-ésima capa de la red neuronal full conectada</p></li>
 </ul>
-<figure class="align-center" id="id46">
+<figure class="align-center" id="id57">
 <a class="reference internal image-reference" href="_images/fully_connected_net.png"><img alt="_images/fully_connected_net.png" src="_images/fully_connected_net.png" style="width: 600.0px; height: 317.20000000000005px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Fig. 11.9 </span><span class="caption-text"><span class="math notranslate nohighlight">\(j\)</span>-ésimo elemento de la capa <span class="math notranslate nohighlight">\(r\)</span> de la red totalmente conectada.</span><a class="headerlink" href="#id46" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 11.9 </span><span class="caption-text"><span class="math notranslate nohighlight">\(j\)</span>-ésimo elemento de la capa <span class="math notranslate nohighlight">\(r\)</span> de la red totalmente conectada.</span><a class="headerlink" href="#id57" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <div class="important admonition">
@@ -5435,10 +5536,10 @@ O_{r}=I_{r}\star H_{r},\quad r=1,2,\dots,d.
 <li><p>A continuación, se presentan <em><strong>redes convolucionales clásicas, cuya comprensión es clave para profundizar en el tema</strong></em>, aunque algunos de sus métodos ya no se utilicen. Los estudios citados ofrecen una base sólida para el aprendizaje de las CNN.</p></li>
 </ul>
 </div>
-<figure class="align-center" id="id47">
+<figure class="align-center" id="id58">
 <img alt="_images/cat_dog_class.png" src="_images/cat_dog_class.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 11.34 </span><span class="caption-text">Clasificación de imágenes. Fuente <a class="reference external" href="https://docs.clarifai.com/">clarifai</a></span><a class="headerlink" href="#id47" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 11.34 </span><span class="caption-text">Clasificación de imágenes. Fuente <a class="reference external" href="https://docs.clarifai.com/">clarifai</a></span><a class="headerlink" href="#id58" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
@@ -5511,10 +5612,10 @@ O_{r}=I_{r}\star H_{r},\quad r=1,2,\dots,d.
 <li><p>En el módulo de inicio, se <em><strong>concatenan los volúmenes de salida de varias trayectorias</strong></em>, permitiendo que la red, durante el entrenamiento, <em><strong>elija las mejores operaciones para cada capa</strong></em>. A medida que se avanza hacia capas superiores, <em><strong>se incrementa la proporción de convoluciones 3 × 3 y 5 × 5, ya que captan rasgos más abstractos</strong></em>. La red tiene <em><strong>22 capas y 6 millones de parámetros</strong></em>.</p></li>
 </ul>
 </div>
-<figure class="align-center" id="id48">
+<figure class="align-center" id="id59">
 <img alt="_images/google-net-like.png" src="_images/google-net-like.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 11.38 </span><span class="caption-text">Arquitectura GoogleNet. Fuente <a class="reference external" href="https://pubmed.ncbi.nlm.nih.gov/29084154/">pubmed</a></span><a class="headerlink" href="#id48" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 11.38 </span><span class="caption-text">Arquitectura GoogleNet. Fuente <a class="reference external" href="https://pubmed.ncbi.nlm.nih.gov/29084154/">pubmed</a></span><a class="headerlink" href="#id59" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <figure class="align-center" id="inception-architecture-numref">
@@ -5595,20 +5696,20 @@ y^r = y^{r-1} + F(y^{r-1})
 </section>
 <section id="u-net-redes-convolucionales-para-la-segmentacion-de-imagenes-biomedicas">
 <h3><span class="section-number">11.16.16. </span>U-Net: Redes Convolucionales para la Segmentación de Imágenes Biomédicas<a class="headerlink" href="#u-net-redes-convolucionales-para-la-segmentacion-de-imagenes-biomedicas" title="Link to this heading">#</a></h3>
-<figure class="align-center" id="id49">
+<figure class="align-center" id="id60">
 <img alt="_images/segmentation_instance.avif" src="_images/segmentation_instance.avif" />
 <figcaption>
-<p><span class="caption-number">Fig. 11.42 </span><span class="caption-text">Image segmentation vs Instance segmentation. Fuente <a class="reference external" href="https://www.v7labs.com/">v7labs</a></span><a class="headerlink" href="#id49" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 11.42 </span><span class="caption-text">Image segmentation vs Instance segmentation. Fuente <a class="reference external" href="https://www.v7labs.com/">v7labs</a></span><a class="headerlink" href="#id60" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <ul class="simple">
 <li><p>En imágenes médicas, la <strong><em>segmentación semántica</em> clasifica cada píxel según una categoría anatómica o patológica, mientras que la <em>segmentación de instancias</em> diferencia objetos individuales dentro de la misma clase</strong>. Estas técnicas son esenciales para el diagnóstico automatizado y la planificación clínica.</p></li>
 <li><p>La arquitectura <strong><em>U-Net</em>, diseñada para segmentación biomédica, permite una segmentación precisa</strong> mediante un diseño en forma de <em>U</em> que combina información de contexto con detalles espaciales, mejorando la detección de estructuras complejas en imágenes médicas.</p></li>
 </ul>
-<figure class="align-center" id="id50">
+<figure class="align-center" id="id61">
 <img alt="_images/unet_segmentation.png" src="_images/unet_segmentation.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 11.43 </span><span class="caption-text">La arquitectura U-Net representa mapas de características con cajas, indicando canales y tamaño, mientras que las flechas señalan las operaciones.</span><a class="headerlink" href="#id50" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 11.43 </span><span class="caption-text">La arquitectura U-Net representa mapas de características con cajas, indicando canales y tamaño, mientras que las flechas señalan las operaciones.</span><a class="headerlink" href="#id61" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <div class="admonition-arquitectura-u-net admonition">
@@ -9198,8 +9299,652 @@ acc: 0.21
 </div>
 </div>
 </section>
+<section id="proyecto-integrador-de-aprendizaje-automatico">
+<h2><span class="section-number">11.20. </span>Proyecto Integrador de Aprendizaje Automático<a class="headerlink" href="#proyecto-integrador-de-aprendizaje-automatico" title="Link to this heading">#</a></h2>
+<section id="titulo">
+<h3><span class="section-number">11.20.1. </span>Título<a class="headerlink" href="#titulo" title="Link to this heading">#</a></h3>
+<p><strong>Segmentación de células e interpretación de texto mediante modelos de deep learning: evaluación, comparación y despliegue básico</strong></p>
+</section>
+<section id="objetivo-general">
+<h3><span class="section-number">11.20.2. </span>Objetivo general<a class="headerlink" href="#objetivo-general" title="Link to this heading">#</a></h3>
+<p>Desarrollar, entrenar, evaluar y comparar modelos de deep learning en dos dominios:</p>
+<ul class="simple">
+<li><p>Segmentación de imágenes biomédicas</p></li>
+<li><p>Clasificación de texto (NLP)</p></li>
+</ul>
+<p>El estudiante deberá:</p>
+<ul class="simple">
+<li><p>Construir modelos funcionales desde cero o usando transfer learning</p></li>
+<li><p>Implementar pipelines reproducibles</p></li>
+<li><p>Ajustar hiperparámetros</p></li>
+<li><p>Evaluar modelos con métricas apropiadas</p></li>
+<li><p>Interpretar resultados de manera crítica</p></li>
+<li><p>Implementar un despliegue básico tipo MLOps</p></li>
+</ul>
+</section>
+<section id="contexto-aplicado">
+<h3><span class="section-number">11.20.3. </span>Contexto aplicado<a class="headerlink" href="#contexto-aplicado" title="Link to this heading">#</a></h3>
+<section id="biomedicina">
+<h4><span class="section-number">11.20.3.1. </span>Biomedicina<a class="headerlink" href="#biomedicina" title="Link to this heading">#</a></h4>
+<p>Segmentación automática de células en imágenes microscópicas para apoyar diagnósticos y análisis clínicos.</p>
+</section>
+<section id="procesamiento-del-lenguaje-natural">
+<h4><span class="section-number">11.20.3.2. </span>Procesamiento del Lenguaje Natural<a class="headerlink" href="#procesamiento-del-lenguaje-natural" title="Link to this heading">#</a></h4>
+<p>Clasificación automática de texto para aplicaciones como reclutamiento, clasificación de intenciones o atención al cliente.</p>
+</section>
+</section>
+<section id="datasets">
+<h3><span class="section-number">11.20.4. </span>Datasets<a class="headerlink" href="#datasets" title="Link to this heading">#</a></h3>
+<section id="segmentacion-de-imagenes">
+<h4><span class="section-number">11.20.4.1. </span>Segmentación de imágenes<a class="headerlink" href="#segmentacion-de-imagenes" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.kaggle.com/competitions/sartorius-cell-instance-segmentation/overview">Sartorius - Cell Instance Segmentation</a></p></li>
+<li><p>Datos: imágenes + máscaras en formato RLE</p></li>
+</ul>
+</section>
+<section id="nlp">
+<h4><span class="section-number">11.20.4.2. </span>NLP<a class="headerlink" href="#nlp" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.kaggle.com/competitions/jarvis-calling-hiring-contest/overview">Jarvis Calling Hiring Contest</a></p></li>
+<li><p>Datos: textos etiquetados</p></li>
+<li><p>EDA  (ver <a class="reference external" href="https://www.kaggle.com/code/harshsingh2209/complete-guide-to-eda-on-text-data">Complete Guide to EDA on Text Data</a>)</p></li>
+</ul>
+</section>
+</section>
+<section id="bloque-1-segmentacion-de-imagenes">
+<h3><span class="section-number">11.20.5. </span>Bloque 1: Segmentación de imágenes<a class="headerlink" href="#bloque-1-segmentacion-de-imagenes" title="Link to this heading">#</a></h3>
+<section id="analisis-exploratorio-de-datos-eda">
+<h4><span class="section-number">11.20.5.1. </span>Análisis Exploratorio de Datos (EDA)<a class="headerlink" href="#analisis-exploratorio-de-datos-eda" title="Link to this heading">#</a></h4>
+<section id="id46">
+<h5><span class="section-number">11.20.5.1.1. </span>Objetivo<a class="headerlink" href="#id46" title="Link to this heading">#</a></h5>
+<p>Comprender completamente la estructura del dataset antes de modelar.</p>
+</section>
+<section id="paso-a-paso">
+<h5><span class="section-number">11.20.5.1.2. </span>Paso a paso<a class="headerlink" href="#paso-a-paso" title="Link to this heading">#</a></h5>
+<section id="carga-de-datos">
+<h6><span class="section-number">11.20.5.1.2.1. </span>1. Carga de datos<a class="headerlink" href="#carga-de-datos" title="Link to this heading">#</a></h6>
+<ul class="simple">
+<li><p>Leer imágenes con <code class="docutils literal notranslate"><span class="pre">cv2</span></code> o <code class="docutils literal notranslate"><span class="pre">PIL</span></code></p></li>
+<li><p>Cargar archivo de anotaciones (CSV con RLE)</p></li>
+<li><p>Convertir máscaras RLE a imágenes binarias</p></li>
+</ul>
+</section>
+<section id="construccion-de-dataset-estructurado">
+<h6><span class="section-number">11.20.5.1.2.2. </span>2. Construcción de dataset estructurado<a class="headerlink" href="#construccion-de-dataset-estructurado" title="Link to this heading">#</a></h6>
+<p>Crear un dataframe con:</p>
+<ul class="simple">
+<li><p>id_imagen</p></li>
+<li><p>ruta_imagen</p></li>
+<li><p>número de máscaras</p></li>
+<li><p>área de cada máscara</p></li>
+</ul>
+</section>
+</section>
+<section id="analisis-obligatorios">
+<h5><span class="section-number">11.20.5.1.3. </span>Análisis obligatorios<a class="headerlink" href="#analisis-obligatorios" title="Link to this heading">#</a></h5>
+<section id="tamano-de-imagenes">
+<h6><span class="section-number">11.20.5.1.3.1. </span>Tamaño de imágenes<a class="headerlink" href="#tamano-de-imagenes" title="Link to this heading">#</a></h6>
+<ul class="simple">
+<li><p>Calcular alto y ancho de cada imagen</p></li>
+</ul>
+<p>Visualizaciones:</p>
+<ul class="simple">
+<li><p>Histograma de alturas</p></li>
+<li><p>Histograma de anchos</p></li>
+<li><p>Scatter plot (alto vs ancho)</p></li>
+</ul>
+</section>
+<section id="numero-de-celulas-por-imagen">
+<h6><span class="section-number">11.20.5.1.3.2. </span>Número de células por imagen<a class="headerlink" href="#numero-de-celulas-por-imagen" title="Link to this heading">#</a></h6>
+<ul class="simple">
+<li><p>Contar instancias por imagen</p></li>
+</ul>
+<p>Visualizaciones:</p>
+<ul class="simple">
+<li><p>Histograma</p></li>
+<li><p>Boxplot</p></li>
+</ul>
+</section>
+<section id="area-de-celulas">
+<h6><span class="section-number">11.20.5.1.3.3. </span>Área de células<a class="headerlink" href="#area-de-celulas" title="Link to this heading">#</a></h6>
+<ul class="simple">
+<li><p>Calcular número de píxeles por máscara</p></li>
+</ul>
+<p>Visualizaciones:</p>
+<ul class="simple">
+<li><p>Histograma de áreas</p></li>
+<li><p>Boxplot</p></li>
+</ul>
+</section>
+<section id="intensidad-de-pixeles">
+<h6><span class="section-number">11.20.5.1.3.4. </span>Intensidad de píxeles<a class="headerlink" href="#intensidad-de-pixeles" title="Link to this heading">#</a></h6>
+<ul class="simple">
+<li><p>Analizar distribución de intensidades</p></li>
+</ul>
+<p>Visualizaciones:</p>
+<ul class="simple">
+<li><p>Histogramas por canal</p></li>
+</ul>
+</section>
+<section id="visualizacion-cualitativa">
+<h6><span class="section-number">11.20.5.1.3.5. </span>Visualización cualitativa<a class="headerlink" href="#visualizacion-cualitativa" title="Link to this heading">#</a></h6>
+<ul class="simple">
+<li><p>Mostrar 5 imágenes con:</p>
+<ul>
+<li><p>Imagen original</p></li>
+<li><p>Máscaras superpuestas</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="interpretacion-obligatoria">
+<h5><span class="section-number">11.20.5.1.4. </span>Interpretación obligatoria<a class="headerlink" href="#interpretacion-obligatoria" title="Link to this heading">#</a></h5>
+<ul class="simple">
+<li><p>¿Las imágenes son homogéneas o muy variables?</p></li>
+<li><p>¿Existe desbalance en número de células?</p></li>
+<li><p>¿Las células son pequeñas o grandes?</p></li>
+<li><p>¿Hay ruido o artefactos?</p></li>
+</ul>
+</section>
+</section>
+<section id="preprocesamiento">
+<h4><span class="section-number">11.20.5.2. </span>Preprocesamiento<a class="headerlink" href="#preprocesamiento" title="Link to this heading">#</a></h4>
+<section id="pasos-obligatorios">
+<h5><span class="section-number">11.20.5.2.1. </span>Pasos obligatorios<a class="headerlink" href="#pasos-obligatorios" title="Link to this heading">#</a></h5>
+<ol class="arabic simple">
+<li><p>Normalización:</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">img</span> <span class="o">=</span> <span class="n">img</span> <span class="o">/</span> <span class="mf">255.0</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Redimensionamiento:</p></li>
+</ol>
+<ul class="simple">
+<li><p>256×256 o 512×512</p></li>
+</ul>
+<ol class="arabic simple" start="3">
+<li><p>Conversión de máscaras:</p></li>
+</ol>
+<ul class="simple">
+<li><p>RLE → binaria → tensor</p></li>
+</ul>
+<ol class="arabic simple" start="4">
+<li><p>Data augmentation:</p></li>
+</ol>
+<ul class="simple">
+<li><p>Rotaciones</p></li>
+<li><p>Flips horizontales y verticales</p></li>
+<li><p>Zoom</p></li>
+<li><p>Deformaciones (opcional)</p></li>
+</ul>
+</section>
+<section id="id47">
+<h5><span class="section-number">11.20.5.2.2. </span>Entregable<a class="headerlink" href="#id47" title="Link to this heading">#</a></h5>
+<ul class="simple">
+<li><p>Comparación visual:</p>
+<ul>
+<li><p>Imagen original</p></li>
+<li><p>Imagen procesada</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="modelos-a-implementar">
+<h4><span class="section-number">11.20.5.3. </span>Modelos a implementar<a class="headerlink" href="#modelos-a-implementar" title="Link to this heading">#</a></h4>
+<section id="obligatorio-implementar-los-5-modelos">
+<h5><span class="section-number">11.20.5.3.1. </span>Obligatorio: implementar los 5 modelos<a class="headerlink" href="#obligatorio-implementar-los-5-modelos" title="Link to this heading">#</a></h5>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Pos</p></th>
+<th class="head"><p>Modelo</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>Mask R-CNN (+ Swin)</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>Hover-Net</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>U-Net++ + Watershed</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>Cellpose 2.0</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>SAM / MedSAM</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="que-debe-hacer-en-cada-modelo">
+<h5><span class="section-number">11.20.5.3.2. </span>Qué debe hacer en cada modelo<a class="headerlink" href="#que-debe-hacer-en-cada-modelo" title="Link to this heading">#</a></h5>
+<ul class="simple">
+<li><p>Definir arquitectura</p></li>
+<li><p>Entrenar modelo</p></li>
+<li><p>Ajustar hiperparámetros</p></li>
+<li><p>Evaluar</p></li>
+</ul>
+</section>
+<section id="hiperparametros-a-ajustar">
+<h5><span class="section-number">11.20.5.3.3. </span>Hiperparámetros a ajustar<a class="headerlink" href="#hiperparametros-a-ajustar" title="Link to this heading">#</a></h5>
+<ul class="simple">
+<li><p>learning_rate</p></li>
+<li><p>batch_size</p></li>
+<li><p>epochs</p></li>
+<li><p>optimizer</p></li>
+<li><p>scheduler (opcional)</p></li>
+</ul>
+</section>
+</section>
+<section id="validacion">
+<h4><span class="section-number">11.20.5.4. </span>Validación<a class="headerlink" href="#validacion" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Train: 70%</p></li>
+<li><p>Validation: 15%</p></li>
+<li><p>Test: 15%</p></li>
+<li><p>Validación cruzada: K-Fold (k=5)</p></li>
+</ul>
+</section>
+<section id="metricas-de-evaluacion">
+<h4><span class="section-number">11.20.5.5. </span>Métricas de evaluación<a class="headerlink" href="#metricas-de-evaluacion" title="Link to this heading">#</a></h4>
+<p>Calcular en validación y test:</p>
+<ul class="simple">
+<li><p>Dice Coefficient</p></li>
+<li><p>IoU</p></li>
+<li><p>Precision</p></li>
+<li><p>Recall</p></li>
+<li><p>AUC</p></li>
+<li><p>Hausdorff Distance</p></li>
+<li><p>Balanced Accuracy</p></li>
+</ul>
+</section>
+<section id="evaluacion-y-visualizacion">
+<h4><span class="section-number">11.20.5.6. </span>Evaluación y visualización<a class="headerlink" href="#evaluacion-y-visualizacion" title="Link to this heading">#</a></h4>
+<p>Para cada modelo:</p>
+<section id="comparacion-visual">
+<h5><span class="section-number">11.20.5.6.1. </span>Comparación visual<a class="headerlink" href="#comparacion-visual" title="Link to this heading">#</a></h5>
+<ul class="simple">
+<li><p>Imagen original</p></li>
+<li><p>Ground Truth</p></li>
+<li><p>Predicción</p></li>
+</ul>
+</section>
+<section id="curvas">
+<h5><span class="section-number">11.20.5.6.2. </span>Curvas<a class="headerlink" href="#curvas" title="Link to this heading">#</a></h5>
+<ul class="simple">
+<li><p>ROC</p></li>
+<li><p>Precision-Recall</p></li>
+</ul>
+</section>
+<section id="mapas-de-error">
+<h5><span class="section-number">11.20.5.6.3. </span>Mapas de error<a class="headerlink" href="#mapas-de-error" title="Link to this heading">#</a></h5>
+<ul class="simple">
+<li><p>FP en rojo</p></li>
+<li><p>FN en azul</p></li>
+</ul>
+</section>
+<section id="boxplots">
+<h5><span class="section-number">11.20.5.6.4. </span>Boxplots<a class="headerlink" href="#boxplots" title="Link to this heading">#</a></h5>
+<ul class="simple">
+<li><p>Dice</p></li>
+<li><p>IoU</p></li>
+<li><p>Precision</p></li>
+<li><p>Recall</p></li>
+<li><p>AUC</p></li>
+<li><p>Hausdorff</p></li>
+<li><p>Balanced Accuracy</p></li>
+</ul>
+</section>
+<section id="histogramas">
+<h5><span class="section-number">11.20.5.6.5. </span>Histogramas<a class="headerlink" href="#histogramas" title="Link to this heading">#</a></h5>
+<ul class="simple">
+<li><p>Distribución de métricas</p></li>
+</ul>
+</section>
+</section>
+<section id="resultados">
+<h4><span class="section-number">11.20.5.7. </span>Resultados<a class="headerlink" href="#resultados" title="Link to this heading">#</a></h4>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Modelo</p></th>
+<th class="head"><p>Dice</p></th>
+<th class="head"><p>IoU</p></th>
+<th class="head"><p>Precision</p></th>
+<th class="head"><p>Recall</p></th>
+<th class="head"><p>AUC</p></th>
+<th class="head"><p>Hausdorff</p></th>
+<th class="head"><p>Balanced Acc</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Mask R-CNN (+ Swin)</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>Hover-Net</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>U-Net++ + Watershed</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>Cellpose 2.0</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>SAM / MedSAM</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="analisis-critico">
+<h4><span class="section-number">11.20.5.8. </span>Análisis crítico<a class="headerlink" href="#analisis-critico" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>¿Qué modelo funciona mejor y por qué?</p></li>
+<li><p>¿Qué errores son más frecuentes?</p></li>
+<li><p>¿Qué limitaciones tiene el dataset?</p></li>
+<li><p>¿Cómo afecta el preprocesamiento?</p></li>
+</ul>
+</section>
+</section>
+<section id="bloque-2-procesamiento-del-lenguaje-natural-nlp">
+<h3><span class="section-number">11.20.6. </span>Bloque 2: Procesamiento del Lenguaje Natural (NLP)<a class="headerlink" href="#bloque-2-procesamiento-del-lenguaje-natural-nlp" title="Link to this heading">#</a></h3>
+<section id="id48">
+<h4><span class="section-number">11.20.6.1. </span>Análisis Exploratorio de Datos (EDA)<a class="headerlink" href="#id48" title="Link to this heading">#</a></h4>
+<section id="id49">
+<h5><span class="section-number">11.20.6.1.1. </span>Paso a paso<a class="headerlink" href="#id49" title="Link to this heading">#</a></h5>
+<section id="id50">
+<h6><span class="section-number">11.20.6.1.1.1. </span>Carga de datos<a class="headerlink" href="#id50" title="Link to this heading">#</a></h6>
+<ul class="simple">
+<li><p>Leer dataset con <code class="docutils literal notranslate"><span class="pre">pandas</span></code></p></li>
+</ul>
+</section>
+<section id="analisis-de-clases">
+<h6><span class="section-number">11.20.6.1.1.2. </span>Análisis de clases<a class="headerlink" href="#analisis-de-clases" title="Link to this heading">#</a></h6>
+<ul class="simple">
+<li><p>Conteo de clases (barplot)</p></li>
+</ul>
+</section>
+<section id="longitud-de-textos">
+<h6><span class="section-number">11.20.6.1.1.3. </span>Longitud de textos<a class="headerlink" href="#longitud-de-textos" title="Link to this heading">#</a></h6>
+<ul class="simple">
+<li><p>Número de palabras por texto</p></li>
+</ul>
+<p>Visualizaciones:</p>
+<ul class="simple">
+<li><p>Histograma</p></li>
+<li><p>Boxplot</p></li>
+</ul>
+</section>
+<section id="frecuencia-de-palabras">
+<h6><span class="section-number">11.20.6.1.1.4. </span>Frecuencia de palabras<a class="headerlink" href="#frecuencia-de-palabras" title="Link to this heading">#</a></h6>
+<ul class="simple">
+<li><p>Top palabras</p></li>
+</ul>
+<p>Visualizaciones:</p>
+<ul class="simple">
+<li><p>Barplot top 20</p></li>
+<li><p>WordCloud</p></li>
+</ul>
+</section>
+<section id="n-gramas">
+<h6><span class="section-number">11.20.6.1.1.5. </span>N-gramas<a class="headerlink" href="#n-gramas" title="Link to this heading">#</a></h6>
+<ul class="simple">
+<li><p>Bigramas y trigramas</p></li>
+</ul>
+</section>
+</section>
+<section id="interpretacion">
+<h5><span class="section-number">11.20.6.1.2. </span>Interpretación<a class="headerlink" href="#interpretacion" title="Link to this heading">#</a></h5>
+<ul class="simple">
+<li><p>¿Clases balanceadas?</p></li>
+<li><p>¿Textos cortos o largos?</p></li>
+<li><p>¿Hay ruido?</p></li>
+</ul>
+</section>
+</section>
+<section id="id51">
+<h4><span class="section-number">11.20.6.2. </span>Preprocesamiento<a class="headerlink" href="#id51" title="Link to this heading">#</a></h4>
+<section id="id52">
+<h5><span class="section-number">11.20.6.2.1. </span>Pasos obligatorios<a class="headerlink" href="#id52" title="Link to this heading">#</a></h5>
+<ol class="arabic simple">
+<li><p>Minúsculas</p></li>
+<li><p>Eliminación de símbolos</p></li>
+<li><p>Eliminación de stopwords</p></li>
+<li><p>Tokenización</p></li>
+<li><p>Padding</p></li>
+</ol>
+</section>
+<section id="embeddings">
+<h5><span class="section-number">11.20.6.2.2. </span>Embeddings<a class="headerlink" href="#embeddings" title="Link to this heading">#</a></h5>
+<ul class="simple">
+<li><p>Word2Vec</p></li>
+<li><p>FastText</p></li>
+</ul>
+</section>
+</section>
+<section id="id53">
+<h4><span class="section-number">11.20.6.3. </span>Modelos a implementar<a class="headerlink" href="#id53" title="Link to this heading">#</a></h4>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Pos</p></th>
+<th class="head"><p>Modelo</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>DistilBERT o RoBERTa</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>Word2Vec + BiLSTM</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>CNN-1D</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>TF-IDF + XGBoost</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>FastText</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="hiperparametros-bilstm-obligatorio">
+<h4><span class="section-number">11.20.6.4. </span>Hiperparámetros (BiLSTM obligatorio)<a class="headerlink" href="#hiperparametros-bilstm-obligatorio" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>lstm_units: 32, 64, 128</p></li>
+<li><p>num_lstm_layers: 1, 2</p></li>
+<li><p>dropout_rate: 0.3, 0.5</p></li>
+<li><p>learning_rate: 0.0005, 0.001, 0.003</p></li>
+<li><p>batch_size: 32, 64</p></li>
+<li><p>sequence_length: 50, 100 (ajustado con EDA)</p></li>
+<li><p>epochs: 20, 50 (con early stopping)</p></li>
+<li><p>embedding_dim: 100, 200</p></li>
+</ul>
+</section>
+<section id="entrenamiento">
+<h4><span class="section-number">11.20.6.5. </span>Entrenamiento<a class="headerlink" href="#entrenamiento" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Dividir en train, validation y test</p></li>
+<li><p>Ajustar usando validation</p></li>
+<li><p>Evaluar en test</p></li>
+</ul>
+</section>
+<section id="metricas">
+<h4><span class="section-number">11.20.6.6. </span>Métricas<a class="headerlink" href="#metricas" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Accuracy</p></li>
+<li><p>Precision</p></li>
+<li><p>Recall</p></li>
+<li><p>F1-score</p></li>
+<li><p>Matriz de confusión</p></li>
+<li><p>ROC-AUC</p></li>
+</ul>
+</section>
+<section id="evaluacion">
+<h4><span class="section-number">11.20.6.7. </span>Evaluación<a class="headerlink" href="#evaluacion" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Matriz de confusión</p></li>
+<li><p>Curva ROC</p></li>
+<li><p>Curva Precision-Recall</p></li>
+</ul>
+</section>
+<section id="id54">
+<h4><span class="section-number">11.20.6.8. </span>Resultados<a class="headerlink" href="#id54" title="Link to this heading">#</a></h4>
+<p>| Modelo | Accuracy | Precision | Recall | F1 | ROC-AUC |</p>
+</section>
+<section id="id55">
+<h4><span class="section-number">11.20.6.9. </span>Análisis crítico<a class="headerlink" href="#id55" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>¿Transformers vs modelos clásicos?</p></li>
+<li><p>¿Impacto del preprocesamiento?</p></li>
+<li><p>¿Errores comunes?</p></li>
+</ul>
+</section>
+</section>
+<section id="mlops-basico">
+<h3><span class="section-number">11.20.7. </span>MLOps (BÁSICO)<a class="headerlink" href="#mlops-basico" title="Link to this heading">#</a></h3>
+<section id="id56">
+<h4><span class="section-number">11.20.7.1. </span>Objetivo<a class="headerlink" href="#id56" title="Link to this heading">#</a></h4>
+<p>Desplegar modelos en una API.</p>
+</section>
+<section id="fastapi">
+<h4><span class="section-number">11.20.7.2. </span>FastAPI<a class="headerlink" href="#fastapi" title="Link to this heading">#</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/predict_text&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="docker">
+<h4><span class="section-number">11.20.7.3. </span>Docker<a class="headerlink" href="#docker" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Crear Dockerfile para ejecutar la API</p></li>
+</ul>
+</section>
+<section id="ci-cd">
+<h4><span class="section-number">11.20.7.4. </span>CI/CD<a class="headerlink" href="#ci-cd" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Tests básicos</p></li>
+<li><p>Validación de ejecución</p></li>
+</ul>
+</section>
+<section id="monitoreo-conceptual">
+<h4><span class="section-number">11.20.7.5. </span>Monitoreo (conceptual)<a class="headerlink" href="#monitoreo-conceptual" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Data drift</p></li>
+<li><p>Métricas en producción</p></li>
+<li><p>Latencia</p></li>
+</ul>
+</section>
+</section>
+<section id="restricciones">
+<h3><span class="section-number">11.20.8. </span>Restricciones<a class="headerlink" href="#restricciones" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Código claro y documentado</p></li>
+<li><p>Uso de métricas obligatorio</p></li>
+<li><p>Interpretación obligatoria</p></li>
+<li><p>Visualizaciones obligatorias</p></li>
+</ul>
+</section>
+<section id="herramientas-sugeridas">
+<h3><span class="section-number">11.20.9. </span>Herramientas sugeridas<a class="headerlink" href="#herramientas-sugeridas" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Python</p></li>
+<li><p>PyTorch / TensorFlow</p></li>
+<li><p>scikit-learn</p></li>
+<li><p>matplotlib / seaborn</p></li>
+<li><p>fastapi</p></li>
+</ul>
+</section>
+<section id="entregables">
+<h3><span class="section-number">11.20.10. </span>Entregables<a class="headerlink" href="#entregables" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Jupyter Book completo</p></li>
+<li><p>Notebooks (segmentación + NLP)</p></li>
+<li><p>Código funcional</p></li>
+<li><p>API básica</p></li>
+<li><p>README</p></li>
+</ol>
+</section>
+<section id="estructura-del-proyecto">
+<h3><span class="section-number">11.20.11. </span>Estructura del proyecto<a class="headerlink" href="#estructura-del-proyecto" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>project/
+├──<span class="w"> </span>data/
+├──<span class="w"> </span>notebooks/
+├──<span class="w"> </span>app/
+├──<span class="w"> </span>models/
+├──<span class="w"> </span>Dockerfile
+├──<span class="w"> </span>requirements.txt
+└──<span class="w"> </span>README.md
+</pre></div>
+</div>
+</section>
+<section id="comparacion-final">
+<h3><span class="section-number">11.20.12. </span>Comparación final<a class="headerlink" href="#comparacion-final" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Mejor modelo en imágenes</p></li>
+<li><p>Mejor modelo en NLP</p></li>
+<li><p>Trade-offs (precisión vs costo)</p></li>
+</ul>
+</section>
+<section id="conclusiones">
+<h3><span class="section-number">11.20.13. </span>Conclusiones<a class="headerlink" href="#conclusiones" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>¿Qué modelo usaría en producción?</p></li>
+<li><p>¿Qué mejoraría?</p></li>
+<li><p>¿Qué aprendió?</p></li>
+</ul>
+</section>
+<section id="reporte-final">
+<h3><span class="section-number">11.20.14. </span>Reporte final<a class="headerlink" href="#reporte-final" title="Link to this heading">#</a></h3>
+<p>El entregable debe ser un Jupyter Book que incluya:</p>
+<ul class="simple">
+<li><p>EDA completo con visualizaciones</p></li>
+<li><p>Detalles de modelos</p></li>
+<li><p>Tablas comparativas</p></li>
+<li><p>Análisis crítico</p></li>
+<li><p>Recomendaciones de mejora</p></li>
+</ul>
+</section>
+</section>
 <section id="aplicacion-lstm-para-la-prediccion-de-series-de-tiempo">
-<h2><span class="section-number">11.20. </span>Aplicación: LSTM para la predicción de series de tiempo<a class="headerlink" href="#aplicacion-lstm-para-la-prediccion-de-series-de-tiempo" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">11.21. </span>Aplicación: LSTM para la predicción de series de tiempo<a class="headerlink" href="#aplicacion-lstm-para-la-prediccion-de-series-de-tiempo" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Continuaremos usando el conjunto de datos sobre contaminación del aire (<code class="docutils literal notranslate"><span class="pre">pm2.5</span></code>) usando LSTM. La lectura y el <em><strong>preprocesamiento de los datos se mantienen igual que en los ejemplos de <code class="docutils literal notranslate"><span class="pre">MLPs</span></code></strong></em>. El conjunto de datos original se divide en dos conjuntos: <em>entrenamiento y validación</em>, que se usan para el entrenamiento y validación del modelo respectivamente.</p></li>
 </ul>
@@ -10003,7 +10748,7 @@ características:</p></li>
 </div>
 </section>
 <section id="autoencoders">
-<h2><span class="section-number">11.21. </span>Autoencoders<a class="headerlink" href="#autoencoders" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">11.22. </span>Autoencoders<a class="headerlink" href="#autoencoders" title="Link to this heading">#</a></h2>
 <figure class="align-center">
 <img alt="_images/autoencoder-architecture.png" src="_images/autoencoder-architecture.png" />
 </figure>
@@ -10048,7 +10793,7 @@ características:</p></li>
 </ul>
 </section>
 <section id="aplicacion-autoencoders-para-mnist-data">
-<h2><span class="section-number">11.22. </span>Aplicación: Autoencoders para MNIST data<a class="headerlink" href="#aplicacion-autoencoders-para-mnist-data" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">11.23. </span>Aplicación: Autoencoders para MNIST data<a class="headerlink" href="#aplicacion-autoencoders-para-mnist-data" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
@@ -10485,7 +11230,7 @@ Variabilidad explicada por el autoencoder: 0.9004852250218391
 </div>
 </section>
 <section id="attention">
-<h2><span class="section-number">11.23. </span>Attention<a class="headerlink" href="#attention" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">11.24. </span>Attention<a class="headerlink" href="#attention" title="Link to this heading">#</a></h2>
 <div class="important admonition">
 <p class="admonition-title">Introducción</p>
 <ul class="simple">
@@ -11107,7 +11852,7 @@ el modelo <strong>aprende qué direcciones (dimensiones) son relevantes para el 
 </ul>
 </section>
 <section id="self-attention">
-<h2><span class="section-number">11.24. </span>Self-Attention<a class="headerlink" href="#self-attention" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">11.25. </span>Self-Attention<a class="headerlink" href="#self-attention" title="Link to this heading">#</a></h2>
 <ul>
 <li><p><strong>Self-Attention (atención escalada)</strong>: mecanismo que permite que cada token de una secuencia “atienda” a los demás para construir representaciones <strong>contextualizadas</strong>.</p></li>
 <li><p><strong>Variables principales</strong></p>
@@ -11240,7 +11985,7 @@ el modelo <strong>aprende qué direcciones (dimensiones) son relevantes para el 
 </ul>
 </section>
 <section id="multi-head-attention">
-<h2><span class="section-number">11.25. </span>Multi-head Attention<a class="headerlink" href="#multi-head-attention" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">11.26. </span>Multi-head Attention<a class="headerlink" href="#multi-head-attention" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><strong>Formulación</strong>: Multi-head attention (MHA) <strong>extiende self-attention con varias cabezas paralelas</strong>, cada una enfocada en un subespacio distinto del espacio de representación</p></li>
 </ul>
@@ -11310,7 +12055,7 @@ Q_i = X W_i^Q \quad \text{proyecta a dimensión } d_k
 </div>
 </section>
 <section id="transformer">
-<h2><span class="section-number">11.26. </span>Transformer<a class="headerlink" href="#transformer" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">11.27. </span>Transformer<a class="headerlink" href="#transformer" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><strong>Encoder Layer Matemático</strong>. El <strong>encoder</strong> del Transformer se basa en dos bloques principales:</p>
 <ol class="arabic simple">
@@ -11512,7 +12257,7 @@ Cada cabeza aprende a <strong>atender distintos patrones</strong> dentro de la m
 </div>
 </section>
 <section id="aplicacion-analisis-de-sentimiento-con-transformer">
-<h2><span class="section-number">11.27. </span>Aplicación: Análisis de sentimiento con Transformer<a class="headerlink" href="#aplicacion-analisis-de-sentimiento-con-transformer" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">11.28. </span>Aplicación: Análisis de sentimiento con Transformer<a class="headerlink" href="#aplicacion-analisis-de-sentimiento-con-transformer" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Instalar inicialmente</p></li>
 </ul>
@@ -12460,14 +13205,115 @@ El modelo Transformer ha demostrado los siguientes resultados:
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#red-de-memoria-a-largo-plazo-lstm">11.18. Red de memoria a largo plazo (LSTM)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-procesamiento-del-lenguaje-natural">11.19. Aplicación: Procesamiento del Lenguaje Natural</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-lstm-para-la-prediccion-de-series-de-tiempo">11.20. Aplicación: LSTM para la predicción de series de tiempo</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autoencoders">11.21. Autoencoders</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-autoencoders-para-mnist-data">11.22. Aplicación: Autoencoders para MNIST data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#attention">11.23. Attention</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#self-attention">11.24. Self-Attention</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-head-attention">11.25. Multi-head Attention</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformer">11.26. Transformer</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-analisis-de-sentimiento-con-transformer">11.27. Aplicación: Análisis de sentimiento con Transformer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proyecto-integrador-de-aprendizaje-automatico">11.20. Proyecto Integrador de Aprendizaje Automático</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#titulo">11.20.1. Título</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivo-general">11.20.2. Objetivo general</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contexto-aplicado">11.20.3. Contexto aplicado</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#biomedicina">11.20.3.1. Biomedicina</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#procesamiento-del-lenguaje-natural">11.20.3.2. Procesamiento del Lenguaje Natural</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#datasets">11.20.4. Datasets</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#segmentacion-de-imagenes">11.20.4.1. Segmentación de imágenes</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#nlp">11.20.4.2. NLP</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bloque-1-segmentacion-de-imagenes">11.20.5. Bloque 1: Segmentación de imágenes</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-exploratorio-de-datos-eda">11.20.5.1. Análisis Exploratorio de Datos (EDA)</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id46">11.20.5.1.1. Objetivo</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-a-paso">11.20.5.1.2. Paso a paso</a><ul class="nav section-nav flex-column">
+<li class="toc-h6 nav-item toc-entry"><a class="reference internal nav-link" href="#carga-de-datos">11.20.5.1.2.1. 1. Carga de datos</a></li>
+<li class="toc-h6 nav-item toc-entry"><a class="reference internal nav-link" href="#construccion-de-dataset-estructurado">11.20.5.1.2.2. 2. Construcción de dataset estructurado</a></li>
+</ul>
+</li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-obligatorios">11.20.5.1.3. Análisis obligatorios</a><ul class="nav section-nav flex-column">
+<li class="toc-h6 nav-item toc-entry"><a class="reference internal nav-link" href="#tamano-de-imagenes">11.20.5.1.3.1. Tamaño de imágenes</a></li>
+<li class="toc-h6 nav-item toc-entry"><a class="reference internal nav-link" href="#numero-de-celulas-por-imagen">11.20.5.1.3.2. Número de células por imagen</a></li>
+<li class="toc-h6 nav-item toc-entry"><a class="reference internal nav-link" href="#area-de-celulas">11.20.5.1.3.3. Área de células</a></li>
+<li class="toc-h6 nav-item toc-entry"><a class="reference internal nav-link" href="#intensidad-de-pixeles">11.20.5.1.3.4. Intensidad de píxeles</a></li>
+<li class="toc-h6 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizacion-cualitativa">11.20.5.1.3.5. Visualización cualitativa</a></li>
+</ul>
+</li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-obligatoria">11.20.5.1.4. Interpretación obligatoria</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocesamiento">11.20.5.2. Preprocesamiento</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#pasos-obligatorios">11.20.5.2.1. Pasos obligatorios</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id47">11.20.5.2.2. Entregable</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-a-implementar">11.20.5.3. Modelos a implementar</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#obligatorio-implementar-los-5-modelos">11.20.5.3.1. Obligatorio: implementar los 5 modelos</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#que-debe-hacer-en-cada-modelo">11.20.5.3.2. Qué debe hacer en cada modelo</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#hiperparametros-a-ajustar">11.20.5.3.3. Hiperparámetros a ajustar</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion">11.20.5.4. Validación</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#metricas-de-evaluacion">11.20.5.5. Métricas de evaluación</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluacion-y-visualizacion">11.20.5.6. Evaluación y visualización</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacion-visual">11.20.5.6.1. Comparación visual</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#curvas">11.20.5.6.2. Curvas</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mapas-de-error">11.20.5.6.3. Mapas de error</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#boxplots">11.20.5.6.4. Boxplots</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#histogramas">11.20.5.6.5. Histogramas</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#resultados">11.20.5.7. Resultados</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-critico">11.20.5.8. Análisis crítico</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bloque-2-procesamiento-del-lenguaje-natural-nlp">11.20.6. Bloque 2: Procesamiento del Lenguaje Natural (NLP)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id48">11.20.6.1. Análisis Exploratorio de Datos (EDA)</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id49">11.20.6.1.1. Paso a paso</a><ul class="nav section-nav flex-column">
+<li class="toc-h6 nav-item toc-entry"><a class="reference internal nav-link" href="#id50">11.20.6.1.1.1. Carga de datos</a></li>
+<li class="toc-h6 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-clases">11.20.6.1.1.2. Análisis de clases</a></li>
+<li class="toc-h6 nav-item toc-entry"><a class="reference internal nav-link" href="#longitud-de-textos">11.20.6.1.1.3. Longitud de textos</a></li>
+<li class="toc-h6 nav-item toc-entry"><a class="reference internal nav-link" href="#frecuencia-de-palabras">11.20.6.1.1.4. Frecuencia de palabras</a></li>
+<li class="toc-h6 nav-item toc-entry"><a class="reference internal nav-link" href="#n-gramas">11.20.6.1.1.5. N-gramas</a></li>
+</ul>
+</li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion">11.20.6.1.2. Interpretación</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id51">11.20.6.2. Preprocesamiento</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id52">11.20.6.2.1. Pasos obligatorios</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#embeddings">11.20.6.2.2. Embeddings</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id53">11.20.6.3. Modelos a implementar</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hiperparametros-bilstm-obligatorio">11.20.6.4. Hiperparámetros (BiLSTM obligatorio)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#entrenamiento">11.20.6.5. Entrenamiento</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#metricas">11.20.6.6. Métricas</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluacion">11.20.6.7. Evaluación</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id54">11.20.6.8. Resultados</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id55">11.20.6.9. Análisis crítico</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mlops-basico">11.20.7. MLOps (BÁSICO)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id56">11.20.7.1. Objetivo</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#fastapi">11.20.7.2. FastAPI</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#docker">11.20.7.3. Docker</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ci-cd">11.20.7.4. CI/CD</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#monitoreo-conceptual">11.20.7.5. Monitoreo (conceptual)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#restricciones">11.20.8. Restricciones</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#herramientas-sugeridas">11.20.9. Herramientas sugeridas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#entregables">11.20.10. Entregables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estructura-del-proyecto">11.20.11. Estructura del proyecto</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacion-final">11.20.12. Comparación final</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusiones">11.20.13. Conclusiones</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reporte-final">11.20.14. Reporte final</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-lstm-para-la-prediccion-de-series-de-tiempo">11.21. Aplicación: LSTM para la predicción de series de tiempo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autoencoders">11.22. Autoencoders</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-autoencoders-para-mnist-data">11.23. Aplicación: Autoencoders para MNIST data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#attention">11.24. Attention</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#self-attention">11.25. Self-Attention</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-head-attention">11.26. Multi-head Attention</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformer">11.27. Transformer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-analisis-de-sentimiento-con-transformer">11.28. Aplicación: Análisis de sentimiento con Transformer</a></li>
 </ul>
   </nav></div>
 
