@@ -11298,15 +11298,112 @@ Variabilidad explicada por el autoencoder: 0.9004852250218391
 </li>
 </ul>
 </li>
-<li><p><strong>Limitaciones</strong></p>
+</ul>
+<ul>
+<li><p><strong>Vector de contexto <span class="math notranslate nohighlight">\(v\)</span> en modelos Encoder–Decoder: ¿Qué es realmente <span class="math notranslate nohighlight">\(v\)</span>?</strong>. El vector <span class="math notranslate nohighlight">\(v\)</span> se define como una <strong>representación vectorial de dimensión fija</strong> que resume la información contenida en toda la secuencia de entrada.</p></li>
+<li><p>Sea una secuencia de entrada</p>
+<div class="math notranslate nohighlight">
+\[
+    X = (x_1, x_2, \dots, x_T)
+    \]</div>
+<p>y supóngase que el encoder genera una sucesión de estados ocultos:</p>
+<div class="math notranslate nohighlight">
+\[
+    h_1, h_2, \dots, h_T
+    \]</div>
+</li>
+<li><p>Entonces, el vector de contexto puede expresarse de forma general como:</p>
+<div class="math notranslate nohighlight">
+\[
+    v = \phi(h_1, h_2, \dots, h_T)
+    \]</div>
+<p>donde <span class="math notranslate nohighlight">\(\phi(\cdot)\)</span> es una función de agregación o selección  y <span class="math notranslate nohighlight">\(v \in \mathbb{R}^d\)</span> es un vector de dimensión fija</p>
+</li>
+<li><p>En el modelo encoder–decoder clásico (sin atención), esta función adopta una forma particularmente simple.</p></li>
+</ul>
+<ul>
+<li><p><strong>¿Cómo se calcula <span class="math notranslate nohighlight">\(v\)</span>?</strong>: En arquitecturas secuenciales como RNN, LSTM o GRU, el cálculo de <span class="math notranslate nohighlight">\(v\)</span> se basa en la dinámica recursiva del modelo.</p></li>
+<li><p>Caso estándar (sin mecanismo de atención):</p>
+<div class="math notranslate nohighlight">
+\[
+    v = h_T
+    \]</div>
+<p>Es decir, el vector de contexto corresponde al <strong>último estado oculto del encoder</strong>.</p>
+</li>
+<li><p>El estado oculto en una red recurrente se define mediante la relación:</p>
+<div class="math notranslate nohighlight">
+\[
+    h_t = f(x_t, h_{t-1})
+    \]</div>
+<p>donde:</p>
 <ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(x_t\)</span>: embedding del token en la posición <span class="math notranslate nohighlight">\(t\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(h_{t-1}\)</span>: estado oculto previo</p></li>
+<li><p><span class="math notranslate nohighlight">\(f(\cdot)\)</span>: función no lineal (por ejemplo, una celda LSTM o GRU)</p></li>
+</ul>
+</li>
+<li><p>Desarrollo recursivo:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+h_t = f(x_t, f(x_{t-1}, f(x_{t-2}, \dots f(x_1, h_0)\dots )))
+\]</div>
+<ul class="simple">
+<li><p>Por lo tanto, existe una función compuesta <span class="math notranslate nohighlight">\(g(\cdot)\)</span> tal que:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+h_t = g(x_1, x_2, \dots, x_t)
+\]</div>
+<ul class="simple">
+<li><p>Esto implica:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+h_1 &amp;= g(x_1) \\
+h_2 &amp;= g(x_1, x_2) \\
+&amp;\vdots \\
+h_T &amp;= g(x_1, x_2, \dots, x_T)
+\end{aligned}
+\end{split}\]</div>
+<ul class="simple">
+<li><p>El estado oculto final satisface:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+h_T = g(x_1, x_2, \dots, x_T)
+\]</div>
+<ul class="simple">
+<li><p>Por lo tanto, depende funcionalmente de <strong>toda la secuencia de entrada</strong>, lo que justifica su uso como representación global:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+v = h_T \approx \text{representación de toda la secuencia}
+\]</div>
+<ul class="simple">
+<li><p>Precisión conceptual:</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(h_T\)</span> es un vector de dimensión fija</p></li>
+<li><p>la secuencia puede ser arbitrariamente larga</p></li>
+</ul>
+</li>
+<li><p>Por lo tanto, el modelo realiza una <strong>compresión de información</strong>:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+(x_1, x_2, \dots, x_T) \longrightarrow v.
+\]</div>
+<ul class="simple">
+<li><p><strong>Limitaciones</strong></p>
+<ul>
 <li><p>Si la frase de entrada es larga, <span class="math notranslate nohighlight">\(v\)</span> no puede contener toda la información.</p></li>
 <li><p>Esto se llama <strong>cuello de botella</strong>, porque el decoder “ve” toda la entrada a través de un solo vector.</p></li>
 <li><p>Como resultado, la traducción o la predicción pierde información, especialmente en frases largas.</p></li>
 </ul>
 </li>
 <li><p><strong>Analogía sencilla</strong></p>
-<ul class="simple">
+<ul>
 <li><p>Imagina que tienes que <strong>resumir un libro de 200 páginas en una sola oración</strong> y luego alguien tiene que escribir un resumen basado solo en esa oración.</p></li>
 <li><p>Obviamente, perderías mucho detalle importante.</p></li>
 <li><p>En el modelo clásico Encoder-Decoder sin atención, eso es exactamente lo que pasa: <strong>toda la secuencia de entrada se comprime en un solo vector <span class="math notranslate nohighlight">\(v\)</span></strong>.</p></li>
@@ -11314,8 +11411,8 @@ Variabilidad explicada por el autoencoder: 0.9004852250218391
 </li>
 </ul>
 <ul>
-<li><p><strong><code class="docutils literal notranslate"><span class="pre">Bahdanau</span> <span class="pre">Attention</span> <span class="pre">(Additive)</span></code></strong>. La atención de Bahdanau et al. (2015) solucionó el problema de <em>cuello de botella</em> permitiendo que, <strong>en cada paso del decoder, el modelo “mire” directamente a los estados del encoder relevantes</strong>. Así nace el concepto de <strong>pesos de atención y contexto dinámico (<span class="math notranslate nohighlight">\(c_t\)</span>)</strong>: el decoder ya no memoriza todo, sino que selecciona lo importante en cada momento.</p>
-<p>Score de atención (alineamiento)</p>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">Bahdanau</span> <span class="pre">Attention</span> <span class="pre">(Additive)</span></code></strong>. La atención de Bahdanau et al. (2015) solucionó el problema de <em>cuello de botella</em> permitiendo que, <strong>en cada paso del decoder, el modelo “mire” directamente a los estados del encoder relevantes</strong>. Así nace el concepto de <strong>pesos de atención y contexto dinámico (<span class="math notranslate nohighlight">\(c_t\)</span>)</strong>: el decoder ya no memoriza todo, sino que selecciona lo importante en cada momento.</p></li>
+<li><p><strong>Score de atención (alineamiento)</strong></p>
 <div class="math notranslate nohighlight">
 \[
     e_{tj} = v_a^\top \tanh(W_a s_{t-1} + U_a h_j)
