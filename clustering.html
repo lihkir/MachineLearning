@@ -442,6 +442,121 @@ document.write(`
 <p>Por tanto, <strong>el centroide óptimo es la media aritmética de los puntos asignados al clúster</strong>.</p>
 </li>
 </ul>
+<ul class="simple">
+<li><p><strong>Idea de <em>k-means++</em></strong>. En lugar de seleccionar los centroides iniciales completamente al azar, <em>k-means++</em> propone elegirlos de manera dispersa, <strong>buscando que queden lo más alejados posible entre sí</strong>. Esto mejora la calidad de los clústeres finales.</p></li>
+<li><p>Definición clave: <span class="math notranslate nohighlight">\(D(x)\)</span>. Sea <span class="math notranslate nohighlight">\(C\)</span> el conjunto de centroides ya seleccionados. Para cada punto <span class="math notranslate nohighlight">\(x\)</span>, se define:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+D(x) = \min_{c \in C} \|x - c\|
+\]</div>
+<ul class="simple">
+<li><p>Es decir, <span class="math notranslate nohighlight">\(D(x)\)</span> es la distancia desde el punto <span class="math notranslate nohighlight">\(x\)</span> al centroide más cercano actualmente elegido.</p>
+<ul>
+<li><p>Si solo hay un centroide, <span class="math notranslate nohighlight">\(D(x)\)</span> es simplemente la distancia a ese punto.</p></li>
+<li><p>Si hay varios, se toma la menor distancia.</p></li>
+</ul>
+</li>
+<li><p><strong>¿Por qué se usa <span class="math notranslate nohighlight">\(D(x)^2\)</span>?</strong> En el algoritmo no se usa directamente <span class="math notranslate nohighlight">\(D(x)\)</span>, sino:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+D(x)^2
+\]</div>
+<ul class="simple">
+<li><p>Esto permite <strong>amplificar las diferencias de distancia y dar más peso a los puntos lejanos</strong>. Ejemplo:</p></li>
+</ul>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Distancia</p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(D(x)^2\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>25</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul class="simple">
+<li><p>Un punto con distancia 5 tiene mucho más peso que uno con distancia 1.</p></li>
+<li><p><strong>Procedimiento paso a paso</strong>. Sea <span class="math notranslate nohighlight">\(k\)</span> el número de clústeres:</p></li>
+</ul>
+<ol class="arabic">
+<li><p><em>Primer centroide</em></p>
+<ul class="simple">
+<li><p>Se elige al azar del conjunto de datos.</p></li>
+</ul>
+</li>
+<li><p><em>Cálculo de distancias</em></p>
+<ul class="simple">
+<li><p>Para cada punto <span class="math notranslate nohighlight">\(x\)</span>, se calcula:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+    D(x) = \text{distancia al centroide más cercano}
+    \]</div>
+</li>
+<li><p><em>Construcción de probabilidades</em></p>
+<ul class="simple">
+<li><p>Cada punto se selecciona como nuevo centroide con probabilidad:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+    P(x) = \frac{D(x)^2}{\sum D(x)^2}
+    \]</div>
+<ul class="simple">
+<li><p>Esto implica que:</p>
+<ul>
+<li><p>Puntos lejanos tienen mayor probabilidad</p></li>
+<li><p>Puntos cercanos tienen menor probabilidad</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><em>Selección del siguiente centroide</em></p>
+<ul class="simple">
+<li><p>Se realiza una selección aleatoria ponderada usando esas probabilidades. No siempre se elige el punto más lejano, pero es el más probable.</p></li>
+</ul>
+</li>
+<li><p>Repetición</p>
+<ul class="simple">
+<li><p>Se repiten los pasos anteriores hasta obtener los <span class="math notranslate nohighlight">\(k\)</span> centroides.</p></li>
+</ul>
+</li>
+</ol>
+<ul class="simple">
+<li><p><strong>Aclaración importante</strong>. Durante este proceso:</p>
+<ul>
+<li><p>No existen clústeres todavía</p></li>
+<li><p>No se asignan puntos a grupos</p></li>
+<li><p><em>k-means++</em> solo sirve para inicializar los centroides.</p></li>
+</ul>
+</li>
+<li><p><strong>¿Cuándo aparecen los clústeres?</strong>. Una vez definidos los <span class="math notranslate nohighlight">\(k\)</span> centroides, comienza el algoritmo <em>k-means</em>:</p>
+<ol class="arabic simple">
+<li><p>Cada punto se asigna al centroide más cercano</p></li>
+<li><p>Se recalculan los centroides como promedios</p></li>
+<li><p>Se repite hasta converger</p></li>
+</ol>
+</li>
+<li><p><strong>Idea clave</strong></p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(D(x)\)</span> mide qué tan lejos está un punto de los centroides actuales</p></li>
+<li><p><span class="math notranslate nohighlight">\(D(x)^2\)</span> aumenta la probabilidad de elegir puntos lejanos</p></li>
+<li><p><em>k-means++</em> mejora la inicialización</p></li>
+<li><p><em>k-means</em> construye los clústeres</p></li>
+<li><p>Primero se eligen centroides bien separados; luego los datos se agrupan alrededor de ellos.</p></li>
+</ul>
+</li>
+</ul>
 <ul>
 <li><p>El algoritmo de <strong>K-Means</strong> alterna entre dos pasos fundamentales</p>
 <ol class="arabic">
