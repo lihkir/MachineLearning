@@ -11419,7 +11419,7 @@ v = h_T \approx \text{representación de toda la secuencia}
     \]</div>
 <p>Donde:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(s_{t-1}\)</span>: estado anterior del <strong>decoder</strong> “hidden state” (<em>usualmente una LSTM o GRU</em>)</p></li>
+<li><p><span class="math notranslate nohighlight">\(s_{t-1}\)</span>: estado anterior del <strong>decoder</strong> “hidden state” (<em>usualmente una LSTM o GRU</em>). Aquí, el índice <span class="math notranslate nohighlight">\(t\)</span> recorre la secuencia de salida (decoder).</p></li>
 <li><p><span class="math notranslate nohighlight">\(h_j\)</span>: <span class="math notranslate nohighlight">\(j\)</span>-ésimo estado del <strong>encoder</strong> (<em>generalmente una Bi-LSTM o Bi-GRU</em>).</p></li>
 <li><p><span class="math notranslate nohighlight">\(W_a, U_a\)</span>: matrices de pesos entrenables</p></li>
 <li><p><span class="math notranslate nohighlight">\(v_a\)</span>: vector de pesos entrenable</p></li>
@@ -11466,7 +11466,7 @@ Resume lo que el modelo “sabe” del texto ya producido y lo que espera produc
       \]</div>
 <p>donde <span class="math notranslate nohighlight">\(y_{t-1}\)</span> es el embedding del token previo, y <span class="math notranslate nohighlight">\(c_t\)</span> es el vector de contexto dinámico que viene de la atención.</p>
 </li>
-<li><p><strong>Generación del token de salida</strong>. A partir del estado oculto del <em>decoder</em> <span class="math notranslate nohighlight">\(s_t\)</span>, se calcula la probabilidad del siguiente token <span class="math notranslate nohighlight">\(y_t\)</span></p>
+<li><p><strong>Generación del token de salida</strong>. A partir del estado oculto del <em>decoder</em> <span class="math notranslate nohighlight">\(s_t\)</span>, y el <em>contexto de atención</em> <span class="math notranslate nohighlight">\(c_{t}\)</span>, calculamos qué tan probable es cada palabra del vocabulario (siguiente token <span class="math notranslate nohighlight">\(y_t\)</span>)</p>
 <div class="math notranslate nohighlight">
 \[
         p(y_t \mid y_{&lt;t}, X) = \text{softmax}(W_o [s_t, c_t])
@@ -11479,16 +11479,29 @@ Resume lo que el modelo “sabe” del texto ya producido y lo que espera produc
 </ul>
 <p>El token de salida se obtiene como:</p>
 <div class="math notranslate nohighlight">
+\[\begin{split}
+y_t =
+\begin{cases}
+\arg\max p(y_t \mid y_{&lt;t}, X), &amp; \text{(inferencia)} \\
+\text{sample}\big(p(y_t \mid y_{&lt;t}, X)\big), &amp; \text{(teacher forcing)}
+\end{cases}
+        \end{split}\]</div>
+</li>
+</ul>
+<ul>
+<li><p>En este caso, <span class="math notranslate nohighlight">\(\arg\max\)</span> selecciona la palabra con mayor probabilidad y <em>sampling</em> selecciona una palabra aleatoriamente según las probabilidades aprendidas. En la práctica:</p>
+<ul class="simple">
+<li><p>Durante el entrenamiento normalmente se utiliza <em>teacher forcing</em>.</p></li>
+<li><p>Durante inferencia suele emplearse:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
 \[
-        y_t =
-        \begin{cases}
-        \arg\max, p(y_t \mid y_{&lt;t}, X), &amp; \textit{(inferencia)} \
-        \text{sample}(p(y_t \mid y_{&lt;t}, X)), &amp; \textit{(teacher forcing)}
-        \end{cases}
+        y_t = \arg\max p(y_t \mid y_{&lt;t}, X)
         \]</div>
 </li>
 </ul>
 </li>
+<li><p>En <em>teacher forcing</em>, el decoder recibe las palabras reales para aprender. Por eso durante el entrenamiento sí conocemos los <span class="math notranslate nohighlight">\(y_t\)</span> verdaderos (supervisado).</p></li>
 <li><p>El <strong>espacio latente</strong> es el espacio vectorial en el que viven los estados ocultos (<span class="math notranslate nohighlight">\(h_j\)</span>, <span class="math notranslate nohighlight">\(s_t\)</span>) y el vector de contexto (<span class="math notranslate nohighlight">\(c_t\)</span>). Es decir, todos estos vectores están en la <strong>misma dimensión semántica</strong> (por ejemplo, <span class="math notranslate nohighlight">\(\mathbb{R}^{512}\)</span>).</p></li>
 </ul>
 <figure class="align-center" id="bahdanau-attention-fig">
