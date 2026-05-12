@@ -12631,14 +12631,23 @@ el modelo <strong>aprende qué direcciones (dimensiones) son relevantes para el 
 \[
   S = \frac{QK^\top}{\sqrt{d_k}} \in \mathbb{R}^{n \times n}
   \]</div>
+<p>Para cada palabra, el mecanismo de atención evalúa:</p>
+<blockquote>
+<div><p><em><strong>¿Qué tan relevantes son las demás palabras para comprender mi contexto?</strong></em></p>
+</div></blockquote>
+<p>Por ejemplo, en la oración</p>
+<blockquote>
+<div><p><em><strong>El gato negro duerme</strong></em></p>
+</div></blockquote>
+<p><strong>cuando el modelo procesa la palabra “duerme”, el vector query asociado tenderá a ser similar al vector key de “gato”, ya que esta palabra aporta información importante sobre quién realiza la acción</strong>. En consecuencia, el producto punto entre ambos vectores será alto, generando un peso de atención elevado.</p>
 </li>
-<li><p><strong>Pesos de atención</strong> (normalizados por filas)</p>
+<li><p><strong>Pesos de atención</strong> (normalizados por filas). <em>Contiene: pesos, importancia, relevancia. Pero NO contiene contenido semántico</em>.</p>
 <div class="math notranslate nohighlight">
 \[
   A = \mathrm{softmax}(S)
   \]</div>
 </li>
-<li><p><strong>Salida contextuada</strong> para toda la secuencia</p>
+<li><p><strong>Salida contextuada</strong> para toda la secuencia. <em>El contenido real se encuentra en <span class="math notranslate nohighlight">\(V\)</span>. Los values contienen la información que será propagada</em>.</p>
 <div class="math notranslate nohighlight">
 \[
   Y = A V \in \mathbb{R}^{n \times d_v}
@@ -12731,9 +12740,38 @@ el modelo <strong>aprende qué direcciones (dimensiones) son relevantes para el 
 \[
 \text{head}_i = \text{Attention}(Q W_i^Q, K W_i^K, V W_i^V)
 \]</div>
-<ul class="simple">
+<ul>
 <li><p>De esta forma, el modelo capta múltiples tipos de relaciones de manera simultánea. En la práctica, <strong>cada cabeza de atención analiza la secuencia desde una perspectiva diferente</strong>: algunas captan <em>relaciones sintácticas</em>, otras <em>semánticas</em>, <em>dependencias a largo plazo</em> o <em>patrones locales</em>.</p></li>
-<li><p>Estos subespacios actúan como <em>canales de atención especializados, que aprenden de forma automática distintos aspectos de la estructura de la secuencia</em>.</p></li>
+<li><p>Estos subespacios actúan como <em>canales de atención especializados, que aprenden de forma automática distintos aspectos de la estructura de la secuencia</em>. <strong>Cada cabeza (head) de atención puede especializarse en un tipo diferente de relación entre palabras</strong>.</p></li>
+<li><p>Por ejemplo, en la oración</p>
+<blockquote>
+<div><p><em><strong>El gato negro duerme</strong></em></p>
+</div></blockquote>
+<p>una cabeza puede aprender relaciones asociadas a <em><strong>quién realiza una acción</strong></em>:</p>
+<div class="math notranslate nohighlight">
+\[
+    \textbf{duerme} \rightarrow \textbf{gato}
+    \]</div>
+<p>otra cabeza puede enfocarse en <em><strong>relaciones descriptivas</strong></em>:</p>
+<div class="math notranslate nohighlight">
+\[
+    \textbf{negro} \rightarrow \textbf{gato}
+    \]</div>
+<p>mientras que otra puede aprender <em><strong>estructura gramatical</strong></em>:</p>
+<div class="math notranslate nohighlight">
+\[
+    \textbf{El} \rightarrow \textbf{gato}
+    \]</div>
+</li>
+<li><p><strong>Todas las cabezas observan la misma secuencia, pero cada una aprende patrones distintos del lenguaje</strong>. Por ello, en Multi-Head Attention se utilizan múltiples cabezas en paralelo:</p>
+<div class="math notranslate nohighlight">
+\[
+    \text{MultiHead}(Q,K,V)
+    =
+    \text{Concat}(\text{head}_1,\dots,\text{head}_h)W^O
+    \]</div>
+<p><em><strong>Cada <span class="math notranslate nohighlight">\(\text{head}_i\)</span> aprende una perspectiva diferente del contexto</strong></em>.</p>
+</li>
 <li><p>Dimensionalidad típica</p></li>
 </ul>
 <ul class="simple">
@@ -12814,6 +12852,7 @@ ambos con <strong>conexiones residuales</strong> y <strong>normalización de cap
 <li><p>La conexión residual <span class="math notranslate nohighlight">\(X + F(X)\)</span> evita el desvanecimiento del gradiente. Es decir, suma la entrada original <span class="math notranslate nohighlight">\(X\)</span> a la salida transformada <span class="math notranslate nohighlight">\(F(X)\)</span></p></li>
 </ul>
 </li>
+<li><p>Transformer <strong>conserva la información original <span class="math notranslate nohighlight">\(X\)</span>, pero le agrega el contexto aprendido por la atención</strong>. De esta forma <em>se evita distorsionar información útil, degradar detalles, o dificultar el flujo del gradiente</em>.</p></li>
 </ul>
 <ul class="simple">
 <li><p><strong>Relación con Multi-Head Attention</strong></p></li>
@@ -12852,7 +12891,23 @@ Cada cabeza aprende a <strong>atender distintos patrones</strong> dentro de la m
     \]</div>
 <p>La FFN <strong>no mezcla información entre tokens</strong>; su función es refinar y transformar la representación enriquecida que proviene del MHA.</p>
 </li>
-<li><p><strong>Decoder: Masked Self-Attention</strong>. El <strong>decoder</strong> utiliza una versión <em>enmascarada</em> del self-attention para evitar que un token vea los futuros (causalidad).</p>
+<li><p><strong>Decoder: Masked Self-Attention</strong>. El <strong>decoder</strong> utiliza una versión <em>enmascarada</em> del self-attention para evitar que un token vea los futuros (causalidad). Supóngase que el modelo desea generar la secuencia</p>
+<blockquote>
+<div><p><em><strong>El gato duerme</strong></em></p>
+</div></blockquote>
+<p>Durante el proceso de generación, <strong>cuando el decoder intenta predecir la palabra</strong></p>
+<blockquote>
+<div><p><em><strong>gato</strong></em></p>
+</div></blockquote>
+<p><strong>solo debe tener acceso a la información previa</strong>:</p>
+<blockquote>
+<div><p><em><strong>El</strong></em></p>
+</div></blockquote>
+<p><em><strong>No debe poder ver la palabra</strong></em></p>
+<blockquote>
+<div><p><em><strong>duerme</strong></em></p>
+</div></blockquote>
+<p><em><strong>ya que esta todavía no ha sido generada</strong></em>. Por ello, el mecanismo de <em>Masked Self-Attention</em> bloquea el acceso a tokens futuros, garantizando una generación autorregresiva y causal.</p>
 <p><strong>Máscara causal:</strong></p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -12874,14 +12929,100 @@ Cada cabeza aprende a <strong>atender distintos patrones</strong> dentro de la m
 \[
     y = x + F(x),\quad\frac{\partial L}{\partial x} = \frac{\partial L}{\partial y} \left(1 + \frac{\partial F}{\partial x}\right)
     \]</div>
-<p>Gracias a esto, la red puede ser <strong>profunda sin degradar el entrenamiento</strong>, algo problemático en RNN o LSTM.</p>
+<p>Gracias a esto, la red puede ser <strong>profunda sin degradar el entrenamiento</strong>, algo problemático en RNN o LSTM. Para verificar esto, dado que, las conexiones residuales utilizadas en Transformers tienen la forma</p>
+<div class="math notranslate nohighlight">
+\[
+    y = x + F(x)
+    \]</div>
+<p>donde:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(x\)</span> representa la entrada original a la capa,</p></li>
+<li><p><span class="math notranslate nohighlight">\(F(x)\)</span> representa una transformación aprendida por la red neuronal
+(por ejemplo, un bloque de atención o una red feed-forward),</p></li>
+<li><p><span class="math notranslate nohighlight">\(y\)</span> es la salida final de la capa residual.</p></li>
+</ul>
 </li>
+</ul>
+<ul>
+<li><p>El objetivo es analizar cómo fluye el gradiente durante el proceso de entrenamiento mediante <em>backpropagation</em>. Supongamos que la función de pérdida del modelo es</p>
+<div class="math notranslate nohighlight">
+\[
+    L = L(y)
+    \]</div>
+<p>donde:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(L\)</span> es la <em>loss function</em>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(y\)</span> depende de <span class="math notranslate nohighlight">\(x\)</span>.</p></li>
+</ul>
+</li>
+<li><p>El gradiente respecto a la entrada <span class="math notranslate nohighlight">\(x\)</span> se obtiene aplicando la regla de la cadena:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial L}{\partial x}
+=
+\frac{\partial L}{\partial y}
+\frac{\partial y}{\partial x}
+\]</div>
+<ul>
+<li><p>Ahora derivamos la conexión residual <span class="math notranslate nohighlight">\(y = x + F(x)\)</span> respecto a <span class="math notranslate nohighlight">\(x\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+    \frac{\partial y}{\partial x}
+    =
+    \frac{\partial}{\partial x}(x + F(x))
+    \]</div>
+</li>
+<li><p>Aplicando linealidad de la derivada:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial y}{\partial x}
+=
+\frac{\partial x}{\partial x}
++
+\frac{\partial F(x)}{\partial x}=
+    1 +
+    \frac{\partial F(x)}{\partial x}
+\]</div>
+<ul class="simple">
+<li><p>Sustituyendo este resultado en la expresión inicial:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial L}{\partial x}
+=
+\frac{\partial L}{\partial y}
+\left(
+1 +
+\frac{\partial F(x)}{\partial x}
+\right)
+\]</div>
+<ul class="simple">
+<li><p>Entonces, la expresión anterior muestra que el gradiente contiene siempre un término constante igual a: <span class="math notranslate nohighlight">\(1\)</span>. Esto crea un camino directo para la propagación del gradiente, incluso si</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial F(x)}{\partial x}
+\approx 0
+\]</div>
+<ul>
+<li><p>En consecuencia:</p>
+<ul class="simple">
+<li><p>el gradiente no desaparece fácilmente,</p></li>
+<li><p>la información original puede preservarse,</p></li>
+<li><p>y la red puede entrenarse con muchas capas profundas.</p></li>
+</ul>
+<p>Por esta razón, las conexiones residuales son fundamentales en Transformers modernos y arquitecturas profundas como ResNet.</p>
+</li>
+</ul>
+<ul>
 <li><p><strong>Layer Normalization</strong>. La normalización estabiliza las activaciones dentro de cada capa:</p>
 <div class="math notranslate nohighlight">
 \[
     \text{LayerNorm}(x) = \gamma \frac{x - \mu}{\sigma} + \beta,
     \]</div>
-<p>donde:</p>
+<p>donde <span class="math notranslate nohighlight">\(\gamma,\,\beta\)</span> permiten ajustar esa normalización según lo que se necesita aprender y</p>
 <div class="math notranslate nohighlight">
 \[
     \mu = \frac{1}{d}\sum_{i=1}^d x_i, \quad
