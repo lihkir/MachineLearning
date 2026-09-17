@@ -16,44 +16,47 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=b4b7a797" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=8c6b312c" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=530fe47d" />
     <link rel="stylesheet" type="text/css" href="_static/.ipynb_checkpoints/custom-checkpoint.css" />
   
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="_static/copybutton.js?v=f281be69"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
@@ -63,6 +66,7 @@
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'decisiontree_model';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="_static/custom.js?v=14184634"></script>
     <script src="_static/.ipynb_checkpoints/custom-checkpoint.js"></script>
@@ -72,34 +76,30 @@
     <link rel="prev" title="4. Clasificador Bayesiano" href="bayes_model.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
   </head>
-  
-  
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
-
+  <body data-default-mode="">
   
   
   <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
-
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="search.html"
       method="get">
@@ -107,7 +107,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -115,15 +114,59 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
 </div>
 
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
     </header>
   
 
@@ -132,7 +175,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -162,21 +206,17 @@
     
     
     <img src="_static/fotolihki.jpg" class="logo__image only-light" alt="Machine Learning - Home"/>
-    <script>document.write(`<img src="_static/fotolihki.jpg" class="logo__image only-dark" alt="Machine Learning - Home"/>`);</script>
+    <img src="_static/fotolihki.jpg" class="logo__image only-dark pst-js-only" alt="Machine Learning - Home"/>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -209,9 +249,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -294,7 +339,7 @@
 
 
 <button onclick="toggleFullScreen()"
-  class="btn btn-sm btn-fullscreen-button"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
   title="Fullscreen mode"
   data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
@@ -308,25 +353,17 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
 </div></div>
@@ -348,7 +385,7 @@ document.write(`
                 <h2> Contents </h2>
             </div>
             <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis">5.1. Análisis</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#combinacion-de-clasificadores">5.2. Combinación de clasificadores</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#enfoque-boosting">5.3. Enfoque Boosting</a></li>
@@ -399,43 +436,43 @@ document.write(`
 <h2><span class="section-number">5.1. </span>Análisis<a class="headerlink" href="#analisis" title="Link to this heading">#</a></h2>
 <p><strong><code class="docutils literal notranslate"><span class="pre">Observación</span></code></strong></p>
 <ul class="simple">
-<li><p>Los árboles de clasificación <em><strong>se basan en una idea simple, pero poderosa</strong></em>, y se encuentran entre las <em><strong>técnicas más populares de clasificación</strong></em>. Son sistemas de varias etapas, y la clasificación de un patrón en una clase se realiza de forma secuencial. <em><strong>A través de una serie de pruebas, las clases se rechazan de forma secuencial hasta que se llega a una decisión a favor de una clase restante</strong></em>.</p></li>
-<li><p>Cada una de las pruebas, cuyo resultado decide qué clases se rechazan, es de <em><strong>tipo binario “Sí” o “No” y se aplica a una sola característica</strong></em>. Nuestro objetivo es presentar la filosofía principal en torno a un tipo especial de árboles conocidos como <em><strong><strong>árboles de clasificación binarios ordinarios (OBCT)</strong></strong></em>. Estos, pertenecen a una clase más general de métodos que construyen árboles, tanto para la clasificación como para la regresión, conocidos como <em><strong>árboles de clasificación y regresión (CART)</strong></em>.</p></li>
+<li><p>Los árboles de clasificación <strong>se basan en una idea simple, pero poderosa</strong>, y se encuentran entre las <strong>técnicas más populares de clasificación</strong>. Son sistemas de varias etapas, y la clasificación de un patrón en una clase se realiza de forma secuencial. <strong>A través de una serie de pruebas, las clases se rechazan de forma secuencial hasta que se llega a una decisión a favor de una clase restante</strong>.</p></li>
+<li><p>Cada una de las pruebas, cuyo resultado decide qué clases se rechazan, es de <strong>tipo binario “Sí” o “No” y se aplica a una sola característica</strong>. Nuestro objetivo es presentar la filosofía principal en torno a un tipo especial de árboles conocidos como <strong>árboles de clasificación binarios ordinarios (OBCT)</strong>. Estos, pertenecen a una clase más general de métodos que construyen árboles, tanto para la clasificación como para la regresión, conocidos como <strong>árboles de clasificación y regresión (CART)</strong>.</p></li>
 </ul>
 <p><strong><code class="docutils literal notranslate"><span class="pre">Formulación</span></code></strong></p>
 <ul class="simple">
-<li><p>La idea básica de los <em><strong>OBCT</strong></em> es <em><strong>dividir el espacio de características en (hiper)rectángulos</strong></em>; es decir, el espacio se divide mediante hiperplanos, que son paralelos a los ejes. Esto se ilustra en la <a class="reference internal" href="#fig-decision-hypplanes-obct"><span class="std std-numref">Fig. 5.1</span></a></p></li>
+<li><p>La idea básica de los <strong>OBCT</strong> es <strong>dividir el espacio de características en (hiper)rectángulos</strong>; es decir, el espacio se divide mediante hiperplanos, que son paralelos a los ejes. Esto se ilustra en la <a class="reference internal" href="#fig-decision-hypplanes-obct"><span class="std std-numref">Fig. 5.1</span></a></p></li>
 </ul>
 <figure class="align-center" id="fig-decision-hypplanes-obct">
 <a class="reference internal image-reference" href="_images/decision_hypplanes_obct.png"><img alt="_images/decision_hypplanes_obct.png" src="_images/decision_hypplanes_obct.png" style="width: 400.8px; height: 413.4px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Fig. 5.1 </span><span class="caption-text">Partición de espacio de características. Árbol de clasificación (OBCT). Fuente <span id="id1">[<a class="reference internal" href="biblio.html#id17" title="S. Theodoridis. Machine Learning: A Bayesian and Optimization Perspective. Elsevier Science, 2020. ISBN 9780128188040. URL: https://books.google.com.co/books?id=l-nEDwAAQBAJ.">Theodoridis, 2020</a>]</span>.</span><a class="headerlink" href="#fig-decision-hypplanes-obct" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 5.1 </span><span class="caption-text">Partición de espacio de características. Árbol de clasificación (OBCT). Fuente <span class="bibtex-citation" id="id1">[<a class="reference internal" href="biblio.html#id17" title="S. Theodoridis. Machine Learning: A Bayesian and Optimization Perspective. Elsevier Science, 2020. ISBN 9780128188040. URL: https://books.google.com.co/books?id=l-nEDwAAQBAJ.">Theodoridis, 2020</a>]</span>.</span><a class="headerlink" href="#fig-decision-hypplanes-obct" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <ul class="simple">
-<li><p>La partición del espacio en <em><strong>(hiper)rectángulos</strong></em> se realiza mediante una serie de <em><strong>“preguntas”</strong></em> de esta forma: <em><strong>¿es el valor de la característica</strong></em> <span class="math notranslate nohighlight">\(x_{i} &lt; a\)</span>?. Este también se conoce como el <em><strong>criterio de división</strong></em>. La secuencia de preguntas puede realizarse de forma agradable mediante el uso de un árbol. La <a class="reference internal" href="#fig-decision-tree-obct"><span class="std std-numref">Fig. 5.2</span></a> muestra el árbol correspondiente al caso ilustrado
+<li><p>La partición del espacio en <strong>(hiper)rectángulos</strong> se realiza mediante una serie de <strong>“preguntas”</strong> de esta forma: <strong>¿es el valor de la característica</strong> <span class="math notranslate nohighlight">\(x_{i} &lt; a\)</span>?. Este también se conoce como el <strong>criterio de división</strong>. La secuencia de preguntas puede realizarse de forma agradable mediante el uso de un árbol. La <a class="reference internal" href="#fig-decision-tree-obct"><span class="std std-numref">Fig. 5.2</span></a> muestra el árbol correspondiente al caso ilustrado
 en la <a class="reference internal" href="#fig-decision-hypplanes-obct"><span class="std std-numref">Fig. 5.1</span></a>.</p></li>
 </ul>
 <figure class="align-center" id="fig-decision-tree-obct">
 <a class="reference internal image-reference" href="_images/decision_tree_obct.png"><img alt="_images/decision_tree_obct.png" src="_images/decision_tree_obct.png" style="width: 405.59999999999997px; height: 362.4px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Fig. 5.2 </span><span class="caption-text">Árbol de clasificación (OBCT). Partición del espacio para <a class="reference internal" href="#fig-decision-hypplanes-obct"><span class="std std-numref">Fig. 5.1</span></a>. Fuente <span id="id2">[<a class="reference internal" href="biblio.html#id17" title="S. Theodoridis. Machine Learning: A Bayesian and Optimization Perspective. Elsevier Science, 2020. ISBN 9780128188040. URL: https://books.google.com.co/books?id=l-nEDwAAQBAJ.">Theodoridis, 2020</a>]</span>.</span><a class="headerlink" href="#fig-decision-tree-obct" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 5.2 </span><span class="caption-text">Árbol de clasificación (OBCT). Partición del espacio para <a class="reference internal" href="#fig-decision-hypplanes-obct"><span class="std std-numref">Fig. 5.1</span></a>. Fuente <span class="bibtex-citation" id="id2">[<a class="reference internal" href="biblio.html#id17" title="S. Theodoridis. Machine Learning: A Bayesian and Optimization Perspective. Elsevier Science, 2020. ISBN 9780128188040. URL: https://books.google.com.co/books?id=l-nEDwAAQBAJ.">Theodoridis, 2020</a>]</span>.</span><a class="headerlink" href="#fig-decision-tree-obct" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <div class="admonition-observacion admonition">
 <p class="admonition-title">Observación</p>
-<p>Cada nodo del árbol realiza una prueba contra una característica individual y, si este no es un <em><strong>nodo hoja (sin división adicional)</strong></em>, este es conectado a dos <em><strong>nodos descendientes (nodo de decisión)</strong></em>: uno está asociado a la <em><strong>respuesta “Yes”</strong></em> y el otro a la <em><strong>respuesta “No”</strong></em>.</p>
+<p>Cada nodo del árbol realiza una prueba contra una característica individual y, si este no es un <strong>nodo hoja (sin división adicional)</strong>, este es conectado a dos <strong>nodos descendientes (nodo de decisión)</strong>: uno está asociado a la <strong>respuesta “Yes”</strong> y el otro a la <strong>respuesta “No”</strong>.</p>
 </div>
 <ul class="simple">
-<li><p>Partiendo del nodo raíz, se realiza un recorrido de decisiones sucesivas hasta llegar a un nodo hoja. <em><strong>Cada nodo hoja está asociado a una única clase</strong></em>. La <em><strong>asignación de un punto a una clase se realiza según la etiqueta del nodo hoja correspondiente</strong></em>. Este tipo de clasificación es conceptualmente simple y fácil de interpretar. Por ejemplo, en un <em><strong>sistema de diagnóstico médico</strong></em>, se puede empezar con una pregunta: <em><strong>¿La temperatura es alta?</strong></em> si la respuesta es afirmativa, una segunda pregunta puede ser: <em><strong>¿Presenta moquea?</strong></em>. El proceso continúa hasta que se llega a una <em><strong>decisión final sobre la enfermedad</strong></em>.</p></li>
-<li><p>Además, los árboles son útiles para <em><strong>construir sistemas de razonamiento en la inteligencia artificial</strong></em>. Por ejemplo, la existencia de objetos específicos, que se deduce a través de una serie de preguntas relacionadas, basadas en los valores de ciertas características (de alto nivel), puede conducir al <em><strong>reconocimiento de una escena o de un objeto representado en una imagen</strong></em>.</p></li>
-<li><p>Una vez desarrollado el árbol, la clasificación es sencilla. El mayor reto consiste en <em><strong>construir el árbol, explotando la información que reside en el conjunto de datos de entrenamiento</strong></em>. Las principales preguntas a las que uno se enfrenta al diseñar un árbol, entre otras que se discutirán más adelante, son:</p>
+<li><p>Partiendo del nodo raíz, se realiza un recorrido de decisiones sucesivas hasta llegar a un nodo hoja. <strong>Cada nodo hoja está asociado a una única clase</strong>. La <strong>asignación de un punto a una clase se realiza según la etiqueta del nodo hoja correspondiente</strong>. Este tipo de clasificación es conceptualmente simple y fácil de interpretar. Por ejemplo, en un <strong>sistema de diagnóstico médico</strong>, se puede empezar con una pregunta: <strong>¿La temperatura es alta?</strong> si la respuesta es afirmativa, una segunda pregunta puede ser: <strong>¿Presenta moquea?</strong>. El proceso continúa hasta que se llega a una <strong>decisión final sobre la enfermedad</strong>.</p></li>
+<li><p>Además, los árboles son útiles para <strong>construir sistemas de razonamiento en la inteligencia artificial</strong>. Por ejemplo, la existencia de objetos específicos, que se deduce a través de una serie de preguntas relacionadas, basadas en los valores de ciertas características (de alto nivel), puede conducir al <strong>reconocimiento de una escena o de un objeto representado en una imagen</strong>.</p></li>
+<li><p>Una vez desarrollado el árbol, la clasificación es sencilla. El mayor reto consiste en <strong>construir el árbol, explotando la información que reside en el conjunto de datos de entrenamiento</strong>. Las principales preguntas a las que uno se enfrenta al diseñar un árbol, entre otras que se discutirán más adelante, son:</p>
 <ul>
-<li><p><em><strong>¿Qué criterio de división debe adoptarse?</strong></em></p></li>
-<li><p><em><strong>¿Cuándo se debe detener el crecimiento de un árbol y declarar un nodo como final?</strong></em></p></li>
-<li><p><em><strong>¿Cómo se asocia un nodo hoja a una clase concreta?</strong></em></p></li>
+<li><p><strong>¿Qué criterio de división debe adoptarse?</strong></p></li>
+<li><p><strong>¿Cuándo se debe detener el crecimiento de un árbol y declarar un nodo como final?</strong></p></li>
+<li><p><strong>¿Cómo se asocia un nodo hoja a una clase concreta?</strong></p></li>
 </ul>
 </li>
 </ul>
@@ -445,8 +482,8 @@ en la <a class="reference internal" href="#fig-decision-hypplanes-obct"><span cl
 \text{¿es}~x_{i} &lt; a\text{?}
 \]</div>
 <ul class="simple">
-<li><p>El objetivo es <em><strong>seleccionar un valor adecuado para el umbral</strong></em> <span class="math notranslate nohighlight">\(a\)</span>. Supongamos que, partiendo del nodo raíz, el árbol ha crecido hasta el <em><strong>nodo actual</strong></em> <span class="math notranslate nohighlight">\(t\)</span>. Cada nodo, <span class="math notranslate nohighlight">\(t\)</span>, está asociado a un subconjunto <span class="math notranslate nohighlight">\(X_{t}\subseteq X\)</span> del <em><strong>conjunto de datos de entrenamiento</strong></em>, <span class="math notranslate nohighlight">\(X\)</span>. Este es el <em><strong>conjunto de los puntos de entrenamiento que han sobrevivido a este nodo, después de las pruebas que han tenido lugar en los nodos anteriores del árbol</strong></em>.</p></li>
-<li><p>Por ejemplo, en la <a class="reference internal" href="#fig-decision-tree-obct"><span class="std std-numref">Fig. 5.2</span></a>, <em><strong>un número de puntos, que pertenecen, digamos, a la clase</strong></em> <span class="math notranslate nohighlight">\(\omega_{1}\)</span>, <em><strong>no participarán en el nodo</strong></em> <span class="math notranslate nohighlight">\(t_{1}\)</span> porque <em><strong>ya han sido asignados en un nodo hoja previamente etiquetado</strong></em>. El propósito de un criterio de división es <em><strong>dividir</strong></em> <span class="math notranslate nohighlight">\(X_{t}\)</span> <em><strong>en dos subconjuntos disyuntos, digamos</strong></em> <span class="math notranslate nohighlight">\(X_{tY}\)</span><em><strong>, y</strong></em> <span class="math notranslate nohighlight">\(X_{tN}\)</span><em><strong>, dependiendo de la respuesta a la pregunta específica en el nodo</strong></em> <span class="math notranslate nohighlight">\(t\)</span>. Para cada división, se cumple lo siguiente:</p></li>
+<li><p>El objetivo es <strong>seleccionar un valor adecuado para el umbral</strong> <span class="math notranslate nohighlight">\(a\)</span>. Supongamos que, partiendo del nodo raíz, el árbol ha crecido hasta el <strong>nodo actual</strong> <span class="math notranslate nohighlight">\(t\)</span>. Cada nodo, <span class="math notranslate nohighlight">\(t\)</span>, está asociado a un subconjunto <span class="math notranslate nohighlight">\(X_{t}\subseteq X\)</span> del <strong>conjunto de datos de entrenamiento</strong>, <span class="math notranslate nohighlight">\(X\)</span>. Este es el <strong>conjunto de los puntos de entrenamiento que han sobrevivido a este nodo, después de las pruebas que han tenido lugar en los nodos anteriores del árbol</strong>.</p></li>
+<li><p>Por ejemplo, en la <a class="reference internal" href="#fig-decision-tree-obct"><span class="std std-numref">Fig. 5.2</span></a>, <strong>un número de puntos, que pertenecen, digamos, a la clase</strong> <span class="math notranslate nohighlight">\(\omega_{1}\)</span>, <strong>no participarán en el nodo</strong> <span class="math notranslate nohighlight">\(t_{1}\)</span> porque <strong>ya han sido asignados en un nodo hoja previamente etiquetado</strong>. El propósito de un criterio de división es <strong>dividir</strong> <span class="math notranslate nohighlight">\(X_{t}\)</span> <strong>en dos subconjuntos disyuntos, digamos</strong> <span class="math notranslate nohighlight">\(X_{tY}\)</span><strong>, y</strong> <span class="math notranslate nohighlight">\(X_{tN}\)</span><strong>, dependiendo de la respuesta a la pregunta específica en el nodo</strong> <span class="math notranslate nohighlight">\(t\)</span>. Para cada división, se cumple lo siguiente:</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -456,9 +493,9 @@ X_{tY}\cup X_{tN}&amp;=X_{t}
 \end{align}
 \end{split}\]</div>
 <ul class="simple">
-<li><p>El objetivo en cada nodo es seleccionar qué característica se va a probar y también cuál es el mejor valor del umbral <span class="math notranslate nohighlight">\(a\)</span>. <em><strong>La filosofía adoptada es hacer la elección de manera que cada división genere conjuntos,</strong></em> <span class="math notranslate nohighlight">\(X_{tY}\)</span>,  <span class="math notranslate nohighlight">\(X_{tN}\)</span><em><strong>, que sean más homogéneos en cuanto a la clase en comparación con</strong></em> <span class="math notranslate nohighlight">\(X_{t}\)</span>. En otras palabras, los datos en cada uno de los dos conjuntos descendientes deben mostrar una mayor preferencia por clases específicas, en comparación con el conjunto antecesor.</p></li>
-<li><p>En la terminología adoptada, los conjuntos <span class="math notranslate nohighlight">\(X_{tY}\)</span> y <span class="math notranslate nohighlight">\(X_{tN}\)</span> <em><strong>deben ser más puros en comparación con</strong></em> <span class="math notranslate nohighlight">\(X_{t}\)</span> . Así pues, primero debemos <em><strong>seleccionar un criterio que mida la impureza</strong></em> y, a continuación, <em><strong>calcular el valor umbral y elegir la característica específica</strong></em> (que se va a probar) para <em><strong>maximizar la disminución de la impureza del nodo</strong></em>.</p></li>
-<li><p>Por ejemplo, una <em><strong>medida común para cuantificar la impureza del nodo,</strong></em> <span class="math notranslate nohighlight">\(t\)</span><em><strong>, es la entropía</strong></em>, definida como</p></li>
+<li><p>El objetivo en cada nodo es seleccionar qué característica se va a probar y también cuál es el mejor valor del umbral <span class="math notranslate nohighlight">\(a\)</span>. <strong>La filosofía adoptada es hacer la elección de manera que cada división genere conjuntos,</strong> <span class="math notranslate nohighlight">\(X_{tY}\)</span>,  <span class="math notranslate nohighlight">\(X_{tN}\)</span><strong>, que sean más homogéneos en cuanto a la clase en comparación con</strong> <span class="math notranslate nohighlight">\(X_{t}\)</span>. En otras palabras, los datos en cada uno de los dos conjuntos descendientes deben mostrar una mayor preferencia por clases específicas, en comparación con el conjunto antecesor.</p></li>
+<li><p>En la terminología adoptada, los conjuntos <span class="math notranslate nohighlight">\(X_{tY}\)</span> y <span class="math notranslate nohighlight">\(X_{tN}\)</span> <strong>deben ser más puros en comparación con</strong> <span class="math notranslate nohighlight">\(X_{t}\)</span> . Así pues, primero debemos <strong>seleccionar un criterio que mida la impureza</strong> y, a continuación, <strong>calcular el valor umbral y elegir la característica específica</strong> (que se va a probar) para <strong>maximizar la disminución de la impureza del nodo</strong>.</p></li>
+<li><p>Por ejemplo, una <strong>medida común para cuantificar la impureza del nodo,</strong> <span class="math notranslate nohighlight">\(t\)</span><strong>, es la entropía</strong>, definida como</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[
@@ -472,24 +509,24 @@ I(t)=-\sum_{m=1}^{M}P(\omega_{m}|t)\log_{2}P(\omega_{m}|t)
 </figcaption>
 </figure>
 <ul class="simple">
-<li><p><em><strong>El valor máximo de</strong></em> <span class="math notranslate nohighlight">\(I(t)\)</span> <em><strong>se produce si todas las probabilidades son iguales (máxima impureza)</strong></em>, y <em><strong>el valor más pequeño, que es igual a cero, cuando sólo uno de los valores de probabilidad es uno y el resto es igual a cero</strong></em>. Las probabilidades se aproximan como</p></li>
+<li><p><strong>El valor máximo de</strong> <span class="math notranslate nohighlight">\(I(t)\)</span> <strong>se produce si todas las probabilidades son iguales (máxima impureza)</strong>, y <strong>el valor más pequeño, que es igual a cero, cuando sólo uno de los valores de probabilidad es uno y el resto es igual a cero</strong>. Las probabilidades se aproximan como</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-random-forest-probs">
 <span class="eqno">(5.1)<a class="headerlink" href="#equation-random-forest-probs" title="Link to this equation">#</a></span>\[
 P(\omega_{m}|t)=\frac{N_{t}^{m}}{N_{t}},\quad m=1,2,\dots,M,
 \]</div>
 <ul>
-<li><p><span class="math notranslate nohighlight">\(N_{t}^{m}\)</span> es el <em><strong>número de puntos de la clase</strong></em> <span class="math notranslate nohighlight">\(m\)</span> <em><strong>en</strong></em> <span class="math notranslate nohighlight">\(X_{t}\)</span>, y <span class="math notranslate nohighlight">\(N_{t}\)</span> el <em><strong>número total de puntos en</strong></em> <span class="math notranslate nohighlight">\(X_{t}\)</span>. La <em><strong>disminución de la impureza del nodo</strong></em>, tras dividir los datos en dos conjuntos, se define como</p>
+<li><p><span class="math notranslate nohighlight">\(N_{t}^{m}\)</span> es el <strong>número de puntos de la clase</strong> <span class="math notranslate nohighlight">\(m\)</span> <strong>en</strong> <span class="math notranslate nohighlight">\(X_{t}\)</span>, y <span class="math notranslate nohighlight">\(N_{t}\)</span> el <strong>número total de puntos en</strong> <span class="math notranslate nohighlight">\(X_{t}\)</span>. La <strong>disminución de la impureza del nodo</strong>, tras dividir los datos en dos conjuntos, se define como</p>
 <div class="math notranslate nohighlight">
 \[
     \Delta I(t)=I(t)-\frac{N_{t_{Y}}}{N_{t}}I(t_{Y})-\frac{N_{t_{N}}}{N_{t}}I(t_{N}),
     \]</div>
-<p>donde <span class="math notranslate nohighlight">\(I(t_{Y})\)</span> y <span class="math notranslate nohighlight">\(I(t_{N})\)</span> son las <em><strong>impurezas asociadas a los dos nuevos conjuntos</strong></em>, respectivamente. Esto es, disminución de la impureza del nodo es la <em><strong>diferencia entre la entropía de un nodo padre y la suma ponderada de las entropías de sus nodos hijos</strong></em>. A esta última expresión <span class="math notranslate nohighlight">\(\Delta I(t)\)</span>, también se le conoce como <em><strong>ganancia de información</strong></em>.</p>
+<p>donde <span class="math notranslate nohighlight">\(I(t_{Y})\)</span> y <span class="math notranslate nohighlight">\(I(t_{N})\)</span> son las <strong>impurezas asociadas a los dos nuevos conjuntos</strong>, respectivamente. Esto es, disminución de la impureza del nodo es la <strong>diferencia entre la entropía de un nodo padre y la suma ponderada de las entropías de sus nodos hijos</strong>. A esta última expresión <span class="math notranslate nohighlight">\(\Delta I(t)\)</span>, también se le conoce como <strong>ganancia de información</strong>.</p>
 </li>
 </ul>
 <div class="tip admonition">
 <p class="admonition-title">Ejemplo: Cálculo de Entropía</p>
-<p>Calculemos el <em><strong>índice de entropía</strong></em> <span class="math notranslate nohighlight">\(I(t)\)</span> para <em><strong>3 casos diferentes</strong></em> de un conjunto con <em><strong>4 balotas</strong></em> de dos colores diferentes, <em><strong>rojo y azul</strong></em>:</p>
+<p>Calculemos el <strong>índice de entropía</strong> <span class="math notranslate nohighlight">\(I(t)\)</span> para <strong>3 casos diferentes</strong> de un conjunto con <strong>4 balotas</strong> de dos colores diferentes, <strong>rojo y azul</strong>:</p>
 <ul>
 <li><p><span class="math notranslate nohighlight">\(I(t)\approx 0\)</span>: <strong>Baja incertidumbre</strong>. 4 balotas rojas y 0 balotas azules</p>
 <div class="math notranslate nohighlight">
@@ -499,7 +536,7 @@ P(\omega_{m}|t)=\frac{N_{t}^{m}}{N_{t}},\quad m=1,2,\dots,M,
     &amp;=-\frac{4}{4}\cdot\log_{2}\frac{4}{4}-\frac{0}{4}\cdot\log_{2}\frac{0}{4}=0
     \end{align*}
     \end{split}\]</div>
-<p>Como el <em><strong>conjunto es completamente puro</strong></em> (una sola clase), la <em><strong>entropía es cero, indicando baja incertidumbre</strong></em>.</p>
+<p>Como el <strong>conjunto es completamente puro</strong> (una sola clase), la <strong>entropía es cero, indicando baja incertidumbre</strong>.</p>
 </li>
 <li><p><span class="math notranslate nohighlight">\(I(t)\approx 1\)</span>: <strong>Mucha incertidumbre</strong>. 2 balotas rojas y 2 balotas azules</p>
 <div class="math notranslate nohighlight">
@@ -509,7 +546,7 @@ P(\omega_{m}|t)=\frac{N_{t}^{m}}{N_{t}},\quad m=1,2,\dots,M,
     &amp;=-\frac{2}{4}\cdot\log_{2}\frac{2}{4}-\frac{2}{4}\cdot\log_{2}\frac{2}{4}=1
     \end{align*}
     \end{split}\]</div>
-<p>Esto indica <em><strong>máxima incertidumbre</strong></em>, ya que las clases están balanceadas, y el modelo tiene dificultad para decidir una categoría dominante.</p>
+<p>Esto indica <strong>máxima incertidumbre</strong>, ya que las clases están balanceadas, y el modelo tiene dificultad para decidir una categoría dominante.</p>
 </li>
 <li><p>3 balotas rojas y 1 balota azul:</p></li>
 </ul>
@@ -525,77 +562,77 @@ I(t)&amp;=-P(\text{rojo})\cdot\log_{2}(P(\text{rojo}))-P(\text{azul})\cdot\log_{
 <a class="reference internal image-reference" href="_images/entropy_decision_tree.png"><img alt="_images/entropy_decision_tree.png" src="_images/entropy_decision_tree.png" style="width: 624.8000000000001px; height: 754.8000000000001px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Fig. 5.4 </span><span class="caption-text">Pureza de nodos en un árbol de decisión. Fuente <em><strong>towardsdatascience</strong></em>.</span><a class="headerlink" href="#trees-entropy-fig" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 5.4 </span><span class="caption-text">Pureza de nodos en un árbol de decisión. Fuente <strong>towardsdatascience</strong>.</span><a class="headerlink" href="#trees-entropy-fig" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <ul class="simple">
-<li><p>El objetivo ahora es <em><strong>seleccionar la característica específica</strong></em> <span class="math notranslate nohighlight">\(x_{i}\)</span> <em><strong>y el umbral</strong></em> <span class="math notranslate nohighlight">\(a_{t}\)</span> tal que, <span class="math notranslate nohighlight">\(\Delta I(t)\)</span> sea máximo. Esto definirá ahora <em><strong>dos nuevos nodos descendientes</strong></em> de <span class="math notranslate nohighlight">\(t\)</span>, a saber, <span class="math notranslate nohighlight">\(t_{N}\)</span> y <span class="math notranslate nohighlight">\(t_{Y}\)</span>; así, el árbol crece con dos nuevos nodos. Una forma de <em><strong>buscar distintos valores umbral</strong></em> es la siguiente:</p>
+<li><p>El objetivo ahora es <strong>seleccionar la característica específica</strong> <span class="math notranslate nohighlight">\(x_{i}\)</span> <strong>y el umbral</strong> <span class="math notranslate nohighlight">\(a_{t}\)</span> tal que, <span class="math notranslate nohighlight">\(\Delta I(t)\)</span> sea máximo. Esto definirá ahora <strong>dos nuevos nodos descendientes</strong> de <span class="math notranslate nohighlight">\(t\)</span>, a saber, <span class="math notranslate nohighlight">\(t_{N}\)</span> y <span class="math notranslate nohighlight">\(t_{Y}\)</span>; así, el árbol crece con dos nuevos nodos. Una forma de <strong>buscar distintos valores umbral</strong> es la siguiente:</p>
 <ol class="arabic simple">
-<li><p><em><strong>Para cada una de las características</strong></em> <span class="math notranslate nohighlight">\(x_{i},~i=1,2\dots,l\)</span><em><strong>, realice un ranking de los valores</strong></em> <span class="math notranslate nohighlight">\(x_{in},~n=1,2,\dots,N_{t}\)</span><em><strong>, que toma esta característica entre los puntos en</strong></em> <span class="math notranslate nohighlight">\(X_{t}\)</span>.</p></li>
-<li><p>A continuación, <em><strong>defina una secuencia de valores umbral correspondientes</strong></em>, <span class="math notranslate nohighlight">\(a_{in}\)</span> <em><strong>que estén en el medio, entre valores distintos consecutivos de</strong></em> <span class="math notranslate nohighlight">\(x_{in}\)</span></p></li>
-<li><p>Seguidamente, <em><strong>compruebe el cambio de impureza que se produce para cada uno de estos valores umbral</strong></em> y quédese con el que consiga la <em><strong>máxima disminución</strong></em>.</p></li>
-<li><p><em><strong>Repita el proceso para todas las características</strong></em> y, por último, <em><strong>quédese con la combinación que dé como resultado la mejor disminución máxima</strong></em>.</p></li>
+<li><p><strong>Para cada una de las características</strong> <span class="math notranslate nohighlight">\(x_{i},~i=1,2\dots,l\)</span><strong>, realice un ranking de los valores</strong> <span class="math notranslate nohighlight">\(x_{in},~n=1,2,\dots,N_{t}\)</span><strong>, que toma esta característica entre los puntos en</strong> <span class="math notranslate nohighlight">\(X_{t}\)</span>.</p></li>
+<li><p>A continuación, <strong>defina una secuencia de valores umbral correspondientes</strong>, <span class="math notranslate nohighlight">\(a_{in}\)</span> <strong>que estén en el medio, entre valores distintos consecutivos de</strong> <span class="math notranslate nohighlight">\(x_{in}\)</span></p></li>
+<li><p>Seguidamente, <strong>compruebe el cambio de impureza que se produce para cada uno de estos valores umbral</strong> y quédese con el que consiga la <strong>máxima disminución</strong>.</p></li>
+<li><p><strong>Repita el proceso para todas las características</strong> y, por último, <strong>quédese con la combinación que dé como resultado la mejor disminución máxima</strong>.</p></li>
 </ol>
 </li>
 </ul>
 <ul class="simple">
-<li><p>Además de la <em><strong>entropía</strong></em>, pueden utilizarse otros <em><strong>índices de medición de impurezas</strong></em>. Una alternativa popular, que da como resultado un <em><strong>máximo ligeramente superior que el de entropía</strong></em>, es el llamado <em><strong>índice de Gini</strong></em>, definido como</p></li>
+<li><p>Además de la <strong>entropía</strong>, pueden utilizarse otros <strong>índices de medición de impurezas</strong>. Una alternativa popular, que da como resultado un <strong>máximo ligeramente superior que el de entropía</strong>, es el llamado <strong>índice de Gini</strong>, definido como</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[
 I(t)=\sum_{m=1}^{M}P(\omega_{m}|t)(1-P(\omega_{m}|t)).
 \]</div>
 <ul class="simple">
-<li><p>Este índice también es <em><strong>cero si uno de los valores de probabilidad es igual a 1 y el resto son cero</strong></em>, y toma
-su valor <em><strong>máximo cuando todas las clases son equiprobables</strong></em>.</p></li>
+<li><p>Este índice también es <strong>cero si uno de los valores de probabilidad es igual a 1 y el resto son cero</strong>, y toma
+su valor <strong>máximo cuando todas las clases son equiprobables</strong>.</p></li>
 </ul>
 <div class="tip admonition">
 <p class="admonition-title">Regla de detención de división (stop-splitting)</p>
 <ul class="simple">
-<li><p>La pregunta obvia cuando crece un árbol es <em><strong>cuándo dejar de cultivarlo</strong></em>. Una forma posible es <em><strong>adoptar un valor umbral, <em><strong><span class="math notranslate nohighlight">\(T\)</span></strong></em>, y dejar de dividir un nodo una vez que el valor máximo</strong></em> <span class="math notranslate nohighlight">\(\Delta I(t)\)</span><em><strong>, para todas las divisiones posibles, sea menor que</strong></em> <span class="math notranslate nohighlight">\(T\)</span>.</p></li>
-<li><p>Otra posibilidad es parar cuando la cardinalidad de <span class="math notranslate nohighlight">\(X_{t}\)</span> es menor que un número determinado o si el <em><strong>nodo es puro, en el sentido de que todos los puntos que lo componen pertenecen a una única clase</strong></em>.</p></li>
+<li><p>La pregunta obvia cuando crece un árbol es <strong>cuándo dejar de cultivarlo</strong>. Una forma posible es <strong>adoptar un valor umbral, <strong><span class="math notranslate nohighlight">\(T\)</span></strong>, y dejar de dividir un nodo una vez que el valor máximo</strong> <span class="math notranslate nohighlight">\(\Delta I(t)\)</span><strong>, para todas las divisiones posibles, sea menor que</strong> <span class="math notranslate nohighlight">\(T\)</span>.</p></li>
+<li><p>Otra posibilidad es parar cuando la cardinalidad de <span class="math notranslate nohighlight">\(X_{t}\)</span> es menor que un número determinado o si el <strong>nodo es puro, en el sentido de que todos los puntos que lo componen pertenecen a una única clase</strong>.</p></li>
 </ul>
 </div>
 <div class="tip admonition">
 <p class="admonition-title">Podado del árbol</p>
 <ul class="simple">
-<li><p>La experiencia ha demostrado que <em><strong>el crecimiento de un árbol y el uso de una regla de parada no siempre funciona bien en la práctica</strong></em>; el crecimiento puede detenerse antes de tiempo o puede dar lugar a árboles de tamaño muy grande.</p></li>
-<li><p>Una práctica común es <em><strong>hacer crecer primero un árbol hasta un tamaño grande y luego adoptar una técnica de poda para eliminar nodos</strong></em>. Se pueden utilizar diferentes criterios de poda; uno muy popular es <em><strong>combinar una estimación de la probabilidad de error con un índice de medición de la complejidad</strong></em> <span id="id3">[<a class="reference internal" href="biblio.html#id2" title="L Breiman, J Friedman, R Olshen, and C Stone. Cart. Classification and Regression Trees, 1984.">Breiman <em>et al.</em>, 1984</a>, <a class="reference internal" href="biblio.html#id3" title="Brian D Ripley. Pattern recognition and neural networks. Cambridge university press, 2007.">Ripley, 2007</a>]</span>.</p></li>
+<li><p>La experiencia ha demostrado que <strong>el crecimiento de un árbol y el uso de una regla de parada no siempre funciona bien en la práctica</strong>; el crecimiento puede detenerse antes de tiempo o puede dar lugar a árboles de tamaño muy grande.</p></li>
+<li><p>Una práctica común es <strong>hacer crecer primero un árbol hasta un tamaño grande y luego adoptar una técnica de poda para eliminar nodos</strong>. Se pueden utilizar diferentes criterios de poda; uno muy popular es <strong>combinar una estimación de la probabilidad de error con un índice de medición de la complejidad</strong> <span class="bibtex-citation" id="id3">[<a class="reference internal" href="biblio.html#id2" title="L Breiman, J Friedman, R Olshen, and C Stone. Cart. Classification and Regression Trees, 1984.">Breiman <em>et al.</em>, 1984</a>, <a class="reference internal" href="biblio.html#id3" title="Brian D Ripley. Pattern recognition and neural networks. Cambridge university press, 2007.">Ripley, 2007</a>]</span>.</p></li>
 </ul>
 </div>
 <div class="proof observation admonition" id="observation_dt3">
 <p class="admonition-title"><span class="caption-number">Observation 5.1 </span></p>
 <section class="observation-content" id="proof-content">
 <ol class="arabic simple">
-<li><p>Entre las notables ventajas de los árboles de decisión está el hecho de que <em><strong>pueden tratar de forma natural mezclas de variables numéricas y categóricas</strong></em>. Además, <em><strong>se adaptan bien a grandes conjuntos de datos</strong></em>. <em><strong>Pueden tratar eficazmente datos faltantes</strong></em>. En muchos dominios, no se conocen todos los valores de las características para cada patrón. Los valores pueden no haber sido registrados, o pueden ser demasiado costosos de obtener.</p></li>
-<li><p>Debido a su simplicidad estructural, son <em><strong>fácilmente interpretables</strong></em>; en otras palabras, <em><strong>es posible que un humano entienda la razón de la salida del algoritmo de aprendizaje</strong></em>. En algunas, como en las decisiones financieras, esto es un requisito legal. Por otro lado, <em><strong>el rendimiento de predicción de los clasificadores de árbol no es tan bueno como el de otros métodos</strong></em>, como las <em><strong>máquinas de soporte vectorial</strong></em> y las <em><strong>redes neuronales</strong></em>, que se tratarán en posteriores capítulos</p></li>
-<li><p>Uno de los <em><strong>principales inconvenientes asociados a los clasificadores de árbol es que son inestables</strong></em>. Es decir, un <em><strong>pequeño cambio en el conjunto de datos de entrenamiento puede dar lugar a un árbol muy diferente</strong></em>. La razón de esto radica en la <em><strong>naturaleza jerárquica de los clasificadores de árbol</strong></em>. Un error que se produce en un nodo en un nivel alto del árbol se propaga hasta las hojas inferiores.</p></li>
+<li><p>Entre las notables ventajas de los árboles de decisión está el hecho de que <strong>pueden tratar de forma natural mezclas de variables numéricas y categóricas</strong>. Además, <strong>se adaptan bien a grandes conjuntos de datos</strong>. <strong>Pueden tratar eficazmente datos faltantes</strong>. En muchos dominios, no se conocen todos los valores de las características para cada patrón. Los valores pueden no haber sido registrados, o pueden ser demasiado costosos de obtener.</p></li>
+<li><p>Debido a su simplicidad estructural, son <strong>fácilmente interpretables</strong>; en otras palabras, <strong>es posible que un humano entienda la razón de la salida del algoritmo de aprendizaje</strong>. En algunas, como en las decisiones financieras, esto es un requisito legal. Por otro lado, <strong>el rendimiento de predicción de los clasificadores de árbol no es tan bueno como el de otros métodos</strong>, como las <strong>máquinas de soporte vectorial</strong> y las <strong>redes neuronales</strong>, que se tratarán en posteriores capítulos</p></li>
+<li><p>Uno de los <strong>principales inconvenientes asociados a los clasificadores de árbol es que son inestables</strong>. Es decir, un <strong>pequeño cambio en el conjunto de datos de entrenamiento puede dar lugar a un árbol muy diferente</strong>. La razón de esto radica en la <strong>naturaleza jerárquica de los clasificadores de árbol</strong>. Un error que se produce en un nodo en un nivel alto del árbol se propaga hasta las hojas inferiores.</p></li>
 </ol>
 </section>
 </div><div class="tip admonition">
 <p class="admonition-title">Bagging (Bootstrap Aggregating)</p>
-<p><em><strong>Bagging (Bootstrap Aggregating)</strong></em> es una técnica que puede <em><strong>reducir la varianza y mejorar el rendimiento del error de generalización</strong></em>.</p>
+<p><strong>Bagging (Bootstrap Aggregating)</strong> es una técnica que puede <strong>reducir la varianza y mejorar el rendimiento del error de generalización</strong>.</p>
 <ul class="simple">
-<li><p>La idea básica es <em><strong>crear un número de variantes</strong></em> <span class="math notranslate nohighlight">\(B\)</span>, <span class="math notranslate nohighlight">\(~X_{1}, X_{2},\dots, X_{B}\)</span><em><strong>, del conjunto de entrenamiento,</strong></em> <span class="math notranslate nohighlight">\(X\)</span><em><strong>, utilizando técnicas bootstrap</strong></em>, mediante un muestreo uniforme de <span class="math notranslate nohighlight">\(X\)</span> con reemplazo.</p></li>
-<li><p><em><strong>Para cada una de las variantes del conjunto de entrenamiento,</strong></em> <span class="math notranslate nohighlight">\(X_{i}\)</span><em><strong>, se construye un árbol,</strong></em> <span class="math notranslate nohighlight">\(T_{i}\)</span>.</p></li>
-<li><p>La decisión final para la clasificación de un punto dado es a favor de la <em><strong>clase predicha por la mayoría de los arboles subclasificadores</strong></em>, <span class="math notranslate nohighlight">\(T_{i}, i = 1, 2,\dots, B\)</span> <span id="id4">[<a class="reference internal" href="biblio.html#id4" title="Leo Breiman. Bagging predictors. Machine learning, 24(2):123–140, 1996.">Breiman, 1996</a>]</span>.</p></li>
+<li><p>La idea básica es <strong>crear un número de variantes</strong> <span class="math notranslate nohighlight">\(B\)</span>, <span class="math notranslate nohighlight">\(~X_{1}, X_{2},\dots, X_{B}\)</span><strong>, del conjunto de entrenamiento,</strong> <span class="math notranslate nohighlight">\(X\)</span><strong>, utilizando técnicas bootstrap</strong>, mediante un muestreo uniforme de <span class="math notranslate nohighlight">\(X\)</span> con reemplazo.</p></li>
+<li><p><strong>Para cada una de las variantes del conjunto de entrenamiento,</strong> <span class="math notranslate nohighlight">\(X_{i}\)</span><strong>, se construye un árbol,</strong> <span class="math notranslate nohighlight">\(T_{i}\)</span>.</p></li>
+<li><p>La decisión final para la clasificación de un punto dado es a favor de la <strong>clase predicha por la mayoría de los arboles subclasificadores</strong>, <span class="math notranslate nohighlight">\(T_{i}, i = 1, 2,\dots, B\)</span> <span class="bibtex-citation" id="id4">[<a class="reference internal" href="biblio.html#id4" title="Leo Breiman. Bagging predictors. Machine learning, 24(2):123–140, 1996.">Breiman, 1996</a>]</span>.</p></li>
 </ul>
 </div>
 <div class="tip admonition">
 <p class="admonition-title">Bosques Aleatorios (Random Forest)</p>
-<p>Los <em><strong>Bosques Aleatorios (Random Forest) utilizan la idea de bagging junto con la selección aleatoria de características</strong></em> <span id="id5">[<a class="reference internal" href="biblio.html#id5" title="Leo Breiman. Random forests. Machine learning, 45(1):5–32, 2001.">Breiman, 2001</a>]</span>. La diferencia con el bagging radica en la forma en que se construyen los árboles de decisión.</p>
+<p>Los <strong>Bosques Aleatorios (Random Forest) utilizan la idea de bagging junto con la selección aleatoria de características</strong> <span class="bibtex-citation" id="id5">[<a class="reference internal" href="biblio.html#id5" title="Leo Breiman. Random forests. Machine learning, 45(1):5–32, 2001.">Breiman, 2001</a>]</span>. La diferencia con el bagging radica en la forma en que se construyen los árboles de decisión.</p>
 <ul class="simple">
-<li><p><em><strong>La característica a dividir en cada nodo se selecciona como la mejor entre un conjunto de</strong></em> <span class="math notranslate nohighlight">\(F\)</span> <em><strong>características elegidas al azar</strong></em>, donde <span class="math notranslate nohighlight">\(F\)</span> es un parámetro definido por el usuario.</p></li>
-<li><p>Esta <em><strong>aleatoriedad adicional introducida tiene un efecto sustancial en la mejora del rendimiento</strong></em>. Los bosques aleatorios suelen tener una <em><strong>precisión predictiva muy buena</strong></em> y se han utilizado en una serie de aplicaciones, como el <em><strong>reconocimiento de la postura del cuerpo en términos del popular sensor Kinect de Microsoft</strong></em> <span id="id6">[<a class="reference internal" href="biblio.html#id6" title="Jamie Shotton, Andrew Fitzgibbon, Mat Cook, Toby Sharp, Mark Finocchio, Richard Moore, Alex Kipman, and Andrew Blake. Real-time human pose recognition in parts from single depth images. In CVPR 2011, 1297–1304. Ieee, 2011.">Shotton <em>et al.</em>, 2011</a>]</span>.</p></li>
+<li><p><strong>La característica a dividir en cada nodo se selecciona como la mejor entre un conjunto de</strong> <span class="math notranslate nohighlight">\(F\)</span> <strong>características elegidas al azar</strong>, donde <span class="math notranslate nohighlight">\(F\)</span> es un parámetro definido por el usuario.</p></li>
+<li><p>Esta <strong>aleatoriedad adicional introducida tiene un efecto sustancial en la mejora del rendimiento</strong>. Los bosques aleatorios suelen tener una <strong>precisión predictiva muy buena</strong> y se han utilizado en una serie de aplicaciones, como el <strong>reconocimiento de la postura del cuerpo en términos del popular sensor Kinect de Microsoft</strong> <span class="bibtex-citation" id="id6">[<a class="reference internal" href="biblio.html#id6" title="Jamie Shotton, Andrew Fitzgibbon, Mat Cook, Toby Sharp, Mark Finocchio, Richard Moore, Alex Kipman, and Andrew Blake. Real-time human pose recognition in parts from single depth images. In CVPR 2011, 1297–1304. Ieee, 2011.">Shotton <em>et al.</em>, 2011</a>]</span>.</p></li>
 </ul>
 </div>
 <ul class="simple">
-<li><p>Además de los métodos anteriores, recientemente, también se han sugerido <em><strong>técnicas Bayesianas utilizadas para estabilizar el rendimiento de los árboles</strong></em>; véase <span id="id7">[<a class="reference internal" href="biblio.html#id7" title="Hugh A Chipman, Edward I George, and Robert E McCulloch. Bart: bayesian additive regression trees. The Annals of Applied Statistics, 4(1):266–298, 2010.">Chipman <em>et al.</em>, 2010</a>, <a class="reference internal" href="biblio.html#id8" title="Yuhong Wu, Håkon Tjelmeland, and Mike West. Bayesian cart: prior specification and posterior simulation. Journal of Computational and Graphical Statistics, 16(1):44–66, 2007.">Wu <em>et al.</em>, 2007</a>]</span>. Por supuesto, <em><strong>el efecto de utilizar múltiples árboles, es perder una de las principales ventajas de los árboles, su facilidad de interpretación.</strong></em></p></li>
+<li><p>Además de los métodos anteriores, recientemente, también se han sugerido <strong>técnicas Bayesianas utilizadas para estabilizar el rendimiento de los árboles</strong>; véase <span class="bibtex-citation" id="id7">[<a class="reference internal" href="biblio.html#id7" title="Hugh A Chipman, Edward I George, and Robert E McCulloch. Bart: bayesian additive regression trees. The Annals of Applied Statistics, 4(1):266–298, 2010.">Chipman <em>et al.</em>, 2010</a>, <a class="reference internal" href="biblio.html#id8" title="Yuhong Wu, Håkon Tjelmeland, and Mike West. Bayesian cart: prior specification and posterior simulation. Journal of Computational and Graphical Statistics, 16(1):44–66, 2007.">Wu <em>et al.</em>, 2007</a>]</span>. Por supuesto, <strong>el efecto de utilizar múltiples árboles, es perder una de las principales ventajas de los árboles, su facilidad de interpretación.</strong></p></li>
 </ul>
 <div class="important admonition">
 <p class="admonition-title">Regla de asignación de clase</p>
 <ul class="simple">
-<li><p>Una vez que se declara que un <em><strong>nodo <span class="math notranslate nohighlight">\(t\)</span> es un nodo hoja, se le asigna una etiqueta de clase</strong></em>; normalmente por mayoría. Es decir, <em><strong>se le asigna la etiqueta de la clase a la que pertenecen la mayoría de los datos de</strong></em> <span class="math notranslate nohighlight">\(X_{t}\)</span>.</p></li>
+<li><p>Una vez que se declara que un <strong>nodo <span class="math notranslate nohighlight">\(t\)</span> es un nodo hoja, se le asigna una etiqueta de clase</strong>; normalmente por mayoría. Es decir, <strong>se le asigna la etiqueta de la clase a la que pertenecen la mayoría de los datos de</strong> <span class="math notranslate nohighlight">\(X_{t}\)</span>.</p></li>
 <li><p>Solución a <strong>situaciones de empates</strong>: <code class="docutils literal notranslate"><span class="pre">Random</span> <span class="pre">Forest</span></code> realiza predicciones reuniendo las decisiones de muchos árboles:</p>
 <ul>
 <li><p>Cada árbol <strong>asigna una clase (voto “duro”) o una distribución de probabilidad (ver Ecuación <a class="reference internal" href="#equation-random-forest-probs">(5.1)</a>) por clase (voto “blando”</strong> -&gt; <code class="docutils literal notranslate"><span class="pre">predict_proba</span></code>).</p></li>
@@ -618,33 +655,33 @@ su valor <em><strong>máximo cuando todas las clases son equiprobables</strong><
 <section id="combinacion-de-clasificadores">
 <h2><span class="section-number">5.2. </span>Combinación de clasificadores<a class="headerlink" href="#combinacion-de-clasificadores" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>Hasta ahora, hemos revisado en detalle una serie de clasificadores, y se presentarán más métodos en las siguientes secciones, relativos a las <em><strong>máquinas de vectores de soporte</strong></em> y las <em><strong>redes neuronales</strong></em>. La pregunta obvia a la que se enfrenta un profesional/investigador sin experiencia es: <em><strong>¿qué método uso entonces? Por desgracia, no hay una respuesta definitiva.</strong></em></p></li>
+<li><p>Hasta ahora, hemos revisado en detalle una serie de clasificadores, y se presentarán más métodos en las siguientes secciones, relativos a las <strong>máquinas de vectores de soporte</strong> y las <strong>redes neuronales</strong>. La pregunta obvia a la que se enfrenta un profesional/investigador sin experiencia es: <strong>¿qué método uso entonces? Por desgracia, no hay una respuesta definitiva.</strong></p></li>
 </ul>
 <div class="admonition-no-free-lunch-theorem admonition">
 <p class="admonition-title">No free lunch theorem</p>
 <ul class="simple">
-<li><p>El objetivo del diseño de cualquier clasificador, y en general de cualquier esquema de aprendizaje es <em><strong>proporcionar un buen rendimiento de generalización</strong></em>. Sin embargo, no hay razones independientes del contexto o del uso para apoyar una técnica de aprendizaje en lugar de otra.</p></li>
-<li><p><em><strong>Cada tarea de aprendizaje, representada por el conjunto de datos disponible, mostrará una preferencia por un esquema de aprendizaje específico</strong></em> que se ajuste a las especificidades del problema en cuestión.</p></li>
-<li><p><em><strong>Un algoritmo que obtiene la máxima puntuación en un problema puede obtener una puntuación baja en otro</strong></em>. Esto se resume a veces como el <strong><code class="docutils literal notranslate"><span class="pre">Teorema</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">no</span> <span class="pre">gratuidad</span> <span class="pre">(No</span> <span class="pre">free</span> <span class="pre">lunch</span> <span class="pre">theorem)</span></code></strong></p></li>
+<li><p>El objetivo del diseño de cualquier clasificador, y en general de cualquier esquema de aprendizaje es <strong>proporcionar un buen rendimiento de generalización</strong>. Sin embargo, no hay razones independientes del contexto o del uso para apoyar una técnica de aprendizaje en lugar de otra.</p></li>
+<li><p><strong>Cada tarea de aprendizaje, representada por el conjunto de datos disponible, mostrará una preferencia por un esquema de aprendizaje específico</strong> que se ajuste a las especificidades del problema en cuestión.</p></li>
+<li><p><strong>Un algoritmo que obtiene la máxima puntuación en un problema puede obtener una puntuación baja en otro</strong>. Esto se resume a veces como el <strong><code class="docutils literal notranslate"><span class="pre">Teorema</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">no</span> <span class="pre">gratuidad</span> <span class="pre">(No</span> <span class="pre">free</span> <span class="pre">lunch</span> <span class="pre">theorem)</span></code></strong></p></li>
 </ul>
 </div>
 <ul class="simple">
-<li><p>En la práctica, hay que <em><strong>probar diferentes métodos de aprendizaje dentro de los disponibles</strong></em>, cada uno optimizado para la tarea específica, y <em><strong>probar su rendimiento de generalización</strong></em> con un conjunto de datos independiente distinto del utilizado para el entrenamiento, utilizando, por ejemplo, el método de exclusión o cualquiera de sus variantes.</p></li>
-<li><p>A continuación, <em><strong>se mantiene y se utiliza el método que ha obtenido la mejor puntuación para la tarea específica</strong></em>. Con este fin, hay una serie de esfuerzos importantes para comparar diferentes clasificadores contra diferentes conjuntos de datos y <em><strong>medir el rendimiento “medio”, mediante el uso de diferentes índices estadísticos para cuantificar el rendimiento global de cada clasificador</strong></em> frente a los conjuntos de datos.</p></li>
+<li><p>En la práctica, hay que <strong>probar diferentes métodos de aprendizaje dentro de los disponibles</strong>, cada uno optimizado para la tarea específica, y <strong>probar su rendimiento de generalización</strong> con un conjunto de datos independiente distinto del utilizado para el entrenamiento, utilizando, por ejemplo, el método de exclusión o cualquiera de sus variantes.</p></li>
+<li><p>A continuación, <strong>se mantiene y se utiliza el método que ha obtenido la mejor puntuación para la tarea específica</strong>. Con este fin, hay una serie de esfuerzos importantes para comparar diferentes clasificadores contra diferentes conjuntos de datos y <strong>medir el rendimiento “medio”, mediante el uso de diferentes índices estadísticos para cuantificar el rendimiento global de cada clasificador</strong> frente a los conjuntos de datos.</p></li>
 </ul>
 <p><strong><code class="docutils literal notranslate"><span class="pre">Esquemas</span> <span class="pre">de</span> <span class="pre">combinación</span> <span class="pre">de</span> <span class="pre">clasificadores</span></code></strong></p>
 <ul class="simple">
-<li><p>Una tendencia para <em><strong>mejorar el rendimiento</strong></em> es <em><strong>combinar diferentes clasificadores y explotar sus ventajas individuales</strong></em>. Una observación que justifica este enfoque es que, durante las pruebas, <em><strong>hay patrones en los que incluso el mejor clasificador para una tarea concreta no logra predecir su verdadera clase</strong></em>. En cambio, <em><strong>los mismos patrones pueden ser clasificados correctamente por otros clasificadores, con un rendimiento global inferior</strong></em>.</p></li>
-<li><p>Esto muestra que puede haber cierta <em><strong>complementariedad entre los distintos clasificadores</strong></em>, y la combinación puede conducir a un <em><strong>mayor rendimiento en comparación con el obtenido por el mejor (único) clasificador</strong></em>. Recordemos que <em><strong>el bagging mencionado anteriormente, es un tipo de combinación de clasificadores</strong></em>. La cuestión que se plantea ahora es seleccionar un <em><strong>esquema de combinación</strong></em>. Hay diferentes esquemas, y los resultados que proporcionan pueden ser diferentes. A continuación, <em><strong>resumimos los esquemas de combinación más populares</strong></em>.</p></li>
+<li><p>Una tendencia para <strong>mejorar el rendimiento</strong> es <strong>combinar diferentes clasificadores y explotar sus ventajas individuales</strong>. Una observación que justifica este enfoque es que, durante las pruebas, <strong>hay patrones en los que incluso el mejor clasificador para una tarea concreta no logra predecir su verdadera clase</strong>. En cambio, <strong>los mismos patrones pueden ser clasificados correctamente por otros clasificadores, con un rendimiento global inferior</strong>.</p></li>
+<li><p>Esto muestra que puede haber cierta <strong>complementariedad entre los distintos clasificadores</strong>, y la combinación puede conducir a un <strong>mayor rendimiento en comparación con el obtenido por el mejor (único) clasificador</strong>. Recordemos que <strong>el bagging mencionado anteriormente, es un tipo de combinación de clasificadores</strong>. La cuestión que se plantea ahora es seleccionar un <strong>esquema de combinación</strong>. Hay diferentes esquemas, y los resultados que proporcionan pueden ser diferentes. A continuación, <strong>resumimos los esquemas de combinación más populares</strong>.</p></li>
 </ul>
 <div class="admonition-regla-de-la-media-aritmetica admonition">
 <p class="admonition-title">Regla de la media aritmética</p>
-<p>Suponiendo que utilizamos <span class="math notranslate nohighlight">\(L\)</span> clasificadores, en los que <em><strong>cada uno da un valor de probabilidad posterior</strong></em>, <span class="math notranslate nohighlight">\(P_{j}(\omega_{i}|\boldsymbol{x}), i = 1,2,\dots,M,~j = 1, 2, . . . L\)</span>, la decisión sobre <em><strong>la asignación de la clase se basa en la siguiente regla</strong></em>:</p>
+<p>Suponiendo que utilizamos <span class="math notranslate nohighlight">\(L\)</span> clasificadores, en los que <strong>cada uno da un valor de probabilidad posterior</strong>, <span class="math notranslate nohighlight">\(P_{j}(\omega_{i}|\boldsymbol{x}), i = 1,2,\dots,M,~j = 1, 2, . . . L\)</span>, la decisión sobre <strong>la asignación de la clase se basa en la siguiente regla</strong>:</p>
 <div class="math notranslate nohighlight">
 \[
 \text{Asignar}~\boldsymbol{x}~\text{a la clase}~\omega_{i}=\textrm{arg}\max_{k}\frac{1}{L}\sum_{j=1}^{L}P_{j}(\omega_{k}|\boldsymbol{x}),\quad k=1,2,\dots,M.
 \]</div>
-<p>Esta regla equivale a calcular la <em><strong>probabilidad posterior “final”</strong></em>, <span class="math notranslate nohighlight">\(P(\omega_{i}|\boldsymbol{x})\)</span>, por medio de <em><strong>minimización de la distancia media de Kullback-Leibler</strong></em></p>
+<p>Esta regla equivale a calcular la <strong>probabilidad posterior “final”</strong>, <span class="math notranslate nohighlight">\(P(\omega_{i}|\boldsymbol{x})\)</span>, por medio de <strong>minimización de la distancia media de Kullback-Leibler</strong></p>
 <div class="math notranslate nohighlight">
 \[
 D_{av}=\frac{1}{L}\sum_{j=1}^{L}D_{j},~\text{donde}~D_{j}=\sum_{i=1}^{M}P_{j}(\omega_{i}|\boldsymbol{x})\ln\frac{P_{j}(\omega_{i}|\boldsymbol{x})}{P(\omega_{i}|\boldsymbol{x})}.
@@ -652,7 +689,7 @@ D_{av}=\frac{1}{L}\sum_{j=1}^{L}D_{j},~\text{donde}~D_{j}=\sum_{i=1}^{M}P_{j}(\o
 </div>
 <div class="admonition-regla-de-promedio-geometrica admonition">
 <p class="admonition-title">Regla de promedio geométrica</p>
-<p>Esta regla es el resultado de <em><strong>minimizar la formulación alternativa de distancia de Kullback-Leibler</strong></em> (nótese que esta distancia no es simétrica); en otras palabras</p>
+<p>Esta regla es el resultado de <strong>minimizar la formulación alternativa de distancia de Kullback-Leibler</strong> (nótese que esta distancia no es simétrica); en otras palabras</p>
 <div class="math notranslate nohighlight">
 \[
 D_{j}=\sum_{i=1}^{M}P(\omega_{i}|\boldsymbol{x})\ln\frac{P(\omega_{i}|\boldsymbol{x})}{P_{j}(\omega_{i}|\boldsymbol{x})},
@@ -665,31 +702,31 @@ D_{j}=\sum_{i=1}^{M}P(\omega_{i}|\boldsymbol{x})\ln\frac{P(\omega_{i}|\boldsymbo
 </div>
 <div class="admonition-apilamiento-stacking admonition">
 <p class="admonition-title">Apilamiento (Stacking)</p>
-<p>Una forma alternativa es utilizar una <em><strong>media ponderada de las salidas de los clasificadores individuales</strong></em>, donde <em><strong>los pesos de la combinación se obtienen de forma óptima utilizando los datos de entrenamiento</strong></em>. Supongamos que la salida de cada <em><strong>clasificador individual</strong></em>, <span class="math notranslate nohighlight">\(f_{j}(x)\)</span>, es de tipo suave (<em><strong>infinitamente diferenciable</strong></em>); por ejemplo, una estimación de probabilidad posterior, como antes. Entonces, <em><strong>la salida combinada viene dada por</strong></em></p>
+<p>Una forma alternativa es utilizar una <strong>media ponderada de las salidas de los clasificadores individuales</strong>, donde <strong>los pesos de la combinación se obtienen de forma óptima utilizando los datos de entrenamiento</strong>. Supongamos que la salida de cada <strong>clasificador individual</strong>, <span class="math notranslate nohighlight">\(f_{j}(x)\)</span>, es de tipo suave (<strong>infinitamente diferenciable</strong>); por ejemplo, una estimación de probabilidad posterior, como antes. Entonces, <strong>la salida combinada viene dada por</strong></p>
 <div class="math notranslate nohighlight">
 \[
 f(\boldsymbol{x})=\sum_{j=1}^{L}\omega_{j}f_{j}(\boldsymbol{x}),
 \]</div>
-<p>donde <em><strong>los pesos son estimados vía la siguiente tarea de optimización</strong></em>:</p>
+<p>donde <strong>los pesos son estimados vía la siguiente tarea de optimización</strong>:</p>
 <div class="math notranslate nohighlight">
 \[
 \hat{\boldsymbol{\omega}}=\textrm{arg}\min_{\boldsymbol{\omega}}\sum_{n=1}^{N}\mathcal{L}(y_{n}, f(\boldsymbol{x}_{n}))=\textrm{arg}\min_{\boldsymbol{\omega}}\sum_{n=1}^{N}\mathcal{L}\left(y_{n}, \sum_{j=1}^{L}\omega_{j}f_{j}(\boldsymbol{x}_{n})\right)
 \]</div>
-<p>donde, <span class="math notranslate nohighlight">\(\mathcal{L}(\cdot,\cdot)\)</span> es una <em><strong>función de pérdida</strong></em>; por ejemplo, la del <em><strong>error cuadrático</strong></em>.</p>
+<p>donde, <span class="math notranslate nohighlight">\(\mathcal{L}(\cdot,\cdot)\)</span> es una <strong>función de pérdida</strong>; por ejemplo, la del <strong>error cuadrático</strong>.</p>
 </div>
 <ul class="simple">
-<li><p>Sin embargo, <em><strong>adoptar la anterior optimización, basada en el conjunto de datos de entrenamiento, puede conducir a un sobreajuste</strong></em>. De acuerdo con el apilamiento <span id="id8">[<a class="reference internal" href="biblio.html#id23" title="David H Wolpert. Stacked generalization. Neural networks, 5(2):241–259, 1992.">Wolpert, 1992</a>]</span> se adopta un <em><strong>razonamiento de validación cruzada</strong></em> y en lugar de <span class="math notranslate nohighlight">\(f_{j}(\boldsymbol{x}_{n})\)</span>, empleamos <span class="math notranslate nohighlight">\(f_{j}^{(-n)}(\boldsymbol{x}_{n})\)</span>, donde este último es la <em><strong>salida del</strong></em> <span class="math notranslate nohighlight">\(j\)</span><em><strong>-ésimo clasificador entrenado en los datos tras excluir el par</strong></em> <span class="math notranslate nohighlight">\((y_{n}, x_{n})\)</span>. En otras palabras, los pesos se estiman mediante</p></li>
+<li><p>Sin embargo, <strong>adoptar la anterior optimización, basada en el conjunto de datos de entrenamiento, puede conducir a un sobreajuste</strong>. De acuerdo con el apilamiento <span class="bibtex-citation" id="id8">[<a class="reference internal" href="biblio.html#id23" title="David H Wolpert. Stacked generalization. Neural networks, 5(2):241–259, 1992.">Wolpert, 1992</a>]</span> se adopta un <strong>razonamiento de validación cruzada</strong> y en lugar de <span class="math notranslate nohighlight">\(f_{j}(\boldsymbol{x}_{n})\)</span>, empleamos <span class="math notranslate nohighlight">\(f_{j}^{(-n)}(\boldsymbol{x}_{n})\)</span>, donde este último es la <strong>salida del</strong> <span class="math notranslate nohighlight">\(j\)</span><strong>-ésimo clasificador entrenado en los datos tras excluir el par</strong> <span class="math notranslate nohighlight">\((y_{n}, x_{n})\)</span>. En otras palabras, los pesos se estiman mediante</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[
 \hat{\boldsymbol{\omega}}=\text{argmin}_{\boldsymbol{\omega}}\sum_{n=1}^{N}\mathcal{L}\left(y_{n}, \sum_{j=1}^{L}\omega_{j}f_{j}^{(-n)}(\boldsymbol{x}_{n})\right).
 \]</div>
 <ul class="simple">
-<li><p>A veces, <em><strong>las ponderaciones tienen que ser positivas y sumar uno</strong></em>, lo que da lugar a una tarea de <em><strong>optimización restringida</strong></em>.</p></li>
+<li><p>A veces, <strong>las ponderaciones tienen que ser positivas y sumar uno</strong>, lo que da lugar a una tarea de <strong>optimización restringida</strong>.</p></li>
 </ul>
 <div class="admonition-regla-de-votacion-por-mayoria admonition">
 <p class="admonition-title">Regla de votación por mayoría</p>
-<p>Los métodos anteriores pertenecen a la familia de reglas <em><strong>soft-type</strong></em>. Una alternativa popular es una regla <em><strong>hard-type</strong></em>, que se basa en un <em><strong>esquema de votación</strong></em>. <em><strong>Se decide a favor de la clase para la que hay consenso o al menos</strong></em> <span class="math notranslate nohighlight">\(l_{c}\)</span> <em><strong>clasificadores están de acuerdo en la etiqueta de clase</strong></em>, donde</p>
+<p>Los métodos anteriores pertenecen a la familia de reglas <strong>soft-type</strong>. Una alternativa popular es una regla <strong>hard-type</strong>, que se basa en un <strong>esquema de votación</strong>. <strong>Se decide a favor de la clase para la que hay consenso o al menos</strong> <span class="math notranslate nohighlight">\(l_{c}\)</span> <strong>clasificadores están de acuerdo en la etiqueta de clase</strong>, donde</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 l_{c}=
@@ -698,23 +735,23 @@ l_{c}=
 \displaystyle{\frac{L+1}{2}}, &amp; L~\text{es impar}
 \end{cases}
 \end{split}\]</div>
-<p><em><strong>En caso contrario, la decisión es de rechazo</strong></em> (es decir, no se toma ninguna decisión).</p>
+<p><strong>En caso contrario, la decisión es de rechazo</strong> (es decir, no se toma ninguna decisión).</p>
 </div>
 <div class="tip admonition">
 <p class="admonition-title">Reglas del Tipo: Hard-Soft</p>
-<p>Una <em><strong>regla de clasificación soft</strong></em> generalmente <em><strong>estima las probabilidades condicionales de clase de forma explícita y, a continuación, realiza la predicción de clase basada en la mayor probabilidad estimada</strong></em>. Por el contrario, la <em><strong>clasificación hard</strong></em> omite el requisito de estimar la probabilidad de la clase y <em><strong>estima directamente el límite de clasificación</strong></em>.</p>
+<p>Una <strong>regla de clasificación soft</strong> generalmente <strong>estima las probabilidades condicionales de clase de forma explícita y, a continuación, realiza la predicción de clase basada en la mayor probabilidad estimada</strong>. Por el contrario, la <strong>clasificación hard</strong> omite el requisito de estimar la probabilidad de la clase y <strong>estima directamente el límite de clasificación</strong>.</p>
 </div>
 <div class="admonition-regla-de-la-mediana admonition">
 <p class="admonition-title">Regla de la mediana</p>
-<p>Cuando <em><strong>valores atípicos están presentes</strong></em>, se puede utilizar en su lugar el valor de la <em><strong>mediana</strong></em>:</p>
+<p>Cuando <strong>valores atípicos están presentes</strong>, se puede utilizar en su lugar el valor de la <strong>mediana</strong>:</p>
 <div class="math notranslate nohighlight">
 \[
 \text{Asignar}~\boldsymbol{x}~\text{a la clase}~\omega_{i}=\textrm{arg}\max_{k}\textrm{median}\{P_{j}(\omega_{k}|\boldsymbol{x})\},~k=1,2,\dots,M.
 \]</div>
 </div>
 <ul class="simple">
-<li><p>Ocurre que, el <em><strong>no free lunch theorem</strong></em> también es válido para las reglas de combinación; <em><strong>no hay una regla universalmente óptima</strong></em>. Todo depende de los datos de que se disponga; véase <span id="id9">[<a class="reference internal" href="biblio.html#id9" title="Anil K Jain, Robert P. W. Duin, and Jianchang Mao. Statistical pattern recognition: a review. IEEE Transactions on pattern analysis and machine intelligence, 22(1):4–37, 2000.">Jain <em>et al.</em>, 2000</a>]</span>. Hay otras cuestiones relacionadas con la teoría de la combinación de clasificadores; por ejemplo, <em><strong>¿cómo se eligen los clasificadores que se van a combinar? ¿Deben ser dependientes o independientes?</strong></em>.</p></li>
-<li><p>Además, <em><strong>la combinación no implica necesariamente una mejora del rendimiento, en algunos casos, se puede experimentar una pérdida de rendimiento (mayor tasa de error) en comparación con el mejor clasificador (único)</strong></em>. Por tanto, <em><strong>la combinación debe realizarse con cuidado</strong></em> <span id="id10">[<a class="reference internal" href="biblio.html#id19" title="Konstantinos Koutroumbas and Sergios Theodoridis. Pattern recognition. Academic Press, 2008.">Koutroumbas and Theodoridis, 2008</a>, <a class="reference internal" href="biblio.html#id24" title="Ludmila I Kuncheva. Combining pattern classifiers: methods and algorithms. John Wiley &amp; Sons, 2014.">Kuncheva, 2014</a>]</span>.</p></li>
+<li><p>Ocurre que, el <strong>no free lunch theorem</strong> también es válido para las reglas de combinación; <strong>no hay una regla universalmente óptima</strong>. Todo depende de los datos de que se disponga; véase <span class="bibtex-citation" id="id9">[<a class="reference internal" href="biblio.html#id9" title="Anil K Jain, Robert P. W. Duin, and Jianchang Mao. Statistical pattern recognition: a review. IEEE Transactions on pattern analysis and machine intelligence, 22(1):4–37, 2000.">Jain <em>et al.</em>, 2000</a>]</span>. Hay otras cuestiones relacionadas con la teoría de la combinación de clasificadores; por ejemplo, <strong>¿cómo se eligen los clasificadores que se van a combinar? ¿Deben ser dependientes o independientes?</strong>.</p></li>
+<li><p>Además, <strong>la combinación no implica necesariamente una mejora del rendimiento, en algunos casos, se puede experimentar una pérdida de rendimiento (mayor tasa de error) en comparación con el mejor clasificador (único)</strong>. Por tanto, <strong>la combinación debe realizarse con cuidado</strong> <span class="bibtex-citation" id="id10">[<a class="reference internal" href="biblio.html#id19" title="Konstantinos Koutroumbas and Sergios Theodoridis. Pattern recognition. Academic Press, 2008.">Koutroumbas and Theodoridis, 2008</a>, <a class="reference internal" href="biblio.html#id24" title="Ludmila I Kuncheva. Combining pattern classifiers: methods and algorithms. John Wiley &amp; Sons, 2014.">Kuncheva, 2014</a>]</span>.</p></li>
 </ul>
 </section>
 <section id="enfoque-boosting">
@@ -725,28 +762,28 @@ l_{c}=
 <p>¿<strong>Un algoritmo de aprendizaje débil</strong>, es decir, uno que funciona ligeramente mejor que una adivinación aleatoria, <strong>puede convertirse en uno fuerte con un buen índice de rendimiento</strong>?.</p>
 </section>
 </div><ul class="simple">
-<li><p>El <em><strong>enfoque boosting</strong></em> es un procedimiento para <em><strong>combinar o “reforzar (boost)” el rendimiento de los clasificadores débiles</strong></em>(clasificadores cuyas estimaciones de parámetros suelen ser imprecisas y ofrecen un rendimiento deficiente) con el fin de <em><strong>obtener un mejor clasificador</strong></em>. Se diferencia del <em><strong>bagging</strong></em> en que es un <em>procedimiento determinista y genera conjuntos de entrenamiento y clasificadores secuencialmente, basándose en los resultados de la iteración anterior</em>. En cambio, el bagging genera los conjuntos de entrenamiento aleatoriamente y puede generar los clasificadores en paralelo.</p></li>
+<li><p>El <strong>enfoque boosting</strong> es un procedimiento para <strong>combinar o “reforzar (boost)” el rendimiento de los clasificadores débiles</strong>(clasificadores cuyas estimaciones de parámetros suelen ser imprecisas y ofrecen un rendimiento deficiente) con el fin de <strong>obtener un mejor clasificador</strong>. Se diferencia del <strong>bagging</strong> en que es un <em>procedimiento determinista y genera conjuntos de entrenamiento y clasificadores secuencialmente, basándose en los resultados de la iteración anterior</em>. En cambio, el bagging genera los conjuntos de entrenamiento aleatoriamente y puede generar los clasificadores en paralelo.</p></li>
 </ul>
 <div class="tip admonition">
 <p class="admonition-title">Observación</p>
 <ul class="simple">
 <li><p><strong>Boosting</strong> <em>asigna un peso a cada patrón en el conjunto de entrenamiento, reflejando su importancia</em>, y <em>construye un clasificador utilizando el conjunto de entrenamiento y el conjunto de pesos</em>. Por lo tanto, <strong>requiere un clasificador que pueda manejar pesos en las muestras de entrenamiento</strong> (algunos clasificadores pueden ser incapaces de admitir patrones ponderados).</p></li>
-<li><p>En este caso, se puede <em><strong>muestrear un subconjunto de los ejemplos de entrenamiento de acuerdo con la distribución de los pesos</strong></em> (ponderación de muestras de entrenamiento) y <em><strong>utilizar estos ejemplos para entrenar al clasificador en la siguiente etapa de la iteración</strong></em>. El aprendiz final se obtiene mediante una <em><strong>media ponderada de todos los aprendices de base (débiles) jerárquicamente diseñados</strong></em>. Por lo tanto, el boosting también puede considerarse un <em><strong>esquema para combinar diferentes aprendices</strong></em>.</p></li>
+<li><p>En este caso, se puede <strong>muestrear un subconjunto de los ejemplos de entrenamiento de acuerdo con la distribución de los pesos</strong> (ponderación de muestras de entrenamiento) y <strong>utilizar estos ejemplos para entrenar al clasificador en la siguiente etapa de la iteración</strong>. El aprendiz final se obtiene mediante una <strong>media ponderada de todos los aprendices de base (débiles) jerárquicamente diseñados</strong>. Por lo tanto, el boosting también puede considerarse un <strong>esquema para combinar diferentes aprendices</strong>.</p></li>
 </ul>
 </div>
 <ul class="simple">
-<li><p>Dado un <em><strong>número suficiente de iteraciones, se puede mejorar significativamente lo (pobre) del aprendiz débil</strong></em>. Por ejemplo, en algunos casos de clasificación, el <em><strong>error de entrenamiento puede tender a cero a medida que aumenta el número de iteraciones</strong></em>. El entrenamiento de un clasificador <em><strong>mediante una manipulación adecuada de los datos de entrenamiento</strong></em> (de hecho, <em><strong>el mecanismo de ponderación identifica las muestras difíciles, las que siguen fallando, y pone más énfasis en ellas</strong></em>) <em><strong>se puede obtener un clasificador fuerte</strong></em>. Por supuesto, como veremos más adelante, el hecho de que el error de entrenamiento tienda a cero no significa necesariamente que el error de prueba llegue a cero.</p></li>
+<li><p>Dado un <strong>número suficiente de iteraciones, se puede mejorar significativamente lo (pobre) del aprendiz débil</strong>. Por ejemplo, en algunos casos de clasificación, el <strong>error de entrenamiento puede tender a cero a medida que aumenta el número de iteraciones</strong>. El entrenamiento de un clasificador <strong>mediante una manipulación adecuada de los datos de entrenamiento</strong> (de hecho, <strong>el mecanismo de ponderación identifica las muestras difíciles, las que siguen fallando, y pone más énfasis en ellas</strong>) <strong>se puede obtener un clasificador fuerte</strong>. Por supuesto, como veremos más adelante, el hecho de que el error de entrenamiento tienda a cero no significa necesariamente que el error de prueba llegue a cero.</p></li>
 </ul>
 <figure class="align-center" id="boosted-tree-numref">
 <a class="reference internal image-reference" href="_images/boosted_tree.jpg"><img alt="_images/boosted_tree.jpg" src="_images/boosted_tree.jpg" style="width: 508.5px; height: 210.6px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Fig. 5.5 </span><span class="caption-text">Ilustración del <em><strong>Arbol Boosting</strong></em>: Fuente <span id="id11">[<a class="reference internal" href="biblio.html#id26" title="Sonia Kahiomba Kiangala and Zenghui Wang. An effective adaptive customization framework for small manufacturing plants using extreme gradient boosting-xgboost and random forest ensemble learning algorithms in an industry 4.0 environment. Machine Learning with Applications, 4:100024, 2021.">Kiangala and Wang, 2021</a>]</span>.</span><a class="headerlink" href="#boosted-tree-numref" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 5.5 </span><span class="caption-text">Ilustración del <strong>Arbol Boosting</strong>: Fuente <span class="bibtex-citation" id="id11">[<a class="reference internal" href="biblio.html#id26" title="Sonia Kahiomba Kiangala and Zenghui Wang. An effective adaptive customization framework for small manufacturing plants using extreme gradient boosting-xgboost and random forest ensemble learning algorithms in an industry 4.0 environment. Machine Learning with Applications, 4:100024, 2021.">Kiangala and Wang, 2021</a>]</span>.</span><a class="headerlink" href="#boosted-tree-numref" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <div class="admonition-algoritmo-adaboost-adaptive-boosting admonition">
 <p class="admonition-title">Algoritmo AdaBoost (Adaptive Boosting)</p>
-<p>Considere una <em><strong>tarea de clasificación de dos clases</strong></em> y supongamos que se nos da un conjunto de <span class="math notranslate nohighlight">\(N\)</span> <em><strong>observaciones de entrenamiento</strong></em>, <span class="math notranslate nohighlight">\((y_{n}, \boldsymbol{x}_{n}),~n=1,2,\dots,N\)</span>, con <span class="math notranslate nohighlight">\(y_{n}\in\{-1, 1\}\)</span>. Nuestro objetivo es <em><strong>diseñar un clasificador binario</strong></em>,</p>
+<p>Considere una <strong>tarea de clasificación de dos clases</strong> y supongamos que se nos da un conjunto de <span class="math notranslate nohighlight">\(N\)</span> <strong>observaciones de entrenamiento</strong>, <span class="math notranslate nohighlight">\((y_{n}, \boldsymbol{x}_{n}),~n=1,2,\dots,N\)</span>, con <span class="math notranslate nohighlight">\(y_{n}\in\{-1, 1\}\)</span>. Nuestro objetivo es <strong>diseñar un clasificador binario</strong>,</p>
 <div class="math notranslate nohighlight" id="equation-sign-fn-adaboost-eq">
 <span class="eqno">(5.2)<a class="headerlink" href="#equation-sign-fn-adaboost-eq" title="Link to this equation">#</a></span>\[
 f(\boldsymbol{x})=\text{sgn}\{F(\boldsymbol{x})\}
@@ -756,10 +793,10 @@ f(\boldsymbol{x})=\text{sgn}\{F(\boldsymbol{x})\}
 <span class="eqno">(5.3)<a class="headerlink" href="#equation-adaboosting-model-eq" title="Link to this equation">#</a></span>\[
 F(\boldsymbol{x}):=\sum_{k=1}^{K}a_{k}\phi(\boldsymbol{x};\boldsymbol{\theta}_{k}),
 \]</div>
-<p>y <span class="math notranslate nohighlight">\(\phi(\boldsymbol{x}; \boldsymbol{\theta}_{k})\in\{-1, 1\}\)</span>, es el <em><strong>clasificador base en la iteración</strong></em> <span class="math notranslate nohighlight">\(k\)</span>, definido en términos de un <em><strong>conjunto de parámetros</strong></em>, <span class="math notranslate nohighlight">\(\boldsymbol{\theta}_{k},~k=1,2,\dots, K\)</span> <em><strong>a ser estimados</strong></em>.</p>
+<p>y <span class="math notranslate nohighlight">\(\phi(\boldsymbol{x}; \boldsymbol{\theta}_{k})\in\{-1, 1\}\)</span>, es el <strong>clasificador base en la iteración</strong> <span class="math notranslate nohighlight">\(k\)</span>, definido en términos de un <strong>conjunto de parámetros</strong>, <span class="math notranslate nohighlight">\(\boldsymbol{\theta}_{k},~k=1,2,\dots, K\)</span> <strong>a ser estimados</strong>.</p>
 <ul class="simple">
-<li><p>El clasificador base se selecciona como uno binario. El conjunto de <em><strong>parámetros desconocidos se obtienen mediante</strong></em> <em><strong>step-wise</strong></em> y de forma <em><strong>greedy</strong></em>; es decir, en cada iteración <span class="math notranslate nohighlight">\(i\)</span>, <em><strong>solo optimizamos con respecto a un único par</strong></em>, <span class="math notranslate nohighlight">\((a_{i}, \boldsymbol{\theta}_{i})\)</span> <em><strong>manteniendo los parámetros</strong></em> <span class="math notranslate nohighlight">\(a_{k}, \boldsymbol{\theta}_{k},~k=1,2,\dots,i-1\)</span>, <em><strong>obtenidos en los pasos anteriores, fijos</strong></em>.</p></li>
-<li><p>Nótese que <em><strong>lo ideal sería optimizar respecto a todos los parámetros desconocidos</strong></em>, <span class="math notranslate nohighlight">\(a_{k}\)</span>, <span class="math notranslate nohighlight">\(k=1,2,\dots,K\)</span>, <em><strong>simultáneamente</strong></em>, sin embargo, esto conduciría a una <em><strong>tarea de optimización muy exigente, desde el punto de vista computacional</strong></em>. Los algoritmos <em><strong>greedy</strong></em> son muy populares debido a su <em><strong>simplicidad computacional</strong></em>, y conducen a un muy <em><strong>buen rendimiento en una amplia gama de tareas de aprendizaje</strong></em>.</p></li>
+<li><p>El clasificador base se selecciona como uno binario. El conjunto de <strong>parámetros desconocidos se obtienen mediante</strong> <strong>step-wise</strong> y de forma <strong>greedy</strong>; es decir, en cada iteración <span class="math notranslate nohighlight">\(i\)</span>, <strong>solo optimizamos con respecto a un único par</strong>, <span class="math notranslate nohighlight">\((a_{i}, \boldsymbol{\theta}_{i})\)</span> <strong>manteniendo los parámetros</strong> <span class="math notranslate nohighlight">\(a_{k}, \boldsymbol{\theta}_{k},~k=1,2,\dots,i-1\)</span>, <strong>obtenidos en los pasos anteriores, fijos</strong>.</p></li>
+<li><p>Nótese que <strong>lo ideal sería optimizar respecto a todos los parámetros desconocidos</strong>, <span class="math notranslate nohighlight">\(a_{k}\)</span>, <span class="math notranslate nohighlight">\(k=1,2,\dots,K\)</span>, <strong>simultáneamente</strong>, sin embargo, esto conduciría a una <strong>tarea de optimización muy exigente, desde el punto de vista computacional</strong>. Los algoritmos <strong>greedy</strong> son muy populares debido a su <strong>simplicidad computacional</strong>, y conducen a un muy <strong>buen rendimiento en una amplia gama de tareas de aprendizaje</strong>.</p></li>
 </ul>
 </div>
 <ul class="simple">
@@ -791,7 +828,7 @@ F_{i}(\cdot)=\sum_{k=1}^{i}a_{k}\phi(\cdot; \boldsymbol{\theta}_{k}).
 <a class="reference internal image-reference" href="_images/loss_fn_adaboost.png"><img alt="_images/loss_fn_adaboost.png" src="_images/loss_fn_adaboost.png" style="width: 430.40000000000003px; height: 262.40000000000003px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Fig. 5.6 </span><span class="caption-text">Pérdida 0-1, exponencial, log-loss y error al cuadrado. Fuente <span id="id12">[<a class="reference internal" href="biblio.html#id17" title="S. Theodoridis. Machine Learning: A Bayesian and Optimization Perspective. Elsevier Science, 2020. ISBN 9780128188040. URL: https://books.google.com.co/books?id=l-nEDwAAQBAJ.">Theodoridis, 2020</a>]</span>.</span><a class="headerlink" href="#loss-fn-adaboost-fig" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 5.6 </span><span class="caption-text">Pérdida 0-1, exponencial, log-loss y error al cuadrado. Fuente <span class="bibtex-citation" id="id12">[<a class="reference internal" href="biblio.html#id17" title="S. Theodoridis. Machine Learning: A Bayesian and Optimization Perspective. Elsevier Science, 2020. ISBN 9780128188040. URL: https://books.google.com.co/books?id=l-nEDwAAQBAJ.">Theodoridis, 2020</a>]</span>.</span><a class="headerlink" href="#loss-fn-adaboost-fig" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <ul class="simple">
@@ -954,7 +991,7 @@ m_{x}:=|yF(\boldsymbol{x})|.
 \mathcal{L}(y, F(\boldsymbol{x})):=\ln(1+\exp(-yF(\boldsymbol{x}))):\quad\text{log-loss function},
 \]</div>
 <ul class="simple">
-<li><p>Nótese que su <em><strong>incremento es casi lineal para valores negativos grandes</strong></em>. Tal función conduce a una <em><strong>influencia más equilibrada de la pérdida entre todos los puntos</strong></em>. Observe además que la función que minimiza la media de la pérdida logarítmica, con respecto a <span class="math notranslate nohighlight">\(y\)</span>, es la misma que la dada en Ecuación <a class="reference internal" href="#equation-min-exp-loss-fn-eq">(5.9)</a> (<em><strong>verifíquelo</strong></em>). Sin embargo, si se emplea la pérdida logarítmica en lugar de la exponencial, la tarea de optimización es más compleja, y hay que recurrir a esquemas de optimización de tipo <em><strong>gradiente descendiente</strong></em> o esquemas de <em><strong>optimización de tipo Newton</strong></em> (ver <span id="id13">[<a class="reference internal" href="biblio.html#id25" title="Jerome H Friedman. Greedy function approximation: a gradient boosting machine. Annals of statistics, pages 1189–1232, 2001.">Friedman, 2001</a>]</span>).</p></li>
+<li><p>Nótese que su <em><strong>incremento es casi lineal para valores negativos grandes</strong></em>. Tal función conduce a una <em><strong>influencia más equilibrada de la pérdida entre todos los puntos</strong></em>. Observe además que la función que minimiza la media de la pérdida logarítmica, con respecto a <span class="math notranslate nohighlight">\(y\)</span>, es la misma que la dada en Ecuación <a class="reference internal" href="#equation-min-exp-loss-fn-eq">(5.9)</a> (<em><strong>verifíquelo</strong></em>). Sin embargo, si se emplea la pérdida logarítmica en lugar de la exponencial, la tarea de optimización es más compleja, y hay que recurrir a esquemas de optimización de tipo <em><strong>gradiente descendiente</strong></em> o esquemas de <em><strong>optimización de tipo Newton</strong></em> (ver <span class="bibtex-citation" id="id13">[<a class="reference internal" href="biblio.html#id25" title="Jerome H Friedman. Greedy function approximation: a gradient boosting machine. Annals of statistics, pages 1189–1232, 2001.">Friedman, 2001</a>]</span>).</p></li>
 </ul>
 </section>
 <section id="arboles-boosting">
@@ -77292,15 +77329,17 @@ docker<span class="w"> </span>ps<span class="w"> </span>-a<span class="w"> </spa
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> Contents
   </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis">5.1. Análisis</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#combinacion-de-clasificadores">5.2. Combinación de clasificadores</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#enfoque-boosting">5.3. Enfoque Boosting</a></li>
@@ -77385,8 +77424,8 @@ By Lihki Rubio, Ph.D.
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
 
   <footer class="bd-footer">
   </footer>

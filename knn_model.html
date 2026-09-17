@@ -16,44 +16,47 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=b4b7a797" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=8c6b312c" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=530fe47d" />
     <link rel="stylesheet" type="text/css" href="_static/.ipynb_checkpoints/custom-checkpoint.css" />
   
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="_static/copybutton.js?v=f281be69"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
@@ -63,6 +66,7 @@
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'knn_model';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="_static/custom.js?v=14184634"></script>
     <script src="_static/.ipynb_checkpoints/custom-checkpoint.js"></script>
@@ -72,34 +76,30 @@
     <link rel="prev" title="1. Aprendizaje supervisado" href="supervised_intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
   </head>
-  
-  
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
-
+  <body data-default-mode="">
   
   
   <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
-
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="search.html"
       method="get">
@@ -107,7 +107,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -115,15 +114,59 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
 </div>
 
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
     </header>
   
 
@@ -132,7 +175,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -162,21 +206,17 @@
     
     
     <img src="_static/fotolihki.jpg" class="logo__image only-light" alt="Machine Learning - Home"/>
-    <script>document.write(`<img src="_static/fotolihki.jpg" class="logo__image only-dark" alt="Machine Learning - Home"/>`);</script>
+    <img src="_static/fotolihki.jpg" class="logo__image only-dark pst-js-only" alt="Machine Learning - Home"/>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -209,9 +249,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -294,7 +339,7 @@
 
 
 <button onclick="toggleFullScreen()"
-  class="btn btn-sm btn-fullscreen-button"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
   title="Fullscreen mode"
   data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
@@ -308,25 +353,17 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
 </div></div>
@@ -348,7 +385,7 @@ document.write(`
                 <h2> Contents </h2>
             </div>
             <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis">2.1. Análisis</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios">2.2. Ejercicios</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion">2.3. Implementación</a></li>
@@ -407,6 +444,13 @@ document.write(`
 <li><p>A diferencia de otros paradigmas algorítmicos que requieren hipótesis predefinidas, el método del <strong>vecino más cercano calcula una etiqueta para cualquier punto de prueba sin buscar un predictor dentro de una clase de funciones predefinida</strong>. En este capítulo, se describen los métodos del <strong>vecino más cercano</strong> tanto para problemas de <strong>clasificación</strong> como de <strong>regresión</strong>, se analiza su rendimiento en clasificación binaria y se discute la eficacia de su aplicación.</p></li>
 </ul>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+</div>
 <section id="analisis">
 <h2><span class="section-number">2.1. </span>Análisis<a class="headerlink" href="#analisis" title="Link to this heading">#</a></h2>
 <div class="proof definition admonition" id="def_knn">
@@ -435,7 +479,120 @@ document.write(`
 </li>
 </ul>
 </section>
-</div><figure class="align-center" id="knn-classification-fig">
+</div><div class="tip admonition">
+<p class="admonition-title">Ejemplo</p>
+<p>Para ganar intuición sobre la <a class="reference internal" href="#def_knn">Definition 2.1</a>, resolvamos un caso completamente numérico.</p>
+<p>Consideremos <span class="math notranslate nohighlight">\(\mathcal{X}=\mathbb{R}^{2}\)</span> con la métrica euclidiana, y la siguiente muestra de entrenamiento de dos clases, <span class="math notranslate nohighlight">\(\mathcal{Y}=\{0, 1\}\)</span>:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>Punto</p></th>
+<th class="head text-center"><p><span class="math notranslate nohighlight">\(x_{1}\)</span></p></th>
+<th class="head text-center"><p><span class="math notranslate nohighlight">\(x_{2}\)</span></p></th>
+<th class="head text-center"><p><span class="math notranslate nohighlight">\(y\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(\boldsymbol{x}_{1}\)</span></p></td>
+<td class="text-center"><p>1.0</p></td>
+<td class="text-center"><p>2.0</p></td>
+<td class="text-center"><p>0</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(\boldsymbol{x}_{2}\)</span></p></td>
+<td class="text-center"><p>2.0</p></td>
+<td class="text-center"><p>3.0</p></td>
+<td class="text-center"><p>0</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(\boldsymbol{x}_{3}\)</span></p></td>
+<td class="text-center"><p>3.0</p></td>
+<td class="text-center"><p>1.0</p></td>
+<td class="text-center"><p>1</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(\boldsymbol{x}_{4}\)</span></p></td>
+<td class="text-center"><p>6.0</p></td>
+<td class="text-center"><p>5.0</p></td>
+<td class="text-center"><p>1</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(\boldsymbol{x}_{5}\)</span></p></td>
+<td class="text-center"><p>7.0</p></td>
+<td class="text-center"><p>7.0</p></td>
+<td class="text-center"><p>1</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Queremos clasificar el punto de prueba <span class="math notranslate nohighlight">\(\boldsymbol{x}=(3.0,\,3.0)\)</span> con <span class="math notranslate nohighlight">\(k=3\)</span>.</p>
+<p><strong>Paso 1: Calcular las distancias</strong> <span class="math notranslate nohighlight">\(\rho(\boldsymbol{x},\boldsymbol{x}_{i})=\|\boldsymbol{x}-\boldsymbol{x}_{i}\|\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\rho(\boldsymbol{x},\boldsymbol{x}_{1})=\sqrt{(3-1)^{2}+(3-2)^{2}}=\sqrt{5}\approx2.24,\qquad
+\rho(\boldsymbol{x},\boldsymbol{x}_{2})=\sqrt{(3-2)^{2}+(3-3)^{2}}=1.00
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\rho(\boldsymbol{x},\boldsymbol{x}_{3})=\sqrt{(3-3)^{2}+(3-1)^{2}}=2.00,\qquad
+\rho(\boldsymbol{x},\boldsymbol{x}_{4})=\sqrt{(3-6)^{2}+(3-5)^{2}}=\sqrt{13}\approx3.61
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\rho(\boldsymbol{x},\boldsymbol{x}_{5})=\sqrt{(3-7)^{2}+(3-7)^{2}}=\sqrt{32}\approx5.66
+\]</div>
+<p><strong>Paso 2: Ordenar según</strong> <span class="math notranslate nohighlight">\(\pi_{i}(\boldsymbol{x})\)</span>: la reordenación por distancia creciente es</p>
+<div class="math notranslate nohighlight">
+\[
+\boldsymbol{x}_{2}\,(1.00)\;\prec\;\boldsymbol{x}_{3}\,(2.00)\;\prec\;\boldsymbol{x}_{1}\,(2.24)\;\prec\;\boldsymbol{x}_{4}\,(3.61)\;\prec\;\boldsymbol{x}_{5}\,(5.66).
+\]</div>
+<p><strong>Paso 3: Tomar los</strong> <span class="math notranslate nohighlight">\(k=3\)</span> <strong>vecinos más cercanos</strong>: <span class="math notranslate nohighlight">\(\{\boldsymbol{x}_{2}, \boldsymbol{x}_{3}, \boldsymbol{x}_{1}\}\)</span>, con etiquetas <span class="math notranslate nohighlight">\(\{0, 1, 0\}\)</span>.</p>
+<p><strong>Paso 4: Votar por mayoría</strong>: dos votos para la clase <span class="math notranslate nohighlight">\(0\)</span> y un voto para la clase <span class="math notranslate nohighlight">\(1\)</span>, de modo que <span class="math notranslate nohighlight">\(h_{S}(\boldsymbol{x})=0\)</span>.</p>
+<p>Nótese que si hubiéramos usado <span class="math notranslate nohighlight">\(k=1\)</span>, la regla <span class="math notranslate nohighlight">\(1\)</span>-NN habría asignado la etiqueta de <span class="math notranslate nohighlight">\(\boldsymbol{x}_{2}\)</span>, es decir, también <span class="math notranslate nohighlight">\(0\)</span>; pero con <span class="math notranslate nohighlight">\(k=5\)</span> (toda la muestra) el resultado habría sido <span class="math notranslate nohighlight">\(1\)</span> por mayoría (<span class="math notranslate nohighlight">\(3\)</span> votos frente a <span class="math notranslate nohighlight">\(2\)</span>). Este contraste ilustra por qué la elección de <span class="math notranslate nohighlight">\(k\)</span> puede cambiar la predicción incluso en ejemplos pequeños.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Definimos el conjunto de entrenamiento como un arreglo de coordenadas (x1, x2)</span>
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">6.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">7.0</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">]])</span>
+
+<span class="c1"># Definimos las etiquetas correspondientes a cada punto de entrenamiento</span>
+<span class="n">y_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+
+<span class="c1"># Definimos el punto de prueba que queremos clasificar</span>
+<span class="n">x_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">])</span>
+
+<span class="c1"># Calculamos la distancia euclidiana entre el punto de prueba y cada punto de entrenamiento</span>
+<span class="n">distances</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">X_train</span> <span class="o">-</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Obtenemos los indices que ordenan las distancias de menor a mayor (esto define pi_i(x))</span>
+<span class="n">order</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">distances</span><span class="p">)</span>
+
+<span class="c1"># Mostramos la tabla de distancias ya ordenadas, junto con la etiqueta de cada vecino</span>
+<span class="k">for</span> <span class="n">rank</span><span class="p">,</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">order</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Vecino #</span><span class="si">{</span><span class="n">rank</span><span class="si">}</span><span class="s2">: punto </span><span class="si">{</span><span class="n">X_train</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="si">}</span><span class="s2">, distancia = </span><span class="si">{</span><span class="n">distances</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">, etiqueta = </span><span class="si">{</span><span class="n">y_train</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Definimos el valor de k que queremos usar en la regla de votacion</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mi">3</span>
+
+<span class="c1"># Seleccionamos las etiquetas de los k vecinos mas cercanos segun el orden calculado</span>
+<span class="n">k_nearest_labels</span> <span class="o">=</span> <span class="n">y_train</span><span class="p">[</span><span class="n">order</span><span class="p">[:</span><span class="n">k</span><span class="p">]]</span>
+
+<span class="c1"># Calculamos la etiqueta mayoritaria entre los k vecinos (moda del arreglo)</span>
+<span class="n">prediction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">bincount</span><span class="p">(</span><span class="n">k_nearest_labels</span><span class="p">)</span><span class="o">.</span><span class="n">argmax</span><span class="p">()</span>
+
+<span class="c1"># Imprimimos la prediccion final del clasificador k-NN</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Prediccion k-NN (k=</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">) para x = </span><span class="si">{</span><span class="n">x_test</span><span class="si">}</span><span class="s2">: clase </span><span class="si">{</span><span class="n">prediction</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Vecino #1: punto [2. 3.], distancia = 1.00, etiqueta = 0
+Vecino #2: punto [3. 1.], distancia = 2.00, etiqueta = 1
+Vecino #3: punto [1. 2.], distancia = 2.24, etiqueta = 0
+Vecino #4: punto [6. 5.], distancia = 3.61, etiqueta = 1
+Vecino #5: punto [7. 7.], distancia = 5.66, etiqueta = 1
+
+Prediccion k-NN (k=3) para x = [3. 3.]: clase 0
+</pre></div>
+</div>
+</div>
+</div>
+<figure class="align-center" id="knn-classification-fig">
 <a class="reference internal image-reference" href="_images/knn_classification.png"><img alt="_images/knn_classification.png" src="_images/knn_classification.png" style="width: 531.9px; height: 463.5px;" />
 </a>
 <figcaption>
@@ -517,7 +674,101 @@ h_{S}(\boldsymbol{x})=\phi((\boldsymbol{x}_{\pi_{1}(\boldsymbol{x})}, y_{\pi_{1}
 h_{S}(\boldsymbol{x})=\sum_{i=1}^{k}\frac{\rho(\boldsymbol{x}, \boldsymbol{x}_{\pi_{i}(\boldsymbol{x})})}{\sum_{j=1}^{k}\rho(\boldsymbol{x}, \boldsymbol{x}_{\pi_{j}(\boldsymbol{x})})}y_{\pi_{i}(\boldsymbol{x})}.
 \]</div>
 </section>
-</div><div class="proof definition admonition" id="def_emp_error">
+</div><div class="tip admonition">
+<p class="admonition-title">Ejemplo: <span class="math notranslate nohighlight">\(k\)</span>-NN para regresión</p>
+<p>Usemos el mismo conjunto de puntos del ejemplo anterior (mismos <span class="math notranslate nohighlight">\(x_{1}, x_{2}\)</span>), pero ahora con una <strong>variable objetivo continua</strong> <span class="math notranslate nohighlight">\(y\in\mathbb{R}\)</span>:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>Punto</p></th>
+<th class="head text-center"><p><span class="math notranslate nohighlight">\(x_{1}\)</span></p></th>
+<th class="head text-center"><p><span class="math notranslate nohighlight">\(x_{2}\)</span></p></th>
+<th class="head text-center"><p><span class="math notranslate nohighlight">\(y\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(\boldsymbol{x}_{1}\)</span></p></td>
+<td class="text-center"><p>1.0</p></td>
+<td class="text-center"><p>2.0</p></td>
+<td class="text-center"><p>10.0</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(\boldsymbol{x}_{2}\)</span></p></td>
+<td class="text-center"><p>2.0</p></td>
+<td class="text-center"><p>3.0</p></td>
+<td class="text-center"><p>12.0</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(\boldsymbol{x}_{3}\)</span></p></td>
+<td class="text-center"><p>3.0</p></td>
+<td class="text-center"><p>1.0</p></td>
+<td class="text-center"><p>9.0</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(\boldsymbol{x}_{4}\)</span></p></td>
+<td class="text-center"><p>6.0</p></td>
+<td class="text-center"><p>5.0</p></td>
+<td class="text-center"><p>20.0</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(\boldsymbol{x}_{5}\)</span></p></td>
+<td class="text-center"><p>7.0</p></td>
+<td class="text-center"><p>7.0</p></td>
+<td class="text-center"><p>25.0</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Para <span class="math notranslate nohighlight">\(\boldsymbol{x}=(3.0,\,3.0)\)</span> y <span class="math notranslate nohighlight">\(k=3\)</span>, ya sabemos que los tres vecinos más cercanos son <span class="math notranslate nohighlight">\(\boldsymbol{x}_{2}, \boldsymbol{x}_{3}, \boldsymbol{x}_{1}\)</span>, con distancias <span class="math notranslate nohighlight">\(1.00, 2.00, 2.24\)</span> y objetivos <span class="math notranslate nohighlight">\(12.0, 9.0, 10.0\)</span>.</p>
+<p><strong>Regla de la media simple</strong>:</p>
+<div class="math notranslate nohighlight">
+\[
+h_{S}(\boldsymbol{x})=\frac{1}{3}(12.0+9.0+10.0)=\frac{31.0}{3}\approx10.33.
+\]</div>
+<p><strong>Regla ponderada por distancia</strong> (tal como se definió en la Ecuación <a class="reference internal" href="#equation-knn-regeq">(2.1)</a>):</p>
+<div class="math notranslate nohighlight">
+\[
+h_{S}(\boldsymbol{x})=\sum_{i=1}^{3}\frac{\rho(\boldsymbol{x},\boldsymbol{x}_{\pi_{i}(\boldsymbol{x})})}{\sum_{j=1}^{3}\rho(\boldsymbol{x},\boldsymbol{x}_{\pi_{j}(\boldsymbol{x})})}y_{\pi_{i}(\boldsymbol{x})}
+=\frac{1.00}{5.24}(12.0)+\frac{2.00}{5.24}(9.0)+\frac{2.24}{5.24}(10.0)\approx2.29+3.44+4.27=9.99.
+\]</div>
+</div>
+<div class="warning admonition">
+<p class="admonition-title">Nota sobre la ponderación por distancia</p>
+<p>Obsérvese que esta fórmula asigna <strong>mayor peso al vecino más lejano</strong> (el peso es directamente proporcional a <span class="math notranslate nohighlight">\(\rho\)</span>). En la práctica, la mayoría de las implementaciones, incluyendo <code class="docutils literal notranslate"><span class="pre">KNeighborsRegressor(weights=&quot;distance&quot;)</span></code> de <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>, hacen lo contrario: ponderan de forma <strong>inversamente proporcional</strong> a la distancia, de modo que los vecinos más cercanos dominan la predicción,</p>
+<div class="math notranslate nohighlight">
+\[
+h_{S}(\boldsymbol{x})=\sum_{i=1}^{k}\frac{1/\rho(\boldsymbol{x},\boldsymbol{x}_{\pi_{i}(\boldsymbol{x})})}{\sum_{j=1}^{k}1/\rho(\boldsymbol{x},\boldsymbol{x}_{\pi_{j}(\boldsymbol{x})})}y_{\pi_{i}(\boldsymbol{x})}.
+\]</div>
+<p>Con esta convención inversa, el ejemplo anterior arroja <span class="math notranslate nohighlight">\(h_{S}(\boldsymbol{x})\approx10.97\)</span>, mucho más cercano al valor <span class="math notranslate nohighlight">\(12.0\)</span> del vecino más próximo, tal como se esperaría intuitivamente. Vale la pena tener esta distinción presente al comparar la definición formal con la implementación de <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Reutilizamos los objetivos y distancias de los tres vecinos mas cercanos del ejemplo anterior</span>
+<span class="n">neighbor_targets</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">12.0</span><span class="p">,</span> <span class="mf">9.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">])</span>     <span class="c1"># y de x2, x3, x1 en ese orden</span>
+<span class="n">neighbor_distances</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.00</span><span class="p">,</span> <span class="mf">2.00</span><span class="p">,</span> <span class="mf">2.24</span><span class="p">])</span>  <span class="c1"># distancias correspondientes a x</span>
+
+<span class="c1"># Calculamos la prediccion por media simple (sin ponderar)</span>
+<span class="n">simple_mean</span> <span class="o">=</span> <span class="n">neighbor_targets</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+<span class="c1"># Calculamos los pesos proporcionales a la distancia (formula literal de la definicion)</span>
+<span class="n">weights_direct</span> <span class="o">=</span> <span class="n">neighbor_distances</span> <span class="o">/</span> <span class="n">neighbor_distances</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">pred_direct</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">weights_direct</span> <span class="o">*</span> <span class="n">neighbor_targets</span><span class="p">)</span>
+
+<span class="c1"># Calculamos los pesos inversamente proporcionales a la distancia (convencion estandar en la practica)</span>
+<span class="n">weights_inverse</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">neighbor_distances</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">neighbor_distances</span><span class="p">)</span>
+<span class="n">pred_inverse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">weights_inverse</span> <span class="o">*</span> <span class="n">neighbor_targets</span><span class="p">)</span>
+
+<span class="c1"># Mostramos los tres resultados para poder compararlos directamente</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Media simple:                   </span><span class="si">{</span><span class="n">simple_mean</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ponderada (peso = distancia):   </span><span class="si">{</span><span class="n">pred_direct</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ponderada (peso = 1/distancia): </span><span class="si">{</span><span class="n">pred_inverse</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Media simple:                   10.33
+Ponderada (peso = distancia):   10.00
+Ponderada (peso = 1/distancia): 10.77
+</pre></div>
+</div>
+</div>
+</div>
+<div class="proof definition admonition" id="def_emp_error">
 <p class="admonition-title"><span class="caption-number">Definition 2.3 </span> (Error empírico y verdadero revisado)</p>
 <section class="definition-content" id="proof-content">
 <ul class="simple">
@@ -554,6 +805,34 @@ f_{\mathcal{D}}(x)=
 <ul class="simple">
 <li><p>Se puede verificar que <strong>para toda distribución de probabilidad</strong> <span class="math notranslate nohighlight">\(\mathcal{D}\)</span>, <strong>el predictor óptimo de Bayes</strong> <span class="math notranslate nohighlight">\(f_{D}\)</span> <strong>es óptimo</strong>, en el sentido de que <strong>ningún otro clasificador</strong>, <span class="math notranslate nohighlight">\(g : \mathcal \rightarrow\{0, 1\}\)</span>, <strong>tiene un error menor</strong>. Es decir, para cada clasificador <span class="math notranslate nohighlight">\(g, L_{\mathcal{D}}(f_{\mathcal{D}}) \leq L_{\mathcal{D}}(g)\)</span>.</p></li>
 </ul>
+<div class="tip admonition">
+<p class="admonition-title">Ejemplo: aplicando la regla de Bayes</p>
+<p>Supongamos, únicamente con fines ilustrativos, que se conociera exactamente la probabilidad condicional <span class="math notranslate nohighlight">\(\eta(\boldsymbol{x})=\mathbb{P}[y=1\mid\boldsymbol{x}]\)</span> para tres observaciones:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>Observación</p></th>
+<th class="head text-center"><p><span class="math notranslate nohighlight">\(\eta(\boldsymbol{x})\)</span></p></th>
+<th class="head text-center"><p>Regla de Bayes <span class="math notranslate nohighlight">\(f_{\mathcal{D}}(\boldsymbol{x})\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(\boldsymbol{x}^{(a)}\)</span></p></td>
+<td class="text-center"><p>0.73</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(\mathbb{1}[0.73\geq1/2]=1\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(\boldsymbol{x}^{(b)}\)</span></p></td>
+<td class="text-center"><p>0.50</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(\mathbb{1}[0.50\geq1/2]=1\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(\boldsymbol{x}^{(c)}\)</span></p></td>
+<td class="text-center"><p>0.18</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(\mathbb{1}[0.18\geq1/2]=0\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Nótese que, aunque el predictor de Bayes es <em><strong>óptimo en promedio</strong></em> (minimiza <span class="math notranslate nohighlight">\(L_{\mathcal{D}}(f_{\mathcal{D}})\)</span>), <em><strong>no es infalible</strong></em>: para <span class="math notranslate nohighlight">\(\boldsymbol{x}^{(a)}\)</span>, con <span class="math notranslate nohighlight">\(\eta(\boldsymbol{x}^{(a)})=0.73\)</span>, seguimos teniendo una probabilidad de <span class="math notranslate nohighlight">\(0.27\)</span> de observar <span class="math notranslate nohighlight">\(y=0\)</span>. El predictor de Bayes minimiza el error esperado, pero solo lo elimina por completo en el caso determinista <span class="math notranslate nohighlight">\(\eta(\boldsymbol{x})\in\{0,1\}\)</span>.</p>
+</div>
 <div class="proof definition admonition" id="gen_loss_fun">
 <p class="admonition-title"><span class="caption-number">Definition 2.4 </span> (Funciones de pérdidas generalizadas)</p>
 <section class="definition-content" id="proof-content">
@@ -595,7 +874,47 @@ L_{S}(h):=\frac{1}{m}\sum_{i=1}^{m}\ell(h, z_{i}).
 </li>
 </ul>
 </section>
-</div><div class="proof observation admonition" id="knn_analysis">
+</div><div class="tip admonition">
+<p class="admonition-title">Ejemplo: calculando <span class="math notranslate nohighlight">\(\ell_{\text{0-1}}\)</span> y <span class="math notranslate nohighlight">\(\ell_{\text{sq}}\)</span></p>
+<p>Consideremos cuatro pares <span class="math notranslate nohighlight">\((y, h(x))\)</span> entre una etiqueta/objetivo real y una predicción:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p><span class="math notranslate nohighlight">\(y\)</span></p></th>
+<th class="head text-center"><p><span class="math notranslate nohighlight">\(h(x)\)</span></p></th>
+<th class="head text-center"><p><span class="math notranslate nohighlight">\(\ell_{\text{0-1}}(h,(x,y))\)</span></p></th>
+<th class="head text-center"><p><span class="math notranslate nohighlight">\(\ell_{\text{sq}}(h,(x,y))=(h(x)-y)^{2}\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>1</p></td>
+<td class="text-center"><p>1</p></td>
+<td class="text-center"><p>0</p></td>
+<td class="text-center"><p>0.00</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>1</p></td>
+<td class="text-center"><p>0</p></td>
+<td class="text-center"><p>1</p></td>
+<td class="text-center"><p>1.00</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>5.0</p></td>
+<td class="text-center"><p>4.2</p></td>
+<td class="text-center"><p>— (no aplica en regresión)</p></td>
+<td class="text-center"><p>0.64</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>5.0</p></td>
+<td class="text-center"><p>7.0</p></td>
+<td class="text-center"><p>—</p></td>
+<td class="text-center"><p>4.00</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul class="simple">
+<li><p>La <em><strong>pérdida 0-1</strong></em> solo tiene sentido cuando <span class="math notranslate nohighlight">\(\mathcal{Y}\)</span> es un conjunto discreto de clases: penaliza con <span class="math notranslate nohighlight">\(1\)</span> cualquier error, sin importar cuán “lejos” esté la predicción de la etiqueta correcta.</p></li>
+<li><p>La <em><strong>pérdida cuadrática</strong></em>, en cambio, sí distingue la magnitud del error: una predicción <span class="math notranslate nohighlight">\(7.0\)</span> para un objetivo real <span class="math notranslate nohighlight">\(5.0\)</span> es penalizada <strong>cuatro veces más fuerte</strong> que una predicción <span class="math notranslate nohighlight">\(4.2\)</span> para el mismo objetivo, aun cuando ambos errores parecerían “moderados” a primera vista (<span class="math notranslate nohighlight">\(|7.0-5.0|=2.0\)</span> frente a <span class="math notranslate nohighlight">\(|4.2-5.0|=0.8\)</span>). Esta sensibilidad a la magnitud es justamente lo que hace a <span class="math notranslate nohighlight">\(\ell_{\text{sq}}\)</span> apropiada para problemas de regresión.</p></li>
+</ul>
+</div>
+<div class="proof observation admonition" id="knn_analysis">
 <p class="admonition-title"><span class="caption-number">Observation 2.1 </span> (<span class="math notranslate nohighlight">\(1\)</span>-NN)</p>
 <section class="observation-content" id="proof-content">
 <ul class="simple">
@@ -625,6 +944,16 @@ h^{\star}(\boldsymbol{x})=\mathbb{1}_{\left[\eta(\boldsymbol{x})&gt;1/2\right]}.
 </ul>
 </div>
 <div class="tip admonition">
+<p class="admonition-title">Ejemplo: intuición de la <span class="math notranslate nohighlight">\(c\)</span>-Lipschitzness</p>
+<p>La condición <span class="math notranslate nohighlight">\(|\eta(\boldsymbol{x})-\eta(\boldsymbol{x}')|\leq c\|\boldsymbol{x}-\boldsymbol{x}'\|\)</span> simplemente dice que <span class="math notranslate nohighlight">\(\eta\)</span> <strong>no puede cambiar más rápido que una tasa</strong> <span class="math notranslate nohighlight">\(c\)</span> <strong>por unidad de distancia</strong>.</p>
+<p>Por ejemplo, si <span class="math notranslate nohighlight">\(c=2\)</span> y dos observaciones están separadas por <span class="math notranslate nohighlight">\(\|\boldsymbol{x}-\boldsymbol{x}'\|=0.05\)</span> (muy cercanas), la diferencia entre sus probabilidades condicionales está garantizada a ser, como máximo,</p>
+<div class="math notranslate nohighlight">
+\[
+|\eta(\boldsymbol{x})-\eta(\boldsymbol{x}')|\leq2\times0.05=0.10.
+\]</div>
+<p>Es decir, si <span class="math notranslate nohighlight">\(\eta(\boldsymbol{x})=0.80\)</span> (una observación claramente de clase 1), entonces <span class="math notranslate nohighlight">\(\eta(\boldsymbol{x}')\)</span> no puede ser menor que <span class="math notranslate nohighlight">\(0.70\)</span>: <strong>las etiquetas de puntos cercanos no pueden ser radicalmente distintas</strong>. Esta es precisamente la propiedad estructural que hace razonable el uso de <span class="math notranslate nohighlight">\(k\)</span>-NN: si <span class="math notranslate nohighlight">\(\eta\)</span> variara de forma arbitrariamente abrupta (sin cota de Lipschitz), un vecino cercano a <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> no aportaría ninguna información sobre la etiqueta de <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span>, y el algoritmo dejaría de tener sentido.</p>
+</div>
+<div class="tip admonition">
 <p class="admonition-title">Nota</p>
 <p>El siguiente Lema aplica la <strong>Lipschitzness</strong> de la función de <strong>probabilidad condicional</strong> para acotar el <strong>error verdadero</strong> de la regla <strong>1-NN</strong> en función de la distancia entre cada <strong>instancia de prueba</strong> y su <strong>vecino más cercano en el conjunto de entrenamiento</strong>.</p>
 </div>
@@ -637,7 +966,17 @@ h^{\star}(\boldsymbol{x})=\mathbb{1}_{\left[\eta(\boldsymbol{x})&gt;1/2\right]}.
 \underset{S\sim\mathcal{D}^{m}}{\mathbb{E}}[L_{\mathcal{D}}(h_{S})]\leq 2 L_{\mathcal{D}}(h^{\star})+c\underset{S\sim\mathcal{D}^{m}, \boldsymbol{x}\sim\mathcal{D}}{\mathbb{E}}[\|\boldsymbol{x}-\boldsymbol{x}_{\pi_{1}(\boldsymbol{x})}\|].
 \]</div>
 </section>
-</div><p><strong><code class="docutils literal notranslate"><span class="pre">Demostración</span></code></strong></p>
+</div><div class="note admonition">
+<p class="admonition-title">Hoja de ruta de la demostración</p>
+<p>Antes de entrar en el detalle algebraico, conviene tener claro <strong>el plan de ataque</strong> de esta demostración, que consta de tres grandes pasos:</p>
+<ol class="arabic simple">
+<li><p><strong>Reescribir el error esperado como una probabilidad de desacuerdo</strong> entre la etiqueta de <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> y la etiqueta de su vecino más cercano <span class="math notranslate nohighlight">\(\boldsymbol{x}_{\pi_{1}(\boldsymbol{x})}\)</span> (Paso <span class="math notranslate nohighlight">\((\star)\)</span>).</p></li>
+<li><p><strong>Acotar esa probabilidad de desacuerdo</strong> usando únicamente la Lipschitzness de <span class="math notranslate nohighlight">\(\eta\)</span>, obteniendo una expresión que depende de <span class="math notranslate nohighlight">\(\eta(\boldsymbol{x})(1-\eta(\boldsymbol{x}))\)</span> (relacionado con el error de Bayes) y de la distancia <span class="math notranslate nohighlight">\(\|\boldsymbol{x}-\boldsymbol{x}'\|\)</span>.</p></li>
+<li><p><strong>Relacionar el primer término con el error de Bayes</strong>, <span class="math notranslate nohighlight">\(L_{\mathcal{D}}(h^{\star})\)</span>, usando la desigualdad <span class="math notranslate nohighlight">\(2t(1-t)\leq2\min\{t,1-t\}\)</span>.</p></li>
+</ol>
+<p>El resultado final combina información <em><strong>estadística</strong></em> (qué tan bueno puede ser cualquier clasificador dado <span class="math notranslate nohighlight">\(\eta\)</span>) con información <em><strong>geométrica</strong></em> (qué tan cerca está, en promedio, un punto de su vecino más próximo).</p>
+</div>
+<p><strong><code class="docutils literal notranslate"><span class="pre">Demostración</span></code></strong></p>
 <ul class="simple">
 <li><p>Dado que <span class="math notranslate nohighlight">\(L_{\mathcal{D}}(h_{S}):=\mathbb{E}_{(\boldsymbol{x}, y)\sim\mathcal{D}}(\ell(h, (\boldsymbol{x}, y)))=\mathbb{E}_{(\boldsymbol{x}, y)\sim\mathcal{D}}(\mathbb{1}_{[h(\boldsymbol{x})\neq y]})\)</span>, entonces <span class="math notranslate nohighlight">\(\mathbb{E}(L_{\mathcal{D}}(h_{S})))\)</span> es la <strong>probabilidad de muestrear un conjunto de entrenamiento</strong> <span class="math notranslate nohighlight">\(S\)</span> y un <strong>ejemplo adicional</strong> <span class="math notranslate nohighlight">\((\boldsymbol{x}, y)\)</span> tal que, la etiqueta de <span class="math notranslate nohighlight">\(\boldsymbol{x}_{\pi_{1}(\boldsymbol{x})}\)</span> es diferente de <span class="math notranslate nohighlight">\(y\)</span>.</p></li>
 </ul>
@@ -741,7 +1080,65 @@ h^{\star}(\boldsymbol{x})=\mathbb{1}_{\left[\eta(\boldsymbol{x})&gt;1/2\right]}.
 \mathbb{E}_{S\sim\mathcal{D}^{m}}\left(\sum_{i:C_{i}\cap S=\emptyset}\mathbb{P}(C_{i})\right)\leq\frac{r}{me}.
 \]</div>
 </section>
-</div><p><strong><code class="docutils literal notranslate"><span class="pre">Demostración</span></code></strong></p>
+</div><div class="tip admonition">
+<p class="admonition-title">Ejemplo: verificación con una simulación</p>
+<p>Antes de ver la demostración formal, ganemos intuición numérica. Consideremos <span class="math notranslate nohighlight">\(r=4\)</span> subconjuntos disjuntos <span class="math notranslate nohighlight">\(C_{1}, C_{2}, C_{3}, C_{4}\)</span>, cada uno con probabilidad <span class="math notranslate nohighlight">\(\mathbb{P}(C_{i})=1/4\)</span> (por ejemplo, los cuatro cuadrantes de un cuadrado unitario), y tomemos <span class="math notranslate nohighlight">\(m=10\)</span> puntos muestreados de forma independiente.</p>
+<p>El Lema garantiza que, <strong>en promedio sobre las muestras</strong>, la probabilidad total acumulada de los subconjuntos que “quedan vacíos” (ningún punto muestreado cae en ellos) está acotada por</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{r}{me}=\frac{4}{10\times e}\approx0.147.
+\]</div>
+<p>Es decir, se espera que a lo sumo alrededor del <span class="math notranslate nohighlight">\(14.7\%\)</span> del espacio total quede sin representación en la muestra. La siguiente simulación de Monte Carlo confirma esta cota empíricamente.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fijamos una semilla para que la simulacion sea reproducible</span>
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># Definimos el numero de subconjuntos (celdas) y su probabilidad (uniforme en este ejemplo)</span>
+<span class="n">r</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">cell_probs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">r</span><span class="p">)</span>
+
+<span class="c1"># Definimos el tamano de muestra m, tal como en el ejemplo teorico</span>
+<span class="n">m</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="c1"># Definimos el numero de repeticiones de la simulacion para promediar resultados</span>
+<span class="n">n_simulations</span> <span class="o">=</span> <span class="mi">200_000</span>
+
+<span class="c1"># Creamos un arreglo para guardar la &quot;masa no cubierta&quot; de cada simulacion</span>
+<span class="n">uncovered_mass</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">n_simulations</span><span class="p">)</span>
+
+<span class="c1"># Repetimos el experimento n_simulations veces</span>
+<span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_simulations</span><span class="p">):</span>
+    <span class="c1"># Muestreamos m celdas (cada punto cae en una celda segun sus probabilidades)</span>
+    <span class="n">draws</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">m</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">cell_probs</span><span class="p">)</span>
+    <span class="c1"># Identificamos que celdas NO fueron visitadas por ningun punto de la muestra</span>
+    <span class="n">empty_cells</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">draws</span><span class="p">]</span>
+    <span class="c1"># Sumamos la probabilidad de las celdas vacias para esta simulacion</span>
+    <span class="n">uncovered_mass</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="n">cell_probs</span><span class="p">[</span><span class="n">empty_cells</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+<span class="c1"># Calculamos el promedio empirico de la masa no cubierta sobre todas las simulaciones</span>
+<span class="n">empirical_bound</span> <span class="o">=</span> <span class="n">uncovered_mass</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+<span class="c1"># Calculamos la cota teorica dada por el Lema: r / (m * e)</span>
+<span class="n">theoretical_bound</span> <span class="o">=</span> <span class="n">r</span> <span class="o">/</span> <span class="p">(</span><span class="n">m</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">e</span><span class="p">)</span>
+
+<span class="c1"># Comparamos ambos valores</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Promedio empirico de masa no cubierta: </span><span class="si">{</span><span class="n">empirical_bound</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cota teorica r/(me):                   </span><span class="si">{</span><span class="n">theoretical_bound</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;El promedio empirico SI respeta la cota: </span><span class="si">{</span><span class="n">empirical_bound</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">theoretical_bound</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Promedio empirico de masa no cubierta: 0.0563
+Cota teorica r/(me):                   0.1472
+El promedio empirico SI respeta la cota: True
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong><code class="docutils literal notranslate"><span class="pre">Demostración</span></code></strong></p>
 <ul class="simple">
 <li><p>Por <strong>linealidad del valor esperado</strong> se tiene que:</p></li>
 </ul>
@@ -805,11 +1202,131 @@ h^{\star}(\boldsymbol{x})=\mathbb{1}_{\left[\eta(\boldsymbol{x})&gt;1/2\right]}.
 \mathbb{E}_{S\sim\mathcal{D}^{m}}(L_{\mathcal{D}}(h_{S}))\leq 2 L_{\mathcal{D}}(h^{\star})+4 c\sqrt{d} m^{-1/(d+1)}.
 \]</div>
 </section>
-</div><p><strong><code class="docutils literal notranslate"><span class="pre">Demostración</span></code></strong></p>
+</div><div class="tip admonition">
+<p class="admonition-title">Visualizando la cot</p>
+<p>Antes de demostrar el teorema, visualicemos su implicación práctica. La cota</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbb{E}_{S}[L_{\mathcal{D}}(h_{S})]\leq2L_{\mathcal{D}}(h^{\star})+4c\sqrt{d}\,m^{-1/(d+1)}
+\]</div>
+<p>muestra que, para alcanzar un exceso de error fijo sobre <span class="math notranslate nohighlight">\(2L_{\mathcal{D}}(h^{\star})\)</span>, el <strong>tamaño de muestra necesario crece muy rápidamente con la dimensión</strong> <span class="math notranslate nohighlight">\(d\)</span> (el exponente <span class="math notranslate nohighlight">\(-1/(d+1)\)</span> se acerca a cero a medida que <span class="math notranslate nohighlight">\(d\)</span> crece). Esta es una manifestación concreta de la <strong>maldición de la dimensionalidad</strong>, un fenómeno central para entender las limitaciones prácticas de <span class="math notranslate nohighlight">\(k\)</span>-NN en problemas de alta dimensión.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Importamos matplotlib para generar la visualizacion</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="c1"># Definimos un rango de tamanos de muestra m, en escala logaritmica para cubrir varios ordenes de magnitud</span>
+<span class="n">m_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+
+<span class="c1"># Fijamos una constante de Lipschitz c y un error de Bayes L*(h*) de referencia (valores ilustrativos)</span>
+<span class="n">c</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">bayes_error</span> <span class="o">=</span> <span class="mf">0.05</span>
+
+<span class="c1"># Definimos las dimensiones que queremos comparar en el grafico</span>
+<span class="n">dimensions</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">]</span>
+
+<span class="c1"># Creamos la figura donde se dibujaran las curvas</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="c1"># Para cada dimension, calculamos y graficamos la cota del teorema en funcion de m</span>
+<span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">dimensions</span><span class="p">:</span>
+    <span class="n">bound</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">bayes_error</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">c</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="o">*</span> <span class="n">m_values</span> <span class="o">**</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="n">d</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">m_values</span><span class="p">,</span> <span class="n">bound</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;d = </span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Usamos escala logaritmica en el eje x para apreciar el comportamiento en varios ordenes de magnitud</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xscale</span><span class="p">(</span><span class="s2">&quot;log&quot;</span><span class="p">)</span>
+
+<span class="c1"># Anadimos etiquetas y titulo (en ingles, siguiendo la convencion del curso para figuras generadas)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Training sample size (m), log scale&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Upper bound on expected 1-NN risk&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Generalization bound of the 1-NN rule vs. sample size, by dimension&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Dimension&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s2">&quot;both&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/cc8042f667c455329282e0d3fdc05cd75a0eca706b167711310961b3e677114e.png" src="_images/cc8042f667c455329282e0d3fdc05cd75a0eca706b167711310961b3e677114e.png" />
+</div>
+</div>
+<p><strong><code class="docutils literal notranslate"><span class="pre">Demostración</span></code></strong></p>
 <figure class="align-center" id="box-neigh-knn-fig">
 <a class="reference internal image-reference" href="_images/box_neigh_knn.png"><img alt="_images/box_neigh_knn.png" src="_images/box_neigh_knn.png" style="width: 227.70000000000002px; height: 234.9px;" />
 </a>
 </figure>
+<ul class="simple">
+<li><p>Para hacer tangible la construcción geométrica que sigue, visualicemos el argumento con <span class="math notranslate nohighlight">\(d=2\)</span> y <span class="math notranslate nohighlight">\(T=4\)</span> (es decir, <span class="math notranslate nohighlight">\(\varepsilon=1/4\)</span> y <span class="math notranslate nohighlight">\(r=T^{d}=16\)</span> cajas cuadradas), junto con una muestra aleatoria de <span class="math notranslate nohighlight">\(m=12\)</span> puntos.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fijamos una semilla para reproducibilidad</span>
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+
+<span class="c1"># Definimos el numero de divisiones por eje (T) y el tamano de muestra (m)</span>
+<span class="n">T</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">m</span> <span class="o">=</span> <span class="mi">12</span>
+
+<span class="c1"># Calculamos el ancho de cada caja, epsilon = 1/T</span>
+<span class="n">epsilon</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">T</span>
+
+<span class="c1"># Generamos m puntos aleatorios distribuidos uniformemente en el cuadrado unitario [0,1]^2</span>
+<span class="n">sample_points</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+
+<span class="c1"># Creamos la figura sobre la cual dibujaremos la cuadricula</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="c1"># Dibujamos las lineas de la cuadricula que forman las T x T cajas</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">T</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">i</span> <span class="o">*</span> <span class="n">epsilon</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">i</span> <span class="o">*</span> <span class="n">epsilon</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+
+<span class="c1"># Determinamos, para cada caja, si contiene al menos un punto muestreado (caja &quot;ocupada&quot;) o no (caja &quot;vacia&quot;)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="p">):</span>
+        <span class="c1"># Definimos los limites de la caja actual</span>
+        <span class="n">x_lo</span><span class="p">,</span> <span class="n">x_hi</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="n">epsilon</span><span class="p">,</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">epsilon</span>
+        <span class="n">y_lo</span><span class="p">,</span> <span class="n">y_hi</span> <span class="o">=</span> <span class="n">j</span> <span class="o">*</span> <span class="n">epsilon</span><span class="p">,</span> <span class="p">(</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">epsilon</span>
+        <span class="c1"># Verificamos si algun punto muestreado cae dentro de esta caja</span>
+        <span class="n">in_box</span> <span class="o">=</span> <span class="p">((</span><span class="n">sample_points</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">x_lo</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">sample_points</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">x_hi</span><span class="p">)</span> <span class="o">&amp;</span>
+                   <span class="p">(</span><span class="n">sample_points</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">y_lo</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">sample_points</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">y_hi</span><span class="p">))</span>
+        <span class="c1"># Coloreamos la caja segun si esta ocupada (verde) o vacia (rojo)</span>
+        <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;#cdeccd&quot;</span> <span class="k">if</span> <span class="n">in_box</span><span class="o">.</span><span class="n">any</span><span class="p">()</span> <span class="k">else</span> <span class="s2">&quot;#f5cccc&quot;</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">((</span><span class="n">x_lo</span><span class="p">,</span> <span class="n">y_lo</span><span class="p">),</span> <span class="n">epsilon</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">))</span>
+
+<span class="c1"># Dibujamos los puntos muestreados sobre la cuadricula</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">sample_points</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">sample_points</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Sampled points&quot;</span><span class="p">)</span>
+
+<span class="c1"># Ajustamos limites, titulo, etiquetas y leyenda de la figura</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s2">&quot;equal&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Grid partition of [0,1]^2 into boxes of side epsilon = 1/</span><span class="si">{</span><span class="n">T</span><span class="si">}</span><span class="s2"> (green = occupied, red = empty)&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;x1&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;x2&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;upper right&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Contamos cuantas cajas quedaron vacias en esta muestra particular</span>
+<span class="n">empty_count</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span>
+    <span class="mi">1</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="p">)</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="p">((</span><span class="n">sample_points</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">i</span> <span class="o">*</span> <span class="n">epsilon</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">sample_points</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">epsilon</span><span class="p">)</span> <span class="o">&amp;</span>
+            <span class="p">(</span><span class="n">sample_points</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">j</span> <span class="o">*</span> <span class="n">epsilon</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">sample_points</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="p">(</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">epsilon</span><span class="p">))</span><span class="o">.</span><span class="n">any</span><span class="p">()</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cajas totales: </span><span class="si">{</span><span class="n">T</span><span class="o">*</span><span class="n">T</span><span class="si">}</span><span class="s2">, cajas vacias en esta muestra: </span><span class="si">{</span><span class="n">empty_count</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/d7bc7373479017627701bd4d15ccce6afbc881e58affc2b50265a5e17a4b0837.png" src="_images/d7bc7373479017627701bd4d15ccce6afbc881e58affc2b50265a5e17a4b0837.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Cajas totales: 16, cajas vacias en esta muestra: 6
+</pre></div>
+</div>
+</div>
+</div>
 <ul class="simple">
 <li><p>Fijemos <span class="math notranslate nohighlight">\(\varepsilon=1/T\)</span>, para algún entero <span class="math notranslate nohighlight">\(T\)</span>, sea <span class="math notranslate nohighlight">\(r=T^{d}\)</span>, y sea <span class="math notranslate nohighlight">\(C_{1}, C_{2}, \dots, C_{m}\)</span> un <strong>cubrimiento del conjunto</strong> <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> usando <strong>cajas de longitud</strong> <span class="math notranslate nohighlight">\(\varepsilon\)</span>. Es decir, para cada <span class="math notranslate nohighlight">\((\alpha_{1}, \alpha_{2},\dots,\alpha_{d})\in [T]^{d}\)</span>, existe un conjunto <span class="math notranslate nohighlight">\(C_{i}\)</span> de la forma</p></li>
 </ul>
@@ -883,7 +1400,49 @@ h^{\star}(\boldsymbol{x})=\mathbb{1}_{\left[\eta(\boldsymbol{x})&gt;1/2\right]}.
 <section class="observation-content" id="proof-content">
 <p>El Teorema implica que si <strong>primero fijamos la distribución generadora de datos y luego hacemos tender</strong> <span class="math notranslate nohighlight">\(m\)</span> <strong>a infinito</strong>, entonces <strong>el error de la regla</strong> <span class="math notranslate nohighlight">\(1\)</span>-NN <strong>converge al doble del error de Bayes</strong>. El análisis puede generalizarse a valores mayores que <span class="math notranslate nohighlight">\(k\)</span>, demostrando que el error esperado de la regla <span class="math notranslate nohighlight">\(k\)</span>-NN converge a <span class="math notranslate nohighlight">\((1+\sqrt{8/k})\)</span> veces el error del <strong>clasificador de Bayes</strong>.</p>
 </section>
-</div></section>
+</div><div class="tip admonition">
+<p class="admonition-title">Resumen visual: el factor <span class="math notranslate nohighlight">\(\left(1+\sqrt{8/k}\right)\)</span></p>
+<p>La observación anterior generaliza el resultado a un <span class="math notranslate nohighlight">\(k\)</span> arbitrario: el error esperado de la regla <span class="math notranslate nohighlight">\(k\)</span>-NN converge a <span class="math notranslate nohighlight">\(\left(1+\sqrt{8/k}\right)L_{\mathcal{D}}(h^{\star})\)</span>. La siguiente gráfica muestra cómo este factor multiplicativo disminuye rápidamente al aumentar <span class="math notranslate nohighlight">\(k\)</span>, acercándose cada vez más al error óptimo de Bayes (factor <span class="math notranslate nohighlight">\(1\)</span>), aunque nunca llega a igualarlo para <span class="math notranslate nohighlight">\(k\)</span> finito.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Definimos un rango de valores de k a considerar</span>
+<span class="n">k_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">51</span><span class="p">)</span>
+
+<span class="c1"># Calculamos el factor multiplicativo (1 + sqrt(8/k)) para cada valor de k</span>
+<span class="n">factor</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">8</span> <span class="o">/</span> <span class="n">k_values</span><span class="p">)</span>
+
+<span class="c1"># Graficamos el factor en funcion de k</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">k_values</span><span class="p">,</span> <span class="n">factor</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#2b6cb0&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Bayes-optimal reference (factor = 1)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;k (number of neighbors)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Multiplicative factor over Bayes error&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Asymptotic excess risk factor of the k-NN rule as a function of k&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Imprimimos algunos valores puntuales de referencia rapida</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">50</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;k = </span><span class="si">{</span><span class="n">k</span><span class="si">:</span><span class="s2">&gt;2</span><span class="si">}</span><span class="s2">: factor = </span><span class="si">{</span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">8</span><span class="o">/</span><span class="n">k</span><span class="p">)</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/f336a80800d685b9e39de211237718a780388a82a794890aa060b93d7324e46d.png" src="_images/f336a80800d685b9e39de211237718a780388a82a794890aa060b93d7324e46d.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>k =  1: factor = 3.828
+k =  3: factor = 2.633
+k =  5: factor = 2.265
+k = 10: factor = 1.894
+k = 25: factor = 1.566
+k = 50: factor = 1.400
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 <section id="ejercicios">
 <h2><span class="section-number">2.2. </span>Ejercicios<a class="headerlink" href="#ejercicios" title="Link to this heading">#</a></h2>
 <ul class="simple">
@@ -1093,7 +1652,7 @@ h(\delta) = (1+\delta) \log(1+\delta) - \delta.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/5a3a1f5062e35b9e59ce9391cc645e570ac82d1414453b8fc7ea525c05d30490.png" src="_images/5a3a1f5062e35b9e59ce9391cc645e570ac82d1414453b8fc7ea525c05d30490.png" />
+<img alt="_images/4592bcabc4b5f1b5edaafbbdb82622b7bda715b24af62ae2ad2f76cb555cbc0b.png" src="_images/4592bcabc4b5f1b5edaafbbdb82622b7bda715b24af62ae2ad2f76cb555cbc0b.png" />
 </div>
 </div>
 <ul class="simple">
@@ -1107,7 +1666,7 @@ h(\delta) = (1+\delta) \log(1+\delta) - \delta.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ed29bd9c93777ab339e4c3f5230d98ba62a621f2efbc3c24fabeab2100296064.png" src="_images/ed29bd9c93777ab339e4c3f5230d98ba62a621f2efbc3c24fabeab2100296064.png" />
+<img alt="_images/32374718000466572c6f058c692294ff814a3b0c7517fac20c520f5d927ef631.png" src="_images/32374718000466572c6f058c692294ff814a3b0c7517fac20c520f5d927ef631.png" />
 </div>
 </div>
 <ul class="simple">
@@ -1144,7 +1703,7 @@ h(\delta) = (1+\delta) \log(1+\delta) - \delta.
 
 <span class="n">neighbors_settings</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">21</span><span class="p">)</span>
 
-<span class="c1"># MÉTODO A — Loop manual + cross_val_score (roc_auc)</span>
+<span class="c1"># MÉTODO A: Loop manual + cross_val_score (roc_auc)</span>
 <span class="n">train_accuracy</span><span class="p">,</span> <span class="n">test_accuracy</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
 <span class="n">train_auc</span><span class="p">,</span> <span class="n">test_auc</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
 <span class="n">cv_auc_scores</span> <span class="o">=</span> <span class="p">[]</span>
@@ -1168,7 +1727,7 @@ h(\delta) = (1+\delta) \log(1+\delta) - \delta.
 
 <span class="n">best_k_manual</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">neighbors_settings</span><span class="p">)[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">cv_auc_scores</span><span class="p">)]</span>
 
-<span class="c1"># MÉTODO B — GridSearchCV (roc_auc)</span>
+<span class="c1"># MÉTODO B: GridSearchCV (roc_auc)</span>
 <span class="n">pipe_grid</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([</span>
     <span class="p">(</span><span class="s2">&quot;scaler&quot;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">()),</span>
     <span class="p">(</span><span class="s2">&quot;knn&quot;</span><span class="p">,</span> <span class="n">KNeighborsClassifier</span><span class="p">())</span>
@@ -1191,13 +1750,13 @@ h(\delta) = (1+\delta) \log(1+\delta) - \delta.
 
 <span class="c1"># Comparación</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">56</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mejor k — Manual loop : </span><span class="si">{</span><span class="n">best_k_manual</span><span class="si">}</span><span class="s2"> (CV AUC: </span><span class="si">{</span><span class="nb">max</span><span class="p">(</span><span class="n">cv_auc_scores</span><span class="p">)</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mejor k — GridSearchCV: </span><span class="si">{</span><span class="n">best_k_grid</span><span class="si">}</span><span class="s2"> (CV AUC: </span><span class="si">{</span><span class="n">grid_search</span><span class="o">.</span><span class="n">best_score_</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mejor k: Manual loop : </span><span class="si">{</span><span class="n">best_k_manual</span><span class="si">}</span><span class="s2"> (CV AUC: </span><span class="si">{</span><span class="nb">max</span><span class="p">(</span><span class="n">cv_auc_scores</span><span class="p">)</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mejor k: GridSearchCV: </span><span class="si">{</span><span class="n">best_k_grid</span><span class="si">}</span><span class="s2"> (CV AUC: </span><span class="si">{</span><span class="n">grid_search</span><span class="o">.</span><span class="n">best_score_</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">56</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;¿CV AUC scores idénticos? </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">cv_auc_scores</span><span class="p">,</span><span class="w"> </span><span class="n">cv_auc_grid</span><span class="p">,</span><span class="w"> </span><span class="n">atol</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">56</span><span class="p">)</span>
 
-<span class="c1"># Figura 1 — Accuracy vs AUC</span>
+<span class="c1"># Figura 1: Accuracy vs AUC</span>
 <span class="n">matplotlib</span><span class="o">.</span><span class="n">rc_file_defaults</span><span class="p">()</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 
@@ -1244,7 +1803,7 @@ h(\delta) = (1+\delta) \log(1+\delta) - \delta.
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
-<span class="c1"># Figura 3 — ROC y matriz de confusión</span>
+<span class="c1"># Figura 3: ROC y matriz de confusión</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 
 <span class="n">RocCurveDisplay</span><span class="o">.</span><span class="n">from_estimator</span><span class="p">(</span>
@@ -1294,9 +1853,9 @@ Mejor k — GridSearchCV: 10 (CV AUC: 0.993292)
 ========================================================
 </pre></div>
 </div>
-<img alt="_images/459bc5b40619dc08171baec3419fc2d007fb069fb9adf1b4e25233d92d8583df.png" src="_images/459bc5b40619dc08171baec3419fc2d007fb069fb9adf1b4e25233d92d8583df.png" />
-<img alt="_images/90bc4bf71703b77569dc03d2bb2da2fb18601edf0e39082cc077878cfca4b911.png" src="_images/90bc4bf71703b77569dc03d2bb2da2fb18601edf0e39082cc077878cfca4b911.png" />
-<img alt="_images/0314f1dbb0ee54cceebb673a2a88c8815a79647da3c32e1ae974085ddf66d2ea.png" src="_images/0314f1dbb0ee54cceebb673a2a88c8815a79647da3c32e1ae974085ddf66d2ea.png" />
+<img alt="_images/c8bfffd0b783667576c462b22be16c74239e6364c1b9b7a82c13b969f633e3fc.png" src="_images/c8bfffd0b783667576c462b22be16c74239e6364c1b9b7a82c13b969f633e3fc.png" />
+<img alt="_images/8b8485e44616339d2ec03c21d41dff0ca19dad286e05d703ec99e1b849a5a80a.png" src="_images/8b8485e44616339d2ec03c21d41dff0ca19dad286e05d703ec99e1b849a5a80a.png" />
+<img alt="_images/a8592aa3c88273d89e235349d39beb34d23bc18bb7e759220081a0e8ca1bbf45.png" src="_images/a8592aa3c88273d89e235349d39beb34d23bc18bb7e759220081a0e8ca1bbf45.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Reporte final — k=10 | Test ROC-AUC: 0.9810
               precision    recall  f1-score   support
 
@@ -1407,7 +1966,7 @@ weighted avg       0.97      0.96      0.96       114
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/189e7b5727d6c0ef450ef2bb0b5eebd5f46c98a37501d31247342a2b8c194db3.png" src="_images/189e7b5727d6c0ef450ef2bb0b5eebd5f46c98a37501d31247342a2b8c194db3.png" />
+<img alt="_images/545a1106841803a5aa9f16288d08269404c02d0bcdcf7dc4d1793a2773502d24.png" src="_images/545a1106841803a5aa9f16288d08269404c02d0bcdcf7dc4d1793a2773502d24.png" />
 </div>
 </div>
 <ul class="simple">
@@ -1452,7 +2011,7 @@ weighted avg       0.97      0.96      0.96       114
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;malignant&#39;, &#39;benign&#39;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[np.str_(&#39;malignant&#39;), np.str_(&#39;benign&#39;)]
 </pre></div>
 </div>
 </div>
@@ -1464,36 +2023,36 @@ weighted avg       0.97      0.96      0.96       114
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;mean radius&#39;,
- &#39;mean texture&#39;,
- &#39;mean perimeter&#39;,
- &#39;mean area&#39;,
- &#39;mean smoothness&#39;,
- &#39;mean compactness&#39;,
- &#39;mean concavity&#39;,
- &#39;mean concave points&#39;,
- &#39;mean symmetry&#39;,
- &#39;mean fractal dimension&#39;,
- &#39;radius error&#39;,
- &#39;texture error&#39;,
- &#39;perimeter error&#39;,
- &#39;area error&#39;,
- &#39;smoothness error&#39;,
- &#39;compactness error&#39;,
- &#39;concavity error&#39;,
- &#39;concave points error&#39;,
- &#39;symmetry error&#39;,
- &#39;fractal dimension error&#39;,
- &#39;worst radius&#39;,
- &#39;worst texture&#39;,
- &#39;worst perimeter&#39;,
- &#39;worst area&#39;,
- &#39;worst smoothness&#39;,
- &#39;worst compactness&#39;,
- &#39;worst concavity&#39;,
- &#39;worst concave points&#39;,
- &#39;worst symmetry&#39;,
- &#39;worst fractal dimension&#39;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[np.str_(&#39;mean radius&#39;),
+ np.str_(&#39;mean texture&#39;),
+ np.str_(&#39;mean perimeter&#39;),
+ np.str_(&#39;mean area&#39;),
+ np.str_(&#39;mean smoothness&#39;),
+ np.str_(&#39;mean compactness&#39;),
+ np.str_(&#39;mean concavity&#39;),
+ np.str_(&#39;mean concave points&#39;),
+ np.str_(&#39;mean symmetry&#39;),
+ np.str_(&#39;mean fractal dimension&#39;),
+ np.str_(&#39;radius error&#39;),
+ np.str_(&#39;texture error&#39;),
+ np.str_(&#39;perimeter error&#39;),
+ np.str_(&#39;area error&#39;),
+ np.str_(&#39;smoothness error&#39;),
+ np.str_(&#39;compactness error&#39;),
+ np.str_(&#39;concavity error&#39;),
+ np.str_(&#39;concave points error&#39;),
+ np.str_(&#39;symmetry error&#39;),
+ np.str_(&#39;fractal dimension error&#39;),
+ np.str_(&#39;worst radius&#39;),
+ np.str_(&#39;worst texture&#39;),
+ np.str_(&#39;worst perimeter&#39;),
+ np.str_(&#39;worst area&#39;),
+ np.str_(&#39;worst smoothness&#39;),
+ np.str_(&#39;worst compactness&#39;),
+ np.str_(&#39;worst concavity&#39;),
+ np.str_(&#39;worst concave points&#39;),
+ np.str_(&#39;worst symmetry&#39;),
+ np.str_(&#39;worst fractal dimension&#39;)]
 </pre></div>
 </div>
 </div>
@@ -1589,122 +2148,122 @@ weighted avg       0.97      0.96      0.96       114
     <tr>
       <th>0</th>
       <td>0</td>
-      <td>17.99</td>
-      <td>10.38</td>
-      <td>122.80</td>
-      <td>1001.0</td>
-      <td>0.11840</td>
-      <td>0.27760</td>
+      <td>17.9900</td>
+      <td>10.3800</td>
+      <td>122.8000</td>
+      <td>1001.0000</td>
+      <td>0.1184</td>
+      <td>0.2776</td>
       <td>0.3001</td>
-      <td>0.14710</td>
+      <td>0.1471</td>
       <td>0.2419</td>
       <td>...</td>
-      <td>25.38</td>
-      <td>17.33</td>
-      <td>184.60</td>
-      <td>2019.0</td>
+      <td>25.3800</td>
+      <td>17.3300</td>
+      <td>184.6000</td>
+      <td>2019.0000</td>
       <td>0.1622</td>
       <td>0.6656</td>
       <td>0.7119</td>
       <td>0.2654</td>
       <td>0.4601</td>
-      <td>0.11890</td>
+      <td>0.1189</td>
     </tr>
     <tr>
       <th>1</th>
       <td>0</td>
-      <td>20.57</td>
-      <td>17.77</td>
-      <td>132.90</td>
-      <td>1326.0</td>
-      <td>0.08474</td>
-      <td>0.07864</td>
+      <td>20.5700</td>
+      <td>17.7700</td>
+      <td>132.9000</td>
+      <td>1326.0000</td>
+      <td>0.0847</td>
+      <td>0.0786</td>
       <td>0.0869</td>
-      <td>0.07017</td>
+      <td>0.0702</td>
       <td>0.1812</td>
       <td>...</td>
-      <td>24.99</td>
-      <td>23.41</td>
-      <td>158.80</td>
-      <td>1956.0</td>
+      <td>24.9900</td>
+      <td>23.4100</td>
+      <td>158.8000</td>
+      <td>1956.0000</td>
       <td>0.1238</td>
       <td>0.1866</td>
       <td>0.2416</td>
       <td>0.1860</td>
       <td>0.2750</td>
-      <td>0.08902</td>
+      <td>0.0890</td>
     </tr>
     <tr>
       <th>2</th>
       <td>0</td>
-      <td>19.69</td>
-      <td>21.25</td>
-      <td>130.00</td>
-      <td>1203.0</td>
-      <td>0.10960</td>
-      <td>0.15990</td>
+      <td>19.6900</td>
+      <td>21.2500</td>
+      <td>130.0000</td>
+      <td>1203.0000</td>
+      <td>0.1096</td>
+      <td>0.1599</td>
       <td>0.1974</td>
-      <td>0.12790</td>
+      <td>0.1279</td>
       <td>0.2069</td>
       <td>...</td>
-      <td>23.57</td>
-      <td>25.53</td>
-      <td>152.50</td>
-      <td>1709.0</td>
+      <td>23.5700</td>
+      <td>25.5300</td>
+      <td>152.5000</td>
+      <td>1709.0000</td>
       <td>0.1444</td>
       <td>0.4245</td>
       <td>0.4504</td>
       <td>0.2430</td>
       <td>0.3613</td>
-      <td>0.08758</td>
+      <td>0.0876</td>
     </tr>
     <tr>
       <th>3</th>
       <td>0</td>
-      <td>11.42</td>
-      <td>20.38</td>
-      <td>77.58</td>
-      <td>386.1</td>
-      <td>0.14250</td>
-      <td>0.28390</td>
+      <td>11.4200</td>
+      <td>20.3800</td>
+      <td>77.5800</td>
+      <td>386.1000</td>
+      <td>0.1425</td>
+      <td>0.2839</td>
       <td>0.2414</td>
-      <td>0.10520</td>
+      <td>0.1052</td>
       <td>0.2597</td>
       <td>...</td>
-      <td>14.91</td>
-      <td>26.50</td>
-      <td>98.87</td>
-      <td>567.7</td>
+      <td>14.9100</td>
+      <td>26.5000</td>
+      <td>98.8700</td>
+      <td>567.7000</td>
       <td>0.2098</td>
       <td>0.8663</td>
       <td>0.6869</td>
       <td>0.2575</td>
       <td>0.6638</td>
-      <td>0.17300</td>
+      <td>0.1730</td>
     </tr>
     <tr>
       <th>4</th>
       <td>0</td>
-      <td>20.29</td>
-      <td>14.34</td>
-      <td>135.10</td>
-      <td>1297.0</td>
-      <td>0.10030</td>
-      <td>0.13280</td>
+      <td>20.2900</td>
+      <td>14.3400</td>
+      <td>135.1000</td>
+      <td>1297.0000</td>
+      <td>0.1003</td>
+      <td>0.1328</td>
       <td>0.1980</td>
-      <td>0.10430</td>
+      <td>0.1043</td>
       <td>0.1809</td>
       <td>...</td>
-      <td>22.54</td>
-      <td>16.67</td>
-      <td>152.20</td>
-      <td>1575.0</td>
+      <td>22.5400</td>
+      <td>16.6700</td>
+      <td>152.2000</td>
+      <td>1575.0000</td>
       <td>0.1374</td>
       <td>0.2050</td>
       <td>0.4000</td>
       <td>0.1625</td>
       <td>0.2364</td>
-      <td>0.07678</td>
+      <td>0.0768</td>
     </tr>
   </tbody>
 </table>
@@ -1824,195 +2383,195 @@ memory usage: 137.9 KB
   <tbody>
     <tr>
       <th>count</th>
-      <td>569.000000</td>
-      <td>569.000000</td>
-      <td>569.000000</td>
-      <td>569.000000</td>
-      <td>569.000000</td>
-      <td>569.000000</td>
-      <td>569.000000</td>
-      <td>569.000000</td>
-      <td>569.000000</td>
-      <td>569.000000</td>
+      <td>569.0000</td>
+      <td>569.0000</td>
+      <td>569.0000</td>
+      <td>569.0000</td>
+      <td>569.0000</td>
+      <td>569.0000</td>
+      <td>569.0000</td>
+      <td>569.0000</td>
+      <td>569.0000</td>
+      <td>569.0000</td>
       <td>...</td>
-      <td>569.000000</td>
-      <td>569.000000</td>
-      <td>569.000000</td>
-      <td>569.000000</td>
-      <td>569.000000</td>
-      <td>569.000000</td>
-      <td>569.000000</td>
-      <td>569.000000</td>
-      <td>569.000000</td>
-      <td>569.000000</td>
+      <td>569.0000</td>
+      <td>569.0000</td>
+      <td>569.0000</td>
+      <td>569.0000</td>
+      <td>569.0000</td>
+      <td>569.0000</td>
+      <td>569.0000</td>
+      <td>569.0000</td>
+      <td>569.0000</td>
+      <td>569.0000</td>
     </tr>
     <tr>
       <th>mean</th>
-      <td>0.627417</td>
-      <td>14.127292</td>
-      <td>19.289649</td>
-      <td>91.969033</td>
-      <td>654.889104</td>
-      <td>0.096360</td>
-      <td>0.104341</td>
-      <td>0.088799</td>
-      <td>0.048919</td>
-      <td>0.181162</td>
+      <td>0.6274</td>
+      <td>14.1273</td>
+      <td>19.2896</td>
+      <td>91.9690</td>
+      <td>654.8891</td>
+      <td>0.0964</td>
+      <td>0.1043</td>
+      <td>0.0888</td>
+      <td>0.0489</td>
+      <td>0.1812</td>
       <td>...</td>
-      <td>16.269190</td>
-      <td>25.677223</td>
-      <td>107.261213</td>
-      <td>880.583128</td>
-      <td>0.132369</td>
-      <td>0.254265</td>
-      <td>0.272188</td>
-      <td>0.114606</td>
-      <td>0.290076</td>
-      <td>0.083946</td>
+      <td>16.2692</td>
+      <td>25.6772</td>
+      <td>107.2612</td>
+      <td>880.5831</td>
+      <td>0.1324</td>
+      <td>0.2543</td>
+      <td>0.2722</td>
+      <td>0.1146</td>
+      <td>0.2901</td>
+      <td>0.0839</td>
     </tr>
     <tr>
       <th>std</th>
-      <td>0.483918</td>
-      <td>3.524049</td>
-      <td>4.301036</td>
-      <td>24.298981</td>
-      <td>351.914129</td>
-      <td>0.014064</td>
-      <td>0.052813</td>
-      <td>0.079720</td>
-      <td>0.038803</td>
-      <td>0.027414</td>
+      <td>0.4839</td>
+      <td>3.5240</td>
+      <td>4.3010</td>
+      <td>24.2990</td>
+      <td>351.9141</td>
+      <td>0.0141</td>
+      <td>0.0528</td>
+      <td>0.0797</td>
+      <td>0.0388</td>
+      <td>0.0274</td>
       <td>...</td>
-      <td>4.833242</td>
-      <td>6.146258</td>
-      <td>33.602542</td>
-      <td>569.356993</td>
-      <td>0.022832</td>
-      <td>0.157336</td>
-      <td>0.208624</td>
-      <td>0.065732</td>
-      <td>0.061867</td>
-      <td>0.018061</td>
+      <td>4.8332</td>
+      <td>6.1463</td>
+      <td>33.6025</td>
+      <td>569.3570</td>
+      <td>0.0228</td>
+      <td>0.1573</td>
+      <td>0.2086</td>
+      <td>0.0657</td>
+      <td>0.0619</td>
+      <td>0.0181</td>
     </tr>
     <tr>
       <th>min</th>
-      <td>0.000000</td>
-      <td>6.981000</td>
-      <td>9.710000</td>
-      <td>43.790000</td>
-      <td>143.500000</td>
-      <td>0.052630</td>
-      <td>0.019380</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.106000</td>
+      <td>0.0000</td>
+      <td>6.9810</td>
+      <td>9.7100</td>
+      <td>43.7900</td>
+      <td>143.5000</td>
+      <td>0.0526</td>
+      <td>0.0194</td>
+      <td>0.0000</td>
+      <td>0.0000</td>
+      <td>0.1060</td>
       <td>...</td>
-      <td>7.930000</td>
-      <td>12.020000</td>
-      <td>50.410000</td>
-      <td>185.200000</td>
-      <td>0.071170</td>
-      <td>0.027290</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.156500</td>
-      <td>0.055040</td>
+      <td>7.9300</td>
+      <td>12.0200</td>
+      <td>50.4100</td>
+      <td>185.2000</td>
+      <td>0.0712</td>
+      <td>0.0273</td>
+      <td>0.0000</td>
+      <td>0.0000</td>
+      <td>0.1565</td>
+      <td>0.0550</td>
     </tr>
     <tr>
       <th>25%</th>
-      <td>0.000000</td>
-      <td>11.700000</td>
-      <td>16.170000</td>
-      <td>75.170000</td>
-      <td>420.300000</td>
-      <td>0.086370</td>
-      <td>0.064920</td>
-      <td>0.029560</td>
-      <td>0.020310</td>
-      <td>0.161900</td>
+      <td>0.0000</td>
+      <td>11.7000</td>
+      <td>16.1700</td>
+      <td>75.1700</td>
+      <td>420.3000</td>
+      <td>0.0864</td>
+      <td>0.0649</td>
+      <td>0.0296</td>
+      <td>0.0203</td>
+      <td>0.1619</td>
       <td>...</td>
-      <td>13.010000</td>
-      <td>21.080000</td>
-      <td>84.110000</td>
-      <td>515.300000</td>
-      <td>0.116600</td>
-      <td>0.147200</td>
-      <td>0.114500</td>
-      <td>0.064930</td>
-      <td>0.250400</td>
-      <td>0.071460</td>
+      <td>13.0100</td>
+      <td>21.0800</td>
+      <td>84.1100</td>
+      <td>515.3000</td>
+      <td>0.1166</td>
+      <td>0.1472</td>
+      <td>0.1145</td>
+      <td>0.0649</td>
+      <td>0.2504</td>
+      <td>0.0715</td>
     </tr>
     <tr>
       <th>50%</th>
-      <td>1.000000</td>
-      <td>13.370000</td>
-      <td>18.840000</td>
-      <td>86.240000</td>
-      <td>551.100000</td>
-      <td>0.095870</td>
-      <td>0.092630</td>
-      <td>0.061540</td>
-      <td>0.033500</td>
-      <td>0.179200</td>
+      <td>1.0000</td>
+      <td>13.3700</td>
+      <td>18.8400</td>
+      <td>86.2400</td>
+      <td>551.1000</td>
+      <td>0.0959</td>
+      <td>0.0926</td>
+      <td>0.0615</td>
+      <td>0.0335</td>
+      <td>0.1792</td>
       <td>...</td>
-      <td>14.970000</td>
-      <td>25.410000</td>
-      <td>97.660000</td>
-      <td>686.500000</td>
-      <td>0.131300</td>
-      <td>0.211900</td>
-      <td>0.226700</td>
-      <td>0.099930</td>
-      <td>0.282200</td>
-      <td>0.080040</td>
+      <td>14.9700</td>
+      <td>25.4100</td>
+      <td>97.6600</td>
+      <td>686.5000</td>
+      <td>0.1313</td>
+      <td>0.2119</td>
+      <td>0.2267</td>
+      <td>0.0999</td>
+      <td>0.2822</td>
+      <td>0.0800</td>
     </tr>
     <tr>
       <th>75%</th>
-      <td>1.000000</td>
-      <td>15.780000</td>
-      <td>21.800000</td>
-      <td>104.100000</td>
-      <td>782.700000</td>
-      <td>0.105300</td>
-      <td>0.130400</td>
-      <td>0.130700</td>
-      <td>0.074000</td>
-      <td>0.195700</td>
+      <td>1.0000</td>
+      <td>15.7800</td>
+      <td>21.8000</td>
+      <td>104.1000</td>
+      <td>782.7000</td>
+      <td>0.1053</td>
+      <td>0.1304</td>
+      <td>0.1307</td>
+      <td>0.0740</td>
+      <td>0.1957</td>
       <td>...</td>
-      <td>18.790000</td>
-      <td>29.720000</td>
-      <td>125.400000</td>
-      <td>1084.000000</td>
-      <td>0.146000</td>
-      <td>0.339100</td>
-      <td>0.382900</td>
-      <td>0.161400</td>
-      <td>0.317900</td>
-      <td>0.092080</td>
+      <td>18.7900</td>
+      <td>29.7200</td>
+      <td>125.4000</td>
+      <td>1084.0000</td>
+      <td>0.1460</td>
+      <td>0.3391</td>
+      <td>0.3829</td>
+      <td>0.1614</td>
+      <td>0.3179</td>
+      <td>0.0921</td>
     </tr>
     <tr>
       <th>max</th>
-      <td>1.000000</td>
-      <td>28.110000</td>
-      <td>39.280000</td>
-      <td>188.500000</td>
-      <td>2501.000000</td>
-      <td>0.163400</td>
-      <td>0.345400</td>
-      <td>0.426800</td>
-      <td>0.201200</td>
-      <td>0.304000</td>
+      <td>1.0000</td>
+      <td>28.1100</td>
+      <td>39.2800</td>
+      <td>188.5000</td>
+      <td>2501.0000</td>
+      <td>0.1634</td>
+      <td>0.3454</td>
+      <td>0.4268</td>
+      <td>0.2012</td>
+      <td>0.3040</td>
       <td>...</td>
-      <td>36.040000</td>
-      <td>49.540000</td>
-      <td>251.200000</td>
-      <td>4254.000000</td>
-      <td>0.222600</td>
-      <td>1.058000</td>
-      <td>1.252000</td>
-      <td>0.291000</td>
-      <td>0.663800</td>
-      <td>0.207500</td>
+      <td>36.0400</td>
+      <td>49.5400</td>
+      <td>251.2000</td>
+      <td>4254.0000</td>
+      <td>0.2226</td>
+      <td>1.0580</td>
+      <td>1.2520</td>
+      <td>0.2910</td>
+      <td>0.6638</td>
+      <td>0.2075</td>
     </tr>
   </tbody>
 </table>
@@ -2056,7 +2615,7 @@ Name: count, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/df3bab7405997494c52ee595d82db6664064cc38d8ae32305f94405fb68b3dec.png" src="_images/df3bab7405997494c52ee595d82db6664064cc38d8ae32305f94405fb68b3dec.png" />
+<img alt="_images/c785a9029e5600abb2322174a8cc051afd75210156f0796b5f933da10676e402.png" src="_images/c785a9029e5600abb2322174a8cc051afd75210156f0796b5f933da10676e402.png" />
 </div>
 </div>
 <ul class="simple">
@@ -2196,122 +2755,122 @@ dtype: int64
     <tr>
       <th>0</th>
       <td>0</td>
-      <td>17.99</td>
-      <td>10.38</td>
-      <td>122.80</td>
-      <td>1001.0</td>
-      <td>0.11840</td>
-      <td>0.27760</td>
+      <td>17.9900</td>
+      <td>10.3800</td>
+      <td>122.8000</td>
+      <td>1001.0000</td>
+      <td>0.1184</td>
+      <td>0.2776</td>
       <td>0.3001</td>
-      <td>0.14710</td>
+      <td>0.1471</td>
       <td>0.2419</td>
       <td>...</td>
-      <td>25.38</td>
-      <td>17.33</td>
-      <td>184.60</td>
-      <td>2019.0</td>
+      <td>25.3800</td>
+      <td>17.3300</td>
+      <td>184.6000</td>
+      <td>2019.0000</td>
       <td>0.1622</td>
       <td>0.6656</td>
       <td>0.7119</td>
       <td>0.2654</td>
       <td>0.4601</td>
-      <td>0.11890</td>
+      <td>0.1189</td>
     </tr>
     <tr>
       <th>1</th>
       <td>0</td>
-      <td>20.57</td>
-      <td>17.77</td>
-      <td>132.90</td>
-      <td>1326.0</td>
-      <td>0.08474</td>
-      <td>0.07864</td>
+      <td>20.5700</td>
+      <td>17.7700</td>
+      <td>132.9000</td>
+      <td>1326.0000</td>
+      <td>0.0847</td>
+      <td>0.0786</td>
       <td>0.0869</td>
-      <td>0.07017</td>
+      <td>0.0702</td>
       <td>0.1812</td>
       <td>...</td>
-      <td>24.99</td>
-      <td>23.41</td>
-      <td>158.80</td>
-      <td>1956.0</td>
+      <td>24.9900</td>
+      <td>23.4100</td>
+      <td>158.8000</td>
+      <td>1956.0000</td>
       <td>0.1238</td>
       <td>0.1866</td>
       <td>0.2416</td>
       <td>0.1860</td>
       <td>0.2750</td>
-      <td>0.08902</td>
+      <td>0.0890</td>
     </tr>
     <tr>
       <th>2</th>
       <td>0</td>
-      <td>19.69</td>
-      <td>21.25</td>
-      <td>130.00</td>
-      <td>1203.0</td>
-      <td>0.10960</td>
-      <td>0.15990</td>
+      <td>19.6900</td>
+      <td>21.2500</td>
+      <td>130.0000</td>
+      <td>1203.0000</td>
+      <td>0.1096</td>
+      <td>0.1599</td>
       <td>0.1974</td>
-      <td>0.12790</td>
+      <td>0.1279</td>
       <td>0.2069</td>
       <td>...</td>
-      <td>23.57</td>
-      <td>25.53</td>
-      <td>152.50</td>
-      <td>1709.0</td>
+      <td>23.5700</td>
+      <td>25.5300</td>
+      <td>152.5000</td>
+      <td>1709.0000</td>
       <td>0.1444</td>
       <td>0.4245</td>
       <td>0.4504</td>
       <td>0.2430</td>
       <td>0.3613</td>
-      <td>0.08758</td>
+      <td>0.0876</td>
     </tr>
     <tr>
       <th>3</th>
       <td>0</td>
-      <td>11.42</td>
-      <td>20.38</td>
-      <td>77.58</td>
-      <td>386.1</td>
-      <td>0.14250</td>
-      <td>0.28390</td>
+      <td>11.4200</td>
+      <td>20.3800</td>
+      <td>77.5800</td>
+      <td>386.1000</td>
+      <td>0.1425</td>
+      <td>0.2839</td>
       <td>0.2414</td>
-      <td>0.10520</td>
+      <td>0.1052</td>
       <td>0.2597</td>
       <td>...</td>
-      <td>14.91</td>
-      <td>26.50</td>
-      <td>98.87</td>
-      <td>567.7</td>
+      <td>14.9100</td>
+      <td>26.5000</td>
+      <td>98.8700</td>
+      <td>567.7000</td>
       <td>0.2098</td>
       <td>0.8663</td>
       <td>0.6869</td>
       <td>0.2575</td>
       <td>0.6638</td>
-      <td>0.17300</td>
+      <td>0.1730</td>
     </tr>
     <tr>
       <th>4</th>
       <td>0</td>
-      <td>20.29</td>
-      <td>14.34</td>
-      <td>135.10</td>
-      <td>1297.0</td>
-      <td>0.10030</td>
-      <td>0.13280</td>
+      <td>20.2900</td>
+      <td>14.3400</td>
+      <td>135.1000</td>
+      <td>1297.0000</td>
+      <td>0.1003</td>
+      <td>0.1328</td>
       <td>0.1980</td>
-      <td>0.10430</td>
+      <td>0.1043</td>
       <td>0.1809</td>
       <td>...</td>
-      <td>22.54</td>
-      <td>16.67</td>
-      <td>152.20</td>
-      <td>1575.0</td>
+      <td>22.5400</td>
+      <td>16.6700</td>
+      <td>152.2000</td>
+      <td>1575.0000</td>
       <td>0.1374</td>
       <td>0.2050</td>
       <td>0.4000</td>
       <td>0.1625</td>
       <td>0.2364</td>
-      <td>0.07678</td>
+      <td>0.0768</td>
     </tr>
   </tbody>
 </table>
@@ -2358,7 +2917,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/1038d688121f115ac685091d3ba21a565c353d54fad28347be9f49647368b22d.png" src="_images/1038d688121f115ac685091d3ba21a565c353d54fad28347be9f49647368b22d.png" />
+<img alt="_images/ef9119a3676e72bb8d41f9a5ef2f00658dc263b56870b32c4b575c482975af33.png" src="_images/ef9119a3676e72bb8d41f9a5ef2f00658dc263b56870b32c4b575c482975af33.png" />
 </div>
 </div>
 <ul class="simple">
@@ -2375,7 +2934,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/a21f5b302931169f5c8624bfbac0c873e850ff53a5275db5fa4ae8dfad173c90.png" src="_images/a21f5b302931169f5c8624bfbac0c873e850ff53a5275db5fa4ae8dfad173c90.png" />
+<img alt="_images/9ff0823e021d261f6f03b7c45ccea63a4e1fa3df50ffbadce912c85e07941c15.png" src="_images/9ff0823e021d261f6f03b7c45ccea63a4e1fa3df50ffbadce912c85e07941c15.png" />
 </div>
 </div>
 <ul class="simple">
@@ -2396,7 +2955,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/a853978c3528650c0cb7b7c46acb2f9c5da87ee5ff2421df7de6f36f5fec8d64.png" src="_images/a853978c3528650c0cb7b7c46acb2f9c5da87ee5ff2421df7de6f36f5fec8d64.png" />
+<img alt="_images/0aa606bee32bb8a41e6976d37c022a30fd305116ca42f16ee59daba502467ccf.png" src="_images/0aa606bee32bb8a41e6976d37c022a30fd305116ca42f16ee59daba502467ccf.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2406,7 +2965,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/fe8319902e20bb4965060695e577366000a7a13c97ce0b954761362c2d767c29.png" src="_images/fe8319902e20bb4965060695e577366000a7a13c97ce0b954761362c2d767c29.png" />
+<img alt="_images/333ebd5fb8c4eb0bdbb6f8c2d7469db053b1d9749bcb1645f6f93ff230ff300d.png" src="_images/333ebd5fb8c4eb0bdbb6f8c2d7469db053b1d9749bcb1645f6f93ff230ff300d.png" />
 </div>
 </div>
 <div class="warning admonition">
@@ -2517,37 +3076,37 @@ dtype: int64
     <tr>
       <th>0</th>
       <td>symmetry error</td>
-      <td>8.648328</td>
+      <td>8.6483</td>
     </tr>
     <tr>
       <th>1</th>
       <td>smoothness error</td>
-      <td>8.347757</td>
+      <td>8.3478</td>
     </tr>
     <tr>
       <th>2</th>
       <td>fractal dimension error</td>
-      <td>7.644681</td>
+      <td>7.6447</td>
     </tr>
     <tr>
       <th>3</th>
       <td>texture error</td>
-      <td>7.103564</td>
+      <td>7.1036</td>
     </tr>
     <tr>
       <th>4</th>
       <td>concavity error</td>
-      <td>6.666504</td>
+      <td>6.6665</td>
     </tr>
     <tr>
       <th>5</th>
       <td>worst concavity</td>
-      <td>4.620458</td>
+      <td>4.6205</td>
     </tr>
     <tr>
       <th>6</th>
       <td>area error</td>
-      <td>2.190762</td>
+      <td>2.1908</td>
     </tr>
   </tbody>
 </table>
@@ -2591,51 +3150,51 @@ dtype: int64
     <tr>
       <th>0</th>
       <td>0.9053</td>
-      <td>153.40</td>
-      <td>0.006399</td>
-      <td>0.05373</td>
-      <td>0.03003</td>
-      <td>0.006193</td>
+      <td>153.4000</td>
+      <td>0.0064</td>
+      <td>0.0537</td>
+      <td>0.0300</td>
+      <td>0.0062</td>
       <td>0.7119</td>
     </tr>
     <tr>
       <th>1</th>
       <td>0.7339</td>
-      <td>74.08</td>
-      <td>0.005225</td>
-      <td>0.01860</td>
-      <td>0.01389</td>
-      <td>0.003532</td>
+      <td>74.0800</td>
+      <td>0.0052</td>
+      <td>0.0186</td>
+      <td>0.0139</td>
+      <td>0.0035</td>
       <td>0.2416</td>
     </tr>
     <tr>
       <th>2</th>
       <td>0.7869</td>
-      <td>94.03</td>
-      <td>0.006150</td>
-      <td>0.03832</td>
-      <td>0.02250</td>
-      <td>0.004571</td>
+      <td>94.0300</td>
+      <td>0.0062</td>
+      <td>0.0383</td>
+      <td>0.0225</td>
+      <td>0.0046</td>
       <td>0.4504</td>
     </tr>
     <tr>
       <th>3</th>
       <td>1.1560</td>
-      <td>27.23</td>
-      <td>0.009110</td>
-      <td>0.05661</td>
-      <td>0.05963</td>
-      <td>0.009208</td>
+      <td>27.2300</td>
+      <td>0.0091</td>
+      <td>0.0566</td>
+      <td>0.0596</td>
+      <td>0.0092</td>
       <td>0.6869</td>
     </tr>
     <tr>
       <th>4</th>
       <td>0.7813</td>
-      <td>94.44</td>
-      <td>0.011490</td>
-      <td>0.05688</td>
-      <td>0.01756</td>
-      <td>0.005115</td>
+      <td>94.4400</td>
+      <td>0.0115</td>
+      <td>0.0569</td>
+      <td>0.0176</td>
+      <td>0.0051</td>
       <td>0.4000</td>
     </tr>
   </tbody>
@@ -2660,7 +3219,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/c5a50a31892bf03154ffbf62e051d2011c16a2803f222c7b8b7e65f1554ea411.png" src="_images/c5a50a31892bf03154ffbf62e051d2011c16a2803f222c7b8b7e65f1554ea411.png" />
+<img alt="_images/cd0e54085959e2d53e440cf2944616a1bf16fe255a79d9e5a204e59dd1ff0cb6.png" src="_images/cd0e54085959e2d53e440cf2944616a1bf16fe255a79d9e5a204e59dd1ff0cb6.png" />
 </div>
 </div>
 <div class="warning admonition">
@@ -2887,9 +3446,9 @@ Mejor k  - GridSearchCV: 8  (CV AUC: 0.973994)
 Scores identicos: True
 </pre></div>
 </div>
-<img alt="_images/b5d00e74cefc9faadf5b4d253f13c8ee8d31bdf8626b492a3fd5404b9c1c9169.png" src="_images/b5d00e74cefc9faadf5b4d253f13c8ee8d31bdf8626b492a3fd5404b9c1c9169.png" />
-<img alt="_images/c8d050661ad22e53e9885aaa5997951ec134026b212593fe909933f410738071.png" src="_images/c8d050661ad22e53e9885aaa5997951ec134026b212593fe909933f410738071.png" />
-<img alt="_images/17c3cf3cc6957d3ea2b06067a63c04e0a7423db4825cfa84eced6a0a0a0efb0b.png" src="_images/17c3cf3cc6957d3ea2b06067a63c04e0a7423db4825cfa84eced6a0a0a0efb0b.png" />
+<img alt="_images/44120956d81ae12bbedf6cc2fab011a918d5b92344197f13b274438808db29ad.png" src="_images/44120956d81ae12bbedf6cc2fab011a918d5b92344197f13b274438808db29ad.png" />
+<img alt="_images/3f1579814f55e5d719b7eba07edc8c7925cd6833fe851cb09ae255c75d9e2db4.png" src="_images/3f1579814f55e5d719b7eba07edc8c7925cd6833fe851cb09ae255c75d9e2db4.png" />
+<img alt="_images/cb76100ced7f06c3f4a0310a01201855ed806bfbd319382f0898dda64e395a39.png" src="_images/cb76100ced7f06c3f4a0310a01201855ed806bfbd319382f0898dda64e395a39.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>k optimo        : 8
 CV Train AUC    : 0.9864
 CV Val AUC      : 0.9740
@@ -2922,7 +3481,7 @@ weighted avg       0.89      0.89      0.89       114
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/8b1f563769545ea892e403c476642828f40927ab39190814155ca0ed8b522066.png" src="_images/8b1f563769545ea892e403c476642828f40927ab39190814155ca0ed8b522066.png" />
+<img alt="_images/1c405dd60b951f0a753a80757df5deaf339d6e08f02d659d0149e165854a8c76.png" src="_images/1c405dd60b951f0a753a80757df5deaf339d6e08f02d659d0149e165854a8c76.png" />
 </div>
 </div>
 <ul class="simple">
@@ -2935,7 +3494,7 @@ weighted avg       0.89      0.89      0.89       114
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/5769d263efe123595b27dd2268e8a2608a897768b5f6f1cb5061459105423945.png" src="_images/5769d263efe123595b27dd2268e8a2608a897768b5f6f1cb5061459105423945.png" />
+<img alt="_images/da5623706d8438340dc11f49aa306bffd67151a0ed58f61a901293223b9579e9.png" src="_images/da5623706d8438340dc11f49aa306bffd67151a0ed58f61a901293223b9579e9.png" />
 </div>
 </div>
 <ul class="simple">
@@ -2958,7 +3517,7 @@ weighted avg       0.89      0.89      0.89       114
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><style>#sk-container-id-1 {
+<div class="output text_html"><style>#sk-container-id-2 {
   /* Definition of color scheme common for light and dark mode */
   --sklearn-color-text: #000;
   --sklearn-color-text-muted: #666;
@@ -2989,15 +3548,15 @@ weighted avg       0.89      0.89      0.89       114
   }
 }
 
-#sk-container-id-1 {
+#sk-container-id-2 {
   color: var(--sklearn-color-text);
 }
 
-#sk-container-id-1 pre {
+#sk-container-id-2 pre {
   padding: 0;
 }
 
-#sk-container-id-1 input.sk-hidden--visually {
+#sk-container-id-2 input.sk-hidden--visually {
   border: 0;
   clip: rect(1px 1px 1px 1px);
   clip: rect(1px, 1px, 1px, 1px);
@@ -3009,7 +3568,7 @@ weighted avg       0.89      0.89      0.89       114
   width: 1px;
 }
 
-#sk-container-id-1 div.sk-dashed-wrapped {
+#sk-container-id-2 div.sk-dashed-wrapped {
   border: 1px dashed var(--sklearn-color-line);
   margin: 0 0.4em 0.5em 0.4em;
   box-sizing: border-box;
@@ -3017,7 +3576,7 @@ weighted avg       0.89      0.89      0.89       114
   background-color: var(--sklearn-color-background);
 }
 
-#sk-container-id-1 div.sk-container {
+#sk-container-id-2 div.sk-container {
   /* jupyter's `normalize.less` sets `[hidden] { display: none; }`
      but bootstrap.min.css set `[hidden] { display: none !important; }`
      so we also need the `!important` here to be able to override the
@@ -3027,7 +3586,7 @@ weighted avg       0.89      0.89      0.89       114
   position: relative;
 }
 
-#sk-container-id-1 div.sk-text-repr-fallback {
+#sk-container-id-2 div.sk-text-repr-fallback {
   display: none;
 }
 
@@ -3043,14 +3602,14 @@ div.sk-item {
 
 /* Parallel-specific style estimator block */
 
-#sk-container-id-1 div.sk-parallel-item::after {
+#sk-container-id-2 div.sk-parallel-item::after {
   content: "";
   width: 100%;
   border-bottom: 2px solid var(--sklearn-color-text-on-default-background);
   flex-grow: 1;
 }
 
-#sk-container-id-1 div.sk-parallel {
+#sk-container-id-2 div.sk-parallel {
   display: flex;
   align-items: stretch;
   justify-content: center;
@@ -3058,28 +3617,28 @@ div.sk-item {
   position: relative;
 }
 
-#sk-container-id-1 div.sk-parallel-item {
+#sk-container-id-2 div.sk-parallel-item {
   display: flex;
   flex-direction: column;
 }
 
-#sk-container-id-1 div.sk-parallel-item:first-child::after {
+#sk-container-id-2 div.sk-parallel-item:first-child::after {
   align-self: flex-end;
   width: 50%;
 }
 
-#sk-container-id-1 div.sk-parallel-item:last-child::after {
+#sk-container-id-2 div.sk-parallel-item:last-child::after {
   align-self: flex-start;
   width: 50%;
 }
 
-#sk-container-id-1 div.sk-parallel-item:only-child::after {
+#sk-container-id-2 div.sk-parallel-item:only-child::after {
   width: 0;
 }
 
 /* Serial-specific style estimator block */
 
-#sk-container-id-1 div.sk-serial {
+#sk-container-id-2 div.sk-serial {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -3097,14 +3656,14 @@ clickable and can be expanded/collapsed.
 
 /* Pipeline and ColumnTransformer style (default) */
 
-#sk-container-id-1 div.sk-toggleable {
+#sk-container-id-2 div.sk-toggleable {
   /* Default theme specific background. It is overwritten whether we have a
   specific estimator or a Pipeline/ColumnTransformer */
   background-color: var(--sklearn-color-background);
 }
 
 /* Toggleable label */
-#sk-container-id-1 label.sk-toggleable__label {
+#sk-container-id-2 label.sk-toggleable__label {
   cursor: pointer;
   display: flex;
   width: 100%;
@@ -3117,13 +3676,13 @@ clickable and can be expanded/collapsed.
   gap: 0.5em;
 }
 
-#sk-container-id-1 label.sk-toggleable__label .caption {
+#sk-container-id-2 label.sk-toggleable__label .caption {
   font-size: 0.6rem;
   font-weight: lighter;
   color: var(--sklearn-color-text-muted);
 }
 
-#sk-container-id-1 label.sk-toggleable__label-arrow:before {
+#sk-container-id-2 label.sk-toggleable__label-arrow:before {
   /* Arrow on the left of the label */
   content: "▸";
   float: left;
@@ -3131,25 +3690,25 @@ clickable and can be expanded/collapsed.
   color: var(--sklearn-color-icon);
 }
 
-#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {
+#sk-container-id-2 label.sk-toggleable__label-arrow:hover:before {
   color: var(--sklearn-color-text);
 }
 
 /* Toggleable content - dropdown */
 
-#sk-container-id-1 div.sk-toggleable__content {
+#sk-container-id-2 div.sk-toggleable__content {
   display: none;
   text-align: left;
   /* unfitted */
   background-color: var(--sklearn-color-unfitted-level-0);
 }
 
-#sk-container-id-1 div.sk-toggleable__content.fitted {
+#sk-container-id-2 div.sk-toggleable__content.fitted {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-0);
 }
 
-#sk-container-id-1 div.sk-toggleable__content pre {
+#sk-container-id-2 div.sk-toggleable__content pre {
   margin: 0.2em;
   border-radius: 0.25em;
   color: var(--sklearn-color-text);
@@ -3157,79 +3716,79 @@ clickable and can be expanded/collapsed.
   background-color: var(--sklearn-color-unfitted-level-0);
 }
 
-#sk-container-id-1 div.sk-toggleable__content.fitted pre {
+#sk-container-id-2 div.sk-toggleable__content.fitted pre {
   /* unfitted */
   background-color: var(--sklearn-color-fitted-level-0);
 }
 
-#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {
+#sk-container-id-2 input.sk-toggleable__control:checked~div.sk-toggleable__content {
   /* Expand drop-down */
   display: block;
   width: 100%;
   overflow: visible;
 }
 
-#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
+#sk-container-id-2 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
   content: "▾";
 }
 
 /* Pipeline/ColumnTransformer-specific style */
 
-#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-2 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
   color: var(--sklearn-color-text);
   background-color: var(--sklearn-color-unfitted-level-2);
 }
 
-#sk-container-id-1 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-2 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
   background-color: var(--sklearn-color-fitted-level-2);
 }
 
 /* Estimator-specific style */
 
 /* Colorize estimator box */
-#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-2 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
   /* unfitted */
   background-color: var(--sklearn-color-unfitted-level-2);
 }
 
-#sk-container-id-1 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-2 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-2);
 }
 
-#sk-container-id-1 div.sk-label label.sk-toggleable__label,
-#sk-container-id-1 div.sk-label label {
+#sk-container-id-2 div.sk-label label.sk-toggleable__label,
+#sk-container-id-2 div.sk-label label {
   /* The background is the default theme color */
   color: var(--sklearn-color-text-on-default-background);
 }
 
 /* On hover, darken the color of the background */
-#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {
+#sk-container-id-2 div.sk-label:hover label.sk-toggleable__label {
   color: var(--sklearn-color-text);
   background-color: var(--sklearn-color-unfitted-level-2);
 }
 
 /* Label box, darken color on hover, fitted */
-#sk-container-id-1 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
+#sk-container-id-2 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
   color: var(--sklearn-color-text);
   background-color: var(--sklearn-color-fitted-level-2);
 }
 
 /* Estimator label */
 
-#sk-container-id-1 div.sk-label label {
+#sk-container-id-2 div.sk-label label {
   font-family: monospace;
   font-weight: bold;
   display: inline-block;
   line-height: 1.2em;
 }
 
-#sk-container-id-1 div.sk-label-container {
+#sk-container-id-2 div.sk-label-container {
   text-align: center;
 }
 
 /* Estimator-specific */
-#sk-container-id-1 div.sk-estimator {
+#sk-container-id-2 div.sk-estimator {
   font-family: monospace;
   border: 1px dotted var(--sklearn-color-border-box);
   border-radius: 0.25em;
@@ -3239,18 +3798,18 @@ clickable and can be expanded/collapsed.
   background-color: var(--sklearn-color-unfitted-level-0);
 }
 
-#sk-container-id-1 div.sk-estimator.fitted {
+#sk-container-id-2 div.sk-estimator.fitted {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-0);
 }
 
 /* on hover */
-#sk-container-id-1 div.sk-estimator:hover {
+#sk-container-id-2 div.sk-estimator:hover {
   /* unfitted */
   background-color: var(--sklearn-color-unfitted-level-2);
 }
 
-#sk-container-id-1 div.sk-estimator.fitted:hover {
+#sk-container-id-2 div.sk-estimator.fitted:hover {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-2);
 }
@@ -3338,7 +3897,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 
 /* "?"-specific style due to the `<a>` HTML tag */
 
-#sk-container-id-1 a.estimator_doc_link {
+#sk-container-id-2 a.estimator_doc_link {
   float: right;
   font-size: 1rem;
   line-height: 1em;
@@ -3353,21 +3912,21 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
   border: var(--sklearn-color-unfitted-level-1) 1pt solid;
 }
 
-#sk-container-id-1 a.estimator_doc_link.fitted {
+#sk-container-id-2 a.estimator_doc_link.fitted {
   /* fitted */
   border: var(--sklearn-color-fitted-level-1) 1pt solid;
   color: var(--sklearn-color-fitted-level-1);
 }
 
 /* On hover */
-#sk-container-id-1 a.estimator_doc_link:hover {
+#sk-container-id-2 a.estimator_doc_link:hover {
   /* unfitted */
   background-color: var(--sklearn-color-unfitted-level-3);
   color: var(--sklearn-color-background);
   text-decoration: none;
 }
 
-#sk-container-id-1 a.estimator_doc_link.fitted:hover {
+#sk-container-id-2 a.estimator_doc_link.fitted:hover {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-3);
 }
@@ -3435,7 +3994,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
     height: 14px;
     cursor: pointer;
 }
-</style><body><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>KNeighborsRegressor(n_neighbors=3)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked><label for="sk-estimator-id-1" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>KNeighborsRegressor</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.7/modules/generated/sklearn.neighbors.KNeighborsRegressor.html">?<span>Documentation for KNeighborsRegressor</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted" data-param-prefix="">
+</style><body><div id="sk-container-id-2" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>KNeighborsRegressor(n_neighbors=3)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox" checked><label for="sk-estimator-id-2" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>KNeighborsRegressor</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.7/modules/generated/sklearn.neighbors.KNeighborsRegressor.html">?<span>Documentation for KNeighborsRegressor</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted" data-param-prefix="">
         <div class="estimator-table">
             <details>
                 <summary>Parameters</summary>
@@ -3635,7 +4194,7 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/8b1a6ace069114b4d590043aece42f9258a7e24c18fbadc16074b364b2c6382a.png" src="_images/8b1a6ace069114b4d590043aece42f9258a7e24c18fbadc16074b364b2c6382a.png" />
+<img alt="_images/b901e992e77fe36ae55fafe767989248999925672a09b7201956a703a2bc60e6.png" src="_images/b901e992e77fe36ae55fafe767989248999925672a09b7201956a703a2bc60e6.png" />
 </div>
 </div>
 <ul class="simple">
@@ -4448,10 +5007,10 @@ Veredicto k optimo (5)
   Sobreajuste  : no detectable
 </pre></div>
 </div>
-<img alt="_images/0395ad41a689c439777fae4f32a171b1b41cc76e76db90b2c583be4b8d9e97b5.png" src="_images/0395ad41a689c439777fae4f32a171b1b41cc76e76db90b2c583be4b8d9e97b5.png" />
-<img alt="_images/8a01c597682bdebdc32e0a1a5e972655bccfc340aff9d8aadc4ca420e1ba6976.png" src="_images/8a01c597682bdebdc32e0a1a5e972655bccfc340aff9d8aadc4ca420e1ba6976.png" />
-<img alt="_images/867c5c8c7543aa3db2bafeeb015054055dc2c727f9ad9343e5b4986db614b58b.png" src="_images/867c5c8c7543aa3db2bafeeb015054055dc2c727f9ad9343e5b4986db614b58b.png" />
-<img alt="_images/55c7146db072d2d3ff9bca6106408670bea7707fd38b853660afe2b131fbbe42.png" src="_images/55c7146db072d2d3ff9bca6106408670bea7707fd38b853660afe2b131fbbe42.png" />
+<img alt="_images/979fcf0d3aff828f6ef48525095e62ff73fd66017c42c27098bb558e6260df6a.png" src="_images/979fcf0d3aff828f6ef48525095e62ff73fd66017c42c27098bb558e6260df6a.png" />
+<img alt="_images/a46438dfa68784c30423209a52f64824dc0a24da9c6638b4c8356b6572966ec7.png" src="_images/a46438dfa68784c30423209a52f64824dc0a24da9c6638b4c8356b6572966ec7.png" />
+<img alt="_images/2ccdb34a1c7a1c694877528c86bf3de8faff87776af40af041853018612d8649.png" src="_images/2ccdb34a1c7a1c694877528c86bf3de8faff87776af40af041853018612d8649.png" />
+<img alt="_images/05913018ef69337992c3f270f7efd2719ba6c701aec2acb476aa8c652dae80cb.png" src="_images/05913018ef69337992c3f270f7efd2719ba6c701aec2acb476aa8c652dae80cb.png" />
 </div>
 </div>
 <div class="tip admonition">
@@ -4735,16 +5294,16 @@ Veredicto k optimo (5)
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "tf"
+            mode: "python"
         },
         kernelOptions: {
-            name: "tf",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'tf'</script>
+    <script>kernelName = 'python3'</script>
 
                 </article>
               
@@ -4781,15 +5340,17 @@ Veredicto k optimo (5)
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> Contents
   </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis">2.1. Análisis</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios">2.2. Ejercicios</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion">2.3. Implementación</a></li>
@@ -4879,8 +5440,8 @@ By Lihki Rubio, Ph.D.
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
 
   <footer class="bd-footer">
   </footer>

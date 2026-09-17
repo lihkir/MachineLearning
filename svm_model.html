@@ -16,44 +16,47 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=b4b7a797" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=8c6b312c" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=530fe47d" />
     <link rel="stylesheet" type="text/css" href="_static/.ipynb_checkpoints/custom-checkpoint.css" />
   
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="_static/copybutton.js?v=f281be69"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
@@ -63,6 +66,7 @@
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'svm_model';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="_static/custom.js?v=14184634"></script>
     <script src="_static/.ipynb_checkpoints/custom-checkpoint.js"></script>
@@ -72,34 +76,30 @@
     <link rel="prev" title="5. Random Forest y XGBoost" href="decisiontree_model.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
   </head>
-  
-  
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
-
+  <body data-default-mode="">
   
   
   <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
-
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="search.html"
       method="get">
@@ -107,7 +107,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -115,15 +114,59 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
 </div>
 
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
     </header>
   
 
@@ -132,7 +175,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -162,21 +206,17 @@
     
     
     <img src="_static/fotolihki.jpg" class="logo__image only-light" alt="Machine Learning - Home"/>
-    <script>document.write(`<img src="_static/fotolihki.jpg" class="logo__image only-dark" alt="Machine Learning - Home"/>`);</script>
+    <img src="_static/fotolihki.jpg" class="logo__image only-dark pst-js-only" alt="Machine Learning - Home"/>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -209,9 +249,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -294,7 +339,7 @@
 
 
 <button onclick="toggleFullScreen()"
-  class="btn btn-sm btn-fullscreen-button"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
   title="Fullscreen mode"
   data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
@@ -308,25 +353,17 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
 </div></div>
@@ -348,55 +385,64 @@ document.write(`
                 <h2> Contents </h2>
             </div>
             <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis">6.1. Análisis</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#espacios-de-hilbert-con-kernel-reproductor">6.2. Espacios de Hilbert con Kernel reproductor</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#construccion-de-kernels">6.3. Construcción de kernels</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#teorema-de-representacion">6.4. Teorema de representación</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-ridge-con-kernel">6.5. Regresión ridge con Kernel</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-de-vectores-de-soporte">6.6. Regresión de vectores de soporte</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-optima-lineal-varepsilon-insensible">6.7. Regresión óptima lineal <span class="math notranslate nohighlight">\(\varepsilon\)</span>-insensible</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-kernel-ridge">6.8. Regresión Kernel Ridge</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#maquinas-de-vectores-de-soporte">6.9. Máquinas de vectores de soporte</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clases-linealmente-separables-clasificador-de-maximo-margen">6.10. Clases linealmente separables: Clasificador de máximo margen</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clases-no-separables">6.11. Clases no separables</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios-para-el-estudiante">6.12. Ejercicios para el estudiante</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion">6.13. Aplicación</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-lineales-y-caracteristicas-no-lineales">6.14. Modelos lineales y características no lineales</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#el-kernel-trick">6.15. El Kernel Trick</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ajuste-de-los-parametros-de-svm">6.16. Ajuste de los parámetros de SVM</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocesamiento-de-datos-para-svm">6.17. Preprocesamiento de datos para SVM</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proyecto-integrador-de-aprendizaje-automatico">6.18. Proyecto Integrador de Aprendizaje Automático</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clasificacion-multiclase-de-cobertura-forestal-con-maquinas-de-soporte-vectorial-y-despliegue-mlops">6.18.1. Clasificación multiclase de cobertura forestal con Máquinas de Soporte Vectorial y despliegue MLOps</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivo-general">6.18.2. Objetivo general</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contexto-aplicado">6.18.3. Contexto aplicado</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-sugerido-forest-covertype-uci">6.18.4. Dataset sugerido: Forest CoverType (UCI)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#actividades-a-desarrollar">6.18.5. Actividades a desarrollar</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocesamiento">6.18.5.1. 1. Preprocesamiento</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#construccion-de-modelos">6.18.5.2. 2. Construcción de modelos</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluacion">6.18.5.3. 3. Evaluación</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizacion-interactiva-dashboard">6.18.5.4. 4. Visualización interactiva (Dashboard)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lectura-intuitiva-de-la-definicion">6.3. Lectura intuitiva de la definición</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-clave-cauchy-schwarz">6.4. La clave: Cauchy-Schwarz</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#consecuencia-directa-simetria-del-kernel">6.5. Consecuencia directa: simetría del kernel</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generalizacion-a-kernels-no-lineales">6.6. Generalización a kernels no lineales</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kernel-polinomial-de-grado-2">6.7. Kernel polinomial de grado 2</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#por-que-esto-es-el-kernel-trick">6.7.1. Por qué esto es el kernel trick</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#despliegue-y-arquitectura-mlops">6.18.6. Despliegue y arquitectura MLOps</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#servicio-de-inferencia">6.18.6.1. Servicio de inferencia</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#contenerizacion">6.18.6.2. Contenerización</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ci-cd-con-github-actions">6.18.6.3. CI/CD con GitHub Actions</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sugerencias-de-monitoreo">6.18.6.4. Sugerencias de monitoreo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#por-que-se-necesita-el-teorema-de-riesz">6.8. Por qué se necesita el teorema de Riesz</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#construccion-de-kernels">6.9. Construcción de kernels</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#teorema-de-representacion">6.10. Teorema de representación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-ridge-con-kernel">6.11. Regresión ridge con Kernel</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-de-vectores-de-soporte">6.12. Regresión de vectores de soporte</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-optima-lineal-varepsilon-insensible">6.13. Regresión óptima lineal <span class="math notranslate nohighlight">\(\varepsilon\)</span>-insensible</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-kernel-ridge">6.14. Regresión Kernel Ridge</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#maquinas-de-vectores-de-soporte">6.15. Máquinas de vectores de soporte</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clases-linealmente-separables-clasificador-de-maximo-margen">6.16. Clases linealmente separables: Clasificador de máximo margen</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clases-no-separables">6.17. Clases no separables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios-para-el-estudiante">6.18. Ejercicios para el estudiante</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion">6.19. Aplicación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-lineales-y-caracteristicas-no-lineales">6.20. Modelos lineales y características no lineales</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#el-kernel-trick">6.21. El Kernel Trick</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ajuste-de-los-parametros-de-svm">6.22. Ajuste de los parámetros de SVM</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocesamiento-de-datos-para-svm">6.23. Preprocesamiento de datos para SVM</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proyecto-integrador-de-aprendizaje-automatico">6.24. Proyecto Integrador de Aprendizaje Automático</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clasificacion-multiclase-de-cobertura-forestal-con-maquinas-de-soporte-vectorial-y-despliegue-mlops">6.24.1. Clasificación multiclase de cobertura forestal con Máquinas de Soporte Vectorial y despliegue MLOps</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivo-general">6.24.2. Objetivo general</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contexto-aplicado">6.24.3. Contexto aplicado</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-sugerido-forest-covertype-uci">6.24.4. Dataset sugerido: Forest CoverType (UCI)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#actividades-a-desarrollar">6.24.5. Actividades a desarrollar</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocesamiento">6.24.5.1. 1. Preprocesamiento</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#construccion-de-modelos">6.24.5.2. 2. Construcción de modelos</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluacion">6.24.5.3. 3. Evaluación</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizacion-interactiva-dashboard">6.24.5.4. 4. Visualización interactiva (Dashboard)</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#herramientas-sugeridas">6.18.7. Herramientas sugeridas</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#entregables">6.18.8. Entregables</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen">6.18.9. Resumen</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instrucciones-para-el-mlops">6.18.10. Instrucciones para el MLOps</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estructura-general-del-proyecto">6.18.11. Estructura general del proyecto</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#api-py-servicio-de-inferencia-con-fastapi">6.18.12. <code class="docutils literal notranslate"><span class="pre">api.py</span></code> — Servicio de inferencia con FastAPI</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app-dash-py-dashboard-interactivo-con-dash-y-plotly">6.18.13. <code class="docutils literal notranslate"><span class="pre">app_dash.py</span></code> — Dashboard interactivo con Dash y Plotly</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dockerfile-contenerizacion-del-proyecto">6.18.14. <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code> — Contenerización del proyecto</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#requirements-txt-dependencias-del-entorno">6.18.15. <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> — Dependencias del entorno</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#github-workflows-ci-yml-flujo-de-ci-con-github-actions">6.18.16. <code class="docutils literal notranslate"><span class="pre">.github/workflows/ci.yml</span></code> — Flujo de CI con GitHub Actions</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#readme-md-instrucciones-base-para-el-usuario">6.18.17. <code class="docutils literal notranslate"><span class="pre">README.md</span></code> — Instrucciones base para el usuario</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#docker">6.18.18. Docker</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#despliegue-y-arquitectura-mlops">6.24.6. Despliegue y arquitectura MLOps</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#servicio-de-inferencia">6.24.6.1. Servicio de inferencia</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#contenerizacion">6.24.6.2. Contenerización</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ci-cd-con-github-actions">6.24.6.3. CI/CD con GitHub Actions</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sugerencias-de-monitoreo">6.24.6.4. Sugerencias de monitoreo</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#herramientas-sugeridas">6.24.7. Herramientas sugeridas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#entregables">6.24.8. Entregables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen">6.24.9. Resumen</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instrucciones-para-el-mlops">6.24.10. Instrucciones para el MLOps</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estructura-general-del-proyecto">6.24.11. Estructura general del proyecto</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#api-py-servicio-de-inferencia-con-fastapi">6.24.12. <code class="docutils literal notranslate"><span class="pre">api.py</span></code> — Servicio de inferencia con FastAPI</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app-dash-py-dashboard-interactivo-con-dash-y-plotly">6.24.13. <code class="docutils literal notranslate"><span class="pre">app_dash.py</span></code> — Dashboard interactivo con Dash y Plotly</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dockerfile-contenerizacion-del-proyecto">6.24.14. <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code> — Contenerización del proyecto</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#requirements-txt-dependencias-del-entorno">6.24.15. <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> — Dependencias del entorno</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#github-workflows-ci-yml-flujo-de-ci-con-github-actions">6.24.16. <code class="docutils literal notranslate"><span class="pre">.github/workflows/ci.yml</span></code> — Flujo de CI con GitHub Actions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#readme-md-instrucciones-base-para-el-usuario">6.24.17. <code class="docutils literal notranslate"><span class="pre">README.md</span></code> — Instrucciones base para el usuario</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#docker">6.24.18. Docker</a></li>
 </ul>
 </li>
 </ul>
@@ -415,8 +461,8 @@ document.write(`
 <div class="admonition-introduccion admonition">
 <p class="admonition-title">Introducción</p>
 <ul class="simple">
-<li><p>Las <em><strong>máquinas de vectores de soporte (SVM)</strong></em> propuestas por <em><strong>Vapnik (1996, 1998)</strong></em>, se caracterizan por ser un proceso interno de <em><strong>construcción de reglas de clasificación, bastante diferente al de las de los métodos estadísticos</strong></em>. Las <em><strong>SVM</strong></em> suelen ser eficaces en casos en los que los métodos de clasificación tradicionales no lo son, como por ejemplo, los <em><strong>problemas basados en datos con estructura no lineal</strong></em>, además las <em><strong>SVM</strong></em> se han adaptado y aplicado en muchos campos de investigación. En esta sección, nos centramos en las <em><strong>SVM</strong></em> para la solución de <em><strong>problemas de regresión y clasificación</strong></em>, así como también el proceso de construcción, luego abordaremos los pasos de su extensión, de sistemas lineales a sistemas no lineales.</p></li>
-<li><p>El paradigma algorítmico de las <em><strong>SVM</strong></em> aborda el reto de la complejidad de la muestra mediante la <strong>búsqueda de separadores de “mayor margen”</strong>. A grandes rasgos, un semiespacio separa un conjunto de entrenamiento con un gran margen si <em><strong>todos los ejemplos no sólo están en el lado correcto del hiperplano de separación, sino también lejos de él</strong></em>. Restringir el algoritmo a la salida de un separador de gran margen puede producir una complejidad de muestra pequeña, incluso si la dimensionalidad del espacio de características es alta (e incluso infinita). Introduciremos el concepto de margen y lo relacionamos con el <em><strong>paradigma de minimización de pérdidas regularizadas</strong></em>.</p></li>
+<li><p>Las <strong>máquinas de vectores de soporte (SVM)</strong>, propuestas por <strong>Vapnik (1996, 1998)</strong>, construyen reglas de clasificación de forma distinta a los métodos estadísticos tradicionales. Son especialmente eficaces en <strong>datos con estructura no lineal</strong> y se aplican ampliamente a problemas de <strong>clasificación y regresión</strong>. Su construcción parte de sistemas lineales y se extiende posteriormente a <strong>sistemas no lineales</strong>.</p></li>
+<li><p>Su paradigma se basa en buscar <strong>separadores de máximo margen</strong>: no basta con que los ejemplos queden en el lado correcto del hiperplano, sino que deben estar <strong>lo más alejados posible de él</strong>. Esta restricción puede reducir la <strong>complejidad de muestra</strong> incluso en espacios de características de <strong>alta o infinita dimensionalidad</strong>. El <strong>margen</strong> se relaciona con el paradigma de <strong>minimización de pérdidas regularizadas</strong>.</p></li>
 </ul>
 </div>
 <section id="analisis">
@@ -443,7 +489,42 @@ document.write(`
 f(\boldsymbol{x})=\langle f, \kappa(\cdot, \boldsymbol{x})\rangle,\quad\forall f\in H,~\forall \boldsymbol{x}\in\mathcal{X}
 \]</div>
 </section>
-</div><ul class="simple">
+</div></section>
+<section id="lectura-intuitiva-de-la-definicion">
+<h2><span class="section-number">6.3. </span>Lectura intuitiva de la definición<a class="headerlink" href="#lectura-intuitiva-de-la-definicion" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>En un espacio de Hilbert cualquiera, un elemento <span class="math notranslate nohighlight">\(f\in H\)</span> es un objeto abstracto: un vector en un espacio de dimensión posiblemente infinita. La operación de <em>evaluar</em> <span class="math notranslate nohighlight">\(f\)</span> en un punto <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span>, es decir, calcular <span class="math notranslate nohighlight">\(f(\boldsymbol{x})\)</span>, no siempre tiene sentido ni es continua respecto a la norma de <span class="math notranslate nohighlight">\(H\)</span>. Lo que hace especial a un RKHS es que <strong>la evaluación puntual es una operación continua</strong>, y además puede escribirse como un producto interior con un elemento particular del propio espacio: <span class="math notranslate nohighlight">\(\kappa(\cdot,\boldsymbol{x})\)</span>.</p></li>
+</ul>
+</section>
+<section id="la-clave-cauchy-schwarz">
+<h2><span class="section-number">6.4. </span>La clave: Cauchy-Schwarz<a class="headerlink" href="#la-clave-cauchy-schwarz" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Si tenemos <span class="math notranslate nohighlight">\(f(\boldsymbol{x}) = \langle f, \kappa(\cdot,\boldsymbol{x})\rangle\)</span>, entonces aplicando Cauchy-Schwarz directamente:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+|f(\boldsymbol{x})| = |\langle f, \kappa(\cdot,\boldsymbol{x})\rangle| \le \|f\|_H \cdot \|\kappa(\cdot,\boldsymbol{x})\|_H
+\]</div>
+<ul>
+<li><p>Aquí <span class="math notranslate nohighlight">\(\|\kappa(\cdot,\boldsymbol{x})\|_H\)</span> es un número fijo (depende de <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span>, pero no de <span class="math notranslate nohighlight">\(f\)</span>). Llamando <span class="math notranslate nohighlight">\(C_{\boldsymbol{x}} := \|\kappa(\cdot,\boldsymbol{x})\|_H\)</span>, obtenemos exactamente</p>
+<div class="math notranslate nohighlight">
+\[
+    |f(\boldsymbol{x})| \le C_{\boldsymbol{x}} \|f\|_H \qquad \text{para todo } f \in H,
+    \]</div>
+<p>que es la definición de que el funcional de evaluación es <strong>acotado</strong>, y en espacios normados acotado equivale a continuo. Así que sí: <em>si</em> <span class="math notranslate nohighlight">\(f(\boldsymbol{x})\)</span> admite una representación como producto interior con algún elemento fijo del espacio, <em>entonces</em> automáticamente es continua, gracias a Cauchy-Schwarz. Ese es el mecanismo concreto que estás buscando.</p>
+</li>
+</ul>
+<div class="tip admonition">
+<p class="admonition-title">Idea clave</p>
+<ul class="simple">
+<li><p>Evaluar una función en un punto <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> es lo mismo que proyectar (mediante el producto interior) esa función sobre un elemento fijo del espacio, llamado el <strong>representador de la evaluación en <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span></strong>, denotado <span class="math notranslate nohighlight">\(\kappa(\cdot,\boldsymbol{x})\)</span>.</p></li>
+<li><p>Esto convierte una operación puntual (evaluar <span class="math notranslate nohighlight">\(f(\boldsymbol{x})\)</span>) en una operación geométrica (un producto interior en <span class="math notranslate nohighlight">\(H\)</span>), lo cual es extraordinariamente útil porque permite usar toda la maquinaria del álgebra lineal y la geometría de espacios de Hilbert para trabajar con funciones.</p></li>
+</ul>
+</div>
+</section>
+<section id="consecuencia-directa-simetria-del-kernel">
+<h2><span class="section-number">6.5. </span>Consecuencia directa: simetría del kernel<a class="headerlink" href="#consecuencia-directa-simetria-del-kernel" title="Link to this heading">#</a></h2>
+<ul class="simple">
 <li><p>Una consecuencia directa de la <em><strong>propiedad reproductora</strong></em> es, si definimos <span class="math notranslate nohighlight">\(f(\cdot)=\kappa(\cdot, \boldsymbol{y}),~\boldsymbol{y}\in\mathcal{X}\)</span> entonces</p></li>
 </ul>
 <div class="math notranslate nohighlight">
@@ -451,98 +532,187 @@ f(\boldsymbol{x})=\langle f, \kappa(\cdot, \boldsymbol{x})\rangle,\quad\forall f
 \kappa(\boldsymbol{x}, \boldsymbol{y})=\langle\kappa(\cdot, \boldsymbol{y}), \kappa(\cdot, \boldsymbol{x})\rangle=\langle\kappa(\cdot, \boldsymbol{x}), \kappa(\cdot, \boldsymbol{y})\rangle=\kappa(\boldsymbol{y}, \boldsymbol{x})
 \]</div>
 <div class="tip admonition">
-<p class="admonition-title">Observación</p>
-<p>Un espacio de Hilbert con kernel reproductor (RKHS) tiene la Propiedad <a class="reference internal" href="#equation-prop-reproductora">(6.1)</a>, para todo <span class="math notranslate nohighlight">\(f \in H\)</span> y <span class="math notranslate nohighlight">\(x \in \mathcal{X}\)</span>.</p>
-<ul class="simple">
-<li><p><strong>Caso lineal</strong> en <span class="math notranslate nohighlight">\(\mathbb{R}^2\)</span></p></li>
-</ul>
-<ol class="arabic">
-<li><p><strong>Espacio y producto interno</strong>. Sea <span class="math notranslate nohighlight">\(H=\mathbb{R}^2\)</span> con el producto interior usual:</p>
+<p class="admonition-title">Por qué funciona este argumento</p>
+<p>El truco es sustituir <span class="math notranslate nohighlight">\(f\)</span> por el propio representador <span class="math notranslate nohighlight">\(\kappa(\cdot,\boldsymbol{y})\)</span> dentro de la propiedad reproductora <a class="reference internal" href="#equation-prop-reproductora">(6.1)</a>. Como <span class="math notranslate nohighlight">\(\kappa(\cdot,\boldsymbol{y})\)</span> pertenece a <span class="math notranslate nohighlight">\(H\)</span> (primera condición de la definición), la propiedad se puede aplicar sin problema, evaluando esta función en el punto <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
-   \langle u,v\rangle_H = u_1 v_1 + u_2 v_2.
-   \]</div>
-</li>
-<li><p><strong>Función <span class="math notranslate nohighlight">\(f\)</span> como vector</strong>. Sea <span class="math notranslate nohighlight">\(w=(w_1,w_2)\)</span>. Definimos</p>
+\underbrace{\kappa(\cdot,\boldsymbol{y})}_{=f}(\boldsymbol{x}) = \langle \kappa(\cdot,\boldsymbol{y}),\, \kappa(\cdot,\boldsymbol{x})\rangle.
+\]</div>
+<p>El lado izquierdo es, por definición, <span class="math notranslate nohighlight">\(\kappa(\boldsymbol{x},\boldsymbol{y})\)</span>. La simetría del producto interior real permite intercambiar el orden dentro del producto interior, y la simetría del argumento del producto interior corresponde exactamente a la simetría del kernel. Esta es la razón estructural por la cual <strong>todo kernel reproductor es simétrico</strong>, sin necesidad de imponerlo como hipótesis adicional.</p>
+</div>
+</section>
+<section id="generalizacion-a-kernels-no-lineales">
+<h2><span class="section-number">6.6. </span>Generalización a kernels no lineales<a class="headerlink" href="#generalizacion-a-kernels-no-lineales" title="Link to this heading">#</a></h2>
+<p>En un RKHS general se introduce un <strong>mapa de características</strong> <span class="math notranslate nohighlight">\(\Phi\)</span> tal que:</p>
 <div class="math notranslate nohighlight">
 \[
-   f(y)=\langle w,y\rangle_H = w_1 y_1 + w_2 y_2.
-   \]</div>
-<p>Aquí identificamos <span class="math notranslate nohighlight">\(f\)</span> con el vector <span class="math notranslate nohighlight">\(w\)</span>.</p>
-</li>
-<li><p><strong>Kernel lineal y su representante</strong>. El kernel lineal es</p>
-<div class="math notranslate nohighlight">
-\[
-   \kappa(x,x') = \langle x,x'\rangle_H.
-   \]</div>
-<p>Para un punto fijo <span class="math notranslate nohighlight">\(x\)</span>, la función</p>
-<div class="math notranslate nohighlight">
-\[
-   \kappa(\cdot,x): y \mapsto \langle y,x\rangle_H
-   \]</div>
-<p>corresponde al vector <span class="math notranslate nohighlight">\(x\)</span> en <span class="math notranslate nohighlight">\(H\)</span>.</p>
-</li>
-<li><p><strong>Producto interior entre funciones</strong>. Entonces:</p>
-<div class="math notranslate nohighlight">
-\[
-   \langle f, \kappa(\cdot,x)\rangle_H = \langle w,x\rangle_H.
-   \]</div>
-<p>Pero como</p>
-<div class="math notranslate nohighlight">
-\[
-   f(x)=\langle w,x\rangle_H,
-   \]</div>
-<p>se cumple la propiedad de reproducción.</p>
-</li>
-</ol>
-<ul>
-<li><p><strong>Ejemplo numérico</strong></p>
-<ul>
-<li><p>Sea <span class="math notranslate nohighlight">\(w=(2,1)\)</span>, <span class="math notranslate nohighlight">\(x=(3,4)\)</span>.</p></li>
-<li><p>Evaluación directa:</p>
-<div class="math notranslate nohighlight">
-\[
-      f(x)=\langle w,x\rangle = 2\cdot 3 + 1\cdot 4 = 10.
-      \]</div>
-</li>
-<li><p>Función del kernel:</p>
-<div class="math notranslate nohighlight">
-\[
-      \kappa(\cdot,x)(y)=\langle y,x\rangle = 3y_1 + 4y_2.
-      \]</div>
-</li>
-<li><p>Producto interior:</p>
-<div class="math notranslate nohighlight">
-\[
-      \langle f,\kappa(\cdot,x)\rangle_H = \langle w,x\rangle = 10.
-      \]</div>
-</li>
-</ul>
-</li>
-<li><p><strong>Conclusión:</strong></p>
-<div class="math notranslate nohighlight">
-\[
-    f(x) \;=\; \langle f,\kappa(\cdot,x)\rangle_H
-    \]</div>
-</li>
-<li><p>Generalización a kernels no lineales: En un RKHS general se introduce un <strong>mapa de características</strong> <span class="math notranslate nohighlight">\(\Phi\)</span> tal que:</p>
-<div class="math notranslate nohighlight">
-\[
-    \kappa(x,x') = \langle \Phi(x),\Phi(x')\rangle_H.
-    \]</div>
+\kappa(x,x') = \langle \Phi(x),\Phi(x')\rangle_H.
+\]</div>
 <p>En este caso, <span class="math notranslate nohighlight">\(\kappa(\cdot,x)\)</span> corresponde a <span class="math notranslate nohighlight">\(\Phi(x)\)</span>, y la propiedad de reproducción toma la forma:</p>
 <div class="math notranslate nohighlight">
 \[
-    f(x)=\langle f,\Phi(x)\rangle_H.
-    \]</div>
+f(x)=\langle f,\Phi(x)\rangle_H.
+\]</div>
 <p>El <strong>teorema de representación de Riesz</strong> garantiza que siempre existe un único elemento <span class="math notranslate nohighlight">\(k_x \in H\)</span> (llamado representador de la evaluación en <span class="math notranslate nohighlight">\(x\)</span>) tal que:</p>
 <div class="math notranslate nohighlight">
 \[
-    f(x)=\langle f, k_x \rangle_H, \quad \text{con } k_x = \kappa(\cdot,x).
-    \]</div>
+f(x)=\langle f, k_x \rangle_H, \quad \text{con } k_x = \kappa(\cdot,x).
+\]</div>
+</section>
+<section id="kernel-polinomial-de-grado-2">
+<h2><span class="section-number">6.7. </span>Kernel polinomial de grado 2<a class="headerlink" href="#kernel-polinomial-de-grado-2" title="Link to this heading">#</a></h2>
+<p>Considere <span class="math notranslate nohighlight">\(\mathcal{X}=\mathbb{R}^2\)</span> y el kernel</p>
+<div class="math notranslate nohighlight">
+\[
+\kappa(x,x') = \langle x,x'\rangle^2 = (x_1x_1' + x_2x_2')^2.
+\]</div>
+<ul class="simple">
+<li><p><strong>Paso 1</strong>. Encontrar el mapa de características <span class="math notranslate nohighlight">\(\Phi\)</span> expandiendo el kernel</p></li>
+</ul>
+<p>Se expande algebraicamente <span class="math notranslate nohighlight">\(\kappa(x,x')\)</span> para ver si, en efecto, corresponde a un producto interior en algún espacio:</p>
+<div class="math notranslate nohighlight">
+\[
+\kappa(x,x') = (x_1x_1' + x_2x_2')^2 = (x_1x_1')^2 + 2(x_1x_1')(x_2x_2') + (x_2x_2')^2.
+\]</div>
+<p>Reagrupando los factores que dependen de <span class="math notranslate nohighlight">\(x\)</span> por un lado y de <span class="math notranslate nohighlight">\(x'\)</span> por otro:</p>
+<div class="math notranslate nohighlight">
+\[
+\kappa(x,x') = \big(x_1^2\big)\big((x_1')^2\big) + \big(\sqrt{2}\,x_1x_2\big)\big(\sqrt{2}\,x_1'x_2'\big) + \big(x_2^2\big)\big((x_2')^2\big).
+\]</div>
+<p>Esto es exactamente un producto punto entre dos vectores de <span class="math notranslate nohighlight">\(\mathbb{R}^3\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\kappa(x,x') = \langle \Phi(x),\Phi(x')\rangle,\qquad \Phi(x) = \big(x_1^2,\ \sqrt{2}\,x_1x_2,\ x_2^2\big)\in\mathbb{R}^3.
+\]</div>
+<ul class="simple">
+<li><p><strong>Paso 2</strong>. Identificar <span class="math notranslate nohighlight">\(\kappa(\cdot,x)\)</span> con <span class="math notranslate nohighlight">\(\Phi(x)\)</span></p></li>
+</ul>
+<p>Fijando el punto <span class="math notranslate nohighlight">\(x=(3,4)\)</span> se obtiene el vector de características</p>
+<div class="math notranslate nohighlight">
+\[
+\Phi(x) = \big(3^2,\ \sqrt{2}\cdot 3\cdot 4,\ 4^2\big) = \big(9,\ 12\sqrt{2},\ 16\big)\in\mathbb{R}^3.
+\]</div>
+<p>Toda función <span class="math notranslate nohighlight">\(f\)</span> en este RKHS se identifica con un vector <span class="math notranslate nohighlight">\(w=(w_1,w_2,w_3)\in\mathbb{R}^3\)</span>, mediante</p>
+<div class="math notranslate nohighlight">
+\[
+f(y) = \langle w,\Phi(y)\rangle = w_1y_1^2 + w_2\sqrt{2}\,y_1y_2 + w_3y_2^2.
+\]</div>
+<ul class="simple">
+<li><p><strong>Paso 3</strong>. Verificación numérica completa de la propiedad reproductora</p></li>
+</ul>
+<p>Sea <span class="math notranslate nohighlight">\(w=(2,1,-1)\)</span>, de modo que</p>
+<div class="math notranslate nohighlight">
+\[
+f(y) = 2y_1^2 + \sqrt{2}\,y_1y_2 - y_2^2.
+\]</div>
+<p><strong>Camino A: evaluación directa de <span class="math notranslate nohighlight">\(f\)</span> en <span class="math notranslate nohighlight">\(x=(3,4)\)</span>.</strong></p>
+<div class="math notranslate nohighlight">
+\[
+f(x) = 2(3)^2 + \sqrt{2}(3)(4) - (4)^2 = 2(9) + 12\sqrt{2} - 16 = 18 + 12\sqrt{2} - 16 = 2 + 12\sqrt{2}.
+\]</div>
+<p><strong>Camino B: producto interior con el representador <span class="math notranslate nohighlight">\(\kappa(\cdot,x)=\Phi(x)\)</span>.</strong></p>
+<div class="math notranslate nohighlight">
+\[
+\langle f,\kappa(\cdot,x)\rangle_H = \langle w,\Phi(x)\rangle = (2)(9) + (1)(12\sqrt{2}) + (-1)(16) = 18 + 12\sqrt{2} - 16 = 2 + 12\sqrt{2}.
+\]</div>
+<p>Los dos caminos coinciden exactamente, confirmando la propiedad reproductora también en este caso no lineal.</p>
+<p><strong>Camino C: verificación de que <span class="math notranslate nohighlight">\(\kappa(x,x)\)</span> calculado de las dos formas coincide.</strong> Esto es lo que realmente se explota en el truco del kernel, así que conviene verificarlo por separado. Tomando <span class="math notranslate nohighlight">\(x'=(1,2)\)</span>:</p>
+<ul>
+<li><p>Cálculo <em>directo</em> usando solo la fórmula del kernel, sin construir <span class="math notranslate nohighlight">\(\Phi\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+  \kappa(x,x') = \langle x,x'\rangle^2 = (3\cdot 1 + 4\cdot 2)^2 = (3+8)^2 = 11^2 = 121.
+  \]</div>
+</li>
+<li><p>Cálculo <em>vía el mapa de características</em>, construyendo <span class="math notranslate nohighlight">\(\Phi(x)\)</span> y <span class="math notranslate nohighlight">\(\Phi(x')\)</span> explícitamente:</p>
+<div class="math notranslate nohighlight">
+\[
+  \Phi(x)=(9,\ 12\sqrt{2},\ 16),\qquad \Phi(x') = (1,\ 2\sqrt{2},\ 4).
+  \]</div>
+<div class="math notranslate nohighlight">
+\[
+  \langle \Phi(x),\Phi(x')\rangle = 9(1) + 12\sqrt{2}\cdot 2\sqrt{2} + 16(4) = 9 + 48 + 64 = 121.
+  \]</div>
 </li>
 </ul>
+<p>Ambos caminos dan <span class="math notranslate nohighlight">\(121\)</span>.</p>
+<section id="por-que-esto-es-el-kernel-trick">
+<h3><span class="section-number">6.7.1. </span>Por qué esto es el kernel trick<a class="headerlink" href="#por-que-esto-es-el-kernel-trick" title="Link to this heading">#</a></h3>
+<div class="tip admonition">
+<p class="admonition-title">El truco del kernel (kernel trick)</p>
+<p>Observe la diferencia de trabajo entre los dos caminos del paso anterior:</p>
+<ul class="simple">
+<li><p><strong>Camino directo (usando <span class="math notranslate nohighlight">\(\kappa\)</span>):</strong> una suma de productos (<span class="math notranslate nohighlight">\(\langle x,x'\rangle\)</span>) y un cuadrado. Para <span class="math notranslate nohighlight">\(x,x'\in\mathbb{R}^2\)</span> esto cuesta un número fijo y pequeño de operaciones, sin importar en qué dimensión “viva” el mapa de características.</p></li>
+<li><p><strong>Camino explícito (usando <span class="math notranslate nohighlight">\(\Phi\)</span>):</strong> hay que calcular primero <span class="math notranslate nohighlight">\(\Phi(x)\in\mathbb{R}^3\)</span> y <span class="math notranslate nohighlight">\(\Phi(x')\in\mathbb{R}^3\)</span>, y luego hacer el producto interior en <span class="math notranslate nohighlight">\(\mathbb{R}^3\)</span>.</p></li>
+</ul>
+<p>En este ejemplo la diferencia parece menor, porque el espacio de características solo tiene dimensión 3. Pero el mismo cálculo con un kernel polinomial de grado <span class="math notranslate nohighlight">\(d\)</span> en <span class="math notranslate nohighlight">\(\mathbb{R}^p\)</span> produce un espacio de características de dimensión <span class="math notranslate nohighlight">\(\binom{p+d-1}{d}\)</span>, que crece muy rápidamente con <span class="math notranslate nohighlight">\(p\)</span> y <span class="math notranslate nohighlight">\(d\)</span>. Con el <strong>kernel gaussiano (RBF)</strong>, el espacio de características correspondiente tiene <strong>dimensión infinita</strong>, de modo que <span class="math notranslate nohighlight">\(\Phi(x)\)</span> ni siquiera se puede escribir como un vector finito.</p>
+<p><strong>El truco del kernel consiste precisamente en esto:</strong> para calcular <span class="math notranslate nohighlight">\(\langle\Phi(x),\Phi(x')\rangle_H\)</span>, nunca es necesario construir <span class="math notranslate nohighlight">\(\Phi(x)\)</span> ni <span class="math notranslate nohighlight">\(\Phi(x')\)</span> por separado. Basta con evaluar <span class="math notranslate nohighlight">\(\kappa(x,x')\)</span> directamente, usando su fórmula cerrada. Todo algoritmo que dependa de los datos únicamente a través de productos interiores (SVM, regresión ridge kernelizada, PCA con kernel, procesos gaussianos) puede entonces “actuar” como si trabajara en el espacio de características de dimensión alta (o infinita), pagando solamente el costo computacional de evaluar <span class="math notranslate nohighlight">\(\kappa\)</span> en el espacio original <span class="math notranslate nohighlight">\(\mathcal{X}\)</span>.</p>
 </div>
+<ul class="simple">
+<li><p>Esta tabla resume la diferencia conceptual entre los dos casos y ayuda a que los estudiantes ubiquen exactamente qué cambia y qué se preserva:</p></li>
+</ul>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Elemento</p></th>
+<th class="head"><p>Kernel lineal</p></th>
+<th class="head"><p>Kernel polinomial grado 2</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\kappa(x,x')\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\langle x,x'\rangle\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\langle x,x'\rangle^2\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Dimensión de <span class="math notranslate nohighlight">\(H\)</span> (espacio de características)</p></td>
+<td><p><span class="math notranslate nohighlight">\(2\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(3\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\Phi(x)\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(x\)</span> (el propio punto)</p></td>
+<td><p><span class="math notranslate nohighlight">\((x_1^2,\sqrt{2}x_1x_2,x_2^2)\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\kappa(\cdot,x)\)</span> se identifica con</p></td>
+<td><p><span class="math notranslate nohighlight">\(x\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\Phi(x)\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>¿Se necesita construir <span class="math notranslate nohighlight">\(\Phi\)</span> para calcular <span class="math notranslate nohighlight">\(\kappa\)</span>?</p></td>
+<td><p>Es trivial, <span class="math notranslate nohighlight">\(\Phi=\text{identidad}\)</span></p></td>
+<td><p>No: se evalúa <span class="math notranslate nohighlight">\(\kappa\)</span> directamente (kernel trick)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Propiedad reproductora</p></td>
+<td><p><span class="math notranslate nohighlight">\(f(x)=\langle w,x\rangle\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(f(x)=\langle w,\Phi(x)\rangle\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul class="simple">
+<li><p>En ambos casos se cumple exactamente la misma identidad estructural, <span class="math notranslate nohighlight">\(f(x)=\langle f,\kappa(\cdot,x)\rangle_H\)</span>; lo único que cambia es la riqueza del espacio de características que el kernel representa implícitamente.</p></li>
+</ul>
+</section>
+</section>
+<section id="por-que-se-necesita-el-teorema-de-riesz">
+<h2><span class="section-number">6.8. </span>Por qué se necesita el teorema de Riesz<a class="headerlink" href="#por-que-se-necesita-el-teorema-de-riesz" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Vale la pena detenerse aquí, porque este punto suele pasarse por alto y es justamente el que da rigor a toda la teoría.</p></li>
+</ul>
+<div class="tip admonition">
+<p class="admonition-title">Teorema de representación de Riesz</p>
+<p>Sea <span class="math notranslate nohighlight">\(H\)</span> un espacio de Hilbert y <span class="math notranslate nohighlight">\(L:H\to\mathbb{R}\)</span> un funcional lineal <strong>continuo (acotado)</strong>. Entonces existe un único elemento <span class="math notranslate nohighlight">\(g\in H\)</span> tal que</p>
+<div class="math notranslate nohighlight">
+\[
+L(f) = \langle f, g\rangle_H,\quad \forall f\in H.
+\]</div>
+<p>En el contexto de un RKHS, para cada <span class="math notranslate nohighlight">\(\boldsymbol{x}\in\mathcal{X}\)</span> se define el funcional de evaluación puntual</p>
+<div class="math notranslate nohighlight">
+\[
+L_{\boldsymbol{x}}(f) = f(\boldsymbol{x}).
+\]</div>
+<p>Si este funcional es continuo (esto es, si la evaluación puntual está controlada por la norma de <span class="math notranslate nohighlight">\(H\)</span>, condición que se impone precisamente al definir un RKHS), el teorema de Riesz garantiza que existe un único <span class="math notranslate nohighlight">\(k_{\boldsymbol{x}}\in H\)</span> tal que <span class="math notranslate nohighlight">\(f(\boldsymbol{x})=\langle f,k_{\boldsymbol{x}}\rangle_H\)</span> para toda <span class="math notranslate nohighlight">\(f\)</span>. Ese elemento <span class="math notranslate nohighlight">\(k_{\boldsymbol{x}}\)</span> es exactamente <span class="math notranslate nohighlight">\(\kappa(\cdot,\boldsymbol{x})\)</span>.</p>
+</div>
+<ul class="simple">
+<li><p>En otras palabras: la definición <a class="reference internal" href="#def_hilbert_rep">Definition 6.1</a> no impone la existencia del kernel, sino que esta existencia y unicidad quedan garantizadas por un resultado clásico del análisis funcional, siempre que la evaluación puntual sea continua. Esta es la diferencia fundamental entre un espacio de Hilbert arbitrario de funciones (donde <span class="math notranslate nohighlight">\(f(\boldsymbol{x})\)</span> puede no ser una operación continua, como ocurre en <span class="math notranslate nohighlight">\(L^2\)</span>) y un RKHS, donde sí lo es.</p></li>
+</ul>
 <div class="proof definition admonition" id="def_features_map">
 <p class="admonition-title"><span class="caption-number">Definition 6.2 </span></p>
 <section class="definition-content" id="proof-content">
@@ -581,7 +751,7 @@ f(\boldsymbol{x})=\langle f, \kappa(\cdot, \boldsymbol{x})\rangle,\quad\forall f
 <figure class="align-center" id="non-linear-classifier-using-kernel-trick-fig">
 <img alt="_images/non-linear-classifier-using-kernel-trick.png" src="_images/non-linear-classifier-using-kernel-trick.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 6.1 </span><span class="caption-text">Ilustración de la propiedad <strong>kernel trick</strong>. Fuente <span id="id1">[<a class="reference internal" href="biblio.html#id57" title="Marouane Hachimi, Georges Kaddoum, Ghyslain Gagnon, and Poulmanogo Illy. Multi-stage jamming attacks detection using deep learning combined with kernelized support vector machine in 5g cloud radio access networks. In 2020 international symposium on networks, computers and communications (ISNCC), 1–5. IEEE, 2020.">Hachimi <em>et al.</em>, 2020</a>]</span>.</span><a class="headerlink" href="#non-linear-classifier-using-kernel-trick-fig" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 6.1 </span><span class="caption-text">Ilustración de la propiedad <strong>kernel trick</strong>. Fuente <span class="bibtex-citation" id="id1">[<a class="reference internal" href="biblio.html#id57" title="Marouane Hachimi, Georges Kaddoum, Ghyslain Gagnon, and Poulmanogo Illy. Multi-stage jamming attacks detection using deep learning combined with kernelized support vector machine in 5g cloud radio access networks. In 2020 international symposium on networks, computers and communications (ISNCC), 1–5. IEEE, 2020.">Hachimi <em>et al.</em>, 2020</a>]</span>.</span><a class="headerlink" href="#non-linear-classifier-using-kernel-trick-fig" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <div class="proof property admonition" id="props_features_map">
@@ -696,7 +866,7 @@ k(x_{N}, x_{1}) &amp; \cdots &amp; k(x_{N}, x_{N})\\
 </figure>
 </section>
 <section id="construccion-de-kernels">
-<h2><span class="section-number">6.3. </span>Construcción de kernels<a class="headerlink" href="#construccion-de-kernels" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">6.9. </span>Construcción de kernels<a class="headerlink" href="#construccion-de-kernels" title="Link to this heading">#</a></h2>
 <p>Además de los ejemplos previos, se pueden <strong>construir otros kernels aplicando las siguientes propiedades</strong></p>
 <ul>
 <li><p>Si</p>
@@ -778,10 +948,10 @@ k(x_{N}, x_{1}) &amp; \cdots &amp; k(x_{N}, x_{N})\\
 <p>también es un kernel.</p>
 </li>
 </ul>
-<p>Para mas información sobre los kernel y su construción (ver <span id="id2">[<a class="reference internal" href="biblio.html#id12" title="Thomas Hofmann, Bernhard Schölkopf, and Alexander J Smola. Kernel methods in machine learning. The annals of statistics, 36(3):1171–1220, 2008.">Hofmann <em>et al.</em>, 2008</a>, <a class="reference internal" href="biblio.html#id13" title="John Shawe-Taylor, Nello Cristianini, and others. Kernel methods for pattern analysis. Cambridge university press, 2004.">Shawe-Taylor <em>et al.</em>, 2004</a>, <a class="reference internal" href="biblio.html#id14" title="Konstantinos Slavakis, Pantelis Bouboulis, and Sergios Theodoridis. Online learning in reproducing kernel hilbert spaces. In Academic Press Library in Signal Processing, volume 1, pages 883–987. Elsevier, 2014.">Slavakis <em>et al.</em>, 2014</a>]</span>).</p>
+<p>Para mas información sobre los kernel y su construción (ver <span class="bibtex-citation" id="id2">[<a class="reference internal" href="biblio.html#id12" title="Thomas Hofmann, Bernhard Schölkopf, and Alexander J Smola. Kernel methods in machine learning. The annals of statistics, 36(3):1171–1220, 2008.">Hofmann <em>et al.</em>, 2008</a>, <a class="reference internal" href="biblio.html#id13" title="John Shawe-Taylor, Nello Cristianini, and others. Kernel methods for pattern analysis. Cambridge university press, 2004.">Shawe-Taylor <em>et al.</em>, 2004</a>, <a class="reference internal" href="biblio.html#id14" title="Konstantinos Slavakis, Pantelis Bouboulis, and Sergios Theodoridis. Online learning in reproducing kernel hilbert spaces. In Academic Press Library in Signal Processing, volume 1, pages 883–987. Elsevier, 2014.">Slavakis <em>et al.</em>, 2014</a>]</span>).</p>
 </section>
 <section id="teorema-de-representacion">
-<h2><span class="section-number">6.4. </span>Teorema de representación<a class="headerlink" href="#teorema-de-representacion" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">6.10. </span>Teorema de representación<a class="headerlink" href="#teorema-de-representacion" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>El teorema que se presentará en esta sección es de gran importancia desde un punto de vista práctico. Este nos permite llevar a cabo,  <strong>optimización empírica de funciones de pérdida</strong>, basado en un conjunto finito de puntos de entrenamiento, en una manera muy eficiente <em>si la función a estimar pertenece a un espacio de dimensión alta</em> o incluso infinita <span class="math notranslate nohighlight">\(H\)</span>.</p></li>
 </ul>
@@ -889,11 +1059,11 @@ f(\boldsymbol{x}_{m})&amp;=\langle f, \kappa(\cdot, \boldsymbol{x}_{m})\rangle\\
 </div><div class="proof observation admonition" id="observation-10">
 <p class="admonition-title"><span class="caption-number">Observation 6.2 </span></p>
 <section class="observation-content" id="proof-content">
-<p>Un ejemplo de <strong>aplicación exitosa de este teorema fue demostrada en el contexto de procesamiento de imágenes</strong> <span id="id3">[<a class="reference internal" href="biblio.html#id15" title="Pantelis Bouboulis, Konstantinos Slavakis, and Sergios Theodoridis. Adaptive kernel-based image denoising employing semi-parametric regularization. IEEE Transactions on Image Processing, 19(6):1465–1479, 2010.">Bouboulis <em>et al.</em>, 2010</a>]</span>. Un conjunto de funciones no lineales en lugar de <span class="math notranslate nohighlight">\(\psi_{m}\)</span> fueron usadas para <strong>detección de bordes en una imagen con (saltos no suaves)</strong>. La parte de <span class="math notranslate nohighlight">\(f\)</span> que pertenece al espacio <strong>RKHS</strong> es usada para las partes suaves en la imagen.</p>
+<p>Un ejemplo de <strong>aplicación exitosa de este teorema fue demostrada en el contexto de procesamiento de imágenes</strong> <span class="bibtex-citation" id="id3">[<a class="reference internal" href="biblio.html#id15" title="Pantelis Bouboulis, Konstantinos Slavakis, and Sergios Theodoridis. Adaptive kernel-based image denoising employing semi-parametric regularization. IEEE Transactions on Image Processing, 19(6):1465–1479, 2010.">Bouboulis <em>et al.</em>, 2010</a>]</span>. Un conjunto de funciones no lineales en lugar de <span class="math notranslate nohighlight">\(\psi_{m}\)</span> fueron usadas para <strong>detección de bordes en una imagen con (saltos no suaves)</strong>. La parte de <span class="math notranslate nohighlight">\(f\)</span> que pertenece al espacio <strong>RKHS</strong> es usada para las partes suaves en la imagen.</p>
 </section>
 </div></section>
 <section id="regresion-ridge-con-kernel">
-<h2><span class="section-number">6.5. </span>Regresión ridge con Kernel<a class="headerlink" href="#regresion-ridge-con-kernel" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">6.11. </span>Regresión ridge con Kernel<a class="headerlink" href="#regresion-ridge-con-kernel" title="Link to this heading">#</a></h2>
 <ul>
 <li><p>En esta sección abordaremos la tarea de <em><strong>regresión ridge en un espacio general RKHS</strong></em>. El camino a seguir es el usado típicamente para <em><strong>extender técnicas, las cuales han sido desarrolladas para modelos lineales, a espacios más generales RKSH</strong></em>.</p></li>
 <li><p>Sea <span class="math notranslate nohighlight">\((y_{n}, \boldsymbol{x}_{n})\in\mathbb{R}\times\mathbb{R}^{l}\)</span> la representación de un mecanismo de generación de datos, modelados vía tarea de <em><strong>regresión no lineal</strong></em></p>
@@ -947,12 +1117,12 @@ f(\boldsymbol{x})=\sum_{n=1}^{N}\theta_{n}\kappa(\boldsymbol{x}, \boldsymbol{x}_
 </ul>
 </section>
 <section id="regresion-de-vectores-de-soporte">
-<h2><span class="section-number">6.6. </span>Regresión de vectores de soporte<a class="headerlink" href="#regresion-de-vectores-de-soporte" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">6.12. </span>Regresión de vectores de soporte<a class="headerlink" href="#regresion-de-vectores-de-soporte" title="Link to this heading">#</a></h2>
 <div class="admonition-metodo-de-minimos-modulos admonition">
 <p class="admonition-title">Método de mínimos módulos</p>
 <ul>
 <li><p>El método de <em><strong>mínimos cuadrados no es siempre el mejor criterio de optimización</strong></em>, debido a que, <em><strong>en presencia de ruido no Gaussiano</strong></em> con colas largas y por lo tanto número creciente de outliers, <em><strong>la dependencia cuadrática de el método se sesga hacia valores asociados con presencia de outliers</strong></em></p></li>
-<li><p>Una manera de darle solución a este problema es escoger una <em><strong>función de pérdida que se ajuste mejor al modelo del ruido</strong></em> (ver Huber 1992, <span id="id4">[<a class="reference internal" href="biblio.html#id16" title="Peter J Huber. Robust estimation of a location parameter. In Breakthroughs in statistics, pages 492–518. Springer, 1992.">Huber, 1992</a>]</span>). Bajo el <em><strong>supuesto de que el ruido tiene función de densidad de probabilidad (fdp) simétrica</strong></em>, la tarea optima de regresión es obtenida minimizando la función de pérdida</p>
+<li><p>Una manera de darle solución a este problema es escoger una <em><strong>función de pérdida que se ajuste mejor al modelo del ruido</strong></em> (ver Huber 1992, <span class="bibtex-citation" id="id4">[<a class="reference internal" href="biblio.html#id16" title="Peter J Huber. Robust estimation of a location parameter. In Breakthroughs in statistics, pages 492–518. Springer, 1992.">Huber, 1992</a>]</span>). Bajo el <em><strong>supuesto de que el ruido tiene función de densidad de probabilidad (fdp) simétrica</strong></em>, la tarea optima de regresión es obtenida minimizando la función de pérdida</p>
 <div class="math notranslate nohighlight">
 \[
     \mathcal{L}(y, f(\boldsymbol{x}))=|y-f(\boldsymbol{x})|
@@ -1006,7 +1176,7 @@ f(\boldsymbol{x})=\sum_{n=1}^{N}\theta_{n}\kappa(\boldsymbol{x}, \boldsymbol{x}_
 <a class="reference internal image-reference" href="_images/huber_loss_plot.png"><img alt="_images/huber_loss_plot.png" src="_images/huber_loss_plot.png" style="width: 411.3px; height: 271.8px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Fig. 6.3 </span><span class="caption-text">Función de pérdida de Huber (gris punteado). Función de pérdida lineal <span class="math notranslate nohighlight">\(\varepsilon\)</span>-insensible (gris completo). Función de pérdida cuadrática <span class="math notranslate nohighlight">\(\varepsilon\)</span>-insensible (rojo) para <span class="math notranslate nohighlight">\(\varepsilon = 0.7\)</span>. Fuente <span id="id5">[<a class="reference internal" href="biblio.html#id17" title="S. Theodoridis. Machine Learning: A Bayesian and Optimization Perspective. Elsevier Science, 2020. ISBN 9780128188040. URL: https://books.google.com.co/books?id=l-nEDwAAQBAJ.">Theodoridis, 2020</a>]</span>.</span><a class="headerlink" href="#huber-loss-plot" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 6.3 </span><span class="caption-text">Función de pérdida de Huber (gris punteado). Función de pérdida lineal <span class="math notranslate nohighlight">\(\varepsilon\)</span>-insensible (gris completo). Función de pérdida cuadrática <span class="math notranslate nohighlight">\(\varepsilon\)</span>-insensible (rojo) para <span class="math notranslate nohighlight">\(\varepsilon = 0.7\)</span>. Fuente <span class="bibtex-citation" id="id5">[<a class="reference internal" href="biblio.html#id17" title="S. Theodoridis. Machine Learning: A Bayesian and Optimization Perspective. Elsevier Science, 2020. ISBN 9780128188040. URL: https://books.google.com.co/books?id=l-nEDwAAQBAJ.">Theodoridis, 2020</a>]</span>.</span><a class="headerlink" href="#huber-loss-plot" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <div class="admonition-observacion admonition">
@@ -1018,7 +1188,7 @@ f(\boldsymbol{x})=\sum_{n=1}^{N}\theta_{n}\kappa(\boldsymbol{x}, \boldsymbol{x}_
 </div>
 </section>
 <section id="regresion-optima-lineal-varepsilon-insensible">
-<h2><span class="section-number">6.7. </span>Regresión óptima lineal <span class="math notranslate nohighlight">\(\varepsilon\)</span>-insensible<a class="headerlink" href="#regresion-optima-lineal-varepsilon-insensible" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">6.13. </span>Regresión óptima lineal <span class="math notranslate nohighlight">\(\varepsilon\)</span>-insensible<a class="headerlink" href="#regresion-optima-lineal-varepsilon-insensible" title="Link to this heading">#</a></h2>
 <ul>
 <li><p>Usaremos la <em><strong>función de pérdida lineal</strong></em> <span class="math notranslate nohighlight">\(\varepsilon\)</span>-insensible <a class="reference internal" href="#equation-eq-lin-ins">(6.5)</a> para <em><strong>cuantificar el error de desajuste del modelo</strong></em>. El valor de <span class="math notranslate nohighlight">\(\epsilon\)</span> <em>determina la cantidad de “slack” (grado de error) que se permite</em>.</p></li>
 <li><p>Trataremos la tarea de regresión</p>
@@ -1303,7 +1473,7 @@ f(\boldsymbol{x})=\sum_{n=1}^{N}\theta_{n}\kappa(\boldsymbol{x}, \boldsymbol{x}_
 </div>
 </section>
 <section id="regresion-kernel-ridge">
-<h2><span class="section-number">6.8. </span>Regresión Kernel Ridge<a class="headerlink" href="#regresion-kernel-ridge" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">6.14. </span>Regresión Kernel Ridge<a class="headerlink" href="#regresion-kernel-ridge" title="Link to this heading">#</a></h2>
 <ul>
 <li><p>En esta sección abordaremos la <em><strong>regresión kernel ridge vía su representación dual</strong></em>. La regresión ridge en su <em><strong>representación primal</strong></em> puede ser proyectada como:</p>
 <div class="math notranslate nohighlight" id="equation-eq-kernel-ridge-reg">
@@ -1380,7 +1550,7 @@ f(\boldsymbol{x})=\sum_{n=1}^{N}\theta_{n}\kappa(\boldsymbol{x}, \boldsymbol{x}_
 </figure>
 </section>
 <section id="maquinas-de-vectores-de-soporte">
-<h2><span class="section-number">6.9. </span>Máquinas de vectores de soporte<a class="headerlink" href="#maquinas-de-vectores-de-soporte" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">6.15. </span>Máquinas de vectores de soporte<a class="headerlink" href="#maquinas-de-vectores-de-soporte" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Antes de abordar el <em><strong>modelo de clasificación</strong></em>, <em><strong>máquinas de vectores de soporte (SVM)</strong></em> revisemos la definición de un clasificador</p></li>
 </ul>
@@ -1463,7 +1633,7 @@ J(\boldsymbol{\theta}, \theta_{0})=\frac{1}{2}\|\boldsymbol{\theta}\|^{2}+C\sum_
 </ul>
 </section>
 <section id="clases-linealmente-separables-clasificador-de-maximo-margen">
-<h2><span class="section-number">6.10. </span>Clases linealmente separables: Clasificador de máximo margen<a class="headerlink" href="#clases-linealmente-separables-clasificador-de-maximo-margen" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">6.16. </span>Clases linealmente separables: Clasificador de máximo margen<a class="headerlink" href="#clases-linealmente-separables-clasificador-de-maximo-margen" title="Link to this heading">#</a></h2>
 <ul>
 <li><p>Asumiendo que las <em><strong>clases son linealmente separables</strong></em>, hay un <em><strong>número infinito de clasificadores que solucionan la tarea exactamente</strong></em>, sin error, en el conjunto de entrenamiento. Se puede ver que de estos infinitos hiperplanos que solucionan la tarea, podemos identificar un subconjunto tal que</p>
 <div class="math notranslate nohighlight">
@@ -1566,7 +1736,7 @@ J(\boldsymbol{\theta}, \theta_{0})=\frac{1}{2}\|\boldsymbol{\theta}\|^{2}+C\sum_
     \]</div>
 <p>donde <span class="math notranslate nohighlight">\(\hat{\theta}_{0}\)</span> <em><strong>es obtenido por medio del promedio entre las soluciones de</strong></em> <a class="reference internal" href="#equation-mean-sol-fortheta0">(6.16)</a>. Aunque la solución es única, los correspondientes multiplicadores <span class="math notranslate nohighlight">\(\lambda_{m}\)</span> pueden no ser únicos.</p>
 </li>
-<li><p>Finalmente <em><strong>el número de vectores de soporte está relacionado con la capacidad de generalización del clasificador</strong></em>. Entre mas pequeño es el número de vectores de soporte, mejor será la generalización esperada (ver <span id="id6">[<a class="reference internal" href="biblio.html#id19" title="Konstantinos Koutroumbas and Sergios Theodoridis. Pattern recognition. Academic Press, 2008.">Koutroumbas and Theodoridis, 2008</a>, <a class="reference internal" href="biblio.html#id18" title="佐土原健. N. cristianini and j. shawe-taylor: an introduction to support vector machines, cambridge university press (2000). 人工知能, 16(2):337–337, 2001.">佐土原健, 2001</a>]</span>).</p></li>
+<li><p>Finalmente <em><strong>el número de vectores de soporte está relacionado con la capacidad de generalización del clasificador</strong></em>. Entre mas pequeño es el número de vectores de soporte, mejor será la generalización esperada (ver <span class="bibtex-citation" id="id6">[<a class="reference internal" href="biblio.html#id19" title="Konstantinos Koutroumbas and Sergios Theodoridis. Pattern recognition. Academic Press, 2008.">Koutroumbas and Theodoridis, 2008</a>, <a class="reference internal" href="biblio.html#id18" title="佐土原健. N. cristianini and j. shawe-taylor: an introduction to support vector machines, cambridge university press (2000). 人工知能, 16(2):337–337, 2001.">佐土原健, 2001</a>]</span>).</p></li>
 </ul>
 <p><strong><code class="docutils literal notranslate"><span class="pre">Tarea</span> <span class="pre">de</span> <span class="pre">optimización</span></code></strong></p>
 <ul class="simple">
@@ -1622,7 +1792,7 @@ L(\boldsymbol{\theta}, \theta_{0}, \lambda)&amp;=\frac{1}{2}\left\langle\sum_{m=
 </ul>
 </section>
 <section id="clases-no-separables">
-<h2><span class="section-number">6.11. </span>Clases no separables<a class="headerlink" href="#clases-no-separables" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">6.17. </span>Clases no separables<a class="headerlink" href="#clases-no-separables" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Centraremos ahora nuestra atención en un <em><strong>caso mas realista en el que las clases se superponen</strong></em>. En este caso <em><strong>no existe un clasificador lineal que pueda clasificar correctamente todos los puntos</strong></em>, algunos errores de clasificación pueden ocurrir. Existen tres tipos de puntos mal clasificados.</p></li>
 </ul>
@@ -1724,7 +1894,7 @@ L(\boldsymbol{\theta}, \theta_{0}, \xi, \lambda)=\frac{1}{2}\|\boldsymbol{\theta
 </ul>
 </section>
 <section id="ejercicios-para-el-estudiante">
-<h2><span class="section-number">6.12. </span>Ejercicios para el estudiante<a class="headerlink" href="#ejercicios-para-el-estudiante" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">6.18. </span>Ejercicios para el estudiante<a class="headerlink" href="#ejercicios-para-el-estudiante" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p>Demuestre que el <em><strong>kernel reproductor</strong></em> <span class="math notranslate nohighlight">\(\kappa(\cdot, \cdot)\)</span> es definido positivo.</p></li>
 </ol>
@@ -1782,10 +1952,10 @@ L(\boldsymbol{\theta}, \theta_{0}, \xi, \lambda)=\frac{1}{2}\|\boldsymbol{\theta
 </ol>
 </section>
 <section id="aplicacion">
-<h2><span class="section-number">6.13. </span>Aplicación<a class="headerlink" href="#aplicacion" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">6.19. </span>Aplicación<a class="headerlink" href="#aplicacion" title="Link to this heading">#</a></h2>
 </section>
 <section id="modelos-lineales-y-caracteristicas-no-lineales">
-<h2><span class="section-number">6.14. </span>Modelos lineales y características no lineales<a class="headerlink" href="#modelos-lineales-y-caracteristicas-no-lineales" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">6.20. </span>Modelos lineales y características no lineales<a class="headerlink" href="#modelos-lineales-y-caracteristicas-no-lineales" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Como se ha visto antes, los <em><strong>modelos lineales pueden ser bastante limitados en espacios de baja dimensión</strong></em>, ya que las líneas y los hiperplanos tienen una <em><strong>flexibilidad limitada</strong></em>. Una forma de hacer que un modelo lineal sea mas flexible es añadiendo más características, por ejemplo, <em><strong>añadiendo interacciones o polinomios de las características de entrada</strong></em>. Veamos el dataset sintético utilizado en <em><strong>feature importance</strong></em></p></li>
 </ul>
@@ -1966,7 +2136,7 @@ L(\boldsymbol{\theta}, \theta_{0}, \xi, \lambda)=\frac{1}{2}\|\boldsymbol{\theta
 </div>
 </section>
 <section id="el-kernel-trick">
-<h2><span class="section-number">6.15. </span>El Kernel Trick<a class="headerlink" href="#el-kernel-trick" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">6.21. </span>El Kernel Trick<a class="headerlink" href="#el-kernel-trick" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Durante el entrenamiento, <em><strong>SVM aprende cuan importante son cada uno de los puntos de datos de entrenamiento para representar el límite de decisión entre las dos clases</strong></em>. Recuerde que, <em><strong>sólo un subconjunto de los puntos de entrenamiento es importante para definir la frontera de decisión</strong></em>, los que se encuentran en la frontera entre las clases (<em><strong>vectores de soporte</strong></em>).</p></li>
 <li><p>Para hacer una predicción de un nuevo punto, se mide la distancia a cada uno de los vectores de soporte. <em><strong>Se toma una decisión de clasificación basada en las distancias a los vectores de soporte y en la importancia de los vectores de soporte, aprendida durante el entrenamiento</strong></em> (almacenado en el atributo <code class="docutils literal notranslate"><span class="pre">dual_coef_</span></code> de <code class="docutils literal notranslate"><span class="pre">SVC</span></code>). La distancia entre los puntos de datos se mide, por ejemplo, mediante el <code class="docutils literal notranslate"><span class="pre">kernel</span> <span class="pre">Gaussiano</span></code>:</p></li>
@@ -2036,7 +2206,7 @@ k_{\text{rbf}}=\exp(\gamma\|x_{1}-x_{2}\|^2).
 </ul>
 </section>
 <section id="ajuste-de-los-parametros-de-svm">
-<h2><span class="section-number">6.16. </span>Ajuste de los parámetros de SVM<a class="headerlink" href="#ajuste-de-los-parametros-de-svm" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">6.22. </span>Ajuste de los parámetros de SVM<a class="headerlink" href="#ajuste-de-los-parametros-de-svm" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>El <em><strong>parámetro gamma</strong></em> es el que se muestra en la fórmula dada en la sección anterior, que <em><strong>controla la anchura del kernel Gaussiano</strong></em>. Determina la <em><strong>escala de lo que significa que los puntos estén próximos entre sí</strong></em>. El parámetro <em><strong>C es un parámetro de regularización, similar al utilizado en los modelos lineales</strong></em>. Limita la importancia de cada punto (o más precisamente, su <code class="docutils literal notranslate"><span class="pre">dual_coef_</span></code>). Veamos qué ocurre cuando variamos estos parámetros:</p></li>
 </ul>
@@ -2100,7 +2270,7 @@ Accuracy on test set: 0.94
 </ul>
 </section>
 <section id="preprocesamiento-de-datos-para-svm">
-<h2><span class="section-number">6.17. </span>Preprocesamiento de datos para SVM<a class="headerlink" href="#preprocesamiento-de-datos-para-svm" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">6.23. </span>Preprocesamiento de datos para SVM<a class="headerlink" href="#preprocesamiento-de-datos-para-svm" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Una forma de resolver este problema es <em><strong>reescalar cada característica para que todas estén aproximadamente en la misma escala</strong></em>. Un método común de reescalado para <em><strong>SVMs</strong></em> con kernel consiste en <em><strong>escalar los datos de manera que todas las características estén entre 0 y 1</strong></em>. Veremos cómo hacer esto usando el método de preprocesamiento <code class="docutils literal notranslate"><span class="pre">MinMaxScaler</span></code>, <span class="math notranslate nohighlight">\(X_{\textsf{scaled}}=(X-X_{\textsf{min}})/(X_{\textsf{max}}-X_{\textsf{min}})\)</span>. Con el fin de comprender su funcionamiento, vamos a <em><strong>implementar el preprocesamiento “de forma manual”</strong></em></p></li>
 </ul>
@@ -2282,12 +2452,12 @@ Accuracy on test set: 0.965
 </div>
 </section>
 <section id="proyecto-integrador-de-aprendizaje-automatico">
-<h2><span class="section-number">6.18. </span>Proyecto Integrador de Aprendizaje Automático<a class="headerlink" href="#proyecto-integrador-de-aprendizaje-automatico" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">6.24. </span>Proyecto Integrador de Aprendizaje Automático<a class="headerlink" href="#proyecto-integrador-de-aprendizaje-automatico" title="Link to this heading">#</a></h2>
 <section id="clasificacion-multiclase-de-cobertura-forestal-con-maquinas-de-soporte-vectorial-y-despliegue-mlops">
-<h3><span class="section-number">6.18.1. </span>Clasificación multiclase de cobertura forestal con Máquinas de Soporte Vectorial y despliegue MLOps<a class="headerlink" href="#clasificacion-multiclase-de-cobertura-forestal-con-maquinas-de-soporte-vectorial-y-despliegue-mlops" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.24.1. </span>Clasificación multiclase de cobertura forestal con Máquinas de Soporte Vectorial y despliegue MLOps<a class="headerlink" href="#clasificacion-multiclase-de-cobertura-forestal-con-maquinas-de-soporte-vectorial-y-despliegue-mlops" title="Link to this heading">#</a></h3>
 </section>
 <section id="objetivo-general">
-<h3><span class="section-number">6.18.2. </span>Objetivo general<a class="headerlink" href="#objetivo-general" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.24.2. </span>Objetivo general<a class="headerlink" href="#objetivo-general" title="Link to this heading">#</a></h3>
 <p>Entrenar, evaluar e interpretar un modelo de clasificación multiclase con <strong>Support Vector Machines (SVM)</strong> sobre un conjunto de datos reales del entorno natural, incorporando:</p>
 <ul class="simple">
 <li><p>Ajuste de hiperparámetros con <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code></p></li>
@@ -2300,11 +2470,11 @@ Accuracy on test set: 0.965
 </ul>
 </section>
 <section id="contexto-aplicado">
-<h3><span class="section-number">6.18.3. </span>Contexto aplicado<a class="headerlink" href="#contexto-aplicado" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.24.3. </span>Contexto aplicado<a class="headerlink" href="#contexto-aplicado" title="Link to this heading">#</a></h3>
 <p>El monitoreo de ecosistemas forestales requiere herramientas confiables para identificar el tipo de cobertura vegetal de cada parcela. Usando variables topográficas y geográficas, un modelo supervisado puede clasificar eficientemente cada región según su cobertura (pinos, álamos, praderas, etc.), apoyando políticas de conservación y ordenamiento territorial.</p>
 </section>
 <section id="dataset-sugerido-forest-covertype-uci">
-<h3><span class="section-number">6.18.4. </span>Dataset sugerido: Forest CoverType (UCI)<a class="headerlink" href="#dataset-sugerido-forest-covertype-uci" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.24.4. </span>Dataset sugerido: Forest CoverType (UCI)<a class="headerlink" href="#dataset-sugerido-forest-covertype-uci" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Fuente: <a class="reference external" href="https://archive.ics.uci.edu/ml/datasets/covertype">UCI Machine Learning Repository – Covertype</a></p></li>
 <li><p>581 012 observaciones, 54 variables predictoras</p></li>
@@ -2312,9 +2482,9 @@ Accuracy on test set: 0.965
 </ul>
 </section>
 <section id="actividades-a-desarrollar">
-<h3><span class="section-number">6.18.5. </span>Actividades a desarrollar<a class="headerlink" href="#actividades-a-desarrollar" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.24.5. </span>Actividades a desarrollar<a class="headerlink" href="#actividades-a-desarrollar" title="Link to this heading">#</a></h3>
 <section id="preprocesamiento">
-<h4><span class="section-number">6.18.5.1. </span>1. Preprocesamiento<a class="headerlink" href="#preprocesamiento" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">6.24.5.1. </span>1. Preprocesamiento<a class="headerlink" href="#preprocesamiento" title="Link to this heading">#</a></h4>
 <ul class="simple">
 <li><p>Carga del dataset desde archivo CSV o fuente directa</p></li>
 <li><p>Análisis exploratorio y visualización de distribución de clases</p></li>
@@ -2323,7 +2493,7 @@ Accuracy on test set: 0.965
 </ul>
 </section>
 <section id="construccion-de-modelos">
-<h4><span class="section-number">6.18.5.2. </span>2. Construcción de modelos<a class="headerlink" href="#construccion-de-modelos" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">6.24.5.2. </span>2. Construcción de modelos<a class="headerlink" href="#construccion-de-modelos" title="Link to this heading">#</a></h4>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">Pipeline</span></code> con escalado y <code class="docutils literal notranslate"><span class="pre">SVC</span></code> (de <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>)</p></li>
 <li><p>Comparar kernels:</p>
@@ -2342,7 +2512,7 @@ Accuracy on test set: 0.965
 </ul>
 </section>
 <section id="evaluacion">
-<h4><span class="section-number">6.18.5.3. </span>3. Evaluación<a class="headerlink" href="#evaluacion" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">6.24.5.3. </span>3. Evaluación<a class="headerlink" href="#evaluacion" title="Link to this heading">#</a></h4>
 <ul class="simple">
 <li><p>Matriz de confusión multiclase</p></li>
 <li><p>Accuracy global y por clase</p></li>
@@ -2351,7 +2521,7 @@ Accuracy on test set: 0.965
 </ul>
 </section>
 <section id="visualizacion-interactiva-dashboard">
-<h4><span class="section-number">6.18.5.4. </span>4. Visualización interactiva (Dashboard)<a class="headerlink" href="#visualizacion-interactiva-dashboard" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">6.24.5.4. </span>4. Visualización interactiva (Dashboard)<a class="headerlink" href="#visualizacion-interactiva-dashboard" title="Link to this heading">#</a></h4>
 <ul class="simple">
 <li><p>Crear una app interactiva con <strong>Dash</strong> (Plotly)</p>
 <ul>
@@ -2365,9 +2535,9 @@ Accuracy on test set: 0.965
 </section>
 </section>
 <section id="despliegue-y-arquitectura-mlops">
-<h3><span class="section-number">6.18.6. </span>Despliegue y arquitectura MLOps<a class="headerlink" href="#despliegue-y-arquitectura-mlops" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.24.6. </span>Despliegue y arquitectura MLOps<a class="headerlink" href="#despliegue-y-arquitectura-mlops" title="Link to this heading">#</a></h3>
 <section id="servicio-de-inferencia">
-<h4><span class="section-number">6.18.6.1. </span>Servicio de inferencia<a class="headerlink" href="#servicio-de-inferencia" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">6.24.6.1. </span>Servicio de inferencia<a class="headerlink" href="#servicio-de-inferencia" title="Link to this heading">#</a></h4>
 <ul class="simple">
 <li><p>Crear una API REST usando <strong>FastAPI</strong></p>
 <ul>
@@ -2379,7 +2549,7 @@ Accuracy on test set: 0.965
 </ul>
 </section>
 <section id="contenerizacion">
-<h4><span class="section-number">6.18.6.2. </span>Contenerización<a class="headerlink" href="#contenerizacion" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">6.24.6.2. </span>Contenerización<a class="headerlink" href="#contenerizacion" title="Link to this heading">#</a></h4>
 <ul class="simple">
 <li><p>Crear un <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code> para empaquetar:</p>
 <ul>
@@ -2390,7 +2560,7 @@ Accuracy on test set: 0.965
 </ul>
 </section>
 <section id="ci-cd-con-github-actions">
-<h4><span class="section-number">6.18.6.3. </span>CI/CD con GitHub Actions<a class="headerlink" href="#ci-cd-con-github-actions" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">6.24.6.3. </span>CI/CD con GitHub Actions<a class="headerlink" href="#ci-cd-con-github-actions" title="Link to this heading">#</a></h4>
 <ul class="simple">
 <li><p>Crear un flujo de trabajo (<code class="docutils literal notranslate"><span class="pre">.github/workflows/ci.yml</span></code>) que:</p>
 <ul>
@@ -2404,7 +2574,7 @@ Accuracy on test set: 0.965
 </ul>
 </section>
 <section id="sugerencias-de-monitoreo">
-<h4><span class="section-number">6.18.6.4. </span>Sugerencias de monitoreo<a class="headerlink" href="#sugerencias-de-monitoreo" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">6.24.6.4. </span>Sugerencias de monitoreo<a class="headerlink" href="#sugerencias-de-monitoreo" title="Link to this heading">#</a></h4>
 <ul class="simple">
 <li><p>Implementar logging de inputs y outputs en archivo CSV o SQLite</p></li>
 <li><p>Proponer métrica de estabilidad: distribución de clases predichas</p></li>
@@ -2414,7 +2584,7 @@ Accuracy on test set: 0.965
 </section>
 </section>
 <section id="herramientas-sugeridas">
-<h3><span class="section-number">6.18.7. </span>Herramientas sugeridas<a class="headerlink" href="#herramientas-sugeridas" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.24.7. </span>Herramientas sugeridas<a class="headerlink" href="#herramientas-sugeridas" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>, <code class="docutils literal notranslate"><span class="pre">pandas</span></code>, <code class="docutils literal notranslate"><span class="pre">numpy</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>, <code class="docutils literal notranslate"><span class="pre">seaborn</span></code>, <code class="docutils literal notranslate"><span class="pre">plotly</span></code>, <code class="docutils literal notranslate"><span class="pre">dash</span></code></p></li>
@@ -2423,7 +2593,7 @@ Accuracy on test set: 0.965
 </ul>
 </section>
 <section id="entregables">
-<h3><span class="section-number">6.18.8. </span>Entregables<a class="headerlink" href="#entregables" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.24.8. </span>Entregables<a class="headerlink" href="#entregables" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
 <li><p><strong>Notebook</strong> con:</p>
 <ul class="simple">
@@ -2446,7 +2616,7 @@ Accuracy on test set: 0.965
 </ol>
 </section>
 <section id="resumen">
-<h3><span class="section-number">6.18.9. </span>Resumen<a class="headerlink" href="#resumen" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.24.9. </span>Resumen<a class="headerlink" href="#resumen" title="Link to this heading">#</a></h3>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Dataset</p></th>
@@ -2466,10 +2636,10 @@ Accuracy on test set: 0.965
 </div>
 </section>
 <section id="instrucciones-para-el-mlops">
-<h3><span class="section-number">6.18.10. </span>Instrucciones para el MLOps<a class="headerlink" href="#instrucciones-para-el-mlops" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.24.10. </span>Instrucciones para el MLOps<a class="headerlink" href="#instrucciones-para-el-mlops" title="Link to this heading">#</a></h3>
 </section>
 <section id="estructura-general-del-proyecto">
-<h3><span class="section-number">6.18.11. </span>Estructura general del proyecto<a class="headerlink" href="#estructura-general-del-proyecto" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.24.11. </span>Estructura general del proyecto<a class="headerlink" href="#estructura-general-del-proyecto" title="Link to this heading">#</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>forest-cover-svm/
 ├── data/
 │   └── cover\_type.csv
@@ -2489,7 +2659,7 @@ Accuracy on test set: 0.965
 </div>
 </section>
 <section id="api-py-servicio-de-inferencia-con-fastapi">
-<h3><span class="section-number">6.18.12. </span><code class="docutils literal notranslate"><span class="pre">api.py</span></code> — Servicio de inferencia con FastAPI<a class="headerlink" href="#api-py-servicio-de-inferencia-con-fastapi" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.24.12. </span><code class="docutils literal notranslate"><span class="pre">api.py</span></code> — Servicio de inferencia con FastAPI<a class="headerlink" href="#api-py-servicio-de-inferencia-con-fastapi" title="Link to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">fastapi</span><span class="w"> </span><span class="kn">import</span> <span class="n">FastAPI</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">joblib</span>
@@ -2510,7 +2680,7 @@ Accuracy on test set: 0.965
 </div>
 </section>
 <section id="app-dash-py-dashboard-interactivo-con-dash-y-plotly">
-<h3><span class="section-number">6.18.13. </span><code class="docutils literal notranslate"><span class="pre">app_dash.py</span></code> — Dashboard interactivo con Dash y Plotly<a class="headerlink" href="#app-dash-py-dashboard-interactivo-con-dash-y-plotly" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.24.13. </span><code class="docutils literal notranslate"><span class="pre">app_dash.py</span></code> — Dashboard interactivo con Dash y Plotly<a class="headerlink" href="#app-dash-py-dashboard-interactivo-con-dash-y-plotly" title="Link to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">dash</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">dash</span><span class="w"> </span><span class="kn">import</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">joblib</span>
@@ -2549,7 +2719,7 @@ Accuracy on test set: 0.965
 </div>
 </section>
 <section id="dockerfile-contenerizacion-del-proyecto">
-<h3><span class="section-number">6.18.14. </span><code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code> — Contenerización del proyecto<a class="headerlink" href="#dockerfile-contenerizacion-del-proyecto" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.24.14. </span><code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code> — Contenerización del proyecto<a class="headerlink" href="#dockerfile-contenerizacion-del-proyecto" title="Link to this heading">#</a></h3>
 <div class="highlight-docker notranslate"><div class="highlight"><pre><span></span><span class="k">FROM</span><span class="w"> </span><span class="s">python:3.10-slim</span>
 
 <span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
@@ -2569,7 +2739,7 @@ Accuracy on test set: 0.965
 </div>
 </section>
 <section id="requirements-txt-dependencias-del-entorno">
-<h3><span class="section-number">6.18.15. </span><code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> — Dependencias del entorno<a class="headerlink" href="#requirements-txt-dependencias-del-entorno" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.24.15. </span><code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> — Dependencias del entorno<a class="headerlink" href="#requirements-txt-dependencias-del-entorno" title="Link to this heading">#</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fastapi</span>
 <span class="n">uvicorn</span>
 <span class="n">joblib</span>
@@ -2582,7 +2752,7 @@ Accuracy on test set: 0.965
 </div>
 </section>
 <section id="github-workflows-ci-yml-flujo-de-ci-con-github-actions">
-<h3><span class="section-number">6.18.16. </span><code class="docutils literal notranslate"><span class="pre">.github/workflows/ci.yml</span></code> — Flujo de CI con GitHub Actions<a class="headerlink" href="#github-workflows-ci-yml-flujo-de-ci-con-github-actions" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.24.16. </span><code class="docutils literal notranslate"><span class="pre">.github/workflows/ci.yml</span></code> — Flujo de CI con GitHub Actions<a class="headerlink" href="#github-workflows-ci-yml-flujo-de-ci-con-github-actions" title="Link to this heading">#</a></h3>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CI Pipeline</span>
 
 <span class="nt">on</span><span class="p">:</span>
@@ -2621,7 +2791,7 @@ Accuracy on test set: 0.965
 </div>
 </section>
 <section id="readme-md-instrucciones-base-para-el-usuario">
-<h3><span class="section-number">6.18.17. </span><code class="docutils literal notranslate"><span class="pre">README.md</span></code> — Instrucciones base para el usuario<a class="headerlink" href="#readme-md-instrucciones-base-para-el-usuario" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.24.17. </span><code class="docutils literal notranslate"><span class="pre">README.md</span></code> — Instrucciones base para el usuario<a class="headerlink" href="#readme-md-instrucciones-base-para-el-usuario" title="Link to this heading">#</a></h3>
 <div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span><span class="gh"># Forest Cover Classification with SVM</span>
 
 This project trains an SVM classifier on the Forest CoverType dataset, exposes it via a FastAPI service, and visualizes predictions using a Dash dashboard.
@@ -2642,7 +2812,7 @@ python app/app_dash.py # Run dashboard
 </div>
 </section>
 <section id="docker">
-<h3><span class="section-number">6.18.18. </span>Docker<a class="headerlink" href="#docker" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.24.18. </span>Docker<a class="headerlink" href="#docker" title="Link to this heading">#</a></h3>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>forest-svm-api<span class="w"> </span>.
 docker<span class="w"> </span>run<span class="w"> </span>-p<span class="w"> </span><span class="m">8000</span>:8000<span class="w"> </span>forest-svm-api
 </pre></div>
@@ -2660,16 +2830,16 @@ docker<span class="w"> </span>run<span class="w"> </span>-p<span class="w"> </sp
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "tf"
+            mode: "python"
         },
         kernelOptions: {
-            name: "tf",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'tf'</script>
+    <script>kernelName = 'python3'</script>
 
                 </article>
               
@@ -2706,63 +2876,74 @@ docker<span class="w"> </span>run<span class="w"> </span>-p<span class="w"> </sp
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> Contents
   </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis">6.1. Análisis</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#espacios-de-hilbert-con-kernel-reproductor">6.2. Espacios de Hilbert con Kernel reproductor</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#construccion-de-kernels">6.3. Construcción de kernels</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#teorema-de-representacion">6.4. Teorema de representación</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-ridge-con-kernel">6.5. Regresión ridge con Kernel</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-de-vectores-de-soporte">6.6. Regresión de vectores de soporte</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-optima-lineal-varepsilon-insensible">6.7. Regresión óptima lineal <span class="math notranslate nohighlight">\(\varepsilon\)</span>-insensible</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-kernel-ridge">6.8. Regresión Kernel Ridge</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#maquinas-de-vectores-de-soporte">6.9. Máquinas de vectores de soporte</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clases-linealmente-separables-clasificador-de-maximo-margen">6.10. Clases linealmente separables: Clasificador de máximo margen</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clases-no-separables">6.11. Clases no separables</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios-para-el-estudiante">6.12. Ejercicios para el estudiante</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion">6.13. Aplicación</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-lineales-y-caracteristicas-no-lineales">6.14. Modelos lineales y características no lineales</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#el-kernel-trick">6.15. El Kernel Trick</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ajuste-de-los-parametros-de-svm">6.16. Ajuste de los parámetros de SVM</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocesamiento-de-datos-para-svm">6.17. Preprocesamiento de datos para SVM</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proyecto-integrador-de-aprendizaje-automatico">6.18. Proyecto Integrador de Aprendizaje Automático</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clasificacion-multiclase-de-cobertura-forestal-con-maquinas-de-soporte-vectorial-y-despliegue-mlops">6.18.1. Clasificación multiclase de cobertura forestal con Máquinas de Soporte Vectorial y despliegue MLOps</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivo-general">6.18.2. Objetivo general</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contexto-aplicado">6.18.3. Contexto aplicado</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-sugerido-forest-covertype-uci">6.18.4. Dataset sugerido: Forest CoverType (UCI)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#actividades-a-desarrollar">6.18.5. Actividades a desarrollar</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocesamiento">6.18.5.1. 1. Preprocesamiento</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#construccion-de-modelos">6.18.5.2. 2. Construcción de modelos</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluacion">6.18.5.3. 3. Evaluación</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizacion-interactiva-dashboard">6.18.5.4. 4. Visualización interactiva (Dashboard)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lectura-intuitiva-de-la-definicion">6.3. Lectura intuitiva de la definición</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-clave-cauchy-schwarz">6.4. La clave: Cauchy-Schwarz</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#consecuencia-directa-simetria-del-kernel">6.5. Consecuencia directa: simetría del kernel</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generalizacion-a-kernels-no-lineales">6.6. Generalización a kernels no lineales</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kernel-polinomial-de-grado-2">6.7. Kernel polinomial de grado 2</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#por-que-esto-es-el-kernel-trick">6.7.1. Por qué esto es el kernel trick</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#despliegue-y-arquitectura-mlops">6.18.6. Despliegue y arquitectura MLOps</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#servicio-de-inferencia">6.18.6.1. Servicio de inferencia</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#contenerizacion">6.18.6.2. Contenerización</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ci-cd-con-github-actions">6.18.6.3. CI/CD con GitHub Actions</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sugerencias-de-monitoreo">6.18.6.4. Sugerencias de monitoreo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#por-que-se-necesita-el-teorema-de-riesz">6.8. Por qué se necesita el teorema de Riesz</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#construccion-de-kernels">6.9. Construcción de kernels</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#teorema-de-representacion">6.10. Teorema de representación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-ridge-con-kernel">6.11. Regresión ridge con Kernel</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-de-vectores-de-soporte">6.12. Regresión de vectores de soporte</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-optima-lineal-varepsilon-insensible">6.13. Regresión óptima lineal <span class="math notranslate nohighlight">\(\varepsilon\)</span>-insensible</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-kernel-ridge">6.14. Regresión Kernel Ridge</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#maquinas-de-vectores-de-soporte">6.15. Máquinas de vectores de soporte</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clases-linealmente-separables-clasificador-de-maximo-margen">6.16. Clases linealmente separables: Clasificador de máximo margen</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clases-no-separables">6.17. Clases no separables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios-para-el-estudiante">6.18. Ejercicios para el estudiante</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion">6.19. Aplicación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-lineales-y-caracteristicas-no-lineales">6.20. Modelos lineales y características no lineales</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#el-kernel-trick">6.21. El Kernel Trick</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ajuste-de-los-parametros-de-svm">6.22. Ajuste de los parámetros de SVM</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocesamiento-de-datos-para-svm">6.23. Preprocesamiento de datos para SVM</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proyecto-integrador-de-aprendizaje-automatico">6.24. Proyecto Integrador de Aprendizaje Automático</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clasificacion-multiclase-de-cobertura-forestal-con-maquinas-de-soporte-vectorial-y-despliegue-mlops">6.24.1. Clasificación multiclase de cobertura forestal con Máquinas de Soporte Vectorial y despliegue MLOps</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivo-general">6.24.2. Objetivo general</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contexto-aplicado">6.24.3. Contexto aplicado</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-sugerido-forest-covertype-uci">6.24.4. Dataset sugerido: Forest CoverType (UCI)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#actividades-a-desarrollar">6.24.5. Actividades a desarrollar</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocesamiento">6.24.5.1. 1. Preprocesamiento</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#construccion-de-modelos">6.24.5.2. 2. Construcción de modelos</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluacion">6.24.5.3. 3. Evaluación</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizacion-interactiva-dashboard">6.24.5.4. 4. Visualización interactiva (Dashboard)</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#herramientas-sugeridas">6.18.7. Herramientas sugeridas</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#entregables">6.18.8. Entregables</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen">6.18.9. Resumen</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instrucciones-para-el-mlops">6.18.10. Instrucciones para el MLOps</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estructura-general-del-proyecto">6.18.11. Estructura general del proyecto</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#api-py-servicio-de-inferencia-con-fastapi">6.18.12. <code class="docutils literal notranslate"><span class="pre">api.py</span></code> — Servicio de inferencia con FastAPI</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app-dash-py-dashboard-interactivo-con-dash-y-plotly">6.18.13. <code class="docutils literal notranslate"><span class="pre">app_dash.py</span></code> — Dashboard interactivo con Dash y Plotly</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dockerfile-contenerizacion-del-proyecto">6.18.14. <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code> — Contenerización del proyecto</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#requirements-txt-dependencias-del-entorno">6.18.15. <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> — Dependencias del entorno</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#github-workflows-ci-yml-flujo-de-ci-con-github-actions">6.18.16. <code class="docutils literal notranslate"><span class="pre">.github/workflows/ci.yml</span></code> — Flujo de CI con GitHub Actions</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#readme-md-instrucciones-base-para-el-usuario">6.18.17. <code class="docutils literal notranslate"><span class="pre">README.md</span></code> — Instrucciones base para el usuario</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#docker">6.18.18. Docker</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#despliegue-y-arquitectura-mlops">6.24.6. Despliegue y arquitectura MLOps</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#servicio-de-inferencia">6.24.6.1. Servicio de inferencia</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#contenerizacion">6.24.6.2. Contenerización</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ci-cd-con-github-actions">6.24.6.3. CI/CD con GitHub Actions</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sugerencias-de-monitoreo">6.24.6.4. Sugerencias de monitoreo</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#herramientas-sugeridas">6.24.7. Herramientas sugeridas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#entregables">6.24.8. Entregables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen">6.24.9. Resumen</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instrucciones-para-el-mlops">6.24.10. Instrucciones para el MLOps</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estructura-general-del-proyecto">6.24.11. Estructura general del proyecto</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#api-py-servicio-de-inferencia-con-fastapi">6.24.12. <code class="docutils literal notranslate"><span class="pre">api.py</span></code> — Servicio de inferencia con FastAPI</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app-dash-py-dashboard-interactivo-con-dash-y-plotly">6.24.13. <code class="docutils literal notranslate"><span class="pre">app_dash.py</span></code> — Dashboard interactivo con Dash y Plotly</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dockerfile-contenerizacion-del-proyecto">6.24.14. <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code> — Contenerización del proyecto</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#requirements-txt-dependencias-del-entorno">6.24.15. <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> — Dependencias del entorno</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#github-workflows-ci-yml-flujo-de-ci-con-github-actions">6.24.16. <code class="docutils literal notranslate"><span class="pre">.github/workflows/ci.yml</span></code> — Flujo de CI con GitHub Actions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#readme-md-instrucciones-base-para-el-usuario">6.24.17. <code class="docutils literal notranslate"><span class="pre">README.md</span></code> — Instrucciones base para el usuario</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#docker">6.24.18. Docker</a></li>
 </ul>
 </li>
 </ul>
@@ -2816,8 +2997,8 @@ By Lihki Rubio, Ph.D.
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
 
   <footer class="bd-footer">
   </footer>
