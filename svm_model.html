@@ -564,7 +564,7 @@ f(x) = 2(3)^2 + \sqrt{2}(3)(4) - (4)^2 = 2(9) + 12\sqrt{2} - 16 = 18 + 12\sqrt{2
 \[
 \langle f,\kappa(\cdot,x)\rangle_H = \langle w,\Phi(x)\rangle = (2)(9) + (1)(12\sqrt{2}) + (-1)(16) = 18 + 12\sqrt{2} - 16 = 2 + 12\sqrt{2}.
 \]</div>
-<p>Los dos caminos coinciden exactamente, confirmando la propiedad reproductora también en este caso no lineal.</p>
+<p>Los dos caminos coinciden exactamente, confirmando la propiedad reproductora.</p>
 <p><strong>Camino C: verificación de que <span class="math notranslate nohighlight">\(\kappa(x,x)\)</span> calculado de las dos formas coincide.</strong> Esto es lo que realmente se explota en el truco del kernel, así que conviene verificarlo por separado. Tomando <span class="math notranslate nohighlight">\(x'=(1,2)\)</span>:</p>
 <ul>
 <li><p>Cálculo <em>directo</em> usando solo la fórmula del kernel, sin construir <span class="math notranslate nohighlight">\(\Phi\)</span>:</p>
@@ -597,47 +597,34 @@ f(x) = 2(3)^2 + \sqrt{2}(3)(4) - (4)^2 = 2(9) + 12\sqrt{2} - 16 = 18 + 12\sqrt{2
 <p>En este ejemplo la diferencia parece menor, porque el espacio de características solo tiene dimensión 3. Pero el mismo cálculo con un kernel polinomial de grado <span class="math notranslate nohighlight">\(d\)</span> en <span class="math notranslate nohighlight">\(\mathbb{R}^p\)</span> produce un espacio de características de dimensión <span class="math notranslate nohighlight">\(\binom{p+d-1}{d}\)</span>, que crece muy rápidamente con <span class="math notranslate nohighlight">\(p\)</span> y <span class="math notranslate nohighlight">\(d\)</span>. Con el <strong>kernel gaussiano (RBF)</strong>, el espacio de características correspondiente tiene <strong>dimensión infinita</strong>, de modo que <span class="math notranslate nohighlight">\(\Phi(x)\)</span> ni siquiera se puede escribir como un vector finito.</p>
 <p><strong>El truco del kernel consiste precisamente en esto:</strong> para calcular <span class="math notranslate nohighlight">\(\langle\Phi(x),\Phi(x')\rangle_H\)</span>, nunca es necesario construir <span class="math notranslate nohighlight">\(\Phi(x)\)</span> ni <span class="math notranslate nohighlight">\(\Phi(x')\)</span> por separado. Basta con evaluar <span class="math notranslate nohighlight">\(\kappa(x,x')\)</span> directamente, usando su fórmula cerrada. Todo algoritmo que dependa de los datos únicamente a través de productos interiores (SVM, regresión ridge kernelizada, PCA con kernel, procesos gaussianos) puede entonces “actuar” como si trabajara en el espacio de características de dimensión alta (o infinita), pagando solamente el costo computacional de evaluar <span class="math notranslate nohighlight">\(\kappa\)</span> en el espacio original <span class="math notranslate nohighlight">\(\mathcal{X}\)</span>.</p>
 </div>
-<ul class="simple">
-<li><p>Esta tabla resume la diferencia conceptual entre los dos casos y ayuda a que los estudiantes ubiquen exactamente qué cambia y qué se preserva:</p></li>
-</ul>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Elemento</p></th>
-<th class="head"><p>Kernel lineal</p></th>
 <th class="head"><p>Kernel polinomial grado 2</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\kappa(x,x')\)</span></p></td>
-<td><p><span class="math notranslate nohighlight">\(\langle x,x'\rangle\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\langle x,x'\rangle^2\)</span></p></td>
 </tr>
 <tr class="row-odd"><td><p>Dimensión de <span class="math notranslate nohighlight">\(H\)</span> (espacio de características)</p></td>
-<td><p><span class="math notranslate nohighlight">\(2\)</span></p></td>
-<td><p><span class="math notranslate nohighlight">\(3\)</span></p></td>
+<td><p>3</p></td>
 </tr>
 <tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\Phi(x)\)</span></p></td>
-<td><p><span class="math notranslate nohighlight">\(x\)</span> (el propio punto)</p></td>
-<td><p><span class="math notranslate nohighlight">\((x_1^2,\sqrt{2}x_1x_2,x_2^2)\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\((x_1^2, \sqrt{2}x_1x_2, x_2^2)\)</span></p></td>
 </tr>
 <tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\kappa(\cdot,x)\)</span> se identifica con</p></td>
-<td><p><span class="math notranslate nohighlight">\(x\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\Phi(x)\)</span></p></td>
 </tr>
 <tr class="row-even"><td><p>¿Se necesita construir <span class="math notranslate nohighlight">\(\Phi\)</span> para calcular <span class="math notranslate nohighlight">\(\kappa\)</span>?</p></td>
-<td><p>Es trivial, <span class="math notranslate nohighlight">\(\Phi=\text{identidad}\)</span></p></td>
 <td><p>No: se evalúa <span class="math notranslate nohighlight">\(\kappa\)</span> directamente (kernel trick)</p></td>
 </tr>
 <tr class="row-odd"><td><p>Propiedad reproductora</p></td>
-<td><p><span class="math notranslate nohighlight">\(f(x)=\langle w,x\rangle\)</span></p></td>
-<td><p><span class="math notranslate nohighlight">\(f(x)=\langle w,\Phi(x)\rangle\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(f(x) = \langle w, \Phi(x)\rangle\)</span></p></td>
 </tr>
 </tbody>
 </table>
 </div>
-<ul class="simple">
-<li><p>En ambos casos se cumple exactamente la misma identidad estructural, <span class="math notranslate nohighlight">\(f(x)=\langle f,\kappa(\cdot,x)\rangle_H\)</span>; lo único que cambia es la riqueza del espacio de características que el kernel representa implícitamente.</p></li>
-</ul>
 </section>
 </section>
 <section id="por-que-se-necesita-el-teorema-de-riesz">
