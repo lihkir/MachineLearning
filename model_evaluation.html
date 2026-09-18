@@ -27,8 +27,8 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
@@ -42,10 +42,10 @@
     <link rel="stylesheet" type="text/css" href="_static/.ipynb_checkpoints/custom-checkpoint.css" />
   
   <!-- So that users can add custom icons -->
-  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <script defer src="_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
@@ -66,6 +66,7 @@
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'model_evaluation';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="_static/custom.js?v=14184634"></script>
     <script src="_static/.ipynb_checkpoints/custom-checkpoint.js"></script>
@@ -76,20 +77,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
   </head>
-  
-  
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
-
+  <body data-default-mode="">
   
   
   <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
-
+  
+  
+  
   
   <dialog id="pst-search-dialog">
     
@@ -115,7 +122,51 @@
 </div>
 
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
     </header>
   
 
@@ -334,7 +385,7 @@
                 <h2> Contents </h2>
             </div>
             <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-validation">9.1. Cross-Validation</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-cruzada-en-scikit-learn">9.1.1. Validación cruzada en scikit-learn</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-val-score">9.1.2. cross_val_score</a></li>
@@ -1075,6 +1126,12 @@ dtype: int64
 <img alt="_images/fa1c7deb29f4f3bab976df5be4e0505d526a0e87c2e757cb7c745da305721478.png" src="_images/fa1c7deb29f4f3bab976df5be4e0505d526a0e87c2e757cb7c745da305721478.png" />
 </div>
 </div>
+<p>Histogramas con KDE por especie, segmentados por variable morfológica.</p>
+<ul class="simple">
+<li><p><strong>Pétalo (<code class="docutils literal notranslate"><span class="pre">length</span></code>, <code class="docutils literal notranslate"><span class="pre">width</span></code>):</strong> <em>setosa</em> está <strong>completamente separada</strong>, con pico alto y angosto (baja varianza intraespecie); <em>versicolor</em> y <em>virginica</em> se solapan parcialmente pero con modas distintas. Confirma que la curtosis negativa previa refleja <strong>superposición de subpoblaciones</strong>, no dispersión atípica.</p></li>
+<li><p><strong>Sépalo (<code class="docutils literal notranslate"><span class="pre">length</span></code>, <code class="docutils literal notranslate"><span class="pre">width</span></code>):</strong> mayor solapamiento entre especies, especialmente en <code class="docutils literal notranslate"><span class="pre">width</span></code> (modas casi coincidentes ~3.0 cm) → <strong>menor poder discriminante</strong>.</p></li>
+<li><p><strong>Conclusión:</strong> la separación visual confirma que <strong><code class="docutils literal notranslate"><span class="pre">petal</span> <span class="pre">length</span></code> y <code class="docutils literal notranslate"><span class="pre">petal</span> <span class="pre">width</span></code> son los mejores predictores</strong> para clasificación (LDA, k-NN, árboles), consistente con Fisher (1936).</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Q1</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span>
@@ -1105,6 +1162,13 @@ dtype: int64
 <img alt="_images/166e5005ed5de4c8fe40db8f334765d24172349aec38e4265722f4bdbfa15ddc.png" src="_images/166e5005ed5de4c8fe40db8f334765d24172349aec38e4265722f4bdbfa15ddc.png" />
 </div>
 </div>
+<ul class="simple">
+<li><p><strong>Criterio de Tukey:</strong> valores fuera de <span class="math notranslate nohighlight">\([Q1 - 1.5 \times IQR,\ Q3 + 1.5 \times IQR]\)</span> se marcan como outliers (círculos en el gráfico).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">sepal</span> <span class="pre">width</span></code>:</strong> única variable con <strong>4 outliers</strong>, todos por fuera de su IQR estrecho (~2.8–3.3 cm) → consistente con su curtosis positiva leve (colas ligeramente más pesadas que la normal), a diferencia de las demás variables.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">petal</span> <span class="pre">length</span></code>:</strong> <strong>caja (IQR) muy ancha</strong> (~1.6–5.1 cm) sin outliers, no es alta dispersión aleatoria, sino el <strong>efecto de mezclar 3 especies con rangos no solapados</strong> (setosa bajo, virginica alto), igual que se vio en los histogramas/KDE y violin plots.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">sepal</span> <span class="pre">length</span></code> y <code class="docutils literal notranslate"><span class="pre">petal</span> <span class="pre">width</span></code>:</strong> sin outliers, cajas moderadas.</p></li>
+<li><p>El boxplot confirma, desde otro ángulo, que la “dispersión” de las variables del pétalo <strong>no es ruido ni valores atípicos</strong>, sino la <strong>estructura multimodal por especie</strong>, reforzando su valor como predictores para clasificación.</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Target (species):&quot;</span><span class="p">)</span>
@@ -1143,6 +1207,13 @@ dtype: int64
 <img alt="_images/2746de555d3748a1e87b1e7346db63856ce7b04acc9383318388f52d2cdf2516.png" src="_images/2746de555d3748a1e87b1e7346db63856ce7b04acc9383318388f52d2cdf2516.png" />
 </div>
 </div>
+<ul class="simple">
+<li><p><strong>Diagonal (KDE univariado):</strong> confirma lo visto en histogramas: <em>setosa</em> completamente separada en pétalo; solapamiento en sepal width.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">petal</span> <span class="pre">length</span></code> vs <code class="docutils literal notranslate"><span class="pre">petal</span> <span class="pre">width</span></code>:</strong> relación <strong>fuertemente lineal y positiva</strong>, con los tres clusters de especie perfectamente diferenciados y <strong>casi sin solapamiento</strong>; es el par de variables con mayor separabilidad conjunta del dataset.</p></li>
+<li><p><strong>Cualquier par que incluya pétalo (<code class="docutils literal notranslate"><span class="pre">petal</span> <span class="pre">length</span></code>/<code class="docutils literal notranslate"><span class="pre">petal</span> <span class="pre">width</span></code> vs <code class="docutils literal notranslate"><span class="pre">sepal</span> <span class="pre">length</span></code>/<code class="docutils literal notranslate"><span class="pre">sepal</span> <span class="pre">width</span></code>):</strong> <em>setosa</em> queda aislada en una esquina propia; <em>versicolor</em> y <em>virginica</em> se solapan moderadamente pero mantienen tendencia separable.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">sepal</span> <span class="pre">length</span></code> vs <code class="docutils literal notranslate"><span class="pre">sepal</span> <span class="pre">width</span></code> (única combinación sin pétalos):</strong> las tres especies se <strong>mezclan considerablemente</strong>, sin fronteras claras; confirma que el sépalo por sí solo es insuficiente para clasificar.</p></li>
+<li><p><strong>Conclusión:</strong> el pairplot es la evidencia más contundente hasta ahora, <strong>cualquier combinación que incluya las variables del pétalo separa bien las especies</strong>, mientras que el par sépalo-sépalo no. Esto sugiere que un clasificador simple (incluso una recta) sobre <code class="docutils literal notranslate"><span class="pre">petal</span> <span class="pre">length</span></code> y <code class="docutils literal notranslate"><span class="pre">petal</span> <span class="pre">width</span></code> lograría <strong>alta precisión</strong> con mínima complejidad.</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">corr_pearson</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">corr</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">&quot;pearson&quot;</span><span class="p">)</span>
@@ -1490,6 +1561,12 @@ dtype: int64
 <img alt="_images/cf1a643e1bac8419dd4d42447c87cb6202500adb4c3087369ae9773eff80f2bc.png" src="_images/cf1a643e1bac8419dd4d42447c87cb6202500adb4c3087369ae9773eff80f2bc.png" />
 </div>
 </div>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">petal</span> <span class="pre">length</span></code> vs <code class="docutils literal notranslate"><span class="pre">petal</span> <span class="pre">width</span></code>:</strong> correlación <strong>r = 0.96</strong>, la más alta del dataset. Confirma numéricamente la relación lineal casi perfecta ya observada en el pairplot.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">sepal</span> <span class="pre">length</span></code> con pétalo:</strong> correlaciones altas y positivas (r = 0.87 con <code class="docutils literal notranslate"><span class="pre">petal</span> <span class="pre">length</span></code>, r = 0.82 con <code class="docutils literal notranslate"><span class="pre">petal</span> <span class="pre">width</span></code>), indicando que también aporta información redundante con las variables del pétalo.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">sepal</span> <span class="pre">width</span></code>:</strong> única variable con correlaciones <strong>negativas</strong> frente a todas las demás (r entre -0.12 y -0.43), y la más débil del conjunto (r = -0.12 con <code class="docutils literal notranslate"><span class="pre">sepal</span> <span class="pre">length</span></code>). Es la variable más independiente del resto, consistente con su bajo poder discriminante visto en histogramas y pairplot.</p></li>
+<li><p><strong>Implicación para modelado:</strong> la alta colinealidad entre <code class="docutils literal notranslate"><span class="pre">petal</span> <span class="pre">length</span></code>, <code class="docutils literal notranslate"><span class="pre">petal</span> <span class="pre">width</span></code> y <code class="docutils literal notranslate"><span class="pre">sepal</span> <span class="pre">length</span></code> (todas r &gt; 0.8 entre sí) sugiere <strong>redundancia informativa</strong>: en modelos sensibles a multicolinealidad (regresión lineal, regresión logística), podría considerarse eliminar o combinar (ej. PCA) alguna de estas variables. En modelos no lineales o basados en árboles, la colinealidad no representa un problema significativo.</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
@@ -1612,7 +1689,7 @@ dtype: int64
 <section id="cross-val-score">
 <h3><span class="section-number">9.1.2. </span>cross_val_score<a class="headerlink" href="#cross-val-score" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>A continuación, se evalúa el desempeño del modelo utilizando la función <code class="docutils literal notranslate"><span class="pre">cross_val_score</span></code>. <code class="docutils literal notranslate"><span class="pre">cross_val_score</span></code> es una función de scikit-learn (<code class="docutils literal notranslate"><span class="pre">sklearn.model_selection</span></code>) que automatiza el proceso de validación cruzada (cross-validation): entrena y evalúa tu modelo varias veces sobre distintos subconjuntos de los datos, para obtener una medida de rendimiento más confiable que un solo train/test split.</p></li>
+<li><p>A continuación, se evalúa el desempeño del modelo mediante <code class="docutils literal notranslate"><span class="pre">cross_val_score</span></code> (<code class="docutils literal notranslate"><span class="pre">sklearn.model_selection</span></code>), función que automatiza la validación cruzada: entrena y evalúa el modelo sobre distintos subconjuntos de los datos, obteniendo una medida de rendimiento más confiable que un único <code class="docutils literal notranslate"><span class="pre">train_test_split</span></code>.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1755,8 +1832,8 @@ dtype: int64
 </div>
 </div>
 <ul class="simple">
-<li><p>Podemos <em><strong>ajustar el número de pliegues en</strong></em> <code class="docutils literal notranslate"><span class="pre">cross_val_score</span></code> <em><strong>con el parámetro</strong></em> <code class="docutils literal notranslate"><span class="pre">cv</span></code>. No obstante, <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> permite mayor control al aceptar un divisor de validación cruzada como parámetro <code class="docutils literal notranslate"><span class="pre">cv</span></code>. Aunque <em><strong>los valores predeterminados suelen ser adecuados, en ciertos casos puede ser útil una estrategia diferente</strong></em>.</p></li>
-<li><p>Por ejemplo, para replicar resultados con validación cruzada <code class="docutils literal notranslate"><span class="pre">k-fold</span></code> en clasificación, se puede importar la clase <code class="docutils literal notranslate"><span class="pre">KFold</span></code> de <code class="docutils literal notranslate"><span class="pre">model_selection</span></code> e instanciarla con el número deseado de pliegues.</p></li>
+<li><p>El número de pliegues en <code class="docutils literal notranslate"><span class="pre">cross_val_score</span></code> se ajusta mediante el parámetro <code class="docutils literal notranslate"><span class="pre">cv</span></code>, que también admite un divisor de validación cruzada para un control más fino. Aunque <em><strong>los valores predeterminados suelen ser adecuados</strong></em>, en ciertos casos conviene usar una <em><strong>estrategia diferente</strong></em>.</p></li>
+<li><p>Ejemplo: para aplicar <code class="docutils literal notranslate"><span class="pre">k-fold</span></code> simple en un problema de clasificación, se importa e instancia la clase <code class="docutils literal notranslate"><span class="pre">KFold</span></code> (de <code class="docutils literal notranslate"><span class="pre">model_selection</span></code>) con el número de pliegues deseado, pasándola luego como <code class="docutils literal notranslate"><span class="pre">cv</span></code>.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1786,8 +1863,8 @@ dtype: int64
 <section id="validacion-cruzada-estratificada-stratifiedkfold">
 <h3><span class="section-number">9.1.5. </span>Validación cruzada estratificada <code class="docutils literal notranslate"><span class="pre">StratifiedKFold</span></code><a class="headerlink" href="#validacion-cruzada-estratificada-stratifiedkfold" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>En este conjunto de datos, el <em><strong>primer tercio corresponde a la clase 0, el segundo a la clase 1 y el último a la clase 2</strong></em>. Al realizar una <em><strong>validación cruzada de 3 pliegues, cada pliegue contendría solo una clase en el conjunto de prueba</strong></em> y <em><strong>las otras dos en el conjunto de entrenamiento</strong></em>. Esto causaría que la precisión fuera del 0%, ya que las clases en entrenamiento y prueba no coincidirían en ninguna división, lo cual es ineficaz para evaluar el modelo.</p></li>
-<li><p>Como la estrategia simple de <code class="docutils literal notranslate"><span class="pre">k-fold</span></code> falla aquí, <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> <em><strong>no la utiliza para clasificación, sino que utiliza la <code class="docutils literal notranslate"><span class="pre">validación</span> <span class="pre">cruzada</span> <span class="pre">estratificada</span> <span class="pre">k-fold</span></code></strong></em>. En la validación cruzada estratificada, dividimos los datos de forma que las <em><strong>proporciones entre las clases sean las mismas en cada pliegue como en todo el conjunto de datos</strong></em>.</p></li>
+<li><p>En <code class="docutils literal notranslate"><span class="pre">iris</span></code>, el <em><strong>primer tercio corresponde a la clase 0, el segundo a la clase 1 y el último a la clase 2</strong></em>. Con una <em><strong>validación cruzada de 3 pliegues simple</strong></em>, cada pliegue contendría en prueba una sola clase y en entrenamiento las otras dos, sin coincidencia entre ambas, lo que produciría una <em><strong>precisión del 0%</strong></em> e invalidaría la evaluación.</p></li>
+<li><p>Por ello, <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> <em><strong>no aplica <code class="docutils literal notranslate"><span class="pre">k-fold</span></code> simple para clasificación, sino <code class="docutils literal notranslate"><span class="pre">validación</span> <span class="pre">cruzada</span> <span class="pre">estratificada</span> <span class="pre">k-fold</span></code></strong></em>, que reparte los datos manteniendo en cada pliegue las <em><strong>mismas proporciones entre clases que en el conjunto completo</strong></em>.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1800,8 +1877,8 @@ dtype: int64
 </div>
 </div>
 <ul class="simple">
-<li><p>La validación cruzada estratificada de <code class="docutils literal notranslate"><span class="pre">k</span></code> pliegues <strong><code class="docutils literal notranslate"><span class="pre">distribuye</span> <span class="pre">las</span> <span class="pre">clases</span> <span class="pre">en</span> <span class="pre">cada</span> <span class="pre">pliegue</span> <span class="pre">según</span> <span class="pre">su</span> <span class="pre">proporción</span> <span class="pre">en</span> <span class="pre">el</span> <span class="pre">conjunto</span> <span class="pre">de</span> <span class="pre">datos,</span> <span class="pre">evitando</span> <span class="pre">que</span> <span class="pre">un</span> <span class="pre">pliegue</span> <span class="pre">carezca</span> <span class="pre">de</span> <span class="pre">muestras</span> <span class="pre">de</span> <span class="pre">alguna</span> <span class="pre">clase</span></code></strong>. Esto ofrece <em><strong>estimaciones más fiables del rendimiento del clasificador</strong></em> en comparación con la validación cruzada estándar de <code class="docutils literal notranslate"><span class="pre">k</span></code> pliegues, especialmente en conjuntos de datos desbalanceados.</p></li>
-<li><p>Para la regresión, <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> utiliza la validación cruzada <code class="docutils literal notranslate"><span class="pre">k-fold</span></code> estándar por defecto. Sería posible también tratar de hacer cada pliegue representativo de los diferentes valores objetivo de la regresión, pero esta no es una estrategia comúnmente utilizada.</p></li>
+<li><p>La validación cruzada estratificada de <code class="docutils literal notranslate"><span class="pre">k</span></code> pliegues <strong>distribuye las clases en cada pliegue según su proporción en el conjunto de datos, evitando que un pliegue carezca de muestras de alguna clase</strong>, ofreciendo <strong>estimaciones más fiables del rendimiento del clasificador</strong> frente a la validación estándar, especialmente en conjuntos desbalanceados.</p></li>
+<li><p>Para regresión, <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> utiliza por defecto la <code class="docutils literal notranslate"><span class="pre">k-fold</span></code> estándar; estratificar por valores objetivo sería posible pero no es una estrategia habitual.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1928,19 +2005,17 @@ Mean score: 0.830
 <div class="admonition-groupkfold admonition">
 <p class="admonition-title">GroupKFold</p>
 <ul class="simple">
-<li><p>Digamos que quieres construir un sistema para <em><strong>reconocer emociones a partir de imágenes de rostros (o imágenes médicas)</strong></em>, y se recopila un conjunto de datos con imágenes de 100 personas, donde cada persona es capturada varias veces, mostrando varias emociones.</p></li>
-<li><p>El objetivo es construir un clasificador que pueda <em><strong>identificar correctamente las emociones de las personas que no están en el conjunto de datos</strong></em>. <code class="docutils literal notranslate"><span class="pre">GroupKFold</span></code> es una variación de <code class="docutils literal notranslate"><span class="pre">k-fold</span></code> que <em><strong>garantiza que el mismo grupo no esté representado en los conjuntos de prueba y de entrenamiento</strong></em>.</p></li>
+<li><p>En un sistema para <strong>reconocer emociones a partir de imágenes de rostros (o imágenes médicas)</strong>, con un conjunto de datos de 100 personas capturadas varias veces mostrando distintas emociones, el objetivo es <strong>identificar correctamente las emociones de personas que no están en el conjunto de datos</strong>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GroupKFold</span></code> es una variación de <code class="docutils literal notranslate"><span class="pre">k-fold</span></code> que <strong>garantiza que el mismo grupo no esté representado simultáneamente en los conjuntos de prueba y de entrenamiento</strong>.</p></li>
 </ul>
 </div>
 <div class="tip admonition">
 <p class="admonition-title">Observación</p>
 <ul class="simple">
-<li><p>La validación cruzada estratificada puede medir el rendimiento de un clasificador, pero <em><strong>si hay imágenes de la misma persona en los conjuntos de entrenamiento y prueba, el modelo reconocerá más fácilmente emociones en rostros ya vistos</strong></em>. Para <em><strong>evaluar mejor la generalización a nuevas caras, es recomendable usar</strong></em> <code class="docutils literal notranslate"><span class="pre">GroupKFold</span></code>, que permite <em><strong><code class="docutils literal notranslate"><span class="pre">separar</span> <span class="pre">las</span> <span class="pre">imágenes</span> <span class="pre">por</span> <span class="pre">persona</span> <span class="pre">en</span> <span class="pre">los</span> <span class="pre">conjuntos</span> <span class="pre">de</span> <span class="pre">entrenamiento</span> <span class="pre">y</span> <span class="pre">prueba</span></code></strong></em>.</p></li>
+<li><p>La validación cruzada estratificada puede medir el rendimiento de un clasificador, pero si hay imágenes de la misma persona en entrenamiento y prueba, <strong>el modelo reconocerá más fácilmente emociones en rostros ya vistos</strong>, sesgando la evaluación.</p></li>
+<li><p>Para evaluar correctamente la generalización a nuevas caras, se recomienda <code class="docutils literal notranslate"><span class="pre">GroupKFold</span></code>, que <strong>separa las imágenes por persona entre los conjuntos de entrenamiento y prueba</strong>.</p></li>
 </ul>
 </div>
-<ul class="simple">
-<li><p>Este ejemplo ilustra cómo aplicar validación cruzada por grupos usando <code class="docutils literal notranslate"><span class="pre">GroupKFold</span></code>, asegurando que las <strong>observaciones de un mismo grupo no se mezclen entre entrenamiento y prueba</strong>. Se usa un conjunto sintético de 12 datos divididos en 4 grupos, <strong>ideal para evitar fugas de información en contextos donde los datos están agrupados</strong> (como pacientes o dispositivos).</p></li>
-</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">GroupKFold</span>
@@ -1951,74 +2026,56 @@ Mean score: 0.830
 </div>
 </div>
 </div>
-<ul class="simple">
-<li><p>Dataset sintético con <strong>12 muestras y 4 grupos</strong> (pacientes)</p></li>
-</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_classification</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">n_features</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
-<span class="n">groups</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>     <span class="c1"># Paciente 0</span>
-          <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span>  <span class="c1"># Paciente 1</span>
-          <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span>        <span class="c1"># Paciente 2</span>
-          <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>     <span class="c1"># Paciente 3</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gkf</span> <span class="o">=</span> <span class="n">GroupKFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">fold</span><span class="p">,</span> <span class="p">(</span><span class="n">train_idx</span><span class="p">,</span> <span class="n">test_idx</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">gkf</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">groups</span><span class="p">)):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.patches</span><span class="w"> </span><span class="kn">import</span> <span class="n">Patch</span>
+
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_classification</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">n_features</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">groups</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+
+<span class="n">gkf</span> <span class="o">=</span> <span class="n">GroupKFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+<span class="n">group_colors</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s2">&quot;#7aa6c2&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;#e8a87c&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s2">&quot;#a3c9a8&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="s2">&quot;#c98bb9&quot;</span><span class="p">}</span>
+
+<span class="k">for</span> <span class="n">fold</span><span class="p">,</span> <span class="p">(</span><span class="n">train_idx</span><span class="p">,</span> <span class="n">test_idx</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">gkf</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">groups</span><span class="p">)):</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="n">fold</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">):</span>
+        <span class="n">is_test</span> <span class="o">=</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">test_idx</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">group_colors</span><span class="p">[</span><span class="n">groups</span><span class="p">[</span><span class="n">i</span><span class="p">]],</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span>
+               <span class="n">hatch</span><span class="o">=</span><span class="s2">&quot;//&quot;</span> <span class="k">if</span> <span class="n">is_test</span> <span class="k">else</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;P</span><span class="si">{</span><span class="n">groups</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s2">&quot;bold&quot;</span><span class="p">)</span>
+
     <span class="n">model</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>
     <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">train_idx</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">train_idx</span><span class="p">])</span>
     <span class="n">score</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">test_idx</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">test_idx</span><span class="p">])</span>
-    
-    <span class="n">train_groups</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">groups</span><span class="p">)[</span><span class="n">train_idx</span><span class="p">])</span>
-    <span class="n">test_groups</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">groups</span><span class="p">)[</span><span class="n">test_idx</span><span class="p">])</span>
-    
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Fold </span><span class="si">{</span><span class="n">fold</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Train indices: </span><span class="si">{</span><span class="n">train_idx</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Test indices:  </span><span class="si">{</span><span class="n">test_idx</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Train groups:  </span><span class="si">{</span><span class="n">train_groups</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Test groups:   </span><span class="si">{</span><span class="n">test_groups</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Score:         </span><span class="si">{</span><span class="n">score</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fold </span><span class="si">{</span><span class="n">fold</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2"> | Score=</span><span class="si">{</span><span class="n">score</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fold 1
-Train indices: [ 0  1  2  7  8  9 10 11]
-Test indices:  [3 4 5 6]
-Train groups:  {0, 2, 3}
-Test groups:   {1}
-Score:         0.75
-
-Fold 2
-Train indices: [0 1 2 3 4 5 6]
-Test indices:  [ 7  8  9 10 11]
-Train groups:  {0, 1}
-Test groups:   {2, 3}
-Score:         0.40
-
-Fold 3
-Train indices: [ 3  4  5  6  7  8  9 10 11]
-Test indices:  [0 1 2]
-Train groups:  {1, 2, 3}
-Test groups:   {0}
-Score:         0.67
-</pre></div>
-</div>
+<img alt="_images/15ea978e81e41cac2db1c51e5c7749c287b24d06524adcb0bc08e47079f2ce49.png" src="_images/15ea978e81e41cac2db1c51e5c7749c287b24d06524adcb0bc08e47079f2ce49.png" />
 </div>
 </div>
 <ul class="simple">
-<li><p><strong>Como puede ver, para cada división, cada grupo está completamente en el conjunto de entrenamiento o completamente en el conjunto de prueba</strong>. Además, <em>observe que los pliegues no tienen exactamente el mismo tamaño debido al desequilibrio de los datos</em>.</p></li>
-<li><p>Hay más estrategias de división para la validación cruzada en <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>, que pueden utilizarse para una variedad aún mayor de casos (ver <a class="reference external" href="https://scikit-learn.org/stable/modules/cross_validation.html">Cross-validation: evaluating estimator performance</a>). Sin embargo, el <code class="docutils literal notranslate"><span class="pre">KFold</span></code> estándar, el <code class="docutils literal notranslate"><span class="pre">StratifiedKFold</span></code> y el <code class="docutils literal notranslate"><span class="pre">GroupKFold</span></code> son, como mucho, los más utilizados. En el siguiente link puede encontrar la documentación relacionada con el uso de cada parámetro de la función <code class="docutils literal notranslate"><span class="pre">sklearn.model_selection.cross_val_score</span></code> (ver <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.cross_val_score.html">Evaluate a score by cross-validation</a>).</p></li>
+<li><p>Nótese que</p>
+<ul>
+<li><p>Cada barra representa una observación (fila del dataset), coloreada según el paciente al que pertenece.</p></li>
+<li><p>Las barras rayadas corresponden a <code class="docutils literal notranslate"><span class="pre">test</span></code>; las sólidas, a <code class="docutils literal notranslate"><span class="pre">train</span></code>.</p></li>
+<li><p>Las barras del mismo color (mismo paciente) están siempre juntas, todas rayadas o todas sólidas, nunca mezcladas dentro de un mismo <code class="docutils literal notranslate"><span class="pre">fold</span></code>.</p></li>
+</ul>
+</li>
+<li><p><strong>Por qué importa</strong></p>
+<ul>
+<li><p>Con un <code class="docutils literal notranslate"><span class="pre">KFold</span></code> normal, un mismo paciente podría tener observaciones tanto en <code class="docutils literal notranslate"><span class="pre">train</span></code> como en <code class="docutils literal notranslate"><span class="pre">test</span></code>, permitiendo que el modelo <strong>“reconozca” patrones específicos de ese paciente en lugar de generalizar a pacientes nuevos</strong>, lo que infla artificialmente el <code class="docutils literal notranslate"><span class="pre">score</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GroupKFold</span></code> evita esta <strong>fuga de información</strong>, tratando a cada paciente como una <strong>unidad indivisible</strong>.</p></li>
+</ul>
+</li>
 </ul>
 </section>
 <section id="validacion-cruzada-temporal-time-series-split">
@@ -2095,130 +2152,130 @@ Fold 4: train=[0 1 2 3 4 5 6 7 8 9] | test=[10 11]
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html"><style type="text/css">
-#T_d89c2_row0_col2 {
+#T_df504_row0_col2 {
   background-color: #f7fbff;
   color: #000000;
 }
-#T_d89c2_row1_col2 {
+#T_df504_row1_col2 {
   background-color: #b7d4ea;
   color: #000000;
 }
-#T_d89c2_row2_col2 {
+#T_df504_row2_col2 {
   background-color: #08306b;
   color: #f1f1f1;
 }
-#T_d89c2_row3_col2 {
+#T_df504_row3_col2 {
   background-color: #0d57a1;
   color: #f1f1f1;
 }
-#T_d89c2_row4_col2 {
+#T_df504_row4_col2 {
   background-color: #7fb9da;
   color: #000000;
 }
 </style>
-<table id="T_d89c2">
+<table id="T_df504">
   <caption>Primeras filas del dataset</caption>
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
-      <th id="T_d89c2_level0_col0" class="col_heading level0 col0" >year</th>
-      <th id="T_d89c2_level0_col1" class="col_heading level0 col1" >month</th>
-      <th id="T_d89c2_level0_col2" class="col_heading level0 col2" >passengers</th>
-      <th id="T_d89c2_level0_col3" class="col_heading level0 col3" >t</th>
+      <th id="T_df504_level0_col0" class="col_heading level0 col0" >year</th>
+      <th id="T_df504_level0_col1" class="col_heading level0 col1" >month</th>
+      <th id="T_df504_level0_col2" class="col_heading level0 col2" >passengers</th>
+      <th id="T_df504_level0_col3" class="col_heading level0 col3" >t</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_d89c2_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_d89c2_row0_col0" class="data row0 col0" >1949</td>
-      <td id="T_d89c2_row0_col1" class="data row0 col1" >January</td>
-      <td id="T_d89c2_row0_col2" class="data row0 col2" >112</td>
-      <td id="T_d89c2_row0_col3" class="data row0 col3" >0</td>
+      <th id="T_df504_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_df504_row0_col0" class="data row0 col0" >1949</td>
+      <td id="T_df504_row0_col1" class="data row0 col1" >January</td>
+      <td id="T_df504_row0_col2" class="data row0 col2" >112</td>
+      <td id="T_df504_row0_col3" class="data row0 col3" >0</td>
     </tr>
     <tr>
-      <th id="T_d89c2_level0_row1" class="row_heading level0 row1" >1</th>
-      <td id="T_d89c2_row1_col0" class="data row1 col0" >1949</td>
-      <td id="T_d89c2_row1_col1" class="data row1 col1" >February</td>
-      <td id="T_d89c2_row1_col2" class="data row1 col2" >118</td>
-      <td id="T_d89c2_row1_col3" class="data row1 col3" >1</td>
+      <th id="T_df504_level0_row1" class="row_heading level0 row1" >1</th>
+      <td id="T_df504_row1_col0" class="data row1 col0" >1949</td>
+      <td id="T_df504_row1_col1" class="data row1 col1" >February</td>
+      <td id="T_df504_row1_col2" class="data row1 col2" >118</td>
+      <td id="T_df504_row1_col3" class="data row1 col3" >1</td>
     </tr>
     <tr>
-      <th id="T_d89c2_level0_row2" class="row_heading level0 row2" >2</th>
-      <td id="T_d89c2_row2_col0" class="data row2 col0" >1949</td>
-      <td id="T_d89c2_row2_col1" class="data row2 col1" >March</td>
-      <td id="T_d89c2_row2_col2" class="data row2 col2" >132</td>
-      <td id="T_d89c2_row2_col3" class="data row2 col3" >2</td>
+      <th id="T_df504_level0_row2" class="row_heading level0 row2" >2</th>
+      <td id="T_df504_row2_col0" class="data row2 col0" >1949</td>
+      <td id="T_df504_row2_col1" class="data row2 col1" >March</td>
+      <td id="T_df504_row2_col2" class="data row2 col2" >132</td>
+      <td id="T_df504_row2_col3" class="data row2 col3" >2</td>
     </tr>
     <tr>
-      <th id="T_d89c2_level0_row3" class="row_heading level0 row3" >3</th>
-      <td id="T_d89c2_row3_col0" class="data row3 col0" >1949</td>
-      <td id="T_d89c2_row3_col1" class="data row3 col1" >April</td>
-      <td id="T_d89c2_row3_col2" class="data row3 col2" >129</td>
-      <td id="T_d89c2_row3_col3" class="data row3 col3" >3</td>
+      <th id="T_df504_level0_row3" class="row_heading level0 row3" >3</th>
+      <td id="T_df504_row3_col0" class="data row3 col0" >1949</td>
+      <td id="T_df504_row3_col1" class="data row3 col1" >April</td>
+      <td id="T_df504_row3_col2" class="data row3 col2" >129</td>
+      <td id="T_df504_row3_col3" class="data row3 col3" >3</td>
     </tr>
     <tr>
-      <th id="T_d89c2_level0_row4" class="row_heading level0 row4" >4</th>
-      <td id="T_d89c2_row4_col0" class="data row4 col0" >1949</td>
-      <td id="T_d89c2_row4_col1" class="data row4 col1" >May</td>
-      <td id="T_d89c2_row4_col2" class="data row4 col2" >121</td>
-      <td id="T_d89c2_row4_col3" class="data row4 col3" >4</td>
+      <th id="T_df504_level0_row4" class="row_heading level0 row4" >4</th>
+      <td id="T_df504_row4_col0" class="data row4 col0" >1949</td>
+      <td id="T_df504_row4_col1" class="data row4 col1" >May</td>
+      <td id="T_df504_row4_col2" class="data row4 col2" >121</td>
+      <td id="T_df504_row4_col3" class="data row4 col3" >4</td>
     </tr>
   </tbody>
 </table>
 </div><div class="output text_html"><style type="text/css">
-#T_f9efd_row0_col0, #T_f9efd_row0_col1, #T_f9efd_row1_col0, #T_f9efd_row1_col1, #T_f9efd_row2_col0, #T_f9efd_row2_col1, #T_f9efd_row3_col0, #T_f9efd_row3_col1 {
+#T_770f9_row0_col0, #T_770f9_row0_col1, #T_770f9_row1_col0, #T_770f9_row1_col1, #T_770f9_row2_col0, #T_770f9_row2_col1, #T_770f9_row3_col0, #T_770f9_row3_col1 {
   text-align: center;
 }
-#T_f9efd_row0_col2, #T_f9efd_row1_col2 {
+#T_770f9_row0_col2, #T_770f9_row1_col2 {
   width: 10em;
   background: linear-gradient(90deg, #7aa6c2 8.3%, transparent 8.3%);
   text-align: center;
 }
-#T_f9efd_row2_col2 {
+#T_770f9_row2_col2 {
   width: 10em;
   background: linear-gradient(90deg, #7aa6c2 81.9%, transparent 81.9%);
   text-align: center;
 }
-#T_f9efd_row3_col2 {
+#T_770f9_row3_col2 {
   width: 10em;
   background: linear-gradient(90deg, #7aa6c2 100.0%, transparent 100.0%);
   text-align: center;
 }
 </style>
-<table id="T_f9efd">
+<table id="T_770f9">
   <caption>Info general: 144 filas | Periodo 1949–1960</caption>
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
-      <th id="T_f9efd_level0_col0" class="col_heading level0 col0" >tipo_dato</th>
-      <th id="T_f9efd_level0_col1" class="col_heading level0 col1" >valores_nulos</th>
-      <th id="T_f9efd_level0_col2" class="col_heading level0 col2" >valores_unicos</th>
+      <th id="T_770f9_level0_col0" class="col_heading level0 col0" >tipo_dato</th>
+      <th id="T_770f9_level0_col1" class="col_heading level0 col1" >valores_nulos</th>
+      <th id="T_770f9_level0_col2" class="col_heading level0 col2" >valores_unicos</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_f9efd_level0_row0" class="row_heading level0 row0" >year</th>
-      <td id="T_f9efd_row0_col0" class="data row0 col0" >int64</td>
-      <td id="T_f9efd_row0_col1" class="data row0 col1" >0</td>
-      <td id="T_f9efd_row0_col2" class="data row0 col2" >12</td>
+      <th id="T_770f9_level0_row0" class="row_heading level0 row0" >year</th>
+      <td id="T_770f9_row0_col0" class="data row0 col0" >int64</td>
+      <td id="T_770f9_row0_col1" class="data row0 col1" >0</td>
+      <td id="T_770f9_row0_col2" class="data row0 col2" >12</td>
     </tr>
     <tr>
-      <th id="T_f9efd_level0_row1" class="row_heading level0 row1" >month</th>
-      <td id="T_f9efd_row1_col0" class="data row1 col0" >object</td>
-      <td id="T_f9efd_row1_col1" class="data row1 col1" >0</td>
-      <td id="T_f9efd_row1_col2" class="data row1 col2" >12</td>
+      <th id="T_770f9_level0_row1" class="row_heading level0 row1" >month</th>
+      <td id="T_770f9_row1_col0" class="data row1 col0" >object</td>
+      <td id="T_770f9_row1_col1" class="data row1 col1" >0</td>
+      <td id="T_770f9_row1_col2" class="data row1 col2" >12</td>
     </tr>
     <tr>
-      <th id="T_f9efd_level0_row2" class="row_heading level0 row2" >passengers</th>
-      <td id="T_f9efd_row2_col0" class="data row2 col0" >int64</td>
-      <td id="T_f9efd_row2_col1" class="data row2 col1" >0</td>
-      <td id="T_f9efd_row2_col2" class="data row2 col2" >118</td>
+      <th id="T_770f9_level0_row2" class="row_heading level0 row2" >passengers</th>
+      <td id="T_770f9_row2_col0" class="data row2 col0" >int64</td>
+      <td id="T_770f9_row2_col1" class="data row2 col1" >0</td>
+      <td id="T_770f9_row2_col2" class="data row2 col2" >118</td>
     </tr>
     <tr>
-      <th id="T_f9efd_level0_row3" class="row_heading level0 row3" >t</th>
-      <td id="T_f9efd_row3_col0" class="data row3 col0" >int64</td>
-      <td id="T_f9efd_row3_col1" class="data row3 col1" >0</td>
-      <td id="T_f9efd_row3_col2" class="data row3 col2" >144</td>
+      <th id="T_770f9_level0_row3" class="row_heading level0 row3" >t</th>
+      <td id="T_770f9_row3_col0" class="data row3 col0" >int64</td>
+      <td id="T_770f9_row3_col1" class="data row3 col1" >0</td>
+      <td id="T_770f9_row3_col2" class="data row3 col2" >144</td>
     </tr>
   </tbody>
 </table>
@@ -2226,13 +2283,15 @@ Fold 4: train=[0 1 2 3 4 5 6 7 8 9] | test=[10 11]
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">flights</span><span class="p">[[</span><span class="s2">&quot;t&quot;</span><span class="p">]]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">flights</span><span class="p">[</span><span class="s2">&quot;passengers&quot;</span><span class="p">]</span>
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">flights</span><span class="p">[</span><span class="s2">&quot;t&quot;</span><span class="p">],</span> <span class="n">flights</span><span class="p">[</span><span class="s2">&quot;passengers&quot;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;lightgray&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span>
         <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Serie real&quot;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
 <span class="n">colors</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">viridis</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">])</span>
+<span class="n">maes</span> <span class="o">=</span> <span class="p">[]</span>
 
 <span class="k">for</span> <span class="n">fold</span><span class="p">,</span> <span class="p">(</span><span class="n">train_idx</span><span class="p">,</span> <span class="n">test_idx</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">tscv</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">X</span><span class="p">)):</span>
     <span class="n">modelo</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
@@ -2241,7 +2300,6 @@ Fold 4: train=[0 1 2 3 4 5 6 7 8 9] | test=[10 11]
     <span class="n">mae</span> <span class="o">=</span> <span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test_idx</span><span class="p">],</span> <span class="n">pred</span><span class="p">)</span>
     <span class="n">maes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mae</span><span class="p">)</span>
 
-    <span class="c1"># línea de predicción y puntos reales del fold, en el mismo color</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test_idx</span><span class="p">][</span><span class="s2">&quot;t&quot;</span><span class="p">],</span> <span class="n">pred</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">fold</span><span class="p">],</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
             <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Fold </span><span class="si">{</span><span class="n">fold</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2"> (predicho)&quot;</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test_idx</span><span class="p">][</span><span class="s2">&quot;t&quot;</span><span class="p">],</span> <span class="n">y</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test_idx</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">fold</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
@@ -2250,7 +2308,7 @@ Fold 4: train=[0 1 2 3 4 5 6 7 8 9] | test=[10 11]
 
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">MAE promedio: </span><span class="si">{</span><span class="nb">sum</span><span class="p">(</span><span class="n">maes</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">maes</span><span class="p">)</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> pasajeros&quot;</span><span class="p">)</span>
 
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Predicciones por fold vs. serie real — TimeSeriesSplit&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Predicciones por fold vs. serie real: TimeSeriesSplit&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Mes (índice t)&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Pasajeros&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;upper left&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
@@ -2260,16 +2318,15 @@ Fold 4: train=[0 1 2 3 4 5 6 7 8 9] | test=[10 11]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fold 1: train hasta t= 23 | test t=24- 47 | MAE=27.9 pasajeros
-Fold 2: train hasta t= 47 | test t=48- 71 | MAE=26.2 pasajeros
-Fold 3: train hasta t= 71 | test t=72- 95 | MAE=37.0 pasajeros
-Fold 4: train hasta t= 95 | test t=96-119 | MAE=46.0 pasajeros
-Fold 5: train hasta t=119 | test t=120-143 | MAE=54.9 pasajeros
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fold 1: train hasta t= 31 | test t=32- 59 | MAE=21.0 pasajeros
+Fold 2: train hasta t= 59 | test t=60- 87 | MAE=26.8 pasajeros
+Fold 3: train hasta t= 87 | test t=88-115 | MAE=50.9 pasajeros
+Fold 4: train hasta t=115 | test t=116-143 | MAE=53.8 pasajeros
 
-MAE promedio: 38.4 pasajeros
+MAE promedio: 38.1 pasajeros
 </pre></div>
 </div>
-<img alt="_images/08321dd9587f7d2ce91219fe265035ccf2bcb027aac2f2b1677d6d9b318de2d2.png" src="_images/08321dd9587f7d2ce91219fe265035ccf2bcb027aac2f2b1677d6d9b318de2d2.png" />
+<img alt="_images/7a717a65ef3dcb8c8618aa4f5e10f6ff7fb11409aa08db6d7340ff6867626b0b.png" src="_images/7a717a65ef3dcb8c8618aa4f5e10f6ff7fb11409aa08db6d7340ff6867626b0b.png" />
 </div>
 </div>
 </section>
@@ -2445,6 +2502,12 @@ Fold 5: 823 train / 177 test | MAE=88,350 hab.
 </pre></div>
 </div>
 </div>
+</div>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">homework</span></code></strong>: Resolver este mismo ejercio utilizando la librería <code class="docutils literal notranslate"><span class="pre">spatial-kfold</span></code> en vez de esta implementación. <code class="docutils literal notranslate"><span class="pre">spatial-kfold</span></code>, es activamente mantenido y con el mismo propósito del ejemplo presentado en esta sección. La siguiente es la orden necesaria para instalar esta librería usando el gentor de instalación de paquetes <code class="docutils literal notranslate"><span class="pre">pip</span></code></p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>spatial-kfold<span class="w"> </span>geopandas
+</pre></div>
 </div>
 </section>
 </section>
@@ -8492,7 +8555,7 @@ ANÁLISIS COMPLETADO - TODAS LAS TABLAS EXPORTADAS
     <i class="fa-solid fa-list"></i> Contents
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
-    <ul class="visible nav section-nav flex-column">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-validation">9.1. Cross-Validation</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-cruzada-en-scikit-learn">9.1.1. Validación cruzada en scikit-learn</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-val-score">9.1.2. cross_val_score</a></li>
@@ -8622,8 +8685,8 @@ By Lihki Rubio, Ph.D.
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script defer src="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
 
   <footer class="bd-footer">
   </footer>
