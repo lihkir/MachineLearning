@@ -1661,16 +1661,47 @@ dtype: int64
 </div>
 </div>
 <ul class="simple">
-<li><p>Utilizando la <em><strong>validación cruzada media</strong></em> podemos concluir que, esperamos que el modelo sea de precisión en torno al 97% de media. Si observamos las cinco puntuaciones producidas por la validación cruzada de cinco pliegues <em><strong>five-fold cross validation</strong></em>, también podemos concluir que hay una <em><strong>varianza relativamente alta en la precisión entre pliegues, que va del 100% de precisión al 93.33% de precisión aproximadamente</strong></em>.</p></li>
-<li><p>Esto podría implicar que <em><strong><code class="docutils literal notranslate"><span class="pre">el</span> <span class="pre">modelo</span> <span class="pre">es</span> <span class="pre">muy</span> <span class="pre">dependiente</span> <span class="pre">de</span> <span class="pre">los</span> <span class="pre">pliegues</span> <span class="pre">particulares</span> <span class="pre">utilizados</span> <span class="pre">para</span> <span class="pre">el</span> <span class="pre">entrenamiento</span></code></strong></em>, pero también podría ser simplemente una <em><strong>consecuencia del pequeño tamaño del conjunto de datos</strong></em>. Normalmente, <em><strong>si los resultados de</strong></em> <code class="docutils literal notranslate"><span class="pre">accuracy</span></code> <em><strong>varían considerablemente durante la validación cruzada de 5 pliegues</strong></em>, esto puede indicar <em><strong>problemas en el modelo, en los datos, o en el proceso de validación</strong></em>.</p></li>
+<li><p><strong>Interpretación de la validación cruzada media</strong></p>
+<ul>
+<li><p>A partir de la <em><strong>validación cruzada media</strong></em>, se puede concluir que se espera una precisión del modelo en torno al <strong>97% de media</strong>.</p></li>
+<li><p>Al observar las cinco puntuaciones producidas por la <em><strong>five-fold cross validation</strong></em>, se advierte una <strong>varianza relativamente alta en la precisión entre pliegues</strong>, que oscila entre aproximadamente el <strong>100%</strong> y el <strong>93.33%</strong>.</p></li>
+</ul>
+</li>
+<li><p><strong>Posibles causas de la varianza observada</strong></p>
+<ul>
+<li><p>Podría deberse a que <strong>el modelo es muy dependiente de los pliegues particulares utilizados para el entrenamiento</strong>.</p></li>
+<li><p>Alternativamente, podría tratarse simplemente de una <strong>consecuencia del pequeño tamaño del conjunto de datos</strong>.</p></li>
+<li><p>En general, cuando los resultados de <code class="docutils literal notranslate"><span class="pre">accuracy</span></code> <strong>varían considerablemente durante la validación cruzada de 5 pliegues</strong>, ello puede ser indicio de <strong>problemas en el modelo, en los datos o en el proceso de validación</strong>.</p></li>
+</ul>
+</li>
 </ul>
 <div class="tip admonition">
 <p class="admonition-title">Varianza alta de <em>accuracy</em> entre pliegues</p>
 <ul class="simple">
-<li><p><strong>Varianza en los datos</strong>: Si los datos no están bien distribuidos o existen diferencias significativas entre los pliegues, los resultados de accuracy pueden variar mucho entre cada uno. <em>Esto sucede comúnmente cuando los datos presentan sesgos o cuando ciertos pliegues contienen muestras que son más difíciles de clasificar</em>.</p></li>
-<li><p><strong>Modelo inestable o de alta varianza</strong>: Algunos modelos, especialmente los que son complejos o sensibles a los datos de entrenamiento (como los árboles de decisión sin poda o redes neuronales profundas con pocos datos), pueden tener un rendimiento inconsistente en diferentes subconjuntos de los datos. <em>En estos casos, el modelo se ajusta demasiado a los pliegues específicos, produciendo fluctuaciones en el</em> <code class="docutils literal notranslate"><span class="pre">accuracy</span></code>.</p></li>
-<li><p><strong>Tamaño de la muestra</strong>: <em>Si el conjunto de datos es pequeño, la variabilidad en los pliegues puede ser mayor, ya que cada subconjunto de datos tiene un peso proporcionalmente alto</em>. En estos casos, la validación cruzada puede reflejar variaciones amplificadas.</p></li>
-<li><p><strong>Datos atípicos</strong>: <em>La presencia de datos atípicos (outliers) en algunos de los pliegues puede afectar el</em> <code class="docutils literal notranslate"><span class="pre">accuracy</span></code> <em>y producir resultados más dispares</em>. Es importante revisar si los pliegues contienen estos datos y considerar métodos para manejarlos.</p></li>
+<li><p><strong>Varianza en los datos</strong></p>
+<ul>
+<li><p>Si los datos no están bien distribuidos o existen diferencias significativas entre los pliegues, los resultados de <code class="docutils literal notranslate"><span class="pre">accuracy</span></code> pueden variar considerablemente entre cada uno.</p></li>
+<li><p><em>Esto sucede comúnmente cuando los datos presentan sesgos o cuando ciertos pliegues contienen muestras que son más difíciles de clasificar</em>.</p></li>
+</ul>
+</li>
+<li><p><strong>Modelo inestable o de alta varianza</strong></p>
+<ul>
+<li><p>Algunos modelos, especialmente los que son complejos o sensibles a los datos de entrenamiento (como los árboles de decisión sin poda o las redes neuronales profundas con pocos datos), pueden presentar un rendimiento inconsistente en diferentes subconjuntos de los datos.</p></li>
+<li><p><em>En estos casos, el modelo se ajusta demasiado a los pliegues específicos, produciendo fluctuaciones en el</em> <code class="docutils literal notranslate"><span class="pre">accuracy</span></code>.</p></li>
+</ul>
+</li>
+<li><p><strong>Tamaño de la muestra</strong></p>
+<ul>
+<li><p><em>Si el conjunto de datos es pequeño, la variabilidad en los pliegues puede ser mayor, ya que cada subconjunto de datos tiene un peso proporcionalmente alto</em>.</p></li>
+<li><p>En estos casos, la validación cruzada puede reflejar variaciones amplificadas.</p></li>
+</ul>
+</li>
+<li><p><strong>Datos atípicos</strong></p>
+<ul>
+<li><p><em>La presencia de datos atípicos (outliers) en algunos de los pliegues puede afectar el</em> <code class="docutils literal notranslate"><span class="pre">accuracy</span></code> <em>y producir resultados más dispares</em>.</p></li>
+<li><p>Es importante revisar si los pliegues contienen estos datos y considerar métodos para manejarlos.</p></li>
+</ul>
+</li>
 </ul>
 </div>
 </section>
@@ -1679,25 +1710,30 @@ dtype: int64
 <div class="important admonition">
 <p class="admonition-title">Observación</p>
 <ul class="simple">
-<li><p>Son varios los beneficios de utilizar la <em><strong>validación cruzada</strong></em> en lugar de una única división en un conjunto de entrenamiento y otro de prueba. En primer lugar, recuerde que <code class="docutils literal notranslate"><span class="pre">train_test_split</span></code> realiza una división aleatoria de los datos. Imaginemos que <em><strong>tenemos “suerte” al dividir aleatoriamente los datos, y todos los ejemplos que son difíciles de clasificar acaban en el conjunto de entrenamiento</strong></em>.</p></li>
-<li><p>En ese caso, <em><strong>el conjunto de prueba sólo contendrá ejemplos “fáciles”, y nuestra precisión en el conjunto de prueba será irrealmente alto</strong></em>. Por el contrario, <em><strong>si tenemos “mala suerte”, es posible que pongamos al azar todos los ejemplos difíciles de clasificar en el conjunto de prueba y en consecuencia, obtener una score irrealmente bajo</strong></em>.</p></li>
+<li><p><em><strong>La validación cruzada</strong></em> ofrece ventajas frente a una única división en entrenamiento y prueba, dado que <code class="docutils literal notranslate"><span class="pre">train_test_split</span></code> divide los datos aleatoriamente, lo cual introduce <strong>dependencia del azar</strong> en el resultado.</p></li>
+<li><p>Si por “suerte” los ejemplos difíciles quedan en el entrenamiento, la precisión en prueba resulta <strong>irrealmente alta</strong>; si por “mala suerte” quedan en la prueba, la precisión resulta <strong>irrealmente baja</strong>.</p></li>
 </ul>
 </div>
 <ul class="simple">
-<li><p>La <em><strong>validación cruzada garantiza que cada ejemplo esté en el conjunto de prueba una vez, obligando al modelo a generalizar bien en todo el conjunto</strong></em>. Proporciona un rango de precisión que muestra el rendimiento en el mejor y peor caso. A diferencia de dividir una sola vez, <em><strong>la validación cruzada usa más datos para entrenamiento</strong></em> (por ejemplo, 80% en cinco pliegues o 90% en diez pliegues), <em><strong>lo que mejora la precisión</strong></em>. Sin embargo, <em><strong>su desventaja es el mayor coste computacional</strong></em>, ya que se entrenan varios modelos en lugar de uno solo.</p></li>
+<li><p><strong>Ventajas y desventaja de la validación cruzada</strong></p>
+<ul>
+<li><p><em><strong>Garantiza que cada ejemplo forme parte del conjunto de prueba una vez</strong></em>, obligando al modelo a generalizar bien y proporcionando un <strong>rango de precisión</strong> (mejor y peor caso).</p></li>
+<li><p><em><strong>Emplea más datos para entrenamiento</strong></em> que una única división (p. ej., 80% en cinco pliegues o 90% en diez), lo que <em><strong>mejora la precisión</strong></em>.</p></li>
+<li><p>Como desventaja, implica un <em><strong>mayor coste computacional</strong></em>, al requerir el entrenamiento de varios modelos en lugar de uno solo.</p></li>
 </ul>
-<div class="caution admonition">
-<p class="admonition-title">Observación</p>
-<ul class="simple">
-<li><p>Es importante tener en cuenta que la <em><strong>validación cruzada no es una forma de construir un modelo que pueda aplicarse a nuevos datos. La validación cruzada no devuelve un modelo</strong></em>.</p></li>
-<li><p>Cuando se llama a <code class="docutils literal notranslate"><span class="pre">cross_validation_score</span></code>, se construyen internamente múltiples modelos, pero <em><strong>el propósito de la validación cruzada es evaluar lo bien que un algoritmo determinado generalizará</strong></em> cuando es entrenado en un conjunto de datos específico.</p></li>
+</li>
 </ul>
-</div>
-</section>
+<!-- ```{admonition} Observación
+:class: caution
+
+- Es importante tener en cuenta que la ***validación cruzada no es una forma de construir un modelo que pueda aplicarse a nuevos datos. La validación cruzada no devuelve un modelo***. 
+
+- Cuando se llama a `cross_validation_score`, se construyen internamente múltiples modelos, pero ***el propósito de la validación cruzada es evaluar lo bien que un algoritmo determinado generalizará*** cuando es entrenado en un conjunto de datos específico.
+``` --></section>
 <section id="validacion-cruzada-kfold">
 <h3><span class="section-number">9.1.4. </span>Validación cruzada <code class="docutils literal notranslate"><span class="pre">KFold</span></code><a class="headerlink" href="#validacion-cruzada-kfold" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Dividir el conjunto de datos en <code class="docutils literal notranslate"><span class="pre">k</span></code> <em><strong>pliegues</strong></em> comenzando por la primera parte de los datos, como descrito en la sección anterior, <em><strong>puede no ser siempre una buena idea</strong></em>. Por ejemplo, veamos el conjunto de datos <code class="docutils literal notranslate"><span class="pre">iris</span></code></p></li>
+<li><p>Dividir el conjunto de datos en <code class="docutils literal notranslate"><span class="pre">k</span></code> <em><strong>pliegues</strong></em> tomando secuencialmente las particiones desde el inicio de los datos <em><strong>puede no ser siempre una buena idea</strong></em>, como se ilustra a continuación con el conjunto de datos <code class="docutils literal notranslate"><span class="pre">iris</span></code>.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
