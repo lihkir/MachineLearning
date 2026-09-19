@@ -2509,14 +2509,214 @@ Fold 5: 823 train / 177 test | MAE=88,350 hab.
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>spatial-kfold<span class="w"> </span>geopandas
 </pre></div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">geopandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gpd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">shapely.geometry</span><span class="w"> </span><span class="kn">import</span> <span class="n">Point</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">spatialkfold.blocks</span><span class="w"> </span><span class="kn">import</span> <span class="n">spatial_blocks</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">coords</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>  <span class="c1"># 20 estaciones de monitoreo ambiental</span>
+
+<span class="c1"># spatial-kfold trabaja con GeoDataFrame: convertimos las coordenadas a puntos</span>
+<span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span>
+    <span class="p">{</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">)},</span>
+    <span class="n">geometry</span><span class="o">=</span><span class="p">[</span><span class="n">Point</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">coords</span><span class="p">],</span>
+    <span class="n">crs</span><span class="o">=</span><span class="s2">&quot;EPSG:3857&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># Genera automáticamente la grilla de bloques y asigna cada bloque a un fold</span>
+<span class="n">gdf_blocks</span> <span class="o">=</span> <span class="n">spatial_blocks</span><span class="p">(</span>
+    <span class="n">gdf</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>      <span class="c1"># tamaño de cada bloque (mismas unidades que el CRS)</span>
+    <span class="n">method</span><span class="o">=</span><span class="s2">&quot;random&quot;</span><span class="p">,</span> <span class="n">nfolds</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span>
+<span class="p">)</span>
+
+<span class="c1"># Une cada estación con el bloque al que pertenece (spatial join)</span>
+<span class="n">gdf_joined</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">sjoin</span><span class="p">(</span><span class="n">gdf</span><span class="p">,</span> <span class="n">gdf_blocks</span><span class="p">[[</span><span class="s2">&quot;geometry&quot;</span><span class="p">,</span> <span class="s2">&quot;folds&quot;</span><span class="p">]],</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">,</span> <span class="n">predicate</span><span class="o">=</span><span class="s2">&quot;intersects&quot;</span><span class="p">)</span>
+<span class="n">gdf_joined</span> <span class="o">=</span> <span class="n">gdf_joined</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="s2">&quot;id&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">)</span>
+
+<span class="n">groups</span> <span class="o">=</span> <span class="n">gdf_joined</span><span class="p">[</span><span class="s2">&quot;folds&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+
+<span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">gdf_joined</span><span class="p">[</span><span class="s2">&quot;folds&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">unique</span><span class="p">()):</span>
+    <span class="n">test_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">groups</span> <span class="o">==</span> <span class="n">b</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">train_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">groups</span> <span class="o">!=</span> <span class="n">b</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Bloque </span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="si">}</span><span class="s2"> como test: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">test_idx</span><span class="p">)</span><span class="si">}</span><span class="s2"> estaciones | train: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">train_idx</span><span class="p">)</span><span class="si">}</span><span class="s2"> estaciones&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bloque 1 como test: 4 estaciones | train: 16 estaciones
+Bloque 2 como test: 6 estaciones | train: 14 estaciones
+Bloque 3 como test: 8 estaciones | train: 12 estaciones
+Bloque 4 como test: 2 estaciones | train: 18 estaciones
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">gdf_blocks</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">gdf_joined</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="s2">&quot;folds&quot;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;Set2&quot;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span>
+                <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">categorical</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">legend_kwds</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Fold&quot;</span><span class="p">})</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Bloques espaciales generados con spatial-kfold&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/409b81d59a40fd943286a989fd6ea0866472b2ec61c60ebee05a5d4795199d0a.png" src="_images/409b81d59a40fd943286a989fd6ea0866472b2ec61c60ebee05a5d4795199d0a.png" />
+</div>
+</div>
+<p><strong>Comparación con la implementación manual:</strong> el resultado es prácticamente idéntico a la grilla 2x2 construida a mano (mismo desbalance: un bloque con solo 2 estaciones, otro con 8). La ventaja de usar la librería no está en este ejemplo pequeño, sino en que escala a <strong>miles de puntos, grillas hexagonales, o clustering espacial (KMeans)</strong> sin tener que reescribir la lógica de asignación de bloques cada vez.</p>
+<p><strong>Integración con <code class="docutils literal notranslate"><span class="pre">GroupKFold</span></code> de sklearn:</strong> los <code class="docutils literal notranslate"><span class="pre">folds</span></code> que produce <code class="docutils literal notranslate"><span class="pre">spatial_blocks</span></code> son exactamente el <code class="docutils literal notranslate"><span class="pre">groups</span></code> que espera <code class="docutils literal notranslate"><span class="pre">GroupKFold</span></code>, así que a partir de aquí el flujo de entrenamiento es idéntico al usado con las ciudades de EE.UU.:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">GroupKFold</span>
+<span class="n">gkf</span> <span class="o">=</span> <span class="n">GroupKFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">train_idx</span><span class="p">,</span> <span class="n">test_idx</span> <span class="ow">in</span> <span class="n">gkf</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="n">groups</span><span class="p">):</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">geopandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gpd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">shapely.geometry</span><span class="w"> </span><span class="kn">import</span> <span class="n">Point</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">spatialkfold.blocks</span><span class="w"> </span><span class="kn">import</span> <span class="n">spatial_blocks</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">GroupKFold</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">LinearRegression</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">mean_absolute_error</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/plotly/datasets/master/us-cities-top-1k.csv&quot;</span>
+<span class="n">cities</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+
+<span class="c1"># Convertir a GeoDataFrame usando lon/lat como geometría de puntos</span>
+<span class="n">gdf_cities</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span>
+    <span class="n">cities</span><span class="p">,</span>
+    <span class="n">geometry</span><span class="o">=</span><span class="p">[</span><span class="n">Point</span><span class="p">(</span><span class="n">xy</span><span class="p">)</span> <span class="k">for</span> <span class="n">xy</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">cities</span><span class="p">[</span><span class="s2">&quot;lon&quot;</span><span class="p">],</span> <span class="n">cities</span><span class="p">[</span><span class="s2">&quot;lat&quot;</span><span class="p">])],</span>
+    <span class="n">crs</span><span class="o">=</span><span class="s2">&quot;EPSG:4326&quot;</span>  <span class="c1"># coordenadas geográficas WGS84 (grados)</span>
+<span class="p">)</span>
+
+<span class="c1"># Bloques espaciales automáticos (equivalente a la grilla 4x4 manual anterior)</span>
+<span class="n">gdf_blocks</span> <span class="o">=</span> <span class="n">spatial_blocks</span><span class="p">(</span>
+    <span class="n">gdf_cities</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">method</span><span class="o">=</span><span class="s2">&quot;random&quot;</span><span class="p">,</span> <span class="n">nfolds</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span>
+<span class="p">)</span>
+
+<span class="c1"># Unir cada ciudad con su bloque (spatial join)</span>
+<span class="n">gdf_joined</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">sjoin</span><span class="p">(</span><span class="n">gdf_cities</span><span class="p">,</span> <span class="n">gdf_blocks</span><span class="p">[[</span><span class="s2">&quot;geometry&quot;</span><span class="p">,</span> <span class="s2">&quot;folds&quot;</span><span class="p">]],</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">,</span> <span class="n">predicate</span><span class="o">=</span><span class="s2">&quot;intersects&quot;</span><span class="p">)</span>
+<span class="n">cities</span> <span class="o">=</span> <span class="n">gdf_joined</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;City&quot;</span><span class="p">,</span> <span class="s2">&quot;State&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;folds&quot;</span><span class="p">:</span> <span class="s2">&quot;bloque&quot;</span><span class="p">})</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">cities</span><span class="p">[[</span><span class="s2">&quot;lat&quot;</span><span class="p">,</span> <span class="s2">&quot;lon&quot;</span><span class="p">]]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">cities</span><span class="p">[</span><span class="s2">&quot;Population&quot;</span><span class="p">]</span>
+<span class="n">groups</span> <span class="o">=</span> <span class="n">cities</span><span class="p">[</span><span class="s2">&quot;bloque&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">scatter</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">cities</span><span class="p">[</span><span class="s2">&quot;lon&quot;</span><span class="p">],</span> <span class="n">cities</span><span class="p">[</span><span class="s2">&quot;lat&quot;</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">cities</span><span class="p">[</span><span class="s2">&quot;bloque&quot;</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;tab10&quot;</span><span class="p">,</span>
+                      <span class="n">s</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;1,000 ciudades de EE.UU. divididas en 5 bloques (spatial-kfold)&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Longitud&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Latitud&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">scatter</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Bloque&quot;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/75024543cb1845bcffe5604e1ea076832cb2847a4c637cec547eb868e109bd79.png" src="_images/75024543cb1845bcffe5604e1ea076832cb2847a4c637cec547eb868e109bd79.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gkf</span> <span class="o">=</span> <span class="n">GroupKFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">axes</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+<span class="n">maes</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">fold</span><span class="p">,</span> <span class="p">(</span><span class="n">train_idx</span><span class="p">,</span> <span class="n">test_idx</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">gkf</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">groups</span><span class="p">)):</span>
+    <span class="n">modelo</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+    <span class="n">modelo</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train_idx</span><span class="p">],</span> <span class="n">y</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train_idx</span><span class="p">])</span>
+    <span class="n">pred</span> <span class="o">=</span> <span class="n">modelo</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test_idx</span><span class="p">])</span>
+    <span class="n">mae</span> <span class="o">=</span> <span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test_idx</span><span class="p">],</span> <span class="n">pred</span><span class="p">)</span>
+    <span class="n">maes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mae</span><span class="p">)</span>
+
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="n">fold</span><span class="p">]</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">cities</span><span class="p">[</span><span class="s2">&quot;lon&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train_idx</span><span class="p">],</span> <span class="n">cities</span><span class="p">[</span><span class="s2">&quot;lat&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train_idx</span><span class="p">],</span>
+               <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#7aa6c2&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Train&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">cities</span><span class="p">[</span><span class="s2">&quot;lon&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test_idx</span><span class="p">],</span> <span class="n">cities</span><span class="p">[</span><span class="s2">&quot;lat&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test_idx</span><span class="p">],</span>
+               <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#e57373&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Test&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fold </span><span class="si">{</span><span class="n">fold</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">: MAE=</span><span class="si">{</span><span class="n">mae</span><span class="si">:</span><span class="s2">,.0f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">fold</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fold </span><span class="si">{</span><span class="n">fold</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">train_idx</span><span class="p">)</span><span class="si">}</span><span class="s2"> train / </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">test_idx</span><span class="p">)</span><span class="si">}</span><span class="s2"> test | MAE=</span><span class="si">{</span><span class="n">mae</span><span class="si">:</span><span class="s2">,.0f</span><span class="si">}</span><span class="s2"> hab.&quot;</span><span class="p">)</span>
+
+<span class="n">axes</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;GroupKFold espacial (spatial-kfold) — train/test por bloque geográfico&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">1.02</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">MAE promedio: </span><span class="si">{</span><span class="nb">sum</span><span class="p">(</span><span class="n">maes</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">maes</span><span class="p">)</span><span class="si">:</span><span class="s2">,.0f</span><span class="si">}</span><span class="s2"> habitantes&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fold 1: 547 train / 453 test | MAE=100,604 hab.
+Fold 2: 786 train / 214 test | MAE=93,701 hab.
+Fold 3: 843 train / 157 test | MAE=143,649 hab.
+Fold 4: 873 train / 127 test | MAE=82,777 hab.
+Fold 5: 951 train / 49 test | MAE=150,549 hab.
+</pre></div>
+</div>
+<img alt="_images/245740e9a1a0a2a2eeda41f3aaf47e6687b0f6c8f495a9c2eee50d0d41639a98.png" src="_images/245740e9a1a0a2a2eeda41f3aaf47e6687b0f6c8f495a9c2eee50d0d41639a98.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MAE promedio: 114,256 habitantes
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Comparación con la implementación manual (grilla 4x4 con <code class="docutils literal notranslate"><span class="pre">pd.cut</span></code>):</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>Manual (<code class="docutils literal notranslate"><span class="pre">pd.cut</span></code>)</p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">spatial-kfold</span></code></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Nº bloques</p></td>
+<td><p>16</p></td>
+<td><p>5</p></td>
+</tr>
+<tr class="row-odd"><td><p>MAE promedio</p></td>
+<td><p>105,245 hab.</p></td>
+<td><p>114,256 hab.</p></td>
+</tr>
+<tr class="row-even"><td><p>Fold con Alaska/Hawái</p></td>
+<td><p>Fold 5, <strong>MAE más bajo</strong> (88,350)</p></td>
+<td><p>Fold 5, <strong>MAE más alto</strong> (150,549)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Lectura clave:</strong> el resultado numérico exacto <strong>cambia según cómo se construyan los bloques</strong> (tamaño de grilla, número de folds, asignación aleatoria vs. determinística). Esto no es un error, es evidencia de que la validación cruzada espacial es sensible a decisiones de diseño, la elección del tamaño de bloque y el método de asignación <strong>son hiperparámetros del proceso de evaluación en sí mismos</strong>, y conviene probar más de una configuración antes de confiar en un solo número.</p>
 </section>
 </section>
 <section id="grid-search">
 <h2><span class="section-number">9.2. </span>Grid Search<a class="headerlink" href="#grid-search" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>Ahora que sabemos cómo evaluar el grado de generalización de un modelo, podemos dar el siguiente paso y <em><strong>mejorar el rendimiento de la generalización del modelo ajustando sus parámetros</strong></em>. Es importante <em><strong>entender lo que significan los parámetros antes de intentar ajustarlos</strong></em>. Encontrar los valores de los parámetros relevantes de un modelo (<em><strong>los que proporcionan el mejor rendimiento de generalización</strong></em>) es una tarea complicada, pero necesaria para casi todos los modelos y conjuntos de datos.</p></li>
-<li><p>Al ser una tarea tan común, existen métodos estándar en <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> para ayudarle con ello. El método más utilizado es la <code class="docutils literal notranslate"><span class="pre">grid</span> <span class="pre">search</span></code>, que básicamente significa <em><strong>probar todas las combinaciones posibles de los parámetros de interés</strong></em>. Considere el caso de un SVM con un <code class="docutils literal notranslate"><span class="pre">kernel</span> <span class="pre">RBF</span></code> (función de base radial), como implementado en la clase <code class="docutils literal notranslate"><span class="pre">SVC</span></code>. Hay dos parámetros importantes: el <em><strong>ancho de banda del kernel</strong></em>, <code class="docutils literal notranslate"><span class="pre">gamma</span></code>, y el <em><strong>parámetro de regularización</strong></em>, <code class="docutils literal notranslate"><span class="pre">C</span></code>.</p></li>
-<li><p>Digamos que queremos probar los valores <em><strong>0.001, 0.01, 0.1, 1, 10 y 100 para el parámetro</strong></em> <code class="docutils literal notranslate"><span class="pre">C</span></code>, <em><strong>y lo mismo para</strong></em> <code class="docutils literal notranslate"><span class="pre">gamma</span></code>. Como tenemos seis ajustes diferentes para <code class="docutils literal notranslate"><span class="pre">C</span></code> y <code class="docutils literal notranslate"><span class="pre">gamma</span></code> que queremos probar, tenemos <em><strong>36 combinaciones de parámetros en total</strong></em>. Al ver todas las combinaciones posibles, <em><strong>se crea una tabla (o red) de parámetros para</strong></em> `SVM, como se muestra aquí:</p></li>
+<li><p>Tras evaluar la generalización de un modelo, el siguiente paso es <strong>mejorar su rendimiento ajustando los parámetros</strong>, para lo cual es imprescindible <strong>entender su significado antes de ajustarlos</strong>. Encontrar los valores óptimos (<strong>los que maximizan el rendimiento de generalización</strong>) es una tarea compleja pero necesaria en casi todo modelo y conjunto de datos.</p></li>
+<li><p>Por su frecuencia, <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> ofrece métodos estándar para esta tarea, siendo <code class="docutils literal notranslate"><span class="pre">grid</span> <span class="pre">search</span></code> el más utilizado: consiste en <strong>probar todas las combinaciones posibles de los parámetros de interés</strong>. En un SVM con <code class="docutils literal notranslate"><span class="pre">kernel</span> <span class="pre">RBF</span></code> (clase <code class="docutils literal notranslate"><span class="pre">SVC</span></code>), los parámetros clave son <code class="docutils literal notranslate"><span class="pre">gamma</span></code> (<strong>ancho de banda del kernel</strong>) y <code class="docutils literal notranslate"><span class="pre">C</span></code> (<strong>parámetro de regularización</strong>).</p></li>
+<li><p>Por ejemplo, al probar los valores 0.001, 0.01, 0.1, 1, 10 y 100 para <code class="docutils literal notranslate"><span class="pre">C</span></code> y para <code class="docutils literal notranslate"><span class="pre">gamma</span></code>, se obtienen <strong>36 combinaciones de parámetros en total</strong>, que conforman una tabla (o red/<code class="docutils literal notranslate"><span class="pre">grid</span></code>) de parámetros para el <code class="docutils literal notranslate"><span class="pre">SVM</span></code>.</p></li>
 </ul>
 <figure class="align-center" id="grid-search-svm">
 <a class="reference internal image-reference" href="_images/grid_search_svm.png"><img alt="_images/grid_search_svm.png" src="_images/grid_search_svm.png" style="width: 698.5999999999999px; height: 138.6px;" />
@@ -2574,22 +2774,23 @@ Best parameters: {&#39;C&#39;: 100, &#39;gamma&#39;: 0.001}
 <section id="el-peligro-de-sobreajustar-los-parametros-y-el-conjunto-de-validacion">
 <h3><span class="section-number">9.2.2. </span>El peligro de sobreajustar los parámetros y el conjunto de validación<a class="headerlink" href="#el-peligro-de-sobreajustar-los-parametros-y-el-conjunto-de-validacion" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Teniendo en cuenta este resultado, podríamos tener la <em><strong>tentación de decir que hemos encontrado un modelo que funciona con un 97% de precisión</strong></em> en nuestro conjunto de datos. Sin embargo, esta afirmación podría ser demasiado optimista (o simplemente errónea), por la siguiente razón: <em><strong>hemos probado muchos parámetros diferentes y se seleccionó el que tenía la mejor precisión en el conjunto de prueba, pero <code class="docutils literal notranslate"><span class="pre">esta</span> <span class="pre">precisión</span> <span class="pre">no</span> <span class="pre">necesariamente</span> <span class="pre">la</span> <span class="pre">obtendremos</span> <span class="pre">con</span> <span class="pre">nuevos</span> <span class="pre">datos</span></code></strong></em>.</p></li>
-<li><p><em><strong>Como hemos utilizado los datos de prueba para ajustar los parámetros, ya no podemos utilizarlos para evaluar la calidad del modelo</strong></em>. Esta es la misma razón por la que necesitamos dividir los datos en conjuntos de entrenamiento y de prueba; <em><strong><code class="docutils literal notranslate"><span class="pre">necesitamos</span> <span class="pre">un</span> <span class="pre">conjunto</span> <span class="pre">de</span> <span class="pre">datos</span> <span class="pre">independiente</span> <span class="pre">para</span> <span class="pre">evaluar,</span> <span class="pre">uno</span> <span class="pre">que</span> <span class="pre">no</span> <span class="pre">se</span> <span class="pre">haya</span> <span class="pre">utilizado</span> <span class="pre">para</span> <span class="pre">crear</span> <span class="pre">el</span> <span class="pre">modelo</span></code></strong></em>.</p></li>
-<li><p>Una forma de resolver este problema es <em><strong>dividir los datos de nuevo, de modo que tengamos tres conjuntos</strong></em>: el <em><strong>conjunto de entrenamiento</strong></em> para construir el modelo, el <em><strong>conjunto de validación</strong></em> (o desarrollo) para seleccionar los parámetros del modelo, y el <em><strong>conjunto de prueba</strong></em> para evaluar el rendimiento de los parámetros seleccionados</p></li>
+<li><p>Podría parecer tentador afirmar que se ha <strong>encontrado un modelo con un 97% de precisión</strong>, pero esta conclusión sería demasiado optimista (o errónea): al probar muchos parámetros y seleccionar el de mejor precisión en el conjunto de prueba, <strong>esa precisión no necesariamente se replicará con nuevos datos</strong>, pues <strong>al usar los datos de prueba para ajustar los parámetros, estos dejan de servir para evaluar la calidad del modelo</strong>.</p></li>
+<li><p>Por esta misma razón se dividen los datos en entrenamiento y prueba: se <strong>necesita un conjunto independiente para evaluar, que no haya sido utilizado para construir el modelo</strong>.</p></li>
+<li><p>La solución consiste en <strong>dividir los datos en tres conjuntos</strong>: el <strong>conjunto de entrenamiento</strong> (construir el modelo), el <strong>conjunto de validación</strong> o desarrollo (seleccionar los parámetros) y el <strong>conjunto de prueba</strong> (evaluar el rendimiento de los parámetros seleccionados).</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mglearn</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">plot_threefold_split</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">mglearn</span>
+<span class="n">mglearn</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">plot_threefold_split</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/5501ff7c3f118d14e38402fdccef8cfd7743bf2bf85eea65afe759ef3f2c9cf0.png" src="_images/5501ff7c3f118d14e38402fdccef8cfd7743bf2bf85eea65afe759ef3f2c9cf0.png" />
+<img alt="_images/53ac6ba643d6c00d0465a8ff11a274a2f009424817d2b7379c98fdea0fb45415.png" src="_images/53ac6ba643d6c00d0465a8ff11a274a2f009424817d2b7379c98fdea0fb45415.png" />
 </div>
 </div>
 <ul class="simple">
-<li><p>Después de seleccionar los mejores parámetros utilizando el <em><strong>conjunto de validación</strong></em>, podemos <em><strong>reconstruir un modelo utilizando los parámetros ajustados</strong></em> que encontramos, pero ahora <em><strong>entrenado tanto en los datos de entrenamiento y los datos de validación</strong></em>. De esta forma, podemos utilizar tantos datos como sea posible para construir nuestro modelo. Esto nos lleva a la siguiente implementación</p></li>
+<li><p>Tras seleccionar los mejores parámetros con el <strong>conjunto de validación</strong>, se <strong>reconstruye el modelo con dichos parámetros</strong>, pero ahora <strong>entrenado con los datos de entrenamiento y validación combinados</strong>, aprovechando así la mayor cantidad de datos posible.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2648,7 +2849,7 @@ Best parameters: {&#39;C&#39;: 100, &#39;gamma&#39;: 0.001}
 </div>
 </div>
 <ul class="simple">
-<li><p><em><strong>Reconstruimos el modelo en el conjunto combinado de entrenamiento y validación</strong></em>, y lo <em><strong>evaluamos en el conjunto de prueba</strong></em></p></li>
+<li><p>Se <strong>reconstruye el modelo sobre el conjunto combinado de entrenamiento y validación</strong>, y se <strong>evalúa sobre el conjunto de prueba</strong>.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2670,16 +2871,16 @@ Test set score with best parameters: 0.92
 </div>
 </div>
 <ul class="simple">
-<li><p><em><strong>El mejor score en el conjunto de validación es del 96%</strong></em>: ligeramente inferior a la anterior, probablemente porque utilizamos menos datos para entrenar el modelo (<em><strong>X_train es menor ahora porque dividimos nuestro conjunto de datos dos veces</strong></em>). Sin embargo, el score en el conjunto de prueba, el que realmente nos dice que tan buena es la generalización, es aún más bajo, un 92%. Así que <em><strong>solo podemos afirmar que clasificamos los nuevos datos con un 92% de acierto, y no con un 97% como pensábamos antes</strong></em>.</p></li>
-<li><p><em><strong>La distinción entre el conjunto de entrenamiento, el conjunto de validación y el conjunto de prueba es fundamentalmente importante</strong></em> para aplicar los métodos de aprendizaje automático en la práctica. <em><strong>Cualquier decisión tomada basada en la precisión del conjunto de prueba <code class="docutils literal notranslate"><span class="pre">“filtra”</span> <span class="pre">información</span> <span class="pre">del</span> <span class="pre">conjunto</span> <span class="pre">de</span> <span class="pre">prueba</span> <span class="pre">al</span> <span class="pre">modelo</span></code></strong></em>. Por lo tanto, es fundamental mantener un conjunto de prueba separado, que solo se utiliza para la evaluación final.</p></li>
-<li><p>Es una buena práctica <em><strong>realizar todo el análisis exploratorio (EDA) y la selección del modelo utilizando la combinación de entrenamiento y validación, y reservar el conjunto de prueba para la evaluación final</strong></em>, incluso en el caso de la visualización exploratoria. En sentido estricto, <em><strong>evaluar más de un modelo en el conjunto de prueba y elegir el mejor de los dos resultará en una estimación demasiado optimista</strong></em> de la precisión del modelo.</p></li>
+<li><p>El <strong>mejor score en validación es del 96%</strong>, ligeramente inferior al anterior por usar menos datos de entrenamiento (<strong><code class="docutils literal notranslate"><span class="pre">X_train</span></code> es menor al dividir el conjunto dos veces</strong>). El score en el <strong>conjunto de prueba</strong> (verdadero indicador de generalización) es aún más bajo, <strong>92%</strong>, por lo que <strong>solo puede afirmarse un 92% de acierto en nuevos datos, no el 97% inicial</strong>.</p></li>
+<li><p>La <strong>distinción entre entrenamiento, validación y prueba es fundamental</strong>: cualquier decisión basada en la precisión del conjunto de prueba <strong>“filtra” información de este al modelo</strong>, por lo que dicho conjunto debe reservarse exclusivamente para la <strong>evaluación final</strong>.</p></li>
+<li><p>Es buena práctica <strong>realizar el EDA y la selección del modelo solo con entrenamiento y validación</strong>, reservando la prueba para la evaluación final; en sentido estricto, <strong>evaluar varios modelos en el conjunto de prueba y elegir el mejor produce una estimación demasiado optimista</strong>.</p></li>
 </ul>
 </section>
 <section id="grid-search-con-validacion-cruzada">
 <h3><span class="section-number">9.2.3. </span>Grid Search con validación cruzada<a class="headerlink" href="#grid-search-con-validacion-cruzada" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p><em><strong>Aunque el método de dividir los datos en un conjunto de entrenamiento, uno de validación y otro de prueba que acabamos de ver es factible y se utiliza con relativa frecuencia, es bastante sensible a la forma en que se dividen los datos</strong></em>. De la salida del fragmento de código anterior podemos ver que el <code class="docutils literal notranslate"><span class="pre">grid-search</span></code> selecciona <code class="docutils literal notranslate"><span class="pre">'C':</span> <span class="pre">10,</span> <span class="pre">'gamma':</span> <span class="pre">0.001</span></code>, como los mejores parámetros, mientras que la salida del código de la sección anterior selecciona <code class="docutils literal notranslate"><span class="pre">'C':</span> <span class="pre">100,</span> <span class="pre">'gamma':</span> <span class="pre">0.001</span></code> como los mejores parámetros.</p></li>
-<li><p>Para una mejor estimación del rendimiento de la generalización, <em><strong>en lugar de usar una única división en un conjunto de entrenamiento y otro de validación, podemos usar la validación cruzada para evaluar el rendimiento de cada combinación de parámetros</strong></em>. Este método puede codificarse como sigue:</p></li>
+<li><p>El método de dividir los datos en entrenamiento, validación y prueba, aunque factible y de uso frecuente, <strong>es bastante sensible a la forma en que se dividen los datos</strong>: el <code class="docutils literal notranslate"><span class="pre">grid-search</span></code> selecciona <code class="docutils literal notranslate"><span class="pre">'C':</span> <span class="pre">10,</span> <span class="pre">'gamma':</span> <span class="pre">0.001</span></code> en un caso, frente a <code class="docutils literal notranslate"><span class="pre">'C':</span> <span class="pre">100,</span> <span class="pre">'gamma':</span> <span class="pre">0.001</span></code> en la sección anterior.</p></li>
+<li><p>Para una <strong>mejor estimación del rendimiento de generalización</strong>, en lugar de una única división entrenamiento/validación puede <strong>usarse validación cruzada para evaluar cada combinación de parámetros</strong>.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2703,7 +2904,7 @@ Test set score with best parameters: 0.92
 </div>
 </div>
 <ul class="simple">
-<li><p><em><strong>Reconstruimos el modelo en el conjunto combinado de entrenamiento y validación</strong></em></p></li>
+<li><p>Se <strong>reconstruye el modelo sobre el conjunto combinado de entrenamiento y validación</strong>.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2716,17 +2917,17 @@ Test set score with best parameters: 0.92
 <div class="output text_html"><style>#sk-container-id-1 {color: black;}#sk-container-id-1 pre{padding: 0;}#sk-container-id-1 div.sk-toggleable {background-color: white;}#sk-container-id-1 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-1 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-1 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-1 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-1 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-1 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-1 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-1 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-1 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-1 div.sk-item {position: relative;z-index: 1;}#sk-container-id-1 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-1 div.sk-item::before, #sk-container-id-1 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-1 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-1 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-1 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-1 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-1 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-1 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-1 div.sk-label-container {text-align: center;}#sk-container-id-1 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-1 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>SVC(C=10, gamma=0.1)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked><label for="sk-estimator-id-1" class="sk-toggleable__label sk-toggleable__label-arrow">SVC</label><div class="sk-toggleable__content"><pre>SVC(C=10, gamma=0.1)</pre></div></div></div></div></div></div></div>
 </div>
 <ul class="simple">
-<li><p>Para evaluar la precisión de <code class="docutils literal notranslate"><span class="pre">SVM</span></code> utilizando un ajuste particular de <code class="docutils literal notranslate"><span class="pre">C</span></code> y <code class="docutils literal notranslate"><span class="pre">gamma</span></code> con <code class="docutils literal notranslate"><span class="pre">5-fold</span></code> validación cruzada, necesitamos entrenar <em><strong>36 * 5 = 180 modelos</strong></em>. Como puede imaginarse el <em><strong>principal inconveniente del uso de la validación cruzada es el tiempo que lleva entrenar todos estos modelos</strong></em>. La siguiente visualización ilustra cómo se selecciona la mejor configuración de parámetros en el código anterior</p></li>
+<li><p>Evaluar la precisión de <code class="docutils literal notranslate"><span class="pre">SVM</span></code> para cada ajuste de <code class="docutils literal notranslate"><span class="pre">C</span></code> y <code class="docutils literal notranslate"><span class="pre">gamma</span></code> con <code class="docutils literal notranslate"><span class="pre">5-fold</span></code> requiere entrenar <strong>36 * 5 = 180 modelos</strong>. El <strong>principal inconveniente de la validación cruzada es el tiempo requerido para entrenar todos estos modelos</strong>.</p></li>
 </ul>
 <figure class="align-center" id="best-params-cv">
 <img alt="_images/best_params_cv.png" src="_images/best_params_cv.png" />
 </figure>
 <ul class="simple">
-<li><p>Para cada ajuste de parámetros (sólo se muestra un subconjunto), <em><strong>se calculan cinco valores de precisión</strong></em>, uno para cada división en la validación cruzada. A continuación, <em><strong>se calcula la precisión media</strong></em> de la validación para cada parámetro. <em><strong>Se eligen los parámetros con la mayor precisión media de validación, marcados con un círculo</strong></em>.</p></li>
+<li><p>Para cada ajuste de parámetros (se muestra solo un subconjunto), <strong>se calculan cinco valores de precisión</strong>, uno por división de la validación cruzada, y luego la <strong>precisión media</strong> correspondiente. <strong>Se eligen los parámetros con mayor precisión media</strong>, marcados con un círculo.</p></li>
 </ul>
 <div class="tip admonition">
 <p class="admonition-title">Observación</p>
-<p>Como hemos dicho antes, <em><strong>la validación cruzada es una forma de evaluar un determinado algoritmo en un conjunto de datos específico</strong></em>. Sin embargo, a menudo se utiliza junto con métodos de búsqueda de parámetros como <code class="docutils literal notranslate"><span class="pre">Grid</span> <span class="pre">Search</span></code>. Por esta razón, normalmente se utiliza el término <em><strong>validación cruzada</strong></em> coloquialmente para referirse a un <code class="docutils literal notranslate"><span class="pre">Grid</span> <span class="pre">Search</span></code> con <em><strong>validación cruzada</strong></em>.</p>
+<p>La <strong>validación cruzada es una forma de evaluar un algoritmo en un conjunto de datos específico</strong>, pero suele emplearse junto con métodos de búsqueda de parámetros como <code class="docutils literal notranslate"><span class="pre">Grid</span> <span class="pre">Search</span></code>, por lo que el término <strong>validación cruzada</strong> suele usarse coloquialmente para referirse a un <code class="docutils literal notranslate"><span class="pre">Grid</span> <span class="pre">Search</span></code> con validación cruzada.</p>
 </div>
 <ul class="simple">
 <li><p>El proceso general de división de los datos, la ejecución de <code class="docutils literal notranslate"><span class="pre">grid</span> <span class="pre">search</span></code> y la evaluación de los parámetros finales se ilustra en la siguiente figura</p></li>
@@ -2739,8 +2940,8 @@ Test set score with best parameters: 0.92
 </figcaption>
 </figure>
 <ul class="simple">
-<li><p>Debido a que <code class="docutils literal notranslate"><span class="pre">grid</span> <span class="pre">search</span></code> con <em><strong>validación cruzada</strong></em> es un método tan comúnmente utilizado para ajustar parámetros, <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> proporciona la clase <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code>, que lo implementa en la forma de un estimador. Para utilizar la clase <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code>, primero hay que especificar los parámetros sobre los que se quiere buscar utilizando un <em><strong>diccionario</strong></em>.</p></li>
-<li><p>A continuación, <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> realizará todos los ajustes necesarios del modelo. Las <em><strong>claves</strong></em> (keys) del diccionario son los <em><strong>nombres de los parámetros que queremos ajustar</strong></em> (tal y como se indican cuando se construye el modelo, en este caso, <code class="docutils literal notranslate"><span class="pre">C</span></code> y <code class="docutils literal notranslate"><span class="pre">gamma</span></code>), y los <em><strong>valores</strong></em> (values) son los ajustes de los parámetros que queremos probar. Probar los valores <em><strong>0,001, 0,01, 0,1, 1, 10 y 100 para</strong></em> <code class="docutils literal notranslate"><span class="pre">C</span></code> y <code class="docutils literal notranslate"><span class="pre">gamma</span></code> se traduce en lo siguiente diccionario</p></li>
+<li><p>Al ser <code class="docutils literal notranslate"><span class="pre">grid</span> <span class="pre">search</span></code> con <strong>validación cruzada</strong> un método muy utilizado para ajustar parámetros, <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> provee la clase <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code>, que lo implementa como estimador. Su uso requiere especificar los parámetros a buscar mediante un <strong>diccionario</strong>, donde las <strong>claves</strong> son los <strong>nombres de los parámetros del modelo</strong> (p. ej., <code class="docutils literal notranslate"><span class="pre">C</span></code> y <code class="docutils literal notranslate"><span class="pre">gamma</span></code>) y los <strong>valores</strong> son los ajustes a probar; <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> realiza automáticamente todos los ajustes necesarios.</p></li>
+<li><p>Por ejemplo, probar los valores 0.001, 0.01, 0.1, 1, 10 y 100 para <code class="docutils literal notranslate"><span class="pre">C</span></code> y <code class="docutils literal notranslate"><span class="pre">gamma</span></code> se traduce en el diccionario correspondiente.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2802,7 +3003,7 @@ Test set score with best parameters: 0.92
                          &#x27;gamma&#x27;: [0.001, 0.01, 0.1, 1, 10, 100]})</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-3" type="checkbox" ><label for="sk-estimator-id-3" class="sk-toggleable__label sk-toggleable__label-arrow">estimator: SVC</label><div class="sk-toggleable__content"><pre>SVC()</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-4" type="checkbox" ><label for="sk-estimator-id-4" class="sk-toggleable__label sk-toggleable__label-arrow">SVC</label><div class="sk-toggleable__content"><pre>SVC()</pre></div></div></div></div></div></div></div></div></div></div></div></div>
 </div>
 <ul class="simple">
-<li><p>El objeto <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> no solo busca los mejores parámetros, sino que también automáticamente un <em><strong>nuevo modelo en todo el conjunto de datos de entrenamiento con los parámetros que han dado el mejor rendimiento en la validación cruzada</strong></em>. La clase <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> proporciona una interfaz muy conveniente para acceder al modelo reentrenado utilizando los métodos <code class="docutils literal notranslate"><span class="pre">predict</span></code> y <code class="docutils literal notranslate"><span class="pre">score</span></code>. Para <em><strong>evaluar lo bien que generalizan los mejores parámetros encontrados</strong></em>, podemos llamar a <code class="docutils literal notranslate"><span class="pre">score</span></code> en el conjunto de prueba</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> no solo busca los mejores parámetros, sino que también <strong>reentrena automáticamente un nuevo modelo sobre todo el conjunto de entrenamiento</strong> con los parámetros de mejor rendimiento en la validación cruzada, ofreciendo acceso a dicho modelo mediante <code class="docutils literal notranslate"><span class="pre">predict</span></code> y <code class="docutils literal notranslate"><span class="pre">score</span></code>. Para <strong>evaluar la generalización de los mejores parámetros</strong>, basta con llamar a <code class="docutils literal notranslate"><span class="pre">score</span></code> sobre el conjunto de prueba.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2817,7 +3018,7 @@ Test set score with best parameters: 0.92
 </div>
 </div>
 <ul class="simple">
-<li><p>Al elegir los parámetros mediante la validación cruzada, <em><strong>encontramos un modelo que alcanza el 97% de precisión en el conjunto de prueba</strong></em>. <em><strong>Lo importante aquí es que no utilizamos el conjunto de prueba para elegir los parámetros</strong></em>. Los parámetros encontrados se anotan en el atributo <code class="docutils literal notranslate"><span class="pre">best_params_</span></code> y la mejor precisión de la validación cruzada (la precisión media sobre las diferentes divisiones para esta configuración de parámetros) se almacena en <code class="docutils literal notranslate"><span class="pre">best_score_</span></code></p></li>
+<li><p>Al elegir los parámetros mediante validación cruzada, se obtiene un modelo con <strong>97% de precisión en el conjunto de prueba</strong>, y es clave notar que <strong>el conjunto de prueba no se utilizó para elegir los parámetros</strong>. Los parámetros encontrados quedan en el atributo <code class="docutils literal notranslate"><span class="pre">best_params_</span></code>, y la mejor precisión de validación cruzada (media sobre las divisiones para esa configuración) se almacena en <code class="docutils literal notranslate"><span class="pre">best_score_</span></code>.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2835,10 +3036,10 @@ Best cross-validation score: 0.97
 </div>
 <div class="tip admonition">
 <p class="admonition-title">Observación</p>
-<p>De nuevo, tenga cuidado de no confundir <code class="docutils literal notranslate"><span class="pre">best_score_</span></code> con el rendimiento de generalización del modelo calculado por el método score en el conjunto de prueba. El uso del método score (o la evaluación de la salida del método de predicción) emplea un modelo entrenado en todo el conjunto de entrenamiento. <em><strong>El atributo</strong></em> <code class="docutils literal notranslate"><span class="pre">best_score_</span></code> <em><strong>almacena la precisión media de la validación cruzada, con la validación cruzada realizada en el conjunto de entrenamiento</strong></em>.</p>
+<p>Es importante no confundir <code class="docutils literal notranslate"><span class="pre">best_score_</span></code> con el rendimiento de generalización calculado por <code class="docutils literal notranslate"><span class="pre">score</span></code> sobre el conjunto de prueba: este último emplea el modelo entrenado en todo el conjunto de entrenamiento, mientras que <strong><code class="docutils literal notranslate"><span class="pre">best_score_</span></code> almacena la precisión media de la validación cruzada, realizada sobre el conjunto de entrenamiento</strong>.</p>
 </div>
 <ul class="simple">
-<li><p>A veces es útil tener <em><strong>acceso al modelo real que se encontró</strong></em>, por ejemplo, para ver los <em><strong>coeficientes o la importancia de las características</strong></em>. Puede acceder al modelo con los mejores parámetros entrenados en todo el conjunto de entrenamiento utilizando el atributo <code class="docutils literal notranslate"><span class="pre">best_estimator_</span></code></p></li>
+<li><p>Para acceder al <strong>modelo real encontrado</strong> (por ejemplo, para examinar sus <strong>coeficientes o la importancia de las características</strong>), puede usarse el atributo <code class="docutils literal notranslate"><span class="pre">best_estimator_</span></code>, que contiene el modelo con los mejores parámetros entrenado sobre todo el conjunto de entrenamiento.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2860,9 +3061,8 @@ SVC(C=10, gamma=0.1)
 <section id="analisis-del-resultado-de-la-validacion-cruzada">
 <h3><span class="section-number">9.2.4. </span>Análisis del resultado de la validación cruzada<a class="headerlink" href="#analisis-del-resultado-de-la-validacion-cruzada" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>A menudo es útil visualizar los resultados de la validación cruzada, para entender cómo la generalización del modelo depende de los parámetros que estamos buscando. Como los <code class="docutils literal notranslate"><span class="pre">grid</span> <span class="pre">search</span></code> son bastante costosos desde el punto de vista computacional, <em><strong>a menudo es una buena idea empezar con grids de múltiples medidas, ya sean grandes o pequeños</strong></em>.</p></li>
-<li><p>A continuación, podemos inspeccionar los resultados del <code class="docutils literal notranslate"><span class="pre">grid</span> <span class="pre">search</span></code> validado, y posiblemente ampliar nuestra búsqueda. Los resultados de un <code class="docutils literal notranslate"><span class="pre">grid</span> <span class="pre">search</span></code> se pueden encontrar en el atributo <code class="docutils literal notranslate"><span class="pre">cv_results_</span></code>, que es un diccionario que almacena todos los aspectos de la búsqueda. Este contiene muchos detalles, como se puede ver en la siguiente salida, y es mejor verlo después de convertirlo en un <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> de <code class="docutils literal notranslate"><span class="pre">pandas</span></code>.</p></li>
-<li><p>Mostramos solo algunas columnas, para que se puedan diferenciar en el <em>jbook</em>, pero en su máquina puede visualizarla todas usando la orden <code class="docutils literal notranslate"><span class="pre">results.head()</span></code>. <code class="docutils literal notranslate"><span class="pre">GridSearchCV.cv_results_</span></code> incluye los <em><strong>resultados de tiempo para scoring y ajuste de parámetros en cada pliegue</strong></em>. Por ejemplo <code class="docutils literal notranslate"><span class="pre">mean_score_time</span></code> es la cantidad media de tiempo que se necesita para scoring en los datos de cada pliegue <code class="docutils literal notranslate"><span class="pre">cv</span></code>, para cada conjunto de parámetros que definió en el <code class="docutils literal notranslate"><span class="pre">grid-search</span></code>.</p></li>
+<li><p>Visualizar los resultados de la validación cruzada ayuda a entender cómo la generalización depende de los parámetros buscados. Al ser los <code class="docutils literal notranslate"><span class="pre">grid</span> <span class="pre">search</span></code> computacionalmente costosos, conviene <strong>empezar con grids de múltiples tamaños</strong> (grandes o pequeños) e inspeccionar los resultados para, en su caso, ampliar la búsqueda posteriormente.</p></li>
+<li><p>Los resultados se almacenan en el atributo <code class="docutils literal notranslate"><span class="pre">cv_results_</span></code>, un diccionario con todos los detalles de la búsqueda, que conviene examinar convertido en <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> de <code class="docutils literal notranslate"><span class="pre">pandas</span></code> (<code class="docutils literal notranslate"><span class="pre">results.head()</span></code>). Entre otros datos, incluye <strong>resultados de tiempo para scoring y ajuste de parámetros en cada pliegue</strong>; por ejemplo, <code class="docutils literal notranslate"><span class="pre">mean_score_time</span></code> indica el <strong>tiempo medio de scoring por pliegue <code class="docutils literal notranslate"><span class="pre">cv</span></code></strong> para cada conjunto de parámetros del <code class="docutils literal notranslate"><span class="pre">grid-search</span></code>.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2957,7 +3157,7 @@ SVC(C=10, gamma=0.1)
 </div></div></div>
 </div>
 <ul class="simple">
-<li><p>Cada fila de resultados corresponde a un ajuste de parámetros concreto. <em><strong>Para cada ajuste, se registran los resultados de todas las divisiones de validación cruzada, así como la media y la desviación estándar de todas las divisiones</strong></em>. Como buscamos una red bidimensional de parámetros (<code class="docutils literal notranslate"><span class="pre">C</span> <span class="pre">y</span> <span class="pre">gamma</span></code>), esto se visualiza mejor como un <em><strong>mapa de calor</strong></em>. Primero <em><strong>extraemos las puntuaciones medias de la validación</strong></em> y luego las reformamos para que los ejes correspondan a <code class="docutils literal notranslate"><span class="pre">C</span> <span class="pre">y</span> <span class="pre">gamma</span></code>.</p></li>
+<li><p>Cada fila de <code class="docutils literal notranslate"><span class="pre">cv_results_</span></code> corresponde a un ajuste de parámetros concreto, con los <strong>resultados de todas las divisiones de validación cruzada, además de su media y desviación estándar</strong>. Al tratarse de una red bidimensional (<code class="docutils literal notranslate"><span class="pre">C</span></code> y <code class="docutils literal notranslate"><span class="pre">gamma</span></code>), conviene visualizarla como un <strong>mapa de calor</strong>, para lo cual se <strong>extraen las puntuaciones medias de validación</strong> y se reordenan según los ejes <code class="docutils literal notranslate"><span class="pre">C</span></code> y <code class="docutils literal notranslate"><span class="pre">gamma</span></code>.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2987,9 +3187,9 @@ SVC(C=10, gamma=0.1)
 </div>
 </div>
 <ul class="simple">
-<li><p>Cada punto del mapa de calor corresponde a una ejecución de validación cruzada, con un parámetro en particular. <em><strong>El color codifica la precisión de la validación cruzada</strong></em>, siendo los colores claros los relacionados con alta precisión y los colores oscuros con baja precisión. Se puede ver que <em><strong>SVC es muy sensible a la configuración de los parámetros</strong></em>. Para muchos de los ajustes de los parámetros, la precisión está en torno al 37%, lo que es bastante malo; para otros ajustes, la precisión está en torno al 96%.</p></li>
-<li><p>De este gráfico se desprenden varias cosas. En primer lugar, <em><strong>los parámetros que ajustamos son muy importantes para obtener un buen rendimiento</strong></em>. Ambos parámetros <em><strong>(C y gamma)</strong></em> son muy importantes, ya que su ajuste puede cambiar la precisión del 37% al 96%. Además, <em><strong>los rangos que elegimos para los parámetros son rangos en los que vemos cambios significativos en el resultado</strong></em>. También es importante tener en cuenta que <em><strong>los rangos de los parámetros son lo suficientemente amplios: los valores óptimos de cada parámetro no están en los bordes del gráfico</strong></em>.</p></li>
-<li><p>Veamos algunos gráficos en los que <em><strong>el resultado es menos ideal</strong></em>, porque los rangos de búsqueda no fueron elegidos correctamente</p></li>
+<li><p>Cada punto del mapa de calor corresponde a una ejecución de validación cruzada con un ajuste de parámetros determinado, donde <strong>el color codifica la precisión</strong> (colores claros: alta precisión; oscuros: baja precisión). El gráfico muestra que <strong><code class="docutils literal notranslate"><span class="pre">SVC</span></code> es muy sensible a la configuración de los parámetros</strong>: la precisión oscila entre aproximadamente el <strong>37%</strong> (ajustes deficientes) y el <strong>96%</strong> (ajustes óptimos).</p></li>
+<li><p>De ello se deduce que <strong><code class="docutils literal notranslate"><span class="pre">C</span></code> y <code class="docutils literal notranslate"><span class="pre">gamma</span></code> son parámetros muy importantes</strong> para el rendimiento, pues su ajuste puede cambiar la precisión del 37% al 96%, y que los <strong>rangos elegidos son adecuados</strong>, al mostrar cambios significativos en el resultado y ser <strong>suficientemente amplios</strong> (los valores óptimos no quedan en los bordes del gráfico).</p></li>
+<li><p>A continuación se examinan ejemplos donde el <strong>resultado es menos ideal</strong> por una elección incorrecta de los rangos de búsqueda.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3048,19 +3248,84 @@ SVC(C=10, gamma=0.1)
 </div>
 </div>
 <ul class="simple">
-<li><p>El primer panel no muestra ningún cambio, con scores aproximadamente constantes en toda la red de parámetros. En este caso, esto se debe a una escala y un <em><strong>rango inadecuado para los parámetros</strong></em> <code class="docutils literal notranslate"><span class="pre">C</span></code> y <code class="docutils literal notranslate"><span class="pre">gamma</span></code>. Sin embargo, <em><strong>si no se aprecia ningún cambio en la precisión a lo largo de los diferentes ajustes de los parámetros, también puede ser que un parámetro no sea importante en absoluto</strong></em>.</p></li>
-<li><p>Suele ser bueno probar primero valores muy extremos, para ver si hay algún cambio en la precisión como resultado de cambiar un parámetro. El segundo panel muestra un patrón de rayas verticales. Esto indica que solo el ajuste del parámetro <code class="docutils literal notranslate"><span class="pre">gamma</span></code> hace alguna diferencia. Esto podría significar que el parámetro <em><strong>gamma busca valores interesantes, pero el parámetro C no lo hace, o podría significar que el parámetro C no es importante</strong></em>.</p></li>
-<li><p>El tercer panel muestra <em><strong>cambios tanto en C como en gamma</strong></em>. Sin embargo, podemos ver que en toda la parte inferior izquierda del gráfico, no ocurre nada interesante. Probablemente, podemos excluir los valores muy pequeños de las futuras búsquedas en la red. <em><strong>La configuración óptima de los parámetros está en la parte superior derecha</strong></em>. <em><strong>Como el óptimo está en el borde del gráfico, podemos esperar que puede haber valores aún mejores más allá de este límite, y podríamos cambiar nuestro rango de búsqueda para incluir más parámetros en esta región</strong></em>.</p></li>
-<li><p>Ajustar la red de parámetros basándose en las puntuaciones de validación cruzada es perfectamente correcto, y una buena manera de explorar la importancia de los diferentes parámetros. Sin embargo, <em><strong>no debería probar diferentes rangos de parámetros en el conjunto de pruebas final</strong></em>, ya que, como hemos dicho antes, <em><strong>la evaluación del conjunto de pruebas solo debería realizarse una vez que sepamos exactamente qué modelo queremos utilizar</strong></em>.</p></li>
+<li><p><strong>Panel 1: sin cambios</strong></p>
+<ul>
+<li><p>Scores aproximadamente constantes en toda la red de parámetros, debido a una <strong>escala y rango inadecuados</strong> para <code class="docutils literal notranslate"><span class="pre">C</span></code> y <code class="docutils literal notranslate"><span class="pre">gamma</span></code>, o bien porque <strong>un parámetro no es importante en absoluto</strong>.</p></li>
+<li><p>Se recomienda probar primero <strong>valores extremos</strong> para detectar cambios en la precisión.</p></li>
+</ul>
+</li>
+<li><p><strong>Panel 2: rayas verticales</strong></p>
+<ul>
+<li><p>Solo el ajuste de <code class="docutils literal notranslate"><span class="pre">gamma</span></code> produce diferencias, lo que puede indicar que <strong><code class="docutils literal notranslate"><span class="pre">gamma</span></code> es relevante y <code class="docutils literal notranslate"><span class="pre">C</span></code> no</strong>, o simplemente que <strong><code class="docutils literal notranslate"><span class="pre">C</span></code> no es importante</strong>.</p></li>
+</ul>
+</li>
+<li><p><strong>Panel 3: cambios en ambos parámetros</strong></p>
+<ul>
+<li><p>Se observan cambios tanto en <code class="docutils literal notranslate"><span class="pre">C</span></code> como en <code class="docutils literal notranslate"><span class="pre">gamma</span></code>, aunque la zona inferior izquierda no resulta interesante (pudiendo excluirse valores muy pequeños en futuras búsquedas).</p></li>
+<li><p>La <strong>configuración óptima se sitúa en la parte superior derecha</strong>; al estar en el borde del gráfico, es posible que existan <strong>valores aún mejores más allá del límite</strong>, por lo que convendría <strong>ampliar el rango de búsqueda</strong> en esa región.</p></li>
+</ul>
+</li>
+<li><p><strong>Consideración final</strong></p>
+<ul>
+<li><p>Ajustar la red de parámetros según las puntuaciones de validación cruzada es válido y útil para explorar la importancia de los parámetros, pero <strong>no deben probarse distintos rangos sobre el conjunto de prueba final</strong>, ya que su evaluación <strong>debe realizarse una única vez</strong>, cuando el modelo esté definitivamente decidido.</p></li>
+</ul>
+</li>
 </ul>
 </section>
 <section id="busqueda-sobre-espacios-que-no-son-una-red">
 <h3><span class="section-number">9.2.5. </span>Búsqueda sobre espacios que no son una red<a class="headerlink" href="#busqueda-sobre-espacios-que-no-son-una-red" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>En algunos casos, probar todas las combinaciones posibles de todos los parámetros, como suele hacer <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code>, no es una buena idea. Por ejemplo, <code class="docutils literal notranslate"><span class="pre">SVC</span></code> tiene un parámetro de <code class="docutils literal notranslate"><span class="pre">kernel</span></code>, y dependiendo del <code class="docutils literal notranslate"><span class="pre">kernel</span></code> que se elija, otros parámetros serán relevantes. Si <code class="docutils literal notranslate"><span class="pre">kernel='linear'</span></code>, el modelo es lineal, y solo se utiliza el parámetro <code class="docutils literal notranslate"><span class="pre">C</span></code>. Si <code class="docutils literal notranslate"><span class="pre">kernel='rbf'</span></code>, se utilizan los parámetros <code class="docutils literal notranslate"><span class="pre">C</span> <span class="pre">y</span> <span class="pre">gamma</span></code> (pero no otros parámetros como el grado).</p></li>
-<li><p>En este caso, la búsqueda de todas las combinaciones posibles de <code class="docutils literal notranslate"><span class="pre">C,</span> <span class="pre">gamma</span> <span class="pre">y</span> <span class="pre">kernel</span></code> no tendría sentido: si <code class="docutils literal notranslate"><span class="pre">kernel='linear',</span> <span class="pre">gamma</span></code> no se utiliza, y probar diferentes valores de <code class="docutils literal notranslate"><span class="pre">gamma</span></code> sería una pérdida de tiempo. Recuerde que <code class="docutils literal notranslate"><span class="pre">kernel='rbf'</span></code> es el <em><strong>kernel de función de base radial (RBF)</strong></em> con mapeo de características <span class="math notranslate nohighlight">\(\phi(\boldsymbol{x})=\exp(\|\boldsymbol{x}-x_{i}\|/2\sigma^2),~\gamma=1/\sigma^2\)</span>. Para ver todas las opciones de kernel gaussiano (ver <a class="reference external" href="https://scikit-learn.org/stable/modules/gaussian_process.html#gp-kernels">Kernels for Gaussian Processes</a>).</p></li>
-<li><p>Para tratar este tipo de parámetros “condicionales”, <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> permite que <code class="docutils literal notranslate"><span class="pre">param_grid</span></code> sea una lista de diccionarios. Cada diccionario de la lista se expande en una red <code class="docutils literal notranslate"><span class="pre">(grid)</span></code> independiente. Una posible búsqueda en red que incluya el núcleo (<code class="docutils literal notranslate"><span class="pre">kernel</span></code>) y los parámetros podría ser así:</p></li>
+<li><p>Probar todas las combinaciones posibles de parámetros, como hace <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> por defecto, no siempre es conveniente. Por ejemplo, en <code class="docutils literal notranslate"><span class="pre">SVC</span></code> el parámetro <code class="docutils literal notranslate"><span class="pre">kernel</span></code> determina qué otros parámetros son relevantes: con <code class="docutils literal notranslate"><span class="pre">kernel='linear'</span></code> solo se usa <code class="docutils literal notranslate"><span class="pre">C</span></code>, mientras que con <code class="docutils literal notranslate"><span class="pre">kernel='rbf'</span></code> se usan <code class="docutils literal notranslate"><span class="pre">C</span></code> y <code class="docutils literal notranslate"><span class="pre">gamma</span></code> (no otros, como el grado).</p></li>
+<li><p>Buscar todas las combinaciones de <code class="docutils literal notranslate"><span class="pre">C</span></code>, <code class="docutils literal notranslate"><span class="pre">gamma</span></code> y <code class="docutils literal notranslate"><span class="pre">kernel</span></code> carece de sentido en este caso, ya que probar distintos valores de <code class="docutils literal notranslate"><span class="pre">gamma</span></code> con <code class="docutils literal notranslate"><span class="pre">kernel='linear'</span></code> sería inútil. El <code class="docutils literal notranslate"><span class="pre">kernel='rbf'</span></code> corresponde al <strong>kernel de función de base radial (RBF)</strong>, con mapeo de características <span class="math notranslate nohighlight">\(\phi(\boldsymbol{x})=\exp(\|\boldsymbol{x}-x_{i}\|/2\sigma^2),~\gamma=1/\sigma^2\)</span> (más opciones en <a class="reference external" href="https://scikit-learn.org/stable/modules/gaussian_process.html#gp-kernels">Kernels for Gaussian Processes</a>).</p></li>
+<li><p>Para estos parámetros “condicionales”, <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> admite que <code class="docutils literal notranslate"><span class="pre">param_grid</span></code> sea una <strong>lista de diccionarios</strong>, donde cada diccionario define una red independiente, permitiendo así construir una búsqueda que incluya <code class="docutils literal notranslate"><span class="pre">kernel</span></code> junto con sus parámetros correspondientes.</p></li>
 </ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.svm</span><span class="w"> </span><span class="kn">import</span> <span class="n">SVC</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_circles</span>
+
+<span class="c1"># Dataset no separable linealmente: un círculo dentro de otro</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_circles</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">noise</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">factor</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">))</span>
+
+<span class="n">configs</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s2">&quot;linear&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;kernel&quot;</span><span class="p">:</span> <span class="s2">&quot;linear&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}),</span>
+    <span class="p">(</span><span class="s2">&quot;rbf&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;kernel&quot;</span><span class="p">:</span> <span class="s2">&quot;rbf&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;gamma&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}),</span>
+<span class="p">]</span>
+
+<span class="n">xx</span><span class="p">,</span> <span class="n">yy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">+</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">300</span><span class="p">),</span>
+                      <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">+</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">300</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="p">(</span><span class="n">nombre</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="n">configs</span><span class="p">):</span>
+    <span class="n">modelo</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="n">Z</span> <span class="o">=</span> <span class="n">modelo</span><span class="o">.</span><span class="n">decision_function</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span><span class="n">xx</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">yy</span><span class="o">.</span><span class="n">ravel</span><span class="p">()])</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">xx</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">Z</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">Z</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="mi">20</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;RdBu_r&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">colors</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># frontera de decisión</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;RdBu_r&quot;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">modelo</span><span class="o">.</span><span class="n">support_vectors_</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">modelo</span><span class="o">.</span><span class="n">support_vectors_</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span>
+               <span class="n">facecolors</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">140</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Vectores de soporte&quot;</span><span class="p">)</span>
+
+    <span class="n">acc</span> <span class="o">=</span> <span class="n">modelo</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="n">titulo</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;kernel=&#39;linear&#39;</span><span class="se">\n</span><span class="s2">C=</span><span class="si">{</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;C&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="n">nombre</span> <span class="o">==</span> <span class="s2">&quot;linear&quot;</span> <span class="k">else</span> <span class="sa">f</span><span class="s2">&quot;kernel=&#39;rbf&#39;</span><span class="se">\n</span><span class="s2">C=</span><span class="si">{</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;C&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">, gamma=</span><span class="si">{</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;gamma&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">titulo</span><span class="si">}</span><span class="se">\n</span><span class="s2">Accuracy train = </span><span class="si">{</span><span class="n">acc</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;x1&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;x2&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;upper right&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Frontera de decisión: kernel lineal vs. RBF sobre datos no separables linealmente&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">1.03</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/14d8f211550578fa95c55aadd40b72a595ff41c6af684378028b5b8bec7ae06b.png" src="_images/14d8f211550578fa95c55aadd40b72a595ff41c6af684378028b5b8bec7ae06b.png" />
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">param_grid</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;kernel&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;rbf&#39;</span><span class="p">],</span>
@@ -3080,7 +3345,7 @@ SVC(C=10, gamma=0.1)
 </div>
 </div>
 <ul class="simple">
-<li><p>En la primera red, el parámetro del <code class="docutils literal notranslate"><span class="pre">kernel</span></code> se establece siempre en <code class="docutils literal notranslate"><span class="pre">'rbf'</span></code> (no que la entrada de <code class="docutils literal notranslate"><span class="pre">kernel</span></code> es una lista de longitud uno), y se varían los parámetros <code class="docutils literal notranslate"><span class="pre">C</span></code> y <code class="docutils literal notranslate"><span class="pre">gamma</span></code>. <em><strong>En la segunda red, el parámetro kernel siempre se establece como lineal, y sólo se varía C</strong></em>. Ahora apliquemos esta búsqueda de parámetros más compleja</p></li>
+<li><p>En la primera red, <code class="docutils literal notranslate"><span class="pre">kernel</span></code> se fija siempre en <code class="docutils literal notranslate"><span class="pre">'rbf'</span></code> (como lista de longitud uno) y se varían <code class="docutils literal notranslate"><span class="pre">C</span></code> y <code class="docutils literal notranslate"><span class="pre">gamma</span></code>; en la segunda red, <strong><code class="docutils literal notranslate"><span class="pre">kernel</span></code> se fija en <code class="docutils literal notranslate"><span class="pre">'linear'</span></code> y solo se varía <code class="docutils literal notranslate"><span class="pre">C</span></code></strong>. A continuación se aplica esta búsqueda de parámetros más compleja.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3290,7 +3555,7 @@ Best cross-validation score: 0.97
 </div>
 <div class="tip admonition">
 <p class="admonition-title">Uso de diferentes estrategias de validación cruzada con la búsqueda en red</p>
-<p>Al igual que <code class="docutils literal notranslate"><span class="pre">cross_val_score,</span> <span class="pre">GridSearchCV</span></code> utiliza por defecto la validación cruzada estratificada <code class="docutils literal notranslate"><span class="pre">k-fold</span></code> para la clasificación, y la <em><strong>validación cruzada k-fold</strong></em> para la regresión. Sin embargo, también puede pasar cualquier divisor de validación cruzada, como se describe en <em><strong>“Más control sobre la validación cruzada”</strong></em>, como parámetro <code class="docutils literal notranslate"><span class="pre">cv</span></code> en <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code>. En particular, para obtener una única división en un conjunto de entrenamiento y otro de validación, puede utilizar <code class="docutils literal notranslate"><span class="pre">ShuffleSplit</span></code> o <code class="docutils literal notranslate"><span class="pre">StratifiedShuffleSplit</span></code> con <code class="docutils literal notranslate"><span class="pre">n_iter=1</span></code> (número de iteraciones de reordenamiento y división). Esto puede ser útil para conjuntos de datos muy grandes o para modelos muy lentos.</p>
+<p>Al igual que <code class="docutils literal notranslate"><span class="pre">cross_val_score</span></code>, <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> utiliza por defecto la <strong>validación cruzada estratificada <code class="docutils literal notranslate"><span class="pre">k-fold</span></code></strong> para clasificación y la <strong><code class="docutils literal notranslate"><span class="pre">k-fold</span></code></strong> para regresión, aunque admite cualquier divisor de validación cruzada como parámetro <code class="docutils literal notranslate"><span class="pre">cv</span></code> (ver “Más control sobre la validación cruzada”). Para obtener una única división entrenamiento/validación, puede usarse <code class="docutils literal notranslate"><span class="pre">ShuffleSplit</span></code> o <code class="docutils literal notranslate"><span class="pre">StratifiedShuffleSplit</span></code> con <code class="docutils literal notranslate"><span class="pre">n_iter=1</span></code>, útil en <strong>conjuntos de datos muy grandes</strong> o <strong>modelos muy lentos</strong>.</p>
 </div>
 </section>
 <section id="validacion-cruzada-anidada">
@@ -3368,37 +3633,68 @@ Mean cross-validation score:  0.9666666666666668
 <section id="paralelizacion-de-la-validacion-cruzada-y-la-busqueda-en-red">
 <h3><span class="section-number">9.2.7. </span>Paralelización de la validación cruzada y la búsqueda en red<a class="headerlink" href="#paralelizacion-de-la-validacion-cruzada-y-la-busqueda-en-red" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Aunque la ejecución de <em>grid search</em> sobre múltiples parámetros y grandes conjuntos de datos puede ser computacionalmente exigente, su naturaleza independiente entre combinaciones de parámetros y particiones de validación cruzada permite una paralelización eficiente en múltiples núcleos o clústeres.</p></li>
-<li><p>En <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> y <code class="docutils literal notranslate"><span class="pre">cross_validation</span></code>, el parámetro <code class="docutils literal notranslate"><span class="pre">n_jobs</span></code> controla el número de núcleos utilizados (<code class="docutils literal notranslate"><span class="pre">n_jobs=-1</span></code> emplea todos). No obstante, scikit-learn no permite anidamiento de paralelización: si el modelo ya usa <code class="docutils literal notranslate"><span class="pre">n_jobs</span></code>, no debe usarse en <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code>. Además, en modelos o conjuntos de datos grandes, el uso intensivo de núcleos puede generar un consumo elevado de memoria, por lo que debe monitorearse.</p></li>
-<li><p>La paralelización también puede extenderse a varios nodos mediante el marco paralelo de IPython o mediante bucles personalizados. Para entornos Spark, el paquete <strong><code class="docutils literal notranslate"><span class="pre">spark-sklearn</span></code> permite ejecutar búsquedas en red sobre un clúster ya configurado</strong>.</p></li>
+<li><p>La ejecución de <code class="docutils literal notranslate"><span class="pre">grid</span> <span class="pre">search</span></code> sobre múltiples parámetros y grandes conjuntos de datos es computacionalmente exigente, pero al ser independientes las combinaciones de parámetros y particiones de validación cruzada, admite una <strong>paralelización eficiente</strong> en múltiples núcleos o clústeres.</p></li>
+<li><p>El parámetro <code class="docutils literal notranslate"><span class="pre">n_jobs</span></code> (en <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> y <code class="docutils literal notranslate"><span class="pre">cross_validation</span></code>) controla el número de núcleos utilizados (<code class="docutils literal notranslate"><span class="pre">n_jobs=-1</span></code> emplea todos); <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> <strong>no permite anidar paralelización</strong>, por lo que si el modelo ya usa <code class="docutils literal notranslate"><span class="pre">n_jobs</span></code>, no debe usarse también en <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code>. Además, en modelos o conjuntos de datos grandes, el uso intensivo de núcleos puede generar un <strong>consumo elevado de memoria</strong>, que conviene monitorear.</p></li>
+<li><p>La paralelización puede extenderse a varios nodos mediante el marco paralelo de IPython o bucles personalizados; en entornos Spark, el paquete <strong><code class="docutils literal notranslate"><span class="pre">spark-sklearn</span></code> permite ejecutar búsquedas en red sobre un clúster ya configurado</strong>.</p></li>
 </ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_classification</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.svm</span><span class="w"> </span><span class="kn">import</span> <span class="n">SVC</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">GridSearchCV</span>
+
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_classification</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">n_features</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="n">param_grid</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span>
+    <span class="s2">&quot;gamma&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+    <span class="s2">&quot;kernel&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;rbf&quot;</span><span class="p">],</span>
+<span class="p">}</span>
+<span class="c1"># 4 x 4 = 16 combinaciones x 5 folds (cv=5 por defecto) = 80 modelos a entrenar</span>
+
+<span class="n">inicio</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">grid</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">SVC</span><span class="p">(),</span> <span class="n">param_grid</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">grid</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">duracion</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">inicio</span>
+<span class="n">etiqueta</span> <span class="o">=</span> <span class="s2">&quot;n_jobs=-1 (todos los núcleos)&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">etiqueta</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">duracion</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> s | mejor score=</span><span class="si">{</span><span class="n">grid</span><span class="o">.</span><span class="n">best_score_</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> | mejores params=</span><span class="si">{</span><span class="n">grid</span><span class="o">.</span><span class="n">best_params_</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>n_jobs=-1 (todos los núcleos): 0.37 s | mejor score=0.890 | mejores params={&#39;C&#39;: 0.1, &#39;gamma&#39;: 0.1, &#39;kernel&#39;: &#39;rbf&#39;}
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 </section>
 <section id="metricas-de-evaluacion-y-scoring">
 <h2><span class="section-number">9.3. </span>Métricas de evaluación y scoring<a class="headerlink" href="#metricas-de-evaluacion-y-scoring" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>Hasta ahora, hemos evaluado el <em><strong>rendimiento de la clasificación utilizando la precisión (accuracy)</strong></em> (la fracción de muestras correctamente clasificadas) y el <em><strong>rendimiento de la regresión</strong></em> mediante el <span class="math notranslate nohighlight">\(R^2\)</span>. Sin embargo, éstas son sólo dos de las muchas formas posibles de resumir la eficacia de un modelo supervisado en un conjunto de datos determinado. <em><strong>En la práctica, estas métricas de evaluación pueden no ser apropiadas para su aplicación, y es importante elegir la métrica correcta cuando se selecciona entre modelos y se ajustan los parámetros</strong></em>.</p></li>
+<li><p>Hasta ahora se han evaluado los modelos de <strong>clasificación mediante la precisión (<code class="docutils literal notranslate"><span class="pre">accuracy</span></code>)</strong> y los de <strong>regresión mediante el <span class="math notranslate nohighlight">\(R^2\)</span></strong>, pero estas son solo dos entre muchas métricas posibles para resumir la eficacia de un modelo supervisado. En la práctica, <strong>estas métricas pueden no ser apropiadas para la aplicación concreta</strong>, por lo que es esencial <strong>elegir la métrica correcta</strong> al seleccionar modelos y ajustar parámetros.</p></li>
 </ul>
 <section id="tenga-en-cuenta-el-objetivo-final">
 <h3><span class="section-number">9.3.1. </span>Tenga en cuenta el objetivo final<a class="headerlink" href="#tenga-en-cuenta-el-objetivo-final" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Al elegir una <em><strong>métrica en aprendizaje automático, debe alinearse con el objetivo final de la aplicación</strong></em>, conocido como <em><strong>métrica de negocio</strong></em>, ya que las predicciones influyen en la toma de decisiones y el impacto empresarial. Por ejemplo, podría buscar reducir accidentes, minimizar hospitalizaciones o aumentar ingresos.</p></li>
-<li><p>La <em><strong>selección del modelo y sus parámetros debe maximizar el impacto positivo en la métrica de negocio</strong></em>, pero evaluarlo en producción puede ser riesgoso. Por ello, se emplean métricas sustitutas más fáciles de calcular, como la <code class="docutils literal notranslate"><span class="pre">precision</span></code> en la clasificación de imágenes. Sin embargo, estas métricas deben acercarse lo más posible al objetivo real.</p></li>
-<li><p>El impacto empresarial puede no reducirse a un solo número (por ejemplo, más clientes pero menor gasto por cliente), pero debe reflejar la influencia del modelo. En esta sección, se abordarán <em><strong>métricas para clasificación binaria, multiclase y regresión</strong></em>.</p></li>
+<li><p>Toda métrica de aprendizaje automático debe <strong>alinearse con el objetivo final de la aplicación</strong>, o <strong>métrica de negocio</strong>, ya que las predicciones inciden en la toma de decisiones y el impacto empresarial (p. ej., reducir accidentes, minimizar hospitalizaciones o aumentar ingresos).</p></li>
+<li><p>La <strong>selección del modelo y sus parámetros debe maximizar el impacto en la métrica de negocio</strong>, pero evaluar directamente en producción es riesgoso, por lo que se recurre a <strong>métricas sustitutas</strong> más fáciles de calcular (p. ej., <code class="docutils literal notranslate"><span class="pre">precision</span></code> en clasificación de imágenes), procurando que se aproximen lo más posible al objetivo real.</p></li>
+<li><p>El impacto empresarial puede implicar <strong>varios factores simultáneos</strong> (p. ej., más clientes pero menor gasto por cliente) y no reducirse a un solo número, aunque debe reflejar la influencia del modelo. A continuación, se abordan <strong>métricas para clasificación binaria, multiclase y regresión</strong>.</p></li>
 </ul>
 </section>
 <section id="metricas-para-la-clasificacion-binaria">
 <h3><span class="section-number">9.3.2. </span>Métricas para la clasificación binaria<a class="headerlink" href="#metricas-para-la-clasificacion-binaria" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>La clasificación binaria es probablemente la aplicación más común y conceptualmente simple de aprendizaje automático en la práctica. <em><strong>Sin embargo, todavía hay una serie de advertencias en evaluar incluso esta sencilla tarea</strong></em>. Antes de entrar en las métricas alternativas, echemos un vistazo a la forma en que se mide la precisión, la cual puede ser engañosa. Recordemos que para la clasificación binaria, a menudo hablamos de una <em><strong>clase positiva</strong></em> y una <em><strong>clase negativa</strong></em>, entendiendo que la clase positiva es la que estamos buscando.</p></li>
+<li><p>La clasificación binaria es la aplicación más común y conceptualmente simple del aprendizaje automático, pero <strong>su evaluación conlleva advertencias importantes incluso en tareas sencillas</strong>. Antes de examinar métricas alternativas, conviene notar que <strong>la precisión puede resultar engañosa</strong>. En clasificación binaria se suele hablar de una <strong>clase positiva</strong> (la que se busca identificar) y una <strong>clase negativa</strong>.</p></li>
 </ul>
 </section>
 <section id="tipos-de-errores">
 <h3><span class="section-number">9.3.3. </span>Tipos de errores<a class="headerlink" href="#tipos-de-errores" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p><strong>precisión (<code class="docutils literal notranslate"><span class="pre">accuracy</span></code>)</strong> no siempre es una buena medida del rendimiento, ya que los errores cometidos no reflejan toda la información relevante. Por ejemplo, en la <strong>detección temprana de cáncer</strong>, una prueba positiva implica más exámenes, mientras que una negativa considera al paciente sano. Dado que ningún modelo es perfecto, es crucial evaluar el impacto real de sus errores.</p></li>
-<li><p>Un <strong>falso positivo</strong> ocurre cuando un paciente sano es clasificado como enfermo, causando pruebas innecesarias y posibles preocupaciones. En cambio, un <strong>falso negativo</strong>, donde un paciente enfermo es clasificado como sano, puede ser fatal al retrasar el tratamiento. Estos errores se conocen como <strong>tipo I y tipo II</strong>, pero los términos <strong>falso positivo y falso negativo</strong> son más claros. En este contexto, es <strong>crítico minimizar los falsos negativos (<code class="docutils literal notranslate"><span class="pre">recall</span></code>)</strong>, aunque los falsos positivos sean una molestia.</p></li>
-<li><p>Las consecuencias de estos errores varían según la aplicación. En el ámbito comercial, se pueden asignar <strong>costos monetarios a cada tipo de error</strong>, permitiendo evaluar modelos más allá de la precisión, optimizando la toma de decisiones.</p></li>
+<li><p>La <strong>precisión (<code class="docutils literal notranslate"><span class="pre">accuracy</span></code>)</strong> no siempre es buena medida del rendimiento, pues no refleja toda la información relevante sobre los errores. Por ejemplo, en la <strong>detección temprana de cáncer</strong>, una prueba positiva implica más exámenes y una negativa considera sano al paciente; como ningún modelo es perfecto, es crucial evaluar el <strong>impacto real de cada tipo de error</strong>.</p></li>
+<li><p>Un <strong>falso positivo</strong> (paciente sano clasificado como enfermo) genera pruebas innecesarias y preocupación, mientras que un <strong>falso negativo</strong> (paciente enfermo clasificado como sano) puede ser fatal al retrasar el tratamiento. Estos errores corresponden a los <strong>tipos I y II</strong>, aunque los términos <strong>falso positivo/negativo</strong> resultan más claros. En este contexto, es <strong>crítico minimizar los falsos negativos (<code class="docutils literal notranslate"><span class="pre">recall</span></code>)</strong>, aun a costa de más falsos positivos.</p></li>
+<li><p>Las consecuencias varían según la aplicación; en el ámbito comercial suelen asignarse <strong>costos monetarios a cada tipo de error</strong>, lo que permite evaluar los modelos más allá de la precisión y optimizar la toma de decisiones.</p></li>
 </ul>
 <ul class="simple">
 <li><p>Un ejemplo donde el equilibrio es clave pede ser la <strong>detección de spam en correos electrónicos</strong>.</p>
@@ -3503,7 +3799,7 @@ Test score: 0.90
 </div>
 </div>
 <ul class="simple">
-<li><p>Obtuvimos una precisión cercana al 90% sin aprender nada. Esto puede parecer sorprendente, pero pero piénselo un momento. <em><strong>Imagine que alguien le dice que su modelo tiene un 90% de precisión. Podrías pensar que han hecho un buen trabajo. Pero dependiendo del problema, ¡eso podría ser posible con sólo predecir una clase! Comparemos esto con el uso de un clasificador real</strong></em>.</p></li>
+<li><p>Se obtuvo una precisión cercana al 90% <strong>sin que el modelo aprendiera nada</strong>, lo que resulta sorprendente en apariencia: un 90% de precisión podría sugerir un buen desempeño, pero dependiendo del problema, ese valor puede alcanzarse <strong>simplemente prediciendo siempre una sola clase</strong>. A continuación, se compara este resultado con el de un clasificador real.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3527,7 +3823,7 @@ Test score: 0.90
 </div>
 </div>
 <ul class="simple">
-<li><p>Según la precisión, el <em><strong>DecisionTreeClassifier es sólo ligeramente mejor que el predictor constante. Esto podría indicar que algo está mal en la forma en que utilizamos DecisionTreeClassifier, o bien que accuracy no es una buena medida en este caso</strong></em>. Para comparar, evaluemos otro clasificador, <code class="docutils literal notranslate"><span class="pre">LogisticRegression</span></code></p></li>
+<li><p>Según la precisión, <strong><code class="docutils literal notranslate"><span class="pre">DecisionTreeClassifier</span></code> resulta solo ligeramente mejor que el predictor constante</strong>, lo que podría indicar un uso inadecuado del clasificador o bien que <strong><code class="docutils literal notranslate"><span class="pre">accuracy</span></code> no es una medida apropiada en este caso</strong>. Para comparar, se evalúa también <code class="docutils literal notranslate"><span class="pre">LogisticRegression</span></code>.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3551,13 +3847,13 @@ Test score: 0.90
 </div>
 </div>
 <ul class="simple">
-<li><p>El clasificador <code class="docutils literal notranslate"><span class="pre">dummy</span></code> con resultados aleatorios es el peor según <code class="docutils literal notranslate"><span class="pre">accuracy</span></code>, mientras que <code class="docutils literal notranslate"><span class="pre">LogisticRegression</span></code> muestra buenos resultados. Sin embargo, <code class="docutils literal notranslate"><span class="pre">accuracy</span></code> es inadecuada en entornos desequilibrados, dificultando la evaluación real del modelo. <em><strong>Exploraremos métricas alternativas que permitan seleccionar modelos de manera más efectiva</strong></em>, priorizando aquellas que indiquen cuánto mejor es un modelo en lugar de favorecer predicciones frecuentes o aleatorias. <em><strong>Una métrica adecuada debería descartar predicciones sin sentido</strong></em>.</p></li>
+<li><p>El clasificador <code class="docutils literal notranslate"><span class="pre">dummy</span></code> con resultados aleatorios resulta el peor según <code class="docutils literal notranslate"><span class="pre">accuracy</span></code>, mientras que <code class="docutils literal notranslate"><span class="pre">LogisticRegression</span></code> muestra buenos resultados; sin embargo, <strong><code class="docutils literal notranslate"><span class="pre">accuracy</span></code> es inadecuada en entornos desequilibrados</strong>, dificultando la evaluación real del modelo. Se explorarán <strong>métricas alternativas</strong> que permitan seleccionar modelos de forma más efectiva, priorizando aquellas que reflejen realmente la mejora del modelo en lugar de favorecer predicciones frecuentes o aleatorias, ya que <strong>una métrica adecuada debería descartar predicciones sin sentido</strong>.</p></li>
 </ul>
 </section>
 <section id="matrices-de-confusion">
 <h3><span class="section-number">9.3.5. </span>Matrices de confusión<a class="headerlink" href="#matrices-de-confusion" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Una de las formas más completas de representar el resultado de la evaluación de la clasificación binaria es el uso de <em><strong>matrices de confusión</strong></em>. Inspeccionemos las predicciones de <code class="docutils literal notranslate"><span class="pre">LogisticRegres</span></code> de la sección anterior utilizando la función <code class="docutils literal notranslate"><span class="pre">confusion_matrix</span></code>. Ya hemos almacenado las predicciones del conjunto de prueba en <code class="docutils literal notranslate"><span class="pre">pred_logreg</span></code></p></li>
+<li><p>Una de las formas más completas de representar la evaluación de la clasificación binaria es la <strong>matriz de confusión</strong>. Las predicciones de <code class="docutils literal notranslate"><span class="pre">LogisticRegression</span></code> de la sección anterior (almacenadas en <code class="docutils literal notranslate"><span class="pre">pred_logreg</span></code>) pueden inspeccionarse mediante la función <code class="docutils literal notranslate"><span class="pre">confusion_matrix</span></code>.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3656,7 +3952,7 @@ Test score: 0.90
 </div>
 </div>
 <ul class="simple">
-<li><p>La matriz de confusión revela que <code class="docutils literal notranslate"><span class="pre">pred_most_frequent</span></code> <em><strong>es ineficaz, ya que siempre predice la misma clase y tiene cero verdaderos y falsos positivos</strong></em>. Aunque el árbol de decisión y la regresión logística presentan predicciones más razonables, la regresión logística supera al árbol en todos los aspectos, con más verdaderos positivos y negativos y menos errores. Sin embargo, <em><strong>analizar manualmente la matriz es un proceso cualitativo y laborioso</strong></em>. A continuación, exploraremos métodos para resumir su información de manera más eficiente.</p></li>
+<li><p>La matriz de confusión revela que <code class="docutils literal notranslate"><span class="pre">pred_most_frequent</span></code> <strong>es ineficaz, al predecir siempre la misma clase y no registrar verdaderos ni falsos positivos</strong>. Aunque el árbol de decisión y la regresión logística presentan predicciones más razonables, <strong>la regresión logística supera al árbol en todos los aspectos</strong>, con más verdaderos positivos y negativos y menos errores. No obstante, <strong>el análisis manual de la matriz es cualitativo y laborioso</strong>, por lo que a continuación se examinan métodos más eficientes para resumir su información.</p></li>
 </ul>
 <div class="tip admonition">
 <p class="admonition-title">Accuracy</p>
@@ -3752,7 +4048,7 @@ F=2\cdot\frac{\text{precision}\cdot\text{recall}}{\text{precision}+\text{recall}
 </div>
 </div>
 <ul class="simple">
-<li><p>El <span class="math notranslate nohighlight">\(f_{1}\)</span>-score distingue mejor las predicciones dummy de las del árbol que el <code class="docutils literal notranslate"><span class="pre">accuracy</span></code>, alineándose mejor con nuestra intuición sobre un buen modelo. Sin embargo, es menos interpretable. Para un resumen más completo de <code class="docutils literal notranslate"><span class="pre">precision</span></code>, <code class="docutils literal notranslate"><span class="pre">recall</span></code> y <span class="math notranslate nohighlight">\(f_{1}\)</span>-score, <code class="docutils literal notranslate"><span class="pre">classification_report</span></code> los calcula y muestra en un formato claro. Sus últimas filas incluyen <code class="docutils literal notranslate"><span class="pre">macro</span> <span class="pre">avg</span></code>, que pondera cada clase por igual, y <code class="docutils literal notranslate"><span class="pre">weighted</span> <span class="pre">avg</span></code>, que ajusta los pesos según la proporción de datos. Más detalles en <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.classification_report.html">sklearn.metrics.classification_report</a>.</p></li>
+<li><p>El <span class="math notranslate nohighlight">\(f_{1}\)</span>-score distingue mejor las predicciones <code class="docutils literal notranslate"><span class="pre">dummy</span></code> de las del árbol que <code class="docutils literal notranslate"><span class="pre">accuracy</span></code>, ajustándose mejor a la intuición sobre un buen modelo, aunque resulta menos interpretable. Para un resumen completo de <code class="docutils literal notranslate"><span class="pre">precision</span></code>, <code class="docutils literal notranslate"><span class="pre">recall</span></code> y <span class="math notranslate nohighlight">\(f_{1}\)</span>-score, <code class="docutils literal notranslate"><span class="pre">classification_report</span></code> los calcula en un formato claro; sus últimas filas incluyen <code class="docutils literal notranslate"><span class="pre">macro</span> <span class="pre">avg</span></code> (<strong>pondera cada clase por igual</strong>) y <code class="docutils literal notranslate"><span class="pre">weighted</span> <span class="pre">avg</span></code> (<strong>pondera según la proporción de datos</strong>). Más detalles en <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.classification_report.html">sklearn.metrics.classification_report</a>.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3781,8 +4077,8 @@ weighted avg       0.80      0.90      0.85       450
 </div>
 </div>
 <ul class="simple">
-<li><p>La función <code class="docutils literal notranslate"><span class="pre">classification_report</span></code> produce una línea por clase (aquí, <code class="docutils literal notranslate"><span class="pre">True</span></code> y <code class="docutils literal notranslate"><span class="pre">False</span></code>) e informa <code class="docutils literal notranslate"><span class="pre">precision,</span> <span class="pre">recall</span></code> y <span class="math notranslate nohighlight">\(f\)</span><code class="docutils literal notranslate"><span class="pre">-score</span></code>. Si consideramos la clase positiva por “not nine”, podemos ver en la salida de <code class="docutils literal notranslate"><span class="pre">classification_report</span></code> que obtenemos un <span class="math notranslate nohighlight">\(f\)</span>-score de 0.94 con el modelo <code class="docutils literal notranslate"><span class="pre">dummy</span></code>. Además, para la clase “not nine” tenemos un <code class="docutils literal notranslate"><span class="pre">recall</span></code> de 1, ya que clasificamos todas las muestras como “not nine”.</p></li>
-<li><p>La última columna junto al <span class="math notranslate nohighlight">\(f\)</span>-score proporciona el soporte de cada clase, lo que significa simplemente el número de muestras en esta clase según la verdad básica. La última fila del informe de clasificación muestra una media ponderada (por el número de muestras en la clase) de los números de cada clase. Aquí hay dos informes más, uno para el clasificador <em><strong>arbol de decisión</strong></em> y otro para la <em><strong>regresión logística</strong></em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">classification_report</span></code> produce una línea por clase (aquí, <code class="docutils literal notranslate"><span class="pre">True</span></code> y <code class="docutils literal notranslate"><span class="pre">False</span></code>) con <code class="docutils literal notranslate"><span class="pre">precision</span></code>, <code class="docutils literal notranslate"><span class="pre">recall</span></code> y <span class="math notranslate nohighlight">\(f\)</span>-score. Para la clase positiva “not nine”, el modelo <code class="docutils literal notranslate"><span class="pre">dummy</span></code> obtiene un <strong><span class="math notranslate nohighlight">\(f\)</span>-score de 0.94</strong> y un <strong><code class="docutils literal notranslate"><span class="pre">recall</span></code> de 1</strong>, ya que clasifica todas las muestras como “not nine”.</p></li>
+<li><p>La última columna indica el <strong>soporte de cada clase</strong> (número de muestras según la verdad básica), y la última fila muestra una <strong>media ponderada</strong> por el número de muestras de cada clase. Se presentan además los informes correspondientes al <strong>árbol de decisión</strong> y a la <strong>regresión logística</strong>.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3823,18 +4119,22 @@ weighted avg       0.98      0.98      0.98       450
 </div>
 </div>
 <ul class="simple">
-<li><p>Como puede observar al mirar los informes, las diferencias entre los modelos <code class="docutils literal notranslate"><span class="pre">dummy</span></code> y un modelo muy bueno ya no son tan claras. La elección de la clase que se declarada como clase positiva, tiene un gran impacto en las métricas. Mientras que el <span class="math notranslate nohighlight">\(f\)</span>-score de la clasificación <code class="docutils literal notranslate"><span class="pre">dummy</span></code> es de 0.13 (frente a 0.89 para la <em><strong>regresión logística</strong></em>) en la clase “nine” es de 0.90 frente a 0.99, lo que parece un resultado razonable. Sin embargo, si se observan todas las cifras juntas, se obtiene una imagen bastante precisa, y podemos ver claramente la superioridad de la regresión logística.</p></li>
+<li><p>Los informes muestran que las diferencias entre el modelo <code class="docutils literal notranslate"><span class="pre">dummy</span></code> y uno muy bueno <strong>ya no resultan tan evidentes</strong>, y que la <strong>elección de la clase declarada como positiva tiene un gran impacto en las métricas</strong>: en la clase “nine”, el <span class="math notranslate nohighlight">\(f\)</span>-score es de 0.13 (<code class="docutils literal notranslate"><span class="pre">dummy</span></code>) frente a 0.89 (<code class="docutils literal notranslate"><span class="pre">regresión</span> <span class="pre">logística</span></code>), mientras que en la clase “not nine” es de 0.90 frente a 0.99. No obstante, al <strong>considerar todas las cifras en conjunto</strong>, se obtiene una imagen precisa que evidencia con claridad la <strong>superioridad de la regresión logística</strong>.</p></li>
 </ul>
 </section>
 <section id="teniendo-en-cuenta-la-incertidumbre">
 <h3><span class="section-number">9.3.6. </span>Teniendo en cuenta la incertidumbre<a class="headerlink" href="#teniendo-en-cuenta-la-incertidumbre" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>La matriz de confusión y el informe de clasificación analizan detalladamente un conjunto de predicciones, pero las predicciones en sí contienen información clave del modelo. La mayoría de los clasificadores incluyen <code class="docutils literal notranslate"><span class="pre">decision_function</span></code> o <code class="docutils literal notranslate"><span class="pre">predict_proba</span></code> para medir la certeza de las predicciones, utilizando umbrales fijos: 0 en <code class="docutils literal notranslate"><span class="pre">decision_function</span></code> y 0.5 en <code class="docutils literal notranslate"><span class="pre">predict_proba</span></code> para clasificación binaria.</p></li>
-<li><p>Un ejemplo de clasificación binaria desequilibrada presenta 400 puntos negativos y 50 positivos. Se entrena un <em><strong>kernel SVM</strong></em>, y un mapa de calor ilustra la función de decisión. Un círculo negro en la gráfica central superior marca el umbral donde la función es cero: puntos dentro del círculo son positivos, los demás negativos.</p></li>
+<li><p>La matriz de confusión y el <code class="docutils literal notranslate"><span class="pre">classification_report</span></code> analizan detalladamente un conjunto de predicciones, pero las predicciones en sí ya contienen información clave del modelo. La mayoría de los clasificadores emplean <code class="docutils literal notranslate"><span class="pre">decision_function</span></code> o <code class="docutils literal notranslate"><span class="pre">predict_proba</span></code> para medir la certeza de las predicciones, con <strong>umbrales fijos</strong> (0 en <code class="docutils literal notranslate"><span class="pre">decision_function</span></code> y 0.5 en <code class="docutils literal notranslate"><span class="pre">predict_proba</span></code> para clasificación binaria).</p></li>
+<li><p>En un ejemplo con clasificación binaria desequilibrada (400 puntos negativos y 50 positivos), se entrena un <strong>kernel SVM</strong> y se visualiza mediante un mapa de calor la función de decisión, donde un círculo negro marca el <strong>umbral en que la función vale cero</strong>: los puntos dentro del círculo se clasifican como positivos, y el resto como negativos.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mglearn.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_blobs</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">UserWarning</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -3861,7 +4161,7 @@ weighted avg       0.98      0.98      0.98       450
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/5a2b41ffed1db21e6b8fa3faddc9dccb0dd2ce46ecd6d5b38be0dad937a6742c.png" src="_images/5a2b41ffed1db21e6b8fa3faddc9dccb0dd2ce46ecd6d5b38be0dad937a6742c.png" />
+<img alt="_images/a6014090c3b294e200921d39f83581f084ad1d026fb9f4cee515ca95854c7ec1.png" src="_images/a6014090c3b294e200921d39f83581f084ad1d026fb9f4cee515ca95854c7ec1.png" />
 </div>
 </div>
 <ul class="simple">
@@ -3960,21 +4260,63 @@ weighted avg       0.99      0.99      0.99       100
 </div>
 </div>
 <ul class="simple">
-<li><p>Como se esperaba, <em><strong>recall y precision</strong></em> para la clase 1 subió. Ahora estamos clasificando una <em><strong>región más grande del espacio como clase 1</strong></em>, como se ilustra en el panel superior derecho de la anterior figura. <em><strong>Si valora más <code class="docutils literal notranslate"><span class="pre">precision</span></code> que <code class="docutils literal notranslate"><span class="pre">recall</span></code>, o al revés, o sus datos están muy desequilibrados, cambiar el umbral de decisión es la forma más fácil de obtener mejores resultados</strong></em>. <em>Como la función de decisión puede tener rangos arbitrarios, es difícil proporcionar una regla general sobre cómo elegir un umbral</em>.</p></li>
+<li><p>Como era de esperar, el <code class="docutils literal notranslate"><span class="pre">recall</span></code> y la <code class="docutils literal notranslate"><span class="pre">precision</span></code> para la clase 1 aumentaron, al clasificar como clase 1 una <strong>región más amplia del espacio</strong>. Cuando se valora más <code class="docutils literal notranslate"><span class="pre">precision</span></code> que <code class="docutils literal notranslate"><span class="pre">recall</span></code> (o viceversa), o los datos están muy desequilibrados, <strong>cambiar el umbral de decisión</strong> es la forma más simple de mejorar los resultados. Sin embargo, como la función de decisión puede tener <strong>rangos arbitrarios</strong>, resulta difícil establecer una regla general para elegirlo.</p></li>
 </ul>
 <div class="tip admonition">
 <p class="admonition-title">Observación</p>
 <ul class="simple">
-<li><p><em><strong>Si establece un umbral, debe tener cuidado de no hacerlo utilizando el conjunto de prueba</strong></em>. Como con cualquier otro parámetro, establecer un umbral de decisión en el conjunto de prueba es probable que produzca resultados demasiado optimistas. <em><strong>Utilice un conjunto de validación o aplique validación cruzada</strong></em>.</p></li>
-<li><p>La <em><strong>media geométrica o G-mean</strong></em> es una métrica de clasificación desequilibrada que, si se optimiza, <em><strong>buscará un equilibrio entre la precision y recall</strong></em>.</p></li>
+<li><p>El <strong>umbral de decisión no debe establecerse usando el conjunto de prueba</strong>, ya que, al igual que con cualquier otro parámetro, ello produciría resultados demasiado optimistas; conviene usar un <strong>conjunto de validación</strong> o <strong>validación cruzada</strong>.</p></li>
+<li><p>La <strong>media geométrica (G-mean)</strong> es una métrica para clasificación desequilibrada que, al optimizarse, <strong>busca el equilibrio entre <code class="docutils literal notranslate"><span class="pre">precision</span></code> y <code class="docutils literal notranslate"><span class="pre">recall</span></code></strong>:</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[
 \text{G-mean}=\sqrt{\text{precision}\times\text{recall}}.
 \]</div>
 <ul class="simple">
-<li><p>Un enfoque consistiría en <em><strong>probar el modelo con cada umbral</strong></em> devuelto por la llamada <code class="docutils literal notranslate"><span class="pre">precision_recall_curve()</span></code> y <em><strong>seleccionar el umbral con el mayor valor G-mean</strong></em>. Otras técnicas de oversampling, tales como <code class="docutils literal notranslate"><span class="pre">SMOTE</span></code> también pueden ser adecuadas, para datos de entrenamiento desbalanceados.</p></li>
+<li><p>Un enfoque consiste en <strong>probar el modelo con cada umbral</strong> devuelto por <code class="docutils literal notranslate"><span class="pre">precision_recall_curve()</span></code> y <strong>seleccionar el de mayor G-mean</strong>. Técnicas de oversampling como <code class="docutils literal notranslate"><span class="pre">SMOTE</span></code> también resultan adecuadas para datos de entrenamiento desbalanceados.</p></li>
 </ul>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">roc_curve</span><span class="p">,</span> <span class="n">classification_report</span><span class="p">,</span> <span class="n">confusion_matrix</span>
+
+<span class="n">decision_scores</span> <span class="o">=</span> <span class="n">svc</span><span class="o">.</span><span class="n">decision_function</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="c1"># --- Umbral óptimo según G-mean ---</span>
+<span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">,</span> <span class="n">thresholds</span> <span class="o">=</span> <span class="n">roc_curve</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">decision_scores</span><span class="p">)</span>
+<span class="n">gmeans</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">tpr</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">fpr</span><span class="p">))</span>  <span class="c1"># G-mean = sqrt(sensibilidad * especificidad)</span>
+
+<span class="n">idx_optimo</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">gmeans</span><span class="p">)</span>
+<span class="n">umbral_gmean</span> <span class="o">=</span> <span class="n">thresholds</span><span class="p">[</span><span class="n">idx_optimo</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Umbral óptimo (G-mean): </span><span class="si">{</span><span class="n">umbral_gmean</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;G-mean máximo: </span><span class="si">{</span><span class="n">gmeans</span><span class="p">[</span><span class="n">idx_optimo</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">y_pred_gmean</span> <span class="o">=</span> <span class="n">decision_scores</span> <span class="o">&gt;</span> <span class="n">umbral_gmean</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_gmean</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_gmean</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Umbral óptimo (G-mean): -0.0132
+G-mean máximo: 1.0000
+              precision    recall  f1-score   support
+
+           0       0.98      1.00      0.99        49
+           1       1.00      0.98      0.99        51
+
+    accuracy                           0.99       100
+   macro avg       0.99      0.99      0.99       100
+weighted avg       0.99      0.99      0.99       100
+
+[[49  0]
+ [ 1 50]]
+</pre></div>
+</div>
+</div>
 </div>
 <ul class="simple">
 <li><p>El umbral en modelos con <code class="docutils literal notranslate"><span class="pre">predict_proba</span></code> es más fácil de ajustar, ya que su salida va de 0 a 1. <strong>Por defecto, un umbral de 0.5 clasifica como positiva una instancia si la probabilidad supera el 50%</strong>. Aumentarlo exige mayor certeza para predecir positivo y menor para negativo.</p></li>
@@ -4104,9 +4446,9 @@ weighted avg       0.99      0.99      0.99       100
 </div>
 </div>
 <ul class="simple">
-<li><p>Cada punto de la curva representa un umbral de <code class="docutils literal notranslate"><span class="pre">decision_function</span></code>. Se puede lograr un <em><strong>recall de 0.99</strong></em> con una <em><strong>precisión de 0.63</strong></em>. <strong>El círculo negro indica el umbral 0, que es el predeterminado de <code class="docutils literal notranslate"><span class="pre">decision_function</span></code></strong>, mostrando la compensación usada en <code class="docutils literal notranslate"><span class="pre">predict</span></code>. Cuanto más cerca de la esquina superior derecha esté la curva, mejor es el clasificador, pues indica alto <code class="docutils literal notranslate"><span class="pre">precision</span></code> y <code class="docutils literal notranslate"><span class="pre">recall</span></code> simultáneamente.</p></li>
-<li><p>La curva inicia en la esquina superior izquierda con un umbral bajo, clasificando todo como positivo. A medida que el umbral aumenta, la precisión mejora, pero el <code class="docutils literal notranslate"><span class="pre">recall</span></code> disminuye. Si el umbral es muy alto, solo los verdaderos positivos son clasificados correctamente, lo que maximiza <code class="docutils literal notranslate"><span class="pre">precision</span></code> pero reduce <code class="docutils literal notranslate"><span class="pre">recall</span></code>. Para <code class="docutils literal notranslate"><span class="pre">precision</span></code> mayor a 0.5, cada mejora en precisión cuesta una gran pérdida en <code class="docutils literal notranslate"><span class="pre">recall</span></code>.</p></li>
-<li><p>Diferentes clasificadores rinden mejor en distintas partes de la curva. Comparando un <code class="docutils literal notranslate"><span class="pre">SVM</span></code> con un <code class="docutils literal notranslate"><span class="pre">RandomForestClassifier</span></code>, este último usa <code class="docutils literal notranslate"><span class="pre">predict_proba</span></code> en lugar de <code class="docutils literal notranslate"><span class="pre">decision_function</span></code>. La función <code class="docutils literal notranslate"><span class="pre">precision_recall_curve</span></code> requiere una medida de certeza, por lo que se usa <code class="docutils literal notranslate"><span class="pre">rf.predict_proba(X_test)[:,</span> <span class="pre">1]</span></code>. El umbral predeterminado de <code class="docutils literal notranslate"><span class="pre">predict_proba</span></code> es 0.5 y está marcado en la curva.</p></li>
+<li><p>Cada punto de la curva <code class="docutils literal notranslate"><span class="pre">precision_recall</span></code> representa un umbral de <code class="docutils literal notranslate"><span class="pre">decision_function</span></code>; por ejemplo, se puede lograr un <strong><code class="docutils literal notranslate"><span class="pre">recall</span></code> de 0.99 con una <code class="docutils literal notranslate"><span class="pre">precision</span></code> de 0.63</strong>. El <strong>círculo negro marca el umbral 0</strong> (predeterminado en <code class="docutils literal notranslate"><span class="pre">decision_function</span></code>), correspondiente a la compensación usada por <code class="docutils literal notranslate"><span class="pre">predict</span></code>. Cuanto más cerca esté la curva de la <strong>esquina superior derecha</strong>, mejor es el clasificador, al indicar alto <code class="docutils literal notranslate"><span class="pre">precision</span></code> y <code class="docutils literal notranslate"><span class="pre">recall</span></code> simultáneamente.</p></li>
+<li><p>La curva inicia con un umbral bajo (clasificando todo como positivo) en la esquina superior izquierda; al aumentar el umbral, mejora la <code class="docutils literal notranslate"><span class="pre">precision</span></code> pero disminuye el <code class="docutils literal notranslate"><span class="pre">recall</span></code>, y con un umbral muy alto solo se clasifican correctamente los verdaderos positivos, maximizando <code class="docutils literal notranslate"><span class="pre">precision</span></code> en detrimento del <code class="docutils literal notranslate"><span class="pre">recall</span></code>. Para valores de <code class="docutils literal notranslate"><span class="pre">precision</span></code> superiores a 0.5, <strong>cada mejora en precisión implica una gran pérdida de recall</strong>.</p></li>
+<li><p>Distintos clasificadores rinden mejor en distintas zonas de la curva. Al comparar un <code class="docutils literal notranslate"><span class="pre">SVM</span></code> con un <code class="docutils literal notranslate"><span class="pre">RandomForestClassifier</span></code> (que usa <code class="docutils literal notranslate"><span class="pre">predict_proba</span></code> en lugar de <code class="docutils literal notranslate"><span class="pre">decision_function</span></code>), la función <code class="docutils literal notranslate"><span class="pre">precision_recall_curve</span></code> requiere una medida de certeza, obtenida mediante <code class="docutils literal notranslate"><span class="pre">rf.predict_proba(X_test)[:,</span> <span class="pre">1]</span></code>; el <strong>umbral predeterminado de <code class="docutils literal notranslate"><span class="pre">predict_proba</span></code> (0.5)</strong> queda marcado en la curva.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -4192,7 +4534,7 @@ f1_score of svc: 0.767
 </div>
 </div>
 <ul class="simple">
-<li><p>La comparación de dos curvas <em><strong>precision-recall</strong></em> proporciona una visión muy detallada, pero <em><strong>es un proceso bastante manual</strong></em>. Para la comparación automática de modelos, es posible que queramos resumir la información contenida en la curva, sin limitarnos a un umbral o punto de operación. Una forma concreta de resumir la curva <em><strong>precisión-recall</strong></em> es <strong><code class="docutils literal notranslate"><span class="pre">calcular</span> <span class="pre">la</span> <span class="pre">integral</span> <span class="pre">o</span> <span class="pre">el</span> <span class="pre">área</span> <span class="pre">bajo</span> <span class="pre">la</span> <span class="pre">curva</span> <span class="pre">precision-recall,</span> <span class="pre">también</span> <span class="pre">conocida</span> <span class="pre">como</span> <span class="pre">precisión</span> <span class="pre">media</span></code></strong>. Para calcular la precisión media se puede utilizar la función <code class="docutils literal notranslate"><span class="pre">average_precision_score</span></code>. Como tenemos que calcular la curva ROC y considerar múltiples umbrales, el resultado de <code class="docutils literal notranslate"><span class="pre">decision_function</span></code> o <code class="docutils literal notranslate"><span class="pre">predict_proba</span></code> debe pasarse a <code class="docutils literal notranslate"><span class="pre">average_precision_score</span></code>, no el resultado de <code class="docutils literal notranslate"><span class="pre">predict</span></code>.</p></li>
+<li><p>Comparar dos curvas <code class="docutils literal notranslate"><span class="pre">precision-recall</span></code> ofrece una visión detallada pero <strong>manual</strong>. Para una comparación automática de modelos, conviene <strong>resumir la información de la curva sin limitarse a un umbral concreto</strong>, calculando la <strong>integral o área bajo la curva <code class="docutils literal notranslate"><span class="pre">precision-recall</span></code></strong>, también conocida como <strong>precisión media</strong> (<code class="docutils literal notranslate"><span class="pre">average_precision_score</span></code>). Dado que este cálculo requiere considerar múltiples umbrales, debe pasarse a la función el resultado de <code class="docutils literal notranslate"><span class="pre">decision_function</span></code> o <code class="docutils literal notranslate"><span class="pre">predict_proba</span></code>, y no el de <code class="docutils literal notranslate"><span class="pre">predict</span></code>.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -4472,8 +4814,165 @@ Micro average f1 score: 0.951
 <section id="metricas-de-regresion">
 <h2><span class="section-number">9.6. </span>Métricas de regresión<a class="headerlink" href="#metricas-de-regresion" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>La evaluación en regresión puede ser tan detallada como en clasificación, analizando sobrepredicción y subpredicción. Sin embargo, en la mayoría de los casos, el <strong><span class="math notranslate nohighlight">\(R^2\)</span></strong> usado por defecto en los regresores es suficiente. En aplicaciones empresariales, métricas como <strong>MSE o MAE</strong> pueden influir en la optimización de modelos. No obstante, <strong><span class="math notranslate nohighlight">\(R^2\)</span></strong> suele ser más intuitivo. En el curso de <strong>Time Series Forecasting</strong>, se profundizará en métricas como <strong>MAE, MAPE, MSE y RMSE</strong>.</p></li>
+<li><p>La evaluación en regresión puede ser tan detallada como en clasificación, pero en la mayoría de los casos la <strong>métrica por defecto de los regresores (<span class="math notranslate nohighlight">\(R^2\)</span>)</strong> es suficiente; en aplicaciones empresariales, métricas como <strong>MSE</strong> o <strong>MAE</strong> (esta última más intuitiva) pueden influir en la optimización de modelos. El curso de <em>Time Series Forecasting</em> profundiza en <code class="docutils literal notranslate"><span class="pre">MAE</span></code>, <code class="docutils literal notranslate"><span class="pre">MAPE</span></code>, <code class="docutils literal notranslate"><span class="pre">MSE</span></code> y <code class="docutils literal notranslate"><span class="pre">RMSE</span></code>.</p></li>
 </ul>
+<p><strong>Definiciones</strong></p>
+<ul class="simple">
+<li><p><strong><span class="math notranslate nohighlight">\(R^2\)</span> (coeficiente de determinación)</strong>: métrica por defecto de <code class="docutils literal notranslate"><span class="pre">.score()</span></code> en regresores de <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>; mide la <strong>proporción de varianza de <span class="math notranslate nohighlight">\(y\)</span> explicada por el modelo</strong>, con valores entre <span class="math notranslate nohighlight">\(-\infty\)</span> y <span class="math notranslate nohighlight">\(1\)</span> (1: predicción perfecta; 0: equivalente a predecir la media; negativo si el modelo es peor que la media).</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[R^2 = 1 - \frac{\sum_{i=1}^{n}(y_i - \hat{y}_i)^2}{\sum_{i=1}^{n}(y_i - \bar{y})^2}\]</div>
+<ul class="simple">
+<li><p><strong>MAE (Mean Absolute Error)</strong>: error absoluto medio, en las <strong>mismas unidades que <span class="math notranslate nohighlight">\(y\)</span></strong>.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[MAE = \frac{1}{n}\sum_{i=1}^{n}|y_i - \hat{y}_i|\]</div>
+<ul class="simple">
+<li><p><strong>MSE (Mean Squared Error)</strong>: <strong>penaliza más los errores grandes</strong> al elevarlos al cuadrado.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[MSE = \frac{1}{n}\sum_{i=1}^{n}(y_i - \hat{y}_i)^2\]</div>
+<ul class="simple">
+<li><p><strong>RMSE (Root Mean Squared Error)</strong>: misma escala que MAE (unidades originales), pero <strong>más sensible a outliers</strong>.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[RMSE = \sqrt{\frac{1}{n}\sum_{i=1}^{n}(y_i - \hat{y}_i)^2}\]</div>
+<ul class="simple">
+<li><p><strong>MAPE (Mean Absolute Percentage Error)</strong>: error relativo en porcentaje, <strong>útil para comparar entre escalas distintas</strong>.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[MAPE = \frac{100\%}{n}\sum_{i=1}^{n}\left|\frac{y_i - \hat{y}_i}{y_i}\right|\]</div>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Métrica</p></th>
+<th class="head"><p>Sensible a outliers</p></th>
+<th class="head"><p>Interpretación</p></th>
+<th class="head"><p>Cuándo usar</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(R^2\)</span></p></td>
+<td><p>Moderada</p></td>
+<td><p>Proporción de varianza explicada</p></td>
+<td><p>Comparar modelos, reporte general</p></td>
+</tr>
+<tr class="row-odd"><td><p>MAE</p></td>
+<td><p>Baja</p></td>
+<td><p>Error promedio en unidades originales</p></td>
+<td><p>Cuando todos los errores pesan igual</p></td>
+</tr>
+<tr class="row-even"><td><p>MSE</p></td>
+<td><p>Alta</p></td>
+<td><p>Error cuadrático, penaliza errores grandes</p></td>
+<td><p>Optimización (diferenciable, penaliza outliers)</p></td>
+</tr>
+<tr class="row-odd"><td><p>RMSE</p></td>
+<td><p>Alta</p></td>
+<td><p>Como MSE, pero en unidades originales</p></td>
+<td><p>Reporte interpretable y sensible a outliers</p></td>
+</tr>
+<tr class="row-even"><td><p>MAPE</p></td>
+<td><p>Alta (si <span class="math notranslate nohighlight">\(y_i \approx 0\)</span>)</p></td>
+<td><p>Error relativo en %</p></td>
+<td><p>Comparar error entre variables de distinta escala</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_regression</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span><span class="p">,</span> <span class="n">GridSearchCV</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">Ridge</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">mean_absolute_error</span><span class="p">,</span> <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">r2_score</span><span class="p">,</span> <span class="n">mean_absolute_percentage_error</span>
+
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_regression</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">n_features</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">noise</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Train: </span><span class="si">{</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> muestras | Test: </span><span class="si">{</span><span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> muestras&quot;</span><span class="p">)</span>
+
+<span class="n">param_grid</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;alpha&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">]}</span>
+
+<span class="n">grid</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">Ridge</span><span class="p">(),</span> <span class="n">param_grid</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s2">&quot;neg_mean_squared_error&quot;</span><span class="p">)</span>
+<span class="n">grid</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Mejor alpha: </span><span class="si">{</span><span class="n">grid</span><span class="o">.</span><span class="n">best_params_</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mejor MSE en validación cruzada: </span><span class="si">{</span><span class="o">-</span><span class="n">grid</span><span class="o">.</span><span class="n">best_score_</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">modelo_final</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="n">best_estimator_</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">modelo_final</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- Métricas sobre el conjunto de prueba ---&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;R²:    </span><span class="si">{</span><span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="w"> </span><span class="n">y_pred</span><span class="p">)</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;MAE:   </span><span class="si">{</span><span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="w"> </span><span class="n">y_pred</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;MSE:   </span><span class="si">{</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="w"> </span><span class="n">y_pred</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;RMSE:  </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="w"> </span><span class="n">y_pred</span><span class="p">))</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;MAPE:  </span><span class="si">{</span><span class="n">mean_absolute_percentage_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="w"> </span><span class="n">y_pred</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train: 21 muestras | Test: 9 muestras
+
+Mejor alpha: {&#39;alpha&#39;: 0.001}
+Mejor MSE en validación cruzada: 193.23
+
+--- Métricas sobre el conjunto de prueba ---
+R²:    0.887
+MAE:   12.90
+MSE:   285.22
+RMSE:  16.89
+MAPE:  48.93%
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="c1"># --- Panel 1: dispersión real vs predicho ---</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#7aa6c2&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">lims</span> <span class="o">=</span> <span class="p">[</span><span class="nb">min</span><span class="p">(</span><span class="n">y_test</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">y_pred</span><span class="o">.</span><span class="n">min</span><span class="p">())</span> <span class="o">-</span> <span class="mi">10</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">y_test</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">y_pred</span><span class="o">.</span><span class="n">max</span><span class="p">())</span> <span class="o">+</span> <span class="mi">10</span><span class="p">]</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lims</span><span class="p">,</span> <span class="n">lims</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#e57373&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Predicción perfecta (y = ŷ)&quot;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">yt</span><span class="p">,</span> <span class="n">yp</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">yt</span><span class="p">,</span> <span class="n">yt</span><span class="p">],</span> <span class="p">[</span><span class="n">yt</span><span class="p">,</span> <span class="n">yp</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>  <span class="c1"># línea del error</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Valor real (y_test)&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Valor predicho (ŷ)&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Real vs. Predicho</span><span class="se">\n</span><span class="s2">R² = </span><span class="si">{</span><span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="w"> </span><span class="n">y_pred</span><span class="p">)</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">lims</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">lims</span><span class="p">)</span>
+
+<span class="c1"># --- Panel 2: barras pareadas por observación ---</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y_test</span><span class="p">))</span>
+<span class="n">width</span> <span class="o">=</span> <span class="mf">0.35</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">idx</span> <span class="o">-</span> <span class="n">width</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Real&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#7aa6c2&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">idx</span> <span class="o">+</span> <span class="n">width</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Predicho&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#e8a87c&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Observación (test)&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Valor&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Real vs. Predicho por observación</span><span class="se">\n</span><span class="s2">MAE = </span><span class="si">{</span><span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="w"> </span><span class="n">y_pred</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/6233374c088349e1f018112facf6f9a0bcde6bde93eb7b410f82e6a8e282a677.png" src="_images/6233374c088349e1f018112facf6f9a0bcde6bde93eb7b410f82e6a8e282a677.png" />
+</div>
+</div>
 <section id="uso-de-metricas-de-evaluacion-en-la-seleccion-de-modelos">
 <h3><span class="section-number">9.6.1. </span>Uso de métricas de evaluación en la selección de modelos<a class="headerlink" href="#uso-de-metricas-de-evaluacion-en-la-seleccion-de-modelos" title="Link to this heading">#</a></h3>
 <ul class="simple">
@@ -4599,8 +5098,8 @@ Test set accuracy: 1.000
 </div>
 </div>
 <ul class="simple">
-<li><p>Cuando se utiliza <code class="docutils literal notranslate"><span class="pre">accuracy</span></code>, se selecciona el parámetro <code class="docutils literal notranslate"><span class="pre">gamma=0.0001</span></code>, mientras que cuando se utiliza el AUC se selecciona <code class="docutils literal notranslate"><span class="pre">gamma=0.01</span></code>. Accuracy score para la validación cruzada es coherente con el <code class="docutils literal notranslate"><span class="pre">accuracy</span></code> del conjunto de prueba en ambos casos. <em><strong>Sin embargo, al utilizar AUC se encontró un mejor ajuste de los parámetros en en términos de AUC e incluso en términos de accuracy</strong></em>. Los valores más importantes del parámetro de scoring para la clasificación son <code class="docutils literal notranslate"><span class="pre">accuracy</span></code> (por defecto); <code class="docutils literal notranslate"><span class="pre">roc_auc</span></code> para el área bajo la curva ROC; <code class="docutils literal notranslate"><span class="pre">average_precision</span></code> para el área bajo la curva de <code class="docutils literal notranslate"><span class="pre">precision-recall</span></code>; <code class="docutils literal notranslate"><span class="pre">f1,</span> <span class="pre">f1_macro,</span> <span class="pre">f1_micro</span></code> y <code class="docutils literal notranslate"><span class="pre">f1_weighted</span></code> para <span class="math notranslate nohighlight">\(f_{1}\)</span>-score binario y las diferentes variantes ponderadas.</p></li>
-<li><p>En cuanto a la regresión, los valores más utilizados son <code class="docutils literal notranslate"><span class="pre">r2</span></code> para el score <span class="math notranslate nohighlight">\(R^{2}\)</span>, <code class="docutils literal notranslate"><span class="pre">mean_squared_error</span></code> para el error medio al cuadrado y <code class="docutils literal notranslate"><span class="pre">mean_absolute_error</span></code> para el error medio absoluto. Puede encontrar una lista completa de argumentos admitidos en la <a class="reference external" href="https://scikit-learn.org/stable/modules/model_evaluation.html#the-scoring-parameter-defining-model-evaluation-rules">documentación</a> o consultando el diccionario SCORER definido en el módulo <code class="docutils literal notranslate"><span class="pre">metrics.scorer</span></code>.</p></li>
+<li><p>Con <code class="docutils literal notranslate"><span class="pre">accuracy</span></code> se selecciona <code class="docutils literal notranslate"><span class="pre">gamma=0.0001</span></code>, mientras que con <strong>AUC</strong> se selecciona <code class="docutils literal notranslate"><span class="pre">gamma=0.01</span></code>; el <code class="docutils literal notranslate"><span class="pre">accuracy</span></code> de validación cruzada resulta coherente con el del conjunto de prueba en ambos casos, pero <strong>usar AUC produjo un mejor ajuste de parámetros, tanto en AUC como en <code class="docutils literal notranslate"><span class="pre">accuracy</span></code></strong>. Los valores más relevantes del parámetro <code class="docutils literal notranslate"><span class="pre">scoring</span></code> para clasificación son <code class="docutils literal notranslate"><span class="pre">accuracy</span></code> (por defecto), <code class="docutils literal notranslate"><span class="pre">roc_auc</span></code> (área bajo la curva ROC), <code class="docutils literal notranslate"><span class="pre">average_precision</span></code> (área bajo la curva <code class="docutils literal notranslate"><span class="pre">precision-recall</span></code>), y <code class="docutils literal notranslate"><span class="pre">f1</span></code>, <code class="docutils literal notranslate"><span class="pre">f1_macro</span></code>, <code class="docutils literal notranslate"><span class="pre">f1_micro</span></code>, <code class="docutils literal notranslate"><span class="pre">f1_weighted</span></code> (<span class="math notranslate nohighlight">\(f_1\)</span>-score binario y sus variantes ponderadas).</p></li>
+<li><p>Para regresión, los más utilizados son <code class="docutils literal notranslate"><span class="pre">r2</span></code> (<span class="math notranslate nohighlight">\(R^2\)</span>), <code class="docutils literal notranslate"><span class="pre">mean_squared_error</span></code> y <code class="docutils literal notranslate"><span class="pre">mean_absolute_error</span></code>. La lista completa puede consultarse en la <a class="reference external" href="https://scikit-learn.org/stable/modules/model_evaluation.html#the-scoring-parameter-defining-model-evaluation-rules">documentación</a> o en el diccionario <code class="docutils literal notranslate"><span class="pre">SCORER</span></code> del módulo <code class="docutils literal notranslate"><span class="pre">metrics.scorer</span></code>.</p></li>
 </ul>
 <div class="tip admonition">
 <p class="admonition-title">Observación</p>
@@ -5814,7 +6313,7 @@ MAE = \frac{1}{n} \sum_{t=1}^{n} |y_t - \hat{y}_t|
 </ul>
 <div class="math notranslate nohighlight">
 \[
-R^2 = 1 - \frac{\sum_{t=1}^{n} (y_t - \hat{y}*t)^2}{\sum*{t=1}^{n} (y_t - \bar{y})^2}
+R^2 = 1 - \frac{\sum_{t=1}^{n} (y_t - \hat{y}_{t})^2}{\sum_{t=1}^{n} (y_t - \bar{y})^2}
 \]</div>
 <ul class="simple">
 <li><p>Para comparar dos modelos, se puede</p>
