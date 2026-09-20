@@ -450,18 +450,26 @@
 </ul>
 </li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocesamiento">9.10.4.2. Preprocesamiento</a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#scikit-learn">9.10.4.2.1. scikit-learn</a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">9.10.4.2.2. PySpark</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#particion-comun-de-los-datos">9.10.4.2.1. Partición común de los datos</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#scikit-learn">9.10.4.2.2. scikit-learn</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">9.10.4.2.3. PySpark</a></li>
 </ul>
 </li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modelado-con-scikit-learn">9.10.4.3. Modelado con scikit-learn</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modelado-con-pyspark">9.10.4.4. Modelado con PySpark</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretabilidad-con-lime">9.10.4.5. Interpretabilidad con LIME</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacion-de-resultados">9.10.4.6. Comparación de Resultados</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-y-espacios-de-busqueda">9.10.4.3. Modelos y espacios de búsqueda</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modelado-con-scikit-learn">9.10.4.4. Modelado con scikit-learn</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modelado-con-pyspark">9.10.4.5. Modelado con PySpark</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacion-estadistica-de-los-modelos">9.10.4.6. Comparación estadística de los modelos</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#prueba-de-delong-obligatoria">9.10.4.6.1. Prueba de DeLong (obligatoria)</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#pruebas-complementarias-mcnemar-y-bootstrap-pareado">9.10.4.6.2. Pruebas complementarias: McNemar y bootstrap pareado</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretabilidad-con-lime">9.10.4.7. Interpretabilidad con LIME</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacion-de-resultados">9.10.4.8. Comparación de Resultados</a></li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#entregable">9.10.5. Entregable</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recursos">9.10.6. Recursos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">9.10.7. Referencias</a></li>
 </ul>
 </li>
 </ul>
@@ -8740,7 +8748,7 @@ ANÁLISIS COMPLETADO - TODAS LAS TABLAS EXPORTADAS
 <h2><span class="section-number">9.10. </span>Proyecto Integrador de Aprendizaje Automático<a class="headerlink" href="#proyecto-integrador-de-aprendizaje-automatico" title="Link to this heading">#</a></h2>
 <section id="objetivo">
 <h3><span class="section-number">9.10.1. </span>Objetivo<a class="headerlink" href="#objetivo" title="Link to this heading">#</a></h3>
-<p>Construir un modelo de <strong>clasificación supervisada</strong> para predecir si un préstamo emitido por la plataforma Lending Club resultará en <strong>default (1)</strong> o será <strong>pagado completamente (0)</strong>. El objetivo es comparar el desempeño de los modelos construidos con <strong>scikit-learn</strong> y <strong>PySpark</strong>, además de aplicar <strong>LIME</strong> para interpretar predicciones. Se espera que, bajo las condiciones establecidas en este proyecto, PySpark supere en velocidad a scikit-learn.</p>
+<p>Construir modelos de <strong>clasificación supervisada</strong> para predecir si un préstamo emitido por la plataforma Lending Club resultará en <strong>default (1)</strong> o será <strong>pagado completamente (0)</strong>. El objetivo es comparar el desempeño de seis modelos (<code class="docutils literal notranslate"><span class="pre">LogisticRegression</span></code>, <code class="docutils literal notranslate"><span class="pre">DecisionTreeClassifier</span></code>, <code class="docutils literal notranslate"><span class="pre">RandomForestClassifier</span></code>, <code class="docutils literal notranslate"><span class="pre">GBTClassifier</span></code>, <code class="docutils literal notranslate"><span class="pre">LinearSVC</span></code> y <code class="docutils literal notranslate"><span class="pre">NaiveBayes</span></code>), implementados tanto con <strong>PySpark</strong> como con <strong>scikit-learn</strong>. Además, se debe determinar, mediante la <strong>prueba de DeLong</strong>, si las diferencias observadas en el AUC son estadísticamente significativas, y verificar la robustez de esas conclusiones con las pruebas complementarias de <strong>McNemar</strong> y de <strong>bootstrap pareado</strong>. Finalmente, se aplicará <strong>LIME</strong> para interpretar predicciones. Se espera que, bajo las condiciones establecidas en este proyecto, PySpark supere en velocidad a scikit-learn.</p>
 </section>
 <section id="dataset">
 <h3><span class="section-number">9.10.2. </span>Dataset<a class="headerlink" href="#dataset" title="Link to this heading">#</a></h3>
@@ -8860,54 +8868,116 @@ ANÁLISIS COMPLETADO - TODAS LAS TABLAS EXPORTADAS
 </section>
 <section id="preprocesamiento">
 <h4><span class="section-number">9.10.4.2. </span>Preprocesamiento<a class="headerlink" href="#preprocesamiento" title="Link to this heading">#</a></h4>
+<section id="particion-comun-de-los-datos">
+<h5><span class="section-number">9.10.4.2.1. </span>Partición común de los datos<a class="headerlink" href="#particion-comun-de-los-datos" title="Link to this heading">#</a></h5>
+<p>La prueba de DeLong compara AUC calculados sobre las mismas observaciones. Por ello, ambos entornos deben utilizar exactamente la misma partición de entrenamiento y prueba.</p>
+<ul class="simple">
+<li><p>Definir la partición <strong>una sola vez</strong> (80/20), estratificada por clase y con semilla fija (por ejemplo, <code class="docutils literal notranslate"><span class="pre">random_state=42</span></code>).</p></li>
+<li><p>Conservar un identificador único por registro (<code class="docutils literal notranslate"><span class="pre">id</span></code> o un índice creado para tal fin) y guardar la asignación (<code class="docutils literal notranslate"><span class="pre">train</span></code> o <code class="docutils literal notranslate"><span class="pre">test</span></code>) en un archivo, por ejemplo en formato Parquet con las columnas <code class="docutils literal notranslate"><span class="pre">id</span></code> y <code class="docutils literal notranslate"><span class="pre">split</span></code>. Tanto scikit-learn como PySpark deben leer esa misma asignación.</p></li>
+<li><p>Ajustar los transformadores que aprenden parámetros de los datos (<code class="docutils literal notranslate"><span class="pre">StandardScaler</span></code>, <code class="docutils literal notranslate"><span class="pre">OneHotEncoder</span></code>, <code class="docutils literal notranslate"><span class="pre">StringIndexer</span></code>, imputadores) <strong>únicamente con el conjunto de entrenamiento</strong> y aplicarlos después al conjunto de prueba.</p></li>
+</ul>
+</section>
 <section id="scikit-learn">
-<h5><span class="section-number">9.10.4.2.1. </span>scikit-learn<a class="headerlink" href="#scikit-learn" title="Link to this heading">#</a></h5>
+<h5><span class="section-number">9.10.4.2.2. </span>scikit-learn<a class="headerlink" href="#scikit-learn" title="Link to this heading">#</a></h5>
 <ul class="simple">
 <li><p>Seleccionar variables relevantes: <code class="docutils literal notranslate"><span class="pre">loan_amnt</span></code>, <code class="docutils literal notranslate"><span class="pre">int_rate</span></code>, <code class="docutils literal notranslate"><span class="pre">fico_range_high</span></code>, <code class="docutils literal notranslate"><span class="pre">emp_length</span></code>, <code class="docutils literal notranslate"><span class="pre">annual_inc</span></code>, <code class="docutils literal notranslate"><span class="pre">purpose</span></code>, <code class="docutils literal notranslate"><span class="pre">home_ownership</span></code>, <code class="docutils literal notranslate"><span class="pre">dti</span></code>, <code class="docutils literal notranslate"><span class="pre">addr_state</span></code>, etc.</p></li>
 <li><p>Codificación de variables categóricas (<code class="docutils literal notranslate"><span class="pre">OneHotEncoder</span></code> o <code class="docutils literal notranslate"><span class="pre">LabelEncoder</span></code>)</p></li>
-<li><p>Escalado con <code class="docutils literal notranslate"><span class="pre">StandardScaler</span></code> si es necesario</p></li>
-<li><p>División <code class="docutils literal notranslate"><span class="pre">train_test_split</span></code> (80/20), estratificada por clase</p></li>
+<li><p>Escalado con <code class="docutils literal notranslate"><span class="pre">StandardScaler</span></code> si es necesario (por ejemplo, para la regresión logística y <code class="docutils literal notranslate"><span class="pre">LinearSVC</span></code>)</p></li>
+<li><p>Generar la partición común (80/20, estratificada por clase) con <code class="docutils literal notranslate"><span class="pre">train_test_split</span></code> y guardarla en disco, según lo indicado en la sección anterior.</p></li>
 </ul>
 </section>
 <section id="id14">
-<h5><span class="section-number">9.10.4.2.2. </span>PySpark<a class="headerlink" href="#id14" title="Link to this heading">#</a></h5>
+<h5><span class="section-number">9.10.4.2.3. </span>PySpark<a class="headerlink" href="#id14" title="Link to this heading">#</a></h5>
 <ul class="simple">
 <li><p>Leer CSV en <code class="docutils literal notranslate"><span class="pre">SparkSession</span></code> con el dataset completo.</p></li>
 <li><p><strong>Queda estrictamente prohibido</strong> el uso de <code class="docutils literal notranslate"><span class="pre">.toPandas()</span></code>, <code class="docutils literal notranslate"><span class="pre">.collect()</span></code> sobre el dataset completo o cualquier acción que transfiera los datos distribuidos al driver antes del entrenamiento.</p></li>
+<li><p>Cargar la partición común y separar los conjuntos de entrenamiento y prueba filtrando por la columna <code class="docutils literal notranslate"><span class="pre">split</span></code>. No se debe usar <code class="docutils literal notranslate"><span class="pre">randomSplit</span></code>, pues no reproduce la partición de scikit-learn. Los datos deben permanecer siempre en formato DataFrame de Spark.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">StringIndexer</span></code> y <code class="docutils literal notranslate"><span class="pre">OneHotEncoder</span></code> para variables categóricas.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">VectorAssembler</span></code> + <code class="docutils literal notranslate"><span class="pre">StandardScaler</span></code> (opcional).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">VectorAssembler</span></code> + <code class="docutils literal notranslate"><span class="pre">StandardScaler</span></code> (opcional), ajustados solo con el conjunto de entrenamiento.</p></li>
 <li><p><strong>Obligatoriamente cachear</strong> el DataFrame resultante después del <code class="docutils literal notranslate"><span class="pre">VectorAssembler</span></code> y antes del modelo mediante <code class="docutils literal notranslate"><span class="pre">.cache()</span></code> o <code class="docutils literal notranslate"><span class="pre">.persist(StorageLevel.MEMORY_AND_DISK)</span></code>.</p></li>
-<li><p>División <code class="docutils literal notranslate"><span class="pre">randomSplit</span></code> (80/20), estratificada si es posible, manteniendo siempre los datos en formato DataFrame de Spark.</p></li>
 </ul>
 </section>
+</section>
+<section id="modelos-y-espacios-de-busqueda">
+<h4><span class="section-number">9.10.4.3. </span>Modelos y espacios de búsqueda<a class="headerlink" href="#modelos-y-espacios-de-busqueda" title="Link to this heading">#</a></h4>
+<p>Se implementarán los mismos seis modelos en ambos entornos, con espacios de búsqueda equivalentes y el mismo criterio de selección (AUC ROC).</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Modelo</p></th>
+<th class="head"><p>scikit-learn</p></th>
+<th class="head"><p>PySpark (<code class="docutils literal notranslate"><span class="pre">pyspark.ml.classification</span></code>)</p></th>
+<th class="head"><p>Espacio de búsqueda</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Regresión logística</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">LogisticRegression</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">LogisticRegression</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">regParam</span></code> ∈ {1e-6, 1e-5, 1e-4} en PySpark y <code class="docutils literal notranslate"><span class="pre">C</span> <span class="pre">=</span> <span class="pre">1</span> <span class="pre">/</span> <span class="pre">(regParam</span> <span class="pre">×</span> <span class="pre">n)</span></code> en scikit-learn, con <em>n</em> igual al tamaño del conjunto de entrenamiento</p></td>
+</tr>
+<tr class="row-odd"><td><p>Árbol de decisión</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DecisionTreeClassifier</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DecisionTreeClassifier</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">max_depth</span></code> / <code class="docutils literal notranslate"><span class="pre">maxDepth</span></code> ∈ {5, 10, 15}</p></td>
+</tr>
+<tr class="row-even"><td><p>Bosque aleatorio</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">RandomForestClassifier</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">RandomForestClassifier</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">n_estimators</span></code> / <code class="docutils literal notranslate"><span class="pre">numTrees</span></code> ∈ {10, 50, 100} y <code class="docutils literal notranslate"><span class="pre">max_depth</span></code> / <code class="docutils literal notranslate"><span class="pre">maxDepth</span></code> ∈ {5, 10, 15}</p></td>
+</tr>
+<tr class="row-odd"><td><p>Gradient boosting</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">GradientBoostingClassifier</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">GBTClassifier</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">n_estimators</span></code> / <code class="docutils literal notranslate"><span class="pre">maxIter</span></code> ∈ {50, 100} y <code class="docutils literal notranslate"><span class="pre">max_depth</span></code> / <code class="docutils literal notranslate"><span class="pre">maxDepth</span></code> ∈ {3, 5}, con tasa de aprendizaje fija en 0.1</p></td>
+</tr>
+<tr class="row-even"><td><p>SVM lineal</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">LinearSVC(loss=&quot;hinge&quot;)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">LinearSVC</span></code></p></td>
+<td><p>Mismo criterio que la regresión logística para <code class="docutils literal notranslate"><span class="pre">regParam</span></code> y <code class="docutils literal notranslate"><span class="pre">C</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Naive Bayes</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">GaussianNB</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">NaiveBayes(modelType=&quot;gaussian&quot;)</span></code></p></td>
+<td><p>Sin búsqueda de hiperparámetros (configuración por defecto)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Consideraciones de equivalencia</strong> (deben documentarse y discutirse en el informe):</p>
+<ul class="simple">
+<li><p>Se usa regularización L2 en ambos entornos. En la regresión logística de PySpark se fija <code class="docutils literal notranslate"><span class="pre">elasticNetParam=0</span></code>.</p></li>
+<li><p>La relación <code class="docutils literal notranslate"><span class="pre">C</span> <span class="pre">=</span> <span class="pre">1</span> <span class="pre">/</span> <span class="pre">(regParam</span> <span class="pre">×</span> <span class="pre">n)</span></code> es aproximada, porque <code class="docutils literal notranslate"><span class="pre">C</span></code> pondera la suma de las pérdidas, mientras que <code class="docutils literal notranslate"><span class="pre">regParam</span></code> pondera su promedio.</p></li>
+<li><p>El <code class="docutils literal notranslate"><span class="pre">LinearSVC</span></code> de PySpark minimiza la pérdida <em>hinge</em>. Por eso se fija <code class="docutils literal notranslate"><span class="pre">loss=&quot;hinge&quot;</span></code> en scikit-learn, cuyo valor por defecto es <em>squared hinge</em>.</p></li>
+<li><p>Los árboles de PySpark discretizan cada variable continua en un máximo de <code class="docutils literal notranslate"><span class="pre">maxBins</span></code> intervalos (32 por defecto), mientras que scikit-learn evalúa cortes exactos. Se debe reportar el valor de <code class="docutils literal notranslate"><span class="pre">maxBins</span></code> utilizado y discutir su efecto.</p></li>
+<li><p>El <code class="docutils literal notranslate"><span class="pre">NaiveBayes</span></code> multinomial y el de Bernoulli de PySpark no admiten valores negativos, como los que produce <code class="docutils literal notranslate"><span class="pre">StandardScaler</span></code>. La variante gaussiana en ambos entornos evita este problema.</p></li>
+<li><p>Si el costo computacional de <code class="docutils literal notranslate"><span class="pre">GradientBoostingClassifier</span></code> resultara prohibitivo con el dataset completo, puede sustituirse por <code class="docutils literal notranslate"><span class="pre">HistGradientBoostingClassifier</span></code>, justificando la decisión y discutiendo las diferencias algorítmicas.</p></li>
+</ul>
 </section>
 <section id="modelado-con-scikit-learn">
-<h4><span class="section-number">9.10.4.3. </span>Modelado con scikit-learn<a class="headerlink" href="#modelado-con-scikit-learn" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">9.10.4.4. </span>Modelado con scikit-learn<a class="headerlink" href="#modelado-con-scikit-learn" title="Link to this heading">#</a></h4>
 <ul class="simple">
-<li><p>Usar <code class="docutils literal notranslate"><span class="pre">RandomForestClassifier</span></code></p></li>
-<li><p>Aplicar <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> sin <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code>, sobre:</p>
-<ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">n_estimators</span></code>: [10, 50, 100]</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">max_depth</span></code>: [5, 10, 15]</p></li>
-</ul>
-</li>
+<li><p>Implementar los seis modelos de la tabla anterior.</p></li>
+<li><p>Aplicar <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> sin <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code>, con <code class="docutils literal notranslate"><span class="pre">cv=3</span></code> (el mismo número de pliegues que en PySpark), <code class="docutils literal notranslate"><span class="pre">scoring=&quot;roc_auc&quot;</span></code> y <code class="docutils literal notranslate"><span class="pre">n_jobs=-1</span></code>, sobre los espacios de búsqueda indicados.</p></li>
 <li><p>Métricas:</p>
 <ul>
 <li><p>Accuracy, Precision, Recall, F1-score, ROC AUC</p></li>
 <li><p>Matriz de confusión</p></li>
 </ul>
 </li>
-<li><p>Medir tiempo de entrenamiento y predicción con <code class="docutils literal notranslate"><span class="pre">time.time()</span></code> o <code class="docutils literal notranslate"><span class="pre">%time</span></code></p></li>
+<li><p>Guardar, para cada modelo, las puntuaciones continuas del conjunto de prueba (<code class="docutils literal notranslate"><span class="pre">predict_proba(X_test)[:,</span> <span class="pre">1]</span></code> o, en <code class="docutils literal notranslate"><span class="pre">LinearSVC</span></code>, <code class="docutils literal notranslate"><span class="pre">decision_function(X_test)</span></code>) junto con <code class="docutils literal notranslate"><span class="pre">id</span></code> y <code class="docutils literal notranslate"><span class="pre">default</span></code>. Se utilizarán en la prueba de DeLong.</p></li>
+<li><p>Medir tiempo de entrenamiento y predicción de cada modelo con <code class="docutils literal notranslate"><span class="pre">time.time()</span></code> o <code class="docutils literal notranslate"><span class="pre">%time</span></code>.</p></li>
+<li><p>Declarar el hardware utilizado (núcleos y memoria) para que la comparación de tiempos sea interpretable.</p></li>
 </ul>
 </section>
 <section id="modelado-con-pyspark">
-<h4><span class="section-number">9.10.4.4. </span>Modelado con PySpark<a class="headerlink" href="#modelado-con-pyspark" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">9.10.4.5. </span>Modelado con PySpark<a class="headerlink" href="#modelado-con-pyspark" title="Link to this heading">#</a></h4>
 <ul class="simple">
-<li><p>Usar <code class="docutils literal notranslate"><span class="pre">pyspark.ml.classification.RandomForestClassifier</span></code></p></li>
-<li><p><strong>No se permite</strong> la búsqueda manual de hiperparámetros mediante bucles <code class="docutils literal notranslate"><span class="pre">for</span></code> o iteraciones explícitas sobre combinaciones. Se debe utilizar exclusivamente <code class="docutils literal notranslate"><span class="pre">ParamGridBuilder</span></code> junto con <code class="docutils literal notranslate"><span class="pre">CrossValidator</span></code> (con <code class="docutils literal notranslate"><span class="pre">numFolds</span> <span class="pre">=</span> <span class="pre">2</span></code> o 3).</p></li>
-<li><p>Evaluar con <code class="docutils literal notranslate"><span class="pre">BinaryClassificationEvaluator</span></code></p></li>
-<li><p>Calcular precisión, F1-score, matriz de confusión (manual si es necesario)</p></li>
-<li><p>Medir tiempo total de entrenamiento y predicción (incluyendo la validación cruzada)</p></li>
+<li><p>Usar los seis modelos de <code class="docutils literal notranslate"><span class="pre">pyspark.ml.classification</span></code> indicados en la tabla: <code class="docutils literal notranslate"><span class="pre">LogisticRegression</span></code>, <code class="docutils literal notranslate"><span class="pre">DecisionTreeClassifier</span></code>, <code class="docutils literal notranslate"><span class="pre">RandomForestClassifier</span></code>, <code class="docutils literal notranslate"><span class="pre">GBTClassifier</span></code>, <code class="docutils literal notranslate"><span class="pre">LinearSVC</span></code> y <code class="docutils literal notranslate"><span class="pre">NaiveBayes</span></code>.</p></li>
+<li><p><strong>No se permite</strong> la búsqueda manual de hiperparámetros mediante bucles <code class="docutils literal notranslate"><span class="pre">for</span></code> o iteraciones explícitas sobre combinaciones. Se debe utilizar exclusivamente <code class="docutils literal notranslate"><span class="pre">ParamGridBuilder</span></code> junto con <code class="docutils literal notranslate"><span class="pre">CrossValidator</span></code> con <code class="docutils literal notranslate"><span class="pre">numFolds</span> <span class="pre">=</span> <span class="pre">3</span></code>, el mismo número de pliegues usado en scikit-learn.</p></li>
+<li><p>Evaluar con <code class="docutils literal notranslate"><span class="pre">BinaryClassificationEvaluator</span></code> (<code class="docutils literal notranslate"><span class="pre">metricName=&quot;areaUnderROC&quot;</span></code>), que también será el criterio de selección del <code class="docutils literal notranslate"><span class="pre">CrossValidator</span></code>.</p></li>
+<li><p>Calcular las mismas métricas que en scikit-learn (accuracy, precision, recall, F1-score y ROC AUC) y la matriz de confusión (manual si es necesario).</p></li>
+<li><p>Medir tiempo total de entrenamiento y predicción de cada modelo (incluyendo la validación cruzada).</p></li>
+<li><p>Extraer la puntuación de la clase positiva del conjunto de prueba (segundo elemento de la columna <code class="docutils literal notranslate"><span class="pre">probability</span></code> o, en <code class="docutils literal notranslate"><span class="pre">LinearSVC</span></code>, de <code class="docutils literal notranslate"><span class="pre">rawPrediction</span></code>) mediante <code class="docutils literal notranslate"><span class="pre">pyspark.ml.functions.vector_to_array</span></code>. Una vez finalizados el entrenamiento y la predicción, se permite transferir al driver únicamente las columnas <code class="docutils literal notranslate"><span class="pre">id</span></code>, <code class="docutils literal notranslate"><span class="pre">default</span></code> y la puntuación del conjunto de prueba, necesarias para la prueba de DeLong y las curvas ROC. La prohibición de <code class="docutils literal notranslate"><span class="pre">.toPandas()</span></code> y <code class="docutils literal notranslate"><span class="pre">.collect()</span></code> sigue vigente para el dataset completo y para cualquier etapa previa al entrenamiento. El tiempo de esta transferencia se reporta por separado.</p></li>
 <li><p><strong>Configuración obligatoria de paralelismo y memoria</strong>: Antes de cualquier entrenamiento, se deberá configurar la sesión de Spark con los siguientes parámetros (u otros equivalentes debidamente justificados):</p></li>
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">spark</span> <span class="o">=</span> <span class="n">SparkSession</span><span class="o">.</span><span class="n">builder</span> \
@@ -8922,10 +8992,67 @@ ANÁLISIS COMPLETADO - TODAS LAS TABLAS EXPORTADAS
 </pre></div>
 </div>
 </section>
+<section id="comparacion-estadistica-de-los-modelos">
+<h4><span class="section-number">9.10.4.6. </span>Comparación estadística de los modelos<a class="headerlink" href="#comparacion-estadistica-de-los-modelos" title="Link to this heading">#</a></h4>
+<section id="prueba-de-delong-obligatoria">
+<h5><span class="section-number">9.10.4.6.1. </span>Prueba de DeLong (obligatoria)<a class="headerlink" href="#prueba-de-delong-obligatoria" title="Link to this heading">#</a></h5>
+<p>La prueba de DeLong contrasta la hipótesis nula de que dos AUC calculados sobre <strong>las mismas observaciones</strong> son iguales. Como todos los modelos se evalúan sobre el mismo conjunto de prueba, sus curvas ROC están correlacionadas, y la prueba incorpora esa covarianza en el error estándar de la diferencia (DeLong, DeLong y Clarke-Pearson, 1988).</p>
+<p><strong>Requisitos</strong></p>
+<ul class="simple">
+<li><p>Implementar la versión rápida del algoritmo (Sun y Xu, 2014), de complejidad O(n log n). La versión directa, de complejidad cuadrática, no es viable con unas 260 mil observaciones de prueba. La implementación puede programarse directamente o tomarse de una fuente de referencia debidamente citada. En ambos casos, debe validarse primero con un conjunto pequeño, frente a la versión directa o frente a la función <code class="docutils literal notranslate"><span class="pre">roc.test</span></code> del paquete <code class="docutils literal notranslate"><span class="pre">pROC</span></code> de R.</p></li>
+<li><p>Utilizar como entradas el vector común de etiquetas reales y las puntuaciones continuas de cada modelo. Como el AUC solo depende del orden de las puntuaciones, también son válidos los valores de decisión de <code class="docutils literal notranslate"><span class="pre">LinearSVC</span></code>.</p></li>
+<li><p>Realizar dos familias de comparaciones:</p>
+<ol class="arabic simple">
+<li><p><strong>Entre entornos:</strong> para cada uno de los seis modelos, scikit-learn frente a PySpark (6 comparaciones).</p></li>
+<li><p><strong>Entre modelos:</strong> todos los pares de modelos dentro de cada entorno (15 pares por entorno).</p></li>
+</ol>
+</li>
+<li><p>Reportar, para cada comparación: el AUC de cada modelo con su intervalo de confianza (IC) del 95 %, la diferencia ΔAUC con su IC del 95 %, el estadístico z y el valor p bilateral.</p></li>
+<li><p>Corregir por comparaciones múltiples con el método de Holm dentro de cada familia, con nivel de significancia α = 0.05, y reportar los valores p ajustados.</p></li>
+<li><p>Visualizar los resultados mediante mapas de calor de ΔAUC y de valores p ajustados (uno por entorno).</p></li>
+</ul>
+<p><strong>Interpretación (obligatoria)</strong></p>
+<ul class="simple">
+<li><p>Distinguir entre significancia estadística y relevancia práctica. Con unas 260 mil observaciones de prueba, diferencias muy pequeñas de AUC pueden resultar significativas. Se debe definir y justificar de antemano un margen de relevancia práctica (por ejemplo, ΔAUC ≥ 0.005).</p></li>
+<li><p>Discutir las limitaciones de la prueba:</p>
+<ul>
+<li><p>Solo captura la variabilidad debida al muestreo del conjunto de prueba, no la debida al entrenamiento (semillas, particiones de la validación cruzada, modelos estocásticos como el bosque aleatorio).</p></li>
+<li><p>Supone observaciones independientes.</p></li>
+<li><p>El AUC resume el desempeño en todos los umbrales, por lo que puede no reflejar el desempeño en el umbral operativo elegido.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="pruebas-complementarias-mcnemar-y-bootstrap-pareado">
+<h5><span class="section-number">9.10.4.6.2. </span>Pruebas complementarias: McNemar y bootstrap pareado<a class="headerlink" href="#pruebas-complementarias-mcnemar-y-bootstrap-pareado" title="Link to this heading">#</a></h5>
+<p>La prueba de DeLong evalúa una única propiedad (el AUC) mediante una aproximación asintótica. Para verificar la robustez de las conclusiones, se aplicarán dos pruebas complementarias que examinan aspectos distintos del desempeño. Ambas se calculan sobre el mismo conjunto de prueba y con las mismas observaciones para todos los modelos.</p>
+<p><strong>Prueba de McNemar (comparación de decisiones)</strong></p>
+<ul class="simple">
+<li><p>Contrasta si dos clasificadores cometen errores con la misma frecuencia sobre las mismas observaciones, para un umbral de decisión fijo (McNemar, 1947; Dietterich, 1998).</p></li>
+<li><p>Para cada par de modelos, construir la tabla 2×2 de aciertos y errores y utilizar solo las observaciones discordantes: <em>b</em> (acierta el modelo 1 y falla el modelo 2) y <em>c</em> (falla el modelo 1 y acierta el modelo 2). El estadístico es χ² = (|b − c| − 1)² / (b + c), con un grado de libertad (corrección de continuidad). Cuando b + c &lt; 25, usar la versión exacta basada en la distribución binomial. Puede emplearse <code class="docutils literal notranslate"><span class="pre">statsmodels.stats.contingency_tables.mcnemar</span></code>.</p></li>
+<li><p>El umbral de clasificación debe definirse <strong>sin utilizar el conjunto de prueba</strong> y justificarse. Dado el posible desbalance de clases, se recomienda un umbral optimizado únicamente con datos de entrenamiento; como alternativa, puede usarse 0.5 para probabilidades y 0 para los valores de decisión de <code class="docutils literal notranslate"><span class="pre">LinearSVC</span></code>.</p></li>
+<li><p>Interpretación: esta prueba compara decisiones concretas (aciertos y errores), mientras que DeLong compara la capacidad de ordenamiento en todos los umbrales. Se debe discutir que McNemar trata todos los errores por igual, lo cual es relevante si la clase de default es minoritaria.</p></li>
+</ul>
+<p><strong>Bootstrap pareado (comparación de métricas sin fórmula de varianza cerrada)</strong></p>
+<ul class="simple">
+<li><p>Remuestrear con reemplazo las observaciones del conjunto de prueba al menos <em>B</em> = 2000 veces, usando <strong>los mismos índices</strong> para ambos modelos, y calcular en cada remuestreo la diferencia de métricas: ΔAUC, ΔAUC-PR (área bajo la curva precisión-recall) y ΔF1. Fijar la semilla aleatoria.</p></li>
+<li><p>Reportar la diferencia media y su intervalo de confianza percentil del 95 %. Se considera evidencia de diferencia cuando el intervalo no contiene el cero.</p></li>
+<li><p>Comprobar que, para el AUC, las conclusiones coinciden con las de la prueba de DeLong, y explicar cualquier discrepancia.</p></li>
+<li><p>Esta prueba es la adecuada para AUC-PR y F1, especialmente relevantes cuando la clase de default es minoritaria.</p></li>
+</ul>
+<p><strong>Alcance y corrección por comparaciones múltiples</strong></p>
+<ul class="simple">
+<li><p>Aplicar ambas pruebas a: (i) las 6 comparaciones entre entornos (el mismo modelo en scikit-learn y en PySpark) y (ii) el par formado por los dos modelos con mayor AUC dentro de cada entorno.</p></li>
+<li><p>Corregir con el método de Holm dentro de cada familia de comparaciones, con nivel de significancia α = 0.05.</p></li>
+<li><p>Presentar una tabla que resuma, para cada comparación, el resultado de las tres pruebas (DeLong, McNemar y bootstrap pareado), y discutir sus coincidencias y discrepancias.</p></li>
+</ul>
+</section>
+</section>
 <section id="interpretabilidad-con-lime">
-<h4><span class="section-number">9.10.4.5. </span>Interpretabilidad con LIME<a class="headerlink" href="#interpretabilidad-con-lime" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">9.10.4.7. </span>Interpretabilidad con LIME<a class="headerlink" href="#interpretabilidad-con-lime" title="Link to this heading">#</a></h4>
 <ul class="simple">
 <li><p>Instalar LIME: <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">lime</span></code></p></li>
+<li><p>Aplicar LIME al modelo con mayor AUC de cada entorno entre los que entregan probabilidades (<code class="docutils literal notranslate"><span class="pre">LinearSVC</span></code> no las produce).</p></li>
 <li><p>Seleccionar una o dos instancias clasificadas erróneamente</p></li>
 <li><p>Aplicar <code class="docutils literal notranslate"><span class="pre">lime.lime_tabular.LimeTabularExplainer</span></code></p></li>
 <li><p>Visualizar:</p>
@@ -8938,18 +9065,20 @@ ANÁLISIS COMPLETADO - TODAS LAS TABLAS EXPORTADAS
 </ul>
 </section>
 <section id="comparacion-de-resultados">
-<h4><span class="section-number">9.10.4.6. </span>Comparación de Resultados<a class="headerlink" href="#comparacion-de-resultados" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">9.10.4.8. </span>Comparación de Resultados<a class="headerlink" href="#comparacion-de-resultados" title="Link to this heading">#</a></h4>
 <ul class="simple">
 <li><p>Tabla comparativa con:</p>
 <ul>
-<li><p>Métricas para scikit-learn vs PySpark</p></li>
-<li><p>Tiempo de cómputo (preprocesamiento, entrenamiento con validación, predicción)</p></li>
+<li><p>Métricas de los seis modelos en scikit-learn y en PySpark</p></li>
+<li><p>Tiempo de cómputo (preprocesamiento, entrenamiento con validación, predicción) por modelo y por entorno</p></li>
+<li><p>Resultados de la prueba de DeLong (ΔAUC, IC del 95 % y valor p ajustado) y de las pruebas complementarias de McNemar y de bootstrap pareado</p></li>
 </ul>
 </li>
 <li><p>Gráficos:</p>
 <ul>
-<li><p>Curva ROC</p></li>
+<li><p>Curvas ROC (una figura por entorno, con los seis modelos superpuestos)</p></li>
 <li><p>Comparación de tiempos</p></li>
+<li><p>Mapas de calor de la prueba de DeLong</p></li>
 </ul>
 </li>
 </ul>
@@ -8963,11 +9092,15 @@ ANÁLISIS COMPLETADO - TODAS LAS TABLAS EXPORTADAS
 <li><p>Preprocesamiento (scikit-learn y PySpark)</p></li>
 <li><p>Modelado + tuning de hiperparámetros</p></li>
 <li><p>Evaluación de métricas</p></li>
+<li><p>Comparación estadística de los modelos (prueba de DeLong y pruebas complementarias de McNemar y de bootstrap pareado)</p></li>
 <li><p>Interpretabilidad con LIME</p></li>
 <li><p>Reflexión crítica sobre:</p>
 <ul>
 <li><p>¿Qué entorno fue más rápido y por qué? (Considerar el efecto del tamaño completo del dataset, el caché, el <code class="docutils literal notranslate"><span class="pre">CrossValidator</span></code> y la configuración de Spark)</p></li>
 <li><p>¿Cuál fue más preciso?</p></li>
+<li><p>¿Qué diferencias en el AUC, entre modelos y entre entornos, resultaron estadísticamente significativas tras la corrección por comparaciones múltiples, y cuáles son relevantes en la práctica?</p></li>
+<li><p>¿Qué diferencias de implementación entre scikit-learn y PySpark (por ejemplo, la discretización de variables continuas en los árboles, la función de pérdida de <code class="docutils literal notranslate"><span class="pre">LinearSVC</span></code> o la regularización) pueden explicar las discrepancias observadas?</p></li>
+<li><p>¿Qué limitaciones tiene la prueba de DeLong en este diseño experimental y cómo las complementan las pruebas de McNemar y de bootstrap pareado? ¿Coinciden las conclusiones de las tres pruebas?</p></li>
 <li><p>¿A partir de qué volumen de datos PySpark comienza a superar a scikit-learn?</p></li>
 <li><p>¿Qué aporta LIME y cuáles son sus limitaciones en entornos distribuidos?</p></li>
 <li><p>¿Qué efecto tuvo cada una de las condiciones obligatorias en el rendimiento?</p></li>
@@ -8982,9 +9115,16 @@ ANÁLISIS COMPLETADO - TODAS LAS TABLAS EXPORTADAS
 <li><p><a class="reference external" href="https://github.com/marcotcr/lime">LIME Documentation</a></p></li>
 <li><p><a class="reference external" href="https://spark.apache.org/docs/latest/ml-guide.html">PySpark MLlib</a></p></li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
+</section>
+<section id="referencias">
+<h3><span class="section-number">9.10.7. </span>Referencias<a class="headerlink" href="#referencias" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>DeLong, E. R., DeLong, D. M. y Clarke-Pearson, D. L. (1988). Comparing the areas under two or more correlated receiver operating characteristic curves: a nonparametric approach. <em>Biometrics</em>, 44(3), 837–845.</p></li>
+<li><p>Dietterich, T. G. (1998). Approximate statistical tests for comparing supervised classification learning algorithms. <em>Neural Computation</em>, 10(7), 1895–1923.</p></li>
+<li><p>Efron, B. y Tibshirani, R. J. (1993). <em>An Introduction to the Bootstrap</em>. Chapman &amp; Hall.</p></li>
+<li><p>McNemar, Q. (1947). Note on the sampling error of the difference between correlated proportions or percentages. <em>Psychometrika</em>, 12(2), 153–157.</p></li>
+<li><p>Sun, X. y Xu, W. (2014). Fast implementation of DeLong’s algorithm for comparing the areas under correlated receiver operating characteristic curves. <em>IEEE Signal Processing Letters</em>, 21(11), 1389–1393.</p></li>
+</ul>
 </section>
 </section>
 </section>
@@ -9119,18 +9259,26 @@ ANÁLISIS COMPLETADO - TODAS LAS TABLAS EXPORTADAS
 </ul>
 </li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocesamiento">9.10.4.2. Preprocesamiento</a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#scikit-learn">9.10.4.2.1. scikit-learn</a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">9.10.4.2.2. PySpark</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#particion-comun-de-los-datos">9.10.4.2.1. Partición común de los datos</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#scikit-learn">9.10.4.2.2. scikit-learn</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">9.10.4.2.3. PySpark</a></li>
 </ul>
 </li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modelado-con-scikit-learn">9.10.4.3. Modelado con scikit-learn</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modelado-con-pyspark">9.10.4.4. Modelado con PySpark</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretabilidad-con-lime">9.10.4.5. Interpretabilidad con LIME</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacion-de-resultados">9.10.4.6. Comparación de Resultados</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-y-espacios-de-busqueda">9.10.4.3. Modelos y espacios de búsqueda</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modelado-con-scikit-learn">9.10.4.4. Modelado con scikit-learn</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modelado-con-pyspark">9.10.4.5. Modelado con PySpark</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacion-estadistica-de-los-modelos">9.10.4.6. Comparación estadística de los modelos</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#prueba-de-delong-obligatoria">9.10.4.6.1. Prueba de DeLong (obligatoria)</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#pruebas-complementarias-mcnemar-y-bootstrap-pareado">9.10.4.6.2. Pruebas complementarias: McNemar y bootstrap pareado</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretabilidad-con-lime">9.10.4.7. Interpretabilidad con LIME</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacion-de-resultados">9.10.4.8. Comparación de Resultados</a></li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#entregable">9.10.5. Entregable</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recursos">9.10.6. Recursos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">9.10.7. Referencias</a></li>
 </ul>
 </li>
 </ul>
