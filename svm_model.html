@@ -2210,14 +2210,18 @@ coef = [ 0.129 -0.218 -0.059] | intercept = [1.17]
 <p><strong>Del mapeo explícito al kernel: una verificación numérica</strong></p>
 <ul class="simple">
 <li><p>Construir <span class="math notranslate nohighlight">\(\phi(x)\)</span> de forma explícita se vuelve inviable cuando la dimensión crece. La observación clave es que SVM <strong>solo necesita productos internos</strong> <span class="math notranslate nohighlight">\(\langle \phi(x),\phi(z)\rangle\)</span>, y para ciertos mapeos ese producto puede calcularse <strong>sin construir <span class="math notranslate nohighlight">\(\phi\)</span></strong>.</p></li>
-<li><p>Para <span class="math notranslate nohighlight">\(x,z\in\mathbb{R}^2\)</span>, el mapeo polinómico de grado 2
-$<span class="math notranslate nohighlight">\(
+<li><p>Para <span class="math notranslate nohighlight">\(x,z\in\mathbb{R}^2\)</span>, el mapeo polinómico de grado 2</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
 \phi(x)=\left(1,\ \sqrt{2}\,x_1,\ \sqrt{2}\,x_2,\ x_1^2,\ \sqrt{2}\,x_1x_2,\ x_2^2\right)
-\)</span><span class="math notranslate nohighlight">\(
-satisface la identidad
-\)</span><span class="math notranslate nohighlight">\(
+\]</div>
+<p>satisface la identidad</p>
+<div class="math notranslate nohighlight">
+\[
 \langle \phi(x),\phi(z)\rangle=(\langle x,z\rangle+1)^2=k_{\text{poly}}(x,z).
-\)</span>$</p></li>
+\]</div>
+<ul class="simple">
 <li><p>Verificamos la identidad numéricamente con <code class="docutils literal notranslate"><span class="pre">polynomial_kernel</span></code> de <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>: el lado izquierdo <strong>construye</strong> el espacio de 6 dimensiones, el derecho <strong>nunca lo construye</strong>.</p></li>
 </ul>
 <div class="cell docutils container">
