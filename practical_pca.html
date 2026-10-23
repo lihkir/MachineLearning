@@ -396,13 +396,26 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autovalores-y-autovectores-de-una-matriz-simetrica">7.5. Autovalores y autovectores de una matriz simétrica</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estandarizacion-y-matriz-de-correlacion-muestral">7.6. Estandarización y matriz de correlación muestral</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reduccion-de-dimension-y-perdida-de-informacion">7.7. Reducción de dimensión y pérdida de información</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion">7.8. Implementación</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion-al-analisis-de-componentes-principales">7.9. Introducción al análisis de componentes principales</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-para-reduccion-de-dimension">7.9.1. PCA para reducción de dimensión</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-para-visualizacion-digitos-escritos-a-mano">7.9.2. PCA para visualización: Dígitos escritos a mano</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-del-numero-de-componentes">7.9.3. Selección del número de componentes</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-como-filtro-de-ruido">7.9.4. PCA como filtro de ruido</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-eigenfaces">7.9.5. Ejemplo Eigenfaces</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kernel-pca">7.8. Kernel PCA</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#centrado-de-los-datos-y-problema-de-autovalores">7.8.1. Centrado de los datos y problema de autovalores</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#forma-matricial">7.8.1.1. Forma matricial</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-a-datos-transformados-a-un-rkhs">7.8.2. Aplicación a datos transformados a un RKHS</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones-kernel">7.8.3. Funciones kernel</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#justificacion-del-centrado-de-los-datos">7.8.4. Justificación del centrado de los datos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#centrado-de-los-datos-mediante-la-funcion-nucleo">7.8.5. Centrado de los datos mediante la función núcleo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-del-pca-con-nucleos">7.8.6. Algoritmo del PCA con núcleos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion-en-python">7.8.7. Implementación en Python</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion">7.9. Implementación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion-al-analisis-de-componentes-principales">7.10. Introducción al análisis de componentes principales</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-para-reduccion-de-dimension">7.10.1. PCA para reducción de dimensión</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-para-visualizacion-digitos-escritos-a-mano">7.10.2. PCA para visualización: Dígitos escritos a mano</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-del-numero-de-componentes">7.10.3. Selección del número de componentes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-como-filtro-de-ruido">7.10.4. PCA como filtro de ruido</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-eigenfaces">7.10.5. Ejemplo Eigenfaces</a></li>
 </ul>
 </li>
 </ul>
@@ -478,10 +491,10 @@
 <p>donde <span class="math notranslate nohighlight">\(\boldsymbol{w}=(w_{1}, w_{2})^{T}\)</span> representa un <em><strong>vector de coeficientes</strong></em>.</p>
 </li>
 </ul>
-<figure class="align-center" id="id4">
+<figure class="align-center" id="id6">
 <img alt="_images/Principal20Analysis20principal.gif" src="_images/Principal20Analysis20principal.gif" />
 <figcaption>
-<p><span class="caption-number">Fig. 7.2 </span><span class="caption-text">Simulación de <em><strong>múltiples ejes de proyección</strong></em> <span class="math notranslate nohighlight">\(y=w_{1}x_{1}+w_{2}x_{2}\)</span> en el PCA.</span><a class="headerlink" href="#id4" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 7.2 </span><span class="caption-text">Simulación de <em><strong>múltiples ejes de proyección</strong></em> <span class="math notranslate nohighlight">\(y=w_{1}x_{1}+w_{2}x_{2}\)</span> en el PCA.</span><a class="headerlink" href="#id6" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <div class="dropdown admonition">
@@ -638,11 +651,11 @@ L(\boldsymbol{w}, \lambda)=\boldsymbol{w}^{T}S\boldsymbol{w}+\lambda(1-\boldsymb
   \end{split}\]</div>
 </li>
 </ul>
-<figure class="align-center" id="id5">
+<figure class="align-center" id="id7">
 <a class="reference internal image-reference" href="_images/first_second_pca_bidimentional.png"><img alt="_images/first_second_pca_bidimentional.png" src="_images/first_second_pca_bidimentional.png" style="width: 496.29999999999995px; height: 386.4px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Fig. 7.3 </span><span class="caption-text"><em><strong>Valores propios</strong></em>, <em><strong>primeros y segundos componentes principales</strong></em>. Fuente <span class="bibtex-citation" id="id2">[<a class="reference internal" href="biblio.html#id20" title="S. Konishi. Introduction to Multivariate Analysis: Linear and Nonlinear Modeling. Chapman &amp; Hall/CRC Texts in Statistical Science. Taylor &amp; Francis, 2014. ISBN 9781466567283. URL: https://books.google.com.co/books?id=fcuuAwAAQBAJ.">Konishi, 2014</a>]</span>.</span><a class="headerlink" href="#id5" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 7.3 </span><span class="caption-text"><em><strong>Valores propios</strong></em>, <em><strong>primeros y segundos componentes principales</strong></em>. Fuente <span class="bibtex-citation" id="id2">[<a class="reference internal" href="biblio.html#id20" title="S. Konishi. Introduction to Multivariate Analysis: Linear and Nonlinear Modeling. Chapman &amp; Hall/CRC Texts in Statistical Science. Taylor &amp; Francis, 2014. ISBN 9781466567283. URL: https://books.google.com.co/books?id=fcuuAwAAQBAJ.">Konishi, 2014</a>]</span>.</span><a class="headerlink" href="#id7" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <ul class="simple">
@@ -820,7 +833,7 @@ L(\boldsymbol{w}, \lambda)=\boldsymbol{w}^{T}S\boldsymbol{w}+\lambda(1-\boldsymb
 </li>
 </ul>
 <ul class="simple">
-<li><p>La <em><strong>relación entre los autovalores y autovectores de la matriz de varianza-covarianza muestral</strong></em> <span class="math notranslate nohighlight">\(S\)</span> dada por Ecuación <a class="reference internal" href="#equation-eigenvalue-eigenvector-relation">(7.11)</a> puede expresarse de la siguiente manera:</p>
+<li><p>La <em><strong>relación entre los autovalores y autovectores de la matriz de varianza-covarianza muestral</strong></em> <span class="math notranslate nohighlight">\(S\)</span> dada por Ecuación <a class="reference internal" href="#equation-eigenvalue-eigenvector-relation">(7.11)</a> puede expresarse de la siguiente manera (<code class="docutils literal notranslate"><span class="pre">verifíquelo</span></code>):</p>
 <ol class="arabic simple">
 <li><p><span class="math notranslate nohighlight">\(SW=W\Lambda,\quad W^{T}W=I_{p}\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(W^{T}SW=\Lambda\)</span></p></li>
@@ -872,7 +885,7 @@ L(\boldsymbol{w}, \lambda)=\boldsymbol{w}^{T}S\boldsymbol{w}+\lambda(1-\boldsymb
 <p class="admonition-title">Observación</p>
 <ul class="simple">
 <li><p>Nótese que en la <em><strong>matriz de varianza-covarianza muestral basada en los datos estandarizados</strong></em>, todos los <em><strong>elementos diagonales</strong></em> <span class="math notranslate nohighlight">\(r_{jj}\)</span> son 1, y obtenemos la matriz <span class="math notranslate nohighlight">\(R\)</span> con <span class="math notranslate nohighlight">\(r_{jk}\)</span> como los elementos no diagonales, los <em><strong>coeficientes de correlación muestral entre las variables</strong></em> <span class="math notranslate nohighlight">\(j\)</span>-ésima y <span class="math notranslate nohighlight">\(k\)</span>-ésima (<em>matriz de correlación muestral</em>).</p></li>
-<li><p><em><strong>PCA</strong></em> comenzando <em><strong>con datos multidimensionales estandarizados</strong></em> se convierte así en un problema de <em><strong>encontrar los autovalores y autovectores de la matriz de correlación muestral</strong></em> <span class="math notranslate nohighlight">\(R\)</span>, lo cual se realiza mediante el <em><strong>mismo proceso de derivación de componentes principales que el de PCA comenzando con una matriz de varianza-covarianza muestral</strong></em>.</p></li>
+<li><p><em><strong>PCA</strong></em> comenzando <em><strong>con datos multidimensionales estandarizados</strong></em> se convierte así en un problema de <em><strong>encontrar los autovalores y autovectores de la matriz de correlación muestral</strong></em> <span class="math notranslate nohighlight">\(R\)</span>, lo cual se realiza mediante el <em><strong>mismo proceso de derivación de componentes principales que el de PCA comenzando con una matriz de varianza-covarianza muestral</strong></em> (<code class="docutils literal notranslate"><span class="pre">verifíquelo</span></code>).</p></li>
 </ul>
 </div>
 </section>
@@ -1018,8 +1031,516 @@ y_2 = -\frac{1}{\sqrt{2}}x_1 + \frac{1}{\sqrt{2}}x_2.
 </figcaption>
 </figure>
 </section>
+<section id="kernel-pca">
+<span id="id4"></span><h2><span class="section-number">7.8. </span>Kernel PCA<a class="headerlink" href="#kernel-pca" title="Link to this heading">#</a></h2>
+<p>El análisis de componentes principales (PCA) es un método eficaz para descubrir estructura en datos de alta dimensión mediante proyecciones sobre combinaciones lineales de las variables. Sin embargo, su alcance se limita a estructuras lineales. La pregunta que surge de manera natural es cómo detectar estructuras <strong>no lineales</strong> en datos dispersos en un espacio de alta dimensión. El PCA con kernels (<em>kernel PCA</em>) responde a esta pregunta combinando dos ideas:</p>
+<ul class="simple">
+<li><p>Reformular el problema de autovalores de la matriz de varianza-covarianza en términos de los <strong>productos internos</strong> entre observaciones.</p></li>
+<li><p>Reemplazar esos productos internos, calculados en un espacio de características de dimensión muy alta, por una <strong>función kernel</strong> que se evalúa directamente en el espacio de entrada (<code class="docutils literal notranslate"><span class="pre">kernel</span> <span class="pre">trick</span></code>).</p></li>
+</ul>
+<p>Esta sección sigue ese orden. Los resultados se enuncian con precisión, pero <strong>las demostraciones se dejan como tareas</strong> guiadas, cada una con una estrategia sugerida y criterios de verificación (ver guía <span class="bibtex-citation" id="id5">[<a class="reference internal" href="biblio.html#id20" title="S. Konishi. Introduction to Multivariate Analysis: Linear and Nonlinear Modeling. Chapman &amp; Hall/CRC Texts in Statistical Science. Taylor &amp; Francis, 2014. ISBN 9781466567283. URL: https://books.google.com.co/books?id=fcuuAwAAQBAJ.">Konishi, 2014</a>]</span>).</p>
+<section id="centrado-de-los-datos-y-problema-de-autovalores">
+<h3><span class="section-number">7.8.1. </span>Centrado de los datos y problema de autovalores<a class="headerlink" href="#centrado-de-los-datos-y-problema-de-autovalores" title="Link to this heading">#</a></h3>
+<p>Supongamos que se observan <span class="math notranslate nohighlight">\(n\)</span> datos <span class="math notranslate nohighlight">\(p\)</span>-dimensionales <span class="math notranslate nohighlight">\(\boldsymbol{x}_1,\boldsymbol{x}_2,\dots,\boldsymbol{x}_n\)</span>. Se calcula el vector de medias muestral</p>
+<div class="math notranslate nohighlight">
+\[
+\bar{\boldsymbol{x}}=\frac{1}{n}\sum_{i=1}^{n}\boldsymbol{x}_i,
+\]</div>
+<p>que corresponde al centroide de los datos, y se centran las observaciones: <span class="math notranslate nohighlight">\(\boldsymbol{x}_i^{*}=\boldsymbol{x}_i-\bar{\boldsymbol{x}}\)</span>. El vector de medias de los datos centrados es</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{1}{n}\sum_{i=1}^{n}\boldsymbol{x}_i^{*}=\frac{1}{n}\sum_{i=1}^{n}(\boldsymbol{x}_i-\bar{\boldsymbol{x}})=\boldsymbol{0}.
+\]</div>
+<p>Con el centroide trasladado al origen se omite el asterisco y se escribe</p>
+<div class="math notranslate nohighlight" id="equation-eq-kpca-centrado">
+<span class="eqno">(7.13)<a class="headerlink" href="#equation-eq-kpca-centrado" title="Link to this equation">#</a></span>\[
+\boldsymbol{x}_1,\boldsymbol{x}_2,\dots,\boldsymbol{x}_n;\qquad \sum_{i=1}^{n}\boldsymbol{x}_i=\boldsymbol{0}.
+\]</div>
+<p>El PCA sobre los datos centrados consiste en hallar los autovalores y autovectores de la matriz de varianza-covarianza muestral</p>
+<div class="math notranslate nohighlight" id="equation-eq-kpca-s">
+<span class="eqno">(7.14)<a class="headerlink" href="#equation-eq-kpca-s" title="Link to this equation">#</a></span>\[
+S=\frac{1}{n}\sum_{i=1}^{n}\boldsymbol{x}_i\boldsymbol{x}_i^{T}.
+\]</div>
+<div class="tip admonition">
+<p class="admonition-title">Observación sobre la normalización</p>
+<p>En esta sección se usa el factor <span class="math notranslate nohighlight">\(1/n\)</span> en lugar de <span class="math notranslate nohighlight">\(1/(n-1)\)</span>. Los autovectores no cambian, y los autovalores quedan multiplicados por el factor constante <span class="math notranslate nohighlight">\((n-1)/n\)</span>. La elección con <span class="math notranslate nohighlight">\(1/n\)</span> simplifica las fórmulas del problema dual que se presenta a continuación.</p>
+</div>
+<p>Sean <span class="math notranslate nohighlight">\(\lambda_1\ge\lambda_2\ge\cdots\ge\lambda_q&gt;0\)</span> los autovalores positivos de <span class="math notranslate nohighlight">\(S\)</span> y <span class="math notranslate nohighlight">\(\boldsymbol{w}_1,\dots,\boldsymbol{w}_q\)</span> los autovectores correspondientes, ortogonales entre sí y de norma uno:</p>
+<div class="math notranslate nohighlight" id="equation-eq-kpca-autovalores">
+<span class="eqno">(7.15)<a class="headerlink" href="#equation-eq-kpca-autovalores" title="Link to this equation">#</a></span>\[
+S\boldsymbol{w}_\alpha=\lambda_\alpha\boldsymbol{w}_\alpha,\qquad \alpha=1,2,\dots,q.
+\]</div>
+<p>La idea central consiste en reescribir el lado izquierdo de <a class="reference internal" href="#equation-eq-kpca-autovalores">(7.15)</a>:</p>
+<div class="math notranslate nohighlight">
+\[
+S\boldsymbol{w}_\alpha=\frac{1}{n}\sum_{i=1}^{n}\boldsymbol{x}_i\boldsymbol{x}_i^{T}\boldsymbol{w}_\alpha=\frac{1}{n}\sum_{i=1}^{n}(\boldsymbol{x}_i^{T}\boldsymbol{w}_\alpha)\,\boldsymbol{x}_i=\lambda_\alpha\boldsymbol{w}_\alpha .
+\]</div>
+<p>Si <span class="math notranslate nohighlight">\(\lambda_\alpha\neq0\)</span>, el autovector <span class="math notranslate nohighlight">\(\boldsymbol{w}_\alpha\)</span> es una combinación lineal de los datos:</p>
+<div class="math notranslate nohighlight" id="equation-eq-kpca-combinacion">
+<span class="eqno">(7.16)<a class="headerlink" href="#equation-eq-kpca-combinacion" title="Link to this equation">#</a></span>\[
+\boldsymbol{w}_\alpha=\sum_{i=1}^{n}c_{i\alpha}\boldsymbol{x}_i,\qquad c_{i\alpha}=\frac{1}{n\lambda_\alpha}\,\boldsymbol{x}_i^{T}\boldsymbol{w}_\alpha .
+\]</div>
+<section id="forma-matricial">
+<h4><span class="section-number">7.8.1.1. </span>Forma matricial<a class="headerlink" href="#forma-matricial" title="Link to this heading">#</a></h4>
+<p>Sea <span class="math notranslate nohighlight">\(X\)</span> la matriz de datos de orden <span class="math notranslate nohighlight">\(n\times p\)</span> cuyas filas son los datos centrados:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+X=\begin{pmatrix}\boldsymbol{x}_1^{T}\\ \boldsymbol{x}_2^{T}\\ \vdots\\ \boldsymbol{x}_n^{T}\end{pmatrix},\qquad X^{T}=(\boldsymbol{x}_1,\boldsymbol{x}_2,\dots,\boldsymbol{x}_n).
+\end{split}\]</div>
+<p>Entonces <span class="math notranslate nohighlight">\(S=\frac{1}{n}X^{T}X\)</span>, y la relación <a class="reference internal" href="#equation-eq-kpca-combinacion">(7.16)</a> se escribe como <span class="math notranslate nohighlight">\(\boldsymbol{w}_\alpha=X^{T}\boldsymbol{c}_\alpha\)</span>, donde <span class="math notranslate nohighlight">\(\boldsymbol{c}_\alpha=(c_{1\alpha},\dots,c_{n\alpha})^{T}\)</span>. Se define además la <strong>matriz de Gram</strong> de los datos, de orden <span class="math notranslate nohighlight">\(n\times n\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-eq-kpca-gram">
+<span class="eqno">(7.17)<a class="headerlink" href="#equation-eq-kpca-gram" title="Link to this equation">#</a></span>\[\begin{split}
+K=XX^{T}=\begin{pmatrix}
+\boldsymbol{x}_1^{T}\boldsymbol{x}_1 &amp; \boldsymbol{x}_1^{T}\boldsymbol{x}_2 &amp; \cdots &amp; \boldsymbol{x}_1^{T}\boldsymbol{x}_n\\
+\boldsymbol{x}_2^{T}\boldsymbol{x}_1 &amp; \boldsymbol{x}_2^{T}\boldsymbol{x}_2 &amp; \cdots &amp; \boldsymbol{x}_2^{T}\boldsymbol{x}_n\\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots\\
+\boldsymbol{x}_n^{T}\boldsymbol{x}_1 &amp; \boldsymbol{x}_n^{T}\boldsymbol{x}_2 &amp; \cdots &amp; \boldsymbol{x}_n^{T}\boldsymbol{x}_n
+\end{pmatrix}.
+\end{split}\]</div>
+<div class="tip admonition">
+<p class="admonition-title">Proposición 1 (problema dual del PCA)</p>
+<p>Sea <span class="math notranslate nohighlight">\((\lambda,\boldsymbol{w})\)</span> un par autovalor, autovector de <span class="math notranslate nohighlight">\(S\)</span> con <span class="math notranslate nohighlight">\(\lambda&gt;0\)</span> y <span class="math notranslate nohighlight">\(\|\boldsymbol{w}\|=1\)</span>. Entonces el vector <span class="math notranslate nohighlight">\(\boldsymbol{c}=\frac{1}{n\lambda}X\boldsymbol{w}\)</span> cumple:</p>
+<ul class="simple">
+<li><p><strong>Inciso 1.</strong> <span class="math notranslate nohighlight">\(\boldsymbol{w}=X^{T}\boldsymbol{c}\)</span>.</p></li>
+<li><p><strong>Inciso 2.</strong> <span class="math notranslate nohighlight">\(K\boldsymbol{c}=n\lambda\,\boldsymbol{c}\)</span>, es decir, <span class="math notranslate nohighlight">\(\boldsymbol{c}\)</span> es un autovector de <span class="math notranslate nohighlight">\(K\)</span> con autovalor <span class="math notranslate nohighlight">\(n\lambda\)</span>.</p></li>
+<li><p><strong>Inciso 3.</strong> <span class="math notranslate nohighlight">\(n\lambda\,\boldsymbol{c}^{T}\boldsymbol{c}=1\)</span>.</p></li>
+</ul>
+<p>Por consiguiente, el problema de autovalores de <span class="math notranslate nohighlight">\(S\)</span> (de orden <span class="math notranslate nohighlight">\(p\)</span>) se reemplaza por el problema de autovalores de <span class="math notranslate nohighlight">\(K\)</span> (de orden <span class="math notranslate nohighlight">\(n\)</span>):</p>
+<div class="math notranslate nohighlight" id="equation-eq-kpca-dual">
+<span class="eqno">(7.18)<a class="headerlink" href="#equation-eq-kpca-dual" title="Link to this equation">#</a></span>\[
+K\boldsymbol{c}_\alpha=n\lambda_\alpha\boldsymbol{c}_\alpha,\qquad n\lambda_\alpha\,\boldsymbol{c}_\alpha^{T}\boldsymbol{c}_\alpha=1 .
+\]</div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Tarea 1: demostración de la Proposición 1</p>
+<p><strong>Enunciado.</strong> Demuestre los tres incisos de la Proposición 1.</p>
+<p><strong>Estrategia sugerida.</strong></p>
+<ul class="simple">
+<li><p>Para el inciso 1, calcule <span class="math notranslate nohighlight">\(X^{T}\boldsymbol{c}\)</span> sustituyendo la definición de <span class="math notranslate nohighlight">\(\boldsymbol{c}\)</span> y reconozca la matriz <span class="math notranslate nohighlight">\(S=\frac{1}{n}X^{T}X\)</span>. Use después que <span class="math notranslate nohighlight">\(S\boldsymbol{w}=\lambda\boldsymbol{w}\)</span>.</p></li>
+<li><p>Para el inciso 2, escriba <span class="math notranslate nohighlight">\(K\boldsymbol{c}=XX^{T}\boldsymbol{c}\)</span> y aplique el inciso 1 para sustituir <span class="math notranslate nohighlight">\(X^{T}\boldsymbol{c}\)</span>. Compare el resultado con la definición de <span class="math notranslate nohighlight">\(\boldsymbol{c}\)</span>.</p></li>
+<li><p>Para el inciso 3, parta de <span class="math notranslate nohighlight">\(1=\boldsymbol{w}^{T}\boldsymbol{w}\)</span>, sustituya <span class="math notranslate nohighlight">\(\boldsymbol{w}=X^{T}\boldsymbol{c}\)</span> e identifique la forma cuadrática <span class="math notranslate nohighlight">\(\boldsymbol{c}^{T}K\boldsymbol{c}\)</span>. Luego use el inciso 2.</p></li>
+</ul>
+<p><strong>Pista.</strong> La derivación habitual parte de <span class="math notranslate nohighlight">\(\frac{1}{n}X^{T}XX^{T}\boldsymbol{c}=\lambda X^{T}\boldsymbol{c}\)</span>, multiplica por la izquierda por <span class="math notranslate nohighlight">\(X\)</span> y obtiene <span class="math notranslate nohighlight">\(K^{2}\boldsymbol{c}=n\lambda K\boldsymbol{c}\)</span>. De esta igualdad no se puede concluir directamente <span class="math notranslate nohighlight">\(K\boldsymbol{c}=n\lambda\boldsymbol{c}\)</span>, porque <span class="math notranslate nohighlight">\(K\)</span> puede ser singular y, por tanto, no se puede cancelar un factor <span class="math notranslate nohighlight">\(K\)</span>. Explique con sus propias palabras por qué la ruta sugerida en los pasos anteriores, que construye <span class="math notranslate nohighlight">\(\boldsymbol{c}\)</span> explícitamente, evita esta dificultad.</p>
+<p><strong>Verificación.</strong> Compruebe las dimensiones de cada producto matricial. Compruebe también que, si <span class="math notranslate nohighlight">\(\boldsymbol{w}\)</span> tiene norma uno, la constante <span class="math notranslate nohighlight">\(\frac{1}{n\lambda}\)</span> es exactamente la que hace que <span class="math notranslate nohighlight">\(\boldsymbol{c}\)</span> cumpla el inciso 3.</p>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Proposición 2 (recíproca y puntuaciones)</p>
+<ul>
+<li><p><strong>Inciso 1.</strong> Si <span class="math notranslate nohighlight">\((\mu,\boldsymbol{c})\)</span> es un par autovalor, autovector de <span class="math notranslate nohighlight">\(K\)</span> con <span class="math notranslate nohighlight">\(\mu&gt;0\)</span> y <span class="math notranslate nohighlight">\(\mu\,\boldsymbol{c}^{T}\boldsymbol{c}=1\)</span>, entonces <span class="math notranslate nohighlight">\(\boldsymbol{w}=X^{T}\boldsymbol{c}\)</span> es un autovector de <span class="math notranslate nohighlight">\(S\)</span> de norma uno con autovalor <span class="math notranslate nohighlight">\(\mu/n\)</span>.</p></li>
+<li><p><strong>Inciso 2.</strong> Los autovalores no nulos de <span class="math notranslate nohighlight">\(S\)</span> y de <span class="math notranslate nohighlight">\(K/n\)</span> coinciden, con las mismas multiplicidades.</p></li>
+<li><p><strong>Inciso 3.</strong> La <span class="math notranslate nohighlight">\(\alpha\)</span>-ésima componente principal de una observación <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> es</p>
+<div class="math notranslate nohighlight" id="equation-eq-kpca-score">
+<span class="eqno">(7.19)<a class="headerlink" href="#equation-eq-kpca-score" title="Link to this equation">#</a></span>\[
+  y_\alpha=\boldsymbol{w}_\alpha^{T}\boldsymbol{x}=\sum_{i=1}^{n}c_{i\alpha}\,\boldsymbol{x}_i^{T}\boldsymbol{x}.
+  \]</div>
+</li>
+</ul>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Tarea 2: demostración de la Proposición 2</p>
+<p><strong>Enunciado.</strong> Demuestre los tres incisos de la Proposición 2.</p>
+<p><strong>Estrategia sugerida.</strong></p>
+<ul class="simple">
+<li><p>Para el inciso 1, calcule <span class="math notranslate nohighlight">\(S\boldsymbol{w}=\frac{1}{n}X^{T}XX^{T}\boldsymbol{c}=\frac{1}{n}X^{T}K\boldsymbol{c}\)</span> y use que <span class="math notranslate nohighlight">\(\boldsymbol{c}\)</span> es autovector de <span class="math notranslate nohighlight">\(K\)</span>. Para la norma, repita el cálculo <span class="math notranslate nohighlight">\(\boldsymbol{w}^{T}\boldsymbol{w}=\boldsymbol{c}^{T}K\boldsymbol{c}\)</span>. Justifique además que <span class="math notranslate nohighlight">\(\boldsymbol{w}\neq\boldsymbol{0}\)</span>.</p></li>
+<li><p>Para el inciso 2, use la Proposición 1 y el inciso 1 de esta proposición para construir una correspondencia entre autovectores de <span class="math notranslate nohighlight">\(S\)</span> y de <span class="math notranslate nohighlight">\(K\)</span>. Demuestre que dos autovectores ortogonales de <span class="math notranslate nohighlight">\(K\)</span> asociados al mismo autovalor producen autovectores ortogonales de <span class="math notranslate nohighlight">\(S\)</span>, lo que preserva las multiplicidades.</p></li>
+<li><p>Para el inciso 3, aplique <span class="math notranslate nohighlight">\(\boldsymbol{w}_\alpha=X^{T}\boldsymbol{c}_\alpha\)</span> a <span class="math notranslate nohighlight">\(\boldsymbol{w}_\alpha^{T}\boldsymbol{x}\)</span> y use la linealidad del producto interno.</p></li>
+</ul>
+<p><strong>Pista.</strong> Existe una ruta alternativa para el inciso 2: los productos <span class="math notranslate nohighlight">\(AB\)</span> y <span class="math notranslate nohighlight">\(BA\)</span> tienen los mismos autovalores no nulos. Identifique <span class="math notranslate nohighlight">\(A\)</span> y <span class="math notranslate nohighlight">\(B\)</span> tales que <span class="math notranslate nohighlight">\(AB=S\)</span> y <span class="math notranslate nohighlight">\(BA=K/n\)</span>, y demuestre el resultado general de que <span class="math notranslate nohighlight">\(AB\)</span> y <span class="math notranslate nohighlight">\(BA\)</span> comparten su espectro no nulo.</p>
+<p><strong>Verificación.</strong> Calcule, para una muestra pequeña con <span class="math notranslate nohighlight">\(n=3\)</span> y <span class="math notranslate nohighlight">\(p=2\)</span> elegida por usted, los autovalores de <span class="math notranslate nohighlight">\(S\)</span> y de <span class="math notranslate nohighlight">\(K/n\)</span> y compruebe que los no nulos coinciden. Observe también que <span class="math notranslate nohighlight">\(K\)</span> tiene <span class="math notranslate nohighlight">\(n\)</span> autovalores, de los cuales a lo sumo <span class="math notranslate nohighlight">\(\min(n,p)\)</span> pueden ser no nulos.</p>
+</div>
+</section>
+</section>
+<section id="aplicacion-a-datos-transformados-a-un-rkhs">
+<h3><span class="section-number">7.8.2. </span>Aplicación a datos transformados a un RKHS<a class="headerlink" href="#aplicacion-a-datos-transformados-a-un-rkhs" title="Link to this heading">#</a></h3>
+<p>La linealidad del PCA limita su capacidad cuando la estructura de los datos es no lineal. De manera análoga a lo que ocurre en las máquinas de vectores de soporte, se transforman los datos a un espacio de dimensión mayor, denominado <strong>espacio de características</strong>, donde sí se aplica el PCA lineal. Sea</p>
+<div class="math notranslate nohighlight" id="equation-eq-kpca-phi">
+<span class="eqno">(7.20)<a class="headerlink" href="#equation-eq-kpca-phi" title="Link to this equation">#</a></span>\[
+\Phi(\boldsymbol{x})=(\phi_1(\boldsymbol{x}),\phi_2(\boldsymbol{x}),\dots,\phi_r(\boldsymbol{x}))^{T}
+\]</div>
+<p>una función no lineal de <span class="math notranslate nohighlight">\(\mathbb{R}^p\)</span> en <span class="math notranslate nohighlight">\(\mathbb{R}^r\)</span>, con <span class="math notranslate nohighlight">\(r&gt;p\)</span> y componentes <span class="math notranslate nohighlight">\(\phi_j\)</span> de valor real. Los datos transformados son <span class="math notranslate nohighlight">\(\Phi(\boldsymbol{x}_1),\dots,\Phi(\boldsymbol{x}_n)\)</span>. Primero se centran en el espacio de características:</p>
+<div class="math notranslate nohighlight" id="equation-eq-kpca-phi-centrado">
+<span class="eqno">(7.21)<a class="headerlink" href="#equation-eq-kpca-phi-centrado" title="Link to this equation">#</a></span>\[
+\bar{\Phi}=\frac{1}{n}\sum_{i=1}^{n}\Phi(\boldsymbol{x}_i),\qquad \Phi_c(\boldsymbol{x}_i)=\Phi(\boldsymbol{x}_i)-\bar{\Phi},\qquad \sum_{i=1}^{n}\Phi_c(\boldsymbol{x}_i)=\boldsymbol{0}.
+\]</div>
+<p>Sea <span class="math notranslate nohighlight">\(Z_c=(\Phi_c(\boldsymbol{x}_1),\dots,\Phi_c(\boldsymbol{x}_n))^{T}\)</span> la matriz de orden <span class="math notranslate nohighlight">\(n\times r\)</span> con los datos centrados como filas. La matriz de varianza-covarianza en el espacio de características y su matriz de Gram son</p>
+<div class="math notranslate nohighlight" id="equation-eq-kpca-sc-kc">
+<span class="eqno">(7.22)<a class="headerlink" href="#equation-eq-kpca-sc-kc" title="Link to this equation">#</a></span>\[
+S_c=\frac{1}{n}\sum_{i=1}^{n}\Phi_c(\boldsymbol{x}_i)\Phi_c(\boldsymbol{x}_i)^{T}=\frac{1}{n}Z_c^{T}Z_c,\qquad K_c=Z_cZ_c^{T},
+\]</div>
+<p>donde <span class="math notranslate nohighlight">\((K_c)_{jk}=\Phi_c(\boldsymbol{x}_j)^{T}\Phi_c(\boldsymbol{x}_k)\)</span>.</p>
+<div class="tip admonition">
+<p class="admonition-title">Proposición 3 (PCA en el espacio de características)</p>
+<p>Sea <span class="math notranslate nohighlight">\((\lambda_\alpha^{F},\boldsymbol{w}_\alpha^{F})\)</span> un par autovalor, autovector de <span class="math notranslate nohighlight">\(S_c\)</span> con <span class="math notranslate nohighlight">\(\lambda_\alpha^{F}&gt;0\)</span> y <span class="math notranslate nohighlight">\(\|\boldsymbol{w}_\alpha^{F}\|=1\)</span>. Entonces:</p>
+<ul>
+<li><p><strong>Inciso 1.</strong> <span class="math notranslate nohighlight">\(\boldsymbol{w}_\alpha^{F}=Z_c^{T}\boldsymbol{c}_\alpha^{F}=\sum_{i=1}^{n}c_{i\alpha}^{F}\,\Phi_c(\boldsymbol{x}_i)\)</span>, donde <span class="math notranslate nohighlight">\(\boldsymbol{c}_\alpha^{F}\)</span> satisface</p>
+<div class="math notranslate nohighlight" id="equation-eq-kpca-dual-f">
+<span class="eqno">(7.23)<a class="headerlink" href="#equation-eq-kpca-dual-f" title="Link to this equation">#</a></span>\[
+  K_c\,\boldsymbol{c}_\alpha^{F}=n\lambda_\alpha^{F}\,\boldsymbol{c}_\alpha^{F},\qquad n\lambda_\alpha^{F}\,(\boldsymbol{c}_\alpha^{F})^{T}\boldsymbol{c}_\alpha^{F}=1 .
+  \]</div>
+</li>
+<li><p><strong>Inciso 2.</strong> La <span class="math notranslate nohighlight">\(\alpha\)</span>-ésima componente principal de una observación <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> es</p>
+<div class="math notranslate nohighlight" id="equation-eq-kpca-score-f">
+<span class="eqno">(7.24)<a class="headerlink" href="#equation-eq-kpca-score-f" title="Link to this equation">#</a></span>\[
+  y_\alpha^{F}=(\boldsymbol{w}_\alpha^{F})^{T}\Phi_c(\boldsymbol{x})=\sum_{i=1}^{n}c_{i\alpha}^{F}\,\Phi_c(\boldsymbol{x}_i)^{T}\Phi_c(\boldsymbol{x}).
+  \]</div>
+</li>
+<li><p><strong>Inciso 3.</strong> <span class="math notranslate nohighlight">\(K_c\boldsymbol{1}_n=\boldsymbol{0}\)</span>. En consecuencia, <span class="math notranslate nohighlight">\(\operatorname{rank}(K_c)\le n-1\)</span> y existen a lo sumo <span class="math notranslate nohighlight">\(n-1\)</span> componentes principales con autovalor no nulo.</p></li>
+</ul>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Tarea 3: demostración de la Proposición 3</p>
+<p><strong>Enunciado.</strong> Demuestre los tres incisos de la Proposición 3.</p>
+<p><strong>Estrategia sugerida.</strong></p>
+<ul class="simple">
+<li><p>Para los incisos 1 y 2, <strong>no repita los cálculos desde cero</strong>. Identifique qué propiedades de <span class="math notranslate nohighlight">\(X\)</span> se utilizaron en las Tareas 1 y 2. Observará que solo se emplearon identidades matriciales de la forma <span class="math notranslate nohighlight">\(S=\frac{1}{n}X^{T}X\)</span> y <span class="math notranslate nohighlight">\(K=XX^{T}\)</span>. Concluya que las demostraciones son válidas al reemplazar <span class="math notranslate nohighlight">\(X\)</span> por <span class="math notranslate nohighlight">\(Z_c\)</span>, y escriba explícitamente la sustitución en cada paso.</p></li>
+<li><p>Para el inciso 3, calcule <span class="math notranslate nohighlight">\(Z_c^{T}\boldsymbol{1}_n\)</span> y use la condición de centrado <a class="reference internal" href="#equation-eq-kpca-phi-centrado">(7.21)</a>. Luego escriba <span class="math notranslate nohighlight">\(K_c\boldsymbol{1}_n=Z_c(Z_c^{T}\boldsymbol{1}_n)\)</span>.</p></li>
+<li><p>Para la consecuencia sobre el rango, relacione <span class="math notranslate nohighlight">\(K_c\boldsymbol{1}_n=\boldsymbol{0}\)</span> con el kernel (espacio nulo) de <span class="math notranslate nohighlight">\(K_c\)</span>.</p></li>
+</ul>
+<p><strong>Pista.</strong> La dimensión <span class="math notranslate nohighlight">\(r\)</span> puede ser muy grande e incluso infinita (como ocurre con el kernel gaussiano). Discuta brevemente por qué esto no afecta el argumento: toda la información necesaria está contenida en la matriz <span class="math notranslate nohighlight">\(K_c\)</span> de orden <span class="math notranslate nohighlight">\(n\times n\)</span>, que siempre tiene dimensión finita.</p>
+<p><strong>Verificación.</strong> Compruebe numéricamente, en una muestra pequeña y con una <span class="math notranslate nohighlight">\(\Phi\)</span> explícita de su elección, que <span class="math notranslate nohighlight">\(K_c\boldsymbol{1}_n\)</span> es el vector nulo salvo errores de redondeo.</p>
+</div>
+</section>
+<section id="funciones-kernel">
+<h3><span class="section-number">7.8.3. </span>Funciones kernel<a class="headerlink" href="#funciones-kernel" title="Link to this heading">#</a></h3>
+<p>Calcular directamente los productos internos <span class="math notranslate nohighlight">\(\Phi_c(\boldsymbol{x}_j)^{T}\Phi_c(\boldsymbol{x}_k)\)</span> puede resultar inviable cuando <span class="math notranslate nohighlight">\(r\)</span> es muy grande. El kernel trick evita esta dificultad: se elige una función <span class="math notranslate nohighlight">\(K(\boldsymbol{x},\boldsymbol{y})\)</span> que se evalúa en el espacio de entrada y que cumple</p>
+<div class="math notranslate nohighlight" id="equation-eq-kpca-nucleo">
+<span class="eqno">(7.25)<a class="headerlink" href="#equation-eq-kpca-nucleo" title="Link to this equation">#</a></span>\[
+K(\boldsymbol{x}_j,\boldsymbol{x}_k)=\Phi(\boldsymbol{x}_j)^{T}\Phi(\boldsymbol{x}_k).
+\]</div>
+<p>De este modo, el valor del producto interno en el espacio de características se obtiene como un valor calculable de la función kernel, sin necesidad de conocer <span class="math notranslate nohighlight">\(\Phi\)</span>. Dos ejemplos representativos son:</p>
+<div class="math notranslate nohighlight">
+\[
+K(\boldsymbol{x},\boldsymbol{y})=\bigl(\boldsymbol{x}^{T}\boldsymbol{y}+1\bigr)^{d}\quad\text{(kernel polinomial de grado } d\text{)},
+\]</div>
+<div class="math notranslate nohighlight" id="equation-eq-kpca-ejemplos">
+<span class="eqno">(7.26)<a class="headerlink" href="#equation-eq-kpca-ejemplos" title="Link to this equation">#</a></span>\[
+K(\boldsymbol{x},\boldsymbol{y})=\exp\!\left\{-\frac{\|\boldsymbol{x}-\boldsymbol{y}\|^{2}}{2\sigma^{2}}\right\}\quad\text{(kernel gaussiano, con } \sigma&gt;0\text{)}.
+\]</div>
+<p>Ambos se calculan a partir de operaciones en el espacio de entrada de dimensión <span class="math notranslate nohighlight">\(p\)</span>. Con un kernel <span class="math notranslate nohighlight">\(K\)</span>, los datos se presentan como componentes principales <strong>no lineales</strong> en el espacio de entrada, ya que la componente <span class="math notranslate nohighlight">\(y_\alpha=\sum_{i}c_{i\alpha}K_c(\boldsymbol{x}_i,\boldsymbol{x})\)</span> es una función no lineal de <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span>, aunque sea lineal en el espacio de características. Por ejemplo, con el kernel polinomial,</p>
+<div class="math notranslate nohighlight">
+\[
+y_\alpha=\sum_{i=1}^{n}c_{i\alpha}\bigl(\boldsymbol{x}_i^{T}\boldsymbol{x}+1\bigr)^{d}\quad\text{(salvo el centrado)}.
+\]</div>
+<div class="tip admonition">
+<p class="admonition-title">Proposición 4 (matriz de Gram de un kernel)</p>
+<p>Sea <span class="math notranslate nohighlight">\(K(\boldsymbol{x},\boldsymbol{y})=\Phi(\boldsymbol{x})^{T}\Phi(\boldsymbol{y})\)</span> y sean <span class="math notranslate nohighlight">\(\boldsymbol{x}_1,\dots,\boldsymbol{x}_n\)</span> puntos cualesquiera. La matriz <span class="math notranslate nohighlight">\(\mathbf{K}\)</span> de elementos <span class="math notranslate nohighlight">\(\mathbf{K}_{jk}=K(\boldsymbol{x}_j,\boldsymbol{x}_k)\)</span> es simétrica y semidefinida positiva.</p>
+<p>Recíprocamente (teorema de Mercer y de Moore-Aronszajn, que se enuncia sin demostración), toda función simétrica cuyas matrices de Gram sean siempre semidefinidas positivas puede escribirse como un producto interno en algún espacio de características. Esta es la condición práctica para decidir si una función es un kernel válido.</p>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Tarea 4: demostración de la Proposición 4</p>
+<p><strong>Enunciado.</strong> Demuestre que <span class="math notranslate nohighlight">\(\mathbf{K}\)</span> es simétrica y semidefinida positiva.</p>
+<p><strong>Estrategia sugerida.</strong></p>
+<ul class="simple">
+<li><p>La simetría se deduce de la simetría del producto interno euclídeo.</p></li>
+<li><p>Para la semidefinición positiva, tome un vector arbitrario <span class="math notranslate nohighlight">\(\boldsymbol{a}\in\mathbb{R}^{n}\)</span> y desarrolle <span class="math notranslate nohighlight">\(\boldsymbol{a}^{T}\mathbf{K}\boldsymbol{a}=\sum_{j,k}a_ja_k\Phi(\boldsymbol{x}_j)^{T}\Phi(\boldsymbol{x}_k)\)</span>.</p></li>
+<li><p>Agrupe la doble suma para reconocer el cuadrado de la norma de un vector del espacio de características.</p></li>
+</ul>
+<p><strong>Pista.</strong> Defina <span class="math notranslate nohighlight">\(\boldsymbol{v}=\sum_{j=1}^{n}a_j\Phi(\boldsymbol{x}_j)\)</span> y calcule <span class="math notranslate nohighlight">\(\|\boldsymbol{v}\|^{2}\)</span>.</p>
+<p><strong>Verificación.</strong> La conclusión debe ser <span class="math notranslate nohighlight">\(\boldsymbol{a}^{T}\mathbf{K}\boldsymbol{a}=\|\boldsymbol{v}\|^{2}\ge0\)</span> para todo <span class="math notranslate nohighlight">\(\boldsymbol{a}\)</span>. Explique por qué esto equivale a que todos los autovalores de <span class="math notranslate nohighlight">\(\mathbf{K}\)</span> sean no negativos.</p>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Tarea 5: representación explícita del kernel polinomial</p>
+<p><strong>Enunciado.</strong> Sea <span class="math notranslate nohighlight">\(p=2\)</span> y <span class="math notranslate nohighlight">\(d=2\)</span>. Encuentre una función <span class="math notranslate nohighlight">\(\Phi:\mathbb{R}^{2}\to\mathbb{R}^{6}\)</span> tal que <span class="math notranslate nohighlight">\(\Phi(\boldsymbol{x})^{T}\Phi(\boldsymbol{y})=(\boldsymbol{x}^{T}\boldsymbol{y}+1)^{2}\)</span> para todo <span class="math notranslate nohighlight">\(\boldsymbol{x},\boldsymbol{y}\in\mathbb{R}^{2}\)</span>.</p>
+<p><strong>Estrategia sugerida.</strong></p>
+<ul class="simple">
+<li><p>Escriba <span class="math notranslate nohighlight">\(\boldsymbol{x}=(x_1,x_2)^{T}\)</span>, <span class="math notranslate nohighlight">\(\boldsymbol{y}=(y_1,y_2)^{T}\)</span> y desarrolle <span class="math notranslate nohighlight">\((1+x_1y_1+x_2y_2)^{2}\)</span> mediante el cuadrado de un trinomio.</p></li>
+<li><p>Agrupe los seis términos resultantes de modo que cada uno tenga la forma (función de <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span>) por (la misma función de <span class="math notranslate nohighlight">\(\boldsymbol{y}\)</span>).</p></li>
+<li><p>Lea las seis funciones de <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> y colóquelas como componentes de <span class="math notranslate nohighlight">\(\Phi(\boldsymbol{x})\)</span>.</p></li>
+</ul>
+<p><strong>Pista.</strong> Los términos cruzados aparecen con coeficiente 2. Para repartirlos de forma simétrica entre <span class="math notranslate nohighlight">\(\Phi(\boldsymbol{x})\)</span> y <span class="math notranslate nohighlight">\(\Phi(\boldsymbol{y})\)</span> necesitará factores del tipo <span class="math notranslate nohighlight">\(\sqrt{2}\)</span>.</p>
+<p><strong>Verificación.</strong> Elija dos puntos concretos, por ejemplo <span class="math notranslate nohighlight">\(\boldsymbol{x}=(1,2)^{T}\)</span> y <span class="math notranslate nohighlight">\(\boldsymbol{y}=(3,-1)^{T}\)</span>, y compruebe numéricamente que ambos lados de la igualdad coinciden. Discuta además qué ocurre con la dimensión <span class="math notranslate nohighlight">\(r\)</span> de <span class="math notranslate nohighlight">\(\Phi\)</span> cuando <span class="math notranslate nohighlight">\(p\)</span> y <span class="math notranslate nohighlight">\(d\)</span> crecen, y por qué esto motiva el uso del kernel.</p>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Tarea 6: el kernel gaussiano es semidefinido positivo</p>
+<p><strong>Enunciado.</strong> Demuestre que, para cualesquiera puntos <span class="math notranslate nohighlight">\(\boldsymbol{x}_1,\dots,\boldsymbol{x}_n\)</span> y <span class="math notranslate nohighlight">\(\sigma&gt;0\)</span>, la matriz <span class="math notranslate nohighlight">\(\mathbf{K}_{jk}=\exp\{-\|\boldsymbol{x}_j-\boldsymbol{x}_k\|^{2}/(2\sigma^{2})\}\)</span> es semidefinida positiva.</p>
+<p><strong>Estrategia sugerida.</strong></p>
+<ul class="simple">
+<li><p>Desarrolle <span class="math notranslate nohighlight">\(\|\boldsymbol{x}-\boldsymbol{y}\|^{2}=\|\boldsymbol{x}\|^{2}+\|\boldsymbol{y}\|^{2}-2\boldsymbol{x}^{T}\boldsymbol{y}\)</span> y factorice el kernel en tres factores: <span class="math notranslate nohighlight">\(e^{-\|\boldsymbol{x}\|^{2}/2\sigma^{2}}\)</span>, <span class="math notranslate nohighlight">\(e^{-\|\boldsymbol{y}\|^{2}/2\sigma^{2}}\)</span> y <span class="math notranslate nohighlight">\(e^{\boldsymbol{x}^{T}\boldsymbol{y}/\sigma^{2}}\)</span>.</p></li>
+<li><p>Demuestre que si <span class="math notranslate nohighlight">\(\mathbf{K}\)</span> es semidefinida positiva y <span class="math notranslate nohighlight">\(g\)</span> es una función real, entonces la matriz de elementos <span class="math notranslate nohighlight">\(g(\boldsymbol{x}_j)\mathbf{K}_{jk}g(\boldsymbol{x}_k)\)</span> también lo es (es una congruencia <span class="math notranslate nohighlight">\(D\mathbf{K}D\)</span> con <span class="math notranslate nohighlight">\(D\)</span> diagonal).</p></li>
+<li><p>Desarrolle <span class="math notranslate nohighlight">\(e^{t}=\sum_{m\ge0}t^{m}/m!\)</span> con <span class="math notranslate nohighlight">\(t=\boldsymbol{x}^{T}\boldsymbol{y}/\sigma^{2}\)</span>. Cada sumando es una potencia de un kernel lineal.</p></li>
+<li><p>Use el <strong>teorema del producto de Schur</strong> (el producto elemento a elemento de dos matrices semidefinidas positivas es semidefinido positivo), que debe demostrar o citar con precisión, para concluir que cada potencia es semidefinida positiva. Termine usando que sumas con coeficientes positivos y límites de matrices semidefinidas positivas son semidefinidas positivas.</p></li>
+</ul>
+<p><strong>Pista.</strong> Para el teorema de Schur, escriba <span class="math notranslate nohighlight">\(A=\sum_{k}\mu_k\boldsymbol{u}_k\boldsymbol{u}_k^{T}\)</span> con <span class="math notranslate nohighlight">\(\mu_k\ge0\)</span> y observe que <span class="math notranslate nohighlight">\(A\circ B=\sum_{k}\mu_k\,D_{\boldsymbol{u}_k}BD_{\boldsymbol{u}_k}\)</span>, donde <span class="math notranslate nohighlight">\(D_{\boldsymbol{u}}=\operatorname{diag}(\boldsymbol{u})\)</span>.</p>
+<p><strong>Verificación.</strong> Compruebe numéricamente, con una muestra aleatoria y distintos valores de <span class="math notranslate nohighlight">\(\sigma\)</span>, que el menor autovalor de <span class="math notranslate nohighlight">\(\mathbf{K}\)</span> es no negativo salvo errores de redondeo.</p>
+</div>
+</section>
+<section id="justificacion-del-centrado-de-los-datos">
+<h3><span class="section-number">7.8.4. </span>Justificación del centrado de los datos<a class="headerlink" href="#justificacion-del-centrado-de-los-datos" title="Link to this heading">#</a></h3>
+<p>Hasta aquí el centrado se ha presentado como un paso preliminar, casi mecánico. Sin embargo, no es un convenio de notación ni una simplificación cosmética: es una condición que determina <strong>qué objeto estadístico se está diagonalizando</strong>. En esta subsección se justifica la necesidad de centrar desde cinco perspectivas complementarias:</p>
+<ul class="simple">
+<li><p><strong>Estadística.</strong> Sin centrado se diagonaliza la matriz de segundos momentos y no la de covarianzas.</p></li>
+<li><p><strong>Variacional y geométrica.</strong> El subespacio óptimo de aproximación es afín y pasa por el centroide.</p></li>
+<li><p><strong>Interpretativa.</strong> Las nociones de varianza explicada y de componentes incorrelacionadas dependen del centrado.</p></li>
+<li><p><strong>Algebraica.</strong> El problema dual y la estructura de la matriz de Gram requieren datos centrados.</p></li>
+<li><p><strong>Específica del espacio de características.</strong> El centrado en el espacio de entrada no se hereda a <span class="math notranslate nohighlight">\(\Phi(\boldsymbol{x})\)</span>, y omitirlo en ese espacio degenera el método.</p></li>
+</ul>
+</section>
+<section id="centrado-de-los-datos-mediante-la-funcion-nucleo">
+<h3><span class="section-number">7.8.5. </span>Centrado de los datos mediante la función núcleo<a class="headerlink" href="#centrado-de-los-datos-mediante-la-funcion-nucleo" title="Link to this heading">#</a></h3>
+<p>Queda pendiente un problema práctico: el vector de medias <span class="math notranslate nohighlight">\(\bar{\Phi}\)</span> de <a class="reference internal" href="#equation-eq-kpca-phi-centrado">(7.21)</a> no puede calcularse porque <span class="math notranslate nohighlight">\(\Phi\)</span> no se conoce explícitamente. La solución consiste en expresar <span class="math notranslate nohighlight">\(K_c\)</span> en términos del núcleo no centrado <span class="math notranslate nohighlight">\(K(\boldsymbol{x}_j,\boldsymbol{x}_k)=\Phi(\boldsymbol{x}_j)^{T}\Phi(\boldsymbol{x}_k)\)</span>.</p>
+<div class="tip admonition">
+<p class="admonition-title">Proposición 5 (centrado mediante el núcleo)</p>
+<p>Sea <span class="math notranslate nohighlight">\(\mathbf{K}\)</span> la matriz de orden <span class="math notranslate nohighlight">\(n\)</span> con elementos <span class="math notranslate nohighlight">\(K(\boldsymbol{x}_j,\boldsymbol{x}_k)\)</span> y sea <span class="math notranslate nohighlight">\(H=I_n-\frac{1}{n}\boldsymbol{1}_n\boldsymbol{1}_n^{T}\)</span> la <strong>matriz de centrado</strong>. Entonces:</p>
+<ul>
+<li><p><strong>Inciso 1.</strong> Elemento a elemento,</p>
+<div class="math notranslate nohighlight" id="equation-eq-kpca-centrado-elemento">
+<span class="eqno">(7.27)<a class="headerlink" href="#equation-eq-kpca-centrado-elemento" title="Link to this equation">#</a></span>\[
+  K_c(\boldsymbol{x}_j,\boldsymbol{x}_k)=K(\boldsymbol{x}_j,\boldsymbol{x}_k)-\frac{1}{n}\sum_{r=1}^{n}K(\boldsymbol{x}_r,\boldsymbol{x}_k)-\frac{1}{n}\sum_{s=1}^{n}K(\boldsymbol{x}_j,\boldsymbol{x}_s)+\frac{1}{n^{2}}\sum_{r=1}^{n}\sum_{s=1}^{n}K(\boldsymbol{x}_r,\boldsymbol{x}_s).
+  \]</div>
+</li>
+<li><p><strong>Inciso 2.</strong> En forma matricial,</p>
+<div class="math notranslate nohighlight" id="equation-eq-kpca-centrado-matricial">
+<span class="eqno">(7.28)<a class="headerlink" href="#equation-eq-kpca-centrado-matricial" title="Link to this equation">#</a></span>\[
+  K_c=H\,\mathbf{K}\,H=\Bigl(I_n-\tfrac{1}{n}\boldsymbol{1}_n\boldsymbol{1}_n^{T}\Bigr)\mathbf{K}\Bigl(I_n-\tfrac{1}{n}\boldsymbol{1}_n\boldsymbol{1}_n^{T}\Bigr).
+  \]</div>
+</li>
+<li><p><strong>Inciso 3.</strong> Para una observación nueva <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span>, el núcleo centrado respecto de los datos de entrenamiento es</p>
+<div class="math notranslate nohighlight" id="equation-eq-kpca-centrado-nuevo">
+<span class="eqno">(7.29)<a class="headerlink" href="#equation-eq-kpca-centrado-nuevo" title="Link to this equation">#</a></span>\[
+  K_c(\boldsymbol{x}_i,\boldsymbol{x})=K(\boldsymbol{x}_i,\boldsymbol{x})-\frac{1}{n}\sum_{r=1}^{n}K(\boldsymbol{x}_r,\boldsymbol{x})-\frac{1}{n}\sum_{s=1}^{n}K(\boldsymbol{x}_i,\boldsymbol{x}_s)+\frac{1}{n^{2}}\sum_{r=1}^{n}\sum_{s=1}^{n}K(\boldsymbol{x}_r,\boldsymbol{x}_s).
+  \]</div>
+</li>
+</ul>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Tarea 7: centrado elemento a elemento</p>
+<p><strong>Enunciado.</strong> Demuestre los incisos 1 y 3 de la Proposición 5.</p>
+<p><strong>Estrategia sugerida.</strong></p>
+<ul class="simple">
+<li><p>Escriba <span class="math notranslate nohighlight">\(\Phi_c(\boldsymbol{x}_j)^{T}\Phi_c(\boldsymbol{x}_k)=\bigl(\Phi(\boldsymbol{x}_j)-\frac{1}{n}\sum_r\Phi(\boldsymbol{x}_r)\bigr)^{T}\bigl(\Phi(\boldsymbol{x}_k)-\frac{1}{n}\sum_s\Phi(\boldsymbol{x}_s)\bigr)\)</span>.</p></li>
+<li><p>Desarrolle el producto en cuatro términos, usando la bilinealidad del producto interno.</p></li>
+<li><p>Reconozca en cada término un valor de <span class="math notranslate nohighlight">\(K\)</span> mediante <a class="reference internal" href="#equation-eq-kpca-nucleo">(7.25)</a>. Preste atención a que las sumas dobles <span class="math notranslate nohighlight">\(\sum_r\sum_s\)</span> aparecen con el coeficiente <span class="math notranslate nohighlight">\(1/n^{2}\)</span>.</p></li>
+<li><p>Para el inciso 3, repita el procedimiento con <span class="math notranslate nohighlight">\(\Phi_c(\boldsymbol{x})=\Phi(\boldsymbol{x})-\bar{\Phi}\)</span>, donde <strong>la media <span class="math notranslate nohighlight">\(\bar{\Phi}\)</span> se sigue calculando con los <span class="math notranslate nohighlight">\(n\)</span> datos de entrenamiento</strong>.</p></li>
+</ul>
+<p><strong>Pista.</strong> Los dos términos intermedios son simétricos entre sí cuando <span class="math notranslate nohighlight">\(\boldsymbol{x}_j\)</span> y <span class="math notranslate nohighlight">\(\boldsymbol{x}_k\)</span> se intercambian, pero <strong>no</strong> son iguales en general para una observación nueva <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span>. Verifique con cuidado qué índice recorre cada suma.</p>
+<p><strong>Verificación.</strong> Compruebe que el inciso 3 coincide con el inciso 1 cuando <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> es uno de los datos de entrenamiento. Compruebe también, con un ejemplo numérico pequeño, que la matriz resultante tiene filas y columnas que suman cero.</p>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Tarea 8: centrado matricial</p>
+<p><strong>Enunciado.</strong> Demuestre el inciso 2 de la Proposición 5 y verifique su equivalencia con el inciso 1.</p>
+<p><strong>Estrategia sugerida.</strong></p>
+<ul class="simple">
+<li><p>Demuestre que <span class="math notranslate nohighlight">\(H\)</span> es simétrica, idempotente (<span class="math notranslate nohighlight">\(H^{2}=H\)</span>) y satisface <span class="math notranslate nohighlight">\(H\boldsymbol{1}_n=\boldsymbol{0}\)</span>.</p></li>
+<li><p>Demuestre que <span class="math notranslate nohighlight">\(Z_c=HZ\)</span>, donde <span class="math notranslate nohighlight">\(Z=(\Phi(\boldsymbol{x}_1),\dots,\Phi(\boldsymbol{x}_n))^{T}\)</span>. Para ello exprese el vector de medias como <span class="math notranslate nohighlight">\(\bar{\Phi}=\frac{1}{n}Z^{T}\boldsymbol{1}_n\)</span> y la matriz de medias replicadas como <span class="math notranslate nohighlight">\(\frac{1}{n}\boldsymbol{1}_n\boldsymbol{1}_n^{T}Z\)</span>.</p></li>
+<li><p>Calcule <span class="math notranslate nohighlight">\(K_c=Z_cZ_c^{T}=HZZ^{T}H^{T}\)</span> y reconozca <span class="math notranslate nohighlight">\(\mathbf{K}=ZZ^{T}\)</span>.</p></li>
+<li><p>Para la equivalencia con el inciso 1, calcule el elemento <span class="math notranslate nohighlight">\((j,k)\)</span> de <span class="math notranslate nohighlight">\(H\mathbf{K}H\)</span> en dos pasos. Primero obtenga <span class="math notranslate nohighlight">\((H\mathbf{K})_{jk}\)</span>, que resta a cada columna su media. Luego multiplique por <span class="math notranslate nohighlight">\(H\)</span> a la derecha, que resta a cada fila su media.</p></li>
+</ul>
+<p><strong>Pista.</strong> Interprete geométricamente <span class="math notranslate nohighlight">\(H\)</span>: el producto <span class="math notranslate nohighlight">\(H\boldsymbol{v}\)</span> resta a <span class="math notranslate nohighlight">\(\boldsymbol{v}\)</span> la media de sus componentes, es decir, proyecta ortogonalmente sobre el complemento de <span class="math notranslate nohighlight">\(\boldsymbol{1}_n\)</span>. Esto explica de forma natural las propiedades del primer paso.</p>
+<p><strong>Verificación.</strong> Compruebe numéricamente que <span class="math notranslate nohighlight">\(\boldsymbol{1}_n^{T}K_c=\boldsymbol{0}^{T}\)</span> y que <span class="math notranslate nohighlight">\(K_c\boldsymbol{1}_n=\boldsymbol{0}\)</span>, lo cual es coherente con el inciso 3 de la Proposición 3.</p>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Tarea 9: forma vectorial para una observación nueva</p>
+<p><strong>Enunciado.</strong> Sea <span class="math notranslate nohighlight">\(\boldsymbol{k}(\boldsymbol{x})=(K(\boldsymbol{x}_1,\boldsymbol{x}),\dots,K(\boldsymbol{x}_n,\boldsymbol{x}))^{T}\)</span>. Demuestre que el vector <span class="math notranslate nohighlight">\(\boldsymbol{k}_c(\boldsymbol{x})\)</span> cuyas componentes son los <span class="math notranslate nohighlight">\(K_c(\boldsymbol{x}_i,\boldsymbol{x})\)</span> de <a class="reference internal" href="#equation-eq-kpca-centrado-nuevo">(7.29)</a> puede escribirse como</p>
+<div class="math notranslate nohighlight">
+\[
+\boldsymbol{k}_c(\boldsymbol{x})=\boldsymbol{k}(\boldsymbol{x})-\frac{1}{n}\bigl(\boldsymbol{1}_n^{T}\boldsymbol{k}(\boldsymbol{x})\bigr)\boldsymbol{1}_n-\frac{1}{n}\mathbf{K}\boldsymbol{1}_n+\frac{1}{n^{2}}\bigl(\boldsymbol{1}_n^{T}\mathbf{K}\boldsymbol{1}_n\bigr)\boldsymbol{1}_n .
+\]</div>
+<p>Concluya que las puntuaciones de <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> sobre las primeras <span class="math notranslate nohighlight">\(m\)</span> componentes son las componentes del vector <span class="math notranslate nohighlight">\(C^{T}\boldsymbol{k}_c(\boldsymbol{x})\)</span>, con <span class="math notranslate nohighlight">\(C=(\boldsymbol{c}_1^{F},\dots,\boldsymbol{c}_m^{F})\)</span>.</p>
+<p><strong>Estrategia sugerida.</strong></p>
+<ul class="simple">
+<li><p>Interprete cada término de <a class="reference internal" href="#equation-eq-kpca-centrado-nuevo">(7.29)</a> como la <span class="math notranslate nohighlight">\(i\)</span>-ésima componente de un vector de <span class="math notranslate nohighlight">\(\mathbb{R}^{n}\)</span>. Identifique, por ejemplo, que <span class="math notranslate nohighlight">\(\frac{1}{n}\sum_s K(\boldsymbol{x}_i,\boldsymbol{x}_s)\)</span> es la <span class="math notranslate nohighlight">\(i\)</span>-ésima componente de <span class="math notranslate nohighlight">\(\frac{1}{n}\mathbf{K}\boldsymbol{1}_n\)</span>.</p></li>
+<li><p>Identifique el escalar <span class="math notranslate nohighlight">\(\frac{1}{n^{2}}\sum_r\sum_s K(\boldsymbol{x}_r,\boldsymbol{x}_s)\)</span> con <span class="math notranslate nohighlight">\(\frac{1}{n^{2}}\boldsymbol{1}_n^{T}\mathbf{K}\boldsymbol{1}_n\)</span>.</p></li>
+<li><p>Use <a class="reference internal" href="#equation-eq-kpca-score-f">(7.24)</a> para expresar <span class="math notranslate nohighlight">\(y_\alpha^{F}=(\boldsymbol{c}_\alpha^{F})^{T}\boldsymbol{k}_c(\boldsymbol{x})\)</span> y apile los <span class="math notranslate nohighlight">\(m\)</span> resultados.</p></li>
+</ul>
+<p><strong>Verificación.</strong> Compruebe que, si <span class="math notranslate nohighlight">\(\boldsymbol{x}=\boldsymbol{x}_j\)</span> es un dato de entrenamiento, entonces <span class="math notranslate nohighlight">\(\boldsymbol{k}_c(\boldsymbol{x}_j)\)</span> es la <span class="math notranslate nohighlight">\(j\)</span>-ésima columna de <span class="math notranslate nohighlight">\(K_c\)</span>, y que las puntuaciones de entrenamiento resultan ser <span class="math notranslate nohighlight">\(K_cC\)</span>.</p>
+</div>
+</section>
+<section id="algoritmo-del-pca-con-nucleos">
+<h3><span class="section-number">7.8.6. </span>Algoritmo del PCA con núcleos<a class="headerlink" href="#algoritmo-del-pca-con-nucleos" title="Link to this heading">#</a></h3>
+<p>Los resultados anteriores se resumen en el siguiente procedimiento. Dados <span class="math notranslate nohighlight">\(n\)</span> datos <span class="math notranslate nohighlight">\(\boldsymbol{x}_1,\dots,\boldsymbol{x}_n\)</span> de dimensión <span class="math notranslate nohighlight">\(p\)</span>:</p>
+<ul>
+<li><p><strong>Paso 1, elegir un núcleo.</strong> Seleccione una función núcleo <span class="math notranslate nohighlight">\(K\)</span> (por ejemplo, la gaussiana con un valor de <span class="math notranslate nohighlight">\(\sigma\)</span>) y construya la matriz <span class="math notranslate nohighlight">\(\mathbf{K}\)</span> de orden <span class="math notranslate nohighlight">\(n\)</span> con elementos <span class="math notranslate nohighlight">\(K(\boldsymbol{x}_j,\boldsymbol{x}_k)\)</span>.</p></li>
+<li><p><strong>Paso 2, centrar.</strong> Calcule <span class="math notranslate nohighlight">\(K_c=H\mathbf{K}H\)</span> según <a class="reference internal" href="#equation-eq-kpca-centrado-matricial">(7.28)</a>.</p></li>
+<li><p><strong>Paso 3, resolver el problema de autovalores.</strong> Obtenga los autovalores y autovectores de <span class="math notranslate nohighlight">\(K_c\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-eq-kpca-paso3">
+<span class="eqno">(7.30)<a class="headerlink" href="#equation-eq-kpca-paso3" title="Link to this equation">#</a></span>\[
+  K_c\,\boldsymbol{c}^{F}=n\lambda^{F}\,\boldsymbol{c}^{F},\qquad n\lambda^{F}\,(\boldsymbol{c}^{F})^{T}\boldsymbol{c}^{F}=1 .
+  \]</div>
+</li>
+<li><p><strong>Paso 4, ordenar y normalizar.</strong> Ordene los autovalores de mayor a menor. Si <span class="math notranslate nohighlight">\(\mu_\alpha\)</span> es el <span class="math notranslate nohighlight">\(\alpha\)</span>-ésimo autovalor de <span class="math notranslate nohighlight">\(K_c\)</span> con autovector unitario <span class="math notranslate nohighlight">\(\boldsymbol{v}_\alpha\)</span>, entonces <span class="math notranslate nohighlight">\(n\lambda_\alpha^{F}=\mu_\alpha\)</span> y el vector de coeficientes es <span class="math notranslate nohighlight">\(\boldsymbol{c}_\alpha^{F}=\boldsymbol{v}_\alpha/\sqrt{\mu_\alpha}\)</span>.</p></li>
+<li><p><strong>Paso 5, proyectar.</strong> La <span class="math notranslate nohighlight">\(\alpha\)</span>-ésima componente principal de una observación <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> es</p>
+<div class="math notranslate nohighlight" id="equation-eq-kpca-paso5">
+<span class="eqno">(7.31)<a class="headerlink" href="#equation-eq-kpca-paso5" title="Link to this equation">#</a></span>\[
+  y_\alpha=\sum_{i=1}^{n}c_{i\alpha}^{F}\,K_c(\boldsymbol{x}_i,\boldsymbol{x}),
+  \]</div>
+<p>donde <span class="math notranslate nohighlight">\(K_c(\boldsymbol{x}_i,\boldsymbol{x})\)</span> se calcula con <a class="reference internal" href="#equation-eq-kpca-centrado-nuevo">(7.29)</a>.</p>
+</li>
+</ul>
+<div class="tip admonition">
+<p class="admonition-title">Consideraciones prácticas</p>
+<p><strong>Costo computacional.</strong> El método requiere almacenar <span class="math notranslate nohighlight">\(\mathbf{K}\)</span> (<span class="math notranslate nohighlight">\(n^{2}\)</span> elementos) y diagonalizarla (del orden de <span class="math notranslate nohighlight">\(n^{3}\)</span> operaciones). Por ello es ventajoso cuando <span class="math notranslate nohighlight">\(p\)</span> es grande y <span class="math notranslate nohighlight">\(n\)</span> moderado, y costoso cuando <span class="math notranslate nohighlight">\(n\)</span> es muy grande. En ese caso se recurre a aproximaciones como el método de Nyström o las características aleatorias de Fourier.</p>
+<p><strong>Hiperparámetros.</strong> Los resultados dependen de la elección del núcleo y de sus parámetros. Con el núcleo gaussiano, un valor muy pequeño de <span class="math notranslate nohighlight">\(\sigma\)</span> hace que <span class="math notranslate nohighlight">\(\mathbf{K}\)</span> se aproxime a la identidad (cada punto solo se parece a sí mismo), mientras que un valor muy grande la aproxima a una matriz constante (todos los puntos se parecen).</p>
+<p><strong>Interpretación.</strong> A diferencia del PCA lineal, los autovectores <span class="math notranslate nohighlight">\(\boldsymbol{w}_\alpha^{F}\)</span> viven en el espacio de características y, en general, no tienen una representación explícita en el espacio de entrada. Por esta razón, reconstruir un punto del espacio de entrada a partir de sus puntuaciones (problema de la preimagen) es un problema difícil que no se aborda en esta sección.</p>
+</div>
+</section>
+<section id="implementacion-en-python">
+<h3><span class="section-number">7.8.7. </span>Implementación en Python<a class="headerlink" href="#implementacion-en-python" title="Link to this heading">#</a></h3>
+<p>El siguiente código implementa el algoritmo anterior desde cero con NumPy y lo contrasta con la implementación de <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> sobre dos circunferencias concéntricas, un conjunto de datos que ninguna proyección lineal puede separar.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>                                      <span class="c1"># Álgebra lineal y arreglos numéricos</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>                         <span class="c1"># Gráficos</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_circles</span>               <span class="c1"># Generador de dos circunferencias concéntricas</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.decomposition</span><span class="w"> </span><span class="kn">import</span> <span class="n">PCA</span><span class="p">,</span> <span class="n">KernelPCA</span>        <span class="c1"># PCA lineal y PCA con kernel de scikit-learn</span>
+
+
+<span class="c1"># Tamaños de letra grandes para que todo se lea bien dentro del libro</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
+    <span class="s2">&quot;font.size&quot;</span><span class="p">:</span> <span class="mi">14</span><span class="p">,</span>                                    <span class="c1"># Tamaño base del texto</span>
+    <span class="s2">&quot;axes.titlesize&quot;</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span>                               <span class="c1"># Tamaño de los títulos de cada panel</span>
+    <span class="s2">&quot;axes.labelsize&quot;</span><span class="p">:</span> <span class="mi">14</span><span class="p">,</span>                               <span class="c1"># Tamaño de los nombres de los ejes</span>
+    <span class="s2">&quot;xtick.labelsize&quot;</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>                              <span class="c1"># Tamaño de los números del eje horizontal</span>
+    <span class="s2">&quot;ytick.labelsize&quot;</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>                              <span class="c1"># Tamaño de los números del eje vertical</span>
+    <span class="s2">&quot;legend.fontsize&quot;</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>                              <span class="c1"># Tamaño del texto de la leyenda</span>
+<span class="p">})</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">gaussian_kernel_matrix</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">sigma</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Matriz de kernel gaussiano entre las filas de A (m x p) y las filas de B (n x p).&quot;&quot;&quot;</span>
+    <span class="n">sq_dist</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">A</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)[:,</span> <span class="kc">None</span><span class="p">]</span>                   <span class="c1"># Norma al cuadrado de cada fila de A (columna)</span>
+        <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">B</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:]</span>                 <span class="c1"># Norma al cuadrado de cada fila de B (fila)</span>
+        <span class="o">-</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">A</span> <span class="o">@</span> <span class="n">B</span><span class="o">.</span><span class="n">T</span>                                 <span class="c1"># Menos el doble del producto interno</span>
+    <span class="p">)</span>                                                   <span class="c1"># Resultado: distancias euclídeas al cuadrado</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">sq_dist</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>  <span class="c1"># Kernel gaussiano (se evitan negativos por redondeo)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">kernel_pca_fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">n_components</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Ajusta el PCA con kernel gaussiano siguiendo los pasos 1 a 4 del algoritmo.&quot;&quot;&quot;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>                                      <span class="c1"># Número de observaciones</span>
+    <span class="n">K</span> <span class="o">=</span> <span class="n">gaussian_kernel_matrix</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>             <span class="c1"># Paso 1: matriz del kernel</span>
+    <span class="n">H</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span> <span class="o">/</span> <span class="n">n</span>                 <span class="c1"># Matriz de centrado</span>
+    <span class="n">Kc</span> <span class="o">=</span> <span class="n">H</span> <span class="o">@</span> <span class="n">K</span> <span class="o">@</span> <span class="n">H</span>                                      <span class="c1"># Paso 2: matriz del kernel centrada</span>
+    <span class="n">mu</span><span class="p">,</span> <span class="n">V</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigh</span><span class="p">(</span><span class="n">Kc</span><span class="p">)</span>                          <span class="c1"># Paso 3: autovalores y autovectores (mu = n * lambda)</span>
+    <span class="n">order</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">mu</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">][:</span><span class="n">n_components</span><span class="p">]</span>         <span class="c1"># Paso 4: índices de los mayores autovalores</span>
+    <span class="n">mu</span><span class="p">,</span> <span class="n">V</span> <span class="o">=</span> <span class="n">mu</span><span class="p">[</span><span class="n">order</span><span class="p">],</span> <span class="n">V</span><span class="p">[:,</span> <span class="n">order</span><span class="p">]</span>                      <span class="c1"># Se conservan los autovalores y autovectores elegidos</span>
+    <span class="n">C</span> <span class="o">=</span> <span class="n">V</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mu</span><span class="p">)</span>                                 <span class="c1"># Normalización n*lambda*c&#39;c = 1</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;X&quot;</span><span class="p">:</span> <span class="n">X</span><span class="p">,</span> <span class="s2">&quot;K&quot;</span><span class="p">:</span> <span class="n">K</span><span class="p">,</span> <span class="s2">&quot;Kc&quot;</span><span class="p">:</span> <span class="n">Kc</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="n">C</span><span class="p">,</span> <span class="s2">&quot;mu&quot;</span><span class="p">:</span> <span class="n">mu</span><span class="p">,</span> <span class="s2">&quot;sigma&quot;</span><span class="p">:</span> <span class="n">sigma</span><span class="p">}</span>  <span class="c1"># Se guarda todo lo necesario para proyectar</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">kernel_pca_transform</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">X_new</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calcula las puntuaciones de observaciones nuevas (paso 5), usando el kernel centrado.&quot;&quot;&quot;</span>
+    <span class="n">K</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">sigma</span> <span class="o">=</span> <span class="n">model</span><span class="p">[</span><span class="s2">&quot;K&quot;</span><span class="p">],</span> <span class="n">model</span><span class="p">[</span><span class="s2">&quot;C&quot;</span><span class="p">],</span> <span class="n">model</span><span class="p">[</span><span class="s2">&quot;sigma&quot;</span><span class="p">]</span>             <span class="c1"># Se recuperan los objetos del modelo</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="n">gaussian_kernel_matrix</span><span class="p">(</span><span class="n">X_new</span><span class="p">,</span> <span class="n">model</span><span class="p">[</span><span class="s2">&quot;X&quot;</span><span class="p">],</span> <span class="n">sigma</span><span class="p">)</span>             <span class="c1"># Kernel entre datos nuevos y de entrenamiento (m x n)</span>
+    <span class="n">k_c</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">k</span>                                                            <span class="c1"># Kernel sin centrar</span>
+        <span class="o">-</span> <span class="n">k</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>                              <span class="c1"># Resta el promedio de cada fila de k</span>
+        <span class="o">-</span> <span class="n">K</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>                              <span class="c1"># Resta el promedio de columnas de K de entrenamiento</span>
+        <span class="o">+</span> <span class="n">K</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>                                                   <span class="c1"># Suma el promedio global de K de entrenamiento</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">k_c</span> <span class="o">@</span> <span class="n">C</span>                                                   <span class="c1"># Puntuaciones: kernel centrado por coeficientes</span>
+
+
+<span class="c1"># Datos: dos circunferencias concéntricas</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">make_circles</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">factor</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">noise</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># Etiqueta 0 = externa, 1 = interna</span>
+
+<span class="n">sigma</span> <span class="o">=</span> <span class="mf">0.3</span>                                                          <span class="c1"># Ancho del kernel gaussiano</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">kernel_pca_fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">sigma</span><span class="p">,</span> <span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>               <span class="c1"># Se ajusta el PCA con kernel</span>
+<span class="n">Y_kpca</span> <span class="o">=</span> <span class="n">kernel_pca_transform</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>                              <span class="c1"># Puntuaciones del PCA con kernel</span>
+<span class="n">Y_pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>                         <span class="c1"># Puntuaciones del PCA lineal</span>
+
+<span class="c1"># Comprobación 1: las puntuaciones de entrenamiento coinciden con Kc @ C</span>
+<span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">Y_kpca</span><span class="p">,</span> <span class="n">model</span><span class="p">[</span><span class="s2">&quot;Kc&quot;</span><span class="p">]</span> <span class="o">@</span> <span class="n">model</span><span class="p">[</span><span class="s2">&quot;C&quot;</span><span class="p">],</span> <span class="n">atol</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">)</span>
+
+<span class="c1"># Comprobación 2: los autovalores coinciden con los de scikit-learn</span>
+<span class="n">skl</span> <span class="o">=</span> <span class="n">KernelPCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">kernel</span><span class="o">=</span><span class="s2">&quot;rbf&quot;</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">model</span><span class="p">[</span><span class="s2">&quot;mu&quot;</span><span class="p">],</span> <span class="n">skl</span><span class="o">.</span><span class="n">eigenvalues_</span><span class="p">,</span> <span class="n">rtol</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">)</span>
+
+<span class="c1"># Colores y nombres de cada clase (se fijan a mano para poder crear una leyenda clara)</span>
+<span class="n">classes</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;Outer circle&quot;</span><span class="p">,</span> <span class="s2">&quot;#3B4CC0&quot;</span><span class="p">),</span>                     <span class="c1"># Clase 0: círculo externo, azul</span>
+    <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;Inner circle&quot;</span><span class="p">,</span> <span class="s2">&quot;#B40426&quot;</span><span class="p">),</span>                     <span class="c1"># Clase 1: círculo interno, rojo</span>
+<span class="p">]</span>
+
+<span class="c1"># Figura 2 x 2: cada panel es más grande que en la versión de una sola fila</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>  <span class="c1"># Tamaño grande y alta resolución</span>
+<span class="n">ax_orig</span><span class="p">,</span> <span class="n">ax_pca</span><span class="p">,</span> <span class="n">ax_kpca</span><span class="p">,</span> <span class="n">ax_hist</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>           <span class="c1"># Se asigna un nombre a cada panel</span>
+
+<span class="c1"># Paneles de dispersión: se dibuja cada clase por separado para generar la leyenda</span>
+<span class="n">panels</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="n">ax_orig</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="s2">&quot;Original data&quot;</span><span class="p">,</span> <span class="s2">&quot;$x_1$&quot;</span><span class="p">,</span> <span class="s2">&quot;$x_2$&quot;</span><span class="p">),</span>                                   <span class="c1"># Datos originales</span>
+    <span class="p">(</span><span class="n">ax_pca</span><span class="p">,</span> <span class="n">Y_pca</span><span class="p">,</span> <span class="s2">&quot;Linear PCA&quot;</span><span class="p">,</span> <span class="s2">&quot;Component 1&quot;</span><span class="p">,</span> <span class="s2">&quot;Component 2&quot;</span><span class="p">),</span>                      <span class="c1"># PCA lineal</span>
+    <span class="p">(</span><span class="n">ax_kpca</span><span class="p">,</span> <span class="n">Y_kpca</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;Gaussian kernel PCA ($\sigma=0.3$)&quot;</span><span class="p">,</span> <span class="s2">&quot;Component 1&quot;</span><span class="p">,</span> <span class="s2">&quot;Component 2&quot;</span><span class="p">),</span>  <span class="c1"># PCA con kernel</span>
+<span class="p">]</span>
+<span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">xlabel</span><span class="p">,</span> <span class="n">ylabel</span> <span class="ow">in</span> <span class="n">panels</span><span class="p">:</span>                                         <span class="c1"># Se recorre cada panel</span>
+    <span class="k">for</span> <span class="n">value</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">color</span> <span class="ow">in</span> <span class="n">classes</span><span class="p">:</span>                                                 <span class="c1"># Se recorre cada clase</span>
+        <span class="n">mask</span> <span class="o">=</span> <span class="n">labels</span> <span class="o">==</span> <span class="n">value</span>                                                         <span class="c1"># Selecciona los puntos de la clase</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">mask</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="n">mask</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">35</span><span class="p">,</span>
+                   <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>                       <span class="c1"># Puntos grandes con borde blanco</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>                                                                <span class="c1"># Título del panel</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">xlabel</span><span class="p">)</span>                                                              <span class="c1"># Nombre del eje horizontal</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">ylabel</span><span class="p">)</span>                                                              <span class="c1"># Nombre del eje vertical</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>                                                                 <span class="c1"># Cuadrícula suave</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;best&quot;</span><span class="p">,</span> <span class="n">frameon</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>                                                <span class="c1"># Leyenda con las dos clases</span>
+
+<span class="c1"># Los dos primeros paneles comparten escala en ambos ejes para no deformar los círculos</span>
+<span class="n">ax_orig</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s2">&quot;equal&quot;</span><span class="p">,</span> <span class="n">adjustable</span><span class="o">=</span><span class="s2">&quot;datalim&quot;</span><span class="p">)</span>       <span class="c1"># Escala igual en el panel de datos originales</span>
+<span class="n">ax_pca</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s2">&quot;equal&quot;</span><span class="p">,</span> <span class="n">adjustable</span><span class="o">=</span><span class="s2">&quot;datalim&quot;</span><span class="p">)</span>        <span class="c1"># Escala igual en el panel de PCA lineal</span>
+
+<span class="c1"># Panel 4: histograma de la Componente 1 del PCA con kernel, que muestra la separación</span>
+<span class="k">for</span> <span class="n">value</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">color</span> <span class="ow">in</span> <span class="n">classes</span><span class="p">:</span>                                                     <span class="c1"># Se recorre cada clase</span>
+    <span class="n">ax_hist</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">Y_kpca</span><span class="p">[</span><span class="n">labels</span> <span class="o">==</span> <span class="n">value</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span>
+                 <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>                                               <span class="c1"># Histograma de la clase</span>
+<span class="n">ax_hist</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Component 1 of Gaussian kernel PCA&quot;</span><span class="p">)</span>  <span class="c1"># Título del panel</span>
+<span class="n">ax_hist</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Component 1&quot;</span><span class="p">)</span>                        <span class="c1"># Nombre del eje horizontal</span>
+<span class="n">ax_hist</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Number of observations&quot;</span><span class="p">)</span>             <span class="c1"># Nombre del eje vertical</span>
+<span class="n">ax_hist</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>                                  <span class="c1"># Cuadrícula suave</span>
+<span class="n">ax_hist</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;best&quot;</span><span class="p">,</span> <span class="n">frameon</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>                 <span class="c1"># Leyenda con las dos clases</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>                                       <span class="c1"># Evita que se solapen los textos</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>                                               <span class="c1"># Muestra la figura</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/1d8a9efe4773968b3dcea8e1990117a5a7b02fd82bce4ad625c4c6d7c91d89ad.png" src="_images/1d8a9efe4773968b3dcea8e1990117a5a7b02fd82bce4ad625c4c6d7c91d89ad.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p>El <strong>PCA lineal</strong> no separa las clases: las circunferencias son casi isotrópicas, por lo que las componentes solo rotan los ejes y el resultado es prácticamente idéntico a los datos originales.</p></li>
+<li><p>El <strong>PCA con kernel gaussiano</strong> (<span class="math notranslate nohighlight">\(\sigma=0.3\)</span>) separa las clases con la <strong>Componente 1 por sí sola</strong>, mediante un umbral cercano a 0, porque equivale a un PCA lineal en un espacio de características donde la distancia radial sí es una dirección lineal.</p>
+<ul>
+<li><p><strong>Círculo interno (rojo):</strong> puntos muy similares entre sí en el espacio del kernel, con su estructura angular a lo largo de la Componente 2.</p></li>
+<li><p><strong>Círculo externo (azul):</strong> puntos poco similares entre sí, cuya varianza se dispersa en muchas direcciones y se colapsa en un grupo compacto.</p></li>
+</ul>
+</li>
+<li><p><strong>Precauciones:</strong> los signos de las componentes son arbitrarios, las distancias absolutas del panel 3 no tienen unidades interpretables y las etiquetas solo colorean, pues el método es no supervisado.</p></li>
+<li><p><strong>Sensibilidad a <span class="math notranslate nohighlight">\(\sigma\)</span>:</strong> un valor muy grande recupera el PCA lineal y uno muy pequeño lleva a <span class="math notranslate nohighlight">\(K \to I\)</span> sin estructura útil. Aquí <span class="math notranslate nohighlight">\(\sigma=0.3\)</span> es del orden del radio interno y menor que el externo, por lo que funciona bien.</p></li>
+</ul>
+<div class="tip admonition">
+<p class="admonition-title">Tarea 10: verificación numérica y análisis</p>
+<p><strong>Enunciado.</strong> Usando el código anterior como punto de partida, realice los siguientes experimentos y redacte un breve informe con sus conclusiones.</p>
+<ul class="simple">
+<li><p>Compruebe numéricamente la Proposición 3 (inciso 3): calcule <code class="docutils literal notranslate"><span class="pre">model[&quot;Kc&quot;]</span> <span class="pre">&#64;</span> <span class="pre">np.ones(n)</span></code> y el rango numérico de <code class="docutils literal notranslate"><span class="pre">Kc</span></code> con <code class="docutils literal notranslate"><span class="pre">np.linalg.matrix_rank</span></code>. Relacione el resultado con la demostración de la Tarea 3.</p></li>
+<li><p>Compruebe la Proposición 2 (inciso 2) con un kernel lineal: construya <span class="math notranslate nohighlight">\(K=XX^{T}\)</span> para un conjunto de datos centrado, y compare los autovalores de <span class="math notranslate nohighlight">\(K/n\)</span> con los de la matriz de varianza-covarianza <span class="math notranslate nohighlight">\(S\)</span> calculada con <code class="docutils literal notranslate"><span class="pre">np.cov(X.T,</span> <span class="pre">bias=True)</span></code>.</p></li>
+<li><p>Varíe <span class="math notranslate nohighlight">\(\sigma\)</span> en <span class="math notranslate nohighlight">\(\{0{,}05;\,0{,}1;\,0{,}3;\,1;\,5\}\)</span> y grafique las dos primeras componentes en cada caso. Describa cómo cambia la separabilidad de las dos circunferencias y relacione sus observaciones con los casos límite descritos en las consideraciones prácticas.</p></li>
+<li><p>Verifique la Tarea 9: transforme un punto nuevo con <code class="docutils literal notranslate"><span class="pre">kernel_pca_transform</span></code> y compare con el cálculo directo de <span class="math notranslate nohighlight">\(C^{T}\boldsymbol{k}_c(\boldsymbol{x})\)</span> usando la forma vectorial que usted demostró.</p></li>
+</ul>
+<p><strong>Verificación.</strong> Todas las comprobaciones deben cumplirse salvo errores de redondeo del orden de <span class="math notranslate nohighlight">\(10^{-8}\)</span> a <span class="math notranslate nohighlight">\(10^{-12}\)</span>.</p>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Síntesis de la sección</p>
+<p>El PCA con kernels reemplaza el problema de autovalores de la matriz de varianza-covarianza, de orden <span class="math notranslate nohighlight">\(p\)</span> o <span class="math notranslate nohighlight">\(r\)</span>, por el problema de autovalores de la matriz de Gram centrada <span class="math notranslate nohighlight">\(K_c\)</span>, de orden <span class="math notranslate nohighlight">\(n\)</span> (Proposiciones 1 a 3). El kernel trick permite calcular <span class="math notranslate nohighlight">\(K_c\)</span> sin conocer explícitamente la transformación <span class="math notranslate nohighlight">\(\Phi\)</span> (Proposición 4), y el centrado en el espacio de características se realiza de forma exacta mediante <span class="math notranslate nohighlight">\(K_c=H\mathbf{K}H\)</span> (Proposición 5). Las componentes resultantes son lineales en el espacio de características y no lineales en el espacio de entrada.</p>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Tarea 10: verificación numérica y análisis</p>
+<p><strong>Enunciado.</strong> Usando el código anterior como punto de partida, realice los siguientes experimentos y redacte un breve informe con sus conclusiones.</p>
+<ul class="simple">
+<li><p>Compruebe numéricamente la Proposición 3 (inciso 3): calcule <code class="docutils literal notranslate"><span class="pre">model[&quot;Kc&quot;]</span> <span class="pre">&#64;</span> <span class="pre">np.ones(n)</span></code> y el rango numérico de <code class="docutils literal notranslate"><span class="pre">Kc</span></code> con <code class="docutils literal notranslate"><span class="pre">np.linalg.matrix_rank</span></code>. Relacione el resultado con la demostración de la Tarea 3.</p></li>
+<li><p>Compruebe la Proposición 2 (inciso 2) con un núcleo lineal: construya <span class="math notranslate nohighlight">\(K=XX^{T}\)</span> para un conjunto de datos centrado, y compare los autovalores de <span class="math notranslate nohighlight">\(K/n\)</span> con los de la matriz de varianza-covarianza <span class="math notranslate nohighlight">\(S\)</span> calculada con <code class="docutils literal notranslate"><span class="pre">np.cov(X.T,</span> <span class="pre">bias=True)</span></code>.</p></li>
+<li><p>Varíe <span class="math notranslate nohighlight">\(\sigma\)</span> en <span class="math notranslate nohighlight">\(\{0{,}05;\,0{,}1;\,0{,}3;\,1;\,5\}\)</span> y grafique las dos primeras componentes en cada caso. Describa cómo cambia la separabilidad de las dos circunferencias y relacione sus observaciones con los casos límite descritos en las consideraciones prácticas.</p></li>
+<li><p>Verifique la Tarea 9: transforme un punto nuevo con <code class="docutils literal notranslate"><span class="pre">kernel_pca_transform</span></code> y compare con el cálculo directo de <span class="math notranslate nohighlight">\(C^{T}\boldsymbol{k}_c(\boldsymbol{x})\)</span> usando la forma vectorial que usted demostró.</p></li>
+</ul>
+<p><strong>Verificación.</strong> Todas las comprobaciones deben cumplirse salvo errores de redondeo del orden de <span class="math notranslate nohighlight">\(10^{-8}\)</span> a <span class="math notranslate nohighlight">\(10^{-12}\)</span>.</p>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Síntesis de la sección</p>
+<p>El PCA con núcleos reemplaza el problema de autovalores de la matriz de varianza-covarianza, de orden <span class="math notranslate nohighlight">\(p\)</span> o <span class="math notranslate nohighlight">\(r\)</span>, por el problema de autovalores de la matriz de Gram centrada <span class="math notranslate nohighlight">\(K_c\)</span>, de orden <span class="math notranslate nohighlight">\(n\)</span> (Proposiciones 1 a 3). El truco del núcleo permite calcular <span class="math notranslate nohighlight">\(K_c\)</span> sin conocer explícitamente la transformación <span class="math notranslate nohighlight">\(\Phi\)</span> (Proposición 4), y el centrado en el espacio de características se realiza de forma exacta mediante <span class="math notranslate nohighlight">\(K_c=H\mathbf{K}H\)</span> (Proposición 5). Las componentes resultantes son lineales en el espacio de características y no lineales en el espacio de entrada.</p>
+</div>
+</section>
+</section>
 <section id="implementacion">
-<h2><span class="section-number">7.8. </span>Implementación<a class="headerlink" href="#implementacion" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">7.9. </span>Implementación<a class="headerlink" href="#implementacion" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Hasta este momento, hemos analizado en detalle <em><strong>estimadores de aprendizaje supervisado</strong></em>: aquellos estimadores que <em><strong>predicen etiquetas basadas en datos de entrenamiento etiquetados</strong></em>. Ahora, empezamos a examinar varios <em><strong>estimadores no supervisados</strong></em>, los cuales pueden resaltar aspectos interesantes de los datos sin hacer referencia a etiquetas conocidas.</p></li>
 <li><p>En esta sección, exploramos lo que posiblemente es uno de los <em><strong>algoritmos no supervisados más ampliamente utilizados</strong></em>: el <em><strong>análisis de componentes principales (PCA)</strong></em>. PCA es fundamentalmente un <em><strong>algoritmo de reducción de dimensionalidad</strong></em>, pero también puede ser útil como <em><strong>herramienta de visualización, para filtrado de ruido, extracción y construcción de características, y mucho más</strong></em>.</p></li>
@@ -1044,7 +1565,7 @@ y_2 = -\frac{1}{\sqrt{2}}x_1 + \frac{1}{\sqrt{2}}x_2.
 </div>
 </section>
 <section id="introduccion-al-analisis-de-componentes-principales">
-<h2><span class="section-number">7.9. </span>Introducción al análisis de componentes principales<a class="headerlink" href="#introduccion-al-analisis-de-componentes-principales" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">7.10. </span>Introducción al análisis de componentes principales<a class="headerlink" href="#introduccion-al-analisis-de-componentes-principales" title="Link to this heading">#</a></h2>
 <p>El <code class="docutils literal notranslate"><span class="pre">análisis</span> <span class="pre">de</span> <span class="pre">componentes</span> <span class="pre">principales</span> <span class="pre">(PCA)</span></code> es una <code class="docutils literal notranslate"><span class="pre">técnica</span> <span class="pre">no</span> <span class="pre">supervisada,</span> <span class="pre">rápida</span> <span class="pre">y</span> <span class="pre">adaptable</span></code>, diseñada para <code class="docutils literal notranslate"><span class="pre">reducir</span> <span class="pre">la</span> <span class="pre">dimensionalidad</span> <span class="pre">de</span> <span class="pre">los</span> <span class="pre">datos</span></code>. La forma más sencilla de comprender su funcionamiento es a través del <code class="docutils literal notranslate"><span class="pre">examen</span> <span class="pre">de</span> <span class="pre">un</span> <span class="pre">conjunto</span> <span class="pre">de</span> <span class="pre">datos</span> <span class="pre">bidimensional</span></code>. Tomemos en consideración la <code class="docutils literal notranslate"><span class="pre">recopilación</span> <span class="pre">posterior</span> <span class="pre">de</span> <span class="pre">200</span> <span class="pre">puntos</span> <span class="pre">de</span> <span class="pre">datos</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1145,7 +1666,7 @@ y_2 = -\frac{1}{\sqrt{2}}x_1 + \frac{1}{\sqrt{2}}x_2.
 </ul>
 </section>
 </div><section id="pca-para-reduccion-de-dimension">
-<h3><span class="section-number">7.9.1. </span>PCA para reducción de dimensión<a class="headerlink" href="#pca-para-reduccion-de-dimension" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">7.10.1. </span>PCA para reducción de dimensión<a class="headerlink" href="#pca-para-reduccion-de-dimension" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>El <code class="docutils literal notranslate"><span class="pre">PCA</span></code> puede emplearse para <code class="docutils literal notranslate"><span class="pre">reducir</span> <span class="pre">la</span> <span class="pre">dimensionalidad</span> <span class="pre">anulando</span> <span class="pre">uno</span> <span class="pre">o</span> <span class="pre">varios</span> <span class="pre">de</span> <span class="pre">los</span> <span class="pre">componentes</span> <span class="pre">principales</span> <span class="pre">más</span> <span class="pre">pequeños</span></code>. De este modo se obtiene una <code class="docutils literal notranslate"><span class="pre">representación</span> <span class="pre">de</span> <span class="pre">los</span> <span class="pre">datos</span> <span class="pre">de</span> <span class="pre">menor</span> <span class="pre">dimensión,</span> <span class="pre">conservando</span> <span class="pre">al</span> <span class="pre">mismo</span> <span class="pre">tiempo</span> <span class="pre">la</span> <span class="pre">mayor</span> <span class="pre">varianza</span> <span class="pre">posible</span></code> de los datos. A continuación se muestra un ejemplo de utilización de <code class="docutils literal notranslate"><span class="pre">PCA</span> <span class="pre">com</span></code> transformación para la reducción de la dimensionalidad`</p></li>
 </ul>
@@ -1188,7 +1709,7 @@ transformed shape: (200, 1)
 </ul>
 </section>
 <section id="pca-para-visualizacion-digitos-escritos-a-mano">
-<h3><span class="section-number">7.9.2. </span>PCA para visualización: Dígitos escritos a mano<a class="headerlink" href="#pca-para-visualizacion-digitos-escritos-a-mano" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">7.10.2. </span>PCA para visualización: Dígitos escritos a mano<a class="headerlink" href="#pca-para-visualizacion-digitos-escritos-a-mano" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>El valor de <code class="docutils literal notranslate"><span class="pre">reducir</span> <span class="pre">la</span> <span class="pre">dimensionalidad</span> <span class="pre">puede</span> <span class="pre">no</span> <span class="pre">ser</span> <span class="pre">del</span> <span class="pre">todo</span> <span class="pre">evidente</span> <span class="pre">en</span> <span class="pre">sólo</span> <span class="pre">dos</span> <span class="pre">dimensiones</span></code>, pero se hace mucho más evidente cuando se trata de <code class="docutils literal notranslate"><span class="pre">datos</span> <span class="pre">de</span> <span class="pre">alta</span> <span class="pre">dimensionalidad</span></code>. Para ilustrarlo, examinaremos la aplicación de <code class="docutils literal notranslate"><span class="pre">PCA</span></code> al conjunto de datos de <code class="docutils literal notranslate"><span class="pre">dígitos</span> <span class="pre">escritos</span> <span class="pre">a</span> <span class="pre">mano</span></code> (imágenes <span class="math notranslate nohighlight">\(8\times8\)</span> (64-dimensional) de píxeles enteros en el rango <span class="math notranslate nohighlight">\(0,\dots,16\)</span>.).</p></li>
 </ul>
@@ -1754,7 +2275,7 @@ transformed shape: (200, 1)
 </ul>
 </section>
 <section id="seleccion-del-numero-de-componentes">
-<h3><span class="section-number">7.9.3. </span>Selección del número de componentes<a class="headerlink" href="#seleccion-del-numero-de-componentes" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">7.10.3. </span>Selección del número de componentes<a class="headerlink" href="#seleccion-del-numero-de-componentes" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Un aspecto esencial de la aplicación práctica del <code class="docutils literal notranslate"><span class="pre">PCA</span></code> consiste en <code class="docutils literal notranslate"><span class="pre">determinar</span> <span class="pre">el</span> <span class="pre">número</span> <span class="pre">óptimo</span> <span class="pre">de</span> <span class="pre">componentes</span> <span class="pre">necesarios</span> <span class="pre">para</span> <span class="pre">caracterizar</span> <span class="pre">los</span> <span class="pre">datos</span></code>. Esto puede lograrse analizando la <code class="docutils literal notranslate"><span class="pre">proporción</span> <span class="pre">de</span> <span class="pre">varianza</span> <span class="pre">explicada</span> <span class="pre">acumulativa</span> <span class="pre">en</span> <span class="pre">relación</span> <span class="pre">con</span> <span class="pre">el</span> <span class="pre">número</span> <span class="pre">de</span> <span class="pre">componentes</span></code></p></li>
 </ul>
@@ -1777,7 +2298,7 @@ transformed shape: (200, 1)
 </ul>
 </section>
 <section id="pca-como-filtro-de-ruido">
-<h3><span class="section-number">7.9.4. </span>PCA como filtro de ruido<a class="headerlink" href="#pca-como-filtro-de-ruido" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">7.10.4. </span>PCA como filtro de ruido<a class="headerlink" href="#pca-como-filtro-de-ruido" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>El PCA puede servir como técnica para <code class="docutils literal notranslate"><span class="pre">filtrar</span> <span class="pre">el</span> <span class="pre">ruido</span> <span class="pre">de</span> <span class="pre">los</span> <span class="pre">datos</span></code>. El concepto fundamental es que los <em><strong><code class="docutils literal notranslate"><span class="pre">componentes</span> <span class="pre">con</span> <span class="pre">una</span> <span class="pre">varianza</span> <span class="pre">significativamente</span> <span class="pre">mayor</span> <span class="pre">que</span> <span class="pre">el</span> <span class="pre">impacto</span> <span class="pre">del</span> <span class="pre">ruido,</span> <span class="pre">están</span> <span class="pre">menos</span> <span class="pre">influidas</span> <span class="pre">por</span> <span class="pre">éste</span></code></strong></em>. Por consiguiente, si se reconstruyen los datos utilizando el <code class="docutils literal notranslate"><span class="pre">subconjunto</span> <span class="pre">primario</span> <span class="pre">de</span> <span class="pre">componentes</span> <span class="pre">principales</span> <span class="pre">con</span> <span class="pre">la</span> <span class="pre">mayor</span> <span class="pre">varianza,</span> <span class="pre">se</span> <span class="pre">conserva</span> <span class="pre">efectivamente</span> <span class="pre">la</span> <span class="pre">señal</span> <span class="pre">al</span> <span class="pre">tiempo</span> <span class="pre">que</span> <span class="pre">se</span> <span class="pre">elimina</span> <span class="pre">el</span> <span class="pre">ruido</span></code>.</p></li>
 <li><p>Para observar esto en acción con el conjunto de datos de <code class="docutils literal notranslate"><span class="pre">dígitos</span></code>, empezaremos generando <code class="docutils literal notranslate"><span class="pre">gráficos</span> <span class="pre">para</span> <span class="pre">varias</span> <span class="pre">instancias</span> <span class="pre">de</span> <span class="pre">los</span> <span class="pre">datos</span> <span class="pre">originales</span> <span class="pre">libres</span> <span class="pre">de</span> <span class="pre">ruido</span></code></p></li>
@@ -1863,7 +2384,7 @@ transformed shape: (200, 1)
 </ul>
 </section>
 <section id="ejemplo-eigenfaces">
-<h3><span class="section-number">7.9.5. </span>Ejemplo Eigenfaces<a class="headerlink" href="#ejemplo-eigenfaces" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">7.10.5. </span>Ejemplo Eigenfaces<a class="headerlink" href="#ejemplo-eigenfaces" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Examinamos la utilización de una <code class="docutils literal notranslate"><span class="pre">proyección</span> <span class="pre">PCA</span></code> como <code class="docutils literal notranslate"><span class="pre">selector</span> <span class="pre">de</span> <span class="pre">características</span></code> en el contexto del <code class="docutils literal notranslate"><span class="pre">reconocimiento</span> <span class="pre">facial</span></code>. Profundicemos en los detalles, trabajado con el conjunto de datos <code class="docutils literal notranslate"><span class="pre">Labeled</span> <span class="pre">Faces</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">Wild</span></code> proporcionado por <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code></p></li>
 </ul>
@@ -2047,13 +2568,26 @@ transformed shape: (200, 1)
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autovalores-y-autovectores-de-una-matriz-simetrica">7.5. Autovalores y autovectores de una matriz simétrica</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estandarizacion-y-matriz-de-correlacion-muestral">7.6. Estandarización y matriz de correlación muestral</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reduccion-de-dimension-y-perdida-de-informacion">7.7. Reducción de dimensión y pérdida de información</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion">7.8. Implementación</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion-al-analisis-de-componentes-principales">7.9. Introducción al análisis de componentes principales</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-para-reduccion-de-dimension">7.9.1. PCA para reducción de dimensión</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-para-visualizacion-digitos-escritos-a-mano">7.9.2. PCA para visualización: Dígitos escritos a mano</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-del-numero-de-componentes">7.9.3. Selección del número de componentes</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-como-filtro-de-ruido">7.9.4. PCA como filtro de ruido</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-eigenfaces">7.9.5. Ejemplo Eigenfaces</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kernel-pca">7.8. Kernel PCA</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#centrado-de-los-datos-y-problema-de-autovalores">7.8.1. Centrado de los datos y problema de autovalores</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#forma-matricial">7.8.1.1. Forma matricial</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-a-datos-transformados-a-un-rkhs">7.8.2. Aplicación a datos transformados a un RKHS</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones-kernel">7.8.3. Funciones kernel</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#justificacion-del-centrado-de-los-datos">7.8.4. Justificación del centrado de los datos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#centrado-de-los-datos-mediante-la-funcion-nucleo">7.8.5. Centrado de los datos mediante la función núcleo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-del-pca-con-nucleos">7.8.6. Algoritmo del PCA con núcleos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion-en-python">7.8.7. Implementación en Python</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion">7.9. Implementación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion-al-analisis-de-componentes-principales">7.10. Introducción al análisis de componentes principales</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-para-reduccion-de-dimension">7.10.1. PCA para reducción de dimensión</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-para-visualizacion-digitos-escritos-a-mano">7.10.2. PCA para visualización: Dígitos escritos a mano</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-del-numero-de-componentes">7.10.3. Selección del número de componentes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-como-filtro-de-ruido">7.10.4. PCA como filtro de ruido</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-eigenfaces">7.10.5. Ejemplo Eigenfaces</a></li>
 </ul>
 </li>
 </ul>
